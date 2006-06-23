@@ -9,7 +9,7 @@ m4_define(pyclutter_version_micro, 0)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
 m4_define(clutter_required_version, 0.1.0)
-m4_define(pygtk_required_version, 2.8.0)
+m4_define(pygtk_required_version,   2.8.0)
 
 AC_INIT([pyclutter], pyclutter_version, 
         [http://bugzilla.o-hand.com/enter_bug.cgi?product=Clutter])

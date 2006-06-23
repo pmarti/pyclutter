@@ -57,7 +57,8 @@ clutter-pyglue.c: clutter.defs clutter-types.defs $(CLUTTER_OVERRIDES)
 
 pkgpythondir = $(pyexecdir)
 pyclutterdir = $(pkgpythondir)/clutter
-pyclutter_LTLIBRARIES = clutter.la
+pyclutter_LTLIBRARIES = _clutter.la
+pyclutter_PYTHON = __init__.py
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = pyclutter.pc
@@ -66,8 +67,8 @@ EXTRA_DIST += pyclutter.pc.in
 
 INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS) $(CLUTTER_CFLAGS)
 
-clutter_la_SOURCES = cluttermodule.c
-clutter_la_LIBADD  = $(PYGTK_LIBS) $(CLUTTER_LIBS)
-clutter_la_LDFLAGS = -module -avoid-version -export-symbols-regex initclutter
-nodist_clutter_la_SOURCES = clutter-pyglue.c
+_clutter_la_SOURCES = cluttermodule.c
+_clutter_la_LIBADD  = $(PYGTK_LIBS) $(CLUTTER_LIBS)
+_clutter_la_LDFLAGS = -module -avoid-version -export-symbols-regex init_clutter
+nodist__clutter_la_SOURCES = clutter-pyglue.c
 CLEANFILES += clutter-pyglue.c

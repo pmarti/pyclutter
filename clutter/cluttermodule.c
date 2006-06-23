@@ -9,14 +9,13 @@ void clutter_register_classes (PyObject *d);
 extern PyMethodDef clutter_functions[];
 
 DL_EXPORT (void)
-initclutter (void)
+init_clutter (void)
 {
   PyObject *m, *d;
 
   init_pygobject ();
-  /* init_pygtk(); */
 
-  m = Py_InitModule ("clutter", clutter_functions);
+  m = Py_InitModule ("_clutter", clutter_functions);
   d = PyModule_GetDict (m);
 
   clutter_register_classes (d);

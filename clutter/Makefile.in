@@ -38,8 +38,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 subdir = clutter
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/pyclutter.pc.in
+DIST_COMMON = $(pyclutter_PYTHON) $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(srcdir)/pyclutter.pc.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
 	$(top_srcdir)/configure.ac
@@ -55,15 +55,15 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pyclutterdir)" \
-	"$(DESTDIR)$(pkgconfigdir)"
+	"$(DESTDIR)$(pyclutterdir)" "$(DESTDIR)$(pkgconfigdir)"
 pyclutterLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pyclutter_LTLIBRARIES)
 am__DEPENDENCIES_1 =
-clutter_la_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
-am_clutter_la_OBJECTS = cluttermodule.lo
-nodist_clutter_la_OBJECTS = clutter-pyglue.lo
-clutter_la_OBJECTS = $(am_clutter_la_OBJECTS) \
-	$(nodist_clutter_la_OBJECTS)
+_clutter_la_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
+am__clutter_la_OBJECTS = cluttermodule.lo
+nodist__clutter_la_OBJECTS = clutter-pyglue.lo
+_clutter_la_OBJECTS = $(am__clutter_la_OBJECTS) \
+	$(nodist__clutter_la_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir) -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -75,8 +75,10 @@ LTCOMPILE = $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(clutter_la_SOURCES) $(nodist_clutter_la_SOURCES)
-DIST_SOURCES = $(clutter_la_SOURCES)
+SOURCES = $(_clutter_la_SOURCES) $(nodist__clutter_la_SOURCES)
+DIST_SOURCES = $(_clutter_la_SOURCES)
+pyclutterPYTHON_INSTALL = $(INSTALL_DATA)
+py_compile = $(top_srcdir)/py-compile
 pkgconfigDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(pkgconfig_DATA)
 ETAGS = etags
@@ -215,14 +217,15 @@ CLUTTER_OVERRIDES = clutter.override
 EXTRA_DIST = clutter-base.defs clutter-base-types.defs \
 	clutter.override pyclutter.pc.in
 pyclutterdir = $(pkgpythondir)/clutter
-pyclutter_LTLIBRARIES = clutter.la
+pyclutter_LTLIBRARIES = _clutter.la
+pyclutter_PYTHON = __init__.py
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = pyclutter.pc
 INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS) $(CLUTTER_CFLAGS)
-clutter_la_SOURCES = cluttermodule.c
-clutter_la_LIBADD = $(PYGTK_LIBS) $(CLUTTER_LIBS)
-clutter_la_LDFLAGS = -module -avoid-version -export-symbols-regex initclutter
-nodist_clutter_la_SOURCES = clutter-pyglue.c
+_clutter_la_SOURCES = cluttermodule.c
+_clutter_la_LIBADD = $(PYGTK_LIBS) $(CLUTTER_LIBS)
+_clutter_la_LDFLAGS = -module -avoid-version -export-symbols-regex init_clutter
+nodist__clutter_la_SOURCES = clutter-pyglue.c
 all: all-am
 
 .SUFFIXES:
@@ -285,8 +288,8 @@ clean-pyclutterLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-clutter.la: $(clutter_la_OBJECTS) $(clutter_la_DEPENDENCIES) 
-	$(LINK) -rpath $(pyclutterdir) $(clutter_la_LDFLAGS) $(clutter_la_OBJECTS) $(clutter_la_LIBADD) $(LIBS)
+_clutter.la: $(_clutter_la_OBJECTS) $(_clutter_la_DEPENDENCIES) 
+	$(LINK) -rpath $(pyclutterdir) $(_clutter_la_LDFLAGS) $(_clutter_la_OBJECTS) $(_clutter_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -327,6 +330,34 @@ clean-libtool:
 distclean-libtool:
 	-rm -f libtool
 uninstall-info-am:
+install-pyclutterPYTHON: $(pyclutter_PYTHON)
+	@$(NORMAL_INSTALL)
+	test -z "$(pyclutterdir)" || $(mkdir_p) "$(DESTDIR)$(pyclutterdir)"
+	@list='$(pyclutter_PYTHON)'; dlist=''; for p in $$list; do\
+	  if test -f "$$p"; then b=; else b="$(srcdir)/"; fi; \
+	  if test -f $$b$$p; then \
+	    f=$(am__strip_dir) \
+	    dlist="$$dlist $$f"; \
+	    echo " $(pyclutterPYTHON_INSTALL) '$$b$$p' '$(DESTDIR)$(pyclutterdir)/$$f'"; \
+	    $(pyclutterPYTHON_INSTALL) "$$b$$p" "$(DESTDIR)$(pyclutterdir)/$$f"; \
+	  else :; fi; \
+	done; \
+	if test -n "$$dlist"; then \
+	  if test -z "$(DESTDIR)"; then \
+	    PYTHON=$(PYTHON) $(py_compile) --basedir "$(pyclutterdir)" $$dlist; \
+	  else \
+	    PYTHON=$(PYTHON) $(py_compile) --destdir "$(DESTDIR)" --basedir "$(pyclutterdir)" $$dlist; \
+	  fi; \
+	else :; fi
+
+uninstall-pyclutterPYTHON:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pyclutter_PYTHON)'; dlist=''; for p in $$list; do\
+	  f=$(am__strip_dir) \
+	  rm -f "$(DESTDIR)$(pyclutterdir)/$$f"; \
+	  rm -f "$(DESTDIR)$(pyclutterdir)/$${f}c"; \
+	  rm -f "$(DESTDIR)$(pyclutterdir)/$${f}o"; \
+	done
 install-pkgconfigDATA: $(pkgconfig_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkgconfigdir)" || $(mkdir_p) "$(DESTDIR)$(pkgconfigdir)"
@@ -424,7 +455,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(pyclutterdir)" "$(DESTDIR)$(pkgconfigdir)"; do \
+	for dir in "$(DESTDIR)$(pyclutterdir)" "$(DESTDIR)$(pyclutterdir)" "$(DESTDIR)$(pkgconfigdir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-am
@@ -473,7 +504,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-pkgconfigDATA install-pyclutterLTLIBRARIES
+install-data-am: install-pkgconfigDATA install-pyclutterLTLIBRARIES \
+	install-pyclutterPYTHON
 
 install-exec-am:
 
@@ -502,7 +534,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-info-am uninstall-pkgconfigDATA \
-	uninstall-pyclutterLTLIBRARIES
+	uninstall-pyclutterLTLIBRARIES uninstall-pyclutterPYTHON
 
 .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
 	clean-libtool clean-pyclutterLTLIBRARIES ctags distclean \
@@ -511,12 +543,13 @@ uninstall-am: uninstall-info-am uninstall-pkgconfigDATA \
 	install install-am install-data install-data-am install-exec \
 	install-exec-am install-info install-info-am install-man \
 	install-pkgconfigDATA install-pyclutterLTLIBRARIES \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-info-am uninstall-pkgconfigDATA \
-	uninstall-pyclutterLTLIBRARIES
+	install-pyclutterPYTHON install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-info-am \
+	uninstall-pkgconfigDATA uninstall-pyclutterLTLIBRARIES \
+	uninstall-pyclutterPYTHON
 
 
 clutter.defs: Makefile stamp-clutter.defs
