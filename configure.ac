@@ -14,12 +14,12 @@ m4_define(pygtk_required_version,   2.8.0)
 AC_INIT([pyclutter], pyclutter_version, 
         [http://bugzilla.o-hand.com/enter_bug.cgi?product=Clutter])
 
-AC_DEFINE(PYCLUTTER_MAJOR_VERSION, pyclutter_major_version, [pyclutter major version])
-AC_SUBST(PYCLUTTER_MAJOR_VERSION, pyclutter_major_version)
-AC_DEFINE(PYCLUTTER_MINOR_VERSION, pyclutter_minor_version, [pyclutter minor version])
-AC_SUBST(PYCLUTTER_MINOR_VERSION, pyclutter_minor_version)
-AC_DEFINE(PYCLUTTER_MICRO_VERSION, pyclutter_micro_version, [pyclutter micro version])
-AC_SUBST(PYCLUTTER_MICRO_VERSION, pyclutter_micro_version)
+AC_DEFINE(PYCLUTTER_MAJOR_VERSION, [pyclutter_version_major], [pyclutter major version])
+AC_SUBST(PYCLUTTER_MAJOR_VERSION, [pyclutter_version_major])
+AC_DEFINE(PYCLUTTER_MINOR_VERSION, [pyclutter_version_minor], [pyclutter minor version])
+AC_SUBST(PYCLUTTER_MINOR_VERSION, [pyclutter_version_minor])
+AC_DEFINE(PYCLUTTER_MICRO_VERSION, [pyclutter_version_micro], [pyclutter micro version])
+AC_SUBST(PYCLUTTER_MICRO_VERSION, [pyclutter_version_micro])
 
 AC_CONFIG_SRCDIR([clutter/cluttermodule.c])
 AM_CONFIG_HEADER(config.h)
