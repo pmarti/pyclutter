@@ -1,5 +1,10 @@
 2006-06-23  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/cluttermodule.c: Remove the debug messages and fix the
+	__version__ tuple generation.
+
+2006-06-23  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/Makefile.am: Install a _clutter shared object and then add
 	a __init__.py loading the right namespace.
 
