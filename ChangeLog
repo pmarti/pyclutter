@@ -1,5 +1,10 @@
 2006-06-23  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/__init__.py: Relay __version__ from the shared object
+	to the main package.
+
+2006-06-23  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/cluttermodule.c: Remove the debug messages and fix the
 	__version__ tuple generation.
 
