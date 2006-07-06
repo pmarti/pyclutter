@@ -1,3 +1,9 @@
+2006-07-06  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs:
+	* clutter/clutter-base-types.defs: Resync with the API changes
+	inside clutter.
+
 2006-06-23  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/__init__.py: Relay __version__ from the shared object

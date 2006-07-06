@@ -587,6 +587,12 @@
   (return-type "none")
 )
 
+(define-method has_clip
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_has_clip")
+  (return-type "gboolean")
+)
+
 (define-method set_parent
   (of-object "ClutterActor")
   (c-name "clutter_actor_set_parent")
@@ -600,6 +606,12 @@
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_parent")
   (return-type "ClutterActor*")
+)
+
+(define-method unparent
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_unparent")
+  (return-type "none")
 )
 
 (define-method raise

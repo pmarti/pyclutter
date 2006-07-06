@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import clutter._clutter
+import clutter
 
 def on_stage_add (group, element):
     print 'Adding element:', element
