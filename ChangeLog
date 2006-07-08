@@ -1,5 +1,9 @@
 2006-07-08  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* configure.ac: Require clutter 0.1.1 and update our own version.
+
+2006-07-08  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter.override: Add accessors for the clutter.Event
 	object (Ross Burton, #104).
 
