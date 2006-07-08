@@ -33,6 +33,8 @@
   (in-module "Clutter")
   (c-name "ClutterEvent")
   (gtype-id "CLUTTER_TYPE_EVENT")
+  (copy-func "clutter_event_copy")
+  (release-func "clutter_event_free")
   (fields
     '("ClutterEventType" "type")
   )

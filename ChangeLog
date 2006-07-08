@@ -1,3 +1,16 @@
+2006-07-08  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter.override: Add accessors for the clutter.Event
+	object (Ross Burton, #104).
+
+	* clutter/clutter-base.defs:
+	* clutter/clutter-base-types.defs: Make clutter.event_new the
+	constructor for the clutter.Event object, and specify the boxed
+	type functions for copy and free.
+
+	* examples/rects.py: Change the example to include the usage of
+	the new event accessors.
+
 2006-07-06  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs:

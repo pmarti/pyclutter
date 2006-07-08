@@ -266,7 +266,7 @@
 
 ;; From ../../clutter/clutter-event.h
 
-(define-function clutter_event_new
+(define-function event_new
   (c-name "clutter_event_new")
   (is-constructor-of "ClutterEvent")
   (return-type "ClutterEvent*")

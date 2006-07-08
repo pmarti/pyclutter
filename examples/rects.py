@@ -5,6 +5,10 @@ import clutter
 def on_stage_add (group, element):
     print 'Adding element:', element
 
+def on_button_press_event (stage, event):
+    print 'Button press at (x:%d, y:%d): %d' % (event.x, event.y, event.button)
+    clutter.main_quit()
+
 stage = clutter.stage_get_default()
 stage.set_size(800,600)
 stage.set_color(0x6d, 0x6d, 0x70, 0xff)
@@ -23,7 +27,7 @@ for i in range(1, 10):
     stage.add(rect)
     rect.show()
 
-stage.connect('button-press-event', clutter.main_quit)
+stage.connect('button-press-event', on_button_press_event)
 
 stage.show()
 
