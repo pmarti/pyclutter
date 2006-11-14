@@ -52,6 +52,16 @@
   )
 )
 
+(define-boxed Knot
+  (in-module "Clutter")
+  (c-name "ClutterKnot")
+  (gtype-id "CLUTTER_TYPE_KNOT")
+  (fields
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
 ;; Enumerations and flags ...
 
 (define-flags ActorFlags
@@ -90,18 +100,46 @@
 
 ;; Objects
 
-(define-object CloneTexture
-  (in-module "Clutter")
-  (parent "ClutterActor")
-  (c-name "ClutterCloneTexture")
-  (gtype-id "CLUTTER_TYPE_CLONE_TEXTURE")
-)
-
 (define-object Actor
   (in-module "Clutter")
   (parent "GObject")
   (c-name "ClutterActor")
   (gtype-id "CLUTTER_TYPE_ACTOR")
+)
+
+(define-object Alpha
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterAlpha")
+  (gtype-id "CLUTTER_TYPE_ALPHA")
+)
+
+(define-object Behaviour
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterBehaviour")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR")
+)
+
+(define-object BehaviourOpacity
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourOpacity")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_OPACITY")
+)
+
+(define-object BehaviourPath
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourPath")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_PATH")
+)
+
+(define-object CloneTexture
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterCloneTexture")
+  (gtype-id "CLUTTER_TYPE_CLONE_TEXTURE")
 )
 
 (define-object Group
@@ -146,13 +184,6 @@
   (gtype-id "CLUTTER_TYPE_TIMELINE")
 )
 
-(define-object VideoTexture
-  (in-module "Clutter")
-  (parent "ClutterTexture")
-  (implements "ClutterMedia")
-  (c-name "ClutterVideoTexture")
-  (gtype-id "CLUTTER_TYPE_VIDEO_TEXTURE")
-)
 
 
 ;; Pointers

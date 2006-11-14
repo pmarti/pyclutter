@@ -11,10 +11,12 @@ headers
 #include <clutter/clutter-stage.h>
 #include <clutter/clutter-color.h>
 #include <clutter/clutter-actor.h>
+#include <clutter/clutter-alpha.h>
+#include <clutter/clutter-behaviour.h>
+#include <clutter/clutter-behaviours.h>
 #include <clutter/clutter-rectangle.h>
 #include <clutter/clutter-group.h>
 #include <clutter/clutter-texture.h>
-#include <clutter/clutter-video-texture.h>
 #include <clutter/clutter-clone-texture.h>
 #include <clutter/clutter-label.h>
 #include <clutter/clutter-util.h>
@@ -34,6 +36,8 @@ ignore
   clutter_xdisplay
   clutter_root_xwindow
   clutter_gl_context
+  clutter_alpha_new_full
+  clutter_behaviour_path_append_knots_valist
 %%
 ignore-glob
   *_get_type
@@ -472,6 +476,15 @@ _wrap_clutter_group_add_many (PyGObject *self,
 
 	Py_INCREF (Py_None);
 	return Py_None;
+}
+%%
+override clutter_behaviour_path_append_knots
+static PyObject *
+_wrap_clutter_behaviour_path_append_knots (PyGObject *object,
+                                           PyObject  *args)
+{
+  Py_INCREF (Py_None);
+  return Py_None;
 }
 %%
 override clutter_main noargs
