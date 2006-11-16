@@ -13,12 +13,15 @@ headers
 #include <clutter/clutter-actor.h>
 #include <clutter/clutter-alpha.h>
 #include <clutter/clutter-behaviour.h>
-#include <clutter/clutter-behaviours.h>
+#include <clutter/clutter-behaviour-opacity.h>
+#include <clutter/clutter-behaviour-path.h>
+#include <clutter/clutter-behaviour-scale.h>
 #include <clutter/clutter-rectangle.h>
 #include <clutter/clutter-group.h>
 #include <clutter/clutter-texture.h>
 #include <clutter/clutter-clone-texture.h>
 #include <clutter/clutter-label.h>
+#include <clutter/clutter-feature.h>
 #include <clutter/clutter-util.h>
 #include <clutter/clutter-enum-types.h>
 %%
@@ -28,8 +31,6 @@ import gobject.GObject as PyGObject_Type
 import gtk.gdk.Pixbuf as PyGdkPixbuf_Type
 %%
 ignore
-  clutter_video_texture_error_quark
-  clutter_video_texture_get_metadata
   clutter_group_add_many_valist
   clutter_stage_get_xwindow
   clutter_init
@@ -38,6 +39,7 @@ ignore
   clutter_gl_context
   clutter_alpha_new_full
   clutter_behaviour_path_append_knots_valist
+  clutter_rectangle_new_with_color
 %%
 ignore-glob
   *_get_type
@@ -891,20 +893,6 @@ _wrap_clutter_color_from_pixel (PyObject *self,
 			      (int) color.alpha);
 }
 %%
-override clutter_label_get_text_extents
-static PyObject *
-_wrap_clutter_label_get_text_extents (PyGObject *self,
-				      PyObject  *args)
-{
-	gint width, height;
-
-	clutter_label_get_text_extents (CLUTTER_LABEL (self->obj),
-					&width,
-					&height);
-	
-	return Py_BuildValue ("(ii)", width, height);
-}
-%%
 override clutter_rectangle_set_color
 static PyObject *
 _wrap_clutter_rectangle_set_color (PyGObject *self,
@@ -1122,10 +1110,11 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 			break;
 	}
 
-	PyErr_SetString (PyExc_AttributeError, "could not write attribute");
+#undef CHECK_VALUE_IS_INT
+	
+        PyErr_SetString (PyExc_AttributeError, "could not write attribute");
 	return -1;
 }
-#undef CHECK_VALUE_IS_INT
 %%
 override-slot ClutterEvent.tp_getattr
 PyObject *

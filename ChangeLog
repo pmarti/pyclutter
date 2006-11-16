@@ -1,5 +1,19 @@
 2006-11-16  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	The coverage of global functions is 100.00% (16/16)
+	The coverage of methods is 92.31% (132/143)
+
+	* clutter/clutter.override: Update from upstream API changes.
+	
+	* clutter/Makefile.am:
+	* clutter/clutter-base.defs:
+	* clutter/clutter-base-types.defs:
+	* clutter/clutter.defs: Consolidate the definitions inside
+	a single file; there's no point making stuff more complicated
+	than already is.
+
+2006-11-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter.override:
 	* clutter/clutter-base.defs:
 	* clutter/clutter-base-types.defs: Update after upstream. Still

@@ -1,4 +1,238 @@
 ;; -*- scheme -*-
+; object definitions ...
+
+(define-object Actor
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterActor")
+  (gtype-id "CLUTTER_TYPE_ACTOR")
+)
+
+(define-object Alpha
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterAlpha")
+  (gtype-id "CLUTTER_TYPE_ALPHA")
+)
+
+(define-object Behaviour
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterBehaviour")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR")
+)
+
+(define-object BehaviourOpacity
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourOpacity")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_OPACITY")
+)
+
+(define-object BehaviourPath
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourPath")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_PATH")
+)
+
+(define-object BehaviourScale
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourScale")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_SCALE")
+)
+
+(define-object CloneTexture
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterCloneTexture")
+  (gtype-id "CLUTTER_TYPE_CLONE_TEXTURE")
+)
+
+(define-object Group
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterGroup")
+  (gtype-id "CLUTTER_TYPE_GROUP")
+)
+
+(define-object Label
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterLabel")
+  (gtype-id "CLUTTER_TYPE_LABEL")
+)
+
+(define-object Rectangle
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterRectangle")
+  (gtype-id "CLUTTER_TYPE_RECTANGLE")
+)
+
+(define-object Stage
+  (in-module "Clutter")
+  (parent "ClutterGroup")
+  (c-name "ClutterStage")
+  (gtype-id "CLUTTER_TYPE_STAGE")
+)
+
+(define-object Texture
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterTexture")
+  (gtype-id "CLUTTER_TYPE_TEXTURE")
+)
+
+(define-object Timeline
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterTimeline")
+  (gtype-id "CLUTTER_TYPE_TIMELINE")
+)
+
+;; Enumerations and flags ...
+
+(define-flags ActorFlags
+  (in-module "Clutter")
+  (c-name "ClutterActorFlags")
+  (gtype-id "CLUTTER_TYPE_ACTOR_FLAGS")
+  (values
+    '("mapped" "CLUTTER_ACTOR_MAPPED")
+    '("realized" "CLUTTER_ACTOR_REALIZED")
+  )
+)
+
+(define-enum Gravity
+  (in-module "Clutter")
+  (c-name "ClutterGravity")
+  (gtype-id "CLUTTER_TYPE_GRAVITY")
+  (values
+    '("none" "CLUTTER_GRAVITY_NONE")
+    '("north" "CLUTTER_GRAVITY_NORTH")
+    '("north-east" "CLUTTER_GRAVITY_NORTH_EAST")
+    '("east" "CLUTTER_GRAVITY_EAST")
+    '("south-east" "CLUTTER_GRAVITY_SOUTH_EAST")
+    '("south" "CLUTTER_GRAVITY_SOUTH")
+    '("south-west" "CLUTTER_GRAVITY_SOUTH_WEST")
+    '("west" "CLUTTER_GRAVITY_WEST")
+    '("north-west" "CLUTTER_GRAVITY_NORTH_WEST")
+    '("center" "CLUTTER_GRAVITY_CENTER")
+  )
+)
+
+(define-enum EventType
+  (in-module "Clutter")
+  (c-name "ClutterEventType")
+  (gtype-id "CLUTTER_TYPE_EVENT_TYPE")
+  (values
+    '("nothing" "CLUTTER_NOTHING")
+    '("key-press" "CLUTTER_KEY_PRESS")
+    '("key-release" "CLUTTER_KEY_RELEASE")
+    '("motion" "CLUTTER_MOTION")
+    '("button-press" "CLUTTER_BUTTON_PRESS")
+    '("2button-press" "CLUTTER_2BUTTON_PRESS")
+    '("button-release" "CLUTTER_BUTTON_RELEASE")
+  )
+)
+
+(define-flags FeatureFlags
+  (in-module "Clutter")
+  (c-name "ClutterFeatureFlags")
+  (gtype-id "CLUTTER_TYPE_FEATURE_FLAGS")
+  (values
+    '("texture-rectangle" "CLUTTER_FEATURE_TEXTURE_RECTANGLE")
+    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK")
+  )
+)
+
+(define-enum InitError
+  (in-module "Clutter")
+  (c-name "ClutterInitError")
+  (gtype-id "CLUTTER_TYPE_INIT_ERROR")
+  (values
+    '("success" "CLUTTER_INIT_SUCCESS")
+    '("error-unkown" "CLUTTER_INIT_ERROR_UNKOWN")
+    '("error-threads" "CLUTTER_INIT_ERROR_THREADS")
+    '("error-display" "CLUTTER_INIT_ERROR_DISPLAY")
+    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL")
+    '("error-opengl" "CLUTTER_INIT_ERROR_OPENGL")
+  )
+)
+
+;; Interfaces
+
+(define-interface Media
+  (in-module "Clutter")
+  (c-name "ClutterMedia")
+  (gtype-id "CLUTTER_TYPE_MEDIA")
+  (vtable "ClutterMediaInterface")
+)
+
+;; Boxed
+
+(define-boxed Color
+  (in-module "Clutter")
+  (c-name "ClutterColor")
+  (gtype-id "CLUTTER_TYPE_COLOR")
+  (fields
+    '("guint8" "red")
+    '("guint8" "green")
+    '("guint8" "blue")
+    '("guint8" "alpha")
+  )
+)
+
+(define-boxed ActorBox
+  (in-module "Clutter")
+  (c-name "ClutterActorBox")
+  (gtype-id "CLUTTER_TYPE_ACTOR_BOX")
+  (fields
+    '("gint" "x1")
+    '("gint" "y1")
+    '("gint" "x2")
+    '("gint" "y2")
+  )
+)
+
+(define-boxed Event
+  (in-module "Clutter")
+  (c-name "ClutterEvent")
+  (gtype-id "CLUTTER_TYPE_EVENT")
+  (copy-func "clutter_event_copy")
+  (release-func "clutter_event_free")
+  (fields
+    '("ClutterEventType" "type")
+  )
+)
+
+(define-boxed Geometry
+  (in-module "Clutter")
+  (c-name "ClutterGeometry")
+  (gtype-id "CLUTTER_TYPE_GEOMETRY")
+  (fields
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-boxed Knot
+  (in-module "Clutter")
+  (c-name "ClutterKnot")
+  (gtype-id "CLUTTER_TYPE_KNOT")
+  (fields
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+;; Pointers
+
+
+
 ;; From clutter-actor.h
 
 (define-function clutter_geometry_get_type
@@ -436,33 +670,6 @@
   (return-type "ClutterTimeline*")
 )
 
-(define-method ramp_inc_func
-  (of-object "ClutterAlpha")
-  (c-name "clutter_alpha_ramp_inc_func")
-  (return-type "guint32")
-  (parameters
-    '("gpointer" "dummy")
-  )
-)
-
-(define-method ramp_dec_func
-  (of-object "ClutterAlpha")
-  (c-name "clutter_alpha_ramp_dec_func")
-  (return-type "guint32")
-  (parameters
-    '("gpointer" "dummy")
-  )
-)
-
-(define-method ramp_func
-  (of-object "ClutterAlpha")
-  (c-name "clutter_alpha_ramp_func")
-  (return-type "guint32")
-  (parameters
-    '("gpointer" "dummy")
-  )
-)
-
 
 
 ;; From clutter-behaviour.h
@@ -517,7 +724,27 @@
 
 
 
-;; From clutter-behaviours.h
+;; From clutter-behaviour-opacity.h
+
+(define-function clutter_behaviour_opacity_get_type
+  (c-name "clutter_behaviour_opacity_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_behaviour_opacity_new
+  (c-name "clutter_behaviour_opacity_new")
+  (is-constructor-of "ClutterBehaviourOpacity")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("guint8" "opacity_start")
+    '("guint8" "opacity_end")
+  )
+)
+
+
+
+;; From clutter-behaviour-path.h
 
 (define-function clutter_knot_get_type
   (c-name "clutter_knot_get_type")
@@ -540,56 +767,55 @@
   )
 )
 
-(define-function clutter_path_behaviour_get_knots
-  (c-name "clutter_path_behaviour_get_knots")
+(define-method get_knots
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_get_knots")
   (return-type "GSList*")
-  (parameters
-    '("ClutterBehaviourPath*" "behave")
-  )
 )
 
-(define-function clutter_path_behaviour_append_knot
-  (c-name "clutter_path_behaviour_append_knot")
+(define-method append_knot
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_append_knot")
   (return-type "none")
   (parameters
-    '("ClutterBehaviourPath*" "pathb")
     '("const-ClutterKnot*" "knot")
   )
 )
 
-(define-function clutter_path_behaviour_append_knots_valist
-  (c-name "clutter_path_behaviour_append_knots_valist")
+(define-method append_knots
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_append_knots")
   (return-type "none")
   (parameters
-    '("ClutterBehaviourPath*" "pathb")
-    '("const-ClutterKnot*" "first_knot")
-    '("va_list" "args")
-  )
-)
-
-(define-function clutter_path_behavior_append_knots
-  (c-name "clutter_path_behavior_append_knots")
-  (return-type "none")
-  (parameters
-    '("ClutterBehaviourPath*" "pathb")
     '("const-ClutterKnot*" "first_knot")
   )
   (varargs #t)
 )
 
-(define-function clutter_behaviour_opacity_get_type
-  (c-name "clutter_behaviour_opacity_get_type")
+(define-method clear
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_clear")
+  (return-type "none")
+)
+
+
+
+;; From clutter-behaviour-scale.h
+
+(define-function clutter_behaviour_scale_get_type
+  (c-name "clutter_behaviour_scale_get_type")
   (return-type "GType")
 )
 
-(define-function clutter_behaviour_opacity_new
-  (c-name "clutter_behaviour_opacity_new")
-  (is-constructor-of "ClutterBehaviourOpacity")
+(define-function clutter_behaviour_scale_new
+  (c-name "clutter_behaviour_scale_new")
+  (is-constructor-of "ClutterBehaviourScale")
   (return-type "ClutterBehaviour*")
   (parameters
     '("ClutterAlpha*" "alpha")
-    '("guint8" "opacity_start")
-    '("guint8" "opacity_end")
+    '("gdouble" "scale_begin")
+    '("gdouble" "scale_end")
+    '("ClutterGravity" "gravity")
   )
 )
 
@@ -1133,54 +1359,54 @@
   )
 )
 
-(define-function clutter_main
+(define-function main
   (c-name "clutter_main")
   (return-type "none")
 )
 
-(define-function clutter_main_quit
+(define-function main_quit
   (c-name "clutter_main_quit")
   (return-type "none")
 )
 
-(define-function clutter_main_level
+(define-function main_level
   (c-name "clutter_main_level")
   (return-type "gint")
 )
 
-(define-function clutter_redraw
+(define-function redraw
   (c-name "clutter_redraw")
   (return-type "none")
   (parameters
   )
 )
 
-(define-function clutter_xdisplay
+(define-function get_xdisplay
   (c-name "clutter_xdisplay")
   (return-type "Display*")
 )
 
-(define-function clutter_xscreen
+(define-function get_xscreen
   (c-name "clutter_xscreen")
   (return-type "int")
 )
 
-(define-function clutter_root_xwindow
+(define-function get_root_xwindow
   (c-name "clutter_root_xwindow")
   (return-type "Window")
 )
 
-(define-function clutter_want_debug
+(define-function want_debug
   (c-name "clutter_want_debug")
   (return-type "gboolean")
 )
 
-(define-function clutter_threads_enter
+(define-function threads_enter
   (c-name "clutter_threads_enter")
   (return-type "none")
 )
 
-(define-function clutter_threads_leave
+(define-function threads_leave
   (c-name "clutter_threads_leave")
   (return-type "none")
 )
@@ -1287,20 +1513,6 @@
 
 
 
-;; From clutter-private.h
-
-(define-function clutter_context_get_default
-  (c-name "clutter_context_get_default")
-  (return-type "ClutterMainContext*")
-)
-
-(define-function clutter_feature_init
-  (c-name "clutter_feature_init")
-  (return-type "none")
-)
-
-
-
 ;; From clutter-rectangle.h
 
 (define-function clutter_rectangle_get_type
@@ -1349,7 +1561,7 @@
   (return-type "GType")
 )
 
-(define-function clutter_stage_get_default
+(define-function stage_get_default
   (c-name "clutter_stage_get_default")
   (return-type "ClutterActor*")
 )
@@ -1546,9 +1758,15 @@
   (is-constructor-of "ClutterTimeline")
   (return-type "ClutterTimeline*")
   (parameters
-    '("guint" "nframes")
+    '("guint" "n_frames")
     '("guint" "fps")
   )
+)
+
+(define-method get_speed
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_speed")
+  (return-type "guint")
 )
 
 (define-method set_speed
@@ -1604,7 +1822,7 @@
   (c-name "clutter_timeline_skip")
   (return-type "none")
   (parameters
-    '("guint" "nframes")
+    '("guint" "n_frames")
   )
 )
 
@@ -1621,6 +1839,15 @@
   (of-object "ClutterTimeline")
   (c-name "clutter_timeline_get_current_frame")
   (return-type "gint")
+)
+
+(define-method set_n_frames
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_set_n_frames")
+  (return-type "none")
+  (parameters
+    '("guint" "n_frames")
+  )
 )
 
 (define-method get_n_frames
@@ -1654,15 +1881,6 @@
   (return-type "int")
   (parameters
     '("int" "a")
-  )
-)
-
-(define-function clutter_util_can_create_texture
-  (c-name "clutter_util_can_create_texture")
-  (return-type "gboolean")
-  (parameters
-    '("int" "width")
-    '("int" "height")
   )
 )
 
