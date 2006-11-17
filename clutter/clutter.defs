@@ -577,8 +577,8 @@
   (c-name "clutter_actor_set_scale")
   (return-type "none")
   (parameters
-    '("double" "scale_x")
-    '("double" "scale_y")
+    '("gdouble" "scale_x")
+    '("gdouble" "scale_y")
   )
 )
 
@@ -597,8 +597,8 @@
   (c-name "clutter_actor_get_scale")
   (return-type "none")
   (parameters
-    '("double*" "scale_x")
-    '("double*" "scale_y")
+    '("gdouble*" "scale_x")
+    '("gdouble*" "scale_y")
   )
 )
 
@@ -609,6 +609,26 @@
   (parameters
     '("guint*" "width")
     '("guint*" "height")
+  )
+)
+
+(define-method get_size
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_size")
+  (return-type "none")
+  (parameters
+    '("guint*" "width")
+    '("guint*" "height")
+  )
+)
+
+(define-method move_by
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_move_by")
+  (return-type "none")
+  (parameters
+    '("gint" "dx")
+    '("gint" "dy")
   )
 )
 
@@ -668,6 +688,42 @@
   (of-object "ClutterAlpha")
   (c-name "clutter_alpha_get_timeline")
   (return-type "ClutterTimeline*")
+)
+
+(define-function clutter_ramp_inc_func
+  (c-name "clutter_ramp_inc_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_ramp_dec_func
+  (c-name "clutter_ramp_dec_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_ramp_func
+  (c-name "clutter_ramp_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_sine_func
+  (c-name "clutter_sine_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
 )
 
 
@@ -792,6 +848,25 @@
   (varargs #t)
 )
 
+(define-method insert_knot
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_insert_knot")
+  (return-type "none")
+  (parameters
+    '("guint" "offset")
+    '("const-ClutterKnot*" "knot")
+  )
+)
+
+(define-method remove_knot
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_remove_knot")
+  (return-type "none")
+  (parameters
+    '("guint" "offset")
+  )
+)
+
 (define-method clear
   (of-object "ClutterBehaviourPath")
   (c-name "clutter_behaviour_path_clear")
@@ -815,6 +890,17 @@
     '("ClutterAlpha*" "alpha")
     '("gdouble" "scale_begin")
     '("gdouble" "scale_end")
+    '("ClutterGravity" "gravity")
+  )
+)
+
+(define-function clutter_behaviour_scale_newx
+  (c-name "clutter_behaviour_scale_newx")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("ClutterFixed" "scale_begin")
+    '("ClutterFixed" "scale_end")
     '("ClutterGravity" "gravity")
   )
 )
@@ -950,6 +1036,11 @@
   (return-type "GType")
 )
 
+(define-function clutter_gravity_get_type
+  (c-name "clutter_gravity_get_type")
+  (return-type "GType")
+)
+
 (define-function clutter_init_error_get_type
   (c-name "clutter_init_error_get_type")
   (return-type "GType")
@@ -1048,6 +1139,11 @@
 (define-function clutter_feature_get_all
   (c-name "clutter_feature_get_all")
   (return-type "ClutterFeatureFlags")
+)
+
+(define-function clutter_feature_wait_for_vblank
+  (c-name "clutter_feature_wait_for_vblank")
+  (return-type "none")
 )
 
 
@@ -1350,7 +1446,7 @@
 
 ;; From clutter-main.h
 
-(define-function clutter_init
+(define-function init
   (c-name "clutter_init")
   (return-type "ClutterInitError")
   (parameters
@@ -1563,6 +1659,7 @@
 
 (define-function stage_get_default
   (c-name "clutter_stage_get_default")
+  (is-constructor-of "ClutterStage")
   (return-type "ClutterActor*")
 )
 
@@ -1883,9 +1980,3 @@
     '("int" "a")
   )
 )
-
-
-
-;; From stamp-clutter-enum-types.h
-
-
