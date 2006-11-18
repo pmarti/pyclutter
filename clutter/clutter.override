@@ -8,6 +8,7 @@ headers
 %%
 include
   clutter-actor.override
+  clutter-behaviour.override
   clutter-boxed.override
   clutter-event.override
 %%
@@ -21,13 +22,13 @@ import pango.Layout as PyPangoLayout_Type
 %%
 ignore
   clutter_group_add_many_valist
+  clutter_stage_get_xvisual
   clutter_stage_get_xwindow
+  clutter_stage_set_xwindow_foreign
   clutter_init
   clutter_xdisplay
   clutter_root_xwindow
   clutter_gl_context
-  clutter_alpha_new_full
-  clutter_behaviour_path_append_knots_valist
   clutter_rectangle_new_with_color
 %%
 ignore-glob

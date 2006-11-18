@@ -1,5 +1,17 @@
 2006-11-18  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	The coverage of global functions is 100.00% (18/18)
+	The coverage of methods is 96.55% (140/145)
+
+	* clutter/clutter-behaviour.override: Add override for
+	behaviours and alpha objects; add the convenience alpha
+	functions to the ignore-list.
+
+	* clutter/Makefile.am:
+	* clutter/clutter.override: Update.
+
+2006-11-18  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	The coverage of global functions is 81.82% (18/22)
 	The coverage of methods is 95.24% (140/147)
 

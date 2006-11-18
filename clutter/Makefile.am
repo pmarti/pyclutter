@@ -25,10 +25,11 @@ common_ldflags = -module -avoid-version
 # clutter module
 CLUTTER_DEFS = clutter-base.defs
 CLUTTER_TYPES_DEFS = clutter-base-types.defs
-CLUTTER_OVERRIDES = 		\
-	clutter.override	\
-	clutter-actor.override 	\
-	clutter-boxed.override 	\
+CLUTTER_OVERRIDES = 			\
+	clutter.override		\
+	clutter-actor.override 		\
+	clutter-behaviour.override	\
+	clutter-boxed.override 		\
 	clutter-event.override 
 
 EXTRA_DIST += 			\
@@ -65,7 +66,7 @@ defs_DATA = \
 	clutter.defs
 
 .defs.c:
-	echo "***INFO*** Generating $*.c from $*.defs" \
+	@echo "***INFO*** Generating $*.c from $*.defs" \
 	&& ( $(PYGTK_CODEGEN) \
 	    --register $(PYGTK_DEFSDIR)/gdk-types.defs \
 	    --register $(PYGTK_DEFSDIR)/pango-types.defs \

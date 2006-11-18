@@ -1,0 +1,9 @@
+%%
+ignore
+  clutter_ramp_inc_func
+  clutter_ramp_dec_func
+  clutter_ramp_func
+  clutter_sine_func
+  clutter_alpha_new_full
+  clutter_behaviour_path_append_knots_valist
+%%
