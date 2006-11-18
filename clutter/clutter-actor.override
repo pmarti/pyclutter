@@ -1,0 +1,76 @@
+%%
+override clutter_actor_get_coords
+static PyObject *
+_wrap_clutter_actor_get_coords (PyGObject *self)
+{
+	gint x1, y1;
+	gint x2, y2;
+
+	clutter_actor_get_coords (CLUTTER_ACTOR (self->obj),
+				    &x1, &y1,
+				    &x2, &y2);
+	return Py_BuildValue("(iiii)", x1, y1, x2, y2);
+}
+%%
+override clutter_actor_get_abs_position
+static PyObject *
+_wrap_clutter_actor_get_abs_position (PyGObject *self)
+{
+	gint pos_x, pos_y;
+
+	clutter_actor_get_abs_position (CLUTTER_ACTOR (self->obj),
+					  &pos_x,
+					  &pos_y);
+	return Py_BuildValue("(ii)", pos_x, pos_y);
+}
+%%
+override clutter_actor_get_abs_size
+static PyObject *
+_wrap_clutter_actor_get_abs_size (PyGObject *self)
+{
+        guint width, height;
+
+        clutter_actor_get_abs_size (CLUTTER_ACTOR (self->obj),
+                                    &width,
+                                    &height);
+        return Py_BuildValue ("(ii)", width, height);
+}
+%%
+override clutter_actor_get_size
+static PyObject *
+_wrap_clutter_actor_get_size (PyGObject *self)
+{
+        guint width, height;
+
+        clutter_actor_get_size (CLUTTER_ACTOR (self->obj),
+                                &width,
+                                &height);
+        return Py_BuildValue ("(ii)", width, height);
+}
+%%
+override clutter_actor_get_scale
+static PyObject *
+_wrap_clutter_actor_get_scale (PyGObject *self)
+{
+        gdouble scale_x, scale_y;
+
+        clutter_actor_get_scale (CLUTTER_ACTOR (self->obj),
+                                 &scale_x,
+                                 &scale_y);
+        return Py_BuildValue ("(ff)", scale_x, scale_y);
+}
+%%
+override clutter_actor_get_scalex
+static PyObject *
+_wrap_clutter_actor_get_scalex (PyGObject *self)
+{
+        ClutterFixed scale_x, scale_y;
+
+        clutter_actor_get_scalex (CLUTTER_ACTOR (self->obj),
+                                  &scale_x,
+                                  &scale_y);
+        return Py_BuildValue ("(ii)",
+                              (int) scale_x,
+                              (int) scale_y);
+}
+

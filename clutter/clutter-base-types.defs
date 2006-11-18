@@ -1,0 +1,239 @@
+;; -*- scheme -*-
+
+; Please, keep everything sorted
+
+; object definitions ...
+
+(define-object Actor
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterActor")
+  (gtype-id "CLUTTER_TYPE_ACTOR")
+)
+
+(define-object Alpha
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterAlpha")
+  (gtype-id "CLUTTER_TYPE_ALPHA")
+)
+
+(define-object Behaviour
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterBehaviour")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR")
+)
+
+(define-object BehaviourOpacity
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourOpacity")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_OPACITY")
+)
+
+(define-object BehaviourPath
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourPath")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_PATH")
+)
+
+(define-object BehaviourScale
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourScale")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_SCALE")
+)
+
+(define-object CloneTexture
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterCloneTexture")
+  (gtype-id "CLUTTER_TYPE_CLONE_TEXTURE")
+)
+
+(define-object Group
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterGroup")
+  (gtype-id "CLUTTER_TYPE_GROUP")
+)
+
+(define-object Label
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterLabel")
+  (gtype-id "CLUTTER_TYPE_LABEL")
+)
+
+(define-object Rectangle
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterRectangle")
+  (gtype-id "CLUTTER_TYPE_RECTANGLE")
+)
+
+(define-object Stage
+  (in-module "Clutter")
+  (parent "ClutterGroup")
+  (c-name "ClutterStage")
+  (gtype-id "CLUTTER_TYPE_STAGE")
+)
+
+(define-object Texture
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterTexture")
+  (gtype-id "CLUTTER_TYPE_TEXTURE")
+)
+
+(define-object Timeline
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterTimeline")
+  (gtype-id "CLUTTER_TYPE_TIMELINE")
+)
+
+;; Enumerations and flags ...
+
+(define-flags ActorFlags
+  (in-module "Clutter")
+  (c-name "ClutterActorFlags")
+  (gtype-id "CLUTTER_TYPE_ACTOR_FLAGS")
+  (values
+    '("mapped" "CLUTTER_ACTOR_MAPPED")
+    '("realized" "CLUTTER_ACTOR_REALIZED")
+  )
+)
+
+(define-enum Gravity
+  (in-module "Clutter")
+  (c-name "ClutterGravity")
+  (gtype-id "CLUTTER_TYPE_GRAVITY")
+  (values
+    '("none" "CLUTTER_GRAVITY_NONE")
+    '("north" "CLUTTER_GRAVITY_NORTH")
+    '("north-east" "CLUTTER_GRAVITY_NORTH_EAST")
+    '("east" "CLUTTER_GRAVITY_EAST")
+    '("south-east" "CLUTTER_GRAVITY_SOUTH_EAST")
+    '("south" "CLUTTER_GRAVITY_SOUTH")
+    '("south-west" "CLUTTER_GRAVITY_SOUTH_WEST")
+    '("west" "CLUTTER_GRAVITY_WEST")
+    '("north-west" "CLUTTER_GRAVITY_NORTH_WEST")
+    '("center" "CLUTTER_GRAVITY_CENTER")
+  )
+)
+
+(define-enum EventType
+  (in-module "Clutter")
+  (c-name "ClutterEventType")
+  (gtype-id "CLUTTER_TYPE_EVENT_TYPE")
+  (values
+    '("nothing" "CLUTTER_NOTHING")
+    '("key-press" "CLUTTER_KEY_PRESS")
+    '("key-release" "CLUTTER_KEY_RELEASE")
+    '("motion" "CLUTTER_MOTION")
+    '("button-press" "CLUTTER_BUTTON_PRESS")
+    '("2button-press" "CLUTTER_2BUTTON_PRESS")
+    '("button-release" "CLUTTER_BUTTON_RELEASE")
+  )
+)
+
+(define-flags FeatureFlags
+  (in-module "Clutter")
+  (c-name "ClutterFeatureFlags")
+  (gtype-id "CLUTTER_TYPE_FEATURE_FLAGS")
+  (values
+    '("texture-rectangle" "CLUTTER_FEATURE_TEXTURE_RECTANGLE")
+    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK")
+  )
+)
+
+(define-enum InitError
+  (in-module "Clutter")
+  (c-name "ClutterInitError")
+  (gtype-id "CLUTTER_TYPE_INIT_ERROR")
+  (values
+    '("success" "CLUTTER_INIT_SUCCESS")
+    '("error-unkown" "CLUTTER_INIT_ERROR_UNKOWN")
+    '("error-threads" "CLUTTER_INIT_ERROR_THREADS")
+    '("error-display" "CLUTTER_INIT_ERROR_DISPLAY")
+    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL")
+    '("error-opengl" "CLUTTER_INIT_ERROR_OPENGL")
+  )
+)
+
+;; Interfaces
+
+(define-interface Media
+  (in-module "Clutter")
+  (c-name "ClutterMedia")
+  (gtype-id "CLUTTER_TYPE_MEDIA")
+  (vtable "ClutterMediaInterface")
+)
+
+;; Boxed
+
+(define-boxed Color
+  (in-module "Clutter")
+  (c-name "ClutterColor")
+  (gtype-id "CLUTTER_TYPE_COLOR")
+  (fields
+    '("guint8" "red")
+    '("guint8" "green")
+    '("guint8" "blue")
+    '("guint8" "alpha")
+  )
+)
+
+(define-boxed ActorBox
+  (in-module "Clutter")
+  (c-name "ClutterActorBox")
+  (gtype-id "CLUTTER_TYPE_ACTOR_BOX")
+  (fields
+    '("gint" "x1")
+    '("gint" "y1")
+    '("gint" "x2")
+    '("gint" "y2")
+  )
+)
+
+(define-boxed Event
+  (in-module "Clutter")
+  (c-name "ClutterEvent")
+  (gtype-id "CLUTTER_TYPE_EVENT")
+  (copy-func "clutter_event_copy")
+  (release-func "clutter_event_free")
+  (fields
+    '("ClutterEventType" "type")
+  )
+)
+
+(define-boxed Geometry
+  (in-module "Clutter")
+  (c-name "ClutterGeometry")
+  (gtype-id "CLUTTER_TYPE_GEOMETRY")
+  (fields
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-boxed Knot
+  (in-module "Clutter")
+  (c-name "ClutterKnot")
+  (gtype-id "CLUTTER_TYPE_KNOT")
+  (fields
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+;; Pointers
+
+
+
+

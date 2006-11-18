@@ -3,6 +3,10 @@ exec_prefix=@exec_prefix@
 includedir=@includedir@
 datadir=@datarootdir@
 
+# you can use the --variable=defsdir argument to
+# pkg-config to get this value.
+defsdir=${datadir}/pyclutter/1.0/defs
+
 Name: PyClutter
 Description: Python bindings for Clutter
 Version: @VERSION@

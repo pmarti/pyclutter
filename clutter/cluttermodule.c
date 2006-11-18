@@ -5,7 +5,9 @@
 #include <pygobject.h>
 #include <clutter/clutter.h>
 
-void clutter_register_classes (PyObject *d);
+void clutter_register_classes (PyObject *dict);
+void clutter_add_constants (PyObject *module, const gchar *prefix);
+
 extern PyMethodDef clutter_functions[];
 
 DL_EXPORT (void)
@@ -22,6 +24,8 @@ init_clutter (void)
 				     PYCLUTTER_MINOR_VERSION,
 				     PYCLUTTER_MICRO_VERSION));
   d = PyModule_GetDict (m);
+
+  clutter_add_constants (m, "CLUTTER_");
   clutter_register_classes (d);
 
   if (PyErr_Occurred ()) 

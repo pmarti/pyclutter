@@ -1,0 +1,189 @@
+%%
+override-slot ClutterEvent.tp_setattr
+#define CHECK_VALUE_IS_INT(a,v) \
+	G_STMT_START{ if (!PyInt_Check ((v))) { \
+		PyErr_Format (PyExc_TypeError, "%s must be an int", (a)); \
+		return -1; \
+	} }G_STMT_END
+static int
+_wrap_clutter_event_tp_setattr (PyObject *self,
+				char     *attr,
+				PyObject *value)
+{
+	ClutterEvent *event;
+
+	if (value == NULL) {
+		PyErr_SetString (PyExc_TypeError, "can't delete attributes");
+		return -1;
+	}
+
+	event = pyg_boxed_get (self, ClutterEvent);
+
+	/* common members */
+	if (attr[0] == 't' && !strcmp (attr, "type")) {
+		PyErr_SetString (PyExc_AttributeError, "type is not writable");
+		return -1;
+	}
+
+	switch (event->type) {
+		case CLUTTER_NOTHING:
+			break;
+		case CLUTTER_MOTION:	/* ClutterMotionEvent 	motion */
+			if (!strcmp (attr, "time")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->motion.time = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (attr[0] == 'x' && attr[1] == '\0') {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->motion.x = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (attr[0] == 'y' && attr[1] == '\0') {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->motion.y = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (!strcmp (attr, "modifier_state")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->motion.modifier_state = PyInt_AsLong (value);
+				return 0;
+			}
+			break;
+		case CLUTTER_BUTTON_PRESS:	/* ClutterButtonEvent	button */
+		case CLUTTER_2BUTTON_PRESS:
+		case CLUTTER_BUTTON_RELEASE:
+			if (!strcmp (attr, "time")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->button.time = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (attr[0] == 'x' && attr[1] == '\0') {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->button.x = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (attr[0] == 'y' && attr[1] == '\0') {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->button.y = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (!strcmp (attr, "modifier_state")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->button.modifier_state = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (!strcmp (attr, "button")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->button.button = PyInt_AsLong (value);
+				return 0;
+			}
+			break;
+		case CLUTTER_KEY_PRESS: /* ClutterKeyEvent:	key */
+		case CLUTTER_KEY_RELEASE:
+			if (!strcmp (attr, "time")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->key.time = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (!strcmp (attr, "modifier_state")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->key.modifier_state = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (!strcmp (attr, "keyval")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->key.keyval = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (!strcmp (attr, "hardware_keycode")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->key.hardware_keycode = PyInt_AsLong (value);
+				return 0;
+			}
+			break;
+		default:
+			break;
+	}
+
+#undef CHECK_VALUE_IS_INT
+	
+        PyErr_SetString (PyExc_AttributeError, "could not write attribute");
+	return -1;
+}
+%%
+override-slot ClutterEvent.tp_getattr
+PyObject *
+_wrap_clutter_event_tp_getattr (PyObject *self,
+				char     *attr)
+{
+	ClutterEvent *event = pyg_boxed_get (self, ClutterEvent);
+
+	switch (event->type) {
+		case CLUTTER_NOTHING:
+			break;
+		case CLUTTER_MOTION: /* ClutterMotionEvent	motion */
+			if (!strcmp (attr, "__members__"))
+				return Py_BuildValue ("[sssss]",
+						      "type",
+						      "time",
+						      "x", "y",
+						      "modifier_state");
+			if (!strcmp (attr, "time"))
+				return PyInt_FromLong (event->motion.time);
+			if (!strcmp (attr, "x"))
+				return PyInt_FromLong (event->motion.x);
+			if (!strcmp (attr, "y"))
+				return PyInt_FromLong (event->motion.y);
+			if (!strcmp (attr, "motifier_state"))
+				return PyInt_FromLong (event->motion.modifier_state);
+			break;
+		case CLUTTER_BUTTON_PRESS:
+		case CLUTTER_2BUTTON_PRESS:
+		case CLUTTER_BUTTON_RELEASE:
+			if (!strcmp (attr, "__members__"))
+				return Py_BuildValue ("[ssssss]",
+						      "type",
+						      "time",
+						      "x", "y",
+						      "modifier_state",
+						      "button");
+			if (!strcmp (attr, "time"))
+				return PyInt_FromLong (event->button.time);
+			if (!strcmp (attr, "x"))
+				return PyInt_FromLong (event->button.x);
+			if (!strcmp (attr, "y"))
+				return PyInt_FromLong (event->button.y);
+			if (!strcmp (attr, "motifier_state"))
+				return PyInt_FromLong (event->button.modifier_state);
+			if (!strcmp (attr, "button"))
+				return PyInt_FromLong (event->button.button);
+			break;
+		case CLUTTER_KEY_PRESS:
+		case CLUTTER_KEY_RELEASE:
+			if (!strcmp (attr, "__members__"))
+				return Py_BuildValue ("[sssss]",
+						      "type",
+						      "time",
+						      "modifier_state",
+						      "keyval",
+						      "hardware_keycode");
+			if (!strcmp (attr, "time"))
+				return PyInt_FromLong (event->key.time);
+			if (!strcmp (attr, "motifier_state"))
+				return PyInt_FromLong (event->key.modifier_state);
+			if (!strcmp (attr, "keyval"))
+				return PyInt_FromLong (event->key.keyval);
+			if (!strcmp (attr, "hardware_keycode"))
+				return PyInt_FromLong (event->key.hardware_keycode);
+			break;
+		default:
+			break;
+	}
+
+	if (!strcmp (attr, "type"))
+		return pyg_enum_from_gtype (CLUTTER_TYPE_EVENT_TYPE, event->type);
+	
+	return Py_FindMethod ((PyMethodDef *) _PyClutterEvent_methods, self, attr);
+}
+

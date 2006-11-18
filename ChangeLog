@@ -1,3 +1,21 @@
+2006-11-18  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	The coverage of global functions is 81.82% (18/22)
+	The coverage of methods is 95.24% (140/147)
+
+	* clutter/clutter-base-types.defs:
+	* clutter/clutter-base.defs: Reinstate the base files
+
+	* clutter/clutter-actor.override:
+	* clutter/clutter-boxed.override:
+	* clutter/clutter-event.override: Move out the overrides
+	to their own files, to keep things clean.
+
+	* clutter/Makefile.am: Update.
+
+	* Makefile.am:
+	* createdefs.py: Generates the .defs files.
+
 2006-11-17  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	The coverage of global functions is 76.19% (16/21)
