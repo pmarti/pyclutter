@@ -2,6 +2,8 @@
 
 import clutter
 
+print clutter.__version__
+
 def on_stage_add (group, element):
     print 'Adding element:', element
 

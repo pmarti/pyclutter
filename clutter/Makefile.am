@@ -9,8 +9,8 @@ INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS)
 CREATEDEFS = $(PYTHON) $(top_srcdir)/createdefs.py
 
 # python scripts & extension modules
-pkgpythondir = $(pyexecdir)/clutter-1.0
-pkgpyexecdir = $(pyexecdir)/clutter-1.0
+pkgpythondir = $(pyexecdir)
+pkgpyexecdir = $(pyexecdir)
 
 # clutter python extension modules
 pyclutterexecdir = $(pkgpyexecdir)/clutter
@@ -18,6 +18,10 @@ pyclutterexecdir = $(pkgpyexecdir)/clutter
 # clutter python scripts
 pyclutterdir = $(pkgpythondir)/clutter
 pyclutter_PYTHON = __init__.py
+
+# clutter headers
+pkgincludedir = $(includedir)/pyclutter-$(PLATFORM_VERSION)/pyclutter
+pkginclude_HEADERS = pyclutter.h
 
 # linker flags
 common_ldflags = -module -avoid-version
@@ -50,6 +54,7 @@ _clutter_la_CFLAGS = $(CLUTTER_CFLAGS)
 _clutter_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_clutter
 _clutter_la_LIBADD = $(PYGTK_LIBS) $(CLUTTER_LIBS)
 _clutter_la_SOURCES = 		\
+	clutterpython.c		\
 	cluttermodule.c 
 nodist__clutter_la_SOURCES = clutter.c
 

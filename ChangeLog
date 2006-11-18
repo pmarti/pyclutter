@@ -1,6 +1,33 @@
 2006-11-18  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	The coverage of global functions is 100.00% (18/18)
+	The coverage of methods is 97.24% (141/145)
+
+	* clutter/Makefile.am: Move back clutter inside a non-versioned
+	module; we don't need the stuff pygtk uses to load the right
+	version.
+
+	* clutter/pyclutter.pc.in: Add Cflags section and the include
+	directory variable.
+
+	* clutter/pyclutter.h:
+	* clutter/clutterpython.c: Utility header for easier bindings;
+	added PyClutterCallback, a wrapper for invoking callbacks; this
+	should really go into pygtk, though - luckily for us, the Perl
+	bindings are more friendly.
+
+	* clutter/cluttermodule.c: Update with the correct prefix.
+
+	* clutter/clutter.override:
+	* clutter/clutter-behaviour.override: Implement the
+	missing clutter.Alpha.set_func() method using the newly
+	added PyClutterCallback.
+
+	* examples/rects.py: Print the version tuple.
+
+2006-11-18  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	The coverage of global functions is 100.00% (18/18)
 	The coverage of methods is 96.55% (140/145)
 
 	* clutter/clutter-behaviour.override: Add override for

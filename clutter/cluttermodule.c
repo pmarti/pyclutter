@@ -4,11 +4,12 @@
 
 #include <pygobject.h>
 #include <clutter/clutter.h>
+#include "pyclutter.h"
 
-void clutter_register_classes (PyObject *dict);
-void clutter_add_constants (PyObject *module, const gchar *prefix);
+void pyclutter_register_classes (PyObject *dict);
+void pyclutter_add_constants (PyObject *module, const gchar *prefix);
 
-extern PyMethodDef clutter_functions[];
+extern PyMethodDef pyclutter_functions[];
 
 DL_EXPORT (void)
 init_clutter (void)
@@ -17,7 +18,7 @@ init_clutter (void)
 
   init_pygobject ();
 
-  m = Py_InitModule ("_clutter", clutter_functions);
+  m = Py_InitModule ("_clutter", pyclutter_functions);
   PyModule_AddObject (m, "__version__",
 		      Py_BuildValue ("(iii)",
 			             PYCLUTTER_MAJOR_VERSION,
@@ -25,8 +26,8 @@ init_clutter (void)
 				     PYCLUTTER_MICRO_VERSION));
   d = PyModule_GetDict (m);
 
-  clutter_add_constants (m, "CLUTTER_");
-  clutter_register_classes (d);
+  pyclutter_add_constants (m, "CLUTTER_");
+  pyclutter_register_classes (d);
 
   if (PyErr_Occurred ()) 
     {

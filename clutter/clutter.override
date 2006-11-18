@@ -3,8 +3,7 @@
 headers
 #define NO_IMPORT_PYGOBJECT
 #include "pygobject.h"
-#include <clutter/clutter.h>
-#include <clutter/clutter-feature.h>
+#include "pyclutter.h"
 %%
 include
   clutter-actor.override
@@ -135,15 +134,6 @@ _wrap_clutter_group_add_many (PyGObject *self,
 
 	Py_INCREF (Py_None);
 	return Py_None;
-}
-%%
-override clutter_behaviour_path_append_knots
-static PyObject *
-_wrap_clutter_behaviour_path_append_knots (PyGObject *object,
-                                           PyObject  *args)
-{
-  Py_INCREF (Py_None);
-  return Py_None;
 }
 %%
 override clutter_main noargs

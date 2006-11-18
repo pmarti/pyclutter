@@ -7,6 +7,9 @@ datadir=@datarootdir@
 # pkg-config to get this value.
 defsdir=${datadir}/pyclutter/1.0/defs
 
+pyclutterincludedir=${includedir}/pyclutter-1.0
+
 Name: PyClutter
 Description: Python bindings for Clutter
 Version: @VERSION@
+Cflags: -I${pyclutterincludedir}

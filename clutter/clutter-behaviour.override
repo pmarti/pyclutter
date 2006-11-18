@@ -7,3 +7,75 @@ ignore
   clutter_alpha_new_full
   clutter_behaviour_path_append_knots_valist
 %%
+override clutter_alpha_set_func kwargs
+static guint32
+pyclutter_alpha_func (ClutterAlpha *alpha,
+                      gpointer      data)
+{
+        PyClutterCallback *pycb = data;
+        PyGILState_STATE state;
+        PyObject *retobj;
+        guint32 retval = 0;
+
+        state = pyg_gil_state_ensure ();
+
+        retobj = pyclutter_callback_invoke (pycb);
+        if (retobj == NULL)
+                PyErr_Print ();
+
+        if (!PyInt_Check (retobj)) {
+                PyErr_SetString (PyExc_TypeError,
+                                 "returned value is not an integer");
+        }
+        else {
+                retval = (guint32) PyInt_AsLong (retobj);
+        }
+
+        Py_XDECREF (retobj);
+
+        pyg_gil_state_release (state);
+        
+        return retval;
+}
+static PyObject *
+_wrap_clutter_alpha_set_func (PyGObject *self,
+                              PyObject  *args,
+                              PyObject  *kwargs)
+{
+        static char *kwlist[] = { "func", "data", NULL };
+        PyObject *py_func, *py_data = NULL;
+        ClutterAlpha *alpha;
+        PyClutterCallback *pycb;
+
+        if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                         "O|O:clutter.Alpha.set_func",
+                                         kwlist,
+                                         &py_func, &py_data)) {
+                return NULL;
+        }
+
+        if (!PyCallable_Check (py_func)) {
+                PyErr_SetString (PyExc_TypeError, "func must be callable");
+                return NULL;
+        }
+
+        pycb = pyclutter_callback_new (self, py_func, py_data);
+
+        alpha = CLUTTER_ALPHA (self->obj);
+        clutter_alpha_set_func (alpha,
+                                pyclutter_alpha_func, pycb,
+                                (GDestroyNotify) pyclutter_callback_free);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override clutter_behaviour_path_append_knots
+static PyObject *
+_wrap_clutter_behaviour_path_append_knots (PyGObject *object,
+                                           PyObject  *args)
+{
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
