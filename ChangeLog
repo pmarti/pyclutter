@@ -1,5 +1,9 @@
 2006-11-18  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* configure.ac: Bump to 0.1.2.
+
+2006-11-18  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	The coverage of global functions is 100.00% (18/18)
 	The coverage of methods is 97.24% (141/145)
 
