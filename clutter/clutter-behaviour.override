@@ -19,7 +19,7 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
 
         state = pyg_gil_state_ensure ();
 
-        retobj = pyclutter_callback_invoke (pycb);
+        retobj = pyclutter_callback_invoke (pycb, NULL);
         if (retobj == NULL)
                 PyErr_Print ();
 
@@ -72,10 +72,65 @@ _wrap_clutter_alpha_set_func (PyGObject *self,
 %%
 override clutter_behaviour_path_append_knots
 static PyObject *
-_wrap_clutter_behaviour_path_append_knots (PyGObject *object,
+_wrap_clutter_behaviour_path_append_knots (PyGObject *self,
                                            PyObject  *args)
 {
-  Py_INCREF (Py_None);
-  return Py_None;
+        Py_INCREF (Py_None);
+        return Py_None;
 }
 %%
+override clutter_behaviour_actors_foreach kwargs
+static void
+pyclutter_behaviour_foreach (ClutterActor *actor,
+                             gpointer      data)
+{
+        PyClutterCallback *pycb = data;
+        PyGILState_STATE state;
+        PyObject *py_actor;
+        PyObject *retobj;
+
+        state = pyg_gil_state_ensure ();
+
+        py_actor = pygobject_new ((GObject *) actor);
+        retobj = pyclutter_callback_invoke (pycb, py_actor);
+        if (retobj == NULL)
+                PyErr_Print ();
+
+        Py_XDECREF (retobj);
+
+        pyg_gil_state_release (state);
+}
+static PyObject *
+_wrap_clutter_behaviour_actors_foreach (PyGObject *self,
+                                        PyObject  *args,
+                                        PyObject  *kwargs)
+{
+        static char *kwlist[] = { "func", "data", NULL };
+        PyObject *py_func, *py_data = NULL;
+        ClutterBehaviour *behaviour;
+        PyClutterCallback *pycb;
+
+        if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                         "O|O:clutter.Behaviour.actor_foreach",
+                                         kwlist,
+                                         &py_func, &py_data)) {
+                return NULL;
+        }
+
+        if (!PyCallable_Check (py_func)) {
+                PyErr_SetString (PyExc_TypeError, "func must be callable");
+                return NULL;
+        }
+
+        pycb = pyclutter_callback_new (self, py_func, py_data);
+        behaviour = CLUTTER_BEHAVIOUR (self->obj);
+
+        clutter_behaviour_actors_foreach (behaviour,
+                                          (GFunc) pyclutter_behaviour_foreach,
+                                          pycb);
+
+        pyclutter_callback_free (pycb);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}

@@ -42,7 +42,8 @@ pyclutter_callback_free (PyClutterCallback *cb)
 }
 
 PyObject *
-pyclutter_callback_invoke (PyClutterCallback *cb)
+pyclutter_callback_invoke (PyClutterCallback *cb,
+                           PyObject          *caller)
 {
         PyObject *retobj;
 
@@ -51,14 +52,18 @@ pyclutter_callback_invoke (PyClutterCallback *cb)
                 return NULL;
         }
 
+        if (!caller) {
+                caller = pygobject_new (G_OBJECT (cb->caller));
+        }
+
         if (cb->data) {
                 retobj = PyObject_CallFunction (cb->func, "(NO)",
-                                                cb->caller,
+                                                caller,
                                                 cb->data);
         }
         else {
                 retobj = PyObject_CallFunction (cb->func, "(N)",
-                                                cb->caller);
+                                                caller);
         }
 
         return retobj;

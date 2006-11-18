@@ -21,7 +21,8 @@ PyClutterCallback *pyclutter_callback_new    (PyGObject         *caller,
                                               PyObject          *function,
                                               PyObject          *data);
 void               pyclutter_callback_free   (PyClutterCallback *cb);
-PyObject *         pyclutter_callback_invoke (PyClutterCallback *cb);
+PyObject *         pyclutter_callback_invoke (PyClutterCallback *cb,
+                                              PyObject          *caller);
 
 G_END_DECLS
 

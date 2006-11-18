@@ -493,4 +493,59 @@ _wrap_clutter_label_get_color (PyGObject *self,
 					color.blue,
 					color.alpha);
 }
+%%
+override clutter_group_foreach kwargs
+static void
+pyclutter_group_foreach (ClutterActor *actor,
+                         gpointer      data)
+{
+        PyClutterCallback *pycb = data;
+        PyGILState_STATE state;
+        PyObject *py_actor;
+        PyObject *retobj;
 
+        state = pyg_gil_state_ensure ();
+
+        py_actor = pygobject_new ((GObject *) actor);
+        retobj = pyclutter_callback_invoke (pycb, py_actor);
+        if (retobj == NULL)
+                PyErr_Print ();
+
+        Py_XDECREF (retobj);
+
+        pyg_gil_state_release (state);
+}
+static PyObject *
+_wrap_clutter_group_foreach (PyGObject *self,
+                             PyObject  *args,
+                             PyObject  *kwargs)
+{
+        static char *kwlist[] = { "func", "data", NULL };
+        PyObject *py_func, *py_data = NULL;
+        ClutterGroup *group;
+        PyClutterCallback *pycb;
+
+        if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                         "O|O:clutter.Group.foreach",
+                                         kwlist,
+                                         &py_func, &py_data)) {
+                return NULL;
+        }
+
+        if (!PyCallable_Check (py_func)) {
+                PyErr_SetString (PyExc_TypeError, "func must be callable");
+                return NULL;
+        }
+
+        pycb = pyclutter_callback_new (self, py_func, py_data);
+        group = CLUTTER_GROUP (self->obj);
+
+        clutter_group_foreach (group,
+                               (ClutterCallback) pyclutter_group_foreach,
+                               pycb);
+
+        pyclutter_callback_free (pycb);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}

@@ -1,3 +1,22 @@
+2006-11-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	The coverage of global functions is 100.00% (18/18)
+	The coverage of methods is 98.62% (143/145)
+
+	* clutter/pyclutter.h:
+	* clutter/clutterpython.c: Add and optional "caller" argument
+	to pyclutter_callback_invoke(): use this argument to change
+	the caller (i.e. the first argument) of the callback from the
+	default (the instance of the class).
+
+	* clutter/clutter.override: Implement clutter.Group.foreach().
+
+	* clutter/clutter-behaviour.override: Implement the
+	clutter.Behaviour.actors_foreach() method.
+
+	* examples/rects.py: Check if the clutter.Group.foreach()
+	method works.
+
 2006-11-18  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* configure.ac: Bump to 0.1.2.
