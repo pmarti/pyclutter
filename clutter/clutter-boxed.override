@@ -462,4 +462,123 @@ _wrap_clutter_color__set_alpha (PyGBoxed *self, PyObject *value, void *closure)
 
 	return 0;
 }
+%%
+override clutter_knot_new kwargs
+static int
+_wrap_clutter_knot_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "x", "y", NULL };
+	ClutterKnot knot = { 0, 0, };
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+					 "|iiii:ClutterKnot.__init__",
+					 kwlist,
+					 &(knot.x), &(knot.y)))
+		return -1;
+	
+	self->boxed = g_boxed_copy (CLUTTER_TYPE_KNOT, &knot);
+	self->free_on_dealloc = TRUE;
+	self->gtype = CLUTTER_TYPE_KNOT;
+	
+	return 0;
+}
+%%
+override-slot ClutterKnot.tp_as_sequence
+static int
+_wrap_clutter_knot_length (PyGBoxed *self)
+{
+	return 2;
+}
+static PyObject *
+_wrap_clutter_knot_getitem(PyGBoxed *self, int pos)
+{
+	ClutterKnot *knot;
+
+	if (pos < 0)
+		pos += 1;
+	
+	if (pos < 0 || pos >= 2) {
+		PyErr_SetString(PyExc_IndexError, "index out of range");
+		
+		return NULL;
+	}
+
+	knot = pyg_boxed_get (self, ClutterKnot);
+	switch (pos) {
+		case 0: return PyInt_FromLong (knot->x);
+		case 1: return PyInt_FromLong (knot->y);
+		default:
+			g_assert_not_reached();
+			return NULL;
+	}
+}
+static int
+_wrap_clutter_knot_setitem (PyGBoxed *self, int pos, PyObject *value)
+{
+	ClutterKnot *knot;
+	gint val;
+
+	if (pos < 0)
+		pos += 1;
+	
+	if (pos < 0 || pos >= 2) {
+		PyErr_SetString(PyExc_IndexError, "index out of range");
+		
+		return -1;
+	}
+
+	knot = pyg_boxed_get (self, ClutterKnot);
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+	
+	switch(pos) {
+		case 0: knot->x = val; break;
+		case 1: knot->y = val; break;
+		default:
+			g_assert_not_reached();
+			return -1;
+	}
+
+	return 0;
+}
+static PySequenceMethods _wrap_clutter_knot_tp_as_sequence = {
+	(inquiry) _wrap_clutter_knot_length,
+	(binaryfunc) 0,
+	(intargfunc) 0,
+	(intargfunc) _wrap_clutter_knot_getitem,
+	(intintargfunc) 0,
+	(intobjargproc) _wrap_clutter_knot_setitem,
+	(intintobjargproc) 0
+};
+%%
+override-attr ClutterKnot.x
+static int
+_wrap_clutter_knot__set_x (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterKnot)->x = val;
+
+	return 0;
+}
+%%
+override-attr ClutterKnot.y
+static int
+_wrap_clutter_knot__set_y (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterKnot)->y = val;
+
+	return 0;
+}
 
