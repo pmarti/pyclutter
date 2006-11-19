@@ -70,15 +70,6 @@ _wrap_clutter_alpha_set_func (PyGObject *self,
         return Py_None;
 }
 %%
-override clutter_behaviour_path_append_knots
-static PyObject *
-_wrap_clutter_behaviour_path_append_knots (PyGObject *self,
-                                           PyObject  *args)
-{
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
 override clutter_behaviour_actors_foreach kwargs
 static void
 pyclutter_behaviour_foreach (ClutterActor *actor,
@@ -134,3 +125,40 @@ _wrap_clutter_behaviour_actors_foreach (PyGObject *self,
         Py_INCREF (Py_None);
         return Py_None;
 }
+%%
+override clutter_behaviour_path_get_knots noargs
+static PyObject *
+_wrap_clutter_behaviour_path_get_knots (PyGObject *self)
+{
+        ClutterBehaviourPath *behaviour;
+        GSList *knots, *l;
+        PyObject *py_list;
+
+        behaviour = CLUTTER_BEHAVIOUR_PATH (self->obj);
+        knots = clutter_behaviour_path_get_knots (behaviour);
+
+        if ((py_list = PyList_New (0)) == NULL) {
+                g_slist_free (knots);
+                return NULL;
+        }
+
+        for (l = knots; l != NULL; l = l->next) {
+                ClutterKnot *knot = l->data;
+                PyObject *py_knot;
+
+                py_knot = pyg_boxed_new (CLUTTER_TYPE_KNOT, knot, TRUE, TRUE);
+                if (!py_knot) {
+                        g_slist_free (knots);
+                        Py_DECREF (py_list);
+                        return NULL;
+                }
+
+                PyList_Append (py_list, py_knot);
+                Py_DECREF (py_knot);
+        }
+
+        g_slist_free (knots);
+
+        return py_list;
+}
+

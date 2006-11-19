@@ -549,3 +549,38 @@ _wrap_clutter_group_foreach (PyGObject *self,
         Py_INCREF (Py_None);
         return Py_None;
 }
+%%
+override clutter_group_get_children noargs
+static PyObject *
+_wrap_clutter_group_get_children (PyGObject *self)
+{
+        GList *children, *l;
+        PyObject *py_list;
+
+        children = clutter_group_get_children (CLUTTER_GROUP (self->obj));
+
+        if ((py_list = PyList_New (0)) == NULL) {
+                g_list_free (children);
+                return NULL;
+        }
+
+        for (l = children; l != NULL; l = l->next) {
+                ClutterActor *actor = l->data;
+                PyObject *py_actor;
+
+                py_actor = pygobject_new ((GObject *) actor);
+                if (!py_actor) {
+                        g_list_free (children);
+                        Py_DECREF (py_list);
+                        return NULL;
+                }
+
+                PyList_Append (py_list, py_actor);
+                Py_DECREF (py_actor);
+        }
+
+        g_list_free (children);
+
+        return py_list;
+}
+

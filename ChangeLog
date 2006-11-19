@@ -1,6 +1,18 @@
 2006-11-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	The coverage of global functions is 100.00% (18/18)
+	The coverage of methods is 99.31% (144/145)
+
+	* clutter/clutter.override: Implement the
+	clutter.Group.get_children() method.
+
+	* clutter/clutter-behaviour.override: Remove the empty
+	clutter.BehaviourPath.append_knots() stub; implement the
+	clutter.BehaviourPath.get_knots() method.
+
+2006-11-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	The coverage of global functions is 100.00% (18/18)
 	The coverage of methods is 98.62% (143/145)
 
 	* clutter/pyclutter.h:
