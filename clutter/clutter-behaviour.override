@@ -161,4 +161,43 @@ _wrap_clutter_behaviour_path_get_knots (PyGObject *self)
 
         return py_list;
 }
+%%
+override clutter_behaviour_path_append_knots
+static PyObject *
+_wrap_clutter_behaviour_path_append_knots (PyGObject *self,
+                                           PyObject  *args)
+{
+        ClutterBehaviourPath *pathb;
+        int i, len;
+
+        if ((len = PyTuple_Size (args)) < 1) {
+                PyErr_SetString (PyExc_TypeError,
+                                 "requires at least one argument");
+                return NULL;
+        }
+
+        pathb = CLUTTER_BEHAVIOUR_PATH (self->obj);
+
+        for (i = 0; i < len; i++) {
+                PyObject *py_knot;
+                ClutterKnot knot;
+
+                py_knot = PyTuple_GetItem (args, i);
+                if (PyTuple_Size (py_knot) != 2 &&
+                    PyInt_Check (PyTuple_GetItem (py_knot, 0)) &&
+                    PyInt_Check (PyTuple_GetItem (py_knot, 1))) {
+                        PyErr_SetString (PyExc_TypeError,
+                                         "expecting a tuple of two integers");
+                        return NULL;
+                }
+
+                knot.x = PyInt_AsLong (PyTuple_GetItem (py_knot, 0));
+                knot.y = PyInt_AsLong (PyTuple_GetItem (py_knot, 1));
+
+                clutter_behaviour_path_append_knot (pathb, &knot);
+        }
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
 

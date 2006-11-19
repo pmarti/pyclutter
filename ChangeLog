@@ -1,6 +1,14 @@
 2006-11-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	The coverage of global functions is 100.00% (18/18)
+	The coverage of methods is 100.00% (145/145)
+
+	* clutter/clutter-behaviour.override: Implement the
+	final missing method: clutter.BehaviourPath.append_knots().
+
+2006-11-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	The coverage of global functions is 100.00% (18/18)
 	The coverage of methods is 99.31% (144/145)
 
 	* clutter/clutter.override: Implement the
