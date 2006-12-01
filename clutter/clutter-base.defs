@@ -1417,6 +1417,39 @@
   )
 )
 
+(define-method get_border_color
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_get_border_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_border_color
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_set_border_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_border_width
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_get_border_width")
+  (return-type "guint")
+)
+
+(define-method set_border_width
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_set_border_width")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+  )
+)
+
 
 
 ;; From clutter-stage.h
