@@ -439,63 +439,6 @@ _wrap_clutter_rectangle_get_color (PyGObject *self,
 					color.alpha);
 }
 %%
-override clutter_rectangle_set_border_color
-static PyObject *
-_wrap_clutter_rectangle_set_border_color (PyGObject *self,
-				          PyObject  *args)
-{
-	ClutterColor color;
-	int len, i;
-
-	if ((len = PyTuple_Size (args)) != 4) {
-		PyErr_SetString (PyExc_TypeError,
-				 "requires a tuple of 4 integers: (r, g, b, a)");
-		return NULL;
-	}
-
-	for (i = 0; i < len; i++) {
-		PyObject *comp = PyTuple_GetItem (args, i);
-		
-		if (!PyInt_Check (comp)) {
-			PyErr_SetString (PyExc_TypeError,
-					 "component is not an integer");
-			return NULL;
-		}
-		
-		switch (i) {
-			case 0: color.red   = (guint8) PyInt_AsLong (comp); break;
-			case 1: color.green = (guint8) PyInt_AsLong (comp); break;
-			case 2: color.blue  = (guint8) PyInt_AsLong (comp); break;
-			case 3: color.alpha = (guint8) PyInt_AsLong (comp); break;
-			default:
-				g_assert_not_reached ();
-				break;
-		}
-	}
-	
-	clutter_rectangle_set_border_color (CLUTTER_RECTANGLE (self->obj),
-                                            &color);
-
-	Py_INCREF (Py_None);
-	return Py_None;
-}
-%%
-override clutter_rectangle_get_border_color
-static PyObject *
-_wrap_clutter_rectangle_get_border_color (PyGObject *self,
-				          PyObject  *args)
-{
-	ClutterColor color;
-
-	clutter_rectangle_get_border_color (CLUTTER_RECTANGLE (self->obj),
-                                            &color);
-	
-	return Py_BuildValue ("(iiii)", color.red,
-					color.green,
-					color.blue,
-					color.alpha);
-}
-%%
 override clutter_label_set_color
 static PyObject *
 _wrap_clutter_label_set_color (PyGObject *self,

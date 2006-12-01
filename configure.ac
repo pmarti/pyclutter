@@ -75,32 +75,14 @@ if test -n "$export_dynamic"; then
   CLUTTER_LIBS=`echo $CLUTTER_LIBS | sed -e "s/$export_dynamic//"`
 fi
 
-dnl Building documentation
-AC_ARG_ENABLE(doc,
-  AC_HELP_STRING([--enable-doc], [Enable documentation building]),,
-  enable_doc=no)
-if test "x${enable_docs}" = "xyes"; then
-  dnl Check for xsltproc
-  AC_PATH_PROG([XSLTPROC], [xsltproc])
-  if test -z "$XSLTPROC"; then
-    enable_doc=no
-  fi
-fi
-
-AM_CONDITIONAL(ENABLE_DOC, test x$enable_doc == xyes)
-
 dnl add required cflags ...
 JH_ADD_CFLAG([-Wall])
 JH_ADD_CFLAG([-std=c9x])
 JH_ADD_CFLAG([-fno-strict-aliasing])
 
-AC_CONFIG_FILES([
-        Makefile
-        docs/Makefile
-        docs/reference/entities.docbook
-        examples/Makefile
-        clutter/Makefile
-        clutter/pyclutter.pc
+AC_OUTPUT([
+Makefile
+examples/Makefile
+clutter/Makefile
+clutter/pyclutter.pc
 ])
-
-AC_OUTPUT
