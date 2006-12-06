@@ -16,13 +16,13 @@ knots = ( \
         ( 300,   0 ),   \
         ( 300, 300 ),   \
         (   0, 300 ),   \
-        (   0,   0 ),   \
 )
 
 timeline = clutter.Timeline(100, 26)
 timeline.set_loop(True)
 alpha = clutter.Alpha(timeline, clutter.sine_func)
 p_behaviour = clutter.BehaviourPath(alpha, knots)
+p_behaviour.append_knots((0, 0))
 p_behaviour.apply(rect)
 
 stage.add(rect)

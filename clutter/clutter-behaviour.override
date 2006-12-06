@@ -1,6 +1,7 @@
 %%
 ignore
   clutter_alpha_new_full
+  clutter_behavuour_path_append_knot
   clutter_behaviour_path_append_knots_valist
   clutter_ramp_inc_func
   clutter_ramp_dec_func
@@ -226,7 +227,7 @@ _wrap_clutter_behaviour_path_new (PyGObject *self,
                 else {
                         PyErr_SetString (PyExc_TypeError,
                                          "knots must be a tuple containing "
-                                         "coordinates pairs or None");
+                                         "tuples of coordinates or None");
                         return -1;
                 }
 
@@ -242,11 +243,18 @@ _wrap_clutter_behaviour_path_new (PyGObject *self,
 
                         py_knot = PyTuple_GetItem (py_knots, i);
                         if (PyTuple_Check (py_knot) &&
-                            PyTuple_Size (py_knot) == 2) {
+                            PyTuple_Size (py_knot) == 2 &&
+                            PyInt_Check (PyTuple_GetItem (py_knot, 0)) &&
+                            PyInt_Check (PyTuple_GetItem (py_knot, 1))) {
                                 knot.x = PyInt_AsLong (PyTuple_GetItem (py_knot, 0));
                                 knot.y = PyInt_AsLong (PyTuple_GetItem (py_knot, 1));
                                 clutter_behaviour_path_append_knot (behaviour,
                                                                     &knot);
+                        }
+                        else {
+                                PyErr_SetString (PyExc_TypeError,
+                                                 "expecting a tuple of two integers");
+                                return -1;
                         }
                 }
         }
@@ -318,9 +326,11 @@ _wrap_clutter_behaviour_path_append_knots (PyGObject *self,
                 ClutterKnot knot;
 
                 py_knot = PyTuple_GetItem (args, i);
-                if (PyTuple_Size (py_knot) != 2 &&
-                    PyInt_Check (PyTuple_GetItem (py_knot, 0)) &&
-                    PyInt_Check (PyTuple_GetItem (py_knot, 1))) {
+
+                if (!PyTuple_Check (py_knot) &&
+                    PyTuple_Size (py_knot) != 2 &&
+                    !PyInt_Check (PyTuple_GetItem (py_knot, 0)) &&
+                    !PyInt_Check (PyTuple_GetItem (py_knot, 1))) {
                         PyErr_SetString (PyExc_TypeError,
                                          "expecting a tuple of two integers");
                         return NULL;
