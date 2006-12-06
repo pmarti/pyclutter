@@ -53,7 +53,7 @@ pyclutter_callback_invoke (PyClutterCallback *cb,
         }
 
         if (!caller) {
-                caller = pygobject_new (G_OBJECT (cb->caller));
+                caller = pygobject_new (cb->caller->obj);
         }
 
         if (cb->data) {

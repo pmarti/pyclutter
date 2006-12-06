@@ -1,13 +1,15 @@
 %%
 ignore
+  clutter_alpha_new_full
+  clutter_behaviour_path_append_knots_valist
   clutter_ramp_inc_func
   clutter_ramp_dec_func
   clutter_ramp_func
   clutter_sine_func
-  clutter_alpha_new_full
-  clutter_behaviour_path_append_knots_valist
 %%
-override clutter_alpha_set_func kwargs
+new-constructor CLUTTER_TYPE_ALPHA
+%%
+override clutter_alpha_new kwargs
 static guint32
 pyclutter_alpha_func (ClutterAlpha *alpha,
                       gpointer      data)
@@ -23,12 +25,15 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         if (retobj == NULL)
                 PyErr_Print ();
 
-        if (!PyInt_Check (retobj)) {
-                PyErr_SetString (PyExc_TypeError,
-                                 "returned value is not an integer");
+        if (PyInt_Check (retobj)) {
+                retval = (guint32) PyInt_AsLong (retobj);
+        }
+        else if (PyLong_Check (retobj)) {
+                retval = (guint32) PyLong_AsLong (retobj);
         }
         else {
-                retval = (guint32) PyInt_AsLong (retobj);
+                PyErr_SetString (PyExc_TypeError,
+                                 "returned value is not an integer");
         }
 
         Py_XDECREF (retobj);
@@ -37,6 +42,62 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         
         return retval;
 }
+
+static int
+_wrap_clutter_alpha_new (PyGObject *self,
+                         PyObject  *args,
+                         PyObject  *kwargs)
+{
+        static char *kwlist[] = { "timeline", "func", "data", NULL };
+        PyObject *py_timeline = Py_None;
+        PyObject *py_func = Py_None;
+        PyObject *py_data = Py_None;
+        ClutterTimeline *timeline;
+        PyClutterCallback *pycb;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "|OOO:clutter.Alpha.__init__",
+                                          kwlist,
+                                          &py_timeline, &py_func, &py_data))
+                return -1;
+
+        if (py_timeline == Py_None)
+                timeline = NULL;
+        else if (pygobject_check (py_timeline, &PyClutterTimeline_Type))
+                timeline = CLUTTER_TIMELINE (pygobject_get (py_timeline));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must be a timeline or None");
+                return -1;
+        }
+
+        if (py_func == Py_None) {
+                pygobject_construct (self, "timeline", timeline, NULL);
+        }
+        else {
+                pygobject_construct (self, "timeline", timeline, NULL);
+                if (!self->obj)
+                        goto out;
+
+                pycb = pyclutter_callback_new (self, py_func, py_data);
+
+                clutter_alpha_set_func (CLUTTER_ALPHA (self->obj),
+                                        pyclutter_alpha_func, pycb,
+                                        (GDestroyNotify) pyclutter_callback_free);
+        }
+
+out:
+        if (!self->obj) {
+                PyErr_SetString (PyExc_RuntimeError,
+                                 "could not create a ClutterAlpha object");
+                return -1;
+        }
+
+        return 0;
+                
+}
+%%
+override clutter_alpha_set_func kwargs
 static PyObject *
 _wrap_clutter_alpha_set_func (PyGObject *self,
                               PyObject  *args,
@@ -124,6 +185,80 @@ _wrap_clutter_behaviour_actors_foreach (PyGObject *self,
 
         Py_INCREF (Py_None);
         return Py_None;
+}
+%%
+new-constructor CLUTTER_TYPE_BEHAVIOUR_PATH
+%%
+override clutter_behaviour_path_new kwargs
+static int
+_wrap_clutter_behaviour_path_new (PyGObject *self,
+                                  PyObject  *args,
+                                  PyObject  *kwargs)
+{
+        static char *kwlist[] = { "alpha", "knots", NULL};
+        ClutterAlpha *alpha;
+        PyObject *py_alpha = Py_None;
+        PyObject *py_knots = Py_None;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "|OO:clutter.BehaviourPath.__init__",
+                                          kwlist, &py_alpha, &py_knots))
+                return -1;
+        
+        if (py_alpha == Py_None)
+                alpha = NULL;
+        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must be a ClutterAlpha or None");
+                return -1;
+        }
+
+        if (py_knots == Py_None)
+                pygobject_construct (self, "alpha", alpha, NULL);
+        else {
+                guint n_knots, i;
+                ClutterBehaviourPath *behaviour;
+                
+                if (PyTuple_Check (py_knots))
+                        n_knots = PyTuple_Size (py_knots);
+                else {
+                        PyErr_SetString (PyExc_TypeError,
+                                         "knots must be a tuple containing "
+                                         "coordinates pairs or None");
+                        return -1;
+                }
+
+                if (pygobject_construct (self, "alpha", alpha, NULL)) {
+                        goto out;
+                }
+
+                behaviour = CLUTTER_BEHAVIOUR_PATH (self->obj);
+
+                for (i = 0; i < n_knots; i++) {
+                        PyObject *py_knot;
+                        ClutterKnot knot;
+
+                        py_knot = PyTuple_GetItem (py_knots, i);
+                        if (PyTuple_Check (py_knot) &&
+                            PyTuple_Size (py_knot) == 2) {
+                                knot.x = PyInt_AsLong (PyTuple_GetItem (py_knot, 0));
+                                knot.y = PyInt_AsLong (PyTuple_GetItem (py_knot, 1));
+                                clutter_behaviour_path_append_knot (behaviour,
+                                                                    &knot);
+                        }
+                }
+        }
+
+out:
+        if (!self->obj) {
+                PyErr_SetString (PyExc_RuntimeError,
+                                 "could not create a ClutterBehaviourPath object");
+                return -1;
+        }
+
+        return 0;
 }
 %%
 override clutter_behaviour_path_get_knots noargs

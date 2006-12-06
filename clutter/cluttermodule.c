@@ -24,6 +24,8 @@ init_clutter (void)
 			             PYCLUTTER_MAJOR_VERSION,
 				     PYCLUTTER_MINOR_VERSION,
 				     PYCLUTTER_MICRO_VERSION));
+  PyModule_AddObject (m, "MAX_ALPHA",
+                      Py_BuildValue ("i", CLUTTER_ALPHA_MAX_ALPHA));
   d = PyModule_GetDict (m);
 
   pyclutter_add_constants (m, "CLUTTER_");

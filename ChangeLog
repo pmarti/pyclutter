@@ -1,3 +1,38 @@
+2006-12-06  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter.override:
+	* clutter/clutter-base.defs:
+	* clutter/clutter-base-types.defs: Update with upstream
+	API additions:
+
+		clutter.Rectangle_get_border_color
+		clutter.Rectangle.set_border_color
+		clutter.Rectangle.get_border_width
+		clutter.Rectangle.set_border_width
+	
+	use the new style for constructors
+
+	* clutter/clutter-behaviour.override: Update the clutter.Alpha
+	constructor to accept a function and a timeline as optional
+	arguments; override the clutter.BehaviourPath constructor to
+	accept a tuple of (x, y) pairs as knots.
+
+	* clutter/clutterpython.c: Use the right object as the caller.
+
+	* clutter/__init__.py: Relay the MAX_ALPHA C macro as a module
+	variable; provide pure python implementations of the alpha
+	functions.
+
+	* docs/update-bindings.txt: Add a checklist for updating the
+	bindings when upstream changes.
+
+	* configure.ac: Add a check for building docs if xsltproc is
+	available; now all that's left to do is to use the pygtk
+	xslt and write the docs.
+
+	* examples/behave.py: Simple porting of the upstream behave
+	example program.
+
 2006-11-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-behaviour.override: Implement the
