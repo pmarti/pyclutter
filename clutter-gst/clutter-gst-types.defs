@@ -1,0 +1,18 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object GstAudio
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterGstAudio")
+  (gtype-id "CLUTTER_TYPE_GST_AUDIO")
+)
+
+(define-object GstVideoTexture
+  (in-module "Clutter")
+  (parent "ClutterTexture")
+  (c-name "ClutterGstVideoTexture")
+  (gtype-id "CLUTTER_TYPE_GST_VIDEO_TEXTURE")
+)
+
+;; Enumerations and flags ...
+

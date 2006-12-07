@@ -345,4 +345,3 @@ _wrap_clutter_behaviour_path_append_knots (PyGObject *self,
         Py_INCREF (Py_None);
         return Py_None;
 }
-

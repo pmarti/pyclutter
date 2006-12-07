@@ -547,6 +547,14 @@
   )
 )
 
+(define-virtual alpha_notify
+  (of-object "ClutterBehaviour")
+  (return-type "none")
+  (parameters
+    '("guint32" "alpha")
+  )
+)
+
 
 
 ;; From clutter-behaviour-opacity.h

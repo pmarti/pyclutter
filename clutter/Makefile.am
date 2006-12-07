@@ -54,7 +54,7 @@ _clutter_la_CFLAGS = $(CLUTTER_CFLAGS)
 _clutter_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_clutter
 _clutter_la_LIBADD = $(PYGTK_LIBS) $(CLUTTER_LIBS)
 _clutter_la_SOURCES = 		\
-	clutterpython.c		\
+	pyclutter.c		\
 	cluttermodule.c 
 nodist__clutter_la_SOURCES = clutter.c
 

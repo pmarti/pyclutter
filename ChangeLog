@@ -1,3 +1,30 @@
+2006-12-07  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs: Add declaration for the
+	vfunc ClutterBehaviour::alpha_notify; now you can
+	subclass clutter.Behaviour and override do_alpha_notify
+	to create a pure python behaviour.
+
+	* clutter/clutterpython.c:
+	* clutter/pyclutter.c: Rename the helper utils code.
+
+	* Makefile.am: Update with the renamed helper file.
+
+	* clutter-gst/clutter-gst.defs:
+	* clutter-gst/clutter-gst-types.defs: Add defs file
+	for the clutter-gst sub-module.
+
+	* configure.ac:
+	* Makfile.am: Add support for the sub-modules; use the
+	--with-clutter-gtk and --with-clutter-gst configure
+	switch to enable their compilation; fixed the --enable-doc
+	switch.
+
+	* clutter-gst/Makefile.am:
+	* clutter-gtk/Makefile.am: Build glue for the sub-modules.
+
+	* docs/reference/Makefile.am: Add.
+
 2006-12-06  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-behaviour.override: Ignore the single
