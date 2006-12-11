@@ -1,5 +1,20 @@
 2006-12-11  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-behaviour.override: Check for a callable
+	function inside the clutter.Alpha constructor; wrap the
+	clutter.Behaviour.get_actors() method; override the alpha_notify
+	virtual method and proxy, and allow the creation of pure
+	python behaviours.
+
+	* clutter/clutter-base.defs: Add missing methods.
+
+	* clutter/pyclutter.c: Add some checks; use PyObject_CallObject()
+	instead of the generic PyObject_Call(): should be a bit faster.
+
+	* examples/behave.py: Add an example of a pure python behaviour.
+
+2006-12-11  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/pyclutter.h:
 	* clutter/pyclutter.c: Use a better callback mechanism
 	for the invocation of callable functions; still rough,

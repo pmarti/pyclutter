@@ -1,5 +1,24 @@
 import clutter
 
+class BehaviourRotate (clutter.Behaviour):
+        __gtype_name__ = 'BehaviourRotate'
+        def __init__ (self, alpha=None):
+                clutter.Behaviour.__init__(self)
+                self.set_alpha(alpha)
+                self.angle_start = 0.0
+                self.angle_end = 359.0
+
+        def do_alpha_notify (self, alpha_value):
+                angle = alpha_value \
+                      * (self.angle_end - self.angle_start) \
+                      / clutter.MAX_ALPHA
+
+                for actor in self.get_actors():
+                        actor.rotate_z(angle,
+                                       actor.get_x() - 100,
+                                       actor.get_y() - 100)
+
+
 stage = clutter.stage_get_default()
 stage.set_size(800, 600)
 stage.set_color(0xcc, 0xcc, 0xcc, 0xff)
@@ -28,6 +47,9 @@ o_behaviour.apply(rect)
 p_behaviour = clutter.BehaviourPath(alpha, knots)
 p_behaviour.append_knots((0, 0))
 p_behaviour.apply(rect)
+
+r_behaviour = BehaviourRotate(alpha)
+r_behaviour.apply(rect)
 
 stage.add(rect)
 stage.show()

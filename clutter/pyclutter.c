@@ -21,6 +21,8 @@ pyclutter_callback_new (PyObject *func,
 {
         PyClutterCallback *retval;
 
+        g_return_val_if_fail (func != NULL, NULL);
+
         retval = g_new0 (PyClutterCallback, 1);
         
         retval->func = func;
@@ -109,7 +111,7 @@ pyclutter_callback_invoke (PyClutterCallback *cb,
                 PyTuple_SetItem (args, i, cb->data);
         }
 
-        retobj = PyObject_Call (cb->func, args, NULL);
+        retobj = PyObject_CallObject (cb->func, args);
 
         Py_DECREF (args);
 

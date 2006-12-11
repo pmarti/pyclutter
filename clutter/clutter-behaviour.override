@@ -77,19 +77,26 @@ _wrap_clutter_alpha_new (PyGObject *self,
                 pygobject_construct (self, "timeline", timeline, NULL);
         }
         else {
-                GType param_types[] = { CLUTTER_TYPE_ALPHA };
-                guint n_params = G_N_ELEMENTS (param_types);
+                if (!PyCallable_Check (py_func)) {
+                        PyErr_SetString(PyExc_TypeError,
+                                        "func must be callable");
+                        return -1;
+                }
+                else {
+                        GType param_types[] = { CLUTTER_TYPE_ALPHA };
+                        guint n_params = G_N_ELEMENTS (param_types);
 
-                pygobject_construct (self, "timeline", timeline, NULL);
-                if (!self->obj)
-                        goto out;
+                        pygobject_construct (self, "timeline", timeline, NULL);
+                        if (!self->obj)
+                                goto out;
 
-                pycb = pyclutter_callback_new (py_func, py_data,
-                                               n_params, param_types);
-
-                clutter_alpha_set_func (CLUTTER_ALPHA (self->obj),
-                                        pyclutter_alpha_func, pycb,
-                                        (GDestroyNotify) pyclutter_callback_free);
+                        pycb = pyclutter_callback_new (py_func, py_data,
+                                                       n_params, param_types);
+                        clutter_alpha_set_func (CLUTTER_ALPHA (self->obj),
+                                                pyclutter_alpha_func,
+                                                pycb,
+                                                (GDestroyNotify) pyclutter_callback_free);
+                }
         }
 
 out:
@@ -202,6 +209,41 @@ _wrap_clutter_behaviour_actors_foreach (PyGObject *self,
 
         Py_INCREF (Py_None);
         return Py_None;
+}
+%%
+override clutter_behaviour_get_actors
+static PyObject *
+_wrap_clutter_behaviour_get_actors (PyGObject *self,
+                                    PyObject  *args)
+{
+        GSList *actors, *l;
+        PyObject *py_list;
+
+        actors = clutter_behaviour_get_actors (CLUTTER_BEHAVIOUR (self->obj));
+
+        if ((py_list = PyList_New (0)) == NULL) {
+                g_slist_free (actors);
+                return NULL;
+        }
+
+        for (l = actors; l != NULL; l = l->next) {
+                ClutterActor *actor = l->data;
+                PyObject *py_actor;
+
+                py_actor = pygobject_new ((GObject *) actor);
+                if (!py_actor) {
+                        g_slist_free (actors);
+                        Py_DECREF (py_list);
+                        return NULL;
+                }
+
+                PyList_Append (py_list, py_actor);
+                Py_DECREF (py_actor);
+        }
+
+        g_slist_free (actors);
+
+        return py_list;
 }
 %%
 new-constructor CLUTTER_TYPE_BEHAVIOUR_PATH
@@ -357,6 +399,73 @@ _wrap_clutter_behaviour_path_append_knots (PyGObject *self,
 
                 clutter_behaviour_path_append_knot (pathb, &knot);
         }
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override ClutterBehaviour__proxy_do_alpha_notify
+static void
+_wrap_ClutterBehaviour__proxy_do_alpha_notify (ClutterBehaviour *behaviour,
+                                               guint32           alpha_value)
+{
+        PyGILState_STATE state;
+        PyObject *self, *py_ret, *py_alpha;
+        
+        state = pyg_gil_state_ensure ();
+        self = pygobject_new ((GObject *) behaviour);
+        py_alpha = PyLong_FromLong (alpha_value);
+
+        py_ret = PyObject_CallMethod (self, "do_alpha_notify", "O",
+                                      py_alpha);
+        if (!py_ret) {
+                PyErr_Print ();
+        }
+
+        Py_DECREF (self);
+        Py_DECREF (py_alpha);
+        Py_DECREF (py_ret);
+
+        pyg_gil_state_release (state);
+}
+%%
+override ClutterBehaviour__do_alpha_notify kwargs
+static PyObject *
+_wrap_ClutterBehaviour__do_alpha_notify (PyObject *cls,
+                                         PyObject *args,
+                                         PyObject *kwargs)
+{
+        gpointer klass;
+        static char *kwlist[] = { "self", "alpha", NULL };
+        PyGObject *self;
+        PyObject *py_alpha;
+        guint32 alpha_value;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "OO:ClutterBehaviour.do_alpha_notify",
+                                          kwlist,
+                                          &PyClutterBehaviour_Type, &self,
+                                          &py_alpha))
+                return NULL;
+
+        alpha_value = (guint32) PyLong_AsLong (py_alpha);
+
+        klass = g_type_class_ref (pyg_type_from_object (cls));
+        if (CLUTTER_BEHAVIOUR_CLASS (klass)->alpha_notify) {
+                ClutterBehaviour *behaviour;
+                
+                behaviour = CLUTTER_BEHAVIOUR (self->obj);
+                CLUTTER_BEHAVIOUR_CLASS (klass)->alpha_notify (behaviour,
+                                                               alpha_value);
+        }
+        else {
+                PyErr_SetString (PyExc_NotImplementedError,
+                                 "virtual method ClutterBehaviour.do_alpha_notify not implemented");
+                g_type_class_unref (klass);
+                return NULL;
+        }
+
+        g_type_class_unref (klass);
 
         Py_INCREF (Py_None);
         return Py_None;

@@ -532,6 +532,12 @@
   )
 )
 
+(define-method get_actors
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_actors")
+  (return-type "GSList*")
+)
+
 (define-method get_alpha
   (of-object "ClutterBehaviour")
   (c-name "clutter_behaviour_get_alpha")
@@ -551,7 +557,7 @@
   (of-object "ClutterBehaviour")
   (return-type "none")
   (parameters
-    '("guint32" "alpha")
+    '("guint32" "alpha_value")
   )
 )
 
