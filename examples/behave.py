@@ -21,6 +21,10 @@ knots = ( \
 timeline = clutter.Timeline(100, 26)
 timeline.set_loop(True)
 alpha = clutter.Alpha(timeline, clutter.sine_func)
+
+o_behaviour = clutter.BehaviourOpacity(alpha, 0x33, 0xff)
+o_behaviour.apply(rect)
+
 p_behaviour = clutter.BehaviourPath(alpha, knots)
 p_behaviour.append_knots((0, 0))
 p_behaviour.apply(rect)

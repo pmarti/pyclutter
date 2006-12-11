@@ -17,12 +17,13 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
 {
         PyClutterCallback *pycb = data;
         PyGILState_STATE state;
-        PyObject *retobj;
+        PyObject *py_alpha, *retobj;
         guint32 retval = 0;
 
         state = pyg_gil_state_ensure ();
 
-        retobj = pyclutter_callback_invoke (pycb, NULL);
+        py_alpha = pygobject_new ((GObject *) alpha);
+        retobj = pyclutter_callback_invoke (pycb, py_alpha);
         if (retobj == NULL)
                 PyErr_Print ();
 
@@ -76,11 +77,15 @@ _wrap_clutter_alpha_new (PyGObject *self,
                 pygobject_construct (self, "timeline", timeline, NULL);
         }
         else {
+                GType param_types[] = { CLUTTER_TYPE_ALPHA };
+                guint n_params = G_N_ELEMENTS (param_types);
+
                 pygobject_construct (self, "timeline", timeline, NULL);
                 if (!self->obj)
                         goto out;
 
-                pycb = pyclutter_callback_new (self, py_func, py_data);
+                pycb = pyclutter_callback_new (py_func, py_data,
+                                               n_params, param_types);
 
                 clutter_alpha_set_func (CLUTTER_ALPHA (self->obj),
                                         pyclutter_alpha_func, pycb,
@@ -108,6 +113,8 @@ _wrap_clutter_alpha_set_func (PyGObject *self,
         PyObject *py_func, *py_data = NULL;
         ClutterAlpha *alpha;
         PyClutterCallback *pycb;
+        GType param_types[] = { CLUTTER_TYPE_ALPHA };
+        gint n_params = G_N_ELEMENTS (param_types);
 
         if (!PyArg_ParseTupleAndKeywords(args, kwargs,
                                          "O|O:clutter.Alpha.set_func",
@@ -121,7 +128,8 @@ _wrap_clutter_alpha_set_func (PyGObject *self,
                 return NULL;
         }
 
-        pycb = pyclutter_callback_new (self, py_func, py_data);
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       n_params, param_types);
 
         alpha = CLUTTER_ALPHA (self->obj);
         clutter_alpha_set_func (alpha,
@@ -134,18 +142,20 @@ _wrap_clutter_alpha_set_func (PyGObject *self,
 %%
 override clutter_behaviour_actors_foreach kwargs
 static void
-pyclutter_behaviour_foreach (ClutterActor *actor,
-                             gpointer      data)
+pyclutter_behaviour_foreach (ClutterBehaviour *behaviour,
+                             ClutterActor     *actor,
+                             gpointer          data)
 {
         PyClutterCallback *pycb = data;
         PyGILState_STATE state;
-        PyObject *py_actor;
+        PyObject *py_behaviour, *py_actor;
         PyObject *retobj;
 
         state = pyg_gil_state_ensure ();
 
+        py_behaviour = pygobject_new ((GObject *) behaviour);
         py_actor = pygobject_new ((GObject *) actor);
-        retobj = pyclutter_callback_invoke (pycb, py_actor);
+        retobj = pyclutter_callback_invoke (pycb, py_behaviour, py_actor);
         if (retobj == NULL)
                 PyErr_Print ();
 
@@ -162,6 +172,11 @@ _wrap_clutter_behaviour_actors_foreach (PyGObject *self,
         PyObject *py_func, *py_data = NULL;
         ClutterBehaviour *behaviour;
         PyClutterCallback *pycb;
+        GType param_types[] = {
+                CLUTTER_TYPE_BEHAVIOUR,
+                CLUTTER_TYPE_ALPHA,
+        };
+        gint n_params = G_N_ELEMENTS (param_types);
 
         if (!PyArg_ParseTupleAndKeywords(args, kwargs,
                                          "O|O:clutter.Behaviour.actor_foreach",
@@ -175,11 +190,12 @@ _wrap_clutter_behaviour_actors_foreach (PyGObject *self,
                 return NULL;
         }
 
-        pycb = pyclutter_callback_new (self, py_func, py_data);
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       n_params, param_types);
         behaviour = CLUTTER_BEHAVIOUR (self->obj);
 
         clutter_behaviour_actors_foreach (behaviour,
-                                          (GFunc) pyclutter_behaviour_foreach,
+                                          pyclutter_behaviour_foreach,
                                           pycb);
 
         pyclutter_callback_free (pycb);

@@ -584,6 +584,7 @@ _wrap_clutter_group_foreach (PyGObject *self,
         PyObject *py_func, *py_data = NULL;
         ClutterGroup *group;
         PyClutterCallback *pycb;
+        GType param_types[] = { CLUTTER_TYPE_ACTOR, };
 
         if (!PyArg_ParseTupleAndKeywords(args, kwargs,
                                          "O|O:clutter.Group.foreach",
@@ -597,11 +598,12 @@ _wrap_clutter_group_foreach (PyGObject *self,
                 return NULL;
         }
 
-        pycb = pyclutter_callback_new (self, py_func, py_data);
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       1, param_types);
         group = CLUTTER_GROUP (self->obj);
 
         clutter_group_foreach (group,
-                               (ClutterCallback) pyclutter_group_foreach,
+                               pyclutter_group_foreach,
                                pycb);
 
         pyclutter_callback_free (pycb);

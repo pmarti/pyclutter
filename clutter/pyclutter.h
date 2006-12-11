@@ -17,12 +17,13 @@ G_BEGIN_DECLS
 
 typedef struct _PyClutterCallback       PyClutterCallback;
 
-PyClutterCallback *pyclutter_callback_new    (PyGObject         *caller,
-                                              PyObject          *function,
-                                              PyObject          *data);
+PyClutterCallback *pyclutter_callback_new    (PyObject          *function,
+                                              PyObject          *data,
+                                              gint               n_params,
+                                              GType              param_types[]);
 void               pyclutter_callback_free   (PyClutterCallback *cb);
 PyObject *         pyclutter_callback_invoke (PyClutterCallback *cb,
-                                              PyObject          *caller);
+                                              ...);
 
 G_END_DECLS
 
