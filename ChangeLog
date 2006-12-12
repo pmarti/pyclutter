@@ -1,3 +1,9 @@
+2006-12-12  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-behaviour.override: Add more checks in the
+	do_alpha_notify caller; fix a reference count bug: the alpha
+	value python object got unreffed twice.
+
 2006-12-11  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-behaviour.override: Check for a callable
