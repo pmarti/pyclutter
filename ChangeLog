@@ -1,5 +1,10 @@
 2006-12-14  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* examples/rects.py:
+	* examples/behave.py: Update examples.
+
+2006-12-14  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base.defs: Add clutter_feature_available(),
 	clutter_color_equal(), clutter_actor_show_all() and
 	clutter_actor_hide_all().
