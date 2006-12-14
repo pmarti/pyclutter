@@ -31,6 +31,7 @@ ignore
   clutter_root_xwindow
   clutter_gl_context
   clutter_rectangle_new_with_color
+  clutter_color_equal
 %%
 ignore-glob
   *_quark
@@ -183,22 +184,31 @@ _wrap_clutter_threads_enter (PyObject *self)
 	return Py_None;
 }
 %%
-override clutter_stage_set_color
+override clutter_stage_set_color kwargs
 static PyObject *
 _wrap_clutter_stage_set_color (PyGObject *self,
-			       PyObject  *args)
+			       PyObject  *args,
+                               PyObject  *kwargs)
 {
+        static char *kwlist[] = { "color", NULL };
 	ClutterColor color;
-	int len, i;
+	int i;
+        PyObject *py_color;
 
-	if ((len = PyTuple_Size (args)) != 4) {
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O:clutter.Stage.set_color",
+                                          kwlist, &py_color))
+                return NULL;
+
+        if (!PyTuple_Check (py_color) &&
+            PyTuple_Size (py_color) != 4) {
 		PyErr_SetString (PyExc_TypeError,
 				 "requires a tuple of 4 integers: (r, g, b, a)");
 		return NULL;
 	}
 
-	for (i = 0; i < len; i++) {
-		PyObject *comp = PyTuple_GetItem (args, i);
+	for (i = 0; i < 4; i++) {
+		PyObject *comp = PyTuple_GetItem (py_color, i);
 		
 		if (!PyInt_Check (comp)) {
 			PyErr_SetString (PyExc_TypeError,
@@ -387,22 +397,60 @@ _wrap_clutter_color_from_pixel (PyObject *self,
 			      (int) color.alpha);
 }
 %%
-override clutter_rectangle_set_color
+override clutter_color_parse kwargs
+static PyObject *
+_wrap_clutter_color_parse (PyObject *self,
+                           PyObject *args,
+                           PyObject *kwargs)
+{
+        static char *kwlist[] = { "spec", NULL };
+        ClutterColor color = { 0, };
+        const char *spec;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "s:color_parse", kwlist,
+                                          &spec))
+                return NULL;
+
+        if (clutter_color_parse (spec, &color)) {
+                return Py_BuildValue ("(iiii)",
+                                      (int) color.red,
+                                      (int) color.green,
+                                      (int) color.blue,
+                                      (int) color.alpha);
+        }
+        else {
+                PyErr_SetString (PyExc_ValueError,
+                                 "unable to parse colour specification");
+                return NULL;
+        }
+}
+%%
+override clutter_rectangle_set_color kwargs
 static PyObject *
 _wrap_clutter_rectangle_set_color (PyGObject *self,
-				   PyObject  *args)
+				   PyObject  *args,
+                                   PyObject  *kwargs)
 {
+        static char *kwlist[] = { "color", NULL };
+        PyObject *py_color;
 	ClutterColor color;
-	int len, i;
+	int i;
 
-	if ((len = PyTuple_Size (args)) != 4) {
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O:clutter.Rectangle.set_color",
+                                          kwlist, &py_color))
+                return NULL;
+
+	if (!PyTuple_Check (py_color) &&
+            PyTuple_Size (py_color) != 4) {
 		PyErr_SetString (PyExc_TypeError,
 				 "requires a tuple of 4 integers: (r, g, b, a)");
 		return NULL;
 	}
 
-	for (i = 0; i < len; i++) {
-		PyObject *comp = PyTuple_GetItem (args, i);
+	for (i = 0; i < 4; i++) {
+		PyObject *comp = PyTuple_GetItem (py_color, i);
 		
 		if (!PyInt_Check (comp)) {
 			PyErr_SetString (PyExc_TypeError,

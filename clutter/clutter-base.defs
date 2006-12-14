@@ -401,6 +401,18 @@
   )
 )
 
+(define-method show_all
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_show_all")
+  (return-type "none")
+)
+
+(define-method hide_all
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_hide_all")
+  (return-type "none")
+)
+
 
 
 ;; From clutter-alpha.h
@@ -727,6 +739,21 @@
   )
 )
 
+(define-method get_parent_texture
+  (of-object "ClutterCloneTexture")
+  (c-name "clutter_clone_texture_get_parent_texture")
+  (return-type "ClutterTexture*")
+)
+
+(define-method set_parent_texture
+  (of-object "ClutterCloneTexture")
+  (c-name "clutter_clone_texture_set_parent_texture")
+  (return-type "none")
+  (parameters
+    '("ClutterTexture*" "texture")
+  )
+)
+
 
 
 ;; From clutter-color.h
@@ -762,6 +789,15 @@
   (parameters
     '("const-ClutterColor*" "src2")
     '("ClutterColor*" "dest")
+  )
+)
+
+(define-function color_equal
+  (c-name "clutter_color_equal")
+  (return-type "gboolean")
+  (parameters
+    '("const-ClutterColor*" "a")
+    '("const-ClutterColor*" "b")
   )
 )
 
@@ -877,6 +913,18 @@
   )
 )
 
+(define-method type
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_type")
+  (return-type "ClutterEventType")
+)
+
+(define-method time
+  (of-object "ClutterButtonEvent")
+  (c-name "clutter_button_event_time")
+  (return-type "guint32")
+)
+
 (define-method copy
   (of-object "ClutterEvent")
   (c-name "clutter_event_copy")
@@ -889,11 +937,6 @@
   (return-type "none")
 )
 
-(define-method type
-  (of-object "ClutterKeyEvent")
-  (c-name "clutter_key_event_type")
-  (return-type "ClutterEventType")
-)
 
 (define-method time
   (of-object "ClutterKeyEvent")
@@ -959,6 +1002,13 @@
   (return-type "none")
 )
 
+(define-function feature_available
+  (c-name "clutter_feature_available")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterFeatureFlags" "feature")
+  )
+)
 
 
 ;; From clutter-fixed.h
