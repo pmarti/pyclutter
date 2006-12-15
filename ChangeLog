@@ -1,5 +1,10 @@
 2006-12-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* examples/rects.py:
+	* examples/behave.py: Update examples code.
+
+2006-12-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-boxed.override: Remove the ClutterColor
 	overridden methods here and put them into clutter-color.override.
 
