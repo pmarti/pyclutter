@@ -5,6 +5,7 @@ Overview of changes between 0.1.0 and 0.2.0
   o add clutter.Behaviour API
   o allow implementing a clutter.Behaviour in pure python
   o add clutter.Alpha API
+  o allow implementing the clutter.Media interface in pure python
 * Clean up the build environment
   o split overridden functions per object/function
   o add clutter.gtk and clutter.gst sub-modules
