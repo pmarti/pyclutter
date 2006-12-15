@@ -1,5 +1,13 @@
 2006-12-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/Makefile.am:
+	* clutter/keysyms.py: Add the key symbols list, and use the
+	pygtk lazy loading facility (currently, calls gtk._lazyutils
+	but might be useful to install our own copy?) to load what's
+	needed only when it's needed.
+
+2006-12-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base.defs: Add the ClutterMedia virtual
 	functions, so that you can implement the ClutterMedia
 	interface in pure python.
