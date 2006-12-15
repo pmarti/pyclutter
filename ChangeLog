@@ -1,3 +1,39 @@
+2006-12-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-boxed.override: Remove the ClutterColor
+	overridden methods here and put them into clutter-color.override.
+
+	* clutter/pyclutter.h:
+	* clutter/pyclutter.c: Allow conversion from a 4-tuple to
+	a ClutterColor; this is a shortcut for functions taking only
+	a single color parameter, but must be explicitely overridden
+	to allow this behaviour.
+
+	* clutter/clutter-color.override: Put everything concerning
+	ClutterColor here; wrap ClutterColor into its own boxed type
+	to avoid having to reimplement color-related functions for
+	three types of data (integers, tuples and dictionaries); now
+	to create a color use clutter.Color(red,green,blue,alpha)
+	like pygtk; wrap color_from_hls() and color_from_pixel() as
+	package functions; wrap to_hls(), to_pixel(), shade(),
+	darken() and lighten() as instance methods.
+
+	* clutter/clutter.override: Include clutter-color.override;
+	update overridden color setters and color getters.
+
+	* clutter/clutter-base.defs:
+	* clutter/clutter-base-types.defs:
+	* clutter/Makefile.am: Update build and codegen glue.
+
+	* examples/rects.py:
+	* examples/behave.py: Update examples.
+
+2006-12-14  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter.override: Update the rest of the clutter
+	color API to accept tuples, except clutter.color_from_hls()
+	which will accept a tuple, a dictionary or three integers.
+
 2006-12-14  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* examples/rects.py:

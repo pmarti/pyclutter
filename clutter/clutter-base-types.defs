@@ -179,6 +179,8 @@
   (in-module "Clutter")
   (c-name "ClutterColor")
   (gtype-id "CLUTTER_TYPE_COLOR")
+  (copy-func "clutter_color_copy")
+  (release-func "clutter_color_free")
   (fields
     '("guint8" "red")
     '("guint8" "green")

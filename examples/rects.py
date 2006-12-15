@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import sys
 import clutter
 
 print clutter.__version__
@@ -15,24 +16,37 @@ def on_button_press_event (stage, event):
     stage.foreach(actor_foreach, 'hello')
     clutter.main_quit()
 
-stage = clutter.stage_get_default()
-stage.set_size(800,600)
-stage.set_color((0x6d, 0x6d, 0x70, 0xff))
-stage.connect('add', on_stage_add)
-stage.connect('button-press-event', on_button_press_event)
+def main (args):
+    stage = clutter.stage_get_default()
+    stage.set_size(800,600)
+    stage.set_color(clutter.color_parse('DarkSlateGray'))
+    stage.connect('add', on_stage_add)
+    stage.connect('button-press-event', on_button_press_event)
+    
+    print "stage color: %s" % (stage.get_color())
+   
+    color = clutter.Color(0x35, 0x99, 0x2a, 0x66)
+    border_color = color.lighten()
+    rect = None
+    for i in range(1, 10):
+        rect = clutter.Rectangle()
+        rect.set_position((800 - (80 * i)) / 2, (600 - (60 * i)) / 2)
+        rect.set_size(80 * i, 60 * i)
 
-print "stage color: ", stage.get_color()
+        # colors are either clutter.Color or 4-tuples
+        if i % 2 == 0:
+            rect.set_color(color)
+        else:
+            rect.set_color((0x35, 0x99, 0x2a, 0x33))
+        
+        rect.set_border_width(10)
+        rect.set_border_color(border_color)
 
-rect = None
-for i in range(1, 10):
-    #rect = clutter.Rectangle(0x0000ff33)
-    rect = clutter.Rectangle()
-    rect.set_color((0x35, 0x99, 0x2a, 0x66))
-    rect.set_position((800 - (80 * i)) / 2, (600 - (60 * i)) / 2)
-    rect.set_size(80 * i, 60 * i)
-    stage.add(rect)
-    rect.show()
+        stage.add(rect)
+        rect.show()
 
-stage.show()
+    stage.show()
+    clutter.main()
 
-clutter.main()
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

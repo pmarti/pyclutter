@@ -117,3 +117,44 @@ pyclutter_callback_invoke (PyClutterCallback *cb,
 
         return retobj;
 }
+
+gboolean
+pyclutter_color_from_pyobject (PyObject     *object,
+                               ClutterColor *color)
+{
+        g_return_val_if_fail (color != NULL, FALSE);
+
+        if (pyg_boxed_check (object, CLUTTER_TYPE_COLOR)) {
+                *color = *pyg_boxed_get (object, ClutterColor);
+                return TRUE;
+        }
+
+        if (PyTuple_Check (object) && (PyTuple_Size (object) == 4)) {
+                int i;
+
+                for (i = 0; i < 4; i++) {
+                        PyObject *comp = PyTuple_GetItem (object, i);
+
+                        if (!PyInt_Check (comp))
+                                goto out;
+
+                        switch (i) {
+                        case 0: color->red   = PyInt_AsLong (comp); break;
+                        case 1: color->green = PyInt_AsLong (comp); break;
+                        case 2: color->blue  = PyInt_AsLong (comp); break;
+                        case 3: color->alpha = PyInt_AsLong (comp); break;
+                        default:
+                                g_assert_not_reached ();
+                                break;
+                        }
+                }
+
+                return TRUE;
+        }
+
+out:
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError, "could not convert to ClutterColor");
+
+        return FALSE;
+}

@@ -34,6 +34,7 @@ CLUTTER_OVERRIDES = 			\
 	clutter-actor.override 		\
 	clutter-behaviour.override	\
 	clutter-boxed.override 		\
+	clutter-color.override		\
 	clutter-event.override 
 
 EXTRA_DIST += 			\

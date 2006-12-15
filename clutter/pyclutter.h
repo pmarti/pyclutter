@@ -25,6 +25,9 @@ void               pyclutter_callback_free   (PyClutterCallback *cb);
 PyObject *         pyclutter_callback_invoke (PyClutterCallback *cb,
                                               ...);
 
+gboolean pyclutter_color_from_pyobject (PyObject     *object,
+                                        ClutterColor *color);
+
 G_END_DECLS
 
 #endif /* __PY_CLUTTER_H__ */
