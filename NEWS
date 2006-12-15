@@ -1,9 +1,11 @@
-Overview of changes between 0.1.1 and 0.1.2
+Overview of changes between 0.1.0 and 0.2.0
 ===========================================
 
-* Resynch with upstream
-  * Add clutter.Alpha class
-  * Add clutter.Behaviour class
-  * Update API
-* Update and clean up the build environment
-
+* Resync with upstream
+  o add clutter.Behaviour API
+  o allow implementing a clutter.Behaviour in pure python
+  o add clutter.Alpha API
+* Clean up the build environment
+  o split overridden functions per object/function
+  o add clutter.gtk and clutter.gst sub-modules
+  o add some public API for bindings of clutter-based libraries

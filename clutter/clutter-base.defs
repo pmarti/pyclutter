@@ -1410,6 +1410,14 @@
   (return-type "GType")
 )
 
+(define-virtual set_uri
+  (of-object "ClutterMedia")
+  (return-type "none")
+  (parameters
+    '("const-char*" "uri")
+  )
+)
+
 (define-method set_uri
   (of-object "ClutterMedia")
   (c-name "clutter_media_set_uri")
@@ -1419,10 +1427,23 @@
   )
 )
 
+(define-virtual get_uri
+  (of-object "ClutterMedia")
+  (return-type "const-char*")
+)
+
 (define-method get_uri
   (of-object "ClutterMedia")
   (c-name "clutter_media_get_uri")
   (return-type "const-char*")
+)
+
+(define-virtual set_playing
+  (of-object "ClutterMedia")
+  (return-type "none")
+  (parameters
+    '("gboolean" "playing")
+  )
 )
 
 (define-method set_playing
@@ -1434,10 +1455,23 @@
   )
 )
 
+(define-virtual get_playing
+  (of-object "ClutterMedia")
+  (return-type "gboolean")
+)
+
 (define-method get_playing
   (of-object "ClutterMedia")
   (c-name "clutter_media_get_playing")
   (return-type "gboolean")
+)
+
+(define-virtual set_position
+  (of-object "ClutterMedia")
+  (return-type "none")
+  (parameters
+    '("int" "position")
+  )
 )
 
 (define-method set_position
@@ -1449,10 +1483,23 @@
   )
 )
 
+(define-virtual get_position
+  (of-object "ClutterMedia")
+  (return-type "int")
+)
+
 (define-method get_position
   (of-object "ClutterMedia")
   (c-name "clutter_media_get_position")
   (return-type "int")
+)
+
+(define-virtual set_volume
+  (of-object "ClutterMedia")
+  (return-type "none")
+  (parameters
+    '("double" "volume")
+  )
 )
 
 (define-method set_volume
@@ -1464,10 +1511,20 @@
   )
 )
 
+(define-virtual get_volume
+  (of-object "ClutterMedia")
+  (return-type "double")
+)
+
 (define-method get_volume
   (of-object "ClutterMedia")
   (c-name "clutter_media_get_volume")
   (return-type "double")
+)
+
+(define-virtual can_seek
+  (of-object "ClutterMedia")
+  (return-type "gboolean")
 )
 
 (define-method get_can_seek
@@ -1476,9 +1533,19 @@
   (return-type "gboolean")
 )
 
+(define-virtual get_buffer_percent
+  (of-object "ClutterMedia")
+  (return-type "int")
+)
+
 (define-method get_buffer_percent
   (of-object "ClutterMedia")
   (c-name "clutter_media_get_buffer_percent")
+  (return-type "int")
+)
+
+(define-virtual get_duration
+  (of-object "ClutterMedia")
   (return-type "int")
 )
 
