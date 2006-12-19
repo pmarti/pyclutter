@@ -96,7 +96,7 @@ pyclutter_callback_invoke (PyClutterCallback *cb,
         if (cb->n_params) {
                 for (i = 0; i < cb->n_params; i++) {
                         PyObject *param = va_arg (var_args, PyObject*);
-
+                        
                         PyTuple_SetItem (args, i, param);
                 }
         }
@@ -112,8 +112,6 @@ pyclutter_callback_invoke (PyClutterCallback *cb,
         }
 
         retobj = PyObject_CallObject (cb->func, args);
-
-        Py_DECREF (args);
 
         return retobj;
 }

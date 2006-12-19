@@ -27,11 +27,11 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         if (retobj == NULL)
                 PyErr_Print ();
 
-        if (PyInt_Check (retobj)) {
-                retval = (guint32) PyInt_AsLong (retobj);
+        if (PyLong_Check (retobj)) {
+                retval = (guint32) PyLong_AsUnsignedLong (retobj);
         }
-        else if (PyLong_Check (retobj)) {
-                retval = (guint32) PyLong_AsLong (retobj);
+        else if (PyInt_Check (retobj)) {
+                retval = (guint32) PyInt_AsLong (retobj);
         }
         else {
                 PyErr_SetString (PyExc_TypeError,
@@ -417,15 +417,20 @@ _wrap_ClutterBehaviour__proxy_do_alpha_notify (ClutterBehaviour *behaviour,
         state = pyg_gil_state_ensure ();
 
         py_self = pygobject_new ((GObject *) behaviour);
-        py_alpha = PyLong_FromLong (alpha_value);
-
-        py_method = PyObject_GetAttrString (py_self, "do_alpha_notify");
-        if (!py_method) {
+        if (!py_self) {
                 if (PyErr_Occurred ())
                         PyErr_Print ();
-                
+
+                pyg_gil_state_release (state);
+                return;
+        }
+
+        py_alpha = PyLong_FromLong (alpha_value);
+        if (!py_alpha) {
+                if (PyErr_Occurred ())
+                        PyErr_Print ();
+
                 Py_DECREF (py_self);
-                Py_DECREF (py_alpha);
 
                 pyg_gil_state_release (state);
                 return;
@@ -434,19 +439,48 @@ _wrap_ClutterBehaviour__proxy_do_alpha_notify (ClutterBehaviour *behaviour,
         py_args = PyTuple_New (1);
         PyTuple_SET_ITEM (py_args, 0, py_alpha);
 
+        py_method = PyObject_GetAttrString (py_self, "do_alpha_notify");
+        if (!py_method) {
+                if (PyErr_Occurred ())
+                        PyErr_Print ();
+                
+                Py_DECREF (py_args);
+                Py_DECREF (py_self);
+
+                pyg_gil_state_release (state);
+                return;
+        }
+
         py_ret = PyObject_CallObject (py_method, py_args);
         if (!py_ret) {
                 if (PyErr_Occurred ())
                         PyErr_Print ();
+
+                Py_DECREF (py_method);
+                Py_DECREF (py_args);
+                Py_DECREF (py_self);
+
+                pyg_gil_state_release (state);
+                return;
         }
-        else if (py_ret != Py_None) {
+        
+        if (py_ret != Py_None) {
                 PyErr_SetString (PyExc_TypeError, "retval should be None");
                 PyErr_Print();
+                
+                Py_DECREF (py_ret);
+                Py_DECREF (py_method);
+                Py_DECREF (py_args);
+                Py_DECREF (py_self);
+                
+                pyg_gil_state_release (state);
+                return;
         }
 
-        Py_XDECREF (py_ret);
+        Py_DECREF (py_ret);
         Py_DECREF (py_method);
         Py_DECREF (py_args);
+        Py_DECREF (py_self);
 
         pyg_gil_state_release (state);
 }
@@ -461,16 +495,27 @@ _wrap_ClutterBehaviour__do_alpha_notify (PyObject *cls,
         static char *kwlist[] = { "self", "alpha", NULL };
         PyGObject *self;
         PyObject *py_alpha;
-        guint32 alpha_value;
+        guint32 alpha_value = 0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "OO:ClutterBehaviour.do_alpha_notify",
+                                          "OO:ClutterBehaviour.alpha_notify",
                                           kwlist,
                                           &PyClutterBehaviour_Type, &self,
                                           &py_alpha))
                 return NULL;
 
-        alpha_value = (guint32) PyLong_AsLong (py_alpha);
+        if (py_alpha) {
+                if (PyLong_Check (py_alpha))
+                        alpha_value = (guint32) PyLong_AsUnsignedLong (py_alpha);
+                else if (PyInt_Check (py_alpha))
+                        alpha_value = (guint32) PyInt_AsLong (py_alpha);
+                else
+                        PyErr_SetString (PyExc_TypeError,
+                                         "Parameter 'alpha' must be an int or a long");
+
+                if (PyErr_Occurred ())
+                        return NULL;
+        }
 
         klass = g_type_class_ref (pyg_type_from_object (cls));
         if (CLUTTER_BEHAVIOUR_CLASS (klass)->alpha_notify) {
@@ -482,7 +527,7 @@ _wrap_ClutterBehaviour__do_alpha_notify (PyObject *cls,
         }
         else {
                 PyErr_SetString (PyExc_NotImplementedError,
-                                 "virtual method ClutterBehaviour.do_alpha_notify not implemented");
+                                 "virtual method ClutterBehaviour.alpha_notify not implemented");
                 g_type_class_unref (klass);
                 return NULL;
         }

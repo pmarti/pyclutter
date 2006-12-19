@@ -1,3 +1,13 @@
+2006-12-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-behaviour.override: Add more checks and
+	decrement reference count of the right objects.
+
+	* clutter/pyclutter.c: Do not decrement the reference count
+	of the callback arguments tuple after we're done with it,
+	and let the garbage collector do its thing (fixes a reference
+	counting bug in the alpha notify function).
+
 2006-12-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/Makefile.am:
