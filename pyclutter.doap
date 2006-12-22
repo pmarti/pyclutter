@@ -13,51 +13,7 @@
   </description>
 
   <homepage rdf:resource="http://labs.o-hand.com/clutter" />
-  <download-page rdf:resource="http://projects.o-hand.com/clutter/sources" />
-  <license rdf:resource="http://usefulinc.com/doap/licenses/lgpl" />
-  <bug-database rdf:resource="http://bugzilla.o-hand.com/enter_bug.cgi?product=Clutter"/>
-  <os>linux</os>
-  <programming-language>C</programming-language>
-  <programming-language>Python</programming-language>
-
-  <category rdf:resource="http://labs.o-hand.com/doap/category/library"/>
-  <category rdf:resource="http://labs.o-hand.com/doap/category/graphics"/>
-  <category rdf:resource="http://labs.o-hand.com/doap/category/embedded"/>
-  <category rdf:resource="http://labs.o-hand.com/doap/category/bindings"/>
-
-  <maintainer>
-    <foaf:Person>
-      <foaf:name>Emmanuele Bassi</foaf:name>
-    </foaf:Person>
-  </maintainer>
-
-  <repository>
-    <SVNRepository>
-      <browse rdf:resource="http://svn.o-hand.com/view/clutter/trunk/bindings/pyclutter/"/>
-      <location rdf:resource="https://svn.o-hand.com/repos/clutter/trunk/bindings/pyclutter"/>
-    </SVNRepository>
-  </repository>
-
-  <release>
-  </release>
-
-</Project>
-<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-         xmlns:foaf="http://xmlns.com/foaf/0.1/"
-	 xmlns="http://usefulinc.com/ns/doap#">
-
-  <name>PyClutter</name>
-  <created>2006-11-18</created>
-  <shortdesc xml:lang="en">PyClutter is a Python module binding Clutter</shortdesc>
-  <description xml:lang="en">
-    PyClutter is the collective name of the Python bindings for the
-    Clutter OpenGL canvas library.  It includes the bindings for the
-    core library, the bindings for the Clutter GTK+ widget and the
-    bindings for the Clutter GStreamer integration library.
-  </description>
-
-  <homepage rdf:resource="http://labs.o-hand.com/clutter" />
-  <download-page rdf:resource="http://projects.o-hand.com/clutter/sources" />
+  <download-page rdf:resource="http://clutter-project.org/sources" />
   <license rdf:resource="http://usefulinc.com/doap/licenses/lgpl" />
   <bug-database rdf:resource="http://bugzilla.o-hand.com/enter_bug.cgi?product=Clutter"/>
   <os>linux</os>
