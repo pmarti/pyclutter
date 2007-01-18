@@ -139,6 +139,24 @@
   )
 )
 
+(define-method set_width
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_width")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+  )
+)
+
+(define-method set_height
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_height")
+  (return-type "none")
+  (parameters
+    '("guint" "height")
+  )
+)
+
 (define-method get_width
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_width")
@@ -550,6 +568,21 @@
   (return-type "GSList*")
 )
 
+(define-method get_n_actors
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_n_actors")
+  (return-type "gint")
+)
+
+(define-method get_nth_actor
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_nth_actor")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gint" "index")
+  )
+)
+
 (define-method get_alpha
   (of-object "ClutterBehaviour")
   (c-name "clutter_behaviour_get_alpha")
@@ -775,6 +808,34 @@
   (parameters
     '("const-gchar*" "color")
     '("ClutterColor*" "dest")
+  )
+)
+
+(define-method copy
+  (of-object "ClutterColor")
+  (c-name "clutter_color_copy")
+  (return-type "ClutterColor*")
+)
+
+(define-method free
+  (of-object "ClutterColor")
+  (c-name "clutter_color_free")
+  (return-type "none")
+)
+
+(define-method to_string
+  (of-object "ClutterColor")
+  (c-name "clutter_color_to_string")
+  (return-type "gchar*")
+)
+
+(define-method shadex
+  (of-object "ClutterColor")
+  (c-name "clutter_color_shadex")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "dest")
+    '("ClutterFixed" "shade")
   )
 )
 
@@ -1038,6 +1099,21 @@
   (return-type "GList*")
 )
 
+(define-method get_nth_child
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_get_nth_child")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gint" "index")
+  )
+)
+
+(define-method get_n_children
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_get_n_children")
+  (return-type "gint")
+)
+
 (define-method foreach
   (of-object "ClutterGroup")
   (c-name "clutter_group_foreach")
@@ -1162,6 +1238,16 @@
   (parameters
     '("const-gchar*" "font_name")
     '("const-gchar*" "text")
+  )
+)
+
+(define-function label_new_full
+  (c-name "clutter_label_new_full")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+    '("ClutterColor*" "color")
   )
 )
 

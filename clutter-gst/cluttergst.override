@@ -1,0 +1,18 @@
+%%
+headers
+
+#include <Python.h>
+#define NO_IMPORT_PYGOBJECT
+#include <pygobject.h>
+#include <clutter-gst/clutter-gst.h>
+
+%%
+modulename clutter.gst
+%%
+import gobject.GObject as PyGObject_Type
+import clutter._clutter.Actor as PyClutterActor_Type
+import clutter._clutter.Texture as PyClutterTexture_Type
+%%
+ignore-glob
+  *_get_type
+%%

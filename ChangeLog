@@ -1,3 +1,20 @@
+2007-01-18  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter-gst/cluttergst.defs:
+	* clutter-gst/cluttergst.override:
+	* clutter-gst/cluttergstmodule.c:
+	* clutter-gst/Makefile.am: Update clutter.gst module for
+	the ClutterGst library.
+
+	* Makefile.am:
+	* configure.ac: Drop the ClutterGtk wrapper from the build;
+	compile ClutterGst wrapper conditionally if the clutter-gst
+	library is installed; require the newly release clutter 0.2.
+
+	* clutter/clutter-base.defs: Add missing methods.
+
+	* examples/behave.py: Add BehaviourScale object.
+
 2006-12-22  Matthew Allum  <mallum@openedhand.com>
 
 	* pyclutter.doap:
