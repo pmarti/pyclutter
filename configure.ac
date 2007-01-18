@@ -70,10 +70,10 @@ PYGTK_DEFSDIR=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
 AC_SUBST(PYGTK_DEFSDIR)
 AC_MSG_RESULT($PYGTK_DEFSDIR)
 
-AC_MSG_CHECKING(for gst-python defs)
-PYGST_DEFSDIR=`$PKG_CONFIG --variable=defsdir gst-python-0.10`
-AC_SUBST(PYGST_DEFSDIR)
-AC_MSG_RESULT($PYGST_DEFSDIR)
+#AC_MSG_CHECKING(for gst-python defs)
+#PYGST_DEFSDIR=`$PKG_CONFIG --variable=defsdir gst-python-0.10`
+#AC_SUBST(PYGST_DEFSDIR)
+#AC_MSG_RESULT($PYGST_DEFSDIR)
 
 dnl check for clutter
 PKG_CHECK_MODULES(CLUTTER, clutter-0.2 >= clutter_required_version)
@@ -86,16 +86,16 @@ fi
 dnl check for sub modules
 
 dnl should we build the clutter.gst module?
-build_cluttergst=false
-PKG_CHECK_MODULES(CLUTTERGST, clutter-gst-0.1 >= cluttergst_required_version,
-                  build_cluttergst=true,
-                  build_cluttergst=false)
-AC_SUBST(CLUTTERGST_CFLAGS)
-AC_SUBST(CLUTTERGST_LIBS)
-AM_CONDITIONAL(BUILD_CLUTTERGST, [test "x$build_cluttergst" = "xtrue"])
-if test -n "$export_dynamic"; then
-  CLUTTERGST_LIBS=`echo $CLUTTERGST_LIBS | sed -e "s/$export_dynamic//"`
-fi
+#build_cluttergst=false
+#PKG_CHECK_MODULES(CLUTTERGST, clutter-gst-0.1 >= cluttergst_required_version,
+#                  build_cluttergst=true,
+#                  build_cluttergst=false)
+#AC_SUBST(CLUTTERGST_CFLAGS)
+#AC_SUBST(CLUTTERGST_LIBS)
+#AM_CONDITIONAL(BUILD_CLUTTERGST, [test "x$build_cluttergst" = "xtrue"])
+#if test -n "$export_dynamic"; then
+#  CLUTTERGST_LIBS=`echo $CLUTTERGST_LIBS | sed -e "s/$export_dynamic//"`
+#fi
 
 dnl Building documentation
 AC_ARG_ENABLE(doc,
@@ -125,12 +125,10 @@ AC_CONFIG_FILES([
         examples/Makefile
         clutter/Makefile
         clutter/pyclutter.pc
-        clutter-gst/Makefile
 ])
 
 AC_OUTPUT
 
 echo " PyClutter
-        with clutter-gst:     $build_cluttergst
         enable documentation: $enable_doc
 "

@@ -1,0 +1,58 @@
+PyClutter
+=========
+
+This archive contains the Python modules that allow you to use the
+Clutter toolkit in Python programs.
+
+If you have any enhancements of bug reports, please file them in
+OpenedHand Bugzilla at:
+
+  http://bugzilla.o-hand.com/enter_bug.cgi?product=Clutter
+
+Requirements
+------------
+  * GLib 2.10.0 or higher
+  * GTK+ 2.10.0 or higher
+  * Clutter 0.2.0 or higher
+  * PyGObject 2.12.1 or higher
+  * Python 2.3.5 or higher
+
+This release is supporting the following Clutter release:
+
+  0.2.0
+
+Installation
+------------
+
+In order to install this module type the following:
+
+  ./configure
+  make
+  make install
+
+To avoid installing to a system directory you can change the installation
+prefix at configure time with
+
+  ./configure --prefix=/some/other/place
+
+Copyright and License
+---------------------
+
+COPYRIGHT AND LICENSE
+---------------------
+
+Copyright (C) 2006-2007  OpenedHand Ltd.  (see the file AUTHORS)
+
+This library is free software; you can redistribute it and/or modify it under
+the terms of the GNU Library General Public License as published by the Free
+Software Foundation; either version 2.1 of the License, or (at your option)
+any later version
+
+This library is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU Library General Public License for more
+details.
+
+You should have received a copy of the GNU Library General Public License along
+with this library; if not, write to the Free Software Foundation, Inc., 59
+Temple Place - Suite 330, Boston, MA  02111-1307  USA.

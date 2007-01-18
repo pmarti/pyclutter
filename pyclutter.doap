@@ -39,6 +39,11 @@
   </repository>
 
   <release>
+    <Version>
+      <created>2007-01-18</created>
+      <branch></branch>
+      <revision>0.2.0</revision>
+    </Version>
   </release>
 
 </Project>

@@ -2,6 +2,7 @@ ignore
   clutter_color_copy
   clutter_color_free
   clutter_color_equal
+  clutter_color_shadex
 %%
 override clutter_color_new kwargs
 static int

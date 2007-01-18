@@ -1,14 +1,14 @@
 SUBDIRS = clutter examples 
 
-if BUILD_CLUTTERGST
-SUBDIRS += clutter-gst
-endif
+#if BUILD_CLUTTERGST
+#SUBDIRS += clutter-gst
+#endif
 
 if ENABLE_DOC
 SUBDIRS += docs
 endif
 
-DIST_SUBDIRS = docs clutter clutter-gst examples
+DIST_SUBDIRS = docs clutter examples
 EXTRA_DIST = createdefs.py py-compile
 
 # Extra clean files so that maintainer-clean removes *everything*

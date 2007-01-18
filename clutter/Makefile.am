@@ -74,12 +74,13 @@ defs_DATA = \
 .defs.c:
 	@echo "***INFO*** Generating $*.c from $*.defs" \
 	&& ( $(PYGTK_CODEGEN) \
+	    -I $(srcdir) \
+	    --py_ssize_t-clean \
 	    --register $(PYGTK_DEFSDIR)/gdk-types.defs \
 	    --register $(PYGTK_DEFSDIR)/pango-types.defs \
 	    --register clutter-types.defs \
 	    --override $(srcdir)/$*.override \
-	    --prefix py$* \
-	 $*.defs ) > gen-$*.c \
-	&& ( cmp -s gen-$*.c $*.c || cp -f gen-$*.c $*.c ) \
+	    --prefix py$* $<) > gen-$*.c \
+	&& cp -f gen-$*.c $*.c \
 	&& rm -f gen-$*.c
 

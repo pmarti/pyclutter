@@ -21,7 +21,7 @@ _gst_la_SOURCES = cluttergstmodule.c
 nodist__gst_la_SOURCES = cluttergst.c
 
 CLEANFILES = cluttergst.c
-EXTRA_DIST += gst.override
+EXTRA_DIST += cluttergst.override
 cluttergst.c: cluttergst.defs cluttergst.override
 
 .defs.c:
