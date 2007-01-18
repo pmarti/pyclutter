@@ -6,20 +6,23 @@ defs_DATA = cluttergst.defs
 EXTRA_DIST = $(defs_DATA)
 
 pkgpythondir = $(pyexecdir)/clutter
-pkgpyexecdir = $(pyexecdir)/clutter
+pkgpyexecdir = $(pyexecdir)/clutter/gst
+
+pycluttergstdir = $(pkgpythondir)/gst
+pycluttergst_PYTHON = __init__.py
 
 common_ldflags = -module -avoid-version
 
-pkgpyexec_LTLIBRARIES = cluttergst.la
-cluttergst_la_CFLAGS = $(CLUTTERGST_CFLAGS)
-cluttergst_la_LDFLAGS = $(common_ldflags) $(PYTHON_LDFLAGS) -export-symbols-regex initcluttergst
-cluttergst_la_LIBADD = $(CLUTTERGST_LIBS) $(PYTHON_LIBS)
-cluttergst_la_SOURCES = cluttergstmodule.c
-nodist_cluttergst_la_SOURCES = cluttergst.c
+pkgpyexec_LTLIBRARIES = _gst.la
+_gst_la_CFLAGS = $(CLUTTERGST_CFLAGS)
+_gst_la_LDFLAGS = $(common_ldflags) $(PYTHON_LDFLAGS) -export-symbols-regex init_gst
+_gst_la_LIBADD = $(CLUTTERGST_LIBS) $(PYTHON_LIBS)
+_gst_la_SOURCES = cluttergstmodule.c
+nodist__gst_la_SOURCES = cluttergst.c
 
 CLEANFILES = cluttergst.c
 EXTRA_DIST += gst.override
-gst.c: cluttergst.defs cluttergst.override
+cluttergst.c: cluttergst.defs cluttergst.override
 
 .defs.c:
 	( cd $(srcdir) \

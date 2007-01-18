@@ -1,5 +1,15 @@
 2007-01-18  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* configure.ac: Bump to 0.2.0.
+
+	* clutter-gst/cluttergstmodule.c:
+	* clutter-gst/cluttergst.override:
+	* clutter-gst/Makefile.am: Desperately try to make the
+	ClutterGst bindings work; why, oh why Python does have
+	to suck dicks through a straw like this?
+
+2007-01-18  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter-gst/cluttergst.defs:
 	* clutter-gst/cluttergst.override:
 	* clutter-gst/cluttergstmodule.c:
