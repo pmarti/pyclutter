@@ -1,5 +1,9 @@
 2007-01-18  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* configure.ac: Bump to 0.3.0.
+
+2007-01-18  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* configure.ac: Bump to 0.2.0.
 
 	* configure.ac:
