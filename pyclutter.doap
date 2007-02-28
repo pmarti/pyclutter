@@ -41,8 +41,8 @@
   <release>
     <Version>
       <created>2007-01-18</created>
-      <branch></branch>
       <revision>0.2.0</revision>
+      <file-release rdf:resource="http://www.clutter-project.org/sources/pyclutter/0.2/pyclutter-0.2.0.tar.gz"/>
     </Version>
   </release>
 
