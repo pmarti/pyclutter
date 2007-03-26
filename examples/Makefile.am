@@ -1,1 +1,1 @@
-EXTRA_DIST = behave.py rects.py
+EXTRA_DIST = behave.py hello.py rects.py
