@@ -1062,11 +1062,6 @@
   (return-type "ClutterFeatureFlags")
 )
 
-(define-function clutter_feature_wait_for_vblank
-  (c-name "clutter_feature_wait_for_vblank")
-  (return-type "none")
-)
-
 (define-function feature_available
   (c-name "clutter_feature_available")
   (return-type "gboolean")
@@ -1093,12 +1088,6 @@
   (return-type "ClutterActor*")
 )
 
-(define-method get_children
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_get_children")
-  (return-type "GList*")
-)
-
 (define-method get_nth_child
   (of-object "ClutterGroup")
   (c-name "clutter_group_get_nth_child")
@@ -1112,66 +1101,6 @@
   (of-object "ClutterGroup")
   (c-name "clutter_group_get_n_children")
   (return-type "gint")
-)
-
-(define-method foreach
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_foreach")
-  (return-type "none")
-  (parameters
-    '("ClutterCallback" "callback")
-    '("gpointer" "user_data")
-  )
-)
-
-(define-method add
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
-(define-method add_many_valist
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add_many_valist")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "first_actor")
-    '("va_list" "args")
-  )
-)
-
-(define-method add_many
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add_many")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "first_actor")
-  )
-  (varargs #t)
-)
-
-(define-method remove
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_remove")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
-(define-method show_all
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_show_all")
-  (return-type "none")
-)
-
-(define-method hide_all
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_hide_all")
-  (return-type "none")
 )
 
 (define-method find_child_by_id
@@ -1822,9 +1751,9 @@
   (return-type "ClutterActor*")
 )
 
-(define-method set_from_data
+(define-method set_from_rgb_data
   (of-object "ClutterTexture")
-  (c-name "clutter_texture_set_from_data")
+  (c-name "clutter_texture_set_from_rgb_data")
   (return-type "none")
   (parameters
     '("const-guchar*" "data")
@@ -1833,6 +1762,21 @@
     '("gint" "height")
     '("gint" "rowstride")
     '("gint" "bpp")
+    '("ClutterTextureFlags" "flags")
+    '("GError**" "error")
+  )
+)
+
+(define-method set_from_yuv_data
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_set_from_yuv_data")
+  (return-type "none")
+  (parameters
+    '("const-guchar*" "data")
+    '("gint" "width")
+    '("gint" "height")
+    '("ClutterTextureFlags" "flags")
+    '("GError**" "error")
   )
 )
 
@@ -1842,6 +1786,7 @@
   (return-type "none")
   (parameters
     '("GdkPixbuf*" "pixbuf")
+    '("GError**" "error")
   )
 )
 

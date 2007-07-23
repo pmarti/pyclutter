@@ -22,15 +22,9 @@ import pango.Layout as PyPangoLayout_Type
 %%
 ignore
   clutter_group_add_many_valist
-  clutter_stage_get_xvisual
-  clutter_stage_get_xwindow
-  clutter_stage_set_xwindow_foreign
   clutter_init
   clutter_init_with_args
   clutter_get_option_group
-  clutter_xdisplay
-  clutter_root_xwindow
-  clutter_gl_context
   clutter_rectangle_new_with_color
 %%
 ignore-glob

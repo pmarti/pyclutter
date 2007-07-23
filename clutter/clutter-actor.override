@@ -7,8 +7,8 @@ _wrap_clutter_actor_get_coords (PyGObject *self)
 	gint x2, y2;
 
 	clutter_actor_get_coords (CLUTTER_ACTOR (self->obj),
-				    &x1, &y1,
-				    &x2, &y2);
+				  &x1, &y1,
+				  &x2, &y2);
 	return Py_BuildValue("(iiii)", x1, y1, x2, y2);
 }
 %%
@@ -19,8 +19,8 @@ _wrap_clutter_actor_get_abs_position (PyGObject *self)
 	gint pos_x, pos_y;
 
 	clutter_actor_get_abs_position (CLUTTER_ACTOR (self->obj),
-					  &pos_x,
-					  &pos_y);
+					&pos_x,
+					&pos_y);
 	return Py_BuildValue("(ii)", pos_x, pos_y);
 }
 %%
@@ -60,17 +60,25 @@ _wrap_clutter_actor_get_scale (PyGObject *self)
         return Py_BuildValue ("(ff)", scale_x, scale_y);
 }
 %%
-override clutter_actor_get_scalex
+override clutter_actor_get_vertices
 static PyObject *
-_wrap_clutter_actor_get_scalex (PyGObject *self)
+_wrap_clutter_actor_get_vertices (PyGObject *self)
 {
-        ClutterFixed scale_x, scale_y;
+        ClutterVertex vertices[4];
+        PyObject *pyvertices;
+        int i;
 
-        clutter_actor_get_scalex (CLUTTER_ACTOR (self->obj),
-                                  &scale_x,
-                                  &scale_y);
-        return Py_BuildValue ("(ii)",
-                              (int) scale_x,
-                              (int) scale_y);
+        clutter_actor_get_vertices (CLUTTER_ACTOR (self->obj), vertices);
+
+        pyvertices = PyTuple_New (4);
+        for (i = 0; i < 4; i++) {
+                PyObject *pyvertex;
+
+                pyvertex = pyg_boxed_new (CLUTTER_TYPE_VERTEX, vertices[i],
+                                          TRUE, TRUE);
+                PyTuple_SetItem (pyvertices, i, pyvertex);
+        }
+
+        return pyvertices
 }
-
+%%

@@ -18,11 +18,39 @@
   (gtype-id "CLUTTER_TYPE_ALPHA")
 )
 
+(define-object Backend
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterBackend")
+  (gtype-id "CLUTTER_TYPE_BACKEND")
+)
+
 (define-object Behaviour
   (in-module "Clutter")
   (parent "GObject")
   (c-name "ClutterBehaviour")
   (gtype-id "CLUTTER_TYPE_BEHAVIOUR")
+)
+
+(define-object BehaviourBspline
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourBspline")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_BSPLINE")
+)
+
+(define-object BehaviourDepth
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourDepth")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_DEPTH")
+)
+
+(define-object BehaviourEllipse
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourEllipse")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_ELLIPSE")
 )
 
 (define-object BehaviourOpacity
@@ -39,11 +67,25 @@
   (gtype-id "CLUTTER_TYPE_BEHAVIOUR_PATH")
 )
 
+(define-object BehaviourRotate
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourRotate")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_ROTATE")
+)
+
 (define-object BehaviourScale
   (in-module "Clutter")
   (parent "ClutterBehaviour")
   (c-name "ClutterBehaviourScale")
   (gtype-id "CLUTTER_TYPE_BEHAVIOUR_SCALE")
+)
+
+(define-object Box
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterBox")
+  (gtype-id "CLUTTER_TYPE_BOX")
 )
 
 (define-object CloneTexture
@@ -58,6 +100,27 @@
   (parent "ClutterActor")
   (c-name "ClutterGroup")
   (gtype-id "CLUTTER_TYPE_GROUP")
+)
+
+(define-object EffectTemplate
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterEffectTemplate")
+  (gtype-id "CLUTTER_TYPE_EFFECT_TEMPLATE")
+)
+
+(define-object Entry
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterEntry")
+  (gtype-id "CLUTTER_TYPE_ENTRY")
+)
+
+(define-object HBox
+  (in-module "Clutter")
+  (parent "ClutterBox")
+  (c-name "ClutterHBox")
+  (gtype-id "CLUTTER_TYPE_HBOX")
 )
 
 (define-object Label
@@ -93,6 +156,13 @@
   (parent "GObject")
   (c-name "ClutterTimeline")
   (gtype-id "CLUTTER_TYPE_TIMELINE")
+)
+
+(define-object VBox
+  (in-module "Clutter")
+  (parent "ClutterBox")
+  (c-name "ClutterVBox")
+  (gtype-id "CLUTTER_TYPE_VBOX")
 )
 
 ;; Enumerations and flags ...
@@ -164,7 +234,109 @@
   )
 )
 
+(define-enum RotateAxis
+  (in-module "Clutter")
+  (c-name "ClutterRotateAxis")
+  (gtype-id "CLUTTER_TYPE_ROTATE_AXIS")
+  (values
+    '("x-axis" "CLUTTER_X_AXIS")
+    '("y-axis" "CLUTTER_Y_AXIS")
+    '("z-axis" "CLUTTER_Z_AXIS")
+  )
+)
+
+(define-enum RotateDirection
+  (in-module "Clutter")
+  (c-name "ClutterRotateDirection")
+  (gtype-id "CLUTTER_TYPE_ROTATE_DIRECTION")
+  (values
+    '("w" "CLUTTER_ROTATE_CW")
+    '("cw" "CLUTTER_ROTATE_CCW")
+  )
+)
+
+(define-enum PackType
+  (in-module "Clutter")
+  (c-name "ClutterPackType")
+  (gtype-id "CLUTTER_TYPE_PACK_TYPE")
+  (values
+    '("start" "CLUTTER_PACK_START")
+    '("end" "CLUTTER_PACK_END")
+  )
+)
+
+(define-flags LayoutFlags
+  (in-module "Clutter")
+  (c-name "ClutterLayoutFlags")
+  (gtype-id "CLUTTER_TYPE_LAYOUT_FLAGS")
+  (values
+    '("none" "CLUTTER_LAYOUT_NONE")
+    '("width-for-height" "CLUTTER_LAYOUT_WIDTH_FOR_HEIGHT")
+    '("height-for-width" "CLUTTER_LAYOUT_HEIGHT_FOR_WIDTH")
+    '("natural" "CLUTTER_LAYOUT_NATURAL")
+    '("tunable" "CLUTTER_LAYOUT_TUNABLE")
+  )
+)
+
+(define-flags ModifierType
+  (in-module "Clutter")
+  (c-name "ClutterModifierType")
+  (gtype-id "CLUTTER_TYPE_MODIFIER_TYPE")
+  (values
+    '("shift-mask" "CLUTTER_SHIFT_MASK")
+    '("lock-mask" "CLUTTER_LOCK_MASK")
+    '("control-mask" "CLUTTER_CONTROL_MASK")
+    '("mod1-mask" "CLUTTER_MOD1_MASK")
+    '("mod2-mask" "CLUTTER_MOD2_MASK")
+    '("mod3-mask" "CLUTTER_MOD3_MASK")
+    '("mod4-mask" "CLUTTER_MOD4_MASK")
+    '("mod5-mask" "CLUTTER_MOD5_MASK")
+    '("button1-mask" "CLUTTER_BUTTON1_MASK")
+    '("button2-mask" "CLUTTER_BUTTON2_MASK")
+    '("button3-mask" "CLUTTER_BUTTON3_MASK")
+    '("button4-mask" "CLUTTER_BUTTON4_MASK")
+    '("button5-mask" "CLUTTER_BUTTON5_MASK")
+  )
+)
+
+(define-enum ScrollDirection
+  (in-module "Clutter")
+  (c-name "ClutterScrollDirection")
+  (gtype-id "CLUTTER_TYPE_SCROLL_DIRECTION")
+  (values
+    '("up" "CLUTTER_SCROLL_UP")
+    '("down" "CLUTTER_SCROLL_DOWN")
+    '("left" "CLUTTER_SCROLL_LEFT")
+    '("right" "CLUTTER_SCROLL_RIGHT")
+  )
+)
+
+(define-enum StageState
+  (in-module "Clutter")
+  (c-name "ClutterStageState")
+  (gtype-id "CLUTTER_TYPE_STAGE_STATE")
+  (values
+    '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN")
+    '("maximized" "CLUTTER_STAGE_STATE_MAXIMIZED")
+    '("minimized" "CLUTTER_STAGE_STATE_MINIMIZED")
+    '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN")
+  )
+)
+
+
 ;; Interfaces
+
+(define-object Container
+  (in-module "Clutter")
+  (c-name "ClutterContainer")
+  (gtype-id "CLUTTER_TYPE_CONTAINER")
+)
+
+(define-object Layout
+  (in-module "Clutter")
+  (c-name "ClutterLayout")
+  (gtype-id "CLUTTER_TYPE_LAYOUT")
+)
 
 (define-interface Media
   (in-module "Clutter")
@@ -194,10 +366,10 @@
   (c-name "ClutterActorBox")
   (gtype-id "CLUTTER_TYPE_ACTOR_BOX")
   (fields
-    '("gint" "x1")
-    '("gint" "y1")
-    '("gint" "x2")
-    '("gint" "y2")
+    '("gint32" "x1")
+    '("gint32" "y1")
+    '("gint32" "x2")
+    '("gint32" "y2")
   )
 )
 
@@ -231,6 +403,17 @@
   (fields
     '("gint" "x")
     '("gint" "y")
+  )
+)
+
+(define-boxed Vertex
+  (in-module "Clutter")
+  (c-name "ClutterVertex")
+  (gtype-id "CLUTTER_TYPE_VERTEX")
+  (fields
+    '("gint32" "x")
+    '("gint32" "y")
+    '("gint32" "z")
   )
 )
 
