@@ -31,4 +31,8 @@ init_gst (void)
         if (PyErr_Occurred ()) {
                 Py_FatalError ("unable to initialise cluttergst module");
         }
+        else {
+                clutter_init (NULL, NULL);
+                clutter_gst_init (NULL, NULL);
+        }
 }
