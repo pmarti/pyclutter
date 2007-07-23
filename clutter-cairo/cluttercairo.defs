@@ -1,0 +1,27 @@
+(define-object Cairo
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterCairo")
+  (gtype-id "CLUTTER_TYPE_CAIRO")
+)
+
+(define-function clutter_cairo_get_type
+  (c-name "clutter_cairo_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_cairo_new
+  (c-name "clutter_cairo_new")
+  (return-type "ClutterActor*")
+  (is-constructor-of ClutterCairo)
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
+  )
+)
+
+(define-method cairo_create
+  (of-object "ClutterCairo")
+  (c-name "clutter_cairo_create")
+  (return-type "cairo_t*")
+)

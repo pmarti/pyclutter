@@ -1,0 +1,4 @@
+%%
+ignore
+  clutter_cairo_get_type
+%%

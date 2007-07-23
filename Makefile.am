@@ -1,8 +1,16 @@
 SUBDIRS = clutter examples 
 
-#if BUILD_CLUTTERGST
-#SUBDIRS += clutter-gst
-#endif
+if BUILD_CLUTTERGST
+SUBDIRS += clutter-gst
+endif
+
+if BUILD_CLUTTERGTK
+SUBDIRS += clutter-gtk
+endif
+
+if BUILD_CLUTTERCAIRO
+SUBDIRS += clutter-cairo
+endif
 
 if ENABLE_DOC
 SUBDIRS += docs
