@@ -1528,9 +1528,13 @@
   )
 )
 
-
-
 ;; From clutter-color.h
+
+(define-function color_new
+  (c-name "clutter_color_new")
+  (is-constructor-of "ClutterColor")
+  (return-type "ClutterColor")
+)
 
 (define-method copy
   (of-object "ClutterColor")
