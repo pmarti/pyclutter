@@ -14,7 +14,80 @@
   (gtype-id "CLUTTER_TYPE_LAYOUT")
 )
 
+; boxed
+
+(define-boxed Color
+  (in-module "Clutter")
+  (c-name "ClutterColor")
+  (gtype-id "CLUTTER_TYPE_COLOR")
+  (copy-func "clutter_color_copy")
+  (release-func "clutter_color_free")
+  (fields
+    '("guint8" "red")
+    '("guint8" "green")
+    '("guint8" "blue")
+    '("guint8" "alpha")
+  )
+)
+
+(define-boxed ActorBox
+  (in-module "Clutter")
+  (c-name "ClutterActorBox")
+  (gtype-id "CLUTTER_TYPE_ACTOR_BOX")
+  (fields
+    '("gint32" "x1")
+    '("gint32" "y1")
+    '("gint32" "x2")
+    '("gint32" "y2")
+  )
+)
+
+(define-boxed Event
+  (in-module "Clutter")
+  (c-name "ClutterEvent")
+  (gtype-id "CLUTTER_TYPE_EVENT")
+  (copy-func "clutter_event_copy")
+  (release-func "clutter_event_free")
+  (fields
+    '("ClutterEventType" "type")
+  )
+)
+
+(define-boxed Geometry
+  (in-module "Clutter")
+  (c-name "ClutterGeometry")
+  (gtype-id "CLUTTER_TYPE_GEOMETRY")
+  (fields
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-boxed Knot
+  (in-module "Clutter")
+  (c-name "ClutterKnot")
+  (gtype-id "CLUTTER_TYPE_KNOT")
+  (fields
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-boxed Vertex
+  (in-module "Clutter")
+  (c-name "ClutterVertex")
+  (gtype-id "CLUTTER_TYPE_VERTEX")
+  (fields
+    '("gint32" "x")
+    '("gint32" "y")
+    '("gint32" "z")
+  )
+)
+
 ; object definitions ...
+
 (define-object Actor
   (in-module "Clutter")
   (parent "GObject")
