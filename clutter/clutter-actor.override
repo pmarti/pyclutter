@@ -74,11 +74,11 @@ _wrap_clutter_actor_get_vertices (PyGObject *self)
         for (i = 0; i < 4; i++) {
                 PyObject *pyvertex;
 
-                pyvertex = pyg_boxed_new (CLUTTER_TYPE_VERTEX, vertices[i],
+                pyvertex = pyg_boxed_new (CLUTTER_TYPE_VERTEX, &vertices[i],
                                           TRUE, TRUE);
                 PyTuple_SetItem (pyvertices, i, pyvertex);
         }
 
-        return pyvertices
+        return pyvertices;
 }
 %%
