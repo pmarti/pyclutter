@@ -715,27 +715,6 @@
   (return-type "ClutterBackend*")
 )
 
-(define-method get_event
-  (of-object "ClutterBackend")
-  (c-name "clutter_backend_get_event")
-  (return-type "ClutterEvent*")
-)
-
-(define-method peek_event
-  (of-object "ClutterBackend")
-  (c-name "clutter_backend_peek_event")
-  (return-type "ClutterEvent*")
-)
-
-(define-method put_event
-  (of-object "ClutterBackend")
-  (c-name "clutter_backend_put_event")
-  (return-type "none")
-  (parameters
-    '("ClutterEvent*" "event")
-  )
-)
-
 (define-method set_double_click_time
   (of-object "ClutterBackend")
   (c-name "clutter_backend_set_double_click_time")
