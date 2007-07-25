@@ -9,7 +9,7 @@
 
 (define-object Alpha
   (in-module "Clutter")
-  (parent "GInitiallyUnowned")
+  (parent "GObject")
   (c-name "ClutterAlpha")
   (gtype-id "CLUTTER_TYPE_ALPHA")
 )
