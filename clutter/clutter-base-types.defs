@@ -1,4 +1,19 @@
 ;; -*- scheme -*-
+
+; interfaces
+
+(define-interface Container
+  (in-module "Clutter")
+  (c-name "ClutterContainer")
+  (gtype-id "CLUTTER_TYPE_CONTAINER")
+)
+
+(define-interface Layout
+  (in-module "Clutter")
+  (c-name "ClutterLayout")
+  (gtype-id "CLUTTER_TYPE_LAYOUT")
+)
+
 ; object definitions ...
 (define-object Actor
   (in-module "Clutter")
@@ -82,6 +97,7 @@
   (parent "ClutterActor")
   (c-name "ClutterBox")
   (gtype-id "CLUTTER_TYPE_BOX")
+  (implements "ClutterLayout")
 )
 
 (define-object CloneTexture
@@ -89,12 +105,6 @@
   (parent "ClutterActor")
   (c-name "ClutterCloneTexture")
   (gtype-id "CLUTTER_TYPE_CLONE_TEXTURE")
-)
-
-(define-object Container
-  (in-module "Clutter")
-  (c-name "ClutterContainer")
-  (gtype-id "CLUTTER_TYPE_CONTAINER")
 )
 
 (define-object EffectTemplate
@@ -116,6 +126,7 @@
   (parent "ClutterActor")
   (c-name "ClutterGroup")
   (gtype-id "CLUTTER_TYPE_GROUP")
+  (implements "ClutterContainer")
 )
 
 (define-object HBox
@@ -130,12 +141,6 @@
   (parent "ClutterActor")
   (c-name "ClutterLabel")
   (gtype-id "CLUTTER_TYPE_LABEL")
-)
-
-(define-object Layout
-  (in-module "Clutter")
-  (c-name "ClutterLayout")
-  (gtype-id "CLUTTER_TYPE_LAYOUT")
 )
 
 (define-object Rectangle
