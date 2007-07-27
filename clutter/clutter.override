@@ -21,11 +21,16 @@ import pango.Font as PyPangoFont_Type
 import pango.Layout as PyPangoLayout_Type
 %%
 ignore
-  clutter_group_add_many_valist
   clutter_init
   clutter_init_with_args
   clutter_get_option_group
   clutter_rectangle_new_with_color
+  clutter_stage_set_perspectivex
+  clutter_stage_get_perspectivex
+  clutter_container_add_actor
+  clutter_container_add_valist
+  clutter_container_remove_actor
+  clutter_container_remove_valist
 %%
 ignore-glob
   *_quark

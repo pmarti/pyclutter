@@ -1,8 +1,19 @@
 %%
 ignore
   clutter_alpha_new_full
-  clutter_behavuour_path_append_knot
+  clutter_behaviour_path_append_knot
   clutter_behaviour_path_append_knots_valist
+  clutter_behaviour_bspline_append_knot
+  clutter_behaviour_ellipse_newx
+  clutter_behaviour_ellipse_set_angle_beginx
+  clutter_behaviour_ellipse_get_angle_beginx
+  clutter_behaviour_ellipse_set_angle_endx
+  clutter_behaviour_ellipse_get_angle_endx
+  clutter_behaviour_rotate_newx
+  clutter_behaviour_rotate_set_boundsx
+  clutter_behaviour_rotate_get_boundsx
+  clutter_behaviour_scale_newx
+  clutter_behaviour_scale_get_boundsx
   clutter_ramp_inc_func
   clutter_ramp_dec_func
   clutter_ramp_func
@@ -537,3 +548,164 @@ _wrap_ClutterBehaviour__do_alpha_notify (PyObject *cls,
         Py_INCREF (Py_None);
         return Py_None;
 }
+%%
+new-constructor CLUTTER_TYPE_BEHAVIOUR_BSPLINE
+%%
+override clutter_behaviour_bspline_new kwargs
+static int
+_wrap_clutter_behaviour_bspline_new (PyGObject *self,
+                                     PyObject  *args,
+                                     PyObject  *kwargs)
+{
+        static char *kwlist[] = { "alpha", "knots", NULL};
+        ClutterAlpha *alpha;
+        PyObject *py_alpha = Py_None;
+        PyObject *py_knots = Py_None;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "|OO:clutter.BehaviourBspline.__init__",
+                                          kwlist, &py_alpha, &py_knots))
+                return -1;
+        
+        if (py_alpha == Py_None)
+                alpha = NULL;
+        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must be a ClutterAlpha or None");
+                return -1;
+        }
+
+        if (py_knots == Py_None)
+                pygobject_construct (self, "alpha", alpha, NULL);
+        else {
+                guint n_knots, i;
+                ClutterBehaviourBspline *behaviour;
+                
+                if (PyTuple_Check (py_knots))
+                        n_knots = PyTuple_Size (py_knots);
+                else {
+                        PyErr_SetString (PyExc_TypeError,
+                                         "knots must be a tuple containing "
+                                         "tuples of coordinates or None");
+                        return -1;
+                }
+
+                if (pygobject_construct (self, "alpha", alpha, NULL)) {
+                        goto out;
+                }
+
+                behaviour = CLUTTER_BEHAVIOUR_BSPLINE (self->obj);
+
+                for (i = 0; i < n_knots; i++) {
+                        PyObject *py_knot;
+                        ClutterKnot knot;
+
+                        py_knot = PyTuple_GetItem (py_knots, i);
+                        if (PyTuple_Check (py_knot) &&
+                            PyTuple_Size (py_knot) == 2 &&
+                            PyInt_Check (PyTuple_GetItem (py_knot, 0)) &&
+                            PyInt_Check (PyTuple_GetItem (py_knot, 1))) {
+                                knot.x = PyInt_AsLong (PyTuple_GetItem (py_knot, 0));
+                                knot.y = PyInt_AsLong (PyTuple_GetItem (py_knot, 1));
+                                clutter_behaviour_bspline_append_knot (behaviour,
+                                                                       &knot);
+                        }
+                        else {
+                                PyErr_SetString (PyExc_TypeError,
+                                                 "expecting a tuple of two integers");
+                                return -1;
+                        }
+                }
+        }
+
+out:
+        if (!self->obj) {
+                PyErr_SetString (PyExc_RuntimeError,
+                                 "could not create a ClutterBehaviourBspline object");
+                return -1;
+        }
+
+        return 0;
+}
+%%
+override clutter_behaviour_bspline_append
+static PyObject *
+_wrap_clutter_behaviour_bspline_append (PyGObject *self,
+                                        PyObject  *args)
+{
+        ClutterBehaviourBspline *bspline;
+        int i, len;
+
+        if ((len = PyTuple_Size (args)) < 1) {
+                PyErr_SetString (PyExc_TypeError,
+                                 "requires at least one argument");
+                return NULL;
+        }
+
+        bspline = CLUTTER_BEHAVIOUR_BSPLINE (self->obj);
+
+        for (i = 0; i < len; i++) {
+                PyObject *py_knot;
+                ClutterKnot knot;
+
+                py_knot = PyTuple_GetItem (args, i);
+
+                if (!PyTuple_Check (py_knot) &&
+                    PyTuple_Size (py_knot) != 2 &&
+                    !PyInt_Check (PyTuple_GetItem (py_knot, 0)) &&
+                    !PyInt_Check (PyTuple_GetItem (py_knot, 1))) {
+                        PyErr_SetString (PyExc_TypeError,
+                                         "expecting a tuple of two integers");
+                        return NULL;
+                }
+
+                knot.x = PyInt_AsLong (PyTuple_GetItem (py_knot, 0));
+                knot.y = PyInt_AsLong (PyTuple_GetItem (py_knot, 1));
+
+                clutter_behaviour_bspline_append_knot (bspline, &knot);
+        }
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+new-constructor CLUTTER_TYPE_BEHAVIOUR_DEPTH
+%%
+override clutter_behaviour_depth_new kwargs
+static int
+_wrap_clutter_behaviour_depth_new (PyGObject *self,
+                                   PyObject  *args,
+                                   PyObject  *kwargs)
+{
+        static char *kwlist[] = { "alpha", "depth_start", "depth_end", NULL};
+        PyObject *py_alpha;
+        int depth_start, depth_end;
+        ClutterAlpha *alpha;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "|Oii:clutter.BehaviourBspline.__init__",
+                                          kwlist,
+                                          &py_alpha, &depth_start, &depth_end))
+                return -1;
+        
+        if (py_alpha == Py_None)
+                alpha = NULL;
+        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must be a ClutterAlpha or None");
+                return -1;
+        }
+
+        pygobject_construct (self,
+                             "alpha", alpha,
+                             "depth-start", depth_start,
+                             "depth-end", depth_end,
+                             NULL);
+
+        return 0;
+}
+%%

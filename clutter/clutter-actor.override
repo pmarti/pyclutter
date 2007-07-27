@@ -8,7 +8,7 @@ ignore
   clutter_actor_get_rzangx
   clutter_actor_set_scalex
   clutter_actor_get_scalex
-  clutter_actor_scale_with_gravityx
+  clutter_actor_set_scale_with_gravityx
 %%
 override clutter_actor_get_coords
 static PyObject *
