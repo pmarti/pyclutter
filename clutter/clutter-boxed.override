@@ -27,7 +27,7 @@ _wrap_clutter_geometry_length (PyGBoxed *self)
 	return 4;
 }
 static PyObject *
-_wrap_clutter_geometry_getitem (PyGBoxed *self, int pos)
+_wrap_clutter_geometry_getitem (PyGBoxed *self, Py_ssize_t pos)
 {
 	ClutterGeometry *geom;
 
@@ -84,13 +84,13 @@ _wrap_clutter_geometry_setitem (PyGBoxed *self, int pos, PyObject *value)
 	return 0;
 }
 static PySequenceMethods _wrap_clutter_geometry_tp_as_sequence = {
-	(inquiry) _wrap_clutter_geometry_length,
-	(binaryfunc) 0,
-	(intargfunc) 0,
-	(intargfunc) _wrap_clutter_geometry_getitem,
-	(intintargfunc) 0,
-	(intobjargproc) _wrap_clutter_geometry_setitem,
-	(intintobjargproc) 0
+	(lenfunc) _wrap_clutter_geometry_length,
+	0,
+	0,
+	(ssizeargfunc) _wrap_clutter_geometry_getitem,
+	0,
+	(ssizeobjargproc) _wrap_clutter_geometry_setitem,
+        0
 };
 %%
 override-attr ClutterGeometry.x
@@ -238,13 +238,13 @@ _wrap_clutter_actor_box_setitem (PyGBoxed *self, int pos, PyObject *value)
 	return 0;
 }
 static PySequenceMethods _wrap_clutter_actor_box_tp_as_sequence = {
-	(inquiry) _wrap_clutter_actor_box_length,
-	(binaryfunc) 0,
-	(intargfunc) 0,
-	(intargfunc) _wrap_clutter_actor_box_getitem,
-	(intintargfunc) 0,
-	(intobjargproc) _wrap_clutter_actor_box_setitem,
-	(intintobjargproc) 0
+	(lenfunc) _wrap_clutter_actor_box_length,
+	0,
+	0,
+	(ssizeargfunc) _wrap_clutter_actor_box_getitem,
+	0,
+	(ssizeobjargproc) _wrap_clutter_actor_box_setitem,
+	0
 };
 %%
 override-attr ClutterActorBox.x1
@@ -387,13 +387,13 @@ _wrap_clutter_knot_setitem (PyGBoxed *self, int pos, PyObject *value)
 	return 0;
 }
 static PySequenceMethods _wrap_clutter_knot_tp_as_sequence = {
-	(inquiry) _wrap_clutter_knot_length,
-	(binaryfunc) 0,
-	(intargfunc) 0,
-	(intargfunc) _wrap_clutter_knot_getitem,
-	(intintargfunc) 0,
-	(intobjargproc) _wrap_clutter_knot_setitem,
-	(intintobjargproc) 0
+	(lenfunc) _wrap_clutter_knot_length,
+	0,
+	0,
+	(ssizeargfunc) _wrap_clutter_knot_getitem,
+	0,
+	(ssizeobjargproc) _wrap_clutter_knot_setitem,
+	0
 };
 %%
 override-attr ClutterKnot.x
@@ -426,36 +426,36 @@ _wrap_clutter_knot__set_y (PyGBoxed *self, PyObject *value, void *closure)
 	return 0;
 }
 %%
-override clutter_vector_new kwargs
+override clutter_vertex_new kwargs
 static int
-_wrap_clutter_vector_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
+_wrap_clutter_vertex_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
 {
 	static char *kwlist[] = { "x", "y", "z", NULL };
-	ClutterVector vector = { 0, 0, 0 };
+	ClutterVertex vertex = { 0, 0, 0 };
 
 	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
-					 "|iii:ClutterVector.__init__",
+					 "|iii:ClutterVertex.__init__",
 					 kwlist,
-					 &(vector.x), &(vector.y), &(vector.z)))
+					 &(vertex.x), &(vertex.y), &(vertex.z)))
 		return -1;
 	
-	self->boxed = g_boxed_copy (CLUTTER_TYPE_VECTOR, &vector);
+	self->boxed = g_boxed_copy (CLUTTER_TYPE_VERTEX, &vertex);
 	self->free_on_dealloc = TRUE;
-	self->gtype = CLUTTER_TYPE_VECTOR;
+	self->gtype = CLUTTER_TYPE_VERTEX;
 	
 	return 0;
 }
 %%
-override-slot ClutterVector.tp_as_sequence
-static int
-_wrap_clutter_vector_length (PyGBoxed *self)
+override-slot ClutterVertex.tp_as_sequence
+static Py_ssize_t
+_wrap_clutter_vertex_length (PyGBoxed *self)
 {
 	return 3;
 }
 static PyObject *
-_wrap_clutter_vector_getitem(PyGBoxed *self, int pos)
+_wrap_clutter_vertex_getitem(PyGBoxed *self, Py_ssize_t pos)
 {
-	ClutterVector *vector;
+	ClutterVertex *vertex;
 
 	if (pos < 0)
 		pos += 1;
@@ -466,20 +466,20 @@ _wrap_clutter_vector_getitem(PyGBoxed *self, int pos)
 		return NULL;
 	}
 
-	vector = pyg_boxed_get (self, ClutterVector);
+	vertex = pyg_boxed_get (self, ClutterVertex);
 	switch (pos) {
-		case 0: return PyInt_FromLong (vector->x);
-		case 1: return PyInt_FromLong (vector->y);
-		case 2: return PyInt_FromLong (vector->z);
+		case 0: return PyInt_FromLong (vertex->x);
+		case 1: return PyInt_FromLong (vertex->y);
+		case 2: return PyInt_FromLong (vertex->z);
 		default:
 			g_assert_not_reached();
 			return NULL;
 	}
 }
-static int
-_wrap_clutter_vector_setitem (PyGBoxed *self, int pos, PyObject *value)
+static Py_ssize_t
+_wrap_clutter_vertex_setitem (PyGBoxed *self, Py_ssize_t pos, PyObject *value)
 {
-	ClutterVector *vector;
+	ClutterVertex *vertex;
 	gint val;
 
 	if (pos < 0)
@@ -491,15 +491,15 @@ _wrap_clutter_vector_setitem (PyGBoxed *self, int pos, PyObject *value)
 		return -1;
 	}
 
-	vector = pyg_boxed_get (self, ClutterVector);
+	vertex = pyg_boxed_get (self, ClutterVertex);
 	val = PyInt_AsLong (value);
 	if (PyErr_Occurred ())
 		return -1;
 	
 	switch(pos) {
-		case 0: vector->x = val; break;
-		case 1: vector->y = val; break;
-		case 2: vector->z = val; break;
+		case 0: vertex->x = val; break;
+		case 1: vertex->y = val; break;
+		case 2: vertex->z = val; break;
 		default:
 			g_assert_not_reached();
 			return -1;
@@ -507,19 +507,19 @@ _wrap_clutter_vector_setitem (PyGBoxed *self, int pos, PyObject *value)
 
 	return 0;
 }
-static PySequenceMethods _wrap_clutter_vector_tp_as_sequence = {
-	(inquiry) _wrap_clutter_vector_length,
-	(binaryfunc) 0,
-	(intargfunc) 0,
-	(intargfunc) _wrap_clutter_vector_getitem,
-	(intintargfunc) 0,
-	(intobjargproc) _wrap_clutter_vector_setitem,
-	(intintobjargproc) 0
+static PySequenceMethods _wrap_clutter_vertex_tp_as_sequence = {
+	(lenfunc) _wrap_clutter_vertex_length,
+	0,
+	0,
+	(ssizeargfunc) _wrap_clutter_vertex_getitem,
+	0,
+	(ssizeobjargproc) _wrap_clutter_vertex_setitem,
+	0
 };
 %%
-override-attr ClutterVector.x
+override-attr ClutterVertex.x
 static int
-_wrap_clutter_vector__set_x (PyGBoxed *self, PyObject *value, void *closure)
+_wrap_clutter_vertex__set_x (PyGBoxed *self, PyObject *value, void *closure)
 {
 	gint32 val;
 
@@ -527,14 +527,14 @@ _wrap_clutter_vector__set_x (PyGBoxed *self, PyObject *value, void *closure)
 	if (PyErr_Occurred ())
 		return -1;
 
-	pyg_boxed_get (self, ClutterVector)->x = val;
+	pyg_boxed_get (self, ClutterVertex)->x = val;
 
 	return 0;
 }
 %%
-override-attr ClutterVector.y
+override-attr ClutterVertex.y
 static int
-_wrap_clutter_vector__set_y (PyGBoxed *self, PyObject *value, void *closure)
+_wrap_clutter_vertex__set_y (PyGBoxed *self, PyObject *value, void *closure)
 {
 	gint32 val;
 
@@ -542,14 +542,14 @@ _wrap_clutter_vector__set_y (PyGBoxed *self, PyObject *value, void *closure)
 	if (PyErr_Occurred ())
 		return -1;
 
-	pyg_boxed_get (self, ClutterVector)->y = val;
+	pyg_boxed_get (self, ClutterVertex)->y = val;
 
 	return 0;
 }
 %%
-override-attr ClutterVector.z
+override-attr ClutterVertex.z
 static int
-_wrap_clutter_vector__set_z (PyGBoxed *self, PyObject *value, void *closure)
+_wrap_clutter_vertex__set_z (PyGBoxed *self, PyObject *value, void *closure)
 {
 	gint32 val;
 
@@ -557,7 +557,7 @@ _wrap_clutter_vector__set_z (PyGBoxed *self, PyObject *value, void *closure)
 	if (PyErr_Occurred ())
 		return -1;
 
-	pyg_boxed_get (self, ClutterVector)->z = val;
+	pyg_boxed_get (self, ClutterVertex)->z = val;
 
 	return 0;
 }
