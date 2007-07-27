@@ -867,6 +867,31 @@ _wrap_clutter_behaviour_rotate_new (PyGObject *self,
         return 0;
 }
 %%
+override clutter_behaviour_rotate_get_center noargs
+static PyObject *
+_wrap_clutter_behaviour_rotate_get_center (PyGObject *self)
+{
+        ClutterBehaviourRotate *rotate;
+        gint center_x, center_y, center_z;
+
+        rotate = CLUTTER_BEHAVIOUR_ROTATE (self->obj);
+        clutter_behaviour_rotate_get_center (rotate, &center_x, &center_y, &center_z);
+
+        return Py_BuildValue ("(iii)", center_x, center_y, center_z);
+}
+%%
+override clutter_behaviour_rotate_get_bounds noargs
+static PyObject *
+_wrap_clutter_behaviour_rotate_get_bounds (PyGObject *self)
+{
+        ClutterBehaviourRotate *rotate;
+        gdouble begin, end;
+
+        rotate = CLUTTER_BEHAVIOUR_ROTATE (self->obj);
+        clutter_behaviour_rotate_get_bounds (rotate, &begin, &end);
+
+        return Py_BuildValue ("(dd)", begin, end);
+}
 %%
 new-constructor CLUTTER_TYPE_BEHAVIOUR_SCALE
 %%
@@ -906,5 +931,18 @@ _wrap_clutter_behaviour_scale_new (PyGObject *self,
                              NULL);
 
         return 0;
+}
+%%
+override clutter_behaviour_scale_get_bounds noargs
+static PyObject *
+_wrap_clutter_behaviour_scale_get_bounds (PyGObject *self)
+{
+        ClutterBehaviourScale *scale;
+        gdouble begin, end;
+
+        scale = CLUTTER_BEHAVIOUR_SCALE (self->obj);
+        clutter_behaviour_scale_get_bounds (scale, &begin, &end);
+
+        return Py_BuildValue ("(dd)", begin, end);
 }
 %%
