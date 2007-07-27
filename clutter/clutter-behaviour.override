@@ -9,6 +9,10 @@ ignore
   clutter_behaviour_ellipse_get_angle_beginx
   clutter_behaviour_ellipse_set_angle_endx
   clutter_behaviour_ellipse_get_angle_endx
+  clutter_behaviour_ellipse_set_angle_tiltx
+  clutter_behaviour_ellipse_get_angle_tiltx
+  clutter_behaviour_ellipse_set_tiltx
+  clutter_behaviour_ellipse_get_tiltx
   clutter_behaviour_rotate_newx
   clutter_behaviour_rotate_set_boundsx
   clutter_behaviour_rotate_get_boundsx
@@ -685,7 +689,7 @@ _wrap_clutter_behaviour_depth_new (PyGObject *self,
         ClutterAlpha *alpha;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oii:clutter.BehaviourBspline.__init__",
+                                          "|Oii:clutter.BehaviourDepth.__init__",
                                           kwlist,
                                           &py_alpha, &depth_start, &depth_end))
                 return -1;
@@ -704,6 +708,201 @@ _wrap_clutter_behaviour_depth_new (PyGObject *self,
                              "alpha", alpha,
                              "depth-start", depth_start,
                              "depth-end", depth_end,
+                             NULL);
+
+        return 0;
+}
+%%
+new-constructor CLUTTER_TYPE_BEHAVIOUR_ELLIPSE
+%%
+override clutter_behaviour_ellipse_new kwargs
+static int
+_wrap_clutter_behaviour_ellipse_new (PyGObject *self,
+                                     PyObject  *args,
+                                     PyObject  *kwargs)
+{
+        static char *kwlist[] = { "alpha", "x", "y", "width", "height", "begin", "end", NULL};
+        PyObject *py_alpha;
+        int x, y, width, height;
+        double begin, end;
+        ClutterKnot center = { 0, };
+        ClutterAlpha *alpha;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "|Oiiiidd:clutter.BehaviourEllipse.__init__",
+                                          kwlist,
+                                          &py_alpha, &x, &y, &width, &height,
+                                          &begin, &end))
+                return -1;
+        
+        if (py_alpha == Py_None)
+                alpha = NULL;
+        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must be a ClutterAlpha or None");
+                return -1;
+        }
+
+        center.x = x;
+        center.y = y;
+
+        pygobject_construct (self,
+                             "alpha", alpha,
+                             "center", &center,
+                             "width", width,
+                             "height", height,
+                             "angle-begin", begin,
+                             "angle-end", end,
+                             NULL);
+
+        return 0;
+}
+%%
+override clutter_behaviour_ellipse_get_center noargs
+static PyObject *
+_wrap_clutter_behaviour_ellipse_get_center (PyGObject *self)
+{
+        ClutterBehaviourEllipse *ellipse;
+        gint center_x, center_y;
+
+        ellipse = CLUTTER_BEHAVIOUR_ELLIPSE (self->obj);
+        clutter_behaviour_ellipse_get_center (ellipse, &center_x, &center_y);
+
+        return Py_BuildValue ("(ii)", center_x, center_y);
+}
+%%
+override clutter_behaviour_ellipse_get_tilt noargs
+static PyObject *
+_wrap_clutter_behaviour_ellipse_get_tilt (PyGObject *self)
+{
+        ClutterBehaviourEllipse *ellipse;
+        gdouble tilt_x, tilt_y, tilt_z;
+
+        ellipse = CLUTTER_BEHAVIOUR_ELLIPSE (self->obj);
+        clutter_behaviour_ellipse_get_tilt (ellipse, &tilt_x, &tilt_y, &tilt_z);
+
+        return Py_BuildValue ("(ddd)", tilt_x, tilt_y, tilt_z);
+}
+%%
+new-constructor CLUTTER_TYPE_BEHAVIOUR_OPACITY
+%%
+override clutter_behaviour_opacity_new kwargs
+static int
+_wrap_clutter_behaviour_opacity_new (PyGObject *self,
+                                     PyObject  *args,
+                                     PyObject  *kwargs)
+{
+        static char *kwlist[] = { "alpha", "begin", "end", NULL};
+        PyObject *py_alpha;
+        int begin, end;
+        ClutterAlpha *alpha;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "|Oii:clutter.BehaviourOpacity.__init__",
+                                          kwlist,
+                                          &py_alpha, &begin, &end))
+                return -1;
+        
+        if (py_alpha == Py_None)
+                alpha = NULL;
+        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must be a ClutterAlpha or None");
+                return -1;
+        }
+
+        pygobject_construct (self,
+                             "alpha", alpha,
+                             "opacity-start", begin,
+                             "opacity-end", end,
+                             NULL);
+
+        return 0;
+}
+%%
+%%
+new-constructor CLUTTER_TYPE_BEHAVIOUR_ROTATE
+%%
+override clutter_behaviour_rotate_new kwargs
+static int
+_wrap_clutter_behaviour_rotate_new (PyGObject *self,
+                                    PyObject  *args,
+                                    PyObject  *kwargs)
+{
+        static char *kwlist[] = { "alpha", "axis", "direction", "begin", "end", NULL};
+        PyObject *py_alpha;
+        int axis, direction;
+        double begin, end;
+        ClutterAlpha *alpha;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "|Oiidd:clutter.BehaviourRotate.__init__",
+                                          kwlist,
+                                          &py_alpha, &axis, &direction,
+                                          &begin, &end))
+                return -1;
+        
+        if (py_alpha == Py_None)
+                alpha = NULL;
+        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must be a ClutterAlpha or None");
+                return -1;
+        }
+
+        pygobject_construct (self,
+                             "alpha", alpha,
+                             "axis", axis,
+                             "direction", direction,
+                             "angle-begin", begin,
+                             "angle-end", end,
+                             NULL);
+
+        return 0;
+}
+%%
+%%
+new-constructor CLUTTER_TYPE_BEHAVIOUR_SCALE
+%%
+override clutter_behaviour_scale_new kwargs
+static int
+_wrap_clutter_behaviour_scale_new (PyGObject *self,
+                                   PyObject  *args,
+                                   PyObject  *kwargs)
+{
+        static char *kwlist[] = { "alpha", "begin", "end", "gravity", NULL};
+        PyObject *py_alpha;
+        double begin, end;
+        ClutterGravity gravity;
+        ClutterAlpha *alpha;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "|Oddi:clutter.BehaviourScale.__init__",
+                                          kwlist,
+                                          &py_alpha, &begin, &end, &gravity))
+                return -1;
+        
+        if (py_alpha == Py_None)
+                alpha = NULL;
+        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must be a ClutterAlpha or None");
+                return -1;
+        }
+
+        pygobject_construct (self,
+                             "alpha", alpha,
+                             "scale-begin", begin,
+                             "scale-end", end,
+                             "gravity", gravity,
                              NULL);
 
         return 0;

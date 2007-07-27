@@ -1010,7 +1010,7 @@
   (c-name "clutter_behaviour_ellipse_set_angle_tiltx")
   (return-type "none")
   (parameters
-    '("axis" "ClutterRotateAxis")
+    '("ClutterRotateAxis" "axis")
     '("ClutterAngle" "angle_tilt")
   )
 )
@@ -1020,7 +1020,7 @@
   (c-name "clutter_behaviour_ellipse_set_angle_tilt")
   (return-type "none")
   (parameters
-    '("axis" "ClutterRotateAxis")
+    '("ClutterRotateAxis" "axis")
     '("gdouble" "angle_tilt")
   )
 )
@@ -1030,7 +1030,7 @@
   (c-name "clutter_behaviour_ellipse_get_angle_tiltx")
   (return-type "ClutterAngle")
   (parameters
-    '("axis" "ClutterRotateAxis")
+    '("ClutterRotateAxis" "axis")
   )
 )
 
@@ -1039,7 +1039,7 @@
   (c-name "clutter_behaviour_ellipse_get_angle_tilt")
   (return-type "gdouble")
   (parameters
-    '("axis" "ClutterRotateAxis")
+    '("ClutterRotateAxis" "axis")
   )
 )
 
