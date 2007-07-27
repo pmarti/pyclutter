@@ -886,7 +886,6 @@
     '("gint" "height")
     '("gdouble" "begin")
     '("gdouble" "end")
-    '("gdouble" "tilt")
   )
 )
 
@@ -2324,75 +2323,6 @@
 
 
 
-;; From clutter-fixed.h
-
-(define-function sinx
-  (c-name "clutter_sinx")
-  (return-type "ClutterFixed")
-  (parameters
-    '("ClutterFixed" "angle")
-  )
-)
-
-(define-function sini
-  (c-name "clutter_sini")
-  (return-type "ClutterFixed")
-  (parameters
-    '("ClutterAngle" "angle")
-  )
-)
-
-(define-function tani
-  (c-name "clutter_tani")
-  (return-type "ClutterFixed")
-  (parameters
-    '("ClutterAngle" "angle")
-  )
-)
-
-(define-function sqrtx
-  (c-name "clutter_sqrtx")
-  (return-type "ClutterFixed")
-  (parameters
-    '("ClutterFixed" "x")
-  )
-)
-
-(define-function sqrti
-  (c-name "clutter_sqrti")
-  (return-type "gint")
-  (parameters
-    '("gint" "x")
-  )
-)
-
-(define-function log2x
-  (c-name "clutter_log2x")
-  (return-type "ClutterFixed")
-  (parameters
-    '("guint" "x")
-  )
-)
-
-(define-function pow2x
-  (c-name "clutter_pow2x")
-  (return-type "guint")
-  (parameters
-    '("ClutterFixed" "x")
-  )
-)
-
-(define-function powx
-  (c-name "clutter_powx")
-  (return-type "guint")
-  (parameters
-    '("guint" "x")
-    '("ClutterFixed" "y")
-  )
-)
-
-
-
 ;; From clutter-group.h
 
 (define-function group_get_type
@@ -3520,85 +3450,3 @@
 
 
 ;; From clutter-version.h
-
-
-
-;; From pangoclutter.h
-
-(define-function pango_clutter_font_map_get_type
-  (c-name "pango_clutter_font_map_get_type")
-  (return-type "GType")
-)
-
-(define-function pango_clutter_font_map_new
-  (c-name "pango_clutter_font_map_new")
-  (is-constructor-of "PangoClutterFontMap")
-  (return-type "PangoFontMap*")
-)
-
-(define-method set_default_substitute
-  (of-object "PangoClutterFontMap")
-  (c-name "pango_clutter_font_map_set_default_substitute")
-  (return-type "none")
-  (parameters
-    '("PangoClutterSubstituteFunc" "func")
-    '("gpointer" "data")
-    '("GDestroyNotify" "notify")
-  )
-)
-
-(define-method substitute_changed
-  (of-object "PangoClutterFontMap")
-  (c-name "pango_clutter_font_map_substitute_changed")
-  (return-type "none")
-)
-
-(define-method create_context
-  (of-object "PangoClutterFontMap")
-  (c-name "pango_clutter_font_map_create_context")
-  (return-type "PangoContext*")
-)
-
-(define-function pango_clutter_render_layout_subpixel
-  (c-name "pango_clutter_render_layout_subpixel")
-  (return-type "none")
-  (parameters
-    '("PangoLayout*" "layout")
-    '("int" "x")
-    '("int" "y")
-    '("ClutterColor*" "color")
-    '("int" "flags")
-  )
-)
-
-(define-function pango_clutter_render_layout
-  (c-name "pango_clutter_render_layout")
-  (return-type "none")
-  (parameters
-    '("PangoLayout*" "layout")
-    '("int" "x")
-    '("int" "y")
-    '("ClutterColor*" "color")
-    '("int" "flags")
-  )
-)
-
-(define-function pango_clutter_render_layout_line
-  (c-name "pango_clutter_render_layout_line")
-  (return-type "none")
-  (parameters
-    '("PangoLayoutLine*" "line")
-    '("int" "x")
-    '("int" "y")
-    '("ClutterColor*" "color")
-  )
-)
-
-(define-function pango_clutter_render_clear_caches
-  (c-name "pango_clutter_render_clear_caches")
-  (return-type "none")
-  (parameters
-  )
-)
-
-
