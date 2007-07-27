@@ -1539,8 +1539,8 @@
   (c-name "clutter_clone_texture_new")
   (is-constructor-of "ClutterCloneTexture")
   (return-type "ClutterActor*")
-  (parameters
-    '("ClutterTexture*" "texture")
+  (properties
+    '("parent-texture" (argname "texture"))
   )
 )
 
@@ -2051,7 +2051,7 @@
   (c-name "clutter_entry_handle_key_event")
   (return-type "none")
   (parameters
-    '("ClutterKeyEvent*" "kev")
+    '("ClutterEvent*" "event")
   )
 )
 
@@ -2398,44 +2398,6 @@
   (of-object "ClutterGroup")
   (c-name "clutter_group_remove_all")
   (return-type "none")
-)
-
-(define-method add
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
-(define-method add_many
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add_many")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "first_actor")
-  )
-  (varargs #t)
-)
-
-(define-method add_many_valist
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add_many_valist")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "first_actor")
-    '("va_list" "var_args")
-  )
-)
-
-(define-method remove
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_remove")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
 )
 
 (define-method raise
@@ -3299,9 +3261,9 @@
   (c-name "clutter_timeline_new")
   (is-constructor-of "ClutterTimeline")
   (return-type "ClutterTimeline*")
-  (parameters
-    '("guint" "n_frames")
-    '("guint" "fps")
+  (properties
+    '("num-frames" (argname "num"))
+    '("fps" (argname "frames"))
   )
 )
 
