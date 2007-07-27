@@ -1,3 +1,6 @@
+;; -* scheme -*-
+
+(include "clutter-base-types.defs")
 
 ;; From clutter-actor.h
 
@@ -704,27 +707,6 @@
   (return-type "ClutterBackend*")
 )
 
-(define-method get_event
-  (of-object "ClutterBackend")
-  (c-name "clutter_backend_get_event")
-  (return-type "ClutterEvent*")
-)
-
-(define-method peek_event
-  (of-object "ClutterBackend")
-  (c-name "clutter_backend_peek_event")
-  (return-type "ClutterEvent*")
-)
-
-(define-method put_event
-  (of-object "ClutterBackend")
-  (c-name "clutter_backend_put_event")
-  (return-type "none")
-  (parameters
-    '("ClutterEvent*" "event")
-  )
-)
-
 (define-method set_double_click_time
   (of-object "ClutterBackend")
   (c-name "clutter_backend_set_double_click_time")
@@ -1028,6 +1010,7 @@
   (c-name "clutter_behaviour_ellipse_set_angle_tiltx")
   (return-type "none")
   (parameters
+    '("axis" "ClutterRotateAxis")
     '("ClutterAngle" "angle_tilt")
   )
 )
@@ -1037,6 +1020,7 @@
   (c-name "clutter_behaviour_ellipse_set_angle_tilt")
   (return-type "none")
   (parameters
+    '("axis" "ClutterRotateAxis")
     '("gdouble" "angle_tilt")
   )
 )
@@ -1046,6 +1030,7 @@
   (c-name "clutter_behaviour_ellipse_get_angle_tiltx")
   (return-type "ClutterAngle")
   (parameters
+    '("axis" "ClutterRotateAxis")
   )
 )
 
@@ -1054,6 +1039,7 @@
   (c-name "clutter_behaviour_ellipse_get_angle_tilt")
   (return-type "gdouble")
   (parameters
+    '("axis" "ClutterRotateAxis")
   )
 )
 

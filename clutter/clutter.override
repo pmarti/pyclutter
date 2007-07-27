@@ -23,6 +23,9 @@ import pango.Layout as PyPangoLayout_Type
 ignore
   clutter_init
   clutter_init_with_args
+  clutter_backend_get_event
+  clutter_backend_put_event
+  clutter_backend_peek_event
   clutter_get_option_group
   clutter_rectangle_new_with_color
   clutter_stage_set_perspectivex
@@ -31,6 +34,21 @@ ignore
   clutter_container_add_valist
   clutter_container_remove_actor
   clutter_container_remove_valist
+  clutter_sine_inc_func
+  clutter_sine_dec_func
+  clutter_sine_half_func
+  clutter_square_func
+  clutter_smoothstep_inc_func
+  clutter_smoothstep_dec_func
+  clutter_exp_inc_func
+  clutter_exp_dec_func
+  clutter_effect_template_new_full
+  clutter_effect_fade
+  clutter_effect_move
+  clutter_effect_scale
+  clutter_effect_rotate_x
+  clutter_effect_rotate_y
+  clutter_effect_rotate_z
 %%
 ignore-glob
   *_quark
