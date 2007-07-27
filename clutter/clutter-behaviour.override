@@ -923,7 +923,7 @@ _wrap_clutter_behaviour_scale_new (PyGObject *self,
                              "alpha", alpha,
                              "scale-begin", begin,
                              "scale-end", end,
-                             "gravity", gravity,
+                             "scale-gravity", gravity,
                              NULL);
 
         return 0;
