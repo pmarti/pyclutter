@@ -1,4 +1,7 @@
 %%
+ignore
+  clutter_event_get_coords
+%%
 override-slot ClutterEvent.tp_setattr
 #define CHECK_VALUE_IS_INT(a,v) \
 	G_STMT_START{ if (!PyInt_Check ((v))) { \
@@ -186,4 +189,4 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 	
 	return Py_FindMethod ((PyMethodDef *) _PyClutterEvent_methods, self, attr);
 }
-
+%%
