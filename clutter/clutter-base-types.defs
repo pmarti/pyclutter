@@ -1,20 +1,29 @@
 ;; -*- scheme -*-
 
-; interfaces
+; interfaces...
 
 (define-interface Container
   (in-module "Clutter")
   (c-name "ClutterContainer")
   (gtype-id "CLUTTER_TYPE_CONTAINER")
+  (vtable "ClutterContainerIface")
 )
 
 (define-interface Layout
   (in-module "Clutter")
   (c-name "ClutterLayout")
   (gtype-id "CLUTTER_TYPE_LAYOUT")
+  (vtable "ClutterLayoutIface")
 )
 
-; boxed
+(define-interface Media
+  (in-module "Clutter")
+  (c-name "ClutterMedia")
+  (gtype-id "CLUTTER_TYPE_MEDIA")
+  (vtable "ClutterMediaInterface")
+)
+
+; boxed types...
 
 (define-boxed Color
   (in-module "Clutter")
@@ -170,7 +179,6 @@
   (parent "ClutterActor")
   (c-name "ClutterBox")
   (gtype-id "CLUTTER_TYPE_BOX")
-  (implements "ClutterLayout")
 )
 
 (define-object CloneTexture
@@ -199,7 +207,6 @@
   (parent "ClutterActor")
   (c-name "ClutterGroup")
   (gtype-id "CLUTTER_TYPE_GROUP")
-  (implements "ClutterContainer")
 )
 
 (define-object HBox
@@ -253,24 +260,6 @@
 
 ;; Enumerations and flags ...
 
-(define-enum Gravity
-  (in-module "Clutter")
-  (c-name "ClutterGravity")
-  (gtype-id "CLUTTER_TYPE_GRAVITY")
-  (values
-    '("none" "CLUTTER_GRAVITY_NONE")
-    '("north" "CLUTTER_GRAVITY_NORTH")
-    '("north-east" "CLUTTER_GRAVITY_NORTH_EAST")
-    '("east" "CLUTTER_GRAVITY_EAST")
-    '("south-east" "CLUTTER_GRAVITY_SOUTH_EAST")
-    '("south" "CLUTTER_GRAVITY_SOUTH")
-    '("south-west" "CLUTTER_GRAVITY_SOUTH_WEST")
-    '("west" "CLUTTER_GRAVITY_WEST")
-    '("north-west" "CLUTTER_GRAVITY_NORTH_WEST")
-    '("center" "CLUTTER_GRAVITY_CENTER")
-  )
-)
-
 (define-flags ActorFlags
   (in-module "Clutter")
   (c-name "ClutterActorFlags")
@@ -278,27 +267,6 @@
   (values
     '("mapped" "CLUTTER_ACTOR_MAPPED")
     '("realized" "CLUTTER_ACTOR_REALIZED")
-  )
-)
-
-(define-enum RotateAxis
-  (in-module "Clutter")
-  (c-name "ClutterRotateAxis")
-  (gtype-id "CLUTTER_TYPE_ROTATE_AXIS")
-  (values
-    '("x-axis" "CLUTTER_X_AXIS")
-    '("y-axis" "CLUTTER_Y_AXIS")
-    '("z-axis" "CLUTTER_Z_AXIS")
-  )
-)
-
-(define-enum RotateDirection
-  (in-module "Clutter")
-  (c-name "ClutterRotateDirection")
-  (gtype-id "CLUTTER_TYPE_ROTATE_DIRECTION")
-  (values
-    '("w" "CLUTTER_ROTATE_CW")
-    '("cw" "CLUTTER_ROTATE_CCW")
   )
 )
 
@@ -366,18 +334,6 @@
   )
 )
 
-(define-enum StageState
-  (in-module "Clutter")
-  (c-name "ClutterStageState")
-  (gtype-id "CLUTTER_TYPE_STAGE_STATE")
-  (values
-    '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN")
-    '("maximized" "CLUTTER_STAGE_STATE_MAXIMIZED")
-    '("minimized" "CLUTTER_STAGE_STATE_MINIMIZED")
-    '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN")
-  )
-)
-
 (define-flags FeatureFlags
   (in-module "Clutter")
   (c-name "ClutterFeatureFlags")
@@ -387,6 +343,9 @@
     '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK")
     '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV")
     '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS")
+    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC")
+    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE")
+    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR")
   )
 )
 
@@ -416,6 +375,17 @@
   )
 )
 
+(define-flags TextureFlags
+  (in-module "Clutter")
+  (c-name "ClutterTextureFlags")
+  (gtype-id "CLUTTER_TYPE_TEXTURE_FLAGS")
+  (values
+    '("rgb-flag-bgr" "CLUTTER_TEXTURE_RGB_FLAG_BGR")
+    '("rgb-flag-premult" "CLUTTER_TEXTURE_RGB_FLAG_PREMULT")
+    '("yuv-flag-yuv2" "CLUTTER_TEXTURE_YUV_FLAG_YUV2")
+  )
+)
+
 (define-enum TextureError
   (in-module "Clutter")
   (c-name "ClutterTextureError")
@@ -423,6 +393,45 @@
   (values
     '("out-of-memory" "CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY")
     '("no-yuv" "CLUTTER_TEXTURE_ERROR_NO_YUV")
+  )
+)
+
+(define-enum Gravity
+  (in-module "Clutter")
+  (c-name "ClutterGravity")
+  (gtype-id "CLUTTER_TYPE_GRAVITY")
+  (values
+    '("none" "CLUTTER_GRAVITY_NONE")
+    '("north" "CLUTTER_GRAVITY_NORTH")
+    '("north-east" "CLUTTER_GRAVITY_NORTH_EAST")
+    '("east" "CLUTTER_GRAVITY_EAST")
+    '("south-east" "CLUTTER_GRAVITY_SOUTH_EAST")
+    '("south" "CLUTTER_GRAVITY_SOUTH")
+    '("south-west" "CLUTTER_GRAVITY_SOUTH_WEST")
+    '("west" "CLUTTER_GRAVITY_WEST")
+    '("north-west" "CLUTTER_GRAVITY_NORTH_WEST")
+    '("center" "CLUTTER_GRAVITY_CENTER")
+  )
+)
+
+(define-enum RotateAxis
+  (in-module "Clutter")
+  (c-name "ClutterRotateAxis")
+  (gtype-id "CLUTTER_TYPE_ROTATE_AXIS")
+  (values
+    '("x-axis" "CLUTTER_X_AXIS")
+    '("y-axis" "CLUTTER_Y_AXIS")
+    '("z-axis" "CLUTTER_Z_AXIS")
+  )
+)
+
+(define-enum RotateDirection
+  (in-module "Clutter")
+  (c-name "ClutterRotateDirection")
+  (gtype-id "CLUTTER_TYPE_ROTATE_DIRECTION")
+  (values
+    '("w" "CLUTTER_ROTATE_CW")
+    '("cw" "CLUTTER_ROTATE_CCW")
   )
 )
 

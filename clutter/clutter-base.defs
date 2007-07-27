@@ -1,19 +1,8 @@
-(include "clutter-base-types.defs")
 
 ;; From clutter-actor.h
 
-(define-function geometry_get_type
-  (c-name "clutter_geometry_get_type")
-  (return-type "GType")
-)
-
 (define-function actor_box_get_type
   (c-name "clutter_actor_box_get_type")
-  (return-type "GType")
-)
-
-(define-function vertex_get_type
-  (c-name "clutter_vertex_get_type")
   (return-type "GType")
 )
 
@@ -126,10 +115,10 @@
   (c-name "clutter_actor_get_coords")
   (return-type "none")
   (parameters
-    '("gint*" "x1")
-    '("gint*" "y1")
-    '("gint*" "x2")
-    '("gint*" "y2")
+    '("gint*" "x_1")
+    '("gint*" "y_1")
+    '("gint*" "x_2")
+    '("gint*" "y_2")
   )
 )
 
@@ -715,6 +704,27 @@
   (return-type "ClutterBackend*")
 )
 
+(define-method get_event
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_get_event")
+  (return-type "ClutterEvent*")
+)
+
+(define-method peek_event
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_peek_event")
+  (return-type "ClutterEvent*")
+)
+
+(define-method put_event
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_put_event")
+  (return-type "none")
+  (parameters
+    '("ClutterEvent*" "event")
+  )
+)
+
 (define-method set_double_click_time
   (of-object "ClutterBackend")
   (c-name "clutter_backend_set_double_click_time")
@@ -900,7 +910,6 @@
     '("gint" "height")
     '("ClutterFixed" "begin")
     '("ClutterFixed" "end")
-    '("ClutterFixed" "tilt")
   )
 )
 
@@ -1036,43 +1045,80 @@
   (of-object "ClutterBehaviourEllipse")
   (c-name "clutter_behaviour_ellipse_get_angle_tiltx")
   (return-type "ClutterAngle")
+  (parameters
+  )
 )
 
 (define-method get_angle_tilt
   (of-object "ClutterBehaviourEllipse")
   (c-name "clutter_behaviour_ellipse_get_angle_tilt")
   (return-type "gdouble")
+  (parameters
+  )
+)
+
+(define-method set_tilt
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_tilt")
+  (return-type "none")
+  (parameters
+    '("gdouble" "angle_tilt_x")
+    '("gdouble" "angle_tilt_y")
+    '("gdouble" "angle_tilt_z")
+  )
+)
+
+(define-method set_tiltx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_tiltx")
+  (return-type "none")
+  (parameters
+    '("ClutterAngle" "angle_tilt_x")
+    '("ClutterAngle" "angle_tilt_y")
+    '("ClutterAngle" "angle_tilt_z")
+  )
+)
+
+(define-method get_tilt
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_tilt")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "angle_tilt_x")
+    '("gdouble*" "angle_tilt_y")
+    '("gdouble*" "angle_tilt_z")
+  )
+)
+
+(define-method get_tiltx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_tiltx")
+  (return-type "none")
+  (parameters
+    '("ClutterAngle*" "angle_tilt_x")
+    '("ClutterAngle*" "angle_tilt_y")
+    '("ClutterAngle*" "angle_tilt_z")
+  )
+)
+
+(define-method get_direction
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_direction")
+  (return-type "ClutterRotateDirection")
+)
+
+(define-method set_direction
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_direction")
+  (return-type "none")
+  (parameters
+    '("ClutterRotateDirection" "direction")
+  )
 )
 
 
 
 ;; From clutter-behaviour.h
-
-(define-function knot_get_type
-  (c-name "clutter_knot_get_type")
-  (return-type "GType")
-)
-
-(define-method copy
-  (of-object "ClutterKnot")
-  (c-name "clutter_knot_copy")
-  (return-type "ClutterKnot*")
-)
-
-(define-method free
-  (of-object "ClutterKnot")
-  (c-name "clutter_knot_free")
-  (return-type "none")
-)
-
-(define-method equal
-  (of-object "ClutterKnot")
-  (c-name "clutter_knot_equal")
-  (return-type "gboolean")
-  (parameters
-    '("const-ClutterKnot*" "knot_b")
-  )
-)
 
 (define-function behaviour_get_type
   (c-name "clutter_behaviour_get_type")
@@ -1124,7 +1170,7 @@
   (c-name "clutter_behaviour_get_nth_actor")
   (return-type "ClutterActor*")
   (parameters
-    '("gint" "index")
+    '("gint" "index_")
   )
 )
 
@@ -1489,7 +1535,7 @@
   (c-name "clutter_box_query_nth_child")
   (return-type "gboolean")
   (parameters
-    '("gint" "index")
+    '("gint" "index_")
     '("ClutterBoxChild*" "child")
   )
 )
@@ -1527,12 +1573,14 @@
   )
 )
 
+
+
 ;; From clutter-color.h
 
 (define-function color_new
   (c-name "clutter_color_new")
   (is-constructor-of "ClutterColor")
-  (return-type "ClutterColor")
+  (return-type "ClutterColor*")
 )
 
 (define-method copy
@@ -2123,23 +2171,8 @@
 
 ;; From clutter-enum-types.h
 
-(define-function gravity_get_type
-  (c-name "clutter_gravity_get_type")
-  (return-type "GType")
-)
-
 (define-function actor_flags_get_type
   (c-name "clutter_actor_flags_get_type")
-  (return-type "GType")
-)
-
-(define-function rotate_axis_get_type
-  (c-name "clutter_rotate_axis_get_type")
-  (return-type "GType")
-)
-
-(define-function rotate_direction_get_type
-  (c-name "clutter_rotate_direction_get_type")
   (return-type "GType")
 )
 
@@ -2190,6 +2223,21 @@
 
 (define-function texture_flags_get_type
   (c-name "clutter_texture_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function gravity_get_type
+  (c-name "clutter_gravity_get_type")
+  (return-type "GType")
+)
+
+(define-function rotate_axis_get_type
+  (c-name "clutter_rotate_axis_get_type")
+  (return-type "GType")
+)
+
+(define-function rotate_direction_get_type
+  (c-name "clutter_rotate_direction_get_type")
   (return-type "GType")
 )
 
@@ -2350,7 +2398,7 @@
   (c-name "clutter_group_get_nth_child")
   (return-type "ClutterActor*")
   (parameters
-    '("gint" "index")
+    '("gint" "index_")
   )
 )
 
@@ -2628,7 +2676,7 @@
 (define-method get_alignment
   (of-object "ClutterLabel")
   (c-name "clutter_label_get_alignment")
-  (return-type "gboolean")
+  (return-type "PangoAlignment")
 )
 
 
@@ -3105,6 +3153,15 @@
   (return-type "const-gchar*")
 )
 
+(define-method set_user_resizeable
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_user_resizeable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "value")
+  )
+)
+
 
 
 ;; From clutter-texture.h
@@ -3193,7 +3250,7 @@
   (c-name "clutter_texture_bind_tile")
   (return-type "none")
   (parameters
-    '("gint" "index")
+    '("gint" "index_")
   )
 )
 
@@ -3418,6 +3475,46 @@
 
 
 
+;; From clutter-types.h
+
+(define-function geometry_get_type
+  (c-name "clutter_geometry_get_type")
+  (return-type "GType")
+)
+
+(define-function vertex_get_type
+  (c-name "clutter_vertex_get_type")
+  (return-type "GType")
+)
+
+(define-function knot_get_type
+  (c-name "clutter_knot_get_type")
+  (return-type "GType")
+)
+
+(define-method copy
+  (of-object "ClutterKnot")
+  (c-name "clutter_knot_copy")
+  (return-type "ClutterKnot*")
+)
+
+(define-method free
+  (of-object "ClutterKnot")
+  (c-name "clutter_knot_free")
+  (return-type "none")
+)
+
+(define-method equal
+  (of-object "ClutterKnot")
+  (c-name "clutter_knot_equal")
+  (return-type "gboolean")
+  (parameters
+    '("const-ClutterKnot*" "knot_b")
+  )
+)
+
+
+
 ;; From clutter-units.h
 
 
@@ -3449,4 +3546,3 @@
 
 
 
-;; From clutter-version.h
