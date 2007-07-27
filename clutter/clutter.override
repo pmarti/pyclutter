@@ -46,6 +46,7 @@ ignore
   clutter_smoothstep_dec_func
   clutter_exp_inc_func
   clutter_exp_dec_func
+  clutter_effect_template_new
   clutter_effect_template_new_full
   clutter_effect_fade
   clutter_effect_move
@@ -55,6 +56,7 @@ ignore
   clutter_effect_rotate_z
   clutter_box_query_child
   clutter_box_query_nth_child
+  clutter_layout_tune_request
 %%
 ignore-glob
   *_quark
@@ -424,10 +426,10 @@ _wrap_clutter_label_get_color (PyGObject *self)
         return pyg_boxed_new (CLUTTER_TYPE_COLOR, &color, TRUE, TRUE);
 }
 %%
-override clutter_group_foreach kwargs
+override clutter_container_foreach kwargs
 static void
-pyclutter_group_foreach (ClutterActor *actor,
-                         gpointer      data)
+pyclutter_container_foreach (ClutterActor *actor,
+                             gpointer      data)
 {
         PyClutterCallback *pycb = data;
         PyGILState_STATE state;
@@ -446,18 +448,18 @@ pyclutter_group_foreach (ClutterActor *actor,
         pyg_gil_state_release (state);
 }
 static PyObject *
-_wrap_clutter_group_foreach (PyGObject *self,
-                             PyObject  *args,
-                             PyObject  *kwargs)
+_wrap_clutter_container_foreach (PyGObject *self,
+                                 PyObject  *args,
+                                 PyObject  *kwargs)
 {
         static char *kwlist[] = { "func", "data", NULL };
         PyObject *py_func, *py_data = NULL;
-        ClutterGroup *group;
+        ClutterContainer *container;
         PyClutterCallback *pycb;
         GType param_types[] = { CLUTTER_TYPE_ACTOR, };
 
         if (!PyArg_ParseTupleAndKeywords(args, kwargs,
-                                         "O|O:clutter.Group.foreach",
+                                         "O|O:clutter.Container.foreach",
                                          kwlist,
                                          &py_func, &py_data)) {
                 return NULL;
@@ -470,11 +472,9 @@ _wrap_clutter_group_foreach (PyGObject *self,
 
         pycb = pyclutter_callback_new (py_func, py_data,
                                        1, param_types);
-        group = CLUTTER_GROUP (self->obj);
 
-        clutter_group_foreach (group,
-                               pyclutter_group_foreach,
-                               pycb);
+        container = CLUTTER_CONTAINER (self->obj);
+        clutter_container_foreach (container, pyclutter_container_foreach, pycb);
 
         pyclutter_callback_free (pycb);
 
@@ -482,14 +482,14 @@ _wrap_clutter_group_foreach (PyGObject *self,
         return Py_None;
 }
 %%
-override clutter_group_get_children noargs
+override clutter_container_get_children noargs
 static PyObject *
-_wrap_clutter_group_get_children (PyGObject *self)
+_wrap_clutter_container_get_children (PyGObject *self)
 {
         GList *children, *l;
         PyObject *py_list;
 
-        children = clutter_group_get_children (CLUTTER_GROUP (self->obj));
+        children = clutter_container_get_children (CLUTTER_CONTAINER (self->obj));
 
         if ((py_list = PyList_New (0)) == NULL) {
                 g_list_free (children);
@@ -526,5 +526,51 @@ _wrap_clutter_stage_get_perspective (PyGObject *self)
                                        &fovy, &aspect, &z_near, &z_far);
 
         return Py_BuildValue ("(ffff)", fovy, aspect, z_near, z_far);
+}
+%%
+override clutter_layout_width_for_height
+static PyObject *
+_wrap_clutter_layout_width_for_height (PyGObject *self, PyObject *args)
+{
+        gint width, height;
+
+        if (!PyInt_Check (args)) {
+                PyErr_SetString (PyExc_TypeError, "Expected an integer");
+                return NULL;
+        }
+
+        height = PyInt_AsLong (args);
+        clutter_layout_width_for_height (CLUTTER_LAYOUT (self), &width, height);
+
+        return PyInt_FromLong (width);
+}
+%%
+override clutter_layout_height_for_width
+static PyObject *
+_wrap_clutter_layout_height_for_width (PyGObject *self, PyObject *args)
+{
+        gint width, height;
+
+        if (!PyInt_Check (args)) {
+                PyErr_SetString (PyExc_TypeError, "Expected an integer");
+                return NULL;
+        }
+
+        width = PyInt_AsLong (args);
+        clutter_layout_height_for_width (CLUTTER_LAYOUT (self), width, &height);
+
+        return PyInt_FromLong (height);
+}
+%%
+override clutter_layout_natural_request noargs
+static PyObject *
+_wrap_clutter_layout_natural_request (PyGObject *self)
+{
+        gint width, height;
+
+        clutter_layout_natural_request (CLUTTER_LAYOUT (self),
+                                        &width, &height);
+
+        return Py_BuildValue ("(ii)", width, height);
 }
 %%
