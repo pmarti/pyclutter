@@ -34,9 +34,13 @@ ignore
   clutter_container_add_valist
   clutter_container_remove_actor
   clutter_container_remove_valist
+  clutter_ramp_inc_func
+  clutter_ramp_dec_func
+  clutter_ramp_func
   clutter_sine_inc_func
   clutter_sine_dec_func
   clutter_sine_half_func
+  clutter_sine_func
   clutter_square_func
   clutter_smoothstep_inc_func
   clutter_smoothstep_dec_func
@@ -49,6 +53,8 @@ ignore
   clutter_effect_rotate_x
   clutter_effect_rotate_y
   clutter_effect_rotate_z
+  clutter_box_query_child
+  clutter_box_query_nth_child
 %%
 ignore-glob
   *_quark
@@ -121,12 +127,12 @@ _wrap_clutter_texture_get_y_tile_detail (PyGObject *self,
 	return Py_BuildValue ("(iii)", pos, size, waste);
 }
 %%
-override clutter_group_add_many
+override clutter_container_add
 static PyObject *
-_wrap_clutter_group_add_many (PyGObject *self,
-			      PyObject  *args)
+_wrap_clutter_container_add (PyGObject *self,
+                             PyObject  *args)
 {
-	ClutterGroup *group;
+	ClutterContainer *container;
 	int i, len;
 
 	if ((len = PyTuple_Size(args)) < 1) {
@@ -135,7 +141,7 @@ _wrap_clutter_group_add_many (PyGObject *self,
 		return NULL;
 	}
 
-	group = CLUTTER_GROUP (self->obj);
+	container = CLUTTER_CONTAINER (self->obj);
 
 	for (i = 0; i < len; i++) {
 		PyGObject *pyactor;
@@ -150,7 +156,43 @@ _wrap_clutter_group_add_many (PyGObject *self,
 		
 		actor = CLUTTER_ACTOR (pyactor->obj);
 
-		clutter_group_add (group, actor);
+		clutter_container_add_actor (container, actor);
+	}
+
+	Py_INCREF (Py_None);
+	return Py_None;
+}
+%%
+override clutter_container_remove
+static PyObject *
+_wrap_clutter_container_remove (PyGObject *self,
+                                PyObject  *args)
+{
+	ClutterContainer *container;
+	int i, len;
+
+	if ((len = PyTuple_Size(args)) < 1) {
+		PyErr_SetString(PyExc_TypeError,
+				"requires at least one argument");
+		return NULL;
+	}
+
+	container = CLUTTER_CONTAINER (self->obj);
+
+	for (i = 0; i < len; i++) {
+		PyGObject *pyactor;
+		ClutterActor *actor;
+
+		pyactor = (PyGObject *) PyTuple_GetItem (args, i);
+		if (!pygobject_check (pyactor, &PyClutterActor_Type)) {
+			PyErr_SetString (PyExc_TypeError,
+					 "Expected a ClutterActor");
+			return NULL;
+		}
+		
+		actor = CLUTTER_ACTOR (pyactor->obj);
+
+		clutter_container_remove_actor (container, actor);
 	}
 
 	Py_INCREF (Py_None);
@@ -473,4 +515,16 @@ _wrap_clutter_group_get_children (PyGObject *self)
 
         return py_list;
 }
+%%
+override clutter_stage_get_perspective noargs
+static PyObject *
+_wrap_clutter_stage_get_perspective (PyGObject *self)
+{
+        gfloat fovy, aspect, z_near, z_far;
 
+        clutter_stage_get_perspective (CLUTTER_STAGE (self->obj),
+                                       &fovy, &aspect, &z_near, &z_far);
+
+        return Py_BuildValue ("(ffff)", fovy, aspect, z_near, z_far);
+}
+%%

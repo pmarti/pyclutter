@@ -18,10 +18,6 @@ ignore
   clutter_behaviour_rotate_get_boundsx
   clutter_behaviour_scale_newx
   clutter_behaviour_scale_get_boundsx
-  clutter_ramp_inc_func
-  clutter_ramp_dec_func
-  clutter_ramp_func
-  clutter_sine_func
 %%
 new-constructor CLUTTER_TYPE_ALPHA
 %%
