@@ -71,10 +71,10 @@ PYGTK_DEFSDIR=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
 AC_SUBST(PYGTK_DEFSDIR)
 AC_MSG_RESULT($PYGTK_DEFSDIR)
 
-#AC_MSG_CHECKING(for gst-python defs)
-#PYGST_DEFSDIR=`$PKG_CONFIG --variable=defsdir gst-python-0.10`
-#AC_SUBST(PYGST_DEFSDIR)
-#AC_MSG_RESULT($PYGST_DEFSDIR)
+AC_MSG_CHECKING(for gst-python defs)
+PYGST_DEFSDIR=`$PKG_CONFIG --variable=defsdir gst-python-0.10`
+AC_SUBST(PYGST_DEFSDIR)
+AC_MSG_RESULT($PYGST_DEFSDIR)
 
 dnl check for clutter
 PKG_CHECK_MODULES(CLUTTER, clutter-0.3 >= clutter_required_version)

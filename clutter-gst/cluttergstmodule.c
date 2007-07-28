@@ -11,7 +11,7 @@ void pycluttergst_register_classes (PyObject *d);
 extern PyMethodDef pycluttergst_functions[];
 
 DL_EXPORT (void)
-init_gst (void)
+initcluttergst (void)
 {
         PyObject *m, *d;
 
@@ -23,7 +23,7 @@ init_gst (void)
                 return;
         }
 
-        m = Py_InitModule ("_gst", pycluttergst_functions);
+        m = Py_InitModule ("cluttergst", pycluttergst_functions);
         d = PyModule_GetDict (m);
 
         pycluttergst_register_classes (d);
@@ -32,7 +32,6 @@ init_gst (void)
                 Py_FatalError ("unable to initialise cluttergst module");
         }
         else {
-                clutter_init (NULL, NULL);
                 clutter_gst_init (NULL, NULL);
         }
 }
