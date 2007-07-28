@@ -574,3 +574,16 @@ _wrap_clutter_layout_natural_request (PyGObject *self)
         return Py_BuildValue ("(ii)", width, height);
 }
 %%
+override clutter_entry_handle_key_event
+static PyObject *
+_wrap_clutter_entry_handle_key_event (PyGObject *self, PyObject *args)
+{
+        ClutterKeyEvent *key_event;
+
+        key_event = (ClutterKeyEvent *) pyg_boxed_get (args, ClutterEvent);
+        clutter_entry_handle_key_event (CLUTTER_ENTRY (self->obj), key_event);
+        
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
