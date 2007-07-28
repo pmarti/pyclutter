@@ -35,3 +35,9 @@
   (is-constructor-of "ClutterGstVideoTexture")
   (return-type "ClutterTexture*")
 )
+
+(define-method get_playbin
+  (of-object "ClutterGstVideoTexture")
+  (c-name "clutter_gst_video_texture_get_playbin")
+  (return-type "GstElement*")
+)
