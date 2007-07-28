@@ -34,18 +34,6 @@ ignore
   clutter_container_add_valist
   clutter_container_remove_actor
   clutter_container_remove_valist
-  clutter_ramp_inc_func
-  clutter_ramp_dec_func
-  clutter_ramp_func
-  clutter_sine_inc_func
-  clutter_sine_dec_func
-  clutter_sine_half_func
-  clutter_sine_func
-  clutter_square_func
-  clutter_smoothstep_inc_func
-  clutter_smoothstep_dec_func
-  clutter_exp_inc_func
-  clutter_exp_dec_func
   clutter_effect_template_new
   clutter_effect_template_new_full
   clutter_effect_fade

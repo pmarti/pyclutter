@@ -942,3 +942,207 @@ _wrap_clutter_behaviour_scale_get_bounds (PyGObject *self)
         return Py_BuildValue ("(dd)", begin, end);
 }
 %%
+override clutter_ramp_inc_func
+static PyObject *
+_wrap_clutter_ramp_inc_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_ramp_inc_func (alpha, NULL));
+          }
+        
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_ramp_dec_func
+static PyObject *
+_wrap_clutter_ramp_dec_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_ramp_dec_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_ramp_func
+static PyObject *
+_wrap_clutter_ramp_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_ramp_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_sine_inc_func
+static PyObject *
+_wrap_clutter_sine_inc_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_sine_inc_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_sine_dec_func
+static PyObject *
+_wrap_clutter_sine_dec_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_sine_dec_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_sine_half_func
+static PyObject *
+_wrap_clutter_sine_half_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_sine_half_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_sine_func
+static PyObject *
+_wrap_clutter_sine_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_sine_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_square_func
+static PyObject *
+_wrap_clutter_square_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_square_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_smoothstep_inc_func
+static PyObject *
+_wrap_clutter_smoothstep_inc_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_smoothstep_inc_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_smoothstep_dec_func
+static PyObject *
+_wrap_clutter_smoothstep_dec_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_smoothstep_dec_func (alpha, NULL));
+          }
+        
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_exp_inc_func
+static PyObject *
+_wrap_clutter_exp_inc_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_exp_inc_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
+override clutter_exp_dec_func
+static PyObject *
+_wrap_clutter_exp_dec_func (PyObject *self, PyObject *args)
+{
+        PyObject *py_alpha;
+        ClutterAlpha *alpha;
+
+        py_alpha = PyTuple_GetItem (args, 0);
+        if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
+          {
+            alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
+            return PyInt_FromLong (clutter_exp_dec_func (alpha, NULL));
+          }
+
+        return PyInt_FromLong (0);
+}
+%%
