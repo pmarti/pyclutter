@@ -9,6 +9,7 @@ modulename cluttergst
 %%
 import gobject.GObject as PyGObject_Type
 import clutter.Texture as PyClutterTexture_Type
+import gst.BaseSink as PyGstBaseSink_Type
 %%
 ignore-glob
   *_get_type
