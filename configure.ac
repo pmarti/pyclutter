@@ -119,7 +119,7 @@ AC_SUBST(CLUTTERCAIRO_CFLAGS)
 AC_SUBST(CLUTTERCAIRO_LIBS)
 AM_CONDITIONAL(BUILD_CLUTTERCAIRO, [test "x$build_cluttercairo" = "xyes"])
 if test -n "$export_dynamic"; then
-  CLUTTERGST_LIBS=`echo $CLUTTERCAIRO_LIBS | sed -e "s/$export_dynamic//"`
+  CLUTTERCAIRO_LIBS=`echo $CLUTTERCAIRO_LIBS | sed -e "s/$export_dynamic//"`
 fi
 
 dnl Building documentation

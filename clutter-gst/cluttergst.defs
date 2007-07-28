@@ -14,7 +14,7 @@
   (gtype-id "CLUTTER_GST_TYPE_VIDEO_TEXTURE")
 )
 
-(define-function clutter_gst_audio_get_type
+(define-function audio_get_type
   (c-name "clutter_gst_audio_get_type")
   (return-type "GType")
 )
@@ -25,7 +25,7 @@
   (return-type "ClutterGstAudio*")
 )
 
-(define-function clutter_gst_video_texture_get_type
+(define-function video_texture_get_type
   (c-name "clutter_gst_video_texture_get_type")
   (return-type "GType")
 )

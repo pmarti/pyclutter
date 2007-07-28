@@ -5,7 +5,7 @@ headers
 #include <clutter/clutter.h>
 #include <clutter-gst/clutter-gst.h>
 %%
-modulename clutter.gst
+modulename cluttergst
 %%
 import gobject.GObject as PyGObject_Type
 import clutter.Texture as PyClutterTexture_Type
