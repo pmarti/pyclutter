@@ -8,11 +8,12 @@ m4_define(pyclutter_version_minor, 3)
 m4_define(pyclutter_version_micro, 0)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
-m4_define(clutter_required_version, 0.3.0)
-m4_define(cluttergtk_required_version, 0.3.0)
-m4_define(cluttergst_required_version, 0.3.0)
-m4_define(cluttercairo_required_version, 0.3.0)
-m4_define(pygtk_required_version, 2.8.0)
+m4_define(clutter_required_version,      0.3.1)
+m4_define(cluttergtk_required_version,   0.3.1)
+m4_define(cluttergst_required_version,   0.3.1)
+m4_define(cluttercairo_required_version, 0.3.1)
+m4_define(pycairo_required_version,      1.0.2) dnl or 1.1.7
+m4_define(pygtk_required_version,        2.8.0)
 
 AC_INIT([pyclutter], pyclutter_version, 
         [http://bugzilla.o-hand.com/enter_bug.cgi?product=Clutter])
@@ -93,10 +94,11 @@ PKG_CHECK_MODULES(CLUTTERGST,
                   build_cluttergst=no)
 AC_SUBST(CLUTTERGST_CFLAGS)
 AC_SUBST(CLUTTERGST_LIBS)
-AM_CONDITIONAL(BUILD_CLUTTERGST, [test "x$build_cluttergst" = "xyes"])
 if test -n "$export_dynamic"; then
   CLUTTERGST_LIBS=`echo $CLUTTERGST_LIBS | sed -e "s/$export_dynamic//"`
 fi
+
+AM_CONDITIONAL(BUILD_CLUTTERGST, [test "x$build_cluttergst" = "xyes"])
 
 build_cluttergtk=no
 PKG_CHECK_MODULES(CLUTTERGTK,
@@ -105,22 +107,37 @@ PKG_CHECK_MODULES(CLUTTERGTK,
                   build_cluttergtk=no)
 AC_SUBST(CLUTTERGTK_CFLAGS)
 AC_SUBST(CLUTTERGTK_LIBS)
-AM_CONDITIONAL(BUILD_CLUTTERGTK, [test "x$build_cluttergtk" = "xyes"])
 if test -n "$export_dynamic"; then
   CLUTTERGTK_LIBS=`echo $CLUTTERGTK_LIBS | sed -e "s/$export_dynamic//"`
 fi
 
+AM_CONDITIONAL(BUILD_CLUTTERGTK, [test "x$build_cluttergtk" = "xyes"])
+
 build_cluttercairo=no
-PKG_CHECK_MODULES(CLUTTERCAIRO,
-                  clutter-cairo-0.3 >= cluttercairo_required_version,
-                  build_cluttercairo=yes,
-                  build_cluttercairo=no)
-AC_SUBST(CLUTTERCAIRO_CFLAGS)
-AC_SUBST(CLUTTERCAIRO_LIBS)
-AM_CONDITIONAL(BUILD_CLUTTERCAIRO, [test "x$build_cluttercairo" = "xyes"])
-if test -n "$export_dynamic"; then
-  CLUTTERCAIRO_LIBS=`echo $CLUTTERCAIRO_LIBS | sed -e "s/$export_dynamic//"`
+PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
+                  have_pycairo=true,
+                  have_pycairo=false)
+AC_SUBST(PYCAIRO_CFLAGS)
+AC_SUBST(PYCAIRO_LIBS)
+if test $have_pycairo; then
+  PYGTK_CODEGEN_DEFINES="-DHAVE_PYCAIRO $PYGTK_CODEGEN_DEFINES";
+  AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
+  build_cluttercairo=yes
+
+  PKG_CHECK_MODULES(CLUTTERCAIRO,
+                    clutter-cairo-0.3 >= cluttercairo_required_version,
+                    build_cluttercairo=yes,
+                    build_cluttercairo=no)
+  AC_SUBST(CLUTTERCAIRO_CFLAGS)
+  AC_SUBST(CLUTTERCAIRO_LIBS)
+  if test -n "$export_dynamic"; then
+    CLUTTERCAIRO_LIBS=`echo $CLUTTERCAIRO_LIBS | sed -e "s/$export_dynamic//"`
+  fi
+else
+  build_cluttercairo=no
 fi
+
+AM_CONDITIONAL(BUILD_CLUTTERCAIRO, [test "x$build_cluttercairo" = "xyes"])
 
 dnl Building documentation
 enable_doc=no
