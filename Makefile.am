@@ -8,9 +8,9 @@ endif
 #SUBDIRS += clutter-gtk
 #endif
 
-#if BUILD_CLUTTERCAIRO
-#SUBDIRS += clutter-cairo
-#endif
+if BUILD_CLUTTERCAIRO
+SUBDIRS += clutter-cairo
+endif
 
 #if ENABLE_DOC
 #SUBDIRS += docs
