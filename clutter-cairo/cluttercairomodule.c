@@ -29,10 +29,12 @@ initcluttercairo (void)
     if (Pycairo_CAPI == NULL)
         return;
 
+#if 0
     PyClutterCairoContext_Type.tp_base = &PycairoContext_Type;
     if (PyType_Ready(&PyClutterCairoContext_Type) < 0) {
         g_return_if_reached ();
     }
+#endif
 
     init_pygobject ();
 

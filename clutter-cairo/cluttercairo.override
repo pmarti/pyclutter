@@ -1,4 +1,15 @@
 %%
-ignore
-  clutter_cairo_get_type
+headers
+#define NO_IMPORT_PYGOBJECT
+#include <pygobject.h>
+#include <pango/pangocairo.h>
+#include <pycairo.h>
+
+extern Pycairo_CAPI_t *Pycairo_CAPI;
+
+import clutter.Texture as PyClutterTexture_Type
+
+%%
+ignore-glob
+  *_get_type
 %%
