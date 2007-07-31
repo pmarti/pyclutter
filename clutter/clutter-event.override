@@ -55,6 +55,7 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 			break;
 		case CLUTTER_BUTTON_PRESS:	/* ClutterButtonEvent	button */
 		case CLUTTER_2BUTTON_PRESS:
+                case CLUTTER_3BUTTON_PRESS:
 		case CLUTTER_BUTTON_RELEASE:
 			if (!strcmp (attr, "time")) {
 				CHECK_VALUE_IS_INT (attr, value);
@@ -82,6 +83,33 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 				return 0;
 			}
 			break;
+                case CLUTTER_SCROLL:
+                        if (!strcmp (attr, "time")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->scroll.time = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (attr[0] == 'x' && attr[1] == '\0') {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->scroll.x = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (attr[0] == 'y' && attr[1] == '\0') {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->scroll.y = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (!strcmp (attr, "modifier_state")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->scroll.modifier_state = PyInt_AsLong (value);
+				return 0;
+			}
+			else if (!strcmp (attr, "button")) {
+				CHECK_VALUE_IS_INT (attr, value);
+				event->scroll.direction = PyInt_AsLong (value);
+				return 0;
+			}
+                        break;
 		case CLUTTER_KEY_PRESS: /* ClutterKeyEvent:	key */
 		case CLUTTER_KEY_RELEASE:
 			if (!strcmp (attr, "time")) {
@@ -143,6 +171,7 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 			break;
 		case CLUTTER_BUTTON_PRESS:
 		case CLUTTER_2BUTTON_PRESS:
+		case CLUTTER_3BUTTON_PRESS:
 		case CLUTTER_BUTTON_RELEASE:
 			if (!strcmp (attr, "__members__"))
 				return Py_BuildValue ("[ssssss]",
@@ -162,6 +191,25 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 			if (!strcmp (attr, "button"))
 				return PyInt_FromLong (event->button.button);
 			break;
+                case CLUTTER_SCROLL:
+                        if (!strcmp (attr, "__members__"))
+				return Py_BuildValue ("[ssssss]",
+						      "type",
+						      "time",
+						      "x", "y",
+						      "modifier_state",
+						      "direction");
+			if (!strcmp (attr, "time"))
+				return PyInt_FromLong (event->scroll.time);
+			if (!strcmp (attr, "x"))
+				return PyInt_FromLong (event->scroll.x);
+			if (!strcmp (attr, "y"))
+				return PyInt_FromLong (event->scroll.y);
+			if (!strcmp (attr, "motifier_state"))
+				return PyInt_FromLong (event->scroll.modifier_state);
+			if (!strcmp (attr, "direction"))
+				return PyInt_FromLong (event->scroll.direction);
+                        break;
 		case CLUTTER_KEY_PRESS:
 		case CLUTTER_KEY_RELEASE:
 			if (!strcmp (attr, "__members__"))
