@@ -11,7 +11,10 @@ void pycluttercairo_register_classes (PyObject *d);
 void pycluttercairo_add_constants (PyObject *module, const gchar *strip_prefix);
 
 extern PyMethodDef pycluttercairo_functions[];
+
+#if 0
 extern PyTypeObject PyClutterCairoContext_Type;
+#endif
 
 Pycairo_CAPI_t *Pycairo_CAPI;
 
@@ -40,8 +43,14 @@ initcluttercairo (void)
 
     pycluttercairo_register_classes (d);
 
+#if 0
     Py_INCREF (&PyClutterCairoContext_Type);
     PyModule_AddObject (m, "CairoContext",
                         (PyObject *) &PyClutterCairoContext_Type)
 ;
+#endif
+
+    if (PyErr_Occurred ()) {
+        Py_FatalError ("unable to initialise cluttercairo module");
+    }
 }
