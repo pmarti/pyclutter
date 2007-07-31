@@ -10,13 +10,13 @@
   (return-type "GType")
 )
 
-(define-function clutter_cairo_new
+(define-function cairo_new
   (c-name "clutter_cairo_new")
   (return-type "ClutterActor*")
-  (is-constructor-of ClutterCairo)
-  (parameters
-    '("guint" "width")
-    '("guint" "height")
+  (is-constructor-of "ClutterCairo")
+  (properties
+    '("surface-width" (argname "width"))
+    '("surface-height" (argname "height"))
   )
 )
 
