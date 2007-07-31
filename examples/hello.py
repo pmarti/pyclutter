@@ -6,6 +6,7 @@ class HelloClutter:
         self.stage = clutter.stage_get_default()
         self.stage.set_color(clutter.color_parse('DarkSlateGrey'))
         self.stage.set_size(800, 600)
+        self.stage.set_title('My First Clutter Application')
         self.stage.connect('key-press-event', clutter.main_quit)
         self.stage.connect('button-press-event',
                            self.on_button_press_event)
