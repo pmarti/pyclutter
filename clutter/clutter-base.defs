@@ -26,6 +26,13 @@
   (return-type "none")
 )
 
+(define-virtual show_all
+  (of-object "ClutterActor")
+  (return-type "none")
+  (parameters
+  )
+)
+
 (define-method hide
   (of-object "ClutterActor")
   (c-name "clutter_actor_hide")
@@ -38,15 +45,32 @@
   (return-type "none")
 )
 
+(define-virtual hide_all
+  (of-object "ClutterActor")
+  (return-type "none")
+  (parameters
+  )
+)
+
 (define-method realize
   (of-object "ClutterActor")
   (c-name "clutter_actor_realize")
   (return-type "none")
 )
 
+(define-virtual realize
+  (of-object "ClutterActor")
+  (return-type "none")
+)
+
 (define-method unrealize
   (of-object "ClutterActor")
   (c-name "clutter_actor_unrealize")
+  (return-type "none")
+)
+
+(define-virtual unrealize
+  (of-object "ClutterActor")
   (return-type "none")
 )
 
