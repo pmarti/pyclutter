@@ -101,9 +101,25 @@
   )
 )
 
+(define-virtual request_coords
+  (of-object "ClutterActor")
+  (return-type "none")
+  (parameters
+    '("ClutterActorBox*" "box")
+  )
+)
+
 (define-method query_coords
   (of-object "ClutterActor")
   (c-name "clutter_actor_query_coords")
+  (return-type "none")
+  (parameters
+    '("ClutterActorBox*" "box")
+  )
+)
+
+(define-virtual query_coords
+  (of-object "ClutterActor")
   (return-type "none")
   (parameters
     '("ClutterActorBox*" "box")

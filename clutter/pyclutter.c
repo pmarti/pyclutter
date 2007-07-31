@@ -156,3 +156,44 @@ out:
 
         return FALSE;
 }
+
+gboolean
+pyclutter_actor_box_from_pyobject (PyObject        *object,
+                                   ClutterActorBox *box)
+{
+        g_return_val_if_fail (box != NULL, FALSE);
+
+        if (pyg_boxed_check (object, CLUTTER_TYPE_ACTOR_BOX)) {
+                *box = *pyg_boxed_get (object, ClutterActorBox);
+                return TRUE;
+        }
+
+        if (PyTuple_Check (object) && (PyTuple_Size (object) == 4)) {
+                int i;
+
+                for (i = 0; i < 4; i++) {
+                        PyObject *comp = PyTuple_GetItem (object, i);
+
+                        if (!PyInt_Check (comp))
+                                goto out;
+
+                        switch (i) {
+                        case 0: box->x1 = PyInt_AsLong (comp); break;
+                        case 1: box->y1 = PyInt_AsLong (comp); break;
+                        case 2: box->x2 = PyInt_AsLong (comp); break;
+                        case 3: box->y2 = PyInt_AsLong (comp); break;
+                        default:
+                                g_assert_not_reached ();
+                                break;
+                        }
+                }
+
+                return TRUE;
+        }
+
+out:
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError, "could not convert to ClutterActorBox");
+
+        return FALSE;
+}
