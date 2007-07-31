@@ -1828,6 +1828,14 @@
   )
 )
 
+(define-virtual add
+  (of-object "ClutterContainer")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
 (define-method remove
   (of-object "ClutterContainer")
   (c-name "clutter_container_remove")
@@ -1854,6 +1862,14 @@
   (parameters
     '("ClutterActor*" "first_actor")
     '("va_list" "var_args")
+  )
+)
+
+(define-virtual remove
+  (of-object "ClutterContainer")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
   )
 )
 
