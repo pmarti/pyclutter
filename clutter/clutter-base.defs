@@ -56,9 +56,24 @@
   (return-type "none")
 )
 
+(define-virtual paint
+  (of-object "ClutterActor")
+  (return-type "none")
+  (parameters
+  )
+)
+
 (define-method pick
   (of-object "ClutterActor")
   (c-name "clutter_actor_pick")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-virtual pick
+  (of-object "ClutterActor")
   (return-type "none")
   (parameters
     '("const-ClutterColor*" "color")
@@ -2650,6 +2665,13 @@
   (return-type "ClutterLayoutFlags")
 )
 
+(define-virtual get_layout_flags
+  (of-object "ClutterLayout")
+  (return-type "ClutterLayoutFlags")
+  (parameters
+  )
+)
+
 (define-method width_for_height
   (of-object "ClutterLayout")
   (c-name "clutter_layout_width_for_height")
@@ -2657,6 +2679,15 @@
   (parameters
     '("gint*" "width")
     '("gint" "height")
+  )
+)
+
+(define-virtual width_for_height
+  (of-object "ClutterLayout")
+  (return-type "none")
+  (parameters
+    '("guint32*" "width")
+    '("guint32" "height")
   )
 )
 
@@ -2670,6 +2701,15 @@
   )
 )
 
+(define-virtual height_for_width
+  (of-object "ClutterLayout")
+  (return-type "none")
+  (parameters
+    '("guint32" "width")
+    '("guint32*" "height")
+  )
+)
+
 (define-method natural_request
   (of-object "ClutterLayout")
   (c-name "clutter_layout_natural_request")
@@ -2677,6 +2717,15 @@
   (parameters
     '("gint*" "width")
     '("gint*" "height")
+  )
+)
+
+(define-virtual natural_request
+  (of-object "ClutterLayout")
+  (return-type "none")
+  (parameters
+    '("guint32*" "width")
+    '("guint32*" "height")
   )
 )
 

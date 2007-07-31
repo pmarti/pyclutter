@@ -575,3 +575,93 @@ _wrap_clutter_entry_handle_key_event (PyGObject *self, PyObject *args)
         return Py_None;
 }
 %%
+override ClutterLayout__do_width_for_height kwargs
+static PyObject *
+_wrap_ClutterLayout__do_width_for_height (PyObject *cls,
+                                          PyObject *args,
+                                          PyObject *kwargs)
+{
+        ClutterLayoutIface *iface;
+        static char *kwlist[] = { "self", "height", NULL };
+        PyGObject *self;
+        gint32 height, width;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "Oi:ClutterLayout.height_for_width",
+                                          kwlist,
+                                          &PyClutterBehaviour_Type, &self, &height))
+                return NULL;
+        
+        iface = g_type_interface_peek (g_type_class_peek (pyg_type_from_object (cls)), CLUTTER_TYPE_LAYOUT);
+        if (iface->width_for_height) {
+          iface->width_for_height (CLUTTER_LAYOUT (self->obj), &width, height);
+        }
+        else {
+                PyErr_SetString (PyExc_NotImplementedError,
+                                 "interface method ClutterLayout.width_for_height not implemented");
+                return NULL;
+        }
+
+        return PyInt_FromLong (width);
+}
+%%
+override ClutterLayout__do_height_for_width kwargs
+static PyObject *
+_wrap_ClutterLayout__do_height_for_width (PyObject *cls,
+                                          PyObject *args,
+                                          PyObject *kwargs)
+{
+        ClutterLayoutIface *iface;
+        static char *kwlist[] = { "self", "width", NULL };
+        PyGObject *self;
+        gint32 height, width;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "Oi:ClutterLayout.height_for_width",
+                                          kwlist,
+                                          &PyClutterBehaviour_Type, &self, &width))
+                return NULL;
+
+        iface = g_type_interface_peek (g_type_class_peek (pyg_type_from_object (cls)), CLUTTER_TYPE_LAYOUT);
+        if (iface->height_for_width) {
+          iface->height_for_width (CLUTTER_LAYOUT (self->obj), width, &height);
+        }
+        else {
+                PyErr_SetString (PyExc_NotImplementedError,
+                                 "interface method ClutterLayout.height_for_width not implemented");
+                return NULL;
+        }
+
+        return PyInt_FromLong (height);
+}
+%%
+override ClutterLayout__do_natural_request kwargs
+static PyObject *
+_wrap_ClutterLayout__do_natural_request (PyObject *cls,
+                                         PyObject *args,
+                                         PyObject *kwargs)
+{
+        ClutterLayoutIface *iface;
+        static char *kwlist[] = { "self", NULL };
+        PyGObject *self;
+        gint32 height, width;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O!:ClutterLayout.natural_request",
+                                          kwlist,
+                                          &PyClutterBehaviour_Type, &self))
+                return NULL;
+
+        iface = g_type_interface_peek (g_type_class_peek (pyg_type_from_object (cls)), CLUTTER_TYPE_LAYOUT);
+        if (iface->natural_request) {
+          iface->natural_request (CLUTTER_LAYOUT (self->obj), &width, &height);
+        }
+        else {
+                PyErr_SetString (PyExc_NotImplementedError,
+                                 "interface method ClutterLayout.natural_request not implemented");
+                return NULL;
+        }
+
+        return Py_BuildValue ("(ii)", width, height);
+}
+%%
