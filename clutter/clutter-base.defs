@@ -3214,13 +3214,19 @@
   (return-type "const-gchar*")
 )
 
-(define-method set_user_resizeable
+(define-method set_user_resizable
   (of-object "ClutterStage")
-  (c-name "clutter_stage_set_user_resizeable")
+  (c-name "clutter_stage_set_user_resizable")
   (return-type "none")
   (parameters
     '("gboolean" "value")
   )
+)
+
+(define-method get_user_resizable
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_user_resizable")
+  (return-type "gboolean")
 )
 
 
