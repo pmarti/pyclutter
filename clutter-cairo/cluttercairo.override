@@ -15,3 +15,12 @@ import clutter.Texture as PyClutterTexture_Type
 ignore-glob
   *_get_type
 %%
+override clutter_cairo_create noargs
+static PyObject *
+_wrap_clutter_cairo_create (PyGObject *self)
+{
+    cairo_t *ret;
+
+    ret = clutter_cairo_create (CLUTTER_CAIRO (self->obj));
+    return PycairoContext_FromContext(ret, NULL, NULL);
+}
