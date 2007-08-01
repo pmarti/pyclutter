@@ -17,12 +17,12 @@ EXTRA_DIST = $(CLUTTERCAIRO_DEFS) cluttercairo.override
 cluttercairo.c: $(CLUTTERCAIRO_DEFS) cluttercairo.override
 cluttercairo_la_CFLAGS = $(PYCAIRO_CFLAGS) $(CLUTTERCAIRO_CFLAGS)
 cluttercairo_la_LDFLAGS = $(common_ldflags) -export-symbols-regex initcluttercairo
-cluttercairo_la_LIBADD = $(CLUTTERCAIRO_LIBS)
+cluttercairo_la_LIBADD = $(PYGTK_LIBS) $(PYCAIRO_LIBS) $(CLUTTERCAIRO_LIBS)
 cluttercairo_la_SOURCES = cluttercairomodule.c
 nodist_cluttercairo_la_SOURCES = cluttercairo.c
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
-defs_DATA = $(CLUTTERGST_DEFS)
+defs_DATA = $(CLUTTERCAIRO_DEFS)
 
 # code generator
 .defs.c:

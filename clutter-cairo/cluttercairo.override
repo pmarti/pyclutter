@@ -1,12 +1,10 @@
 %%
 headers
 #define NO_IMPORT_PYGOBJECT
-#include <pygobject.h>
-#include <pango/pangocairo.h>
+#include "pygobject.h"
 #include <pycairo.h>
 #include <clutter/clutter.h>
 #include <clutter-cairo/clutter-cairo.h>
-
 extern Pycairo_CAPI_t *Pycairo_CAPI;
 %%
 modulename cluttercairo

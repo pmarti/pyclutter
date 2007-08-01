@@ -1,15 +1,14 @@
 #ifdef HAVE_CONFIG_H
-#  include "config.h"
+#include "config.h"
 #endif
-#include <Python.h>
-#include <pygobject.h>
 
-#include <pango/pangocairo.h>
+#include <pygobject.h>
+#include <cairo/cairo.h>
 #include <pycairo.h>
+#include <clutter/clutter.h>
+#include <clutter-cairo/clutter-cairo.h>
 
 void pycluttercairo_register_classes (PyObject *d);
-void pycluttercairo_add_constants (PyObject *module, const gchar *strip_prefix);
-
 extern PyMethodDef pycluttercairo_functions[];
 
 #if 0
@@ -22,15 +21,23 @@ DL_EXPORT(void)
 initcluttercairo (void)
 {
     PyObject *m, *d;
+    
+    init_pygobject ();
+    
+    Pycairo_IMPORT;
+    if (Pycairo_CAPI == NULL)
+        return;
+
+    if (PyImport_ImportModule ("clutter") == NULL) {
+        PyErr_SetString (PyExc_ImportError,
+                         "could not import clutter");
+        return;
+    }
 
     /* perform any initialisation required by the library here */
 
     m = Py_InitModule ("cluttercairo", pycluttercairo_functions);
     d = PyModule_GetDict (m);
-
-    Pycairo_IMPORT;
-    if (Pycairo_CAPI == NULL)
-        return;
 
 #if 0
     PyClutterCairoContext_Type.tp_base = &PycairoContext_Type;
@@ -38,8 +45,6 @@ initcluttercairo (void)
         g_return_if_reached ();
     }
 #endif
-
-    init_pygobject ();
 
     pycluttercairo_register_classes (d);
 

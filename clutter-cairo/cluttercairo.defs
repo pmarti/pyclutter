@@ -1,16 +1,16 @@
-(define-object Cairo
-  (in-module "Clutter")
-  (parent "GObject")
+(define-object CairoTexture
+  (in-module "ClutterCairo")
+  (parent "ClutterTexture")
   (c-name "ClutterCairo")
   (gtype-id "CLUTTER_TYPE_CAIRO")
 )
 
-(define-function clutter_cairo_get_type
+(define-function clutter_cairo_texture_get_type
   (c-name "clutter_cairo_get_type")
   (return-type "GType")
 )
 
-(define-function cairo_new
+(define-function texture_new
   (c-name "clutter_cairo_new")
   (return-type "ClutterActor*")
   (is-constructor-of "ClutterCairo")
