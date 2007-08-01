@@ -318,6 +318,25 @@
   )
 )
 
+(define-method get_rxang
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_rxang")
+  (return-type "gdouble")
+)
+
+(define-method get_ryang
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_ryang")
+  (return-type "gdouble")
+)
+
+(define-method get_rzang
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_rzang")
+  (return-type "gdouble")
+)
+
+
 (define-method get_rxangx
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_rxangx")
