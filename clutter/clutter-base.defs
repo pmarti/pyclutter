@@ -776,9 +776,24 @@
   (return-type "GType")
 )
 
-(define-function get_default_backend
+(define-function backend_get_default
   (c-name "clutter_get_default_backend")
   (return-type "ClutterBackend*")
+)
+
+(define-method set_resolution
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_set_resolution")
+  (return-type "none")
+  (parameters
+    '("guint" "dpi")
+  )
+)
+
+(define-method get_resolution
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_get_resolution")
+  (return-type "gdouble")
 )
 
 (define-method set_double_click_time
