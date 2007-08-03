@@ -504,6 +504,19 @@ _wrap_clutter_container_get_children (PyGObject *self)
         return py_list;
 }
 %%
+override clutter_entry_handle_key_event
+static PyObject *
+_wrap_clutter_entry_handle_key_event (PyGObject *self, PyObject *args)
+{
+        ClutterKeyEvent *key_event;
+
+        key_event = (ClutterKeyEvent *) pyg_boxed_get (args, ClutterEvent);
+        clutter_entry_handle_key_event (CLUTTER_ENTRY (self->obj), key_event);
+        
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
 override clutter_stage_get_perspective noargs
 static PyObject *
 _wrap_clutter_stage_get_perspective (PyGObject *self)
@@ -533,6 +546,76 @@ _wrap_clutter_layout_width_for_height (PyGObject *self, PyObject *args)
         return PyInt_FromLong (width);
 }
 %%
+override ClutterLayout__proxy_do_width_for_height
+static void
+_wrap_ClutterLayout__proxy_do_width_for_height (ClutterLayout *self,
+                                                gint32        *width,
+                                                gint32         height)
+{
+    PyGILState_STATE __py_state;
+    PyObject *py_self;
+    PyObject *py_args;
+    PyObject *py_height;
+    PyObject *py_retval;
+    PyObject *py_method;
+    
+    __py_state = pyg_gil_state_ensure();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+
+    py_height = PyInt_FromLong(height);
+    
+    py_args = PyTuple_New(1);
+    PyTuple_SET_ITEM(py_args, 0, py_height);
+    
+    py_method = PyObject_GetAttrString(py_self, "do_width_for_height");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+
+    py_retval = PyObject_CallObject(py_method, NULL);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    if (!PyInt_Check(py_retval)) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    
+    if (width)
+      *width = PyInt_AsLong(py_retval);
+    
+    Py_DECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_args);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(__py_state);
+    
+    return;
+}
+%%
 override clutter_layout_height_for_width
 static PyObject *
 _wrap_clutter_layout_height_for_width (PyGObject *self, PyObject *args)
@@ -550,6 +633,75 @@ _wrap_clutter_layout_height_for_width (PyGObject *self, PyObject *args)
         return PyInt_FromLong (height);
 }
 %%
+override ClutterLayout__proxy_do_height_for_width
+static void
+_wrap_ClutterLayout__proxy_do_height_for_width (ClutterLayout *self,
+                                                gint32         width,
+                                                gint32        *height)
+{
+    PyGILState_STATE __py_state;
+    PyObject *py_self;
+    PyObject *py_args;
+    PyObject *py_width;
+    PyObject *py_retval;
+    PyObject *py_method;
+    
+    __py_state = pyg_gil_state_ensure();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+
+    py_width = PyInt_FromLong(width);
+    
+    py_args = PyTuple_New(1);
+    PyTuple_SET_ITEM(py_args, 0, py_width);
+    
+    py_method = PyObject_GetAttrString(py_self, "do_height_for_width");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    py_retval = PyObject_CallObject(py_method, NULL);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    if (!PyInt_Check (py_retval)) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    
+    if (height)
+      *height = PyInt_AsLong (py_retval);
+    
+    Py_DECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_args);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(__py_state);
+    
+    return;
+}
+%%
 override clutter_layout_natural_request noargs
 static PyObject *
 _wrap_clutter_layout_natural_request (PyGObject *self)
@@ -562,17 +714,64 @@ _wrap_clutter_layout_natural_request (PyGObject *self)
         return Py_BuildValue ("(ii)", width, height);
 }
 %%
-override clutter_entry_handle_key_event
-static PyObject *
-_wrap_clutter_entry_handle_key_event (PyGObject *self, PyObject *args)
+override ClutterLayout__proxy_do_natural_request
+static void
+_wrap_ClutterLayout__proxy_do_natural_request (ClutterLayout *self,
+                                               gint32        *width,
+                                               gint32        *height)
 {
-        ClutterKeyEvent *key_event;
+    PyGILState_STATE __py_state;
+    PyObject *py_self;
+    PyObject *py_retval;
+    PyObject *py_method;
+    gint32 my_width, my_height;
+    
+    __py_state = pyg_gil_state_ensure();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        pyg_gil_state_release(__py_state);
+        return;
+    }
 
-        key_event = (ClutterKeyEvent *) pyg_boxed_get (args, ClutterEvent);
-        clutter_entry_handle_key_event (CLUTTER_ENTRY (self->obj), key_event);
-        
-        Py_INCREF (Py_None);
-        return Py_None;
+    py_method = PyObject_GetAttrString(py_self, "do_width_for_height");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    py_retval = PyObject_CallObject(py_method, NULL);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_method);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    if (!PyArg_ParseTuple(py_retval, "ii", &my_width, &my_height)) {
+	PyErr_Print();
+	Py_DECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_self);
+	pyg_gil_state_release(__py_state);
+	return;
+    }
+    
+    if (width)
+      *width = my_width;
+    if (height)
+      *height = my_height;
+    
+    Py_DECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(__py_state);
+    
+    return;
 }
 %%
 override ClutterLayout__do_width_for_height kwargs
