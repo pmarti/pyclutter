@@ -46,4 +46,12 @@
     </Version>
   </release>
 
+  <release>
+    <Version>
+      <created>2007-08-07</created>
+      <revision>0.4.0</revision>
+      <file-release rdf:resource="http://www.clutter-project.org/sources/pyclutter/0.4/pyclutter-0.4.0.tar.gz"/>
+    </Version>
+  </release>
+
 </Project>

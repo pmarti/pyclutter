@@ -1,3 +1,11 @@
+Overview of changes between 0.3.0 and 0.4.0
+===========================================
+
+* Resync with upstream
+* Allow creating clutter.Layout, clutter.Container and subclassing
+  every generic class in pure Python
+* Contain bindings for clutter-gst, clutter-gtk and clutter-cairo
+
 Overview of changes between 0.1.0 and 0.2.0
 ===========================================
 
