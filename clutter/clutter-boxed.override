@@ -640,7 +640,7 @@ _wrap_clutter_margin_setitem (PyGBoxed *self, Py_ssize_t pos, PyObject *value)
 		case 0: margin->top = val; break;
 		case 1: margin->right = val; break;
 		case 2: margin->bottom = val; break;
-		case 2: margin->left = val; break;
+		case 3: margin->left = val; break;
 		default:
 			g_assert_not_reached();
 			return -1;
@@ -796,7 +796,7 @@ _wrap_clutter_padding_setitem (PyGBoxed *self, Py_ssize_t pos, PyObject *value)
 		case 0: padding->top = val; break;
 		case 1: padding->right = val; break;
 		case 2: padding->bottom = val; break;
-		case 2: padding->left = val; break;
+		case 3: padding->left = val; break;
 		default:
 			g_assert_not_reached();
 			return -1;
