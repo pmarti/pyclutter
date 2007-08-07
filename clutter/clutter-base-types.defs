@@ -84,6 +84,30 @@
   )
 )
 
+(define-boxed Margin
+  (in-module "Clutter")
+  (c-name "ClutterMargin")
+  (gtype-id "CLUTTER_TYPE_MARGIN")
+  (fields
+    '("gint32" "top")
+    '("gint32" "right")
+    '("gint32" "bottom")
+    '("gint32" "left")
+  )
+)
+
+(define-boxed Padding
+  (in-module "Clutter")
+  (c-name "ClutterPadding")
+  (gtype-id "CLUTTER_TYPE_PADDING")
+  (fields
+    '("gint32" "top")
+    '("gint32" "right")
+    '("gint32" "bottom")
+    '("gint32" "left")
+  )
+)
+
 (define-boxed Vertex
   (in-module "Clutter")
   (c-name "ClutterVertex")

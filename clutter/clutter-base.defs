@@ -1570,36 +1570,83 @@
   (return-type "GType")
 )
 
-(define-method set_spacing
+(define-method set_color
   (of-object "ClutterBox")
-  (c-name "clutter_box_set_spacing")
+  (c-name "clutter_box_set_color")
   (return-type "none")
   (parameters
-    '("guint" "spacing")
+    '("const-ClutterColor*" "color")
   )
 )
 
-(define-method get_spacing
+(define-method get_color
   (of-object "ClutterBox")
-  (c-name "clutter_box_get_spacing")
-  (return-type "guint")
+  (c-name "clutter_box_get_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
 )
 
-(define-method pack_start
+(define-method set_margin
   (of-object "ClutterBox")
-  (c-name "clutter_box_pack_start")
+  (c-name "clutter_box_set_margin")
+  (return-type "none")
+  (parameters
+    '("const-ClutterMargin*" "margin")
+  )
+)
+
+(define-method get_margin
+  (of-object "ClutterBox")
+  (c-name "clutter_box_get_margin")
+  (return-type "none")
+  (parameters
+    '("ClutterMargin*" "margin")
+  )
+)
+
+(define-method set_default_padding
+  (of-object "ClutterBox")
+  (c-name "clutter_box_set_default_padding")
+  (return-type "none")
+  (parameters
+    '("gint" "top")
+    '("gint" "right")
+    '("gint" "bottom")
+    '("gint" "left")
+  )
+)
+
+(define-method get_default_padding
+  (of-object "ClutterBox")
+  (c-name "clutter_box_get_default_padding")
+  (return-type "none")
+  (parameters
+    '("gint*" "top")
+    '("gint*" "right")
+    '("gint*" "bottom")
+    '("gint*" "left")
+  )
+)
+
+(define-method pack_defaults
+  (of-object "ClutterBox")
+  (c-name "clutter_box_pack_defaults")
   (return-type "none")
   (parameters
     '("ClutterActor*" "actor")
   )
 )
 
-(define-method pack_end
+(define-method pack
   (of-object "ClutterBox")
-  (c-name "clutter_box_pack_end")
+  (c-name "clutter_box_pack")
   (return-type "none")
   (parameters
     '("ClutterActor*" "actor")
+    '("ClutterPackType" "pack_type")
+    '("const-ClutterPadding*" "padding")
   )
 )
 
@@ -1619,6 +1666,30 @@
   (return-type "gboolean")
   (parameters
     '("gint" "index_")
+    '("ClutterBoxChild*" "child")
+  )
+)
+
+(define-method remove_all
+  (of-object "ClutterBox")
+  (c-name "clutter_box_remove_all")
+  (return-type "none")
+  (parameters
+  )
+)
+
+(define-virtual pack_child
+  (of-object "ClutterBox")
+  (return-type "none")
+  (parameters
+    '("ClutterBoxChild*" "child")
+  )
+)
+
+(define-virtual unpack_child
+  (of-object "ClutterBox")
+  (return-type "none")
+  (parameters
     '("ClutterBoxChild*" "child")
   )
 )
@@ -2897,16 +2968,6 @@
   (return-type "gboolean")
 )
 
-(define-function threads_enter
-  (c-name "clutter_threads_enter")
-  (return-type "none")
-)
-
-(define-function threads_leave
-  (c-name "clutter_threads_leave")
-  (return-type "none")
-)
-
 (define-function base_init
   (c-name "clutter_base_init")
   (return-type "none")
@@ -3685,6 +3746,37 @@
 
 ;; From clutter-units.h
 
+(define-function units_from_int
+  (c-name "CLUTTER_UNITS_FROM_INT")
+  (return-type "gint32")
+  (parameters
+    '("gint" "value")
+  )
+)
+
+(define-function units_to_int
+  (c-name "CLUTTER_UNITS_TO_INT")
+  (return-type "gint")
+  (parameters
+    '("gint32" "units")
+  )
+)
+
+(define-function units_from_float
+  (c-name "CLUTTER_UNITS_FROM_FLOAT")
+  (return-type "gint32")
+  (parameters
+    '("gdouble" "value")
+  )
+)
+
+(define-function units_to_float
+  (c-name "CLUTTER_UNITS_TO_FLOAT")
+  (return-type "gdouble")
+  (parameters
+    '("gint32" "units")
+  )
+)
 
 
 ;; From clutter-util.h
