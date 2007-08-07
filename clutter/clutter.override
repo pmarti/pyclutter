@@ -219,20 +219,6 @@ _wrap_clutter_main_quit (PyObject *self, PyObject *args)
 	return Py_None;
 }
 %%
-override clutter_threads_enter noargs
-static PyObject *
-_wrap_clutter_threads_enter (PyObject *self)
-{
-	/* must allow threads while acquiring lock, or no other python
-         * code will execute while we wait! */
-	pyg_begin_allow_threads;
-	clutter_threads_enter ();
-	pyg_end_allow_threads;
-
-	Py_INCREF(Py_None);
-	return Py_None;
-}
-%%
 override clutter_stage_set_color kwargs
 static PyObject *
 _wrap_clutter_stage_set_color (PyGObject *self,
@@ -864,3 +850,14 @@ _wrap_ClutterLayout__do_natural_request (PyObject *cls,
         return Py_BuildValue ("(ii)", width, height);
 }
 %%
+override clutter_box_get_default_padding noargs
+static PyObject *
+_wrap_clutter_box_get_default_padding (PyGObject *self)
+{
+  gint top, right, bottom, left;
+
+  clutter_box_get_default_padding (CLUTTER_BOX (self->obj),
+                                   &top, &right, &bottom, &left);
+
+  return Py_BuildValue ("(iiii)", top, right, bottom, left);
+}
