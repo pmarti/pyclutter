@@ -314,3 +314,31 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         return retval;
 }
 
+PyObject *
+pyclutter_box_child_to_pyobject (ClutterBoxChild *box_child)
+{
+        PyObject *retval;
+
+        if (!box_child) {
+                Py_INCREF (Py_None);
+                return Py_None;
+        }
+
+        retval = PyTuple_New (4);
+
+        PyTuple_SET_ITEM (retval, 0,
+                          pygobject_new ((GObject *) box_child->actor));
+        PyTuple_SET_ITEM (retval, 1,
+                          pyg_boxed_new (CLUTTER_TYPE_ACTOR_BOX,
+                                         &(box_child->child_coords),
+                                         TRUE, TRUE));
+        PyTuple_SET_ITEM (retval, 2,
+                          pyg_enum_from_gtype (CLUTTER_TYPE_PACK_TYPE,
+                                               box_child->pack_type));
+        PyTuple_SET_ITEM (retval, 3,
+                          pyg_boxed_new (CLUTTER_TYPE_PADDING,
+                                         &(box_child->padding),
+                                         TRUE, TRUE));
+        
+        return retval;
+}

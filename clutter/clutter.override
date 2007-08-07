@@ -42,8 +42,6 @@ ignore
   clutter_effect_rotate_x
   clutter_effect_rotate_y
   clutter_effect_rotate_z
-  clutter_box_query_child
-  clutter_box_query_nth_child
   clutter_layout_tune_request
 %%
 ignore-glob
@@ -940,4 +938,59 @@ _wrap_clutter_box_get_default_padding (PyGObject *self)
                                    &top, &right, &bottom, &left);
 
   return Py_BuildValue ("(iiii)", top, right, bottom, left);
+}
+%%
+override clutter_box_query_child kwargs
+static PyObject *
+_wrap_clutter_box_query_child (PyGObject *self,
+                               PyObject  *args,
+                               PyObject  *kwargs)
+{
+        static char *kwlist[] = { "actor", NULL };
+        PyObject *py_actor;
+        ClutterActor *actor;
+        ClutterBoxChild query;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O:ClutterBox.query_child", kwlist,
+                                          &py_actor)) {
+                return NULL;
+        }
+
+        if (!pygobject_check (py_actor, &PyClutterActor_Type)) {
+                PyErr_Clear ();
+                PyErr_SetString (PyExc_TypeError, "expecting a ClutterActor");
+                return NULL;
+        }
+        else
+                actor = CLUTTER_ACTOR (pygobject_get (py_actor));
+
+        if (clutter_box_query_child (CLUTTER_BOX (self->obj), actor, &query))
+                return pyclutter_box_child_to_pyobject (&query);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override clutter_box_query_nth_child kwargs
+static PyObject *
+_wrap_clutter_box_query_nth_child (PyGObject *self,
+                                   PyObject  *args,
+                                   PyObject  *kwargs)
+{
+        static char *kwlist[] = { "index", NULL };
+        gint index_;
+        ClutterBoxChild query;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "i:ClutterBox.query_nth_child", kwlist,
+                                          &index_)) {
+                return NULL;
+        }
+
+        if (clutter_box_query_nth_child (CLUTTER_BOX (self->obj), index_, &query))
+                return pyclutter_box_child_to_pyobject (&query);
+
+        Py_INCREF (Py_None);
+        return Py_None;
 }
