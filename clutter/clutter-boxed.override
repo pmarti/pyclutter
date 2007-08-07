@@ -561,3 +561,315 @@ _wrap_clutter_vertex__set_z (PyGBoxed *self, PyObject *value, void *closure)
 
 	return 0;
 }
+%%
+override clutter_margin_new kwargs
+static int
+_wrap_clutter_margin_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "top", "right", "bottom", "left", NULL };
+	ClutterMargin margin = { 0, 0, 0 };
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+					 "|iiii:ClutterMargin.__init__",
+					 kwlist,
+					 &(margin.top),
+                                         &(margin.right),
+                                         &(margin.bottom)
+                                         &(margin.left)))
+		return -1;
+	
+	self->boxed = g_boxed_copy (CLUTTER_TYPE_MARGIN, &margin);
+	self->free_on_dealloc = TRUE;
+	self->gtype = CLUTTER_TYPE_MARGIN;
+	
+	return 0;
+}
+%%
+override-slot ClutterMargin.tp_as_sequence
+static Py_ssize_t
+_wrap_clutter_margin_length (PyGBoxed *self)
+{
+	return 4;
+}
+static PyObject *
+_wrap_clutter_margin_getitem(PyGBoxed *self, Py_ssize_t pos)
+{
+	ClutterMargin *margin;
+
+	if (pos < 0)
+		pos += 1;
+	
+	if (pos < 0 || pos >= 4) {
+		PyErr_SetString(PyExc_IndexError, "index out of range");
+		
+		return NULL;
+	}
+
+	margin = pyg_boxed_get (self, ClutterMargin);
+	switch (pos) {
+		case 0: return PyInt_FromLong (margin->top);
+		case 1: return PyInt_FromLong (margin->right);
+		case 2: return PyInt_FromLong (margin->bottom);
+		case 3: return PyInt_FromLong (margin->left);
+		default:
+			g_assert_not_reached();
+			return NULL;
+	}
+}
+static Py_ssize_t
+_wrap_clutter_margin_setitem (PyGBoxed *self, Py_ssize_t pos, PyObject *value)
+{
+	ClutterMargin *margin;
+	gint val;
+
+	if (pos < 0)
+		pos += 1;
+	
+	if (pos < 0 || pos >= 4) {
+		PyErr_SetString(PyExc_IndexError, "index out of range");
+		
+		return -1;
+	}
+
+	margin = pyg_boxed_get (self, ClutterMargin);
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+	
+	switch(pos) {
+		case 0: margin->top = val; break;
+		case 1: margin->right = val; break;
+		case 2: margin->bottom = val; break;
+		case 2: margin->left = val; break;
+		default:
+			g_assert_not_reached();
+			return -1;
+	}
+
+	return 0;
+}
+static PySequenceMethods _wrap_clutter_margin_tp_as_sequence = {
+	(lenfunc) _wrap_clutter_margin_length,
+	0,
+	0,
+	(ssizeargfunc) _wrap_clutter_margin_getitem,
+	0,
+	(ssizeobjargproc) _wrap_clutter_margin_setitem,
+	0
+};
+%%
+override-attr ClutterMargin.top
+static int
+_wrap_clutter_margin__set_top (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint32 val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterMargin)->top = val;
+
+	return 0;
+}
+%%
+override-attr ClutterMargin.right
+static int
+_wrap_clutter_margin__set_right (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint32 val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterMargin)->right = val;
+
+	return 0;
+}
+%%
+override-attr ClutterMargin.bottom
+static int
+_wrap_clutter_margin__set_bottom (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint32 val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterMargin)->bottom = val;
+
+	return 0;
+}
+%%
+override-attr ClutterMargin.left
+static int
+_wrap_clutter_margin__set_left (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint32 val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterMargin)->left = val;
+
+	return 0;
+}
+%%
+override clutter_padding_new kwargs
+static int
+_wrap_clutter_padding_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "top", "right", "bottom", "left", NULL };
+	ClutterPadding padding = { 0, 0, 0 };
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+					 "|iiii:ClutterPadding.__init__",
+					 kwlist,
+					 &(padding.top),
+                                         &(padding.right),
+                                         &(padding.bottom)
+                                         &(padding.left)))
+		return -1;
+	
+	self->boxed = g_boxed_copy (CLUTTER_TYPE_PADDING, &padding);
+	self->free_on_dealloc = TRUE;
+	self->gtype = CLUTTER_TYPE_PADDING;
+	
+	return 0;
+}
+%%
+override-slot ClutterPadding.tp_as_sequence
+static Py_ssize_t
+_wrap_clutter_padding_length (PyGBoxed *self)
+{
+	return 4;
+}
+static PyObject *
+_wrap_clutter_padding_getitem(PyGBoxed *self, Py_ssize_t pos)
+{
+	ClutterPadding *padding;
+
+	if (pos < 0)
+		pos += 1;
+	
+	if (pos < 0 || pos >= 4) {
+		PyErr_SetString(PyExc_IndexError, "index out of range");
+		
+		return NULL;
+	}
+
+	padding = pyg_boxed_get (self, ClutterPadding);
+	switch (pos) {
+		case 0: return PyInt_FromLong (padding->top);
+		case 1: return PyInt_FromLong (padding->right);
+		case 2: return PyInt_FromLong (padding->bottom);
+		case 3: return PyInt_FromLong (padding->left);
+		default:
+			g_assert_not_reached();
+			return NULL;
+	}
+}
+static Py_ssize_t
+_wrap_clutter_padding_setitem (PyGBoxed *self, Py_ssize_t pos, PyObject *value)
+{
+	ClutterPadding *padding;
+	gint val;
+
+	if (pos < 0)
+		pos += 1;
+	
+	if (pos < 0 || pos >= 4) {
+		PyErr_SetString(PyExc_IndexError, "index out of range");
+		
+		return -1;
+	}
+
+	padding = pyg_boxed_get (self, ClutterPadding);
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+	
+	switch(pos) {
+		case 0: padding->top = val; break;
+		case 1: padding->right = val; break;
+		case 2: padding->bottom = val; break;
+		case 2: padding->left = val; break;
+		default:
+			g_assert_not_reached();
+			return -1;
+	}
+
+	return 0;
+}
+static PySequenceMethods _wrap_clutter_padding_tp_as_sequence = {
+	(lenfunc) _wrap_clutter_padding_length,
+	0,
+	0,
+	(ssizeargfunc) _wrap_clutter_padding_getitem,
+	0,
+	(ssizeobjargproc) _wrap_clutter_padding_setitem,
+	0
+};
+%%
+override-attr ClutterPadding.top
+static int
+_wrap_clutter_padding__set_top (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint32 val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterPadding)->top = val;
+
+	return 0;
+}
+%%
+override-attr ClutterPadding.right
+static int
+_wrap_clutter_padding__set_right (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint32 val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterPadding)->right = val;
+
+	return 0;
+}
+%%
+override-attr ClutterPadding.bottom
+static int
+_wrap_clutter_padding__set_bottom (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint32 val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterPadding)->bottom = val;
+
+	return 0;
+}
+%%
+override-attr ClutterPadding.left
+static int
+_wrap_clutter_padding__set_left (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint32 val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, ClutterPadding)->left = val;
+
+	return 0;
+}
