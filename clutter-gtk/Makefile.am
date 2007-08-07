@@ -26,12 +26,13 @@ defs_DATA = $(CLUTTERGTK_DEFS)
 
 # code generator
 .defs.c:
-	( $(PYGTK_CODEGEN) \
+	@echo "***INFO*** Generating $*.c from $*.defs" \
+	&& ( $(PYGTK_CODEGEN) \
 	    -I $(srcdir) \
 	    --py_ssize_t-clean \
 	    --register $(PYGTK_DEFSDIR)/gtk-types.defs \
 	    --register $(top_srcdir)/clutter/clutter-base-types.defs \
-	    --override $*.override \
-	    --prefix py$(*F) $*.defs) > $(*D)/gen-$(*F).c \
-	&& cp $(*D)/gen-$(*F).c $(*D)/$(*F).c \
-	&& rm -f $(*D)/gen-$(*F).c
+	    --override $(srcdir)/$*.override \
+	    --prefix py$* $<) > gen-$*.c \
+	&& cp -f gen-$*.c $*.c \
+	&& rm -f gen-$*.c
