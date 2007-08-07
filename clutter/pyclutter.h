@@ -31,6 +31,14 @@ gboolean pyclutter_color_from_pyobject     (PyObject        *object,
                                             ClutterColor    *color);
 gboolean pyclutter_actor_box_from_pyobject (PyObject        *object,
                                             ClutterActorBox *box);
+gboolean pyclutter_padding_from_pyobject   (PyObject        *object,
+                                            ClutterPadding  *padding);
+gboolean pyclutter_margin_from_pyobject    (PyObject        *object,
+                                            ClutterMargin   *margin);
+gboolean pyclutter_box_child_from_pyobject (PyObject        *object,
+                                            ClutterBoxChild *child);
+gboolean pyclutter_box_child_to_pyobject   (PyObject        *object,
+                                            ClutterBoxChild *child);
 
 G_END_DECLS
 
