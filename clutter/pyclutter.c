@@ -117,6 +117,47 @@ pyclutter_callback_invoke (PyClutterCallback *cb,
 }
 
 gboolean
+pyclutter_geometry_from_pyobject (PyObject        *object,
+                                  ClutterGeometry *geometry)
+{
+        g_return_val_if_fail (geometry != NULL, FALSE);
+
+        if (pyg_boxed_check (object, CLUTTER_TYPE_GEOMETRY)) {
+                *geometry = *pyg_boxed_get (object, ClutterGeometry);
+                return TRUE;
+        }
+
+        if (PyTuple_Check (object) && (PyTuple_Size (object) == 4)) {
+                int i;
+
+                for (i = 0; i < 4; i++) {
+                        PyObject *comp = PyTuple_GetItem (object, i);
+
+                        if (!PyInt_Check (comp))
+                                goto out;
+
+                        switch (i) {
+                        case 0: geometry->x      = PyInt_AsLong (comp); break;
+                        case 1: geometry->y      = PyInt_AsLong (comp); break;
+                        case 2: geometry->width  = PyInt_AsLong (comp); break;
+                        case 3: geometry->height = PyInt_AsLong (comp); break;
+                        default:
+                                g_assert_not_reached ();
+                                break;
+                        }
+                }
+
+                return TRUE;
+        }
+
+out:
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError, "could not convert to ClutterGeometry");
+
+        return FALSE;
+}
+
+gboolean
 pyclutter_color_from_pyobject (PyObject     *object,
                                ClutterColor *color)
 {

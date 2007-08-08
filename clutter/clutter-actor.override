@@ -10,7 +10,48 @@ ignore
   clutter_actor_get_scalex
   clutter_actor_set_scale_with_gravityx
 %%
-override clutter_actor_get_coords
+override clutter_actor_get_geometry noargs
+static PyObject *
+_wrap_clutter_actor_get_geometry (PyGObject *self)
+{
+        ClutterGeometry geom = { 0, };
+
+        clutter_actor_get_geometry (CLUTTER_ACTOR (self->obj), &geom);
+
+        return Py_BuildValue ("(iiii)",
+                              geom.x, geom.y, geom.width, geom.height);
+}
+%%
+override clutter_actor_set_geometry kwargs
+static PyObject *
+_wrap_clutter_actor_set_geometry (PyGObject *self,
+                                  PyObject  *args,
+                                  PyObject  *kwargs)
+{
+        static char *kwlist[] = { "geometry", NULL };
+        PyObject *py_geom;
+        ClutterGeometry geom;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O:ClutterActor.set_geometry", kwlist,
+                                          &py_geom)) {
+                return NULL;
+        }
+
+        if (!pyclutter_geometry_from_pyobject (py_geom, &geom)) {
+                PyErr_Clear ();
+                PyErr_SetString (PyExc_TypeError,
+                                 "color must be a ClutterGeometry or 4-tuple");
+                return NULL;
+        }
+
+        clutter_actor_set_geometry (CLUTTER_ACTOR (self->obj), &geom);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override clutter_actor_get_coords noargs
 static PyObject *
 _wrap_clutter_actor_get_coords (PyGObject *self)
 {

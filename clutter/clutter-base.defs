@@ -3711,14 +3711,32 @@
   (return-type "GType")
 )
 
+(define-function geometry_new
+  (c-name "clutter_geometry_new")
+  (is-constructor-of "ClutterGeometry")
+  (return-type "ClutterGeometry")
+)
+
 (define-function vertex_get_type
   (c-name "clutter_vertex_get_type")
   (return-type "GType")
 )
 
+(define-function vertex_new
+  (c-name "clutter_vertex_new")
+  (is-constructor-of "ClutterVertex")
+  (return-type "ClutterVertex")
+)
+
 (define-function knot_get_type
   (c-name "clutter_knot_get_type")
   (return-type "GType")
+)
+
+(define-function knot_new
+  (c-name "clutter_knot_new")
+  (is-constructor-of "ClutterKnot")
+  (return-type "ClutterKnot")
 )
 
 (define-method copy

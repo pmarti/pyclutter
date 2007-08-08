@@ -1,3 +1,14 @@
+2007-08-08  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs: Add fake constructors for the boxes
+	types we wrap.
+
+	* clutter/clutter-actor.override: Override the set_geometry() and
+	get_geometry() methods to return and accept a 4-tuple.
+
+	* clutter/pyclutter.[ch]: Add a conversion function for PyObject
+	to ClutterGeometry.
+
 2007-08-07  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* configure.ac:
