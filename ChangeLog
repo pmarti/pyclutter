@@ -1,3 +1,7 @@
+2007-08-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* examples/cairo-texture.py: Update example, add a cloned texture.
+
 2007-08-08  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Add fake constructors for the boxes

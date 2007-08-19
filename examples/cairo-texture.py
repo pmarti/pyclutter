@@ -33,16 +33,29 @@ def main ():
 
     del(context) # we need to destroy the context so that the
                  # texture gets properly updated with the result
-                 # of our operations
+                 # of our operations; you can either move all the
+                 # drawing operations into their own function and
+                 # let the context go out of scope or you can
+                 # explicitly destroy it
 
     # cluttercairo.Texture is a clutter.Actor, so we can
     # manipulate it as any other actor
-    cairo_tex.rotate_y(45.0,
-                       cairo_tex.get_width() / 2,
-                       cairo_tex.get_height() / 2)
-
+    center_x = cairo_tex.get_width() / 2
+    center_y = cairo_tex.get_height() / 2
+    cairo_tex.rotate_y(45.0, center_x, center_y)
     stage.add(cairo_tex)
     cairo_tex.show()
+    
+    # cluttercairo.Texture is also a clutter.Texture, so we can save
+    # memory when dealing with multiple copies by simply cloning it
+    # and manipulating the clones
+    clone_tex = clutter.CloneTexture(cairo_tex)
+    clone_tex.set_position((stage.get_width() - 200) / 2,
+                           (stage.get_height() - 200) / 2)
+    clone_tex.rotate_y(-45.0, center_x, center_y)
+    stage.add(clone_tex)
+    clone_tex.show()
+    
     stage.show()
 
     clutter.main()
