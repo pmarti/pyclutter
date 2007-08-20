@@ -4,14 +4,14 @@ AC_PREREQ(2.53)
 # An odd micro number indicates in-progress development, (eg. from CVS)
 # An even micro number indicates a released version.
 m4_define(pyclutter_version_major, 0)
-m4_define(pyclutter_version_minor, 4)
+m4_define(pyclutter_version_minor, 5)
 m4_define(pyclutter_version_micro, 0)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
 m4_define(clutter_required_version,      0.5.0)
-m4_define(cluttergtk_required_version,   0.4.0)
-m4_define(cluttergst_required_version,   0.4.0)
-m4_define(cluttercairo_required_version, 0.4.0)
+m4_define(cluttergtk_required_version,   0.5.0)
+m4_define(cluttergst_required_version,   0.5.0)
+m4_define(cluttercairo_required_version, 0.5.0)
 m4_define(pycairo_required_version,      1.0.2) dnl or 1.1.7
 m4_define(pygtk_required_version,        2.8.0)
 
@@ -89,7 +89,7 @@ dnl check for sub modules
 
 build_cluttergst=no
 PKG_CHECK_MODULES(CLUTTERGST,
-                  clutter-gst-0.4 >= cluttergst_required_version,
+                  clutter-gst-0.5 >= cluttergst_required_version,
                   build_cluttergst=yes,
                   build_cluttergst=no)
 AC_SUBST(CLUTTERGST_CFLAGS)
@@ -102,7 +102,7 @@ AM_CONDITIONAL(BUILD_CLUTTERGST, [test "x$build_cluttergst" = "xyes"])
 
 build_cluttergtk=no
 PKG_CHECK_MODULES(CLUTTERGTK,
-                  clutter-gtk-0.4 >= cluttergtk_required_version,
+                  clutter-gtk-0.5 >= cluttergtk_required_version,
                   build_cluttergtk=yes,
                   build_cluttergtk=no)
 AC_SUBST(CLUTTERGTK_CFLAGS)
@@ -125,7 +125,7 @@ if test $have_pycairo; then
   build_cluttercairo=yes
 
   PKG_CHECK_MODULES(CLUTTERCAIRO,
-                    clutter-cairo-0.4 >= cluttercairo_required_version,
+                    clutter-cairo-0.5 >= cluttercairo_required_version,
                     build_cluttercairo=yes,
                     build_cluttercairo=no)
   AC_SUBST(CLUTTERCAIRO_CFLAGS)
