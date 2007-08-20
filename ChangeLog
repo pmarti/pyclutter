@@ -1,3 +1,7 @@
+2007-08-20  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* configure.ac: Bump to 0.5.0 and required clutter 0.5 as well
+
 2007-08-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* examples/cairo-texture.py: Update example, add a cloned texture.

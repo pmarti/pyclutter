@@ -8,7 +8,7 @@ m4_define(pyclutter_version_minor, 4)
 m4_define(pyclutter_version_micro, 0)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
-m4_define(clutter_required_version,      0.4.0)
+m4_define(clutter_required_version,      0.5.0)
 m4_define(cluttergtk_required_version,   0.4.0)
 m4_define(cluttergst_required_version,   0.4.0)
 m4_define(cluttercairo_required_version, 0.4.0)
@@ -78,7 +78,7 @@ AC_SUBST(PYGST_DEFSDIR)
 AC_MSG_RESULT($PYGST_DEFSDIR)
 
 dnl check for clutter
-PKG_CHECK_MODULES(CLUTTER, clutter-0.4 >= clutter_required_version)
+PKG_CHECK_MODULES(CLUTTER, clutter-0.5 >= clutter_required_version)
 AC_SUBST(CLUTTER_CFLAGS)
 AC_SUBST(CLUTTER_LIBS)
 if test -n "$export_dynamic"; then
