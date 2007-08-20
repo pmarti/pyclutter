@@ -1,5 +1,17 @@
 2007-08-20  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-boxed.override: Fix clutter.Margin() and
+	clutter.Padding() constructors.
+
+	* clutter/clutter-event.override: Ignore clutter_event_copy()
+	and clutter_event_free(), as we're not supposed to pass events
+	as boxed types.
+
+	* clutter/clutter-base.defs: Add fake constructors for
+	clutter.ActorBox, clutter.Margin and clutter.Padding.
+
+2007-08-20  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* configure.ac: Bump to 0.5.0 and required clutter 0.5 as well
 
 2007-08-19  Emmanuele Bassi  <ebassi@openedhand.com>

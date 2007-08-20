@@ -21,7 +21,6 @@ import pango.Font as PyPangoFont_Type
 import pango.Layout as PyPangoLayout_Type
 %%
 ignore
-  clutter_init
   clutter_init_with_args
   clutter_backend_get_event
   clutter_backend_put_event
@@ -36,6 +35,7 @@ ignore
   clutter_container_remove_valist
   clutter_effect_template_new
   clutter_effect_template_new_full
+  clutter_effect_depth
   clutter_effect_fade
   clutter_effect_move
   clutter_effect_scale
@@ -48,6 +48,69 @@ ignore-glob
   *_quark
   *_get_type
   _*
+%%
+override clutter_init noargs
+static PyObject *
+_wrap_clutter_init (PyObject *self, PyObject *args)
+{
+    PyObject *av;
+    int argc, i;
+    char **argv;
+    
+    /* initialise Clutter... */
+    av = PySys_GetObject("argv");
+    if (av != NULL) {
+	if (!PyList_Check(av)) {
+	    PyErr_Warn(PyExc_Warning, "ignoring sys.argv: it must be a list of strings");
+	    av = NULL;
+	} else {
+	    argc = PyList_Size(av);
+	    for (i = 0; i < argc; i++)
+		if (!PyString_Check(PyList_GetItem(av, i))) {
+		    PyErr_Warn(PyExc_Warning, "ignoring sys.argv: it must be a list of strings");
+		    av = NULL;
+		    break;
+		}
+	}
+    }
+    if (av != NULL) {
+	argv = g_new(char *, argc);
+	for (i = 0; i < argc; i++)
+	    argv[i] = g_strdup(PyString_AsString(PyList_GetItem(av, i)));
+    } else {
+	    argc = 0;
+	    argv = NULL;
+    }
+
+    if (!clutter_init (&argc, &argv)) {
+	if (argv != NULL) {
+	    for (i = 0; i < argc; i++)
+		g_free(argv[i]);
+	    g_free(argv);
+	}
+	PyErr_SetString(PyExc_RuntimeError, "could not open display");
+	/* set the LC_NUMERIC locale back to "C", as Python < 2.4 requires
+	 * that it be set that way. */
+#if PY_VERSION_HEX < 0x020400F0
+	setlocale(LC_NUMERIC, "C");
+#endif
+	return NULL;
+    }
+    /* set the LC_NUMERIC locale back to "C", as Python < 2.4 requires that
+     * it be set that way. */
+#if PY_VERSION_HEX < 0x020400F0
+    setlocale(LC_NUMERIC, "C");
+#endif
+    if (argv != NULL) {
+	PySys_SetArgv(argc, argv);
+	for (i = 0; i < argc; i++)
+	    g_free(argv[i]);
+	g_free(argv);
+    }
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
 %%
 override clutter_texture_get_base_size
 static PyObject *
@@ -994,3 +1057,32 @@ _wrap_clutter_box_query_nth_child (PyGObject *self,
         Py_INCREF (Py_None);
         return Py_None;
 }
+%%
+override clutter_threads_init noargs
+static PyObject *
+_wrap_clutter_threads_init (PyObject *self)
+{
+        if (pyg_enable_threads ())
+                return NULL;
+        
+        clutter_threads_init ();
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override clutter_threads_enter noargs
+static PyObject *
+_wrap_clutter_threads_enter (PyObject *self)
+{
+        /* must allow threads while acquiring lock, or no other python
+         * code will execute while we wait
+         */
+        pyg_begin_allow_threads;
+        clutter_threads_enter ();
+        pyg_end_allow_threads;
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%

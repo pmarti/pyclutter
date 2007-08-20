@@ -1,6 +1,8 @@
 %%
 ignore
   clutter_event_get_coords
+  clutter_event_free
+  clutter_event_copy
 %%
 override-slot ClutterEvent.tp_setattr
 #define CHECK_VALUE_IS_INT(a,v) \

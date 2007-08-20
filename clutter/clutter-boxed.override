@@ -1,4 +1,7 @@
 %%
+ignore
+  clutter_knot_free
+%%
 override clutter_geometry_new kwargs
 static int
 _wrap_clutter_geometry_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
@@ -567,14 +570,14 @@ static int
 _wrap_clutter_margin_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
 {
 	static char *kwlist[] = { "top", "right", "bottom", "left", NULL };
-	ClutterMargin margin = { 0, 0, 0 };
+	ClutterMargin margin = { 0, 0, 0, 0 };
 
 	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
 					 "|iiii:ClutterMargin.__init__",
 					 kwlist,
 					 &(margin.top),
                                          &(margin.right),
-                                         &(margin.bottom)
+                                         &(margin.bottom),
                                          &(margin.left)))
 		return -1;
 	
@@ -723,14 +726,14 @@ static int
 _wrap_clutter_padding_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
 {
 	static char *kwlist[] = { "top", "right", "bottom", "left", NULL };
-	ClutterPadding padding = { 0, 0, 0 };
+	ClutterPadding padding = { 0, 0, 0, 0 };
 
 	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
 					 "|iiii:ClutterPadding.__init__",
 					 kwlist,
 					 &(padding.top),
                                          &(padding.right),
-                                         &(padding.bottom)
+                                         &(padding.bottom),
                                          &(padding.left)))
 		return -1;
 	

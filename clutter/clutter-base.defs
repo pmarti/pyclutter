@@ -4,11 +4,6 @@
 
 ;; From clutter-actor.h
 
-(define-function actor_box_get_type
-  (c-name "clutter_actor_box_get_type")
-  (return-type "GType")
-)
-
 (define-function actor_get_type
   (c-name "clutter_actor_get_type")
   (return-type "GType")
@@ -2024,6 +2019,19 @@
   )
 )
 
+(define-function effect_depth
+  (c-name "clutter_effect_depth")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
+    '("gint" "start_depth")
+    '("gint" "end_depth")
+    '("ClutterEffectCompleteFunc" "completed_func")
+    '("gpointer" "completed_data")
+  )
+)
+
 (define-function effect_fade
   (c-name "clutter_effect_fade")
   (return-type "ClutterTimeline*")
@@ -2978,6 +2986,72 @@
   (return-type "gulong")
 )
 
+(define-function threads_init
+  (c-name "clutter_threads_init")
+  (return-type "none")
+)
+
+(define-function threads_set_lock_functions
+  (c-name "clutter_threads_set_lock_functions")
+  (return-type "none")
+  (parameters
+    '("GCallback" "enter_fn")
+    '("GCallback" "leave_fn")
+  )
+)
+
+(define-function threads_enter
+  (c-name "clutter_threads_enter")
+  (return-type "none")
+)
+
+(define-function threads_leave
+  (c-name "clutter_threads_leave")
+  (return-type "none")
+)
+
+(define-function threads_add_idle
+  (c-name "clutter_threads_add_idle")
+  (return-type "guint")
+  (parameters
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-function threads_add_idle_full
+  (c-name "clutter_threads_add_idle_full")
+  (return-type "guint")
+  (parameters
+    '("gint" "priority")
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-function threads_add_timeout
+  (c-name "clutter_threads_add_timeout")
+  (return-type "guint")
+  (parameters
+    '("guint" "interval")
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-function threads_add_timeout_full
+  (c-name "clutter_threads_add_timeout_full")
+  (return-type "guint")
+  (parameters
+    '("gint" "priority")
+    '("guint" "interval")
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
 
 
 ;; From clutter-media.h
@@ -3706,6 +3780,17 @@
 
 ;; From clutter-types.h
 
+(define-function actor_box_get_type
+  (c-name "clutter_actor_box_get_type")
+  (return-type "GType")
+)
+
+(define-function actor_box_new
+  (c-name "clutter_actor_box_new")
+  (is-constructor-of "ClutterActorBox")
+  (return-type "ClutterActorBox")
+)
+
 (define-function geometry_get_type
   (c-name "clutter_geometry_get_type")
   (return-type "GType")
@@ -3758,6 +3843,28 @@
   (parameters
     '("const-ClutterKnot*" "knot_b")
   )
+)
+
+(define-function margin_get_type
+  (c-name "clutter_margin_get_type")
+  (return-type "GType")
+)
+
+(define-function margin_new
+  (c-name "clutter_margin_new")
+  (is-constructor-of "ClutterMargin")
+  (return-type "ClutterMargin")
+)
+
+(define-function padding_get_type
+  (c-name "clutter_padding_get_type")
+  (return-type "GType")
+)
+
+(define-function padding_new
+  (c-name "clutter_padding_new")
+  (is-constructor-of "ClutterPadding")
+  (return-type "ClutterPadding")
 )
 
 

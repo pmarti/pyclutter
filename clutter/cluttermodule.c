@@ -56,6 +56,4 @@ init_clutter (void)
     {
       Py_FatalError ("can't initialise module clutter");
     }
-  else
-    clutter_init (NULL, NULL);
 }
