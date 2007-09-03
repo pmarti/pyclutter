@@ -668,8 +668,8 @@ _wrap_clutter_behaviour_depth_new (PyGObject *self,
 
         pygobject_construct (self,
                              "alpha", alpha,
-                             "depth-start", depth_start,
-                             "depth-end", depth_end,
+                             "start-depth", depth_start,
+                             "end-depth", depth_end,
                              NULL);
 
         return 0;

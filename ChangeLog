@@ -1,3 +1,8 @@
+2007-09-03  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-behaviour.override: Fix up the names of the
+	properties in the clutter.BehaviourDepth constructor.
+
 2007-08-20  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* configure.ac: Bump up to 0.5.0 and require development branches
