@@ -1,3 +1,9 @@
+2007-09-05  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* examples/super-oh.py:
+	* examples/redhand.png: Add the SuperOH example; ported from
+	the original C source by Paul Cooper.
+
 2007-09-03  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-behaviour.override: Fix up the names of the

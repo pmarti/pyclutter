@@ -1,1 +1,6 @@
-EXTRA_DIST = behave.py hello.py rects.py
+EXTRA_DIST = \
+	redhand.png \
+	behave.py \
+	hello.py \
+	rects.py \
+	super-oh.py
