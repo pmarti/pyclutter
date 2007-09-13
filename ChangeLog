@@ -1,3 +1,10 @@
+2007-09-13  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	Merge from pyclutter-0-4
+
+	* clutter/clutter-behaviour.override: Add more sanity checks
+	on the arguments passed to the alpha functions.
+
 2007-09-05  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* examples/super-oh.py:
