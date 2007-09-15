@@ -651,7 +651,7 @@ _wrap_clutter_behaviour_depth_new (PyGObject *self,
         ClutterAlpha *alpha;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oii:clutter.BehaviourDepth.__init__",
+                                          "Oii|:clutter.BehaviourDepth.__init__",
                                           kwlist,
                                           &py_alpha, &depth_start, &depth_end))
                 return -1;
@@ -802,7 +802,7 @@ _wrap_clutter_behaviour_rotate_new (PyGObject *self,
         ClutterAlpha *alpha;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oiidd:clutter.BehaviourRotate.__init__",
+                                          "O|iidd:clutter.BehaviourRotate.__init__",
                                           kwlist,
                                           &py_alpha, &axis, &direction,
                                           &begin, &end))
@@ -870,7 +870,7 @@ _wrap_clutter_behaviour_scale_new (PyGObject *self,
         ClutterAlpha *alpha;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oddi:clutter.BehaviourScale.__init__",
+                                          "Oddi:clutter.BehaviourScale.__init__",
                                           kwlist,
                                           &py_alpha, &begin, &end, &gravity))
                 return -1;

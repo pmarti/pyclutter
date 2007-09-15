@@ -1,5 +1,11 @@
 2007-09-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-behaviour.override: Do not segfault when
+	an invalid number of arguments is passed to the various
+	behaviours constructors. (#506, Giuliani Vito Ivan)
+
+2007-09-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-color.override: Initialise the value of
 	the color components, so that clutter.Color() does the
 	right thing. (#507, Giuliani Vito Ivan)
