@@ -16,6 +16,9 @@ _wrap_clutter_color_new (PyGBoxed *self,
         unsigned int red, green, blue, alpha;
         ClutterColor color;
 
+        red = green = blue = 0x0;
+        alpha = 0xff;
+
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "|kkkk:clutter.Color", kwlist,
                                           &red, &green, &blue, &alpha))
