@@ -1,3 +1,11 @@
+2007-09-17  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-behaviour.override: Initialise the ctor
+	parameters for every clutter.Behaviour; now it's possible
+	to create any behaviour instance without passing any parameter
+	to the constructors and change the parameters later on,
+	without having the python bindings segfault.
+
 2007-09-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-behaviour.override: Do not segfault when

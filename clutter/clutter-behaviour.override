@@ -646,12 +646,14 @@ _wrap_clutter_behaviour_depth_new (PyGObject *self,
                                    PyObject  *kwargs)
 {
         static char *kwlist[] = { "alpha", "depth_start", "depth_end", NULL};
-        PyObject *py_alpha;
+        PyObject *py_alpha = Py_None;
         int depth_start, depth_end;
         ClutterAlpha *alpha;
 
+        depth_start = depth_end = 0;
+
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "Oii|:clutter.BehaviourDepth.__init__",
+                                          "|Oii:clutter.BehaviourDepth.__init__",
                                           kwlist,
                                           &py_alpha, &depth_start, &depth_end))
                 return -1;
@@ -684,16 +686,24 @@ _wrap_clutter_behaviour_ellipse_new (PyGObject *self,
                                      PyObject  *kwargs)
 {
         static char *kwlist[] = { "alpha", "x", "y", "width", "height", "begin", "end", NULL};
-        PyObject *py_alpha;
+        PyObject *py_alpha = Py_None;
         int x, y, width, height;
         double begin, end;
         ClutterKnot center = { 0, };
         ClutterAlpha *alpha;
 
+        /* these are the default values from the properties */
+        x = y = 0; /* center */
+        width = 100;
+        height = 50;
+        begin = 0.0;
+        end = 360.0;
+
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oiiiidd:clutter.BehaviourEllipse.__init__",
+                                          "O|iiiidd:clutter.BehaviourEllipse.__init__",
                                           kwlist,
-                                          &py_alpha, &x, &y, &width, &height,
+                                          &py_alpha,
+                                          &x, &y, &width, &height,
                                           &begin, &end))
                 return -1;
         
@@ -757,9 +767,11 @@ _wrap_clutter_behaviour_opacity_new (PyGObject *self,
                                      PyObject  *kwargs)
 {
         static char *kwlist[] = { "alpha", "begin", "end", NULL};
-        PyObject *py_alpha;
+        PyObject *py_alpha = Py_None;
         int begin, end;
         ClutterAlpha *alpha;
+
+        begin = end = 0x00;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "|Oii:clutter.BehaviourOpacity.__init__",
@@ -796,13 +808,18 @@ _wrap_clutter_behaviour_rotate_new (PyGObject *self,
                                     PyObject  *kwargs)
 {
         static char *kwlist[] = { "alpha", "axis", "direction", "begin", "end", NULL};
-        PyObject *py_alpha;
+        PyObject *py_alpha = Py_None;
         int axis, direction;
         double begin, end;
         ClutterAlpha *alpha;
 
+        axis = CLUTTER_Z_AXIS;
+        direction = CLUTTER_ROTATE_CW;
+        begin = 0.0;
+        end = 360.0;
+
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "O|iidd:clutter.BehaviourRotate.__init__",
+                                          "|Oiidd:clutter.BehaviourRotate.__init__",
                                           kwlist,
                                           &py_alpha, &axis, &direction,
                                           &begin, &end))
@@ -864,13 +881,15 @@ _wrap_clutter_behaviour_scale_new (PyGObject *self,
                                    PyObject  *kwargs)
 {
         static char *kwlist[] = { "alpha", "begin", "end", "gravity", NULL};
-        PyObject *py_alpha;
+        PyObject *py_alpha = Py_None;
         double begin, end;
-        ClutterGravity gravity;
+        ClutterGravity gravity = CLUTTER_GRAVITY_NONE;
         ClutterAlpha *alpha;
 
+        begin = end = 1.0;
+
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "Oddi:clutter.BehaviourScale.__init__",
+                                          "|Oddi:clutter.BehaviourScale.__init__",
                                           kwlist,
                                           &py_alpha, &begin, &end, &gravity))
                 return -1;
