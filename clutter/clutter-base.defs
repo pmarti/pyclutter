@@ -1558,139 +1558,6 @@
 
 
 
-;; From clutter-box.h
-
-(define-function box_get_type
-  (c-name "clutter_box_get_type")
-  (return-type "GType")
-)
-
-(define-method set_color
-  (of-object "ClutterBox")
-  (c-name "clutter_box_set_color")
-  (return-type "none")
-  (parameters
-    '("const-ClutterColor*" "color")
-  )
-)
-
-(define-method get_color
-  (of-object "ClutterBox")
-  (c-name "clutter_box_get_color")
-  (return-type "none")
-  (parameters
-    '("ClutterColor*" "color")
-  )
-)
-
-(define-method set_margin
-  (of-object "ClutterBox")
-  (c-name "clutter_box_set_margin")
-  (return-type "none")
-  (parameters
-    '("const-ClutterMargin*" "margin")
-  )
-)
-
-(define-method get_margin
-  (of-object "ClutterBox")
-  (c-name "clutter_box_get_margin")
-  (return-type "none")
-  (parameters
-    '("ClutterMargin*" "margin")
-  )
-)
-
-(define-method set_default_padding
-  (of-object "ClutterBox")
-  (c-name "clutter_box_set_default_padding")
-  (return-type "none")
-  (parameters
-    '("gint" "top")
-    '("gint" "right")
-    '("gint" "bottom")
-    '("gint" "left")
-  )
-)
-
-(define-method get_default_padding
-  (of-object "ClutterBox")
-  (c-name "clutter_box_get_default_padding")
-  (return-type "none")
-  (parameters
-    '("gint*" "top")
-    '("gint*" "right")
-    '("gint*" "bottom")
-    '("gint*" "left")
-  )
-)
-
-(define-method pack_defaults
-  (of-object "ClutterBox")
-  (c-name "clutter_box_pack_defaults")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
-(define-method pack
-  (of-object "ClutterBox")
-  (c-name "clutter_box_pack")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-    '("ClutterPackType" "pack_type")
-    '("const-ClutterPadding*" "padding")
-  )
-)
-
-(define-method query_child
-  (of-object "ClutterBox")
-  (c-name "clutter_box_query_child")
-  (return-type "gboolean")
-  (parameters
-    '("ClutterActor*" "actor")
-    '("ClutterBoxChild*" "child")
-  )
-)
-
-(define-method query_nth_child
-  (of-object "ClutterBox")
-  (c-name "clutter_box_query_nth_child")
-  (return-type "gboolean")
-  (parameters
-    '("gint" "index_")
-    '("ClutterBoxChild*" "child")
-  )
-)
-
-(define-method remove_all
-  (of-object "ClutterBox")
-  (c-name "clutter_box_remove_all")
-  (return-type "none")
-  (parameters
-  )
-)
-
-(define-virtual pack_child
-  (of-object "ClutterBox")
-  (return-type "none")
-  (parameters
-    '("ClutterBoxChild*" "child")
-  )
-)
-
-(define-virtual unpack_child
-  (of-object "ClutterBox")
-  (return-type "none")
-  (parameters
-    '("ClutterBoxChild*" "child")
-  )
-)
-
-
-
 ;; From clutter-clone-texture.h
 
 (define-function clone_texture_get_type
@@ -2384,11 +2251,6 @@
   (return-type "GType")
 )
 
-(define-function layout_flags_get_type
-  (c-name "clutter_layout_flags_get_type")
-  (return-type "GType")
-)
-
 (define-function init_error_get_type
   (c-name "clutter_init_error_get_type")
   (return-type "GType")
@@ -2624,21 +2486,6 @@
 
 
 
-;; From clutter-hbox.h
-
-(define-function hbox_get_type
-  (c-name "clutter_hbox_get_type")
-  (return-type "GType")
-)
-
-(define-function hbox_new
-  (c-name "clutter_hbox_new")
-  (is-constructor-of "ClutterHbox")
-  (return-type "ClutterActor*")
-)
-
-
-
 ;; From clutter-keysyms.h
 
 
@@ -2817,97 +2664,6 @@
   (of-object "ClutterLabel")
   (c-name "clutter_label_get_alignment")
   (return-type "PangoAlignment")
-)
-
-
-
-;; From clutter-layout.h
-
-(define-function layout_get_type
-  (c-name "clutter_layout_get_type")
-  (return-type "GType")
-)
-
-(define-method get_layout_flags
-  (of-object "ClutterLayout")
-  (c-name "clutter_layout_get_layout_flags")
-  (return-type "ClutterLayoutFlags")
-)
-
-(define-virtual get_layout_flags
-  (of-object "ClutterLayout")
-  (return-type "ClutterLayoutFlags")
-  (parameters
-  )
-)
-
-(define-method width_for_height
-  (of-object "ClutterLayout")
-  (c-name "clutter_layout_width_for_height")
-  (return-type "none")
-  (parameters
-    '("gint*" "width")
-    '("gint" "height")
-  )
-)
-
-(define-virtual width_for_height
-  (of-object "ClutterLayout")
-  (return-type "none")
-  (parameters
-    '("gint32*" "width")
-    '("gint32" "height")
-  )
-)
-
-(define-method height_for_width
-  (of-object "ClutterLayout")
-  (c-name "clutter_layout_height_for_width")
-  (return-type "none")
-  (parameters
-    '("gint" "width")
-    '("gint*" "height")
-  )
-)
-
-(define-virtual height_for_width
-  (of-object "ClutterLayout")
-  (return-type "none")
-  (parameters
-    '("gint32" "width")
-    '("gint32*" "height")
-  )
-)
-
-(define-method natural_request
-  (of-object "ClutterLayout")
-  (c-name "clutter_layout_natural_request")
-  (return-type "none")
-  (parameters
-    '("gint*" "width")
-    '("gint*" "height")
-  )
-)
-
-(define-virtual natural_request
-  (of-object "ClutterLayout")
-  (return-type "none")
-  (parameters
-    '("gint32*" "width")
-    '("gint32*" "height")
-  )
-)
-
-(define-method tune_request
-  (of-object "ClutterLayout")
-  (c-name "clutter_layout_tune_request")
-  (return-type "none")
-  (parameters
-    '("gint" "given_width")
-    '("gint" "given_height")
-    '("gint*" "width")
-    '("gint*" "height")
-  )
 )
 
 
@@ -3913,21 +3669,3 @@
     '("int" "a")
   )
 )
-
-
-
-;; From clutter-vbox.h
-
-(define-function vbox_get_type
-  (c-name "clutter_vbox_get_type")
-  (return-type "GType")
-)
-
-(define-function vbox_new
-  (c-name "clutter_vbox_new")
-  (is-constructor-of "ClutterVbox")
-  (return-type "ClutterActor*")
-)
-
-
-

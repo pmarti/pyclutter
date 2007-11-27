@@ -1,8 +1,15 @@
 %%
 ignore
   clutter_event_get_coords
+  clutter_event_get_time
+  clutter_event_get_state
+  clutter_event_get_source
   clutter_event_free
   clutter_event_copy
+  clutter_key_event_symbol
+  clutter_key_event_code
+  clutter_key_event_unicode
+  clutter_button_event_button
 %%
 override-slot ClutterEvent.tp_setattr
 #define CHECK_VALUE_IS_INT(a,v) \
@@ -56,8 +63,6 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 			}
 			break;
 		case CLUTTER_BUTTON_PRESS:	/* ClutterButtonEvent	button */
-		case CLUTTER_2BUTTON_PRESS:
-                case CLUTTER_3BUTTON_PRESS:
 		case CLUTTER_BUTTON_RELEASE:
 			if (!strcmp (attr, "time")) {
 				CHECK_VALUE_IS_INT (attr, value);
@@ -84,6 +89,11 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 				event->button.button = PyInt_AsLong (value);
 				return 0;
 			}
+                        else if (!strcmp (attr, "click_count")) {
+                                CHECK_VALUE_IS_INT (attr, value);
+                                event->button.click_count = PyInt_AsLong (value);
+                                return 0;
+                        }
 			break;
                 case CLUTTER_SCROLL:
                         if (!strcmp (attr, "time")) {
@@ -157,85 +167,98 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 			break;
 		case CLUTTER_MOTION: /* ClutterMotionEvent	motion */
 			if (!strcmp (attr, "__members__"))
-				return Py_BuildValue ("[sssss]",
+				return Py_BuildValue ("[ssssss]",
 						      "type",
 						      "time",
-						      "x", "y",
-						      "modifier_state");
-			if (!strcmp (attr, "time"))
-				return PyInt_FromLong (event->motion.time);
+                                                      "source",
+						      "modifier_state",
+						      "x", "y");
 			if (!strcmp (attr, "x"))
 				return PyInt_FromLong (event->motion.x);
 			if (!strcmp (attr, "y"))
 				return PyInt_FromLong (event->motion.y);
-			if (!strcmp (attr, "motifier_state"))
-				return PyInt_FromLong (event->motion.modifier_state);
 			break;
 		case CLUTTER_BUTTON_PRESS:
-		case CLUTTER_2BUTTON_PRESS:
-		case CLUTTER_3BUTTON_PRESS:
 		case CLUTTER_BUTTON_RELEASE:
 			if (!strcmp (attr, "__members__"))
-				return Py_BuildValue ("[ssssss]",
+				return Py_BuildValue ("[ssssssss]",
 						      "type",
 						      "time",
-						      "x", "y",
+                                                      "source",
 						      "modifier_state",
-						      "button");
-			if (!strcmp (attr, "time"))
-				return PyInt_FromLong (event->button.time);
+						      "x", "y",
+						      "button",
+                                                      "click_count");
 			if (!strcmp (attr, "x"))
 				return PyInt_FromLong (event->button.x);
 			if (!strcmp (attr, "y"))
 				return PyInt_FromLong (event->button.y);
-			if (!strcmp (attr, "motifier_state"))
-				return PyInt_FromLong (event->button.modifier_state);
 			if (!strcmp (attr, "button"))
 				return PyInt_FromLong (event->button.button);
+                        if (!strcmp (attr, "click_count"))
+                                return PyInt_FromLong (event->button.click_count);
 			break;
                 case CLUTTER_SCROLL:
                         if (!strcmp (attr, "__members__"))
-				return Py_BuildValue ("[ssssss]",
+				return Py_BuildValue ("[sssssss]",
 						      "type",
 						      "time",
-						      "x", "y",
+                                                      "source",
 						      "modifier_state",
+						      "x", "y",
 						      "direction");
-			if (!strcmp (attr, "time"))
-				return PyInt_FromLong (event->scroll.time);
 			if (!strcmp (attr, "x"))
 				return PyInt_FromLong (event->scroll.x);
 			if (!strcmp (attr, "y"))
 				return PyInt_FromLong (event->scroll.y);
-			if (!strcmp (attr, "motifier_state"))
-				return PyInt_FromLong (event->scroll.modifier_state);
 			if (!strcmp (attr, "direction"))
-				return PyInt_FromLong (event->scroll.direction);
+				return pyg_enum_from_gtype (CLUTTER_TYPE_SCROLL_DIRECTION, event->scroll.direction);
                         break;
 		case CLUTTER_KEY_PRESS:
 		case CLUTTER_KEY_RELEASE:
 			if (!strcmp (attr, "__members__"))
-				return Py_BuildValue ("[sssss]",
+				return Py_BuildValue ("[ssssss]",
 						      "type",
 						      "time",
+                                                      "source",
 						      "modifier_state",
 						      "keyval",
 						      "hardware_keycode");
-			if (!strcmp (attr, "time"))
-				return PyInt_FromLong (event->key.time);
-			if (!strcmp (attr, "motifier_state"))
-				return PyInt_FromLong (event->key.modifier_state);
 			if (!strcmp (attr, "keyval"))
 				return PyInt_FromLong (event->key.keyval);
 			if (!strcmp (attr, "hardware_keycode"))
 				return PyInt_FromLong (event->key.hardware_keycode);
 			break;
+                case CLUTTER_ENTER:
+                case CLUTTER_LEAVE:
+                        if (!strcmp (attr, "__members__"))
+                                return Py_BuildValue ("[ssssss]",
+                                                      "type",
+                                                      "time",
+                                                      "source",
+                                                      "x", "y",
+                                                      "related");
+			if (!strcmp (attr, "x"))
+				return PyInt_FromLong (event->crossing.x);
+			if (!strcmp (attr, "y"))
+				return PyInt_FromLong (event->crossing.y);
+                        break;
 		default:
 			break;
 	}
 
 	if (!strcmp (attr, "type"))
 		return pyg_enum_from_gtype (CLUTTER_TYPE_EVENT_TYPE, event->type);
+
+	if (!strcmp (attr, "time"))
+                return PyInt_FromLong (clutter_event_get_time (event));
+
+        if (!strcmp (attr, "motifier_state"))
+                return pyg_flags_from_gtype (CLUTTER_TYPE_MODIFIER_TYPE,
+                                             clutter_event_get_state (event));
+
+        if (!strcmp (attr, "source"))
+                return pygobject_new ((GObject *) clutter_event_get_source (event));
 	
 	return Py_FindMethod ((PyMethodDef *) _PyClutterEvent_methods, self, attr);
 }

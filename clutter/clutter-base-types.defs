@@ -9,13 +9,6 @@
   (vtable "ClutterContainerIface")
 )
 
-(define-interface Layout
-  (in-module "Clutter")
-  (c-name "ClutterLayout")
-  (gtype-id "CLUTTER_TYPE_LAYOUT")
-  (vtable "ClutterLayoutIface")
-)
-
 (define-interface Media
   (in-module "Clutter")
   (c-name "ClutterMedia")
@@ -81,30 +74,6 @@
   (fields
     '("gint" "x")
     '("gint" "y")
-  )
-)
-
-(define-boxed Margin
-  (in-module "Clutter")
-  (c-name "ClutterMargin")
-  (gtype-id "CLUTTER_TYPE_MARGIN")
-  (fields
-    '("gint32" "top")
-    '("gint32" "right")
-    '("gint32" "bottom")
-    '("gint32" "left")
-  )
-)
-
-(define-boxed Padding
-  (in-module "Clutter")
-  (c-name "ClutterPadding")
-  (gtype-id "CLUTTER_TYPE_PADDING")
-  (fields
-    '("gint32" "top")
-    '("gint32" "right")
-    '("gint32" "bottom")
-    '("gint32" "left")
   )
 )
 
@@ -198,13 +167,6 @@
   (gtype-id "CLUTTER_TYPE_BEHAVIOUR_SCALE")
 )
 
-(define-object Box
-  (in-module "Clutter")
-  (parent "ClutterActor")
-  (c-name "ClutterBox")
-  (gtype-id "CLUTTER_TYPE_BOX")
-)
-
 (define-object CloneTexture
   (in-module "Clutter")
   (parent "ClutterActor")
@@ -231,13 +193,6 @@
   (parent "ClutterActor")
   (c-name "ClutterGroup")
   (gtype-id "CLUTTER_TYPE_GROUP")
-)
-
-(define-object HBox
-  (in-module "Clutter")
-  (parent "ClutterBox")
-  (c-name "ClutterHBox")
-  (gtype-id "CLUTTER_TYPE_HBOX")
 )
 
 (define-object Label
@@ -275,13 +230,6 @@
   (gtype-id "CLUTTER_TYPE_TIMELINE")
 )
 
-(define-object VBox
-  (in-module "Clutter")
-  (parent "ClutterBox")
-  (c-name "ClutterVBox")
-  (gtype-id "CLUTTER_TYPE_VBOX")
-)
-
 ;; Enumerations and flags ...
 
 (define-flags ActorFlags
@@ -291,16 +239,6 @@
   (values
     '("mapped" "CLUTTER_ACTOR_MAPPED")
     '("realized" "CLUTTER_ACTOR_REALIZED")
-  )
-)
-
-(define-enum PackType
-  (in-module "Clutter")
-  (c-name "ClutterPackType")
-  (gtype-id "CLUTTER_TYPE_PACK_TYPE")
-  (values
-    '("start" "CLUTTER_PACK_START")
-    '("end" "CLUTTER_PACK_END")
   )
 )
 
@@ -370,19 +308,6 @@
     '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC")
     '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE")
     '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR")
-  )
-)
-
-(define-flags LayoutFlags
-  (in-module "Clutter")
-  (c-name "ClutterLayoutFlags")
-  (gtype-id "CLUTTER_TYPE_LAYOUT_FLAGS")
-  (values
-    '("none" "CLUTTER_LAYOUT_NONE")
-    '("width-for-height" "CLUTTER_LAYOUT_WIDTH_FOR_HEIGHT")
-    '("height-for-width" "CLUTTER_LAYOUT_HEIGHT_FOR_WIDTH")
-    '("natural" "CLUTTER_LAYOUT_NATURAL")
-    '("tunable" "CLUTTER_LAYOUT_TUNABLE")
   )
 )
 

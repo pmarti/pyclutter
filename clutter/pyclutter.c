@@ -239,88 +239,6 @@ out:
         return FALSE;
 }
 
-gboolean
-pyclutter_margin_from_pyobject (PyObject      *object,
-                                ClutterMargin *margin)
-{
-        g_return_val_if_fail (margin != NULL, FALSE);
-
-        if (pyg_boxed_check (object, CLUTTER_TYPE_MARGIN)) {
-                *margin = *pyg_boxed_get (object, ClutterMargin);
-                return TRUE;
-        }
-
-        if (PyTuple_Check (object) && (PyTuple_Size (object) == 4)) {
-                int i;
-
-                for (i = 0; i < 4; i++) {
-                        PyObject *comp = PyTuple_GetItem (object, i);
-
-                        if (!PyInt_Check (comp))
-                                goto out;
-
-                        switch (i) {
-                        case 0: margin->left   = PyInt_AsLong (comp); break;
-                        case 1: margin->right  = PyInt_AsLong (comp); break;
-                        case 2: margin->bottom = PyInt_AsLong (comp); break;
-                        case 3: margin->left   = PyInt_AsLong (comp); break;
-                        default:
-                                g_assert_not_reached ();
-                                break;
-                        }
-                }
-
-                return TRUE;
-        }
-
-out:
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError, "could not convert to ClutterMargin");
-
-        return FALSE;
-}
-
-gboolean
-pyclutter_padding_from_pyobject (PyObject       *object,
-                                 ClutterPadding *padding)
-{
-        g_return_val_if_fail (padding != NULL, FALSE);
-
-        if (pyg_boxed_check (object, CLUTTER_TYPE_PADDING)) {
-                *padding = *pyg_boxed_get (object, ClutterPadding);
-                return TRUE;
-        }
-
-        if (PyTuple_Check (object) && (PyTuple_Size (object) == 4)) {
-                int i;
-
-                for (i = 0; i < 4; i++) {
-                        PyObject *comp = PyTuple_GetItem (object, i);
-
-                        if (!PyInt_Check (comp))
-                                goto out;
-
-                        switch (i) {
-                        case 0: padding->left   = PyInt_AsLong (comp); break;
-                        case 1: padding->right  = PyInt_AsLong (comp); break;
-                        case 2: padding->bottom = PyInt_AsLong (comp); break;
-                        case 3: padding->left   = PyInt_AsLong (comp); break;
-                        default:
-                                g_assert_not_reached ();
-                                break;
-                        }
-                }
-
-                return TRUE;
-        }
-
-out:
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError, "could not convert to ClutterPadding");
-
-        return FALSE;
-}
-
 guint32
 pyclutter_alpha_func (ClutterAlpha *alpha,
                       gpointer      data)
@@ -351,35 +269,6 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         Py_XDECREF (retobj);
 
         pyg_gil_state_release (state);
-        
-        return retval;
-}
-
-PyObject *
-pyclutter_box_child_to_pyobject (ClutterBoxChild *box_child)
-{
-        PyObject *retval;
-
-        if (!box_child) {
-                Py_INCREF (Py_None);
-                return Py_None;
-        }
-
-        retval = PyTuple_New (4);
-
-        PyTuple_SET_ITEM (retval, 0,
-                          pygobject_new ((GObject *) box_child->actor));
-        PyTuple_SET_ITEM (retval, 1,
-                          pyg_boxed_new (CLUTTER_TYPE_ACTOR_BOX,
-                                         &(box_child->child_coords),
-                                         TRUE, TRUE));
-        PyTuple_SET_ITEM (retval, 2,
-                          pyg_enum_from_gtype (CLUTTER_TYPE_PACK_TYPE,
-                                               box_child->pack_type));
-        PyTuple_SET_ITEM (retval, 3,
-                          pyg_boxed_new (CLUTTER_TYPE_PADDING,
-                                         &(box_child->padding),
-                                         TRUE, TRUE));
         
         return retval;
 }

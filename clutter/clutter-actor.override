@@ -1,11 +1,7 @@
 %%
 ignore
-  clutter_actor_rotate_xx
-  clutter_actor_rotate_yx
-  clutter_actor_rotate_zx
-  clutter_actor_get_rxangx
-  clutter_actor_get_ryangx
-  clutter_actor_get_rzangx
+  clutter_actor_set_rotationx
+  clutter_actor_get_rotationx
   clutter_actor_set_scalex
   clutter_actor_get_scalex
   clutter_actor_set_scale_with_gravityx
@@ -64,7 +60,7 @@ _wrap_clutter_actor_get_coords (PyGObject *self)
 	return Py_BuildValue("(iiii)", x1, y1, x2, y2);
 }
 %%
-override clutter_actor_get_abs_position
+override clutter_actor_get_abs_position noargs
 static PyObject *
 _wrap_clutter_actor_get_abs_position (PyGObject *self)
 {
@@ -76,7 +72,7 @@ _wrap_clutter_actor_get_abs_position (PyGObject *self)
 	return Py_BuildValue("(ii)", pos_x, pos_y);
 }
 %%
-override clutter_actor_get_abs_size
+override clutter_actor_get_abs_size noargs
 static PyObject *
 _wrap_clutter_actor_get_abs_size (PyGObject *self)
 {
@@ -88,7 +84,7 @@ _wrap_clutter_actor_get_abs_size (PyGObject *self)
         return Py_BuildValue ("(ii)", width, height);
 }
 %%
-override clutter_actor_get_size
+override clutter_actor_get_size noargs
 static PyObject *
 _wrap_clutter_actor_get_size (PyGObject *self)
 {
@@ -100,7 +96,7 @@ _wrap_clutter_actor_get_size (PyGObject *self)
         return Py_BuildValue ("(ii)", width, height);
 }
 %%
-override clutter_actor_get_scale
+override clutter_actor_get_scale noargs
 static PyObject *
 _wrap_clutter_actor_get_scale (PyGObject *self)
 {
@@ -112,7 +108,7 @@ _wrap_clutter_actor_get_scale (PyGObject *self)
         return Py_BuildValue ("(ff)", scale_x, scale_y);
 }
 %%
-override clutter_actor_get_vertices
+override clutter_actor_get_vertices noargs
 static PyObject *
 _wrap_clutter_actor_get_vertices (PyGObject *self)
 {
@@ -132,6 +128,61 @@ _wrap_clutter_actor_get_vertices (PyGObject *self)
         }
 
         return pyvertices;
+}
+%%
+override clutter_actor_set_rotation kwargs
+static PyObject *
+_wrap_clutter_actor_set_rotation (PyGObject *self,
+                                  PyObject  *args,
+                                  PyObject  *kwargs)
+{
+        static char *kwlist[] = { "axis", "angle", "x", "y", "z", NULL };
+        int axis;
+        double angle;
+        int x, y, y;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "idiii:ClutterActor.set_rotation",
+                                          kwlist,
+                                          &axis,
+                                          &angle,
+                                          &x, &y, &z)) {
+                return NULL;
+        }
+
+        clutter_actor_set_rotation (CLUTTER_ACTOR (self->obj), axis,
+                                    angle,
+                                    x, y, z);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override clutter_actor_get_rotation kwargs
+static PyObject *
+_wrap_clutter_actor_get_rotation (PyGObject *self,
+                                  PyObject  *args,
+                                  PyObject  *kwargs)
+{
+        static char *kwlist[] = { "axis", NULL };
+        int axis;
+        gint center_x, center_y, center_z;
+        gdouble angle;
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "i:ClutterActor.get_rotation", kwlist,
+                                          &axis)) {
+                return NULL;
+        }
+
+        angle = clutter_actor_get_rotation (CLUTTER_ACTOR (self->obj), axis,
+                                            &center_x,
+                                            &center_y,
+                                            &center_z);
+
+        return Py_BuildValue ("(diii)",
+                              angle,
+                              center_x, center_y, center_z);
 }
 %%
 override clutter_actor_query_coords noargs

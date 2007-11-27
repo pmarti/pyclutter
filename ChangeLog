@@ -1,3 +1,25 @@
+2007-11-27  Emmanuele Bassi  <ebassi@openedhand>
+
+	Initial work at porting the PyClutter bindings to the
+	API in trunk. this is going to be some overhaul, so please
+	be patient.
+
+	* clutter/clutter-actor.override: Add [sg]et_rotation() API
+
+	* clutter/clutter-base-types.defs:
+	* clutter/clutter-base.defs: Start pruning all the definitions
+	that have been removed/are to be removed from upstream.
+
+	* clutter/clutter-boxed.override: Ditto as above.
+
+	* clutter/clutter-event.override: Add ClutterEventCrossing and
+	make the event code a little more generic.
+
+	* clutter/pyclutter.[ch]: Remove C utility functions for the
+	types that have been removed.
+
+	* py-compile: Do not put py-compile under revision control.
+
 2007-09-17  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-behaviour.override: Initialise the ctor
