@@ -1,3 +1,15 @@
+2007-11-27  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs: Remove get_progressx()
+	definition from ClutterTimline.
+
+	* clutter/Makefile.am:
+	* clutter/clutter.override: Build glue for ClutterModel
+	overrides.
+
+	* clutter/clutter-model.override: Initial stabe at the
+	overrides for ClutterModel.
+
 2007-11-27  Emmanuele Bassi <ebassi@openedhand.com>
 
 	* clutter/Makefile.am: Add clutter-script.override

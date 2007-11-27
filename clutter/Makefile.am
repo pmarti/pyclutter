@@ -36,6 +36,7 @@ CLUTTER_OVERRIDES = 			\
 	clutter-boxed.override 		\
 	clutter-color.override		\
 	clutter-event.override		\
+	clutter-model.override		\
 	clutter-script.override
 
 EXTRA_DIST += 			\

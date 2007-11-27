@@ -4095,9 +4095,10 @@
 
 (define-function timeline_new_for_duration
   (c-name "clutter_timeline_new_for_duration")
+  (is-constructor-of "ClutterTimeline")
   (return-type "ClutterTimeline*")
-  (parameters
-    '("guint" "msecs")
+  (properties
+    '("duration" (argname "msecs"))
   )
 )
 
@@ -4135,12 +4136,6 @@
   (of-object "ClutterTimeline")
   (c-name "clutter_timeline_get_progress")
   (return-type "gdouble")
-)
-
-(define-method get_progressx
-  (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_get_progressx")
-  (return-type "ClutterFixed")
 )
 
 (define-method clone

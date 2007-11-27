@@ -1,0 +1,40 @@
+ignore
+    clutter_model_newv
+%%
+override clutter_model_new
+static int
+_wrap_clutter_model_new(PyGObject *self, PyObject *args)
+{
+    guint len, i;
+    GType *column_types;
+
+    len = PyTuple_Size (args);
+    if (len == 0) {
+        PyErr_SetString (PyExc_TypeError,
+                         "ClutterModel requires at least one argument");
+        return -1;
+    }
+
+    column_types = g_new (GType, len);
+    for (i = 0; i < len; i++) {
+        PyObject *item = PyTuple_GetItem (args, i);
+
+        column_types[i] = pyg_type_from_object (item);
+        if (column_types[i] == 0) {
+            g_free (column_types);
+            return -1;
+        }
+    }
+    self->obj = g_object_newv (pyg_type_from_object ((PyObject *) self), 0, NULL);
+    clutter_model_set_types (CLUTTER_MODEL (self->obj), len, column_types);
+    g_free (column_types);
+
+    if (!self->obj) {
+        PyErr_SetString (PyExc_RuntimeError,
+                         "could not create a ClutterModel object");
+        return -1;
+    }
+
+    pygobject_register_wrapper ((PyObject *) self);
+    return 0;
+}
