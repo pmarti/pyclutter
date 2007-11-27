@@ -16,6 +16,12 @@
   (vtable "ClutterMediaInterface")
 )
 
+(define-interface Scriptable
+  (in-module "Clutter")
+  (c-name "ClutterScriptable")
+  (gtype-id "CLUTTER_TYPE_SCRIPTABLE")
+)
+
 ; boxed types...
 
 (define-boxed Color
@@ -230,7 +236,76 @@
   (gtype-id "CLUTTER_TYPE_TIMELINE")
 )
 
+(define-object Model
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterModel")
+  (gtype-id "CLUTTER_TYPE_MODEL")
+)
+
+(define-object ModelIter
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterModelIter")
+  (gtype-id "CLUTTER_TYPE_MODEL_ITER")
+)
+
+(define-object Score
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterScore")
+  (gtype-id "CLUTTER_TYPE_SCORE")
+)
+
+(define-object Script
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterScript")
+  (gtype-id "CLUTTER_TYPE_SCRIPT")
+)
+
 ;; Enumerations and flags ...
+
+(define-flags EventFlags
+  (in-module "Clutter")
+  (c-name "ClutterEventFlags")
+  (gtype-id "CLUTTER_TYPE_EVENT_FLAGS")
+  (values
+    '("c" "CLUTTER_EVENT_FLAG_SYNTHETIC")
+  )
+)
+
+(define-flags StageState
+  (in-module "Clutter")
+  (c-name "ClutterStageState")
+  (gtype-id "CLUTTER_TYPE_STAGE_STATE")
+  (values
+    '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN")
+    '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN")
+    '("activated" "CLUTTER_STAGE_STATE_ACTIVATED")
+  )
+)
+
+(define-enum ScriptError
+  (in-module "Clutter")
+  (c-name "ClutterScriptError")
+  (gtype-id "CLUTTER_TYPE_SCRIPT_ERROR")
+  (values
+    '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION")
+    '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY")
+    '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE")
+  )
+)
+
+(define-enum TimelineDirection
+  (in-module "Clutter")
+  (c-name "ClutterTimelineDirection")
+  (gtype-id "CLUTTER_TYPE_TIMELINE_DIRECTION")
+  (values
+    '("forward" "CLUTTER_TIMELINE_FORWARD")
+    '("backward" "CLUTTER_TIMELINE_BACKWARD")
+  )
+)
 
 (define-flags ActorFlags
   (in-module "Clutter")
