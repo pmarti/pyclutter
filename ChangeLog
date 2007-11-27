@@ -1,4 +1,12 @@
-2007-11-27  Emmanuele Bassi  <ebassi@openedhand>
+2007-11-27  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-actor.override: Fix typo in variable
+	declaration.
+
+	* clutter/clutter-base.defs: Remove deprecated and renamed
+	API from the definitions.
+
+2007-11-27  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	Initial work at porting the PyClutter bindings to the
 	API in trunk. this is going to be some overhaul, so please

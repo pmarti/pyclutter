@@ -139,7 +139,7 @@ _wrap_clutter_actor_set_rotation (PyGObject *self,
         static char *kwlist[] = { "axis", "angle", "x", "y", "z", NULL };
         int axis;
         double angle;
-        int x, y, y;
+        int x, y, z;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "idiii:ClutterActor.set_rotation",

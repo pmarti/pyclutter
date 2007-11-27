@@ -247,107 +247,29 @@
   (return-type "gint")
 )
 
-(define-method rotate_x
+(define-method set_rotation
   (of-object "ClutterActor")
-  (c-name "clutter_actor_rotate_x")
+  (c-name "clutter_actor_set_rotation")
   (return-type "none")
   (parameters
-    '("gfloat" "angle")
+    '("ClutterRotateAxis" "axis")
+    '("gdouble" "angle")
+    '("gint" "x")
     '("gint" "y")
     '("gint" "z")
   )
 )
 
-(define-method rotate_y
+(define-method get_rotation
   (of-object "ClutterActor")
-  (c-name "clutter_actor_rotate_y")
-  (return-type "none")
-  (parameters
-    '("gfloat" "angle")
-    '("gint" "x")
-    '("gint" "z")
-  )
-)
-
-(define-method rotate_z
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_rotate_z")
-  (return-type "none")
-  (parameters
-    '("gfloat" "angle")
-    '("gint" "x")
-    '("gint" "y")
-  )
-)
-
-(define-method rotate_xx
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_rotate_xx")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "angle")
-    '("gint" "y")
-    '("gint" "z")
-  )
-)
-
-(define-method rotate_yx
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_rotate_yx")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "angle")
-    '("gint" "x")
-    '("gint" "z")
-  )
-)
-
-(define-method rotate_zx
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_rotate_zx")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "angle")
-    '("gint" "x")
-    '("gint" "y")
-  )
-)
-
-(define-method get_rxang
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_rxang")
+  (c-name "clutter_actor_get_rotation")
   (return-type "gdouble")
-)
-
-(define-method get_ryang
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_ryang")
-  (return-type "gdouble")
-)
-
-(define-method get_rzang
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_rzang")
-  (return-type "gdouble")
-)
-
-
-(define-method get_rxangx
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_rxangx")
-  (return-type "ClutterFixed")
-)
-
-(define-method get_ryangx
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_ryangx")
-  (return-type "ClutterFixed")
-)
-
-(define-method get_rzangx
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_rzangx")
-  (return-type "ClutterFixed")
+  (parameters
+    '("ClutterRotateAxis" "axis")
+    '("gint*" "x")
+    '("gint*" "y")
+    '("gint*" "z")
+  )
 )
 
 (define-method set_opacity
@@ -380,9 +302,9 @@
   (return-type "const-gchar*")
 )
 
-(define-method get_id
+(define-method get_gid
   (of-object "ClutterActor")
-  (c-name "clutter_actor_get_id")
+  (c-name "clutter_actor_get_gid")
   (return-type "guint32")
 )
 
@@ -1029,33 +951,18 @@
   (return-type "gint")
 )
 
-(define-method set_angle_begin
+(define-method set_angle_start
   (of-object "ClutterBehaviourEllipse")
-  (c-name "clutter_behaviour_ellipse_set_angle_begin")
+  (c-name "clutter_behaviour_ellipse_set_angle_start")
   (return-type "none")
   (parameters
-    '("gdouble" "angle_begin")
+    '("gdouble" "angle_start")
   )
 )
 
-(define-method set_angle_beginx
+(define-method get_angle_start
   (of-object "ClutterBehaviourEllipse")
-  (c-name "clutter_behaviour_ellipse_set_angle_beginx")
-  (return-type "none")
-  (parameters
-    '("ClutterAngle" "angle_begin")
-  )
-)
-
-(define-method get_angle_beginx
-  (of-object "ClutterBehaviourEllipse")
-  (c-name "clutter_behaviour_ellipse_get_angle_beginx")
-  (return-type "ClutterAngle")
-)
-
-(define-method get_angle_begin
-  (of-object "ClutterBehaviourEllipse")
-  (c-name "clutter_behaviour_ellipse_get_angle_begin")
+  (c-name "clutter_behaviour_ellipse_get_angle_start")
   (return-type "gdouble")
 )
 
@@ -2422,15 +2329,6 @@
   (c-name "clutter_group_new")
   (is-constructor-of "ClutterGroup")
   (return-type "ClutterActor*")
-)
-
-(define-method find_child_by_id
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_find_child_by_id")
-  (return-type "ClutterActor*")
-  (parameters
-    '("guint" "id")
-  )
 )
 
 (define-method get_nth_child
