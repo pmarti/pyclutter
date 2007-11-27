@@ -96,6 +96,17 @@ _wrap_clutter_actor_get_size (PyGObject *self)
         return Py_BuildValue ("(ii)", width, height);
 }
 %%
+override clutter_actor_get_position noargs
+static PyObject *
+_wrap_clutter_actor_get_position (PyGObject *self)
+{
+        gint x, y;
+
+        clutter_actor_get_position (CLUTTER_ACTOR (self->obj), &x, &y);
+
+        return Py_BuildValue ("(ii)", x, y);
+}
+%%
 override clutter_actor_get_scale noargs
 static PyObject *
 _wrap_clutter_actor_get_scale (PyGObject *self)
@@ -183,6 +194,19 @@ _wrap_clutter_actor_get_rotation (PyGObject *self,
         return Py_BuildValue ("(diii)",
                               angle,
                               center_x, center_y, center_z);
+}
+%%
+override clutter_actor_get_clip noargs
+static PyObject *
+_wrap_clutter_actor_get_clip (PyGObject *self)
+{
+	gint xoff, yoff;
+	gint width, height;
+
+	clutter_actor_get_clip (CLUTTER_ACTOR (self->obj),
+                                &xoff, &yoff,
+                                &width, &height);
+	return Py_BuildValue("(iiii)", xoff, yoff, width, height);
 }
 %%
 override clutter_actor_query_coords noargs

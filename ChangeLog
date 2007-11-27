@@ -1,5 +1,10 @@
 2007-11-27  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-actor.override: Override get_position()
+	and get_clip().
+
+2007-11-27  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base-types.defs:
 	* clutter/clutter-base.defs: Merge API additions from trunk.
 
