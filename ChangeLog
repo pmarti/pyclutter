@@ -1,3 +1,14 @@
+2007-11-27  Emmanuele Bassi <ebassi@openedhand.com>
+
+	* clutter/Makefile.am: Add clutter-script.override
+
+	* clutter/clutter-script.override: Overrides for using
+	ClutterScript within python: get_objects() returns a list
+	of objects, while connect_signals() will connect python
+	callable objects found in the current namespace.
+
+	* clutter/clutter.override: Include clutter-script.override
+
 2007-11-27  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-actor.override: Override get_position()

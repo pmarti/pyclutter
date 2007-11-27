@@ -4,6 +4,7 @@ headers
 #define NO_IMPORT_PYGOBJECT
 #include "pygobject.h"
 #include "pyclutter.h"
+
 %%
 include
   clutter-actor.override
@@ -11,6 +12,7 @@ include
   clutter-boxed.override
   clutter-color.override
   clutter-event.override
+  clutter-script.override
 %%
 modulename clutter
 %%
@@ -29,6 +31,8 @@ ignore
   clutter_rectangle_new_with_color
   clutter_stage_set_perspectivex
   clutter_stage_get_perspectivex
+  clutter_stage_set_fogx
+  clutter_stage_get_fogx
   clutter_container_add_actor
   clutter_container_add_valist
   clutter_container_remove_actor
@@ -638,10 +642,29 @@ _wrap_clutter_entry_handle_key_event (PyGObject *self, PyObject *args)
         ClutterKeyEvent *key_event;
 
         key_event = (ClutterKeyEvent *) pyg_boxed_get (args, ClutterEvent);
+        if (!key_event) {
+                PyErr_SetString (PyExc_TypeError, "Invalid event");
+                return NULL;
+        }
+
         clutter_entry_handle_key_event (CLUTTER_ENTRY (self->obj), key_event);
         
         Py_INCREF (Py_None);
         return Py_None;
+}
+%%
+override clutter_stage_get_fog noargs
+static PyObject *
+_wrap_clutter_stage_get_fog (PyGObject *self)
+{
+        gdouble density, z_near, z_far;
+
+        clutter_stage_get_fog (CLUTTER_STAGE (self->obj),
+                               &density,
+                               &z_near,
+                               &z_far);
+
+        return Py_BuildValue ("(ddd)", density, z_near, z_far);
 }
 %%
 override clutter_stage_get_perspective noargs
@@ -1085,4 +1108,3 @@ _wrap_clutter_threads_enter (PyObject *self)
         Py_INCREF (Py_None);
         return Py_None;
 }
-%%

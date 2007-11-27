@@ -1,0 +1,128 @@
+%%
+headers
+
+typedef struct {
+    PyObject    *obj;
+    PyObject    *data;
+} PyGCustomSignalNotify;
+
+%%
+override clutter_script_connect_signals kwargs
+static void
+connect_many (ClutterScript *script,
+              GObject *obj,
+              const gchar *signal_name,
+              const gchar *handler_name,
+              GObject *connect_object,
+              GConnectFlags flags,
+              gpointer user_data)
+{
+    PyGCustomSignalNotify   *notify = user_data;
+    PyObject                *handler_dict = notify->obj;
+    PyObject                *tuple, *self;
+    GClosure                *closure = NULL;
+
+    tuple = PyMapping_GetItemString(handler_dict, (gchar *)handler_name);
+    if (!tuple) {
+        PyErr_Clear();  
+        tuple = PyObject_GetAttrString(handler_dict, (gchar *)handler_name);
+        if (!tuple) {
+            PyErr_Clear();
+            return;
+        }
+    }
+    
+    if (PyTuple_Check(tuple)) {
+        PyObject *callback = PyTuple_GetItem(tuple, 0);
+        PyObject *extra = PySequence_GetSlice(tuple, 1, PyTuple_Size(tuple));
+        PyObject *other = NULL;
+
+        if (connect_object)
+            other = pygobject_new((GObject *)connect_object);
+
+        closure = pyg_closure_new(callback, extra, other);
+        Py_DECREF(extra);
+    } else if (PyCallable_Check(tuple)) {
+        PyObject *other = NULL;
+
+        if (connect_object)
+            other = pygobject_new((GObject *)connect_object);
+
+        closure = pyg_closure_new(tuple, notify->data, other);
+    } else {
+        g_warning("handler for `%s' not callable or a tuple", handler_name);
+        Py_DECREF(tuple);
+        return;
+    }
+    Py_DECREF(tuple);
+    self = pygobject_new(obj);
+    g_signal_connect_closure(obj, signal_name, closure, flags);
+    pygobject_watch_closure(self, closure);
+    Py_DECREF(self);
+}
+
+static PyObject *
+_wrap_clutter_script_connect_signals (PyGObject *self,
+                                      PyObject  *args,
+                                      PyObject  *kwargs)
+{
+    static char *kwlist[] = { "object", "user_data", NULL };
+    PyGCustomSignalNotify   notify;
+    PyObject                *object, *user_data = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O|O:ClutterScript.connect_signals",
+                                     kwlist,
+                                     &object, &user_data))
+        return NULL;
+
+    notify.obj = object;
+    notify.data = user_data;
+
+    clutter_script_connect_signals_full (CLUTTER_SCRIPT (self->obj),
+                                         connect_many,
+                                         &notify);
+
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override clutter_script_get_objects
+static PyObject *
+_wrap_clutter_script_get_objects (PyGObject *self,
+                                  PyObject  *args)
+{
+    int len, i;
+    PyObject *retval;
+
+    if (!PyTuple_Check (args)) {
+        PyErr_SetString (PyExc_TypeError, "expecting a tuple of names");
+        return NULL;
+    }
+
+    len = PyTuple_Size (args);
+    retval = PyList_New (0);
+
+    for (i = 0; i < len; i++) {
+        PyObject *py_name, *item;
+        GObject *res;
+
+        py_name = PyTuple_GetItem (args, i);
+        if (!PyString_Check (py_name)) {
+            PyErr_SetString (PyExc_TypeError, "expecting a string");
+            Py_DECREF (retval);
+            return NULL;
+        }
+
+        res = clutter_script_get_object (CLUTTER_SCRIPT (self->obj),
+                                         PyString_AsString (py_name));
+        if (!res)
+            continue;
+
+        item = pygobject_new (res);
+        PyList_Append (retval, item);
+        Py_DECREF (item);
+    }
+
+    return retval;
+}
