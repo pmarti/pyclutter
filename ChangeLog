@@ -1,3 +1,14 @@
+2007-11-28  Emmanuele Bassi <ebassi@openedhand.com>
+
+	* clutter/clutter-effect.override: Overrides for the
+	clutter-effect API.
+
+	* clutter/Makefile.am:
+	* clutter/clutter.override: Build glue for clutter-effect
+	overrides.
+
+	* clutter/pyclutter.[ch]: Add pyclutter_effect_complete().
+
 2007-11-27  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Remove get_progressx()

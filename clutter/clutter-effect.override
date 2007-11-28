@@ -1,0 +1,357 @@
+%%
+ignore
+    clutter_effect_template_new_full
+    clutter_effect_template_new_for_duration
+
+%%
+override clutter_effect_template_new kwargs
+static int
+_wrap_clutter_effect_template_new (PyGObject *self,
+                                   PyObject  *args,
+                                   PyObject  *kwargs)
+{
+    static char *kwlist[] = { "timeline", "func", "data", "clone", NULL };
+    PyObject *py_timeline, *py_func, *py_data = NULL;
+    int do_clone = TRUE;
+    ClutterTimeline *timeline;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "OO|Oi:clutter.EffectTemplate.__init__",
+                                      kwlist,
+                                      &py_timeline,
+                                      &py_func, &py_data,
+                                      &do_clone))
+        return -1;
+
+    if (py_timeline == Py_None ||
+        !pygobject_check (py_timeline, &PyClutterTimeline_Type)) {
+        PyErr_SetString (PyExc_TypeError,
+                         "first argument must be a timeline");
+        return -1;
+    }
+    else
+        timeline = CLUTTER_TIMELINE (pygobject_get (py_timeline));
+
+    if (py_func == Py_None || !PyCallable_Check (py_func)) {
+        PyErr_SetString (PyExc_TypeError, "func must be callable");
+        return -1;
+    }
+    else {
+        GType param_types[1] = { CLUTTER_TYPE_ALPHA, };
+        PyClutterCallback *pycb;
+        ClutterEffectTemplate *tmpl;
+
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       1, param_types);
+
+        pygobject_construct (self, "clone", do_clone, NULL);
+
+        tmpl = CLUTTER_EFFECT_TEMPLATE (pygobject_get (self));
+        clutter_effect_template_construct (tmpl,
+                                           timeline,
+                                           pyclutter_alpha_func, pycb,
+                                           (GDestroyNotify) pyclutter_callback_free);
+    }
+
+    return 0;
+}
+%%
+override clutter_effect_fade kwargs
+static PyObject *
+_wrap_clutter_effect_fade (PyObject *self,
+                           PyObject *args,
+                           PyObject *kwargs)
+{
+    static char *kwlist[] = { "template", "actor", "opacity_end", "func", "data", NULL };
+    PyObject *py_templ, *py_actor, *py_func, *py_data;
+    ClutterEffectTemplate *templ;
+    ClutterActor *actor;
+    guint8 opacity_end;
+    ClutterTimeline *retval;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "OOb|OO:clutter.effect_fade",
+                                      kwlist,
+                                      &py_templ, &py_actor,
+                                      &opacity_end,
+                                      &py_func, &py_data))
+        return NULL;
+
+    if (py_templ == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "first argument must be an effect template");
+        return NULL;
+    }
+    else
+        templ = CLUTTER_EFFECT_TEMPLATE (pygobject_get (py_templ));
+
+    if (py_actor == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "second argument must be an actor");
+        return NULL;
+    }
+    else
+        actor = CLUTTER_ACTOR (pygobject_get (py_actor));
+
+    if (py_func == Py_None)
+        retval = clutter_effect_fade (templ, actor, opacity_end, NULL, NULL);
+    else {
+        GType param_types[1] = { CLUTTER_TYPE_ACTOR, };
+        PyClutterCallback *pycb;
+        
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       1, param_types);
+
+        retval = clutter_effect_fade (templ, actor, opacity_end,
+                                      pyclutter_effect_complete,
+                                      pycb);
+    }
+
+    return pygobject_new ((GObject *) retval);
+}
+%%
+override clutter_effect_depth kwargs
+static PyObject *
+_wrap_clutter_effect_depth (PyObject *self,
+                            PyObject *args,
+                            PyObject *kwargs)
+{
+    static char *kwlist[] = { "template", "actor", "depth_end", "func", "data", NULL };
+    PyObject *py_templ, *py_actor, *py_func, *py_data;
+    ClutterEffectTemplate *templ;
+    ClutterActor *actor;
+    gint depth_end;
+    ClutterTimeline *retval;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "OOi|OO:clutter.effect_depth",
+                                      kwlist,
+                                      &py_templ, &py_actor,
+                                      &depth_end,
+                                      &py_func, &py_data))
+        return NULL;
+
+    if (py_templ == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "first argument must be an effect template");
+        return NULL;
+    }
+    else
+        templ = CLUTTER_EFFECT_TEMPLATE (pygobject_get (py_templ));
+
+    if (py_actor == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "second argument must be an actor");
+        return NULL;
+    }
+    else
+        actor = CLUTTER_ACTOR (pygobject_get (py_actor));
+
+    if (py_func == Py_None)
+        retval = clutter_effect_depth (templ, actor, depth_end, NULL, NULL);
+    else {
+        GType param_types[1] = { CLUTTER_TYPE_ACTOR, };
+        PyClutterCallback *pycb;
+        
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       1, param_types);
+
+        retval = clutter_effect_depth (templ, actor, depth_end,
+                                       pyclutter_effect_complete,
+                                       pycb);
+    }
+
+    return pygobject_new ((GObject *) retval);
+}
+%%
+override clutter_effect_move kwargs
+static PyObject *
+_wrap_clutter_effect_move (PyObject *self,
+                           PyObject *args,
+                           PyObject *kwargs)
+{
+    static char *kwlist[] = { "template", "actor", "x", "y", "func", "data", NULL };
+    PyObject *py_templ, *py_actor, *py_func, *py_data;
+    ClutterEffectTemplate *templ;
+    ClutterActor *actor;
+    gint x, y;
+    ClutterTimeline *retval;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "OOii|OO:clutter.effect_move",
+                                      kwlist,
+                                      &py_templ, &py_actor,
+                                      &x, &y,
+                                      &py_func, &py_data))
+        return NULL;
+
+    if (py_templ == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "first argument must be an effect template");
+        return NULL;
+    }
+    else
+        templ = CLUTTER_EFFECT_TEMPLATE (pygobject_get (py_templ));
+
+    if (py_actor == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "second argument must be an actor");
+        return NULL;
+    }
+    else
+        actor = CLUTTER_ACTOR (pygobject_get (py_actor));
+
+    if (py_func == Py_None)
+        retval = clutter_effect_move (templ, actor, x, y, NULL, NULL);
+    else {
+        GType param_types[1] = { CLUTTER_TYPE_ACTOR, };
+        PyClutterCallback *pycb;
+        
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       1, param_types);
+
+        retval = clutter_effect_move (templ, actor, x, y,
+                                      pyclutter_effect_complete,
+                                      pycb);
+    }
+
+    return pygobject_new ((GObject *) retval);
+}
+%%
+override clutter_effect_path kwargs
+static PyObject *
+_wrap_clutter_effect_path (PyObject *self,
+                           PyObject *args,
+                           PyObject *kwargs)
+{
+    static char *kwlist[] = { "template", "actor", "knots", "func", "data", NULL };
+    PyObject *py_templ, *py_actor, *py_knots, *py_func, *py_data;
+    ClutterEffectTemplate *templ;
+    ClutterActor *actor;
+    ClutterKnot *knots;
+    guint n_knots;
+    ClutterTimeline *retval;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "OOO|OO:clutter.effect_path",
+                                      kwlist,
+                                      &py_templ, &py_actor,
+                                      &py_knots,
+                                      &py_func, &py_data))
+        return NULL;
+
+    if (py_templ == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "first argument must be an effect template");
+        return NULL;
+    }
+    else
+        templ = CLUTTER_EFFECT_TEMPLATE (pygobject_get (py_templ));
+
+    if (py_actor == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "second argument must be an actor");
+        return NULL;
+    }
+    else
+        actor = CLUTTER_ACTOR (pygobject_get (py_actor));
+
+    if (py_knots == Py_None || !PyTuple_Check (py_knots)) {
+        PyErr_SetString (PyExc_TypeError, "third argument must be a tuple "
+                                          "containing tuples of coordinates");
+        return NULL;
+    }
+    else {
+        guint i;
+
+        n_knots = PyTuple_Size (py_knots);
+        knots = g_new (ClutterKnot, n_knots);
+
+        for (i = 0; i < n_knots; i++) {
+            PyObject *py_knot = PyTuple_GetItem (py_knots, i);
+
+            if (PyTuple_Check (py_knot) &&
+                PyTuple_Size (py_knot) == 2 &&
+                PyInt_Check (PyTuple_GetItem (py_knot, 0)) &&
+                PyInt_Check (PyTuple_GetItem (py_knot, 1))) {
+                knots[i].x = PyInt_AsLong (PyTuple_GetItem (py_knot, 0));
+                knots[i].y = PyInt_AsLong (PyTuple_GetItem (py_knot, 1));
+            }
+            else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "expecting a tuple of two integers");
+                g_free (knots);
+                return NULL;
+            }
+        }
+    }
+
+    if (py_func == Py_None) {
+        retval = clutter_effect_path (templ, actor,
+                                      knots, n_knots,
+                                      NULL, NULL);
+    }
+    else {
+        GType param_types[1] = { CLUTTER_TYPE_ACTOR, };
+        PyClutterCallback *pycb;
+        
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       1, param_types);
+
+        retval = clutter_effect_path (templ, actor, knots, n_knots,
+                                      pyclutter_effect_complete,
+                                      pycb);
+    }
+
+    return pygobject_new ((GObject *) retval);
+}
+%%
+override clutter_effect_scale kwargs
+static PyObject *
+_wrap_clutter_effect_scale (PyObject *self,
+                            PyObject *args,
+                            PyObject *kwargs)
+{
+    static char *kwlist[] = { "template", "actor", "scale_end", "func", "data", NULL };
+    PyObject *py_templ, *py_actor, *py_func, *py_data;
+    ClutterEffectTemplate *templ;
+    ClutterActor *actor;
+    double scale_end;
+    ClutterGravity gravity = CLUTTER_GRAVITY_CENTER;
+    ClutterTimeline *retval;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "OOdi|OO:clutter.effect_scale",
+                                      kwlist,
+                                      &py_templ, &py_actor,
+                                      &scale_end,
+                                      &gravity,
+                                      &py_func, &py_data))
+        return NULL;
+
+    if (py_templ == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "first argument must be an effect template");
+        return NULL;
+    }
+    else
+        templ = CLUTTER_EFFECT_TEMPLATE (pygobject_get (py_templ));
+
+    if (py_actor == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "second argument must be an actor");
+        return NULL;
+    }
+    else
+        actor = CLUTTER_ACTOR (pygobject_get (py_actor));
+
+    if (py_func == Py_None) {
+        retval = clutter_effect_scale (templ, actor,
+                                       scale_end, gravity,
+                                       NULL, NULL);
+    }
+    else {
+        GType param_types[1] = { CLUTTER_TYPE_ACTOR, };
+        PyClutterCallback *pycb;
+        
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       1, param_types);
+
+        retval = clutter_effect_scale (templ, actor, scale_end,
+                                       gravity,
+                                       pyclutter_effect_complete,
+                                       pycb);
+    }
+
+    return pygobject_new ((GObject *) retval);
+}

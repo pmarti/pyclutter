@@ -27,6 +27,8 @@ PyObject *         pyclutter_callback_invoke (PyClutterCallback *cb,
 
 guint32   pyclutter_alpha_func              (ClutterAlpha    *alpha,
                                              gpointer         data);
+void      pyclutter_effect_complete         (ClutterActor    *actor,
+                                             gpointer         data);
 
 gboolean  pyclutter_geometry_from_pyobject  (PyObject        *object,
                                              ClutterGeometry *geometry);

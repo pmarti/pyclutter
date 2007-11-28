@@ -35,6 +35,7 @@ CLUTTER_OVERRIDES = 			\
 	clutter-behaviour.override	\
 	clutter-boxed.override 		\
 	clutter-color.override		\
+	clutter-effect.override		\
 	clutter-event.override		\
 	clutter-model.override		\
 	clutter-script.override
