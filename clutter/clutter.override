@@ -41,6 +41,11 @@ ignore
   clutter_container_add_valist
   clutter_container_remove_actor
   clutter_container_remove_valist
+  clutter_threads_add_idle_full
+  clutter_threads_add_idle
+  clutter_threads_add_timeout_full
+  clutter_threads_add_timeout
+  clutter_threads_set_lock_functions
 
 %%
 ignore-glob

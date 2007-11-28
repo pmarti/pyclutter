@@ -1,3 +1,10 @@
+2007-11-28  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter.override: Ignore the threads idle/timeout
+	convenience API: we need to release the python lock when
+	holding the clutter one, and we cannot do that without
+	reimplementing the convienience API altogether.
+
 2007-11-28  Emmanuele Bassi <ebassi@openedhand.com>
 
 	* clutter/clutter-effect.override: Overrides for the
