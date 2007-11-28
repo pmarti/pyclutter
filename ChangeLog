@@ -1,5 +1,10 @@
 2007-11-28  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-script.override: Ignore ClutterScript
+	connect_signals_full() method.
+
+2007-11-28  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter.override: Ignore the threads idle/timeout
 	convenience API: we need to release the python lock when
 	holding the clutter one, and we cannot do that without

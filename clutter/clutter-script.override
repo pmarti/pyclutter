@@ -7,6 +7,7 @@ typedef struct {
 } PyGCustomSignalNotify;
 
 %%
+ignore clutter_script_connect_signals_full
 override clutter_script_connect_signals kwargs
 static void
 connect_many (ClutterScript *script,
