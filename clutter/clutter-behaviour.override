@@ -4,20 +4,6 @@ ignore
   clutter_behaviour_path_append_knot
   clutter_behaviour_path_append_knots_valist
   clutter_behaviour_bspline_append_knot
-  clutter_behaviour_ellipse_newx
-  clutter_behaviour_ellipse_set_angle_beginx
-  clutter_behaviour_ellipse_get_angle_beginx
-  clutter_behaviour_ellipse_set_angle_endx
-  clutter_behaviour_ellipse_get_angle_endx
-  clutter_behaviour_ellipse_set_angle_tiltx
-  clutter_behaviour_ellipse_get_angle_tiltx
-  clutter_behaviour_ellipse_set_tiltx
-  clutter_behaviour_ellipse_get_tiltx
-  clutter_behaviour_rotate_newx
-  clutter_behaviour_rotate_set_boundsx
-  clutter_behaviour_rotate_get_boundsx
-  clutter_behaviour_scale_newx
-  clutter_behaviour_scale_get_boundsx
 %%
 new-constructor CLUTTER_TYPE_ALPHA
 %%
@@ -596,10 +582,10 @@ out:
         return 0;
 }
 %%
-override clutter_behaviour_bspline_append
+override clutter_behaviour_bspline_append_knots
 static PyObject *
-_wrap_clutter_behaviour_bspline_append (PyGObject *self,
-                                        PyObject  *args)
+_wrap_clutter_behaviour_bspline_append_knots (PyGObject *self,
+                                              PyObject  *args)
 {
         ClutterBehaviourBspline *bspline;
         int i, len;

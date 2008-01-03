@@ -2,6 +2,7 @@
 ignore
     clutter_effect_template_new_full
     clutter_effect_template_new_for_duration
+    clutter_effect_template_construct
 
 %%
 override clutter_effect_template_new kwargs
@@ -351,6 +352,109 @@ _wrap_clutter_effect_scale (PyObject *self,
                                        gravity,
                                        pyclutter_effect_complete,
                                        pycb);
+    }
+
+    return pygobject_new ((GObject *) retval);
+}
+%%
+override clutter_effect_rotate kwargs
+static PyObject *
+_wrap_clutter_effect_rotate (PyObject *self,
+                             PyObject *args,
+                             PyObject *kwargs)
+{
+    static char *kwlist[] = {
+      "template",
+      "actor",
+      "axis",
+      "angle_end",
+      "center",
+      "direction",
+      "func",
+      "data",
+      NULL
+    };
+    PyObject *py_templ, *py_actor, *py_center, *py_func, *py_data;
+    ClutterEffectTemplate *templ;
+    ClutterActor *actor;
+    double angle_end;
+    ClutterRotateAxis axis;
+    ClutterRotateDirection direction = CLUTTER_ROTATE_CW;
+    ClutterTimeline *retval;
+    gint center_x, center_y, center_z;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "OOidO|iOO:clutter.effect_scale",
+                                      kwlist,
+                                      &py_templ, &py_actor,
+                                      &axis,
+                                      &angle_end,
+                                      &py_center,
+                                      &direction,
+                                      &py_func, &py_data))
+        return NULL;
+
+    if (py_templ == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "first argument must be an effect template");
+        return NULL;
+    }
+    else
+        templ = CLUTTER_EFFECT_TEMPLATE (pygobject_get (py_templ));
+
+    if (py_actor == Py_None) {
+        PyErr_SetString (PyExc_TypeError, "second argument must be an actor");
+        return NULL;
+    }
+    else
+        actor = CLUTTER_ACTOR (pygobject_get (py_actor));
+
+    if (py_center == Py_None) {
+        center_x = center_y = center_z = 0;
+    }
+    else {
+        if (!PyTuple_Check (py_center) ||
+            PyTuple_Size (py_center) != 3) {
+                PyErr_SetString (PyExc_TypeError,
+                                 "center must be a 3 elements tuple");
+                return NULL;
+        }
+
+#define GET_INT_SAFE(tuple,pos,fallback) \
+        (PyInt_Check (PyTuple_GetItem ((tuple), (pos))) ? \
+                PyInt_AsLong (PyTuple_GetItem ((tuple), (pos))) : \
+                (fallback))
+
+        center_x = GET_INT_SAFE (py_center, 0, 0);
+        center_y = GET_INT_SAFE (py_center, 1, 0);
+        center_z = GET_INT_SAFE (py_center, 2, 0);
+
+#undef GET_INT_SAFE
+    }
+
+    if (py_func == Py_None) {
+        retval = clutter_effect_rotate (templ, actor,
+                                        axis, angle_end,
+                                        center_x,
+                                        center_y,
+                                        center_z,
+                                        direction,
+                                        NULL, NULL);
+    }
+    else {
+        GType param_types[1] = { CLUTTER_TYPE_ACTOR, };
+        PyClutterCallback *pycb;
+        
+        pycb = pyclutter_callback_new (py_func, py_data,
+                                       1, param_types);
+
+        retval = clutter_effect_rotate (templ, actor,
+                                        axis, angle_end,
+                                        center_x,
+                                        center_y,
+                                        center_z,
+                                        direction,
+                                        pyclutter_effect_complete,
+                                        pycb);
     }
 
     return pygobject_new ((GObject *) retval);

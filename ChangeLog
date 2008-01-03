@@ -1,5 +1,21 @@
 2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-behaviour.override: Remove the fixed point
+	variants as we now don't even have them in the defs files;
+	rename clutter.BehaviourBspline.append() to append_knots().
+
+	* clutter/clutter-effect.override: Ignore the construct()
+	method; implement clutter.Effect.rotate(), using a 3-element
+	tuple for the rotation center.
+
+	* clutter/clutter.override: Remove more fixed point ignored
+	API; remove the old clutter.Box wrappers.
+
+	* clutter/clutter-actor.override: Remove even mode fixed point
+	ignored API; implement clutter.Actor.get_anchor_point()
+
+2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base-types.defs:
 	* clutter/clutter-base.defs: Update with the latest API additions.
 

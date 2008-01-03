@@ -1,10 +1,6 @@
 %%
 ignore
-  clutter_actor_set_rotationx
-  clutter_actor_get_rotationx
-  clutter_actor_set_scalex
-  clutter_actor_get_scalex
-  clutter_actor_set_scale_with_gravityx
+  clutter_actor_transform_stage_point
 %%
 override clutter_actor_get_geometry noargs
 static PyObject *
@@ -306,3 +302,15 @@ _wrap_ClutterActor__do_query_coords (PyObject *cls,
         return Py_BuildValue ("(iiii)", box.x1, box.y1, box.x2, box.y2);
 }
 %%
+override clutter_actor_get_anchor_point noargs
+static PyObject *
+_wrap_clutter_actor_get_anchor_point (PyGObject *self)
+{
+  gint anchor_x, anchor_y;
+
+  anchor_x = anchor_y = 0;
+  clutter_actor_get_anchor_point (CLUTTER_ACTOR (self->obj),
+                                  &anchor_x, &anchor_y);
+
+  return Py_BuildValue ("(ii)", anchor_x, anchor_y);
+}
