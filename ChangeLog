@@ -1,5 +1,10 @@
 2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter.override: Avoid a segfault un the
+	clutter.Entry.handle_key_event(). (#622)
+
+2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-behaviour.override: Update after the
 	properties naming changes upstream.
 
