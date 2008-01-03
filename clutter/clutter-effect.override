@@ -5,6 +5,8 @@ ignore
     clutter_effect_template_construct
 
 %%
+new-constructor CLUTTER_TYPE_EFFECT_TEMPLATE
+%%
 override clutter_effect_template_new kwargs
 static int
 _wrap_clutter_effect_template_new (PyGObject *self,

@@ -1,5 +1,15 @@
 2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-behaviour.override: Update after the
+	properties naming changes upstream.
+
+	* clutter/clutter-effect.override: Mark the constructor for
+	clutter.EffectTemplate as a new-style one.
+
+	* examples/behave.py: Update after API changes
+
+2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-behaviour.override: Remove the fixed point
 	variants as we now don't even have them in the defs files;
 	rename clutter.BehaviourBspline.append() to append_knots().

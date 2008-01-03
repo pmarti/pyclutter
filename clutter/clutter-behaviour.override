@@ -671,10 +671,10 @@ _wrap_clutter_behaviour_ellipse_new (PyGObject *self,
                                      PyObject  *args,
                                      PyObject  *kwargs)
 {
-        static char *kwlist[] = { "alpha", "x", "y", "width", "height", "begin", "end", NULL};
+        static char *kwlist[] = { "alpha", "x", "y", "width", "height", "start", "end", NULL};
         PyObject *py_alpha = Py_None;
         int x, y, width, height;
-        double begin, end;
+        double start, end;
         ClutterKnot center = { 0, };
         ClutterAlpha *alpha;
 
@@ -682,7 +682,7 @@ _wrap_clutter_behaviour_ellipse_new (PyGObject *self,
         x = y = 0; /* center */
         width = 100;
         height = 50;
-        begin = 0.0;
+        start = 0.0;
         end = 360.0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
@@ -690,7 +690,7 @@ _wrap_clutter_behaviour_ellipse_new (PyGObject *self,
                                           kwlist,
                                           &py_alpha,
                                           &x, &y, &width, &height,
-                                          &begin, &end))
+                                          &start, &end))
                 return -1;
         
         if (py_alpha == Py_None)
@@ -711,7 +711,7 @@ _wrap_clutter_behaviour_ellipse_new (PyGObject *self,
                              "center", &center,
                              "width", width,
                              "height", height,
-                             "angle-begin", begin,
+                             "angle-start", start,
                              "angle-end", end,
                              NULL);
 
@@ -752,17 +752,17 @@ _wrap_clutter_behaviour_opacity_new (PyGObject *self,
                                      PyObject  *args,
                                      PyObject  *kwargs)
 {
-        static char *kwlist[] = { "alpha", "begin", "end", NULL};
+        static char *kwlist[] = { "alpha", "start", "end", NULL};
         PyObject *py_alpha = Py_None;
-        int begin, end;
+        int start, end;
         ClutterAlpha *alpha;
 
-        begin = end = 0x00;
+        start = end = 0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "|Oii:clutter.BehaviourOpacity.__init__",
                                           kwlist,
-                                          &py_alpha, &begin, &end))
+                                          &py_alpha, &start, &end))
                 return -1;
         
         if (py_alpha == Py_None)
@@ -777,7 +777,7 @@ _wrap_clutter_behaviour_opacity_new (PyGObject *self,
 
         pygobject_construct (self,
                              "alpha", alpha,
-                             "opacity-start", begin,
+                             "opacity-start", start,
                              "opacity-end", end,
                              NULL);
 
@@ -793,22 +793,22 @@ _wrap_clutter_behaviour_rotate_new (PyGObject *self,
                                     PyObject  *args,
                                     PyObject  *kwargs)
 {
-        static char *kwlist[] = { "alpha", "axis", "direction", "begin", "end", NULL};
+        static char *kwlist[] = { "alpha", "axis", "direction", "start", "end", NULL};
         PyObject *py_alpha = Py_None;
         int axis, direction;
-        double begin, end;
+        double start, end;
         ClutterAlpha *alpha;
 
         axis = CLUTTER_Z_AXIS;
         direction = CLUTTER_ROTATE_CW;
-        begin = 0.0;
+        start = 0.0;
         end = 360.0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "|Oiidd:clutter.BehaviourRotate.__init__",
                                           kwlist,
                                           &py_alpha, &axis, &direction,
-                                          &begin, &end))
+                                          &start, &end))
                 return -1;
         
         if (py_alpha == Py_None)
@@ -825,7 +825,7 @@ _wrap_clutter_behaviour_rotate_new (PyGObject *self,
                              "alpha", alpha,
                              "axis", axis,
                              "direction", direction,
-                             "angle-begin", begin,
+                             "angle-start", start,
                              "angle-end", end,
                              NULL);
 
@@ -850,12 +850,12 @@ static PyObject *
 _wrap_clutter_behaviour_rotate_get_bounds (PyGObject *self)
 {
         ClutterBehaviourRotate *rotate;
-        gdouble begin, end;
+        gdouble start, end;
 
         rotate = CLUTTER_BEHAVIOUR_ROTATE (self->obj);
-        clutter_behaviour_rotate_get_bounds (rotate, &begin, &end);
+        clutter_behaviour_rotate_get_bounds (rotate, &start, &end);
 
-        return Py_BuildValue ("(dd)", begin, end);
+        return Py_BuildValue ("(dd)", start, end);
 }
 %%
 new-constructor CLUTTER_TYPE_BEHAVIOUR_SCALE
@@ -866,18 +866,18 @@ _wrap_clutter_behaviour_scale_new (PyGObject *self,
                                    PyObject  *args,
                                    PyObject  *kwargs)
 {
-        static char *kwlist[] = { "alpha", "begin", "end", "gravity", NULL};
+        static char *kwlist[] = { "alpha", "start", "end", "gravity", NULL};
         PyObject *py_alpha = Py_None;
-        double begin, end;
+        double start, end;
         ClutterGravity gravity = CLUTTER_GRAVITY_NONE;
         ClutterAlpha *alpha;
 
-        begin = end = 1.0;
+        start = end = 1.0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "|Oddi:clutter.BehaviourScale.__init__",
                                           kwlist,
-                                          &py_alpha, &begin, &end, &gravity))
+                                          &py_alpha, &start, &end, &gravity))
                 return -1;
         
         if (py_alpha == Py_None)
@@ -892,7 +892,7 @@ _wrap_clutter_behaviour_scale_new (PyGObject *self,
 
         pygobject_construct (self,
                              "alpha", alpha,
-                             "scale-begin", begin,
+                             "scale-start", start,
                              "scale-end", end,
                              "scale-gravity", gravity,
                              NULL);
@@ -905,12 +905,12 @@ static PyObject *
 _wrap_clutter_behaviour_scale_get_bounds (PyGObject *self)
 {
         ClutterBehaviourScale *scale;
-        gdouble begin, end;
+        gdouble start, end;
 
         scale = CLUTTER_BEHAVIOUR_SCALE (self->obj);
-        clutter_behaviour_scale_get_bounds (scale, &begin, &end);
+        clutter_behaviour_scale_get_bounds (scale, &start, &end);
 
-        return Py_BuildValue ("(dd)", begin, end);
+        return Py_BuildValue ("(dd)", start, end);
 }
 %%
 override clutter_ramp_inc_func

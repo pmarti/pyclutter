@@ -15,9 +15,10 @@ class BehaviourRotate (clutter.Behaviour):
                       / clutter.MAX_ALPHA
 
                 for actor in self.get_actors():
-                        actor.rotate_z(angle,
-                                       actor.get_x() - 100,
-                                       actor.get_y() - 100)
+                        actor.set_rotation(clutter.Z_AXIS, angle,
+                                           actor.get_x() - 100,
+                                           actor.get_y() - 100,
+                                           0)
 
 
 def main (args):
