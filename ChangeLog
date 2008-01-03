@@ -1,3 +1,13 @@
+2008-12-03  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-model.override: Fix the constructor.
+
+	* clutter/clutter.override: Add more checks in the handle_key_event()
+	method of clutter.Entry.
+
+	* clutter/clutter-base.defs: Remove and rename a couple of methods,
+	just enough to make pyclutter build.
+
 2007-11-28  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-script.override: Ignore ClutterScript

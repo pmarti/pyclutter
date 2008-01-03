@@ -475,28 +475,6 @@
   )
 )
 
-(define-method set_scale_with_gravityx
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_set_scale_with_gravityx")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "scale_x")
-    '("ClutterFixed" "scale_y")
-    '("ClutterGravity" "gravity")
-  )
-)
-
-(define-method set_scale_with_gravity
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_set_scale_with_gravity")
-  (return-type "none")
-  (parameters
-    '("gfloat" "scale_x")
-    '("gfloat" "scale_y")
-    '("ClutterGravity" "gravity")
-  )
-)
-
 (define-method get_abs_size
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_abs_size")
@@ -3495,18 +3473,9 @@
 (define-method append
   (of-object "ClutterScore")
   (c-name "clutter_score_append")
-  (return-type "none")
+  (return-type "guint")
   (parameters
-    '("ClutterTimeline*" "timeline_existing")
-    '("ClutterTimeline*" "timeline_new")
-  )
-)
-
-(define-method add
-  (of-object "ClutterScore")
-  (c-name "clutter_score_add")
-  (return-type "none")
-  (parameters
+    '("ClutterTimeline*" "parent")
     '("ClutterTimeline*" "timeline")
   )
 )
@@ -3516,8 +3485,7 @@
   (c-name "clutter_score_remove")
   (return-type "none")
   (parameters
-    '("ClutterTimeline*" "timeline_parent")
-    '("ClutterTimeline*" "timeline")
+    '("guint" "id")
   )
 )
 

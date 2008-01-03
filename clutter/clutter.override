@@ -640,15 +640,16 @@ override clutter_entry_handle_key_event
 static PyObject *
 _wrap_clutter_entry_handle_key_event (PyGObject *self, PyObject *args)
 {
-        ClutterKeyEvent *key_event;
+        ClutterEvent *ev;
 
-        key_event = (ClutterKeyEvent *) pyg_boxed_get (args, ClutterEvent);
-        if (!key_event) {
+        ev = (ClutterEvent *) pyg_boxed_get (args, ClutterEvent);
+        if (!ev) {
                 PyErr_SetString (PyExc_TypeError, "Invalid event");
                 return NULL;
         }
 
-        clutter_entry_handle_key_event (CLUTTER_ENTRY (self->obj), key_event);
+        clutter_entry_handle_key_event (CLUTTER_ENTRY (self->obj),
+                                        (ClutterKeyEvent *) ev);
         
         Py_INCREF (Py_None);
         return Py_None;
