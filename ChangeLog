@@ -1,4 +1,9 @@
-2008-12-03  Emmanuele Bassi  <ebassi@openedhand.com>
+2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base-types.defs:
+	* clutter/clutter-base.defs: Update with the latest API additions.
+
+2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-model.override: Fix the constructor.
 

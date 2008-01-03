@@ -257,6 +257,13 @@
   (gtype-id "CLUTTER_TYPE_SCORE")
 )
 
+(define-object Shader
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterShader")
+  (gtype-id "CLUTTER_TYPE_SHADER")
+)
+
 (define-object Script
   (in-module "Clutter")
   (parent "GObject")
@@ -283,6 +290,17 @@
     '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN")
     '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN")
     '("activated" "CLUTTER_STAGE_STATE_ACTIVATED")
+  )
+)
+
+(define-enum ShaderError
+  (in-module "Clutter")
+  (c-name "ClutterShaderError")
+  (gtype-id "CLUTTER_TYPE_SHADER_ERROR")
+  (values
+    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM")
+    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL")
+    '("compile" "CLUTTER_SHADER_ERROR_COMPILE")
   )
 )
 
