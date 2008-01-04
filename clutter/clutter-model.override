@@ -20,7 +20,7 @@ _wrap_clutter_model_new (PyGObject *self, PyObject *args)
     }
 
     column_types = g_new0 (GType, len);
-    column_names = g_new0 (gchar*, len + 1);
+    column_names = g_new0 (gchar*, len);
 
     for (i = 0; i < (len - 1); i += 2) {
         PyObject *type = PyTuple_GetItem (args, i);
@@ -30,16 +30,16 @@ _wrap_clutter_model_new (PyGObject *self, PyObject *args)
 
         if (column_types[i] == G_TYPE_INVALID) {
             g_free (column_types);
-            g_strfreev (column_names);
+            g_free (column_names);
 
             return -1;
         }
 
         if (PyString_Check (value))
-            column_names[i] = g_strdup (PyString_AsString (value))
+            column_names[i] = PyString_AsString (value);
         else {
             g_free (column_types);
-            g_strfreev (column_names);
+            g_free (column_names);
 
             return -1;
         }
@@ -50,7 +50,7 @@ _wrap_clutter_model_new (PyGObject *self, PyObject *args)
     clutter_model_set_names (CLUTTER_MODEL (self->obj), len / 2, column_names);
 
     g_free (column_types);
-    g_strfreev (column_names);
+    g_free (column_names);
 
     if (!self->obj) {
         PyErr_SetString (PyExc_RuntimeError,
@@ -60,4 +60,69 @@ _wrap_clutter_model_new (PyGObject *self, PyObject *args)
 
     pygobject_register_wrapper ((PyObject *) self);
     return 0;
+}
+%%
+override clutter_model_set_types args
+static PyObject*
+_wrap_clutter_model_set_types (PyGObject *self, PyObject *args)
+{
+    guint len, i;
+    GType *column_types;
+
+    len = PyTuple_Size (args);
+    if (len == 0) {
+        PyErr_SetString (PyExc_TypeError,
+                         "clutter.Model.set_types requires at "
+                         "least one argument");
+        return NULL;
+    }
+
+    column_types = g_new (GType, len);
+    for (i = 0; i < len; i++) {
+        PyObject *item = PyTuple_GetItem (args, i);
+
+        column_types[i] = pyg_type_from_object (item);
+        if (column_types[i] == 0) {
+            g_free (column_types);
+	    return NULL;
+        }
+    }
+    
+    clutter_model_set_types (CLUTTER_MODEL (self->obj),
+                             len, column_types);
+    g_free (column_types);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override clutter_model_set_names args
+static PyObject*
+_wrap_clutter_model_set_names (PyGObject *self, PyObject *args)
+{
+    guint len, i;
+    gchar **column_names;
+
+    len = PyTuple_Size (args);
+    if (len == 0) {
+        PyErr_SetString (PyExc_TypeError,
+                         "clutter.Model.set_names requires at "
+                         "least one argument");
+        return NULL;
+    }
+
+    column_names = g_new (gchar*, len);
+    for (i = 0; i < len; i++) {
+        PyObject *item = PyTuple_GetItem (args, i);
+
+        column_names[i] = PyString_Check (item) ? PyString_AsString (item)
+                                                : NULL;
+    }
+    
+    clutter_model_set_names (CLUTTER_MODEL (self->obj),
+                             len, (const gchar **) column_names);
+    g_free (column_names);
+
+    Py_INCREF (Py_None);
+    return Py_None;
 }

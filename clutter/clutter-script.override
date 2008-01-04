@@ -7,6 +7,12 @@ typedef struct {
 } PyGCustomSignalNotify;
 
 %%
+ignore
+  clutter_scriptable_set_id
+  clutter_scriptable_get_id
+  clutter_scriptable_parse_custom_node
+  clutter_scriptable_set_custom_property
+%%
 ignore clutter_script_connect_signals_full
 override clutter_script_connect_signals kwargs
 static void

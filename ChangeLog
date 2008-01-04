@@ -1,5 +1,16 @@
 2008-01-04  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-model.override: Bind clutter.Model.set_types()
+	and clutter.Model.set_names().
+
+	* clutter/clutter-script.override: Ignore the ClutterScriptable
+	interface methods: they are used only by the clutter.Script class
+	and are not meant for external usage.
+
+	* clutter/clutter.override: Bind clutter.Score.list_timelines().
+
+2008-01-04  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base.defs: Declare the constructors for many
 	types using the new format (properties instead of parameters);
 	this allows the autogeneration to work for us. The clutter.Texture
