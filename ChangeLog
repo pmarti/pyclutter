@@ -1,3 +1,8 @@
+2008-01-04  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* examples/super-oh.py: Fix the super-oh example and update the
+	API usage.
+
 2008-01-03  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter.override: Avoid a segfault un the

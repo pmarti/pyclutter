@@ -39,7 +39,7 @@ class SuperOh (clutter.Group) :
             hand.set_position (int(x), int(y))
       
             hand.show()
-            self.stage.add(hand);
+            self.add(hand);
 
     def spin (self): 
         self.timeline.start()
@@ -48,17 +48,21 @@ class SuperOh (clutter.Group) :
         return (self.stage.get_width () + self.stage.get_height ()) / self.n_hands
 
     def on_new_frame (self, tl, frame_num):
-        self.stage.rotate_z (frame_num,
-                             self.stage.get_width() / 2,
-                             self.stage.get_height () / 2)
+        self.set_rotation (clutter.Z_AXIS,
+                           frame_num,
+                           self.stage.get_width() / 2,
+                           self.stage.get_height () / 2,
+                           0)
       
         angle = frame_num * -2
 
         for i in range(self.n_hands):
-            hand = self.stage.get_nth_child(i)
-            hand.rotate_z(angle, 
-                          hand.get_width() / 2,
-                          hand.get_height() / 2)
+            hand = self.get_nth_child(i)
+            hand.set_rotation(clutter.Z_AXIS,
+                              angle, 
+                              hand.get_width() / 2,
+                              hand.get_height() / 2,
+                              0)
 
     def on_button_press (self, stage, event):
         if (event.button != 1):
