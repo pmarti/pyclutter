@@ -3,4 +3,5 @@ EXTRA_DIST = \
 	behave.py \
 	hello.py \
 	rects.py \
-	super-oh.py
+	super-oh.py \
+	videosink.py

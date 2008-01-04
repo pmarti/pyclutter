@@ -623,46 +623,6 @@ _wrap_clutter_behaviour_bspline_append_knots (PyGObject *self,
         return Py_None;
 }
 %%
-new-constructor CLUTTER_TYPE_BEHAVIOUR_DEPTH
-%%
-override clutter_behaviour_depth_new kwargs
-static int
-_wrap_clutter_behaviour_depth_new (PyGObject *self,
-                                   PyObject  *args,
-                                   PyObject  *kwargs)
-{
-        static char *kwlist[] = { "alpha", "depth_start", "depth_end", NULL};
-        PyObject *py_alpha = Py_None;
-        int depth_start, depth_end;
-        ClutterAlpha *alpha;
-
-        depth_start = depth_end = 0;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oii:clutter.BehaviourDepth.__init__",
-                                          kwlist,
-                                          &py_alpha, &depth_start, &depth_end))
-                return -1;
-        
-        if (py_alpha == Py_None)
-                alpha = NULL;
-        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
-                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
-        else {
-                PyErr_SetString (PyExc_TypeError,
-                                 "first argument must be a ClutterAlpha or None");
-                return -1;
-        }
-
-        pygobject_construct (self,
-                             "alpha", alpha,
-                             "start-depth", depth_start,
-                             "end-depth", depth_end,
-                             NULL);
-
-        return 0;
-}
-%%
 new-constructor CLUTTER_TYPE_BEHAVIOUR_ELLIPSE
 %%
 override clutter_behaviour_ellipse_new kwargs
@@ -744,94 +704,6 @@ _wrap_clutter_behaviour_ellipse_get_tilt (PyGObject *self)
         return Py_BuildValue ("(ddd)", tilt_x, tilt_y, tilt_z);
 }
 %%
-new-constructor CLUTTER_TYPE_BEHAVIOUR_OPACITY
-%%
-override clutter_behaviour_opacity_new kwargs
-static int
-_wrap_clutter_behaviour_opacity_new (PyGObject *self,
-                                     PyObject  *args,
-                                     PyObject  *kwargs)
-{
-        static char *kwlist[] = { "alpha", "start", "end", NULL};
-        PyObject *py_alpha = Py_None;
-        int start, end;
-        ClutterAlpha *alpha;
-
-        start = end = 0;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oii:clutter.BehaviourOpacity.__init__",
-                                          kwlist,
-                                          &py_alpha, &start, &end))
-                return -1;
-        
-        if (py_alpha == Py_None)
-                alpha = NULL;
-        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
-                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
-        else {
-                PyErr_SetString (PyExc_TypeError,
-                                 "first argument must be a ClutterAlpha or None");
-                return -1;
-        }
-
-        pygobject_construct (self,
-                             "alpha", alpha,
-                             "opacity-start", start,
-                             "opacity-end", end,
-                             NULL);
-
-        return 0;
-}
-%%
-%%
-new-constructor CLUTTER_TYPE_BEHAVIOUR_ROTATE
-%%
-override clutter_behaviour_rotate_new kwargs
-static int
-_wrap_clutter_behaviour_rotate_new (PyGObject *self,
-                                    PyObject  *args,
-                                    PyObject  *kwargs)
-{
-        static char *kwlist[] = { "alpha", "axis", "direction", "start", "end", NULL};
-        PyObject *py_alpha = Py_None;
-        int axis, direction;
-        double start, end;
-        ClutterAlpha *alpha;
-
-        axis = CLUTTER_Z_AXIS;
-        direction = CLUTTER_ROTATE_CW;
-        start = 0.0;
-        end = 360.0;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oiidd:clutter.BehaviourRotate.__init__",
-                                          kwlist,
-                                          &py_alpha, &axis, &direction,
-                                          &start, &end))
-                return -1;
-        
-        if (py_alpha == Py_None)
-                alpha = NULL;
-        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
-                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
-        else {
-                PyErr_SetString (PyExc_TypeError,
-                                 "first argument must be a ClutterAlpha or None");
-                return -1;
-        }
-
-        pygobject_construct (self,
-                             "alpha", alpha,
-                             "axis", axis,
-                             "direction", direction,
-                             "angle-start", start,
-                             "angle-end", end,
-                             NULL);
-
-        return 0;
-}
-%%
 override clutter_behaviour_rotate_get_center noargs
 static PyObject *
 _wrap_clutter_behaviour_rotate_get_center (PyGObject *self)
@@ -856,48 +728,6 @@ _wrap_clutter_behaviour_rotate_get_bounds (PyGObject *self)
         clutter_behaviour_rotate_get_bounds (rotate, &start, &end);
 
         return Py_BuildValue ("(dd)", start, end);
-}
-%%
-new-constructor CLUTTER_TYPE_BEHAVIOUR_SCALE
-%%
-override clutter_behaviour_scale_new kwargs
-static int
-_wrap_clutter_behaviour_scale_new (PyGObject *self,
-                                   PyObject  *args,
-                                   PyObject  *kwargs)
-{
-        static char *kwlist[] = { "alpha", "start", "end", "gravity", NULL};
-        PyObject *py_alpha = Py_None;
-        double start, end;
-        ClutterGravity gravity = CLUTTER_GRAVITY_NONE;
-        ClutterAlpha *alpha;
-
-        start = end = 1.0;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|Oddi:clutter.BehaviourScale.__init__",
-                                          kwlist,
-                                          &py_alpha, &start, &end, &gravity))
-                return -1;
-        
-        if (py_alpha == Py_None)
-                alpha = NULL;
-        else if (pygobject_check (py_alpha, &PyClutterAlpha_Type))
-                alpha = CLUTTER_ALPHA (pygobject_get (py_alpha));
-        else {
-                PyErr_SetString (PyExc_TypeError,
-                                 "first argument must be a ClutterAlpha or None");
-                return -1;
-        }
-
-        pygobject_construct (self,
-                             "alpha", alpha,
-                             "scale-start", start,
-                             "scale-end", end,
-                             "scale-gravity", gravity,
-                             NULL);
-
-        return 0;
 }
 %%
 override clutter_behaviour_scale_get_bounds noargs
@@ -1248,4 +1078,3 @@ _wrap_clutter_exp_dec_func (PyObject *self, PyObject *args)
 
         return PyInt_FromLong (0);
 }
-%%

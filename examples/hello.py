@@ -34,7 +34,7 @@ class HelloClutter:
         self.timeline = clutter.Timeline(30, 25)
         self.timeline.set_loop(True)
         alpha = clutter.Alpha(self.timeline, clutter.ramp_func)
-        self.behaviour = clutter.BehaviourOpacity(alpha, 0xdd, 0)
+        self.behaviour = clutter.BehaviourOpacity(0xdd, 0, alpha)
         self.behaviour.apply(self.cursor)
 
     def on_button_press_event (self, stage, event):

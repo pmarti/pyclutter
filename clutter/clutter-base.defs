@@ -953,10 +953,10 @@
   (c-name "clutter_behaviour_depth_new")
   (is-constructor-of "ClutterBehaviourDepth")
   (return-type "ClutterBehaviour*")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gint" "depth_start")
-    '("gint" "depth_end")
+  (properties
+    '("alpha" (optional))
+    '("depth_start")
+    '("depth_end")
   )
 )
 
@@ -1229,10 +1229,10 @@
   (c-name "clutter_behaviour_opacity_new")
   (is-constructor-of "ClutterBehaviourOpacity")
   (return-type "ClutterBehaviour*")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("guint8" "opacity_start")
-    '("guint8" "opacity_end")
+  (properties
+    '("alpha" (optional))
+    '("opacity_start")
+    '("opacity_end")
   )
 )
 
@@ -1319,12 +1319,12 @@
   (c-name "clutter_behaviour_rotate_new")
   (is-constructor-of "ClutterBehaviourRotate")
   (return-type "ClutterBehaviour*")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("ClutterRotateAxis" "axis")
-    '("ClutterRotateDirection" "direction")
-    '("gdouble" "angle_start")
-    '("gdouble" "angle_end")
+  (properties
+    '("alpha" (optional))
+    '("axis")
+    '("direction" (optional))
+    '("angle_start")
+    '("angle_end")
   )
 )
 
@@ -1414,10 +1414,10 @@
   (is-constructor-of "ClutterBehaviourScale")
   (return-type "ClutterBehaviour*")
   (properties
-    '("alpha" (argname "alpha"))
-    '("scale-start" (argname "start"))
-    '("scale-end" (argname "end"))
-    '("gravity" (argname "gravity"))
+    '("alpha" (optional))
+    '("scale_start")
+    '("scale_end")
+    '("gravity" (optional))
   )
 )
 
@@ -4002,6 +4002,9 @@
   (c-name "clutter_texture_new")
   (is-constructor-of "ClutterTexture")
   (return-type "ClutterActor*")
+  (properties
+    '("pixbuf" (optional))
+  )
 )
 
 (define-function texture_new_from_pixbuf
@@ -4154,8 +4157,8 @@
   (is-constructor-of "ClutterTimeline")
   (return-type "ClutterTimeline*")
   (properties
-    '("num-frames" (argname "num"))
-    '("fps" (argname "frames"))
+    '("num_frames")
+    '("fps")
   )
 )
 
@@ -4164,7 +4167,7 @@
   (is-constructor-of "ClutterTimeline")
   (return-type "ClutterTimeline*")
   (properties
-    '("duration" (argname "msecs"))
+    '("duration")
   )
 )
 
@@ -4434,28 +4437,6 @@
   (parameters
     '("const-ClutterKnot*" "knot_b")
   )
-)
-
-(define-function margin_get_type
-  (c-name "clutter_margin_get_type")
-  (return-type "GType")
-)
-
-(define-function margin_new
-  (c-name "clutter_margin_new")
-  (is-constructor-of "ClutterMargin")
-  (return-type "ClutterMargin")
-)
-
-(define-function padding_get_type
-  (c-name "clutter_padding_get_type")
-  (return-type "GType")
-)
-
-(define-function padding_new
-  (c-name "clutter_padding_new")
-  (is-constructor-of "ClutterPadding")
-  (return-type "ClutterPadding")
 )
 
 

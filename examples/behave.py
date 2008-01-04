@@ -42,17 +42,17 @@ def main (args):
             (   0, 300 ),   \
     )
 
-    timeline = clutter.Timeline(100, 26)
+    timeline = clutter.Timeline(num_frames=100, fps=26)
     timeline.set_loop(True)
     alpha = clutter.Alpha(timeline, clutter.sine_func)
 
-    o_behaviour = clutter.BehaviourOpacity(alpha, 0x33, 0xff)
+    o_behaviour = clutter.BehaviourOpacity(alpha=alpha, opacity_start=0x33, opacity_end=255)
     o_behaviour.apply(rect)
 
-    s_behaviour = clutter.BehaviourScale(alpha, 1.0, 3.0)
+    s_behaviour = clutter.BehaviourScale(alpha=alpha, scale_start=1.0, scale_end=3.0)
     s_behaviour.apply(rect)
 
-    p_behaviour = clutter.BehaviourPath(alpha, knots)
+    p_behaviour = clutter.BehaviourPath(alpha=alpha, knots=knots)
     p_behaviour.append_knots((0, 0))
     p_behaviour.apply(rect)
 

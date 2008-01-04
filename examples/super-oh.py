@@ -26,7 +26,7 @@ class SuperOh (clutter.Group) :
             print "Unable to find redhand.png"
             sys.exit(1)
 
-        redhand = clutter.texture_new_from_pixbuf(pixbuf)
+        redhand = clutter.Texture(pixbuf)
         (w, h) = redhand.get_size()
 
         for i in range(self.n_hands):
