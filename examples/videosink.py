@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # cluttergst.VideoSink example
-# Copyright (C) 2007  Florent Thiery
+# Copyright (C) 2008  Florent Thiery <florent.thiery@ubicast.eu>
 
 import sys
 import clutter, gst
