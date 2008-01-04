@@ -307,7 +307,15 @@ _wrap_clutter_effect_scale (PyObject *self,
                             PyObject *args,
                             PyObject *kwargs)
 {
-    static char *kwlist[] = { "template", "actor", "scale_end", "func", "data", NULL };
+    static char *kwlist[] = {
+      "template",
+      "actor",
+      "scale_end",
+      "gravity",
+      "func",
+      "data",
+      NULL
+    };
     PyObject *py_templ, *py_actor, *py_func, *py_data;
     ClutterEffectTemplate *templ;
     ClutterActor *actor;
@@ -316,7 +324,7 @@ _wrap_clutter_effect_scale (PyObject *self,
     ClutterTimeline *retval;
 
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                      "OOdi|OO:clutter.effect_scale",
+                                      "OOd|iOO:clutter.effect_scale",
                                       kwlist,
                                       &py_templ, &py_actor,
                                       &scale_end,
@@ -386,7 +394,7 @@ _wrap_clutter_effect_rotate (PyObject *self,
     gint center_x, center_y, center_z;
 
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                      "OOidO|iOO:clutter.effect_scale",
+                                      "OOid|OiOO:clutter.effect_scale",
                                       kwlist,
                                       &py_templ, &py_actor,
                                       &axis,
