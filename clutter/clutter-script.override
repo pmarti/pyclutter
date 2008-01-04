@@ -23,43 +23,46 @@ connect_many (ClutterScript *script,
     PyObject                *tuple, *self;
     GClosure                *closure = NULL;
 
-    tuple = PyMapping_GetItemString(handler_dict, (gchar *)handler_name);
+    tuple = PyMapping_GetItemString (handler_dict, (gchar *) handler_name);
     if (!tuple) {
-        PyErr_Clear();  
-        tuple = PyObject_GetAttrString(handler_dict, (gchar *)handler_name);
+        PyErr_Clear ();
+        tuple = PyObject_GetAttrString (handler_dict, (gchar *) handler_name);
         if (!tuple) {
-            PyErr_Clear();
+            PyErr_Clear ();
             return;
         }
     }
     
-    if (PyTuple_Check(tuple)) {
-        PyObject *callback = PyTuple_GetItem(tuple, 0);
-        PyObject *extra = PySequence_GetSlice(tuple, 1, PyTuple_Size(tuple));
+    if (PyTuple_Check (tuple)) {
+        PyObject *callback = PyTuple_GetItem (tuple, 0);
+        PyObject *extra = PySequence_GetSlice (tuple, 1, PyTuple_Size (tuple));
         PyObject *other = NULL;
 
         if (connect_object)
-            other = pygobject_new((GObject *)connect_object);
+            other = pygobject_new ((GObject *) connect_object);
 
-        closure = pyg_closure_new(callback, extra, other);
-        Py_DECREF(extra);
-    } else if (PyCallable_Check(tuple)) {
+        closure = pyg_closure_new (callback, extra, other);
+        Py_DECREF (extra);
+    } else if (PyCallable_Check (tuple)) {
         PyObject *other = NULL;
 
         if (connect_object)
-            other = pygobject_new((GObject *)connect_object);
+            other = pygobject_new ((GObject *) connect_object);
 
-        closure = pyg_closure_new(tuple, notify->data, other);
+        closure = pyg_closure_new (tuple, notify->data, other);
     } else {
-        g_warning("handler for `%s' not callable or a tuple", handler_name);
-        Py_DECREF(tuple);
+        g_warning ("handler for `%s' not callable or a tuple", handler_name);
+        Py_DECREF (tuple);
         return;
     }
-    Py_DECREF(tuple);
-    self = pygobject_new(obj);
-    g_signal_connect_closure(obj, signal_name, closure, flags);
-    pygobject_watch_closure(self, closure);
-    Py_DECREF(self);
+
+    Py_DECREF (tuple);
+
+    self = pygobject_new (obj);
+    g_signal_connect_closure (obj, signal_name, closure, flags);
+    pygobject_watch_closure (self, closure);
+    
+    Py_DECREF (self);
 }
 
 static PyObject *
@@ -72,7 +75,7 @@ _wrap_clutter_script_connect_signals (PyGObject *self,
     PyObject                *object, *user_data = NULL;
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs,
-                                     "O|O:ClutterScript.connect_signals",
+                                     "O|O:clutter.Script.connect_signals",
                                      kwlist,
                                      &object, &user_data))
         return NULL;

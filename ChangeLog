@@ -1,5 +1,9 @@
 2008-01-04  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-script.override: Fix coding style.
+
+2008-01-04  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* examples/cairo-texture.py: Update API usage.
 
 2008-01-04  Emmanuele Bassi  <ebassi@openedhand.com>
