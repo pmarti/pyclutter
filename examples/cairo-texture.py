@@ -10,13 +10,13 @@ def on_button_press_event (stage, event):
 
 def main ():
     stage = clutter.stage_get_default()
-    stage.set_color(clutter.Color(0xff, 0xcc, 0xcc, 0xff))
-    stage.set_size(400,300)
+    stage.set_color(clutter.Color(red=0xff, green=0xcc, blue=0xcc, alpha=0xff))
+    stage.set_size(width=400, height=300)
     stage.connect('button-press-event', on_button_press_event)
 
-    cairo_tex = cluttercairo.CairoTexture(200,200)
-    cairo_tex.set_position((stage.get_width() - 200) / 2,
-                           (stage.get_height() - 200) / 2)
+    cairo_tex = cluttercairo.CairoTexture(width=200, height=200)
+    cairo_tex.set_position(x=(stage.get_width() - 200) / 2,
+                           y=(stage.get_height() - 200) / 2)
 
     # we obtain a cairo context from the cluttercairo.Texture
     # and then we can use it with the cairo primitives to draw
@@ -41,8 +41,8 @@ def main ():
     # cluttercairo.Texture is a clutter.Actor, so we can
     # manipulate it as any other actor
     center_x = cairo_tex.get_width() / 2
-    center_y = cairo_tex.get_height() / 2
-    cairo_tex.rotate_y(45.0, center_x, center_y)
+    center_z = cairo_tex.get_height() / 2
+    cairo_tex.set_rotation(clutter.Y_AXIS, 45.0, center_x, 0, center_z)
     stage.add(cairo_tex)
     cairo_tex.show()
     
@@ -52,10 +52,10 @@ def main ():
     clone_tex = clutter.CloneTexture(cairo_tex)
     clone_tex.set_position((stage.get_width() - 200) / 2,
                            (stage.get_height() - 200) / 2)
-    clone_tex.rotate_y(-45.0, center_x, center_y)
+    clone_tex.set_rotation(clutter.Y_AXIS, -45.0, center_x, 0, center_z)
     stage.add(clone_tex)
     clone_tex.show()
-    
+
     stage.show()
 
     clutter.main()
