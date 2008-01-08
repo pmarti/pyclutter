@@ -1,3 +1,14 @@
+2008-01-08  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-model.override: Update after API changes upstream:
+	clutter.Model() becomes clutter.ModelDefault(); implement
+	clutter.ModelIter.set() and clutter.ModelIter.get(); stub out
+	clutter.Model insert, append and prepend methods; implement
+	clutter.Model.foreach(), clutter.Model.set_sort() and
+	clutter.Model.set_filter().
+
+	* clutter/clutter.override: Fix GList->GSList usage.
+
 2008-01-04  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-model.override: Bind clutter.Model.set_types()

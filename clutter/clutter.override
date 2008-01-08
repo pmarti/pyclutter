@@ -651,13 +651,13 @@ override clutter_score_list_timelines noargs
 static PyObject *
 _wrap_clutter_score_list_timelines (PyGObject *self)
 {
-  GList *timelines, *l;
+  GSList *timelines, *l;
   PyObject *py_list;
 
   timelines = clutter_score_list_timelines (CLUTTER_SCORE (self->obj));
 
   if ((py_list = PyList_New (0)) == NULL) {
-    g_list_free (timelines);
+    g_slist_free (timelines);
     return NULL;
   }
 
@@ -667,7 +667,7 @@ _wrap_clutter_score_list_timelines (PyGObject *self)
 
     py_timeline = pygobject_new ((GObject *) timeline);
     if (!py_timeline) {
-      g_list_free (timelines);
+      g_slist_free (timelines);
       Py_DECREF (py_list);
       return NULL;
     }
@@ -676,7 +676,7 @@ _wrap_clutter_score_list_timelines (PyGObject *self)
     Py_DECREF (py_timeline);
   }
 
-  g_list_free (timelines);
+  g_slist_free (timelines);
 
   return py_list;
 }

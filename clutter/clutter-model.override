@@ -3,7 +3,7 @@ ignore
 %%
 override clutter_model_default_new
 static int
-_wrap_clutter_model_new (PyGObject *self, PyObject *args)
+_wrap_clutter_model_default_new (PyGObject *self, PyObject *args)
 {
     guint len, i;
     GType *column_types;
@@ -22,9 +22,9 @@ _wrap_clutter_model_new (PyGObject *self, PyObject *args)
     column_types = g_new0 (GType, len);
     column_names = g_new0 (gchar*, len);
 
-    for (i = 0; i < (len - 1); i += 2) {
+    for (i = 0; i < len; i += 2) {
         PyObject *type = PyTuple_GetItem (args, i);
-        PyObject *name = PyTuple_GetTime (args, i + 1);
+        PyObject *name = PyTuple_GetItem (args, i + 1);
 
         column_types[i] = pyg_type_from_object (type);
 
@@ -122,6 +122,349 @@ _wrap_clutter_model_set_names (PyGObject *self, PyObject *args)
     clutter_model_set_names (CLUTTER_MODEL (self->obj),
                              len, (const gchar **) column_names);
     g_free (column_names);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+ignore clutter_model_iter_set_valist
+ignore clutter_model_iter_set_value
+%%
+override clutter_model_iter_set
+static PyObject *
+_wrap_clutter_model_iter_set (PyGObject *self,
+                              PyObject  *args)
+{
+    ClutterModelIter *iter = CLUTTER_MODEL_ITER (self->obj);
+    ClutterModel *model = clutter_model_iter_get_model (iter);
+    int len, i;
+    int n_columns;
+
+    len = PyTuple_Size (args);
+    if (len == 0) {
+        PyErr_SetString (PyExc_TypeError,
+                         "clutter.ModelIter.set requires at least "
+                         "two arguments");
+        return NULL;
+    }
+
+    if (len % 2) {
+        PyErr_SetString (PyExc_TypeError,
+                         "Argument list must be column, value pairs. "
+                         "No -1 termination is needed");
+        return NULL;
+    }
+
+    n_columns = clutter_model_get_n_columns (model);
+
+    for (i = 0; i < len; i += 2) {
+        gint column;
+        GValue value = { 0, };
+        PyObject *py_column = PyTuple_GetItem (args, i);
+        PyObject *py_value = PyTuple_GetItem (args, i + 1);
+
+        if (!PyInt_Check (py_column)) {
+            PyErr_SetString (PyExc_TypeError,
+                             "Expected a numeric argument for column");
+            return NULL;
+        }
+
+        column = PyInt_AsLong (py_column);
+        if (column < 0 || column >= n_columns) {
+            PyErr_SetString (PyExc_ValueError,
+                             "Column number is out of range");
+            return NULL;
+        }
+
+        g_value_init (&value, clutter_model_get_column_type (model, column));
+        if (pyg_value_from_pyobject (&value, py_value)) {
+            PyErr_Format (PyExc_TypeError,
+                          "Wrong type for column %d (required: %s)",
+                          column,
+                          g_type_name (G_VALUE_TYPE (&value)));
+            return NULL;
+        }
+
+        clutter_model_iter_set_value (iter, column, &value);
+
+        g_value_unset (&value);
+    }
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+ignore clutter_model_iter_get_valist
+ignore clutter_model_iter_get_value
+%%
+override clutter_model_iter_get
+static PyObject *
+_wrap_clutter_model_iter_get (PyGObject *self,
+                              PyObject  *args)
+{
+    ClutterModelIter *iter = CLUTTER_MODEL_ITER (self->obj);
+    ClutterModel *model = clutter_model_iter_get_model (iter);
+    PyObject *ret;
+    gint len, i, n_columns;
+
+    len = PyTuple_Size (args);
+
+    if (len < 1) {
+        PyErr_SetString (PyExc_TypeError,
+                         "clutter.ModelIter.get requires at "
+                         "least an arguments");
+        return NULL;
+    }
+
+    ret = PyTuple_New(len);
+
+    n_columns = clutter_model_get_n_columns (model);
+    for (i = 0; i < len; i++) {
+        GValue value = { 0, };
+        gint column;
+        PyObject *py_column = PyTuple_GetItem (args, i);
+
+        if (!PyInt_Check (py_column)) {
+            PyErr_SetString (PyExc_TypeError,
+                             "Expected a numeric argument for column");
+            Py_DECREF (ret);
+            return NULL;
+        }
+
+        column = PyInt_AsLong (py_column);
+        if (column < 0 || column >= n_columns) {
+            PyErr_SetString (PyExc_ValueError,
+                             "Column number is out of range");
+            Py_DECREF (ret);
+            return NULL;
+        }
+
+        clutter_model_iter_get_value (iter, column, &value);
+        PyTuple_SetItem (ret, i, pyg_value_as_pyobject (&value, TRUE));
+
+        g_value_unset (&value);
+    }
+
+    return ret;
+}
+%%
+ignore clutter_model_insert_value
+%%
+override clutter_model_insert
+static PyObject *
+_wrap_clutter_model_insert (PyGObject *self,
+                            PyObject  *args)
+{
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+ignore clutter_model_append_value
+%%
+override clutter_model_append
+static PyObject *
+_wrap_clutter_model_append (PyGObject *self,
+                            PyObject  *args)
+{
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+ignore clutter_model_prepend_value
+%%
+override clutter_model_prepend
+static PyObject *
+_wrap_clutter_model_prepend (PyGObject *self,
+                             PyObject  *args)
+{
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override clutter_model_set_sort
+static gint
+pyclutter_model_sort (ClutterModel *model,
+                      const GValue *value_a,
+                      const GValue *value_b,
+                      gpointer      user_data)
+{
+    PyClutterCallback *pycb = user_data;
+    PyGILState_STATE state;
+    PyObject *py_model, *py_value_a, *py_value_b;
+    PyObject *retobj;
+    gboolean retval = FALSE;
+
+    state = pyg_gil_state_ensure ();
+
+    py_model = pygobject_new ((GObject *) model);
+    py_value_a = pyg_value_as_pyobject (value_a, TRUE);
+    py_value_b = pyg_value_as_pyobject (value_b, TRUE);
+
+    retobj = pyclutter_callback_invoke (pycb, py_model, py_value_a, py_value_b);
+    if (retobj != NULL)
+        retval = PyInt_Check (retobj) ? PyInt_AsLong (retobj) : 0;
+    else
+        retval = 0;
+
+    Py_XDECREF (retobj);
+
+    pyg_gil_state_release (state);
+
+    return retval;
+}
+static PyObject *
+_wrap_clutter_model_set_sort (PyGObject *self,
+                              PyObject  *args,
+                              PyObject  *kwargs)
+{
+    static char *kwlist[] = { "column", "func", "data", NULL };
+    int column;
+    PyObject *py_func, *py_data = NULL;
+    ClutterModel *model = CLUTTER_MODEL (self->obj);
+    GType param_types[] = { CLUTTER_TYPE_MODEL, G_TYPE_VALUE, G_TYPE_VALUE };
+    PyClutterCallback *pycb;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "iO|O:clutter.Model.set_sort",
+                                     kwlist,
+                                     &column, &py_func, &py_data)) {
+        return NULL;
+    }
+
+    if (!PyCallable_Check (py_func)) {
+        PyErr_SetString (PyExc_TypeError, "func must be callable");
+        return NULL;
+    }
+
+    pycb = pyclutter_callback_new (py_func, py_data, 3, param_types);
+
+    clutter_model_set_sort (model, column,
+                            pyclutter_model_sort, pycb,
+                            (GDestroyNotify) pyclutter_callback_free);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override clutter_model_set_filter
+static gboolean
+pyclutter_model_filter (ClutterModel *model,
+                        ClutterModelIter *iter,
+                        gpointer      user_data)
+{
+    PyClutterCallback *pycb = user_data;
+    PyGILState_STATE state;
+    PyObject *py_model, *py_iter;
+    PyObject *retobj;
+    gboolean retval = FALSE;
+
+    state = pyg_gil_state_ensure ();
+
+    py_model = pygobject_new ((GObject *) model);
+    py_iter = pygobject_new ((GObject *) iter);
+
+    retobj = pyclutter_callback_invoke (pycb, py_model, py_iter);
+    if (retobj != NULL)
+        retval = PyObject_IsTrue (retobj);
+    else
+        retval = 0;
+
+    Py_XDECREF (retobj);
+
+    pyg_gil_state_release (state);
+
+    return retval;
+}
+static PyObject *
+_wrap_clutter_model_set_filter (PyGObject *self,
+                                PyObject  *args,
+                                PyObject  *kwargs)
+{
+    static char *kwlist[] = { "func", "data", NULL };
+    PyObject *py_func, *py_data = NULL;
+    ClutterModel *model = CLUTTER_MODEL (self->obj);
+    GType param_types[] = { CLUTTER_TYPE_MODEL, CLUTTER_TYPE_MODEL_ITER };
+    PyClutterCallback *pycb;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O|O:clutter.Model.set_filter",
+                                     kwlist,
+                                     &py_func, &py_data)) {
+        return NULL;
+    }
+
+    if (!PyCallable_Check (py_func)) {
+        PyErr_SetString (PyExc_TypeError, "func must be callable");
+        return NULL;
+    }
+
+    pycb = pyclutter_callback_new (py_func, py_data, 2, param_types);
+
+    clutter_model_set_filter (model,
+                              pyclutter_model_filter, pycb,
+                              (GDestroyNotify) pyclutter_callback_free);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override clutter_model_foreach kwargs
+static gboolean
+pyclutter_model_foreach (ClutterModel     *model,
+                         ClutterModelIter *iter,
+                         gpointer          user_data)
+{
+    PyClutterCallback *pycb = user_data;
+    PyGILState_STATE state;
+    PyObject *py_model, *py_iter;
+    PyObject *retobj;
+    gboolean retval = FALSE;
+
+    state = pyg_gil_state_ensure ();
+
+    py_model = pygobject_new ((GObject *) model);
+    py_iter  = pygobject_new ((GObject *) iter);
+
+    retobj = pyclutter_callback_invoke (pycb, py_model, py_iter);
+    if (retobj != NULL)
+        retval = PyObject_IsTrue (retobj);
+    else
+        retval = TRUE;
+
+    Py_XDECREF (retobj);
+
+    pyg_gil_state_release (state);
+
+    return retval;
+}
+static PyObject *
+_wrap_clutter_model_foreach (PyGObject *self,
+                             PyObject  *args,
+                             PyObject  *kwargs)
+{
+    static char *kwlist[] = { "func", "data", NULL };
+    PyObject *py_func, *py_data = NULL;
+    ClutterModel *model = CLUTTER_MODEL (self->obj);
+    GType param_types[] = { CLUTTER_TYPE_MODEL, CLUTTER_TYPE_MODEL_ITER };
+    PyClutterCallback *pycb;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O|O:clutter.Model.foreach",
+                                     kwlist,
+                                     &py_func, &py_data)) {
+        return NULL;
+    }
+
+    if (!PyCallable_Check (py_func)) {
+        PyErr_SetString (PyExc_TypeError, "func must be callable");
+        return NULL;
+    }
+
+    pycb = pyclutter_callback_new (py_func, py_data, 2, param_types);
+
+    clutter_model_foreach (model, pyclutter_model_foreach, pycb);
+
+    pyclutter_callback_free (pycb);
 
     Py_INCREF (Py_None);
     return Py_None;
