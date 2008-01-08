@@ -3330,6 +3330,27 @@
 
 
 
+;; From clutter-model-default.h
+
+(define-function model_default_get_type
+  (c-name "clutter_model_default_get_type")
+  (return-type "GType")
+)
+
+(define-function model_default_new
+  (c-name "clutter_model_default_new")
+  (is-constructor-of "ClutterModelDefault")
+  (return-type "ClutterModel*")
+)
+
+(define-function model_default_newv
+  (c-name "clutter_model_default_newv")
+  (is-constructor-of "ClutterModelDefault")
+  (return-type "ClutterModel*")
+)
+
+
+
 ;; From clutter-rectangle.h
 
 (define-function rectangle_get_type

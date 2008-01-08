@@ -250,6 +250,13 @@
   (gtype-id "CLUTTER_TYPE_MODEL_ITER")
 )
 
+(define-object ModelDefault
+  (in-module "Clutter")
+  (parent "ClutterModel")
+  (c-name "ClutterModelDefault")
+  (gtype-id "CLUTTER_TYPE_MODEL_DEFAULT")
+)
+
 (define-object Score
   (in-module "Clutter")
   (parent "GObject")

@@ -1,6 +1,8 @@
 ignore
     clutter_model_default_newv
 %%
+new-constructor CLUTTER_TYPE_MODEL_DEFAULT
+%%
 override clutter_model_default_new
 static int
 _wrap_clutter_model_default_new (PyGObject *self, PyObject *args)
@@ -8,8 +10,6 @@ _wrap_clutter_model_default_new (PyGObject *self, PyObject *args)
     guint len, i;
     GType *column_types;
     gchar **column_names;
-    PyObject *key, *value;
-    int pos = 0;
 
     len = PyTuple_Size (args);
     if (len < 2 || (len % 2) != 0) {
@@ -35,8 +35,8 @@ _wrap_clutter_model_default_new (PyGObject *self, PyObject *args)
             return -1;
         }
 
-        if (PyString_Check (value))
-            column_names[i] = PyString_AsString (value);
+        if (PyString_Check (name))
+            column_names[i] = PyString_AsString (name);
         else {
             g_free (column_types);
             g_free (column_names);
@@ -46,8 +46,10 @@ _wrap_clutter_model_default_new (PyGObject *self, PyObject *args)
     }
 
     self->obj = g_object_newv (pyg_type_from_object ((PyObject *) self), 0, NULL);
-    clutter_model_set_types (CLUTTER_MODEL (self->obj), len / 2, column_types);
-    clutter_model_set_names (CLUTTER_MODEL (self->obj), len / 2, column_names);
+    clutter_model_set_types (CLUTTER_MODEL (self->obj),
+                             len / 2, column_types);
+    clutter_model_set_names (CLUTTER_MODEL (self->obj),
+                             len / 2, (const gchar **) column_names);
 
     g_free (column_types);
     g_free (column_names);
@@ -255,6 +257,70 @@ static PyObject *
 _wrap_clutter_model_insert (PyGObject *self,
                             PyObject  *args)
 {
+    ClutterModel *model = CLUTTER_MODEL (self->obj);
+    PyObject *py_row;
+    int len, i;
+    int n_columns;
+    int row;
+
+    len = PyTuple_Size (args);
+    if (len == 0) {
+        PyErr_SetString (PyExc_TypeError,
+                         "clutter.Model.insert requires at least "
+                         "three arguments");
+        return NULL;
+    }
+
+    py_row = PyTuple_GetItem (args, 0);
+    if (!PyInt_Check (py_row)) {
+        PyErr_SetString (PyExc_TypeError,
+                         "The first argument must be the row index");
+        return NULL;
+    }
+
+    row = PyInt_AsLong (py_row);
+
+    if ((len - 1) % 2) {
+        PyErr_SetString (PyExc_TypeError,
+                         "Argument list must be column, value pairs. "
+                         "No -1 termination is needed");
+        return NULL;
+    }
+
+    n_columns = clutter_model_get_n_columns (model);
+
+    for (i = 1; i < len; i += 2) {
+        guint column;
+        GValue value = { 0, };
+        PyObject *py_column = PyTuple_GetItem (args, i);
+        PyObject *py_value = PyTuple_GetItem (args, i + 1);
+
+        if (!PyInt_Check (py_column)) {
+            PyErr_SetString (PyExc_TypeError,
+                             "Expected a numeric argument for column");
+            return NULL;
+        }
+
+        column = PyInt_AsLong (py_column);
+        if (column >= n_columns) {
+            PyErr_SetString (PyExc_ValueError,
+                             "Column number is out of range");
+            return NULL;
+        }
+
+        g_value_init (&value, clutter_model_get_column_type (model, column));
+        if (pyg_value_from_pyobject (&value, py_value)) {
+            PyErr_Format (PyExc_TypeError,
+                          "Wrong type for column %d (required: %s)",
+                          column,
+                          g_type_name (G_VALUE_TYPE (&value)));
+            return NULL;
+        }
+
+        clutter_model_insert (model, row, column, &value);
+        g_value_unset (&value);
+    }
+
     Py_INCREF (Py_None);
     return Py_None;
 }
@@ -266,6 +332,72 @@ static PyObject *
 _wrap_clutter_model_append (PyGObject *self,
                             PyObject  *args)
 {
+    ClutterModel *model = CLUTTER_MODEL (self->obj);
+    int len, i;
+    int n_columns;
+    guint pos;
+    guint *columns;
+    GValueArray *values;
+
+    len = PyTuple_Size (args);
+    if (len == 0) {
+        PyErr_SetString (PyExc_TypeError,
+                         "clutter.Model.append requires at least "
+                         "two arguments");
+        return NULL;
+    }
+
+    if (len % 2) {
+        PyErr_SetString (PyExc_TypeError,
+                         "Argument list must be column, value pairs. "
+                         "No -1 termination is needed");
+        return NULL;
+    }
+
+    n_columns = clutter_model_get_n_columns (model);
+
+    columns = g_new (guint, len / 2);
+    values = g_value_array_new (len / 2);
+
+    for (i = 0, pos = 0; i < len; i += 2, pos++) {
+        guint column;
+        GValue value = { 0, };
+        PyObject *py_column = PyTuple_GetItem (args, i);
+        PyObject *py_value = PyTuple_GetItem (args, i + 1);
+
+        if (!PyInt_Check (py_column)) {
+            PyErr_SetString (PyExc_TypeError,
+                             "Expected a numeric argument for column");
+            return NULL;
+        }
+
+        column = PyInt_AsLong (py_column);
+        if (column >= n_columns) {
+            PyErr_SetString (PyExc_ValueError,
+                             "Column number is out of range");
+            return NULL;
+        }
+
+        g_value_init (&value, clutter_model_get_column_type (model, column));
+        if (pyg_value_from_pyobject (&value, py_value)) {
+            PyErr_Format (PyExc_TypeError,
+                          "Wrong type for column %d (required: %s)",
+                          column,
+                          g_type_name (G_VALUE_TYPE (&value)));
+            return NULL;
+        }
+
+        columns[pos] = column;
+
+        g_value_array_append (values, &value);
+        g_value_unset (&value);
+    }
+
+    clutter_model_appendv (model, len / 2, columns, values->values);
+
+    g_free (columns);
+    g_value_array_free (values);
+
     Py_INCREF (Py_None);
     return Py_None;
 }
@@ -277,6 +409,72 @@ static PyObject *
 _wrap_clutter_model_prepend (PyGObject *self,
                              PyObject  *args)
 {
+    ClutterModel *model = CLUTTER_MODEL (self->obj);
+    int len, i;
+    int n_columns;
+    guint pos;
+    guint *columns;
+    GValueArray *values;
+
+    len = PyTuple_Size (args);
+    if (len == 0) {
+        PyErr_SetString (PyExc_TypeError,
+                         "clutter.Model.prepend requires at least "
+                         "two arguments");
+        return NULL;
+    }
+
+    if (len % 2) {
+        PyErr_SetString (PyExc_TypeError,
+                         "Argument list must be column, value pairs. "
+                         "No -1 termination is needed");
+        return NULL;
+    }
+
+    n_columns = clutter_model_get_n_columns (model);
+
+    columns = g_new (guint, len / 2);
+    values = g_value_array_new (len / 2);
+
+    for (i = 0, pos = 0; i < len; i += 2, pos++) {
+        guint column;
+        GValue value = { 0, };
+        PyObject *py_column = PyTuple_GetItem (args, i);
+        PyObject *py_value = PyTuple_GetItem (args, i + 1);
+
+        if (!PyInt_Check (py_column)) {
+            PyErr_SetString (PyExc_TypeError,
+                             "Expected a numeric argument for column");
+            return NULL;
+        }
+
+        column = PyInt_AsLong (py_column);
+        if (column >= n_columns) {
+            PyErr_SetString (PyExc_ValueError,
+                             "Column number is out of range");
+            return NULL;
+        }
+
+        g_value_init (&value, clutter_model_get_column_type (model, column));
+        if (pyg_value_from_pyobject (&value, py_value)) {
+            PyErr_Format (PyExc_TypeError,
+                          "Wrong type for column %d (required: %s)",
+                          column,
+                          g_type_name (G_VALUE_TYPE (&value)));
+            return NULL;
+        }
+
+        columns[pos] = column;
+
+        g_value_array_append (values, &value);
+        g_value_unset (&value);
+    }
+
+    clutter_model_prependv (model, len / 2, columns, values->values);
+
+    g_free (columns);
+    g_value_array_free (values);
+
     Py_INCREF (Py_None);
     return Py_None;
 }
@@ -318,14 +516,14 @@ _wrap_clutter_model_set_sort (PyGObject *self,
                               PyObject  *kwargs)
 {
     static char *kwlist[] = { "column", "func", "data", NULL };
-    int column;
+    guint column;
     PyObject *py_func, *py_data = NULL;
     ClutterModel *model = CLUTTER_MODEL (self->obj);
     GType param_types[] = { CLUTTER_TYPE_MODEL, G_TYPE_VALUE, G_TYPE_VALUE };
     PyClutterCallback *pycb;
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs,
-                                     "iO|O:clutter.Model.set_sort",
+                                     "IO|O:clutter.Model.set_sort",
                                      kwlist,
                                      &column, &py_func, &py_data)) {
         return NULL;

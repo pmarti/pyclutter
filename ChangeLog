@@ -1,5 +1,19 @@
 2008-01-08  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-base-types.defs:
+	* clutter/clutter-base.defs: Add ClutterModelDefault type and
+	definitions.
+
+	* clutter/clutter-model.override: Bind:
+
+		clutter.Model.append()
+		clutter.Model.prepend()
+		clutter.Model.insert()
+
+	and fix a couple of signed/unsigned casts.
+
+2008-01-08  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-model.override: Update after API changes upstream:
 	clutter.Model() becomes clutter.ModelDefault(); implement
 	clutter.ModelIter.set() and clutter.ModelIter.get(); stub out
