@@ -1,7 +1,5 @@
 2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
 
-	reviewed by: <delete if not using a buddy>
-
 	* clutter/clutter-base.defs: All the constructor parameters for
 	clutter.Timeline are optional (we provide sane defaults); add
 	the duration property, so you can do clutter.Timeline(duration=1000).
