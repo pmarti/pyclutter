@@ -1,5 +1,10 @@
 2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* NEWS:
+	* README: Release 0.5.0
+
+2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base-types.defs:
 	* clutter/clutter-boxed.override: Add the .origin and .size
 	read-only fields to clutter.ActorBox.

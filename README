@@ -13,7 +13,7 @@ Requirements
 ------------
   * GLib 2.14.0 or higher
   * GTK+ 2.10.0 or higher
-  * Clutter 0.4.0 or higher
+  * Clutter 0.5.0 or higher
   * PyGObject 2.12.1 or higher
   * Python 2.3.5 or higher
 
@@ -39,9 +39,6 @@ prefix at configure time with
   ./configure --prefix=/some/other/place
 
 Copyright and License
----------------------
-
-COPYRIGHT AND LICENSE
 ---------------------
 
 Copyright (C) 2006-2007  OpenedHand Ltd.  (see the file AUTHORS)
