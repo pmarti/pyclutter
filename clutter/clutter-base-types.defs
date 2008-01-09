@@ -252,11 +252,11 @@
   (gtype-id "CLUTTER_TYPE_MODEL_ITER")
 )
 
-(define-object ModelDefault
+(define-object ListModel
   (in-module "Clutter")
   (parent "ClutterModel")
-  (c-name "ClutterModelDefault")
-  (gtype-id "CLUTTER_TYPE_MODEL_DEFAULT")
+  (c-name "ClutterListModel")
+  (gtype-id "CLUTTER_TYPE_LIST_MODEL")
 )
 
 (define-object Score

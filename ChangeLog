@@ -1,5 +1,15 @@
 2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-base-types.defs:
+	* clutter/clutter-base.defs:
+	* clutter/clutter-model.override: Rename clutter.ModelDefault
+	into clutter.ListModel, following the upstream change.
+
+	* README:
+	* configure.ac: Update requirements.
+
+2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* configure.ac: Post-release bump to 0.5.1
 
 2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>

@@ -3330,22 +3330,22 @@
 
 
 
-;; From clutter-model-default.h
+;; From clutter-list-model.h
 
-(define-function model_default_get_type
-  (c-name "clutter_model_default_get_type")
+(define-function list_model_get_type
+  (c-name "clutter_list_model_get_type")
   (return-type "GType")
 )
 
-(define-function model_default_new
-  (c-name "clutter_model_default_new")
-  (is-constructor-of "ClutterModelDefault")
+(define-function list_model_new
+  (c-name "clutter_list_model_new")
+  (is-constructor-of "ClutterListModel")
   (return-type "ClutterModel*")
 )
 
-(define-function model_default_newv
-  (c-name "clutter_model_default_newv")
-  (is-constructor-of "ClutterModelDefault")
+(define-function list_model_newv
+  (c-name "clutter_list_model_newv")
+  (is-constructor-of "ClutterListModel")
   (return-type "ClutterModel*")
 )
 

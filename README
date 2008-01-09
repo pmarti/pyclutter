@@ -19,7 +19,7 @@ Requirements
 
 This release is supporting the following Clutter releases:
 
-        clutter-core    0.5.0
+        clutter-core    0.5.1
         clutter-gst     0.5.0
         clutter-gtk     0.5.0
         clutter-cairo   0.5.0

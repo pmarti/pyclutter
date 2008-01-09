@@ -1,11 +1,11 @@
 ignore
-    clutter_model_default_newv
+    clutter_list_model_newv
 %%
-new-constructor CLUTTER_TYPE_MODEL_DEFAULT
+new-constructor CLUTTER_TYPE_LIST_MODEL
 %%
-override clutter_model_default_new
+override clutter_list_model_new
 static int
-_wrap_clutter_model_default_new (PyGObject *self, PyObject *args)
+_wrap_clutter_list_model_new (PyGObject *self, PyObject *args)
 {
     guint len, i;
     GType *column_types;
