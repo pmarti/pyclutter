@@ -47,6 +47,8 @@
     '("gint32" "y1")
     '("gint32" "x2")
     '("gint32" "y2")
+    '("gint32" "origin")
+    '("gint32" "size")
   )
 )
 

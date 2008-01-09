@@ -1,5 +1,11 @@
 2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-base-types.defs:
+	* clutter/clutter-boxed.override: Add the .origin and .size
+	read-only fields to clutter.ActorBox.
+
+2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-actor.override: As discovered in the Perl
 	bindings, the box argument in clutter.Actor.do_query_coords()
 	overridable method is an in-out parameter: instances are

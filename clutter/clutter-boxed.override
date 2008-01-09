@@ -250,6 +250,26 @@ static PySequenceMethods _wrap_clutter_actor_box_tp_as_sequence = {
 	0
 };
 %%
+override-attr ClutterActorBox.origin
+static PyObject *
+_wrap_clutter_actor_box__get_origin (PyGBoxed *self, void *closure)
+{
+        return Py_BuildValue ("(ii)",
+                              pyg_boxed_get (self, ClutterActorBox)->x1,
+                              pyg_boxed_get (self, ClutterActorBox)->y1);
+}
+%%
+override-attr ClutterActorBox.size
+static PyObject *
+_wrap_clutter_actor_box__get_size (PyGBoxed *self, void *closure)
+{
+        ClutterActorBox *box = pyg_boxed_get (self, ClutterActorBox);
+
+        return Py_BuildValue ("(ii)",
+                              (box->x2 - box->x1),
+                              (box->y2 - box->y1));
+}
+%%
 override-attr ClutterActorBox.x1
 static int
 _wrap_clutter_actor_box__set_x1 (PyGBoxed *self, PyObject *value, void *closure)
