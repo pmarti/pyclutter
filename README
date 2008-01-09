@@ -11,7 +11,7 @@ OpenedHand Bugzilla at:
 
 Requirements
 ------------
-  * GLib 2.10.0 or higher
+  * GLib 2.14.0 or higher
   * GTK+ 2.10.0 or higher
   * Clutter 0.4.0 or higher
   * PyGObject 2.12.1 or higher
@@ -19,10 +19,10 @@ Requirements
 
 This release is supporting the following Clutter releases:
 
-        clutter-core    0.4.0
-        clutter-gst     0.4.0
-        clutter-gtk     0.4.0
-        clutter-cairo   0.4.0
+        clutter-core    0.5.0
+        clutter-gst     0.5.0
+        clutter-gtk     0.5.0
+        clutter-cairo   0.5.0
 
 Installation
 ------------

@@ -1,3 +1,25 @@
+Overview of changes between 0.4.2 and 0.5.0
+===========================================
+
+* Resync with upstream
+  o Removed the clutter.Layout, clutter.Box, clutter.HBox and clutter.VBox
+    classes, as upstream removed them as well
+  o The clutter.Margin and clutter.Padding classes have been removed as
+    well
+  o Add clutter.Score, clutter.Shader, clutter.Model and clutter.Script
+  o Various API changes
+* Change the clutter.Actor.do_query_coords() method signature: an ActorBox
+  is also passed to the method, containing the current bounding box
+  coordinates
+* The alpha parameter in the clutter.Behaviour classes has been moved at
+  the end of the arguments list, to reflect its being optional; named
+  arguments still work and are the safest way to call constructors
+* The clutter.Texture constructor accepts an optional pixbuf argument;
+  this removes the need of clutter.texture_from_pixbuf() function
+* clutter.ActorBox has two new fields: .size and .origin returning tuples
+* Fixed bugs:
+  o #622 - Segmentation fault when calling Entry.handle_key_event()
+
 Overview of changes between 0.3.0 and 0.4.0
 ===========================================
 
