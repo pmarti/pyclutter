@@ -42,7 +42,7 @@ def main (args):
             (   0, 300 ),   \
     )
 
-    timeline = clutter.Timeline(num_frames=100, fps=26)
+    timeline = clutter.Timeline(fps=60, duration=3000)
     timeline.set_loop(True)
     alpha = clutter.Alpha(timeline, clutter.sine_func)
 

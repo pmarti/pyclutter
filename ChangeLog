@@ -1,5 +1,19 @@
 2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	reviewed by: <delete if not using a buddy>
+
+	* clutter/clutter-base.defs: All the constructor parameters for
+	clutter.Timeline are optional (we provide sane defaults); add
+	the duration property, so you can do clutter.Timeline(duration=1000).
+
+	* clutter/clutter.override: Ignore clutter.timeline_new_for_duration()
+	as now clutter.Timeline also takes the duration argument.
+
+	* examples/behave.py: Update to show the construction of timelines
+	in the time domain, instead of the frames domain.
+
+2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base-types.defs:
 	* clutter/clutter-base.defs:
 	* clutter/clutter-model.override: Rename clutter.ModelDefault

@@ -4178,8 +4178,9 @@
   (is-constructor-of "ClutterTimeline")
   (return-type "ClutterTimeline*")
   (properties
-    '("num_frames")
-    '("fps")
+    '("num_frames" (optional))
+    '("fps" (optional))
+    '("duration" (optional))
   )
 )
 

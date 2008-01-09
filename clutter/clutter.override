@@ -43,6 +43,7 @@ ignore
   clutter_threads_add_timeout
   clutter_threads_set_lock_functions
   clutter_texture_new_from_pixbuf
+  clutter_timeline_new_for_duration
 
 %%
 ignore-glob
