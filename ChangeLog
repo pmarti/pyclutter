@@ -1,3 +1,12 @@
+2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-actor.override: As discovered in the Perl
+	bindings, the box argument in clutter.Actor.do_query_coords()
+	overridable method is an in-out parameter: instances are
+	supposed to get an ActorBox with the current coordinates and
+	return a tuple containing the coordinates of the new bounding
+	box.
+
 2008-01-08  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base-types.defs:

@@ -218,52 +218,84 @@ _wrap_clutter_actor_query_coords (PyGObject *self)
 %%
 override ClutterActor__proxy_do_query_coords
 static void
-_wrap_ClutterActor__proxy_do_query_coords (ClutterActor    *actor,
+_wrap_ClutterActor__proxy_do_query_coords (ClutterActor    *self,
                                            ClutterActorBox *box)
 {
         PyGILState_STATE state;
-        PyObject *self, *py_ret;
+        PyObject *py_self, *py_box, *py_args, *py_method, *py_ret;
         gint32 x1, y1, x2, y2;
 
         state = pyg_gil_state_ensure ();
-        self = pygobject_new ((GObject *) actor);
 
-        py_ret = PyObject_CallMethod (self, "do_query_coords", NULL);
-        if (!py_ret) {
-                PyErr_Print ();
-                Py_DECREF (self);
+        py_self = pygobject_new ((GObject *) self);
+        if (!py_self) {
+                if (PyErr_Occurred ())
+                        PyErr_Print();
+
                 pyg_gil_state_release (state);
-                
-                memset (box, 0, sizeof (ClutterActorBox));
-                
+
                 return;
         }
 
-        Py_DECREF (self);
+        py_box = pyg_boxed_new (CLUTTER_TYPE_ACTOR_BOX, box, FALSE, FALSE);
+
+        py_args = PyTuple_New (1);
+        PyTuple_SET_ITEM (py_args, 0, py_box);
+
+        py_method = PyObject_GetAttrString (py_self, "do_query_coords");
+        if (!py_method) {
+                if (PyErr_Occurred ())
+                        PyErr_Print ();
+
+                Py_DECREF (py_args);
+                Py_DECREF (py_self);
+
+                pyg_gil_state_release (state);
+
+                return;
+        }
+
+        py_ret = PyObject_CallObject (py_method, py_args);
+        if (!py_ret) {
+                PyErr_Print ();
+
+                Py_XDECREF (py_ret);
+                Py_DECREF (py_method);
+                Py_DECREF (py_args);
+                Py_DECREF (py_self);
+                
+                pyg_gil_state_release (state);
+                
+                return;
+        }
 
         if (!PyArg_ParseTuple (py_ret, "iiii", &x1, &y1, &x2, &y2)) {
                 PyErr_Print ();
+
                 Py_DECREF (py_ret);
-                pyg_gil_state_release (state);
+                Py_DECREF (py_method);
+                Py_DECREF (py_args);
+                Py_DECREF (py_self);
                 
-                memset (box, 0, sizeof (ClutterActorBox));
+                pyg_gil_state_release (state);
                 
                 return;
         }
+        else {
+                if (box) {
+                        box->x1 = x1;
+                        box->y1 = y1;
+                        box->x2 = x2;
+                        box->y2 = y2;
+                }
+        }
 
+        Py_DECREF (py_self);
+        Py_DECREF (py_args);
+        Py_DECREF (py_method);
         Py_DECREF (py_ret);
 
         pyg_gil_state_release (state);
-
-        if (box) {
-                box->x1 = CLUTTER_UNITS_FROM_INT (x1);
-                box->y1 = CLUTTER_UNITS_FROM_INT (y1);
-                box->x2 = CLUTTER_UNITS_FROM_INT (x2);
-                box->y2 = CLUTTER_UNITS_FROM_INT (y2);
-        }
-        else {
-                memset (box, 0, sizeof (ClutterActorBox));
-        }
 }
 %%
 override ClutterActor__do_query_coords kwargs
@@ -273,21 +305,31 @@ _wrap_ClutterActor__do_query_coords (PyObject *cls,
                                      PyObject *kwargs)
 {
         ClutterActorClass *klass;
-        static char *kwlist[] = { "self", NULL };
+        static char *kwlist[] = { "self", "box", NULL };
         PyGObject *self;
-        ClutterActorBox box;
+        PyObject *py_box;
+        ClutterActorBox *box;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "O!:ClutterActor.query_coords",
+                                          "O!O:ClutterActor.query_coords",
                                           kwlist,
-                                          &PyClutterActor_Type, &self))
+                                          &PyClutterActor_Type,
+                                          &self, &py_box))
                 return NULL;
+
+        if (pyg_boxed_check (py_box, CLUTTER_TYPE_ACTOR_BOX))
+                box = pyg_boxed_get (py_box, ClutterActorBox);
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "box should be a ClutterActorBox");
+                return NULL;
+        }
 
         klass = g_type_class_ref (pyg_type_from_object (cls));
         if (CLUTTER_ACTOR_CLASS (klass)->query_coords) {
                 ClutterActor *actor = CLUTTER_ACTOR (self->obj);
 
-                CLUTTER_ACTOR_CLASS (klass)->query_coords (actor, &box);
+                CLUTTER_ACTOR_CLASS (klass)->query_coords (actor, box);
         }
         else {
                 PyErr_SetString (PyExc_NotImplementedError,
@@ -299,7 +341,8 @@ _wrap_ClutterActor__do_query_coords (PyObject *cls,
 
         g_type_class_unref (klass);
 
-        return Py_BuildValue ("(iiii)", box.x1, box.y1, box.x2, box.y2);
+        /* "box" is an in-out parameter */
+        return Py_BuildValue ("(iiii)", box->x1, box->y1, box->x2, box->y2);
 }
 %%
 override clutter_actor_get_anchor_point noargs
