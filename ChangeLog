@@ -1,3 +1,8 @@
+2008-01-10  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs: Add function wrappers for the newly
+	defined CLUTTER_UNITS_* macros.
+
 2008-01-09  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: All the constructor parameters for

@@ -4497,6 +4497,89 @@
   )
 )
 
+(define-function units_from_device
+  (c-name "CLUTTER_UNITS_FROM_DEVICE")
+  (return-type "gint32")
+  (parameters
+    '("gint" "value")
+  )
+)
+
+(define-function units_to_device
+  (c-name "CLUTTER_UNITS_TO_DEVICE")
+  (return-type "gint")
+  (parameters
+    '("gint32" "units")
+  )
+)
+
+(define-function units_from_pango
+  (c-name "CLUTTER_UNITS_FROM_PANGO_UNIT")
+  (return-type "gint32")
+  (parameters
+    '("gint" "value")
+  )
+)
+
+(define-function units_to_pango
+  (c-name "CLUTTER_UNITS_TO_PANGO_UNIT")
+  (return-type "gint")
+  (parameters
+    '("gint32" "units")
+  )
+)
+
+(define-function units_from_mm
+  (c-name "CLUTTER_UNITS_FROM_MM")
+  (return-type "gint32")
+  (parameters
+    '("gint" "value")
+  )
+)
+
+(define-function units_from_points
+  (c-name "CLUTTER_UNITS_FROM_POINTS")
+  (return-type "gint32")
+  (parameters
+    '("gdouble" "value")
+  )
+)
+
+(define-function units_from_stage_width_percentage
+  (c-name "CLUTTER_UNITS_FROM_STAGE_WIDTH_PERCENTAGE")
+  (return-type "gint32")
+  (parameters
+    '("gint" "value")
+  )
+)
+
+(define-function units_from_stage_height_percentage
+  (c-name "CLUTTER_UNITS_FROM_STAGE_HEIGHT_PERCENTAGE")
+  (return-type "gint32")
+  (parameters
+    '("gint" "value")
+  )
+)
+
+(define-function units_from_parent_width_percentage
+  (c-name "CLUTTER_UNITS_FROM_PARENT_WIDTH_PERCENTAGE")
+  (return-type "gint32")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("gint" "value")
+  )
+)
+
+(define-function units_from_parent_height_percentage
+  (c-name "CLUTTER_UNITS_FROM_PARENT_HEIGHT_PERCENTAGE")
+  (return-type "gint32")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("gint" "value")
+  )
+)
+
+
 
 ;; From clutter-util.h
 
