@@ -1,3 +1,12 @@
+2008-01-17  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs:
+	* clutter/clutter-behaviour.override:
+	* clutter/clutter-effect.override: Update for the upstream API
+	change in ClutterBehaviourScale and clutter_effect_scale()
+
+	* configure.ac: Require Clutter core 0.5.3.
+
 2008-01-10  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Add function wrappers for the newly

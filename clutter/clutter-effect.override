@@ -319,7 +319,7 @@ _wrap_clutter_effect_scale (PyObject *self,
     PyObject *py_templ, *py_actor, *py_func, *py_data;
     ClutterEffectTemplate *templ;
     ClutterActor *actor;
-    double scale_end;
+    double x_end, y_end;
     ClutterGravity gravity = CLUTTER_GRAVITY_CENTER;
     ClutterTimeline *retval;
 
@@ -327,7 +327,7 @@ _wrap_clutter_effect_scale (PyObject *self,
                                       "OOd|iOO:clutter.effect_scale",
                                       kwlist,
                                       &py_templ, &py_actor,
-                                      &scale_end,
+                                      &x_end, &y_end,
                                       &gravity,
                                       &py_func, &py_data))
         return NULL;
@@ -348,7 +348,8 @@ _wrap_clutter_effect_scale (PyObject *self,
 
     if (py_func == Py_None) {
         retval = clutter_effect_scale (templ, actor,
-                                       scale_end, gravity,
+                                       x_end, y_end,
+                                       gravity,
                                        NULL, NULL);
     }
     else {
@@ -358,7 +359,8 @@ _wrap_clutter_effect_scale (PyObject *self,
         pycb = pyclutter_callback_new (py_func, py_data,
                                        1, param_types);
 
-        retval = clutter_effect_scale (templ, actor, scale_end,
+        retval = clutter_effect_scale (templ, actor,
+                                       x_end, y_end,
                                        gravity,
                                        pyclutter_effect_complete,
                                        pycb);

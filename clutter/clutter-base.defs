@@ -1415,9 +1415,32 @@
   (return-type "ClutterBehaviour*")
   (properties
     '("alpha" (optional))
-    '("scale_start")
-    '("scale_end")
+    '("x_scale_start")
+    '("y_scale_start")
+    '("x_scale_end")
+    '("y_scale_end")
     '("gravity" (optional))
+  )
+)
+
+(define-method set_bounds
+  (of-object "ClutterBehaviourScale")
+  (c-name "clutter_behaviour_scale_set_bounds")
+  (return-type "none")
+  (parameters
+    '("gdouble" "x_scale_begin")
+    '("gdouble" "y_scale_begin")
+    '("gdouble" "x_scale_end")
+    '("gdouble" "y_scale_end")
+  )
+)
+
+(define-method et_gravity
+  (of-object "ClutterBehaviourScale")
+  (c-name "clutter_behaviour_scale_set_gravity")
+  (return-type "none")
+  (parameters
+    '("ClutterGravity" "gravity")
   )
 )
 
@@ -1426,8 +1449,10 @@
   (c-name "clutter_behaviour_scale_get_bounds")
   (return-type "none")
   (parameters
-    '("gdouble*" "scale_begin")
-    '("gdouble*" "scale_end")
+    '("gdouble*" "x_scale_begin")
+    '("gdouble*" "y_scale_begin")
+    '("gdouble*" "x_scale_end")
+    '("gdouble*" "y_scale_end")
   )
 )
 

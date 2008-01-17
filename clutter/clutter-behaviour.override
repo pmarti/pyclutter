@@ -735,12 +735,15 @@ static PyObject *
 _wrap_clutter_behaviour_scale_get_bounds (PyGObject *self)
 {
         ClutterBehaviourScale *scale;
-        gdouble start, end;
+        gdouble x_start, x_end;
+        gdouble y_start, y_end;
 
         scale = CLUTTER_BEHAVIOUR_SCALE (self->obj);
-        clutter_behaviour_scale_get_bounds (scale, &start, &end);
+        clutter_behaviour_scale_get_bounds (scale,
+                                            &x_start, &y_start,
+                                            &x_end, &y_end);
 
-        return Py_BuildValue ("(dd)", start, end);
+        return Py_BuildValue ("(dddd)", x_start, y_start, x_end, y_end);
 }
 %%
 override clutter_ramp_inc_func
