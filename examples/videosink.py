@@ -3,6 +3,7 @@
 
 # cluttergst.VideoSink example
 # Copyright (C) 2008  Florent Thiery <florent.thiery@ubicast.eu>
+# Released under the terms of the LGPL
 
 import sys
 import clutter, gst
