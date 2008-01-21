@@ -1414,11 +1414,11 @@
   (is-constructor-of "ClutterBehaviourScale")
   (return-type "ClutterBehaviour*")
   (properties
-    '("alpha" (optional))
     '("x_scale_start")
     '("y_scale_start")
     '("x_scale_end")
     '("y_scale_end")
+    '("alpha" (optional))
     '("gravity" (optional))
   )
 )
@@ -1435,7 +1435,7 @@
   )
 )
 
-(define-method et_gravity
+(define-method set_gravity
   (of-object "ClutterBehaviourScale")
   (c-name "clutter_behaviour_scale_set_gravity")
   (return-type "none")
