@@ -49,9 +49,6 @@ def main (args):
     o_behaviour = clutter.BehaviourOpacity(alpha=alpha, opacity_start=0x33, opacity_end=255)
     o_behaviour.apply(rect)
 
-    s_behaviour = clutter.BehaviourScale(alpha=alpha, scale_start=1.0, scale_end=3.0)
-    s_behaviour.apply(rect)
-
     p_behaviour = clutter.BehaviourPath(alpha=alpha, knots=knots)
     p_behaviour.append_knots((0, 0))
     p_behaviour.apply(rect)

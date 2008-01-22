@@ -960,6 +960,26 @@
   )
 )
 
+(define-method set_bounds
+  (of-object "ClutterBehaviourDepth")
+  (c-name "clutter_behaviour_depth_set_bounds")
+  (return-type "none")
+  (parameters
+    '("gint" "depth_start")
+    '("gint" "depth_end")
+  )
+)
+
+(define-method get_bounds
+  (of-object "ClutterBehaviourDepth")
+  (c-name "clutter_behaviour_depth_get_bounds")
+  (return-type "none")
+  (parameters
+    '("gint*" "depth_start")
+    '("gint*" "depth_end")
+  )
+)
+
 
 
 ;; From clutter-behaviour-ellipse.h
@@ -1233,6 +1253,26 @@
     '("alpha" (optional))
     '("opacity_start")
     '("opacity_end")
+  )
+)
+
+(define-method set_bounds
+  (of-object "ClutterBehaviourOpacity")
+  (c-name "clutter_behaviour_opacity_set_bounds")
+  (return-type "none")
+  (parameters
+    '("guint8" "opacity_start")
+    '("guint8" "opacity_end")
+  )
+)
+
+(define-method get_bounds
+  (of-object "ClutterBehaviourOpacity")
+  (c-name "clutter_behaviour_opacity_get_bounds")
+  (return-type "none")
+  (parameters
+    '("guint8*" "opacity_start")
+    '("guint8*" "opacity_end")
   )
 )
 

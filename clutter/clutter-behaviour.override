@@ -746,6 +746,32 @@ _wrap_clutter_behaviour_scale_get_bounds (PyGObject *self)
         return Py_BuildValue ("(dddd)", x_start, y_start, x_end, y_end);
 }
 %%
+override clutter_behaviour_depth_get_bounds noargs
+static PyObject *
+_wrap_clutter_behaviour_depth_get_bounds (PyGObject *self)
+{
+        ClutterBehaviourDepth *depth;
+        gint start, end;
+
+        depth = CLUTTER_BEHAVIOUR_DEPTH (self->obj);
+        clutter_behaviour_depth_get_bounds (depth, &start, &end);
+
+        return Py_BuildValue ("(ii)", start, end);
+}
+%%
+override clutter_behaviour_opacity_get_bounds noargs
+static PyObject *
+_wrap_clutter_behaviour_opacity_get_bounds (PyGObject *self)
+{
+        ClutterBehaviourOpacity *opacity;
+        guint8 start, end;
+
+        opacity = CLUTTER_BEHAVIOUR_OPACITY (self->obj);
+        clutter_behaviour_opacity_get_bounds (opacity, &start, &end);
+
+        return Py_BuildValue ("(KK)", start, end);
+}
+%%
 override clutter_ramp_inc_func
 static PyObject *
 _wrap_clutter_ramp_inc_func (PyObject *self, PyObject *args)
