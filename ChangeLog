@@ -1,3 +1,14 @@
+2008-01-23  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* autogen.sh:
+	* configure.ac: Require autotools >= 1.9 and clutter-gtk >= 0.5.1
+
+	* clutter-gtk/cluttergtk.defs:
+	* clutter-gtk/cluttergtk.override:
+	* clutter-gtk/cluttergtkmodule.c: Update after upstream changes
+	in the clutter-gtk integration library. No API changes for the
+	Python bindings.
+
 2008-01-22  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Add BehaviourDepth and BehaviourOpacity

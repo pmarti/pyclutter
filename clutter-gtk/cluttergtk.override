@@ -3,14 +3,13 @@ headers
 #define NO_IMPORT_PYGOBJECT
 #include "pygobject.h"
 #include <clutter/clutter.h>
-#include <clutter-gtk/clutter-gtk.h>
+#include <clutter-gtk/gtk-clutter-embed.h>
 %%
 modulename cluttergtk
 %%
 import gobject.GObject as PyGObject_Type
 import clutter.Actor as PyClutterActor_Type
 import gtk.Widget as PyGtkWidget_Type
-import gtk.Socket as PyGtkSocket_Type
 %%
 ignore-glob
   *_get_type

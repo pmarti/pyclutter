@@ -9,7 +9,7 @@ m4_define(pyclutter_version_micro, 1)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
 m4_define(clutter_required_version,      0.5.3)
-m4_define(cluttergtk_required_version,   0.5.0)
+m4_define(cluttergtk_required_version,   0.5.1)
 m4_define(cluttergst_required_version,   0.5.0)
 m4_define(cluttercairo_required_version, 0.5.0)
 m4_define(pycairo_required_version,      1.0.2) dnl or 1.1.7
@@ -28,7 +28,7 @@ AC_SUBST(PYCLUTTER_MICRO_VERSION, [pyclutter_version_micro])
 AC_CONFIG_SRCDIR([clutter/cluttermodule.c])
 AM_CONFIG_HEADER(config.h)
 
-AM_INIT_AUTOMAKE([1.8])
+AM_INIT_AUTOMAKE([1.9])
 
 dnl put the ACLOCAL flags in the makefile
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"

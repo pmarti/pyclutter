@@ -1,26 +1,26 @@
 ;; -*- scheme -*-
 
 (define-object Embed
-  (in-module "ClutterGtk")
-  (parent "GtkSocket")
-  (c-name "GtkClutter")
-  (gtype-id "GTK_TYPE_CLUTTER")
+  (in-module "GtkClutter")
+  (parent "GtkWidget")
+  (c-name "GtkClutterEmbed")
+  (gtype-id "GTK_TYPE_CLUTTER_EMBED")
 )
 
-(define-function clutter_get_type
-  (c-name "gtk_clutter_get_type")
+(define-function clutter_embed_get_type
+  (c-name "gtk_clutter_embed_get_type")
   (return-type "GType")
 )
 
-(define-function embed_new
-  (c-name "gtk_clutter_new")
-  (is-constructor-of "GtkClutter")
+(define-function clutter_embed_new
+  (c-name "gtk_clutter_embed_new")
+  (is-constructor-of "GtkClutterEmbed")
   (return-type "GtkWidget*")
 )
 
 (define-method get_stage
-  (of-object "GtkClutter")
-  (c-name "gtk_clutter_get_stage")
+  (of-object "GtkClutterEmbed")
+  (c-name "gtk_clutter_embed_get_stage")
   (return-type "ClutterActor*")
   (parameters
   )
