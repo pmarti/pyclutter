@@ -1,3 +1,13 @@
+Overview of changes between 0.5.0 and 0.5.1
+===========================================
+
+* Require autotools >= 1.9
+* Require clutter-core >= 0.5.4 and clutter-gtk >= 0.5.2
+* Resync with upstream changes
+* Support the conversion to and from ClutterUnits
+* Allow the duration property of clutter.Timeline as a constructor parameter,
+  and remove clutter.timeline_new_for_duration()
+
 Overview of changes between 0.4.2 and 0.5.0
 ===========================================
 

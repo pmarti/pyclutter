@@ -13,15 +13,15 @@ Requirements
 ------------
   * GLib 2.14.0 or higher
   * GTK+ 2.10.0 or higher
-  * Clutter 0.5.0 or higher
+  * Clutter 0.5.4 or higher
   * PyGObject 2.12.1 or higher
   * Python 2.3.5 or higher
 
 This release is supporting the following Clutter releases:
 
-        clutter-core    0.5.1
+        clutter-core    0.5.4
         clutter-gst     0.5.0
-        clutter-gtk     0.5.0
+        clutter-gtk     0.5.2
         clutter-cairo   0.5.0
 
 Installation
