@@ -1459,7 +1459,6 @@
     '("x_scale_end")
     '("y_scale_end")
     '("alpha" (optional))
-    '("gravity" (optional))
   )
 )
 
@@ -1475,15 +1474,6 @@
   )
 )
 
-(define-method set_gravity
-  (of-object "ClutterBehaviourScale")
-  (c-name "clutter_behaviour_scale_set_gravity")
-  (return-type "none")
-  (parameters
-    '("ClutterGravity" "gravity")
-  )
-)
-
 (define-method get_bounds
   (of-object "ClutterBehaviourScale")
   (c-name "clutter_behaviour_scale_get_bounds")
@@ -1494,12 +1484,6 @@
     '("gdouble*" "x_scale_end")
     '("gdouble*" "y_scale_end")
   )
-)
-
-(define-method get_gravity
-  (of-object "ClutterBehaviourScale")
-  (c-name "clutter_behaviour_scale_get_gravity")
-  (return-type "ClutterGravity")
 )
 
 
@@ -1979,7 +1963,6 @@
     '("ClutterEffectTemplate*" "template_")
     '("ClutterActor*" "actor")
     '("gdouble" "scale_end")
-    '("ClutterGravity" "gravity")
     '("ClutterEffectCompleteFunc" "completed_func")
     '("gpointer" "completed_data")
   )
@@ -2088,18 +2071,18 @@
   (return-type "PangoAlignment")
 )
 
-(define-method set_position
+(define-method set_cursor_position
   (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_position")
+  (c-name "clutter_entry_set_cursor_position")
   (return-type "none")
   (parameters
     '("gint" "position")
   )
 )
 
-(define-method get_position
+(define-method get_cursor_position
   (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_position")
+  (c-name "clutter_entry_get_cursor_position")
   (return-type "gint")
 )
 

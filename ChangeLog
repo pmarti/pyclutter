@@ -1,3 +1,13 @@
+2008-02-03  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs: Update after upstream API changes
+	in clutter.Entry, clutter.BehaviourScale and
+	clutter.effect_scale. (based on a patch by Kashyap Ashwin)
+
+	* clutter/clutter-effect.override: Update clutter.effect_scale
+	and initialise all the optional arguments of the effects API
+	to Py_None, to avoid segfaults. (based on a patch by Tero Saarni)
+
 2008-01-25  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* configure.ac: Require stable releases of clutter-core and

@@ -72,6 +72,8 @@ _wrap_clutter_effect_fade (PyObject *self,
     guint8 opacity_end;
     ClutterTimeline *retval;
 
+    py_func = py_data = Py_None;
+
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                       "OOb|OO:clutter.effect_fade",
                                       kwlist,
@@ -123,6 +125,8 @@ _wrap_clutter_effect_depth (PyObject *self,
     ClutterActor *actor;
     gint depth_end;
     ClutterTimeline *retval;
+
+    py_func = py_data = Py_None;
 
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                       "OOi|OO:clutter.effect_depth",
@@ -176,6 +180,8 @@ _wrap_clutter_effect_move (PyObject *self,
     gint x, y;
     ClutterTimeline *retval;
 
+    py_func = py_data = Py_None;
+
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                       "OOii|OO:clutter.effect_move",
                                       kwlist,
@@ -228,6 +234,8 @@ _wrap_clutter_effect_path (PyObject *self,
     ClutterKnot *knots;
     guint n_knots;
     ClutterTimeline *retval;
+
+    py_func = py_data = Py_None;
 
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                       "OOO|OO:clutter.effect_path",
@@ -311,7 +319,6 @@ _wrap_clutter_effect_scale (PyObject *self,
       "template",
       "actor",
       "scale_end",
-      "gravity",
       "func",
       "data",
       NULL
@@ -320,15 +327,15 @@ _wrap_clutter_effect_scale (PyObject *self,
     ClutterEffectTemplate *templ;
     ClutterActor *actor;
     double x_end, y_end;
-    ClutterGravity gravity = CLUTTER_GRAVITY_CENTER;
     ClutterTimeline *retval;
 
+    py_func = py_data = Py_None;
+
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                      "OOd|iOO:clutter.effect_scale",
+                                      "OOd|OO:clutter.effect_scale",
                                       kwlist,
                                       &py_templ, &py_actor,
                                       &x_end, &y_end,
-                                      &gravity,
                                       &py_func, &py_data))
         return NULL;
 
@@ -349,7 +356,6 @@ _wrap_clutter_effect_scale (PyObject *self,
     if (py_func == Py_None) {
         retval = clutter_effect_scale (templ, actor,
                                        x_end, y_end,
-                                       gravity,
                                        NULL, NULL);
     }
     else {
@@ -361,7 +367,6 @@ _wrap_clutter_effect_scale (PyObject *self,
 
         retval = clutter_effect_scale (templ, actor,
                                        x_end, y_end,
-                                       gravity,
                                        pyclutter_effect_complete,
                                        pycb);
     }
@@ -394,6 +399,8 @@ _wrap_clutter_effect_rotate (PyObject *self,
     ClutterRotateDirection direction = CLUTTER_ROTATE_CW;
     ClutterTimeline *retval;
     gint center_x, center_y, center_z;
+
+    py_center = py_func = py_data = Py_None;
 
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                       "OOid|OiOO:clutter.effect_scale",
