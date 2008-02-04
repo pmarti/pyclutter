@@ -555,13 +555,19 @@
   (return-type "gboolean")
 )
 
-(define-method apply_shader
+(define-method set_shader
   (of-object "ClutterActor")
-  (c-name "clutter_actor_apply_shader")
+  (c-name "clutter_actor_set_shader")
   (return-type "gboolean")
   (parameters
     '("ClutterShader*" "shader")
   )
+)
+
+(define-method get_shader
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_shader")
+  (return-type "ClutterShader*")
 )
 
 (define-method set_shader_param

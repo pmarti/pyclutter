@@ -1,3 +1,11 @@
+2008-02-04  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs: Remove clutter_actor_apply_shader()
+	and bind:
+
+	  clutter_actor_set_shader()
+	  clutter_actor_get_shader()
+
 2008-02-03  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Update after upstream API changes
