@@ -1,3 +1,15 @@
+2008-02-05  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* Makefile.am:
+	* configure.ac:
+	* docs/Makefile.am: Add build environment for the pyclutter
+	documentation. (#758, Daniel Schierbeck)
+
+	* docs/reference/clutter-clutteractor.xml:
+	* docs/reference/clutter-cluttercolor.xml:
+	* docs/reference/clutter-ref.xml: Add initial XML files for
+	the documentation; needs work, so patches accepted.
+
 2008-02-04  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Remove clutter_actor_apply_shader()

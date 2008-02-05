@@ -10,16 +10,16 @@ PDF_STYLE = $(PYGOBJECT_DATADIR)/pygobject/xsl/pdf-style.xsl
 
 XMLFILES = 					\
     reference/clutter-ref.xml			\
+    reference/clutter-cluttercolor.xml		\
     reference/clutter-clutteractor.xml		\
-    reference/clutter-clutterstage.xml		\
     $(NULL)
 
 HTMLdir = $(datadir)/gtk-doc/html/pyclutter-$(REF_VERSION)
 HTML_DATA =					\
 	html/index.html				\
 	html/index.sgml				\
+	html/class-cluttercolor.html		\
 	html/class-clutteractor.html		\
-	html/class-clutterstage.html		\
 	html/pyclutter-$(REF_VERSION).devhelp
 
 CSS_FILES = $(PYGOBJECT_PYGDOCS)/style.css
@@ -54,18 +54,19 @@ if ENABLE_DOCS
 reference/builddate.xml: $(REFERENCE_DEPS)
 	$(PYTHON) -c 'import datetime; print datetime.date.today()' > $@
 
-build_stamp: $(REFERENCE_DEPS)reference/builddate.xml
-	@xsltproc --nonet --xinclude -o $(BUILDDIR)/html/ \
-		 --path $(BUILDDIR)/reference:$(srcdir)/reference \
-                 --stringparam gtkdoc.bookname "pyclutter" \
-                 --stringparam gtkdoc.version ${REF_VERSION} \
-                 $(HTML_STYLE) $(srcdir)/reference/clutter-ref.xml
-	$(PYGOBJECT_FIXXREF) -i /usr/share/gtk-doc/html/pygtk/ \
-	$(BUILDDIR)/html && \
-	touch $@
+build_stamp: reference/builddate.xml
+	xsltproc --nonet --xinclude -o $(BUILDDIR)/html/ \
+		--path $(BUILDDIR)/reference:$(srcdir)/reference \
+		--stringparam gtkdoc.bookname "pyclutter" \
+		--stringparam gtkdoc.version ${REF_VERSION} \
+		$(HTML_STYLE) \
+	$(srcdir)/reference/clutter-ref.xml \
+	&& $(PYGOBJECT_FIXXREF) -i /usr/share/gtk-doc/html/pygtk/ $(BUILDDIR)/html \
+	&& touch $@
 
-pdf: $(REFERENCE_DEPS) reference/builddate.xml
-	@xsltproc --nonet --xinclude -o pyclutter-ref.fo \
-	         $(PDF_STYLE) reference/clutter-ref.xml && \
-	pdfxmltex pyclutter-ref.fo >output </dev/null
+pdf: reference/builddate.xml
+	xsltproc --nonet --xinclude -o pyclutter-ref.fo \
+		$(PDF_STYLE) reference/clutter-ref.xml \
+	&& pdfxmltex pyclutter-ref.fo > output < /dev/null
+
 endif

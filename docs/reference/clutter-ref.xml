@@ -1,0 +1,32 @@
+<?xml version='1.0'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" 
+[
+<!ENTITY % entities SYSTEM "entities.docbook">
+%entities;
+<!ENTITY builddate SYSTEM "builddate.xml">
+]>
+<book id="pygtksourceview2-reference" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <bookinfo>
+    <pubdate>&builddate;</pubdate>
+    <title>PyClutter Reference Manual</title>
+    <edition>PyClutter Reference Manual for PyClutter &version;</edition>
+    <releaseinfo>For PyClutter version &version;</releaseinfo>
+    <authorgroup>
+      <author>
+        <firstname>John</firstname>
+        <surname>Doe</surname>
+      </author>
+    </authorgroup>
+    <abstract>
+      <para>This reference describes the classes of the Python PyClutter module.</para>
+    </abstract>
+  </bookinfo>
+  <toc>
+  </toc>
+
+<!-- the reference page chapters for the PyGtksourceview2 classes -->
+
+    <xi:include href="clutter-cluttercolor.xml"/>
+    <xi:include href="clutter-clutteractor.xml"/>
+
+</book>

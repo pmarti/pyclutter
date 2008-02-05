@@ -1,0 +1,203 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-clutteractor">
+  <refnamediv>
+    <refname>clutter.Actor</refname>
+    <refpurpose>Base abstract class for all visual stage actors.</refpurpose>
+  </refnamediv>
+
+<!-- ************************* -->
+<!-- BEGIN OF CLUTTER SYNOPSIS -->
+<!-- ************************* -->
+
+  <refsect1>
+    <title>Synopsis</title>
+
+    <classsynopsis language="python">
+      <ooclass><classname>clutter.Actor</classname></ooclass>
+      <ooclass><classname>gobject.GInitiallyUnowned</classname></ooclass>
+      <constructorsynopsis language="python">
+        <methodname><link linkend="constructor-clutteractor">clutter.Actor</link></methodname>
+          <methodparam></methodparam>
+      </constructorsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--show">show</link></methodname>
+          <methodparam></methodparam>
+      </methodsynopsis>
+    </classsynopsis>
+  </refsect1>
+
+<!-- ************************* -->
+<!-- BEGIN OF CLUTTER ANCESTRY -->
+<!-- ************************* -->
+
+  <refsect1>
+    <title>Ancestry</title>
+
+    <synopsis>+-- <link linkend="class-gobject">gobject.GObject</link>
+      +-- <link linkend="class-gobject">gobject.GInitiallyUnowned</link>
+        +-- <link linkend="class-clutteractor">clutter.Actor</link>
+  </synopsis>
+
+  </refsect1>
+
+<!-- ********************************* -->
+<!-- BEGIN OF CLUTTER PROPERTIES -->
+<!-- ********************************* -->
+
+  <refsect1>
+    <title>Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+        <tgroup cols="3">
+          <colspec column="1" colwidth="1in"/>
+          <colspec column="2" colwidth="1in"/>
+          <colspec column="3" colwidth="4in"/>
+          <tbody>
+            <row valign="top">
+              <entry>"clip"</entry>
+              <entry>Read-Write</entry>
+              <entry>The clip region for the actor.</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+<!-- ********************************** -->
+<!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
+<!-- ********************************** -->
+
+  <refsect1>
+    <title>Signal Prototypes</title>
+
+    <variablelist>
+      <varlistentry>
+        <term><link linkend="signal-clutteractor--destroy">"destroy"</link></term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsect1>
+
+<!-- **************************** -->
+<!-- BEGIN OF CLUTTER DESCRIPTION -->
+<!-- **************************** -->
+
+  <refsect1 id="description-clutteractor">
+    <title>Description</title>
+    <para>
+      <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link> is a 
+      base abstract class for all visual elements on the stage. Every object that must
+      appear on the main <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link> 
+      must also be a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>, 
+      either by using one of the classes provided by Clutter, or by implementing a new 
+      <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link> subclass.</para>
+  </refsect1>
+
+<!-- **************************** -->
+<!-- BEGIN OF CLUTTER CONSTRUCTOR -->
+<!-- **************************** -->
+
+  <refsect1 id="constructor-clutteractor">
+    <title>Constructor</title>
+
+    <programlisting><constructorsynopsis language="python">
+      <methodname>clutter.Actor</methodname>
+      <methodparam></methodparam>
+      </constructorsynopsis></programlisting>
+      <variablelist>
+        <varlistentry>
+          <term><emphasis>Returns</emphasis>&nbsp;:</term>
+          <listitem><simpara>a new <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.
+          </simpara></listitem>
+        </varlistentry>
+      </variablelist>
+
+    <para>
+      Creates a new <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.</para>
+
+  </refsect1>
+
+<!-- ****************************** -->
+<!-- BEGIN OF CLUTTER METHODS -->
+<!-- ****************************** -->
+
+<refsect1>
+  <title>Methods</title>
+
+  <refsect2 id="method-clutteractor--show">
+    <title>clutter.Actor.show</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>show</methodname>
+        <methodparam></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+    </variablelist>
+
+    <para>
+      Flags a clutter actor to be displayed. An actor not shown will 
+      not appear on the display.
+    </para>
+  </refsect2>
+</refsect1>
+
+<!-- ************************ -->
+<!-- BEGIN OF CLUTTER SIGNALS -->
+<!-- ************************ --> 
+
+<refsect1>
+  <title>Signals</title>
+
+  <refsect2 id="signal-clutteractor--destroy">
+    <title>The "destroy" signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>actor</parameter>&nbsp;:</term>
+        <listitem><simpara>the object which received the signal</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>user_param1</parameter>&nbsp;:</term>
+        <listitem><simpara>the first user parameter (if any) specified
+            with the <link
+              linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
+            method</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>additional user parameters (if
+            any)</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "destroy" signal is emitted when an actor is destroyed, either by direct invocation of 
+      <link linkend="method-clutteractor--destroy"><methodname>clutter.Actor.destroy</methodname>()</link> 
+      or when the <link linkend="class-cluttergroup"><classname>clutter.Group</classname></link> that 
+      contains the actor is destroyed.</para>
+
+  </refsect2>
+</refsect1>
+
+</refentry>

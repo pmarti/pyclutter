@@ -77,6 +77,8 @@ PYGST_DEFSDIR=`$PKG_CONFIG --variable=defsdir gst-python-0.10`
 AC_SUBST(PYGST_DEFSDIR)
 AC_MSG_RESULT($PYGST_DEFSDIR)
 
+
+
 dnl check for clutter
 PKG_CHECK_MODULES(CLUTTER, clutter-0.5 >= clutter_required_version)
 AC_SUBST(CLUTTER_CFLAGS)
@@ -142,18 +144,26 @@ AM_CONDITIONAL(BUILD_CLUTTERCAIRO, [test "x$build_cluttercairo" = "xyes"])
 dnl Building documentation
 enable_doc=no
 AC_ARG_ENABLE(doc,
-              AC_HELP_STRING([--enable-doc], [Enable documentation building]),,
-              enable_doc=no)
+              AC_HELP_STRING([--enable-doc], [Enable documentation building]),
+              [enable_doc=yes])
 
 if test "x$enable_doc" = "xyes"; then
   dnl Check for xsltproc
   AC_PATH_PROG([XSLTPROC], [xsltproc])
   if test -z "$XSLTPROC"; then
     enable_doc=no
+  else
+    PYGOBJECT_DATADIR=`$PKG_CONFIG --variable=datadir pygobject-2.0`
+    PYGOBJECT_PYGDOCS=`$PKG_CONFIG --variable=pygdocs pygobject-2.0`
+    PYGOBJECT_FIXXREF=`$PKG_CONFIG --variable=fixxref pygobject-2.0`
+
+    AC_SUBST(PYGOBJECT_DATADIR)
+    AC_SUBST(PYGOBJECT_PYGDOCS)
+    AC_SUBST(PYGOBJECT_FIXXREF)
   fi
 fi
 
-AM_CONDITIONAL(ENABLE_DOC, [test "x$enable_doc" = "xyes"])
+AM_CONDITIONAL(ENABLE_DOCS, [test "x$enable_doc" = "xyes"])
 
 dnl add required cflags ...
 JH_ADD_CFLAG([-Wall])
@@ -163,7 +173,6 @@ JH_ADD_CFLAG([-fno-strict-aliasing])
 AC_CONFIG_FILES([
         Makefile
         docs/Makefile
-        docs/reference/Makefile
         docs/reference/entities.docbook
         examples/Makefile
         clutter/Makefile

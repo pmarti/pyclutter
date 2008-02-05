@@ -12,9 +12,9 @@ if BUILD_CLUTTERCAIRO
 SUBDIRS += clutter-cairo
 endif
 
-#if ENABLE_DOC
-#SUBDIRS += docs
-#endif
+if ENABLE_DOCS
+SUBDIRS += docs
+endif
 
 DIST_SUBDIRS = docs clutter examples clutter-gst clutter-gtk clutter-cairo
 EXTRA_DIST = createdefs.py py-compile

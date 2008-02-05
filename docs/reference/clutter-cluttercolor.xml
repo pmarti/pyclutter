@@ -1,0 +1,127 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-cluttercolor">
+  <refnamediv>
+    <refname>clutter.Color</refname>
+    <refpurpose>Color management and manipulation.</refpurpose>
+  </refnamediv>
+
+<!-- ******************************* -->
+<!-- BEGIN OF CLUTTER SYNOPSIS       -->
+<!-- ******************************* -->
+
+<refsect1>
+	<title>Synopsis</title>
+
+	<classsynopsis language="python">
+		<ooclass><classname>clutter.Color</classname></ooclass>
+		<constructorsynopsis language="python">
+			<methodname><link linkend="constructor-cluttercolor">clutter.Color</link></methodname>
+			<methodparam><parameter role="keyword">red</parameter><initializer>0</initializer></methodparam>
+			<methodparam><parameter role="keyword">green</parameter><initializer>0</initializer></methodparam>
+			<methodparam><parameter role="keyword">blue</parameter><initializer>0</initializer></methodparam>
+			<methodparam><parameter role="keyword">alpha</parameter><initializer>0</initializer></methodparam>
+		</constructorsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-clutter--parse">parse</link></methodname>
+			<methodparam><parameter role="keyword">name</parameter></methodparam>
+		</methodsynopsis>
+	</classsynopsis>
+</refsect1>
+
+<!-- ******************************* -->
+<!-- BEGIN OF CLUTTER ANCESTRY       -->
+<!-- ******************************* -->
+
+<refsect1>
+	<title>Ancestry</title>
+
+	<synopsis>+-- <link linkend="class-cluttercolor">clutter.Color</link>
+	</synopsis>
+
+</refsect1>
+
+<!-- ********************************** -->
+<!-- BEGIN OF CLUTTER DESCRIPTION       -->
+<!-- ********************************** -->
+
+<refsect1 id="description-clutter-color">
+	<title>Description</title>
+	<para><link linkend="class-cluttercolor"><classname>ClutterColor</classname></link> is a simple 
+		type for representing colors.</para>
+</refsect1>
+
+<!-- ********************************** -->
+<!-- BEGIN OF CLUTTER CONSTRUCTOR       -->
+<!-- ********************************** -->
+
+<refsect1 id="constructor-cluttercolor">
+	<title>Constructor</title>
+
+	<programlisting><constructorsynopsis language="python">
+			<methodname>clutter.Color</methodname>
+			<methodparam><parameter role="keyword">red</parameter><initializer>0</initializer></methodparam>
+			<methodparam><parameter role="keyword">green</parameter><initializer>0</initializer></methodparam>
+			<methodparam><parameter role="keyword">blue</parameter><initializer>0</initializer></methodparam>
+			<methodparam><parameter role="keyword">alpha</parameter><initializer>0</initializer></methodparam>
+	</constructorsynopsis></programlisting>
+	<variablelist>
+		<varlistentry>
+			<term><parameter role="keyword">red</parameter>&nbsp;:</term>
+			<listitem><simpara>An integer between 0 and 255</simpara></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term><parameter role="keyword">green</parameter>&nbsp;:</term>
+			<listitem><simpara>An integer between 0 and 255</simpara></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term><parameter role="keyword">blue</parameter>&nbsp;:</term>
+			<listitem><simpara>An integer between 0 and 255</simpara></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term><parameter role="keyword">alpha</parameter>&nbsp;:</term>
+			<listitem><simpara>An integer between 0 and 255</simpara></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term><emphasis>Returns</emphasis>&nbsp;:</term>
+			<listitem><simpara>a new <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link>.
+			</simpara></listitem>
+		</varlistentry>
+	</variablelist>
+
+	<para>
+	</para>
+
+</refsect1>
+
+<!-- ************************ -->
+<!-- BEGIN OF CLUTTER METHODS -->
+<!-- ************************ -->
+
+<refsect1>
+	<title>Methods</title>
+
+	<refsect2 id="method-clutter--parse">
+		<title>clutter.Color.parse</title>
+
+		<programlisting><methodsynopsis language="python">
+				<methodname>parse</methodname>
+				<methodparam></methodparam>
+		</methodsynopsis></programlisting>
+
+		<variablelist>
+			<varlistentry>
+			</varlistentry>
+		</variablelist>
+
+		<para>
+			The <methodname>get_auto_indent</methodname>() method returns whether
+			auto indentation of text is enabled.
+		</para>
+	</refsect2>
+</refsect1>
+
+</refentry>
