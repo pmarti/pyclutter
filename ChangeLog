@@ -1,5 +1,23 @@
 2008-02-06  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-base.defs: Add the new move_anchor_point()
+	and move_anchor_point_from_gravity() methods.
+
+	* docs/Makefile.am: Fix indentation for the pdf generation; it
+	still doesn't quite work, unfortunately.
+	
+	* examples/Makefile.am:
+	* examples/test-scale.py: Add test-scale.py, exercising the
+	scale behaviour and the anchor point API
+
+	* examples/behave.py:
+	* examples/cairo-texture.py:
+	* examples/rects.py:
+	* examples/super-oh.py:
+	* examples/videosink.py: Update to clutter.Stage().
+
+2008-02-06  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* docs/Makefile.am: Fix the fixxref call.
 
 	* docs/reference/clutter-clutteractor.xml:

@@ -4,4 +4,5 @@ EXTRA_DIST = \
 	hello.py \
 	rects.py \
 	super-oh.py \
+	test-scale.py \
 	videosink.py

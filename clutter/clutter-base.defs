@@ -590,6 +590,16 @@
   )
 )
 
+(define-method move_anchor_point
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_move_anchor_point")
+  (return-type "none")
+  (parameters
+    '("gint" "anchor_x")
+    '("gint" "anchor_y")
+  )
+)
+
 (define-method get_anchor_point
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_anchor_point")
@@ -603,6 +613,15 @@
 (define-method set_anchor_point_from_gravity
   (of-object "ClutterActor")
   (c-name "clutter_actor_set_anchor_point_from_gravity")
+  (return-type "none")
+  (parameters
+    '("ClutterGravity" "gravity")
+  )
+)
+
+(define-method move_anchor_point_from_gravity
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_move_anchor_point_from_gravity")
   (return-type "none")
   (parameters
     '("ClutterGravity" "gravity")

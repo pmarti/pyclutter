@@ -73,7 +73,7 @@ class SuperOh (clutter.Group) :
             hand.hide()
 
 def main (args):
-    stage = clutter.stage_get_default()
+    stage = clutter.Stage()
 
     stage.set_color(clutter.Color(0xcc, 0xcc, 0xcc, 0xff))
     stage.connect('key-press-event', clutter.main_quit)

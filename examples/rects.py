@@ -17,7 +17,7 @@ def on_button_press_event (stage, event):
     clutter.main_quit()
 
 def main (args):
-    stage = clutter.stage_get_default()
+    stage = clutter.Stage()
     stage.set_size(800,600)
     stage.set_color(clutter.color_parse('DarkSlateGray'))
     stage.connect('add', on_stage_add)

@@ -72,8 +72,11 @@ build_stamp: reference/builddate.xml
 	&& touch $@
 
 pdf: reference/builddate.xml
-	xsltproc --nonet --xinclude -o pyclutter-ref.fo \
-		$(PDF_STYLE) reference/clutter-ref.xml \
+	xsltproc \
+		--nonet \
+		--xinclude \
+		-o pyclutter-ref.fo \
+	$(PDF_STYLE) reference/clutter-ref.xml \
 	&& pdfxmltex pyclutter-ref.fo > output < /dev/null
 
 endif

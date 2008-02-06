@@ -10,7 +10,7 @@ import clutter, gst
 from clutter import cluttergst
 
 def main (args):
-    stage = clutter.stage_get_default()
+    stage = clutter.Stage()
     stage.set_size(320,240)
     stage.set_color(clutter.color_parse('DarkSlateGrey'))
     stage.connect('key-press-event', clutter.main_quit)

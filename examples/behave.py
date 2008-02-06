@@ -22,7 +22,7 @@ class BehaviourRotate (clutter.Behaviour):
 
 
 def main (args):
-    stage = clutter.stage_get_default()
+    stage = clutter.Stage()
     stage.set_size(800, 600)
     stage.set_color(clutter.Color(0xcc, 0xcc, 0xcc, 0xff))
     stage.connect('key-press-event', clutter.main_quit)

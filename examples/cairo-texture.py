@@ -9,7 +9,7 @@ def on_button_press_event (stage, event):
     clutter.main_quit()
 
 def main ():
-    stage = clutter.stage_get_default()
+    stage = clutter.Stage()
     stage.set_color(clutter.Color(red=0xff, green=0xcc, blue=0xcc, alpha=0xff))
     stage.set_size(width=400, height=300)
     stage.connect('button-press-event', on_button_press_event)
