@@ -3,7 +3,7 @@ import clutter
 
 class HelloClutter:
     def __init__ (self, message):
-        self.stage = clutter.stage_get_default()
+        self.stage = clutter.Stage()
         self.stage.set_color(clutter.color_parse('DarkSlateGrey'))
         self.stage.set_size(800, 600)
         self.stage.set_title('My First Clutter Application')

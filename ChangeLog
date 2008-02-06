@@ -1,3 +1,13 @@
+2008-02-06  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs:
+	* clutter/clutter.override: Wrap clutter_stage_get_default()
+	as clutter.Stage(), so that it feels more pythonic. The
+	current clutter.stage_get_default() function is still there
+	for compatibility, but it should probably go away before 0.6.0.
+
+	* examples/hello.py: Update to test.
+
 2008-02-05  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* Makefile.am:

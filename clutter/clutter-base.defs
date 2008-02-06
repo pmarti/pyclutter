@@ -3874,6 +3874,12 @@
   (return-type "ClutterActor*")
 )
 
+(define-function clutter_stage_new
+  (c-name "clutter_stage_new")
+  (is-constructor-of "ClutterStage")
+  (return-type "ClutterActor*")
+)
+
 (define-method set_color
   (of-object "ClutterStage")
   (c-name "clutter_stage_set_color")
