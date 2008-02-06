@@ -4,7 +4,7 @@
 
 <refentry id="class-cluttercolor">
   <refnamediv>
-    <refname>clutter.Color</refname>
+    <refname>Colors</refname>
     <refpurpose>Color management and manipulation.</refpurpose>
   </refnamediv>
 
@@ -26,8 +26,8 @@
 		</constructorsynopsis>
 
 		<methodsynopsis language="python">
-			<methodname><link linkend="method-clutter--parse">parse</link></methodname>
-			<methodparam><parameter role="keyword">name</parameter></methodparam>
+			<methodname><link linkend="method-cluttercolor--foo">foo</link></methodname>
+			<methodparam><parameter role="keyword">bar</parameter></methodparam>
 		</methodsynopsis>
 	</classsynopsis>
 </refsect1>
@@ -48,9 +48,9 @@
 <!-- BEGIN OF CLUTTER DESCRIPTION       -->
 <!-- ********************************** -->
 
-<refsect1 id="description-clutter-color">
+<refsect1 id="description-cluttercolor">
 	<title>Description</title>
-	<para><link linkend="class-cluttercolor"><classname>ClutterColor</classname></link> is a simple 
+	<para><link linkend="class-cluttercolor"><classname>clutter.Color</classname></link> is a simple 
 		type for representing colors.</para>
 </refsect1>
 
@@ -71,19 +71,19 @@
 	<variablelist>
 		<varlistentry>
 			<term><parameter role="keyword">red</parameter>&nbsp;:</term>
-			<listitem><simpara>An integer between 0 and 255</simpara></listitem>
+			<listitem><simpara>red component, between 0 and 255</simpara></listitem>
 		</varlistentry>
 		<varlistentry>
 			<term><parameter role="keyword">green</parameter>&nbsp;:</term>
-			<listitem><simpara>An integer between 0 and 255</simpara></listitem>
+			<listitem><simpara>green component, between 0 and 255</simpara></listitem>
 		</varlistentry>
 		<varlistentry>
 			<term><parameter role="keyword">blue</parameter>&nbsp;:</term>
-			<listitem><simpara>An integer between 0 and 255</simpara></listitem>
+			<listitem><simpara>blue component, between 0 and 255</simpara></listitem>
 		</varlistentry>
 		<varlistentry>
 			<term><parameter role="keyword">alpha</parameter>&nbsp;:</term>
-			<listitem><simpara>An integer between 0 and 255</simpara></listitem>
+			<listitem><simpara>alpha component, between 0 and 255</simpara></listitem>
 		</varlistentry>
 		<varlistentry>
 			<term><emphasis>Returns</emphasis>&nbsp;:</term>
@@ -104,22 +104,25 @@
 <refsect1>
 	<title>Methods</title>
 
-	<refsect2 id="method-clutter--parse">
-		<title>clutter.Color.parse</title>
+	<refsect2 id="method-cluttercolor--foo">
+		<title>clutter.Color.foo</title>
 
-		<programlisting><methodsynopsis language="python">
-				<methodname>parse</methodname>
-				<methodparam></methodparam>
-		</methodsynopsis></programlisting>
+    <programlisting>
+      <methodsynopsis language="python">
+				<methodname>foo</methodname>
+        <methodparam><parameter>bar</parameter></methodparam>
+      </methodsynopsis>
+    </programlisting>
 
 		<variablelist>
-			<varlistentry>
-			</varlistentry>
+      <varlistentry>
+        <term><parameter>vanizzle</parameter>&nbsp;:</term>
+        <listitem><simpara>test</simpara></listitem>
+      </varlistentry>
 		</variablelist>
 
 		<para>
-			The <methodname>get_auto_indent</methodname>() method returns whether
-			auto indentation of text is enabled.
+      Some text.
 		</para>
 	</refsect2>
 </refsect1>

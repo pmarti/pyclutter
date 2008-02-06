@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<partintro>
+  <para>Clutter is a GObject based library for creating fast, visually rich 
+    graphical user interfaces.</para>
+  <para>Clutter semantics work by having a stage (a window) and then adding 
+    actors (widgets) to the stage and manipulating via the actor api. Actors 
+    can contain child actors (ClutterGroup for example) and be manipulated 
+    as a whole.</para>
+  <para>Animations and visual effects can be created via the use of timelines 
+    and behaviours. Timelines provide accurate frame based animations. 
+    Behaviours further extend this by taking a timeline, a control function 
+    (<link linkend="class-clutteralpha"><classname>clutter.Alpha</classname></link>) 
+    and then applying to actors as to modify a property as a function of time.</para>
+</partintro>

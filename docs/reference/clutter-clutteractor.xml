@@ -37,9 +37,10 @@
   <refsect1>
     <title>Ancestry</title>
 
-    <synopsis>+-- <link linkend="class-gobject">gobject.GObject</link>
-      +-- <link linkend="class-gobject">gobject.GInitiallyUnowned</link>
-        +-- <link linkend="class-clutteractor">clutter.Actor</link>
+    <synopsis>
+<link linkend="class-gobject">gobject.GObject</link>
+ +--<link linkend="class-gobject">gobject.GInitiallyUnowned</link>
+     +--<link linkend="class-clutteractor">clutter.Actor</link>
   </synopsis>
 
   </refsect1>
@@ -62,6 +63,122 @@
               <entry>"clip"</entry>
               <entry>Read-Write</entry>
               <entry>The clip region for the actor.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"depth"</entry>
+              <entry>Read-Write</entry>
+              <entry>Depth of the actor. Default value: 0. Since 0.6.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"has-clip"</entry>
+              <entry>Read</entry>
+              <entry>Whether the actor has the clip property set or not. 
+                Allowed values: >= -2147483647. Default value: False.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"height"</entry>
+              <entry>Read-Write</entry>
+              <entry>Height of the actor (in pixels). Allowed values: >= 0. 
+                Default value: 0.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"name"</entry>
+              <entry>Read-Write</entry>
+              <entry>The name of the actor. Default value: None. Since 0.2.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"opacity"</entry>
+              <entry>Read-Write</entry>
+              <entry>Opacity of the actor. Default value: 255.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"reactive"</entry>
+              <entry>Read-Write</entry>
+              <entry>Whether the actor is reactive or not. Default value: False. Since 0.6.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"rotation-angle-x"</entry>
+              <entry>Read-Write</entry>
+              <entry>The rotation angle on the X axis. Allowed values: >= 0. Default value: 0.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"rotation-angle-y"</entry>
+              <entry>Read-Write</entry>
+              <entry>The rotation angle on the Y axis. Allowed values: >= 0. Default value: 0.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"rotation-angle-z"</entry>
+              <entry>Read-Write</entry>
+              <entry>The rotation angle on the Z axis. Allowed values: >= 0. Default value: 0.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"rotation-center-x"</entry>
+              <entry>Read-Write</entry>
+              <entry>The rotation center on the X axis.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"rotation-center-y"</entry>
+              <entry>Read-Write</entry>
+              <entry>The rotation center on the Y axis.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"rotation-center-z"</entry>
+              <entry>Read-Write</entry>
+              <entry>The rotation center on the Z axis.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"scale-x"</entry>
+              <entry>Read-Write</entry>
+              <entry>Scale X. Allowed values: >= 0. Default value: 1.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"scale-y"</entry>
+              <entry>Read-Write</entry>
+              <entry>Scale Y. Allowed values: >= 0. Default value: 1.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"scale-z"</entry>
+              <entry>Read-Write</entry>
+              <entry>Scale Z. Allowed values: >= 0. Default value: 1.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"visible"</entry>
+              <entry>Read-Write</entry>
+              <entry>Whether the actor is visible or not. Default value: False.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"width"</entry>
+              <entry>Read-Write</entry>
+              <entry>Width of the actor (in pixels). Allowed values: >= 0. Default value: 0.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"x"</entry>
+              <entry>Read-Write</entry>
+              <entry>X coordinate of the actor. Allowed values: >= -2147483647. Default value: 0.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"y"</entry>
+              <entry>Read-Write</entry>
+              <entry>Y coordinate of the actor. Allowed values: >= -2147483647. Default value: 0.</entry>
             </row>
           </tbody>
         </tgroup>

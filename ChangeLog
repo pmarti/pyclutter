@@ -1,5 +1,16 @@
 2008-02-06  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* docs/Makefile.am: Fix the fixxref call.
+
+	* docs/reference/clutter-clutteractor.xml:
+	* docs/reference/clutter-cluttercolor.xml:
+	* docs/reference/clutter-overview.xml:
+	* docs/reference/clutter-ref.xml: More documentation: add the
+	overview from Clutter core and more descriptions on methods
+	properties and signals. (Daniel Schierbeck) 
+
+2008-02-06  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base.defs:
 	* clutter/clutter.override: Wrap clutter_stage_get_default()
 	as clutter.Stage(), so that it feels more pythonic. The

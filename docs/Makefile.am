@@ -10,6 +10,7 @@ PDF_STYLE = $(PYGOBJECT_DATADIR)/pygobject/xsl/pdf-style.xsl
 
 XMLFILES = 					\
     reference/clutter-ref.xml			\
+    reference/clutter-overview.xml		\
     reference/clutter-cluttercolor.xml		\
     reference/clutter-clutteractor.xml		\
     $(NULL)
@@ -18,9 +19,15 @@ HTMLdir = $(datadir)/gtk-doc/html/pyclutter-$(REF_VERSION)
 HTML_DATA =					\
 	html/index.html				\
 	html/index.sgml				\
+	html/pt01.html 				\
+	html/pt02.html 				\
+	html/pt03.html 				\
+	html/pt04.html 				\
+	html/ch01.html 				\
+	html/ch02.html 				\
 	html/class-cluttercolor.html		\
 	html/class-clutteractor.html		\
-	html/pyclutter-$(REF_VERSION).devhelp
+	html/pyclutter.devhelp
 
 CSS_FILES = $(PYGOBJECT_PYGDOCS)/style.css
 CSSdir = $(HTMLdir)
@@ -61,7 +68,7 @@ build_stamp: reference/builddate.xml
 		--stringparam gtkdoc.version ${REF_VERSION} \
 		$(HTML_STYLE) \
 	$(srcdir)/reference/clutter-ref.xml \
-	&& $(PYGOBJECT_FIXXREF) -i /usr/share/gtk-doc/html/pygtk/ $(BUILDDIR)/html \
+	&& $(PYGOBJECT_FIXXREF) -i $(PYGOBJECT_PYGDOCS) $(BUILDDIR)/html \
 	&& touch $@
 
 pdf: reference/builddate.xml

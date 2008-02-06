@@ -5,7 +5,7 @@
 %entities;
 <!ENTITY builddate SYSTEM "builddate.xml">
 ]>
-<book id="pygtksourceview2-reference" xmlns:xi="http://www.w3.org/2001/XInclude">
+<book id="pyclutter-reference" xmlns:xi="http://www.w3.org/2001/XInclude">
   <bookinfo>
     <pubdate>&builddate;</pubdate>
     <title>PyClutter Reference Manual</title>
@@ -26,7 +26,26 @@
 
 <!-- the reference page chapters for the PyGtksourceview2 classes -->
 
-    <xi:include href="clutter-cluttercolor.xml"/>
-    <xi:include href="clutter-clutteractor.xml"/>
+  <part>
+    <title>Clutter Overview</title>
+    <xi:include href="clutter-overview.xml"/>
+  </part>
+  <part>
+    <title>Clutter Core Reference</title>
+    <chapter>
+      <title>Abstract Classes and Interfaces</title>
+      <xi:include href="clutter-clutteractor.xml"/>
+    </chapter>
+  </part>
+  <part>
+    <title>Clutter Animation Support</title>
+  </part>
+  <part>
+    <title>Clutter Tools</title>
+    <chapter>
+      <title>General purpose API</title>
+      <xi:include href="clutter-cluttercolor.xml"/>
+    </chapter>
+  </part>
 
 </book>
