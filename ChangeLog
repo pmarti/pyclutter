@@ -1,3 +1,14 @@
+2008-02-07  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-script.override: Let pyclutter pick up
+	clutter.Script.connect_signals()
+
+	* clutter/clutter.override: Override clutter.Score.append()
+	so that the optional parent goes at the end of the arguments
+	tuple.
+
+	* examples/script.py: Add an example of clutter.Script.
+
 2008-02-06  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Add the new move_anchor_point()

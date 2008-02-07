@@ -700,3 +700,46 @@ _wrap_clutter_stage_new (PyGObject *self)
 
   return 0;
 }
+%%
+override clutter_score_append kwargs
+static PyObject *
+_wrap_clutter_score_append (PyGObject *self,
+                            PyObject  *args,
+                            PyObject  *kwargs)
+{
+        static char *kwlist[] = { "timeline", "parent", NULL };
+        PyObject *py_timeline, *py_parent = NULL;
+        ClutterTimeline *timeline, *parent;
+        ClutterScore *score;
+        guint ret;
+
+        if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                         "O|O:clutter.Score.append",
+                                         kwlist,
+                                         &py_timeline, &py_parent)) {
+                return NULL;
+        }
+
+        if (!py_timeline || py_timeline == Py_None ||
+            !pygobject_check (py_timeline, &PyClutterTimeline_Type)) {
+                PyErr_SetString (PyExc_TypeError, "timeline must be a clutter.Timeline");
+                return NULL;
+        }
+        else
+                timeline = CLUTTER_TIMELINE (pygobject_get (py_timeline));
+
+        if (!py_parent || py_parent == Py_None)
+                parent = NULL;
+        else if (pygobject_check (py_parent, &PyClutterTimeline_Type))
+                parent = CLUTTER_TIMELINE (pygobject_get (py_parent));
+        else {
+                PyErr_SetString (PyExc_TypeError, "parent must either be a clutter.Timeline or None");
+                return NULL;
+        }
+
+        score = CLUTTER_SCORE (self->obj);
+        ret = clutter_score_append (score, parent, timeline);
+        g_assert (timeline == clutter_score_get_timeline (score, ret));
+
+        return PyLong_FromUnsignedLong (ret);
+}

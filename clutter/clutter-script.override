@@ -14,6 +14,7 @@ ignore
   clutter_scriptable_set_custom_property
 %%
 ignore clutter_script_connect_signals_full
+%%
 override clutter_script_connect_signals kwargs
 static void
 connect_many (ClutterScript *script,
@@ -70,7 +71,6 @@ connect_many (ClutterScript *script,
     
     Py_DECREF (self);
 }
-
 static PyObject *
 _wrap_clutter_script_connect_signals (PyGObject *self,
                                       PyObject  *args,
@@ -126,8 +126,10 @@ _wrap_clutter_script_get_objects (PyGObject *self,
 
         res = clutter_script_get_object (CLUTTER_SCRIPT (self->obj),
                                          PyString_AsString (py_name));
-        if (!res)
+        if (!res) {
+            g_warning ("Unable to find `%s'", PyString_AsString (py_name));
             continue;
+        }
 
         item = pygobject_new (res);
         PyList_Append (retval, item);
