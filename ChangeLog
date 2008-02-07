@@ -1,5 +1,9 @@
 2008-02-07  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* examples/script.py: Add more checks.
+
+2008-02-07  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-script.override: Let pyclutter pick up
 	clutter.Script.connect_signals()
 

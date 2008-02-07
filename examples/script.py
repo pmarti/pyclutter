@@ -8,19 +8,28 @@ BUFFER = '''
   { "id" : "fade-timeline",  "type" : "ClutterTimeline", "duration" : 1500 },
   {
     "id" : "move-behaviour", "type" : "ClutterBehaviourPath",
-    "alpha" : { "timeline" : "move-timeline", "function" : "sine-inc" },
+    "alpha" : {
+      "timeline" : "move-timeline",
+      "function" : "clutter_sine_inc_func"
+    },
     "knots" : [ [ 100, 100 ], [ 200, 150 ] ]
   },
   {
     "id" : "scale-behaviour", "type" : "ClutterBehaviourScale",
     "x-scale-start" : 1.0, "x-scale-end" : 0.7,
     "y-scale-start" : 1.0, "y-scale-end" : 0.7,
-    "alpha" : { "timeline" : "scale-timeline", "function" : "sine-inc" }
+    "alpha" : {
+      "timeline" : "scale-timeline",
+      "function" : "sine-inc"
+    }
   },
   {
     "id" : "fade-behaviour", "type" : "ClutterBehaviourOpacity",
     "opacity-start" : 255, "opacity-end" : 0,
-    "alpha" : { "timeline" : "fade-timeline", "function" : "sine-inc" }
+    "alpha" : {
+      "timeline" : "fade-timeline",
+      "function" : "sine-inc"
+    }
   },
   {
     "id" : "main-stage",
@@ -61,8 +70,12 @@ class TestScript:
         print "quitting"
         clutter.main_quit()
 
+    def do_timeline_start (self, score, timeline):
+        print "timeline started: %s" % (clutter.get_script_id(timeline))
+
     def do_press (self, actor, event):
         print "running the score"
+        self._score.connect('timeline-started', self.do_timeline_start)
         self._score.connect('completed', self.do_quit)
         self._score.start()
 
@@ -89,13 +102,15 @@ class TestScript:
         self._score.append(timeline=self._timelines[0])
         self._score.append(timeline=self._timelines[1], parent=self._timelines[0])
         self._score.append(timeline=self._timelines[2], parent=self._timelines[1])
+        assert(3 == len(self._score.list_timelines()))
 
         self._stage = self._script.get_object('main-stage')
         self._stage.show_all()
 
         clutter.main()
 
+        return 0
+
 if __name__ == '__main__':
     test = TestScript()
-    test.run()
-    sys.exit(0)
+    sys.exit(test.run())
