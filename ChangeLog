@@ -1,3 +1,8 @@
+2008-02-08  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* configure.ac: Rename --enable-doc to --enable-docs, and
+	default it to "no" when building a developers snapshot.
+
 2008-02-07  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* examples/script.py: Add more checks.

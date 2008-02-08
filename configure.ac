@@ -142,16 +142,19 @@ fi
 AM_CONDITIONAL(BUILD_CLUTTERCAIRO, [test "x$build_cluttercairo" = "xyes"])
 
 dnl Building documentation
-enable_doc=no
-AC_ARG_ENABLE(doc,
-              AC_HELP_STRING([--enable-doc], [Enable documentation building]),
-              [enable_doc=yes])
+m4_define([docs_default],
+          m4_if(m4_eval(pyclutter_version_minor % 2), [1], [yes], [no]))
 
-if test "x$enable_doc" = "xyes"; then
+AC_ARG_ENABLE(docs,
+              AC_HELP_STRING([--enable-docs], [Enable documentation building]),
+              enable_docs=docs_default,
+              enable_docs="no")
+
+if test "x$enable_docs" = "xyes"; then
   dnl Check for xsltproc
   AC_PATH_PROG([XSLTPROC], [xsltproc])
   if test -z "$XSLTPROC"; then
-    enable_doc=no
+    enable_docs=no
   else
     PYGOBJECT_DATADIR=`$PKG_CONFIG --variable=datadir pygobject-2.0`
     PYGOBJECT_PYGDOCS=`$PKG_CONFIG --variable=pygdocs pygobject-2.0`
@@ -163,7 +166,7 @@ if test "x$enable_doc" = "xyes"; then
   fi
 fi
 
-AM_CONDITIONAL(ENABLE_DOCS, [test "x$enable_doc" = "xyes"])
+AM_CONDITIONAL(ENABLE_DOCS, [test "x$enable_docs" = "xyes"])
 
 dnl add required cflags ...
 JH_ADD_CFLAG([-Wall])
@@ -187,5 +190,5 @@ echo "* PyClutter:
         build cluttergst:     $build_cluttergst
         build cluttergtk:     $build_cluttergtk
         build cluttercairo:   $build_cluttercairo
-        enable documentation: $enable_doc
+        enable documentation: $enable_docs
 "
