@@ -253,7 +253,7 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 	if (!strcmp (attr, "time"))
                 return PyInt_FromLong (clutter_event_get_time (event));
 
-        if (!strcmp (attr, "motifier_state"))
+        if (!strcmp (attr, "modifier_state"))
                 return pyg_flags_from_gtype (CLUTTER_TYPE_MODIFIER_TYPE,
                                              clutter_event_get_state (event));
 

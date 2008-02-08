@@ -1,5 +1,10 @@
 2008-02-08  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-event.override: Fix modifier_state member
+	typo. (#748, Havoc Pennington)
+
+2008-02-08  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* configure.ac: Rename --enable-doc to --enable-docs, and
 	default it to "no" when building a developers snapshot.
 
