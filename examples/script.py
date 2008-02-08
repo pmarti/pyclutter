@@ -12,7 +12,10 @@ BUFFER = '''
       "timeline" : "move-timeline",
       "function" : "clutter_sine_inc_func"
     },
-    "knots" : [ [ 100, 100 ], [ 200, 150 ] ]
+    "knots" : [
+      [ 100, 100 ],
+      [ 200, 150 ]
+    ]
   },
   {
     "id" : "scale-behaviour", "type" : "ClutterBehaviourScale",
@@ -50,12 +53,16 @@ BUFFER = '''
         "opacity" : 255,
         "x" : 100, "y" : 100, "width" : 300, "height" : 300,
         "rotation" : [
-          { "z-axis" : [ 45, [ 200, 200 ] ] }
+          { "z-axis" : [ 45.0, [ 200, 200 ] ] }
         ],
         "signals" : [
           { "name" : "button-press-event", "handler" : "do_press" }
         ],
-        "behaviours" : [ "move-behaviour", "scale-behaviour", "fade-behaviour" ]
+        "behaviours" : [
+          "move-behaviour",
+          "scale-behaviour",
+          "fade-behaviour"
+        ]
       }
     ]
   }
