@@ -18,10 +18,6 @@
     <classsynopsis language="python">
       <ooclass><classname>clutter.Actor</classname></ooclass>
       <ooclass><classname>gobject.GInitiallyUnowned</classname></ooclass>
-      <constructorsynopsis language="python">
-        <methodname><link linkend="constructor-clutteractor">clutter.Actor</link></methodname>
-          <methodparam></methodparam>
-      </constructorsynopsis>
 
       <methodsynopsis language="python">
         <methodname><link linkend="method-clutteractor--show">show</link></methodname>
@@ -195,8 +191,53 @@
     <title>Signal Prototypes</title>
 
     <variablelist>
+      
       <varlistentry>
-        <term><link linkend="signal-clutteractor--destroy">"destroy"</link></term>
+        <term>
+          "<link linkend="signal-clutteractor--button-press-event">button-press-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--button-release-event">button-release-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--captured-event">captured-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--destroy">destroy</link>"
+        </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -205,6 +246,171 @@
           </methodsynopsis>
         </listitem>
       </varlistentry>
+    
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--enter-event">enter-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--event">event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--focus-in">focus-in</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--focus-out">focus-out</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--hide">hide</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--key-press-event">key-press-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--key-release-event">key-release-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--leave-event">leave-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--motion-event">motion-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--parent-set">parent-set</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>old_parent</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--scroll-event">scroll-event</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--show">show</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
 
   </refsect1>
@@ -224,29 +430,6 @@
       <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link> subclass.</para>
   </refsect1>
 
-<!-- **************************** -->
-<!-- BEGIN OF CLUTTER CONSTRUCTOR -->
-<!-- **************************** -->
-
-  <refsect1 id="constructor-clutteractor">
-    <title>Constructor</title>
-
-    <programlisting><constructorsynopsis language="python">
-      <methodname>clutter.Actor</methodname>
-      <methodparam></methodparam>
-      </constructorsynopsis></programlisting>
-      <variablelist>
-        <varlistentry>
-          <term><emphasis>Returns</emphasis>&nbsp;:</term>
-          <listitem><simpara>a new <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.
-          </simpara></listitem>
-        </varlistentry>
-      </variablelist>
-
-    <para>
-      Creates a new <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.</para>
-
-  </refsect1>
 
 <!-- ****************************** -->
 <!-- BEGIN OF CLUTTER METHODS -->
@@ -280,8 +463,170 @@
 <refsect1>
   <title>Signals</title>
 
+  <refsect2 id="signal-clutteractor--button-press-event">
+    <title>The "button-press-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the object which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-clutterbuttonevent"><classname>clutter.ButtonEvent</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "button-press-event" signal is emitted each time a mouse button is pressed on <parameter>actor</parameter>.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--button-release-event">
+    <title>The "button-release-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the object which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-clutterbuttonevent"><classname>clutter.ButtonEvent</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "button-release-event" signal is emitted each time a mouse button is released on <parameter>actor</parameter>.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--captured-event">
+    <title>The "captured-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the object which received the signal</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-clutterevent"><classname>clutter.Event</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "captured-event" signal is emitted when an event is captured by Clutter. 
+      This signal will be emitted starting from the top-level container (the 
+      <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link>) 
+      to the actor which received the event going down the hierarchy. This signal 
+      can be used to intercept every event before the specialized events 
+      (like "<link linkend="signal-clutteractor--button-press-event">button-press-event</link>" or
+      "<link linkend="signal-clutteractor--button-released-event">key-released-event</link>") 
+      are emitted.</para>
+
+  </refsect2>
   <refsect2 id="signal-clutteractor--destroy">
-    <title>The "destroy" signal</title>
+    <title>The "destroy" clutter.Actor signal</title>
 
     <programlisting><methodsynopsis language="python">
         <methodname>callback</methodname>
@@ -292,20 +637,29 @@
 
     <variablelist>
       <varlistentry>
-        <term><parameter>actor</parameter>&nbsp;:</term>
-        <listitem><simpara>the object which received the signal</simpara></listitem>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the object which received the signal</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-        <term><parameter>user_param1</parameter>&nbsp;:</term>
-        <listitem><simpara>the first user parameter (if any) specified
-            with the <link
-              linkend="method-gobject--connect"><methodname>connect</methodname>()</link>
-            method</simpara></listitem>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
       </varlistentry>
       <varlistentry>
-        <term><parameter>...</parameter>&nbsp;:</term>
-        <listitem><simpara>additional user parameters (if
-            any)</simpara></listitem>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
       </varlistentry>
     </variablelist>
 
@@ -315,6 +669,666 @@
       contains the actor is destroyed.</para>
 
   </refsect2>
+
+  <refsect2 id="signal-clutteractor--enter-event">
+    <title>The "enter-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the object which the pointer has entered</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-cluttercrossingevent"><classname>clutter.CrossingEvent</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>Returns</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara><code>True</code> if the event has been handled by the actor, 
+            or <code>False</code> to continue the emission.</simpara>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>The "event-event" signal is emitted when the pointer enters the <parameter>actor</parameter>.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--event">
+    <title>The "event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the object which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-cluttercrossingevent"><classname>clutter.Event</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>Returns</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara><code>True</code> if the event has been handled by the actor, 
+            or <code>False</code> to continue the emission.</simpara>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>The "event" signal is emitted each time an event is received by the actor. 
+      This signal will be emitted on every actor, following the hierarchy chain, 
+      until it reaches the top-level container (the 
+      <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link>).</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--focus-in">
+    <title>The "focus-in" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which now now has key focus</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "focus-in" signal is emitted when <parameter>actor</parameter> recieves key focus.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--focus-out">
+    <title>The "focus-out" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which now now has key focus</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "focus-out" signal is emitted when <parameter>actor</parameter> loses key focus.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--hide">
+    <title>The "hide" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the object which received the signal</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "hide" signal is emitted when an actor is no longer visible.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--key-press-event">
+    <title>The "key-press-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-clutterkeyevent"><classname>clutter.KeyEvent</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>Returns</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara><code>True</code> if the event has been handled by the actor,
+            or <code>False</code> to continue the emission.</simpara>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>The "key-press-event" signal is emitted each time a keyboard button 
+      is pressed on <parameter>actor</parameter>.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--key-release-event">
+    <title>The "key-release-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-clutterkeyevent"><classname>clutter.KeyEvent</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>Returns</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara><code>True</code> if the event has been handled by the actor,
+            or <code>False</code> to continue the emission.</simpara>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>The "key-press-event" signal is emitted each time a keyboard button 
+      is released on <parameter>actor</parameter>.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--leave-event">
+    <title>The "leave-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which the pointer has left</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-cluttercrossingevent"><classname>clutter.CrossingEvent</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>Returns</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara><code>True</code> if the event has been handled by the actor,
+            or <code>False</code> to continue the emission.</simpara>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>The "leave-event" signal is emitted when the pointer leaves the <parameter>actor</parameter>.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--motion-event">
+    <title>The "motion-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which the pointer has moved on</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-cluttermotionevent"><classname>clutter.MotionEvent</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>Returns</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara><code>True</code> if the event has been handled by the actor,
+            or <code>False</code> to continue the emission.</simpara>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>The "motion-event" signal is emitted each time the mouse pointer is moved on <parameter>actor</parameter>.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--parent-set">
+    <title>The "parent-set" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>old_parent</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which received the signal</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>old_parent</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the previous parent of the actor, or <code>None</code></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "parent-set" signal is emitted when the parent of the actor changes.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--scroll-event">
+    <title>The "scroll-event" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>event</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>event</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>a <link linkend="class-clutterscrollevent"><classname>clutter.ScrollEvent</classname></link></simpara>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>Returns</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara><code>True</code> if the event has been handled by the actor,
+            or <code>False</code> to continue the emission.</simpara>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+    <para>The "scroll-event" signal is emitted each time the mouse is scrolled on <parameter>actor</parameter>.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--show">
+    <title>The "show" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "show" signal is emitted when an actor becomes visible.</para>
+
+  </refsect2>
+
 </refsect1>
 
 </refentry>
