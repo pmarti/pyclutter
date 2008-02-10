@@ -45,7 +45,7 @@
 <!-- BEGIN OF CLUTTER PROPERTIES -->
 <!-- ********************************* -->
 
-  <refsect1>
+  <refsect1 id="properties-clutteractor">
     <title>Properties</title>
 
     <blockquote role="properties">
@@ -187,7 +187,7 @@
 <!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
 <!-- ********************************** -->
 
-  <refsect1>
+  <refsect1 id="signal-prototypes-clutteractor">
     <title>Signal Prototypes</title>
 
     <variablelist>

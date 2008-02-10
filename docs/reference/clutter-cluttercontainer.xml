@@ -1,0 +1,242 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-cluttercontainer">
+  <refnamediv>
+    <refname>clutter.Container</refname>
+    <refpurpose>Interface for container actors</refpurpose>
+  </refnamediv>
+
+<!-- ************************* -->
+<!-- BEGIN OF CLUTTER SYNOPSIS -->
+<!-- ************************* -->
+
+  <refsect1>
+    <title>Synopsis</title>
+
+    <classsynopsis language="python">
+      <ooclass><classname>clutter.Container</classname></ooclass>
+      <ooclass><classname>gobject.GInterface</classname></ooclass>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttercontainer--add">add</link></methodname>
+        <methodparam><parameter role="keyword">actor</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttercontainer--remove">remove</link></methodname>
+        <methodparam><parameter role="keyword">actor</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttercontainer--get-children">get_children</link></methodname>
+        <methodparam></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttercontainer--foreach">foreach</link></methodname>
+        <methodparam><parameter role="keyword">callback</parameter></methodparam>
+        <methodparam><parameter role="keyword">callback_data</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttercontainer--find-child-by-name">find_child_by_name</link></methodname>
+        <methodparam><parameter role="keyword">name</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttercontainer--raise-child">raise_child</link></methodname>
+        <methodparam><parameter role="keyword">actor</parameter></methodparam>
+        <methodparam><parameter>sibling</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttercontainer--lower-child">lower_child</link></methodname>
+        <methodparam><parameter role="keyword">actor</parameter></methodparam>
+        <methodparam><parameter>sibling</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttercontainer--sort-depth-order">sort_depth_order</link></methodname>
+      </methodsynopsis>
+
+    </classsynopsis>
+  </refsect1>
+
+<!-- ********************************** -->
+<!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
+<!-- ********************************** -->
+
+  <refsect1 id="signal-prototypes-cluttercontainer">
+    <title>Signal Prototypes</title>
+
+    <variablelist>
+
+      <varlistentry>
+        <term>"<link linkend="signal-cluttercontainer--actor-added">actor-added</link>"</term>
+        <listitem>
+          <methodsynopsis
+            language="python"><methodname>callback</methodname>
+            <methodparam><parameter>container</parameter></methodparam>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"<link linkend="signal-cluttercontainer--actor-removed">actor-removed</link>"</term>
+        <listitem>
+          <methodsynopsis
+            language="python"><methodname>callback</methodname>
+            <methodparam><parameter>container</parameter></methodparam>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </refsect1>
+
+<!-- **************************** -->
+<!-- BEGIN OF CLUTTER DESCRIPTION -->
+<!-- **************************** -->
+
+  <refsect1 id="description-cluttergroup">
+    <title>Description</title>
+    <para>
+      <link linkend="class-cluttercontainer"><classname>clutter.Container</classname></link>
+      is an interface for writing actors containing other actors. It provides
+      a standard API for adding, removing and iterating over the children of
+      a container.
+    </para>
+
+    <para>
+      An actor implementing the Container interface is <link
+      linkend="class-cluttergroup"><classname>clutter.Group</classname></link>.
+    </para>
+
+  </refsect1>
+
+<!-- ****************************** -->
+<!-- BEGIN OF CLUTTER METHODS       -->
+<!-- ****************************** -->
+
+<refsect1>
+  <title>Methods</title>
+
+  <refsect2 id="method-cluttercontainer--add">
+    <title>clutter.Container.add</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>add</methodname>
+        <methodparam><parameter role="keyword">actor</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter role="keyword">actor&nbsp;:</parameter></term>
+        <listitem><simpara>an actor to be placed inside the continer</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>zero or more actors to add</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      The <methodname>acc</methodname>() method places new, unparented
+      actors inside a <link linkend="class-cluttercontainer">clutter.Container</link>.
+    </para>
+  </refsect2>
+  
+</refsect1>
+
+<!-- ************************ -->
+<!-- BEGIN OF CLUTTER SIGNALS -->
+<!-- ************************ --> 
+
+<refsect1>
+  <title>Signals</title>
+
+  <refsect2 id="signal-cluttercontainer--actor-added">
+    <title>The "actor-added" clutter.Container Signal</title>
+
+    <programlisting><methodsynopsis language="python">
+      <methodname>callback</methodname>
+      <methodparam><parameter>container</parameter></methodparam>
+      <methodparam><parameter>actor</parameter></methodparam>
+      <methodparam><parameter>user_param1</parameter></methodparam>
+      <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+        <varlistentry>
+          <term><parameter>container</parameter>&nbsp;:</term>
+          <listitem><simpara>the container that received the signal</simpara></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><parameter>actor</parameter>&nbsp;:</term>
+          <listitem><simpara>the newly added child</simpara></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><parameter>user_param1</parameter>&nbsp;:</term>
+          <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><parameter>...</parameter>&nbsp;:</term>
+          <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>The "actor-added" signal is emitted when a new actor has been
+      added to the container.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-cluttercontainer--actor-removed">
+    <title>The "actor-removed" clutter.Container Signal</title>
+
+    <programlisting><methodsynopsis language="python">
+      <methodname>callback</methodname>
+      <methodparam><parameter>container</parameter></methodparam>
+      <methodparam><parameter>actor</parameter></methodparam>
+      <methodparam><parameter>user_param1</parameter></methodparam>
+      <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+        <varlistentry>
+          <term><parameter>container</parameter>&nbsp;:</term>
+          <listitem><simpara>the container that received the signal</simpara></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><parameter>actor</parameter>&nbsp;:</term>
+          <listitem><simpara>the removed child</simpara></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><parameter>user_param1</parameter>&nbsp;:</term>
+          <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+        </varlistentry>
+        <varlistentry>
+          <term><parameter>...</parameter>&nbsp;:</term>
+          <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>The "actor-removed" signal is emitted when an actor has been
+      removed from the container.</para>
+
+  </refsect2>
+
+</refsect1>
+
+</refentry>

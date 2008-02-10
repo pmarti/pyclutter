@@ -71,7 +71,7 @@
 <link linkend="class-gobject">gobject.GObject</link>
  +--<link linkend="class-gobject">gobject.GInitiallyUnowned</link>
      +--<link linkend="class-clutteractor">clutter.Actor</link>
-         +--<link linkend="class-clutteractor">clutter.Rectangle</link>
+         +--<link linkend="class-clutterrectangle">clutter.Rectangle</link>
   </synopsis>
 
   </refsect1>
@@ -80,8 +80,10 @@
 <!-- BEGIN OF CLUTTER PROPERTIES -->
 <!-- ********************************* -->
 
-  <refsect1>
+  <refsect1 id="properties-clutterrectangle">
     <title>Properties</title>
+
+    <para><link linkend="properties-clutteractor">clutter.Actor Properties</link></para>
 
     <blockquote role="properties">
       <informaltable pgwide="1" frame="none">
@@ -125,8 +127,10 @@
 <!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
 <!-- ********************************** -->
 
-  <refsect1>
+  <refsect1 id="signal-prototypes-clutterrectangle">
     <title>Signal Prototypes</title>
+
+    <para><link linkend="signal-prototypes-clutteractor">clutter.Actor Signal Prototypes</link></para>
 
   </refsect1>
 
@@ -137,7 +141,7 @@
   <refsect1 id="description-clutterrectangle">
     <title>Description</title>
     <para>
-      <link linkend="class-clutteractor"><classname>clutter.Rectangle</classname></link>
+      <link linkend="class-clutterrectangle"><classname>clutter.Rectangle</classname></link>
       is a simple actor which draws rectangles.</para>
   </refsect1>
 

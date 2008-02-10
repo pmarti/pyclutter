@@ -13,6 +13,8 @@ XMLFILES = 					\
     reference/clutter-overview.xml		\
     reference/clutter-clutteractor.xml		\
     reference/clutter-cluttercolor.xml		\
+    reference/clutter-cluttercontainer.xml	\
+    reference/clutter-cluttergroup.xml		\
     reference/clutter-clutterrectangle.xml	\
     $(NULL)
 
@@ -28,6 +30,8 @@ HTML_DATA =					\
 	html/ch02.html 				\
 	html/class-clutteractor.html		\
 	html/class-cluttercolor.html		\
+	html/class-cluttercontainer.html	\
+	html/class-cluttergroup.html		\
 	html/class-clutterrectangle.html	\
 	html/pyclutter.devhelp
 

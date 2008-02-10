@@ -1826,7 +1826,7 @@
   (return-type "none")
   (parameters
     '("ClutterActor*" "actor")
-    '("ClutterActor*" "sibling")
+    '("ClutterActor*" "sibling" (optional))
   )
 )
 
@@ -1836,7 +1836,7 @@
   (return-type "none")
   (parameters
     '("ClutterActor*" "actor")
-    '("ClutterActor*" "sibling")
+    '("ClutterActor*" "sibling" (optional))
   )
 )
 

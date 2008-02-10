@@ -35,10 +35,15 @@
     <chapter>
       <title>Abstract Classes and Interfaces</title>
       <xi:include href="clutter-clutteractor.xml"/>
+      <xi:include href="clutter-cluttercontainer.xml"/>
     </chapter>
     <chapter>
       <title>Base Actors</title>
       <xi:include href="clutter-clutterrectangle.xml"/>
+    </chapter>
+    <chapter>
+      <title>Container Actors</title>
+      <xi:include href="clutter-cluttergroup.xml"/>
     </chapter>
   </part>
   <part>
