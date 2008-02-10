@@ -1,5 +1,11 @@
 2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-effect.override: Commit a fix for the
+	clutter.effect_scale() override that has been sittin in my
+	tree for days.
+
+2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* docs/reference/clutter-ref.xml: Add copyright and remove authors.
 
 2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>

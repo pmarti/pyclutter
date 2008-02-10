@@ -318,7 +318,8 @@ _wrap_clutter_effect_scale (PyObject *self,
     static char *kwlist[] = {
       "template",
       "actor",
-      "scale_end",
+      "x_scale_end",
+      "y_scale_end",
       "func",
       "data",
       NULL
@@ -330,9 +331,10 @@ _wrap_clutter_effect_scale (PyObject *self,
     ClutterTimeline *retval;
 
     py_func = py_data = Py_None;
+    x_end = y_end = 0.0;
 
     if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                      "OOd|OO:clutter.effect_scale",
+                                      "OOdd|OO:clutter.effect_scale",
                                       kwlist,
                                       &py_templ, &py_actor,
                                       &x_end, &y_end,
