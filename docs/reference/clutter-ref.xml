@@ -11,12 +11,10 @@
     <title>PyClutter Reference Manual</title>
     <edition>PyClutter Reference Manual for PyClutter &version;</edition>
     <releaseinfo>For PyClutter version &version;</releaseinfo>
-    <authorgroup>
-      <author>
-        <firstname>John</firstname>
-        <surname>Doe</surname>
-      </author>
-    </authorgroup>
+    <copyright>
+      <year>2008</year>
+      <holder>OpenedHand LTD</holder>
+    </copyright>
     <abstract>
       <para>This reference describes the classes of the Python PyClutter module.</para>
     </abstract>
@@ -24,7 +22,7 @@
   <toc>
   </toc>
 
-<!-- the reference page chapters for the PyGtksourceview2 classes -->
+<!-- the reference page chapters for the PyClutter classes -->
 
   <part>
     <title>Clutter Overview</title>

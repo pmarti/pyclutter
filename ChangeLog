@@ -1,6 +1,8 @@
-2008-02-10  Emmanuele Bassi  <set EMAIL_ADDRESS environment variable>
+2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>
 
-	reviewed by: <delete if not using a buddy>
+	* docs/reference/clutter-ref.xml: Add copyright and remove authors.
+
+2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Mark the sibling argument in
 	clutter.Container.raise_child() and .lower_child() as optional;
