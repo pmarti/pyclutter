@@ -454,6 +454,58 @@
       not appear on the display.
     </para>
   </refsect2>
+  
+  <refsect2 id="method-clutteractor--show-all">
+    <title>clutter.Actor.show_all</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>show_all</methodname>
+        <methodparam></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+    </variablelist>
+
+    <para>
+      Flags a clutter actor to be displayed, along with all its children.
+      Whether or not show_all recurses it's an implementation detail of
+      the actor itself.
+    </para>
+  </refsect2>
+  
+  <refsect2 id="method-clutteractor--hide">
+    <title>clutter.Actor.hide</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>hide</methodname>
+        <methodparam></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+    </variablelist>
+
+    <para>
+      Flags a visible clutter actor to be hidden.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-clutteractor--hide-all">
+    <title>clutter.Actor.hide_all</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>hide_all</methodname>
+        <methodparam></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+    </variablelist>
+
+    <para>
+      Flags a visible clutter actor to be hidden, along with all its
+      children.
+    </para>
+  </refsect2>
+
 </refsect1>
 
 <!-- ************************ -->

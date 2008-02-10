@@ -1,5 +1,16 @@
 2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-base.defs: Allow passing a clutter.Color when
+	constructing a rectangle.
+
+	* docs/Makefile.am:
+	* docs/reference/clutter-clutteractor.xml:
+	* docs/reference/clutter-cluttercolor.xml:
+	* docs/reference/clutter-clutterrectangle.xml:
+	* docs/reference/clutter-ref.xml: Add clutter.Rectangle reference.
+
+2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* docs/reference/clutter-clutteractor.xml: Add signals documentation
 	for clutter.Actor. (Daniel Schierbeck)
 

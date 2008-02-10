@@ -3435,6 +3435,9 @@
   (c-name "clutter_rectangle_new")
   (is-constructor-of "ClutterRectangle")
   (return-type "ClutterActor*")
+  (properties
+    '("color" (optional))
+  )
 )
 
 (define-function rectangle_new_with_color

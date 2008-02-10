@@ -36,6 +36,10 @@
       <title>Abstract Classes and Interfaces</title>
       <xi:include href="clutter-clutteractor.xml"/>
     </chapter>
+    <chapter>
+      <title>Base Actors</title>
+      <xi:include href="clutter-clutterrectangle.xml"/>
+    </chapter>
   </part>
   <part>
     <title>Clutter Animation Support</title>

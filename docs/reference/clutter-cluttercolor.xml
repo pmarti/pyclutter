@@ -109,22 +109,23 @@
 
     <programlisting>
       <methodsynopsis language="python">
-				<methodname>foo</methodname>
+	<methodname>foo</methodname>
         <methodparam><parameter>bar</parameter></methodparam>
       </methodsynopsis>
     </programlisting>
 
-		<variablelist>
+    <variablelist>
       <varlistentry>
         <term><parameter>vanizzle</parameter>&nbsp;:</term>
         <listitem><simpara>test</simpara></listitem>
       </varlistentry>
-		</variablelist>
+    </variablelist>
 
-		<para>
+    <para>
       Some text.
-		</para>
-	</refsect2>
+   </para>
+  </refsect2>
+
 </refsect1>
 
 </refentry>

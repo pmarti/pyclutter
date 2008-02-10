@@ -11,8 +11,9 @@ PDF_STYLE = $(PYGOBJECT_DATADIR)/pygobject/xsl/pdf-style.xsl
 XMLFILES = 					\
     reference/clutter-ref.xml			\
     reference/clutter-overview.xml		\
-    reference/clutter-cluttercolor.xml		\
     reference/clutter-clutteractor.xml		\
+    reference/clutter-cluttercolor.xml		\
+    reference/clutter-clutterrectangle.xml	\
     $(NULL)
 
 HTMLdir = $(datadir)/gtk-doc/html/pyclutter-$(REF_VERSION)
@@ -25,8 +26,9 @@ HTML_DATA =					\
 	html/pt04.html 				\
 	html/ch01.html 				\
 	html/ch02.html 				\
-	html/class-cluttercolor.html		\
 	html/class-clutteractor.html		\
+	html/class-cluttercolor.html		\
+	html/class-clutterrectangle.html	\
 	html/pyclutter.devhelp
 
 CSS_FILES = $(PYGOBJECT_PYGDOCS)/style.css
