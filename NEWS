@@ -1,3 +1,18 @@
+Overview of changes between 0.5.1 and 0.5.2
+===========================================
+
+* Require clutter-core >= 0.5.6
+* Resync with upstream changes
+* Add initial API reference [bug #758, Daniel Schierbeck]
+* Deprecated clutter.rectangle_new_with_color(): pass the "color" (optional)
+  parameter to clutter.Rectangle() instead
+* Deprecated clutter.stage_get_default(): call clutter.Stage() instead
+* Let pyclutter pick up clutter.Script.connect_signals()
+* The parameters of clutter.Score.append() have been inverted with regards
+  to the C API; the new signature is: clutter.Score.append(timeline, parent).
+  Named parameters will still work.
+* Fix bug #748 - typo in clutter.Event.modifier_state
+
 Overview of changes between 0.5.0 and 0.5.1
 ===========================================
 

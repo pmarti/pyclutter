@@ -1,5 +1,10 @@
 2008-02-11  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* NEWS:
+	* README: Release 0.5.2.
+
+2008-02-11  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* docs/Makefile.am:
 	* docs/reference/clutter-cluttertexture.xml:
 	* docs/reference/clutter-ref.xml: Add initial clutter.Texture
