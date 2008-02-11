@@ -153,11 +153,155 @@
     </variablelist>
 
     <para>
-      The <methodname>acc</methodname>() method places new, unparented
+      The <methodname>add</methodname>() method places new, unparented
       actors inside a <link linkend="class-cluttercontainer">clutter.Container</link>.
     </para>
   </refsect2>
   
+  <refsect2 id="method-cluttercontainer--remove">
+    <title>clutter.Container.remove</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>remove</methodname>
+        <methodparam><parameter role="keyword">actor</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter role="keyword">actor&nbsp;:</parameter></term>
+        <listitem><simpara>an actor to be removed from the continer</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>zero or more actors to remove</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      The <methodname>remove</methodname>() method removes a child from
+      a <link linkend="class-cluttercontainer">clutter.Container</link>.
+    </para>
+  </refsect2>
+  
+  <refsect2 id="method-cluttercontainer--foreach">
+    <title>clutter.Container.foreach</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>foreach</methodname>
+        <methodparam><parameter role="keyword">callback</parameter></methodparam>
+        <methodparam><parameter role="keyword">callback_data</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter role="keyword">callback&nbsp;:</parameter></term>
+        <listitem><simpara>a function to be called on each actor</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>data to be passed to the callback</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      The <methodname>foreach</methodname>() method invokes a callback
+      on every child of a <link linkend="class-cluttercontainer">clutter.Container</link>.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttercontainer--raise-child">
+    <title>clutter.Container.raise_child</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>raise_child</methodname>
+        <methodparam><parameter role="keyword">actor</parameter></methodparam>
+        <methodparam><parameter>sibling</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter role="keyword">actor&nbsp;:</parameter></term>
+        <listitem><simpara>the actor to raise</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>sibling</parameter>&nbsp;:</term>
+        <listitem><simpara>the sibling to raise to, or <literal>None</literal></simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      Raises <link linkend="class-clutteractor">actor</link> at the level
+      of sibling, in the depth ordering. If sibling is <literal>None</literal>
+      then <link linkend="class-clutteractor">actor</link> will be raised
+      at the top.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttercontainer--lower-child">
+    <title>clutter.Container.lower_child</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>lower_child</methodname>
+        <methodparam><parameter role="keyword">actor</parameter></methodparam>
+        <methodparam><parameter>sibling</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter role="keyword">actor&nbsp;:</parameter></term>
+        <listitem><simpara>the actor to lower</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>sibling</parameter>&nbsp;:</term>
+        <listitem><simpara>the sibling to lower to, or <literal>None</literal></simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      Lowers <link linkend="class-clutteractor">actor</link> at the level
+      of sibling, in the depth ordering. If sibling is <literal>None</literal>
+      then <link linkend="class-clutteractor">actor</link> will be lowered
+      at the bottom.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttercontainer--find-child-by-name">
+    <title>clutter.Container.find_child_by_name</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>find_child_by_name</methodname>
+        <methodparam><parameter role="keyword">name</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter role="keyword">name&nbsp;:</parameter></term>
+        <listitem><simpara>the name of the child</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      Finds the <link linkend="class-clutteractor">actor</link> with
+      the given name.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttercontainer--sort-depth-order">
+    <title>clutter.Container.sort_depth_order</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>sort_depth_order</methodname>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+    </variablelist>
+
+    <para>
+      Resorts the children of a container according to their depth.
+    </para>
+  </refsect2>
+
 </refsect1>
 
 <!-- ************************ -->
@@ -179,26 +323,26 @@
     </methodsynopsis></programlisting>
 
     <variablelist>
-        <varlistentry>
-          <term><parameter>container</parameter>&nbsp;:</term>
-          <listitem><simpara>the container that received the signal</simpara></listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><parameter>actor</parameter>&nbsp;:</term>
-          <listitem><simpara>the newly added child</simpara></listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><parameter>user_param1</parameter>&nbsp;:</term>
-          <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><parameter>...</parameter>&nbsp;:</term>
-          <listitem><simpara>additional user parameters (if any)</simpara></listitem>
-        </varlistentry>
-      </variablelist>
+      <varlistentry>
+        <term><parameter>container</parameter>&nbsp;:</term>
+        <listitem><simpara>the container that received the signal</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>actor</parameter>&nbsp;:</term>
+        <listitem><simpara>the newly added child</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>user_param1</parameter>&nbsp;:</term>
+        <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+      </varlistentry>
+    </variablelist>
 
-      <para>The "actor-added" signal is emitted when a new actor has been
-      added to the container.</para>
+    <para>The "actor-added" signal is emitted when a new actor has been
+    added to the container.</para>
 
   </refsect2>
 
@@ -214,26 +358,26 @@
     </methodsynopsis></programlisting>
 
     <variablelist>
-        <varlistentry>
-          <term><parameter>container</parameter>&nbsp;:</term>
-          <listitem><simpara>the container that received the signal</simpara></listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><parameter>actor</parameter>&nbsp;:</term>
-          <listitem><simpara>the removed child</simpara></listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><parameter>user_param1</parameter>&nbsp;:</term>
-          <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
-        </varlistentry>
-        <varlistentry>
-          <term><parameter>...</parameter>&nbsp;:</term>
-          <listitem><simpara>additional user parameters (if any)</simpara></listitem>
-        </varlistentry>
-      </variablelist>
+      <varlistentry>
+        <term><parameter>container</parameter>&nbsp;:</term>
+        <listitem><simpara>the container that received the signal</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>actor</parameter>&nbsp;:</term>
+        <listitem><simpara>the removed child</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>user_param1</parameter>&nbsp;:</term>
+        <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+      </varlistentry>
+    </variablelist>
 
-      <para>The "actor-removed" signal is emitted when an actor has been
-      removed from the container.</para>
+    <para>The "actor-removed" signal is emitted when an actor has been
+    removed from the container.</para>
 
   </refsect2>
 

@@ -1,3 +1,18 @@
+2008-02-11  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* docs/Makefile.am:
+	* docs/reference/clutter-cluttertexture.xml:
+	* docs/reference/clutter-ref.xml: Add initial clutter.Texture
+	API reference.
+
+	* docs/reference/clutter-cluttercontainer.xml: Fix indentation
+	and typos.
+
+2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* docs/reference/clutter-cluttercontainer.xml: Finish the
+	clutter.Container API reference.
+
 2008-02-10  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-effect.override: Commit a fix for the

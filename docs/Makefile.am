@@ -16,6 +16,7 @@ XMLFILES = 					\
     reference/clutter-cluttercontainer.xml	\
     reference/clutter-cluttergroup.xml		\
     reference/clutter-clutterrectangle.xml	\
+    reference/clutter-cluttertexture.xml	\
     $(NULL)
 
 HTMLdir = $(datadir)/gtk-doc/html/pyclutter-$(REF_VERSION)
@@ -33,6 +34,7 @@ HTML_DATA =					\
 	html/class-cluttercontainer.html	\
 	html/class-cluttergroup.html		\
 	html/class-clutterrectangle.html	\
+	html/class-cluttertexture.html		\
 	html/pyclutter.devhelp
 
 CSS_FILES = $(PYGOBJECT_PYGDOCS)/style.css
