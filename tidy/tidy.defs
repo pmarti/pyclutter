@@ -1,0 +1,1214 @@
+(include "tidy-types.defs")
+
+;; From tidy-actor.h
+
+(define-function actor_get_type
+  (c-name "tidy_actor_get_type")
+  (return-type "GType")
+)
+
+(define-method set_padding
+  (of-object "TidyActor")
+  (c-name "tidy_actor_set_padding")
+  (return-type "none")
+  (parameters
+    '("const-TidyPadding*" "padding")
+  )
+)
+
+(define-method get_padding
+  (of-object "TidyActor")
+  (c-name "tidy_actor_get_padding")
+  (return-type "none")
+  (parameters
+    '("TidyPadding*" "padding")
+  )
+)
+
+(define-method set_alignment
+  (of-object "TidyActor")
+  (c-name "tidy_actor_set_alignment")
+  (return-type "none")
+  (parameters
+    '("gdouble" "x_align")
+    '("gdouble" "y_align")
+  )
+)
+
+(define-method get_alignment
+  (of-object "TidyActor")
+  (c-name "tidy_actor_get_alignment")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "x_align")
+    '("gdouble*" "y_align")
+  )
+)
+
+(define-method set_alignmentx
+  (of-object "TidyActor")
+  (c-name "tidy_actor_set_alignmentx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x_align")
+    '("ClutterFixed" "y_align")
+  )
+)
+
+(define-method get_alignmentx
+  (of-object "TidyActor")
+  (c-name "tidy_actor_get_alignmentx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "x_align")
+    '("ClutterFixed*" "y_align")
+  )
+)
+
+
+
+;; From tidy-adjustment.h
+
+(define-function adjustment_get_type
+  (c-name "tidy_adjustment_get_type")
+  (return-type "GType")
+)
+
+(define-function adjustment_new
+  (c-name "tidy_adjustment_new")
+  (is-constructor-of "TidyAdjustment")
+  (return-type "TidyAdjustment*")
+  (properties
+    '("value")
+    '("lower")
+    '("upper")
+    '("step_increment")
+    '("page_increment")
+    '("page_size")
+  )
+)
+
+(define-function adjustment_newx
+  (c-name "tidy_adjustment_newx")
+  (return-type "TidyAdjustment*")
+  (parameters
+    '("ClutterFixed" "value")
+    '("ClutterFixed" "lower")
+    '("ClutterFixed" "upper")
+    '("ClutterFixed" "step_increment")
+    '("ClutterFixed" "page_increment")
+    '("ClutterFixed" "page_size")
+  )
+)
+
+(define-method get_value
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_get_value")
+  (return-type "gdouble")
+)
+
+(define-method get_valuex
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_get_valuex")
+  (return-type "ClutterFixed")
+)
+
+(define-method set_value
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_set_value")
+  (return-type "none")
+  (parameters
+    '("gdouble" "value")
+  )
+)
+
+(define-method set_valuex
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_set_valuex")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "value")
+  )
+)
+
+(define-method clamp_page
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_clamp_page")
+  (return-type "none")
+  (parameters
+    '("gdouble" "lower")
+    '("gdouble" "upper")
+  )
+)
+
+(define-method clamp_pagex
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_clamp_pagex")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "lower")
+    '("ClutterFixed" "upper")
+  )
+)
+
+(define-method set_values
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_set_values")
+  (return-type "none")
+  (parameters
+    '("gdouble" "value")
+    '("gdouble" "lower")
+    '("gdouble" "upper")
+    '("gdouble" "step_increment")
+    '("gdouble" "page_increment")
+    '("gdouble" "page_size")
+  )
+)
+
+(define-method set_valuesx
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_set_valuesx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "value")
+    '("ClutterFixed" "lower")
+    '("ClutterFixed" "upper")
+    '("ClutterFixed" "step_increment")
+    '("ClutterFixed" "page_increment")
+    '("ClutterFixed" "page_size")
+  )
+)
+
+(define-method get_values
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_get_values")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "value")
+    '("gdouble*" "lower")
+    '("gdouble*" "upper")
+    '("gdouble*" "step_increment")
+    '("gdouble*" "page_increment")
+    '("gdouble*" "page_size")
+  )
+)
+
+(define-method get_valuesx
+  (of-object "TidyAdjustment")
+  (c-name "tidy_adjustment_get_valuesx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "value")
+    '("ClutterFixed*" "lower")
+    '("ClutterFixed*" "upper")
+    '("ClutterFixed*" "step_increment")
+    '("ClutterFixed*" "page_increment")
+    '("ClutterFixed*" "page_size")
+  )
+)
+
+
+
+;; From tidy-behaviour-bounce.h
+
+(define-function behaviour_bounce_get_type
+  (c-name "tidy_behaviour_bounce_get_type")
+  (return-type "GType")
+)
+
+(define-function behaviour_bounce_new
+  (c-name "tidy_behaviour_bounce_new")
+  (is-constructor-of "TidyBehaviourBounce")
+  (return-type "ClutterBehaviour*")
+  (properties
+    '("alpha" (optional))
+  )
+)
+
+
+
+;; From tidy-button.h
+
+(define-function button_get_type
+  (c-name "tidy_button_get_type")
+  (return-type "GType")
+)
+
+(define-function button_new
+  (c-name "tidy_button_new")
+  (is-constructor-of "TidyButton")
+  (return-type "ClutterActor*")
+  (properties
+    '("label" (optional))
+  )
+)
+
+(define-function button_new_with_label
+  (c-name "tidy_button_new_with_label")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method get_label
+  (of-object "TidyButton")
+  (c-name "tidy_button_get_label")
+  (return-type "const-gchar*")
+)
+
+(define-method set_label
+  (of-object "TidyButton")
+  (c-name "tidy_button_set_label")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+
+
+;; From tidy-cell-renderer-default.h
+
+(define-function cell_renderer_default_get_type
+  (c-name "tidy_cell_renderer_default_get_type")
+  (return-type "GType")
+)
+
+(define-function cell_renderer_default_new
+  (c-name "tidy_cell_renderer_default_new")
+  (is-constructor-of "TidyCellRendererDefault")
+  (return-type "TidyCellRenderer*")
+)
+
+
+
+;; From tidy-cell-renderer.h
+
+(define-function cell_renderer_get_type
+  (c-name "tidy_cell_renderer_get_type")
+  (return-type "GType")
+)
+
+(define-method get_cell_actor
+  (of-object "TidyCellRenderer")
+  (c-name "tidy_cell_renderer_get_cell_actor")
+  (return-type "ClutterActor*")
+  (parameters
+    '("TidyActor*" "list_view")
+    '("const-GValue*" "value")
+    '("TidyCellState" "state")
+    '("ClutterGeometry*" "size")
+    '("gint" "row")
+    '("gint" "column")
+  )
+)
+
+
+
+;; From tidy-depth-group.h
+
+(define-function depth_group_get_type
+  (c-name "tidy_depth_group_get_type")
+  (return-type "GType")
+)
+
+(define-function depth_group_new
+  (c-name "tidy_depth_group_new")
+  (is-constructor-of "TidyDepthGroup")
+  (return-type "ClutterActor*")
+)
+
+
+
+;; From tidy-enum-types.h
+
+(define-function cell_state_get_type
+  (c-name "tidy_cell_state_get_type")
+  (return-type "GType")
+)
+
+(define-function finger_scroll_mode_get_type
+  (c-name "tidy_finger_scroll_mode_get_type")
+  (return-type "GType")
+)
+
+(define-function position_get_type
+  (c-name "tidy_position_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From tidy-finger-scroll.h
+
+(define-function finger_scroll_get_type
+  (c-name "tidy_finger_scroll_get_type")
+  (return-type "GType")
+)
+
+(define-function finger_scroll_new
+  (c-name "tidy_finger_scroll_new")
+  (is-constructor-of "TidyFingerScroll")
+  (return-type "ClutterActor*")
+  (properties
+    '("mode" (optional))
+  )
+)
+
+
+
+;; From tidy-frame.h
+
+(define-function frame_get_type
+  (c-name "tidy_frame_get_type")
+  (return-type "GType")
+)
+
+(define-function frame_new
+  (c-name "tidy_frame_new")
+  (is-constructor-of "TidyFrame")
+  (return-type "ClutterActor*")
+)
+
+(define-method get_child
+  (of-object "TidyFrame")
+  (c-name "tidy_frame_get_child")
+  (return-type "ClutterActor*")
+)
+
+(define-method set_texture
+  (of-object "TidyFrame")
+  (c-name "tidy_frame_set_texture")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method get_texture
+  (of-object "TidyFrame")
+  (c-name "tidy_frame_get_texture")
+  (return-type "ClutterActor*")
+)
+
+
+
+;; From tidy.h
+
+
+
+;; From tidy-list-column-default.h
+
+(define-function list_column_default_get_type
+  (c-name "tidy_list_column_default_get_type")
+  (return-type "GType")
+)
+
+(define-function list_column_default_new
+  (c-name "tidy_list_column_default_new")
+  (is-constructor-of "TidyListColumnDefault")
+  (return-type "TidyListColumn*")
+  (properties
+    '("list_view")
+    '("model_index")
+  )
+)
+
+
+
+;; From tidy-list-column.h
+
+(define-function list_column_get_type
+  (c-name "tidy_list_column_get_type")
+  (return-type "GType")
+)
+
+(define-method set_header_renderer
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_set_header_renderer")
+  (return-type "none")
+  (parameters
+    '("TidyCellRenderer*" "renderer")
+  )
+)
+
+(define-method get_header_renderer
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_get_header_renderer")
+  (return-type "TidyCellRenderer*")
+)
+
+(define-method set_cell_renderer
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_set_cell_renderer")
+  (return-type "none")
+  (parameters
+    '("TidyCellRenderer*" "renderer")
+  )
+)
+
+(define-method get_cell_renderer
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_get_cell_renderer")
+  (return-type "TidyCellRenderer*")
+)
+
+(define-method set_max_width
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_set_max_width")
+  (return-type "none")
+  (parameters
+    '("gint" "max_width")
+  )
+)
+
+(define-method get_max_width
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_get_max_width")
+  (return-type "gint")
+)
+
+(define-method set_min_width
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_set_min_width")
+  (return-type "none")
+  (parameters
+    '("gint" "min_width")
+  )
+)
+
+(define-method get_min_width
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_get_min_width")
+  (return-type "gint")
+)
+
+(define-method set_visible
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_set_visible")
+  (return-type "none")
+  (parameters
+    '("gboolean" "visible")
+  )
+)
+
+(define-method get_visible
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_get_visible")
+  (return-type "gboolean")
+)
+
+(define-method get_model_index
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_get_model_index")
+  (return-type "guint")
+)
+
+(define-method get_title
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_get_title")
+  (return-type "const-gchar*")
+)
+
+(define-method get_width
+  (of-object "TidyListColumn")
+  (c-name "tidy_list_column_get_width")
+  (return-type "guint")
+)
+
+
+
+;; From tidy-list-view.h
+
+(define-function list_view_get_type
+  (c-name "tidy_list_view_get_type")
+  (return-type "GType")
+)
+
+(define-function list_view_new
+  (c-name "tidy_list_view_new")
+  (is-constructor-of "TidyListView")
+  (return-type "ClutterActor*")
+  (properties
+    '("model" (optional))
+  )
+)
+
+(define-method set_model
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_set_model")
+  (return-type "none")
+  (parameters
+    '("ClutterModel*" "model")
+  )
+)
+
+(define-method get_model
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_get_model")
+  (return-type "ClutterModel*")
+)
+
+(define-method add_column
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_add_column")
+  (return-type "gint")
+  (parameters
+    '("TidyListColumn*" "column")
+  )
+)
+
+(define-method get_column
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_get_column")
+  (return-type "TidyListColumn*")
+  (parameters
+    '("gint" "column_id")
+  )
+)
+
+(define-method set_show_headers
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_set_show_headers")
+  (return-type "none")
+  (parameters
+    '("gboolean" "show_headers")
+  )
+)
+
+(define-method get_show_headers
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_get_show_headers")
+  (return-type "gboolean")
+)
+
+(define-method set_rules_hint
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_set_rules_hint")
+  (return-type "none")
+  (parameters
+    '("gboolean" "rules_hint")
+  )
+)
+
+(define-method get_rules_hint
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_get_rules_hint")
+  (return-type "gboolean")
+)
+
+(define-method get_row_at_pos
+  (of-object "TidyListView")
+  (c-name "tidy_list_view_get_row_at_pos")
+  (return-type "guint")
+  (parameters
+    '("gint" "x_coord")
+    '("gint" "y_coord")
+  )
+)
+
+
+
+;; From tidy-notebook.h
+
+(define-function notebook_get_type
+  (c-name "tidy_notebook_get_type")
+  (return-type "GType")
+)
+
+(define-function notebook_new
+  (c-name "tidy_notebook_new")
+  (is-constructor-of "TidyNotebook")
+  (return-type "ClutterActor*")
+)
+
+(define-method insert_page
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_insert_page")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "label")
+    '("ClutterActor*" "page")
+    '("gint" "position")
+  )
+)
+
+(define-method reorder_page
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_reorder_page")
+  (return-type "none")
+  (parameters
+    '("gint" "position")
+    '("gint" "new_position")
+  )
+)
+
+(define-method get_nth_page
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_get_nth_page")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gint" "page_num")
+  )
+)
+
+(define-method get_nth_label
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_get_nth_label")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gint" "page_num")
+  )
+)
+
+(define-method remove_page
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_remove_page")
+  (return-type "none")
+  (parameters
+    '("gint" "page_num")
+  )
+)
+
+(define-method set_tab_position
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_set_tab_position")
+  (return-type "none")
+  (parameters
+    '("TidyPosition" "position")
+  )
+)
+
+(define-method set_tab_alignment
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_set_tab_alignment")
+  (return-type "none")
+  (parameters
+    '("gdouble" "alignment")
+  )
+)
+
+(define-method set_scrollable
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_set_scrollable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "scrollable")
+  )
+)
+
+(define-method get_tab_position
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_get_tab_position")
+  (return-type "TidyPosition")
+)
+
+(define-method get_tab_alignment
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_get_tab_alignment")
+  (return-type "gdouble")
+)
+
+(define-method get_scrollable
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_get_scrollable")
+  (return-type "gboolean")
+)
+
+(define-method set_current_page
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_set_current_page")
+  (return-type "none")
+  (parameters
+    '("gint" "page_num")
+  )
+)
+
+(define-method get_current_page
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_get_current_page")
+  (return-type "gint")
+)
+
+(define-method transition_complete
+  (of-object "TidyNotebook")
+  (c-name "tidy_notebook_transition_complete")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "old_page")
+  )
+)
+
+
+
+;; From tidy-proxy-texture.h
+
+(define-function proxy_texture_get_type
+  (c-name "tidy_proxy_texture_get_type")
+  (return-type "GType")
+)
+
+(define-function proxy_texture_new
+  (c-name "tidy_proxy_texture_new")
+  (is-constructor-of "TidyProxyTexture")
+  (return-type "ClutterActor*")
+  (properties
+    '("path")
+  )
+)
+
+(define-method get_path
+  (of-object "TidyProxyTexture")
+  (c-name "tidy_proxy_texture_get_path")
+  (return-type "const-gchar*")
+)
+
+
+
+;; From tidy-scrollable.h
+
+(define-function scrollable_get_type
+  (c-name "tidy_scrollable_get_type")
+  (return-type "GType")
+)
+
+(define-method set_adjustments
+  (of-object "TidyScrollable")
+  (c-name "tidy_scrollable_set_adjustments")
+  (return-type "none")
+  (parameters
+    '("TidyAdjustment*" "hadjustment")
+    '("TidyAdjustment*" "vadjustment")
+  )
+)
+
+(define-method get_adjustments
+  (of-object "TidyScrollable")
+  (c-name "tidy_scrollable_get_adjustments")
+  (return-type "none")
+  (parameters
+    '("TidyAdjustment**" "hadjustment")
+    '("TidyAdjustment**" "vadjustment")
+  )
+)
+
+
+
+;; From tidy-scroll-bar.h
+
+(define-function scroll_bar_get_type
+  (c-name "tidy_scroll_bar_get_type")
+  (return-type "GType")
+)
+
+(define-function scroll_bar_new
+  (c-name "tidy_scroll_bar_new")
+  (is-constructor-of "TidyScrollBar")
+  (return-type "ClutterActor*")
+  (properties
+    '("adjustment")
+  )
+)
+
+(define-method set_adjustment
+  (of-object "TidyScrollBar")
+  (c-name "tidy_scroll_bar_set_adjustment")
+  (return-type "none")
+  (parameters
+    '("TidyAdjustment*" "adjustment")
+  )
+)
+
+(define-method get_adjustment
+  (of-object "TidyScrollBar")
+  (c-name "tidy_scroll_bar_get_adjustment")
+  (return-type "TidyAdjustment*")
+)
+
+
+
+;; From tidy-scroll-view.h
+
+(define-function scroll_view_get_type
+  (c-name "tidy_scroll_view_get_type")
+  (return-type "GType")
+)
+
+(define-function scroll_view_new
+  (c-name "tidy_scroll_view_new")
+  (is-constructor-of "TidyScrollView")
+  (return-type "ClutterActor*")
+)
+
+(define-method get_hscroll_bar
+  (of-object "TidyScrollView")
+  (c-name "tidy_scroll_view_get_hscroll_bar")
+  (return-type "ClutterActor*")
+)
+
+(define-method get_vscroll_bar
+  (of-object "TidyScrollView")
+  (c-name "tidy_scroll_view_get_vscroll_bar")
+  (return-type "ClutterActor*")
+)
+
+(define-method get_child
+  (of-object "TidyScrollView")
+  (c-name "tidy_scroll_view_get_child")
+  (return-type "ClutterActor*")
+)
+
+
+
+;; From tidy-stylable.h
+
+(define-function stylable_get_type
+  (c-name "tidy_stylable_get_type")
+  (return-type "GType")
+)
+
+(define-method install_property
+  (of-object "TidyStylableIface")
+  (c-name "tidy_stylable_iface_install_property")
+  (return-type "none")
+  (parameters
+    '("GType" "owner_type")
+    '("GParamSpec*" "pspec")
+  )
+)
+
+(define-method freeze_notify
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_freeze_notify")
+  (return-type "none")
+)
+
+(define-method notify
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_notify")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_name")
+  )
+)
+
+(define-method thaw_notify
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_thaw_notify")
+  (return-type "none")
+)
+
+(define-method list_properties
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_list_properties")
+  (return-type "GParamSpec**")
+  (parameters
+    '("guint*" "n_props")
+  )
+)
+
+(define-method find_property
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_find_property")
+  (return-type "GParamSpec*")
+  (parameters
+    '("const-gchar*" "property_name")
+  )
+)
+
+(define-method set_style
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_set_style")
+  (return-type "none")
+  (parameters
+    '("TidyStyle*" "style")
+  )
+)
+
+(define-method get_style
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_get_style")
+  (return-type "TidyStyle*")
+)
+
+(define-method set
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_set")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "first_property_name")
+  )
+  (varargs #t)
+)
+
+(define-method get
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_get")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "first_property_name")
+  )
+  (varargs #t)
+)
+
+(define-method set_property
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_set_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("const-GValue*" "value")
+  )
+)
+
+(define-method get_property
+  (of-object "TidyStylable")
+  (c-name "tidy_stylable_get_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("GValue*" "value")
+  )
+)
+
+
+
+;; From tidy-style.h
+
+(define-function style_get_type
+  (c-name "tidy_style_get_type")
+  (return-type "GType")
+)
+
+(define-function style_get_default
+  (c-name "tidy_style_get_default")
+  (return-type "TidyStyle*")
+)
+
+(define-function style_new
+  (c-name "tidy_style_new")
+  (is-constructor-of "TidyStyle")
+  (return-type "TidyStyle*")
+)
+
+(define-method has_property
+  (of-object "TidyStyle")
+  (c-name "tidy_style_has_property")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property_name")
+  )
+)
+
+(define-method add_property
+  (of-object "TidyStyle")
+  (c-name "tidy_style_add_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("GType" "property_type")
+  )
+)
+
+(define-method get_property
+  (of-object "TidyStyle")
+  (c-name "tidy_style_get_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set_property
+  (of-object "TidyStyle")
+  (c-name "tidy_style_set_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("const-GValue*" "value")
+  )
+)
+
+
+
+;; From tidy-texture-cache.h
+
+(define-function texture_cache_get_type
+  (c-name "tidy_texture_cache_get_type")
+  (return-type "GType")
+)
+
+(define-function texture_cache_new
+  (c-name "tidy_texture_cache_new")
+  (is-constructor-of "TidyTextureCache")
+  (return-type "TidyTextureCache*")
+)
+
+(define-function texture_cache_get_default
+  (c-name "tidy_texture_cache_get_default")
+  (return-type "TidyTextureCache*")
+)
+
+(define-method get_texture
+  (of-object "TidyTextureCache")
+  (c-name "tidy_texture_cache_get_texture")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "path")
+    '("gboolean" "want_clone")
+  )
+)
+
+(define-method get_size
+  (of-object "TidyTextureCache")
+  (c-name "tidy_texture_cache_get_size")
+  (return-type "gint")
+)
+
+
+
+;; From tidy-texture-frame.h
+
+(define-function texture_frame_get_type
+  (c-name "tidy_texture_frame_get_type")
+  (return-type "GType")
+)
+
+(define-function texture_frame_new
+  (c-name "tidy_texture_frame_new")
+  (is-constructor-of "TidyTextureFrame")
+  (return-type "ClutterActor*")
+  (properties
+    '("parent_texture")
+    '("left")
+    '("top")
+    '("right")
+    '("bottom")
+  )
+)
+
+
+
+;; From tidy-texture-reflection.h
+
+(define-function texture_reflection_get_type
+  (c-name "tidy_texture_reflection_get_type")
+  (return-type "GType")
+)
+
+(define-function texture_reflection_new
+  (c-name "tidy_texture_reflection_new")
+  (is-constructor-of "TidyTextureReflection")
+  (return-type "ClutterActor*")
+  (properties
+    '("parent_texture")
+  )
+)
+
+(define-method set_reflection_height
+  (of-object "TidyTextureReflection")
+  (c-name "tidy_texture_reflection_set_reflection_height")
+  (return-type "none")
+  (parameters
+    '("gint" "height")
+  )
+)
+
+(define-method get_reflection_height
+  (of-object "TidyTextureReflection")
+  (c-name "tidy_texture_reflection_get_reflection_height")
+  (return-type "gint")
+)
+
+
+
+;; From tidy-types.h
+
+(define-function padding_get_type
+  (c-name "tidy_padding_get_type")
+  (return-type "GType")
+)
+
+(define-function padding_new
+  (c-name "tidy_padding_new")
+  (is-constructor-of "TidyPadding")
+  (return-type "TidyPadding")
+)
+
+;; From tidy-util.h
+
+(define-function util_preload_glyphs
+  (c-name "tidy_util_preload_glyphs")
+  (return-type "none")
+  (parameters
+    '("char*" "font")
+  )
+  (varargs #t)
+)
+
+
+
+;; From tidy-version.h
+
+
+
+;; From tidy-viewport.h
+
+(define-function viewport_get_type
+  (c-name "tidy_viewport_get_type")
+  (return-type "GType")
+)
+
+(define-function viewport_new
+  (c-name "tidy_viewport_new")
+  (is-constructor-of "TidyViewport")
+  (return-type "ClutterActor*")
+)
+
+(define-method set_originu
+  (of-object "TidyViewport")
+  (c-name "tidy_viewport_set_originu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "x")
+    '("ClutterUnit" "y")
+    '("ClutterUnit" "z")
+  )
+)
+
+(define-method set_origin
+  (of-object "TidyViewport")
+  (c-name "tidy_viewport_set_origin")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-method get_originu
+  (of-object "TidyViewport")
+  (c-name "tidy_viewport_get_originu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit*" "x")
+    '("ClutterUnit*" "y")
+    '("ClutterUnit*" "z")
+  )
+)
+
+(define-method get_origin
+  (of-object "TidyViewport")
+  (c-name "tidy_viewport_get_origin")
+  (return-type "none")
+  (parameters
+    '("gint*" "x")
+    '("gint*" "y")
+    '("gint*" "z")
+  )
+)
+
+

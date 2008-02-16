@@ -1,5 +1,19 @@
 2008-02-16  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* Makefile.am:
+	* configure.ac: Add tidy submodule; make all the submodules
+	depend on a --with configure switch, to make possible trimming
+	down the build.
+
+	* tidy/Makefile.am:
+	* tidy/tidy-types.defs:
+	* tidy/tidy.defs:
+	* tidy/tidy.override:
+	* tidy/tidymodule.c: Add initial Tidy bindings; roughly 80%
+	coverage (TidyStyle/TidyStylable is missing).
+
+2008-02-16  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-actor.override:
 	* clutter/clutter-base.defs: Add new relative transformation
 	API from Clutter core.

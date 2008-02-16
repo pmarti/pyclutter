@@ -24,6 +24,8 @@ AC_DEFINE(PYCLUTTER_MINOR_VERSION, [pyclutter_version_minor], [pyclutter minor v
 AC_SUBST(PYCLUTTER_MINOR_VERSION, [pyclutter_version_minor])
 AC_DEFINE(PYCLUTTER_MICRO_VERSION, [pyclutter_version_micro], [pyclutter micro version])
 AC_SUBST(PYCLUTTER_MICRO_VERSION, [pyclutter_version_micro])
+AC_DEFINE(PYCLUTTER_VERSION, [pyclutter_version], [pyclutter version])
+AC_SUBST(PYCLUTTER_VERSION, [pyclutter_version])
 
 AC_CONFIG_SRCDIR([clutter/cluttermodule.c])
 AM_CONFIG_HEADER(config.h)
@@ -77,8 +79,6 @@ PYGST_DEFSDIR=`$PKG_CONFIG --variable=defsdir gst-python-0.10`
 AC_SUBST(PYGST_DEFSDIR)
 AC_MSG_RESULT($PYGST_DEFSDIR)
 
-
-
 dnl check for clutter
 PKG_CHECK_MODULES(CLUTTER, clutter-0.5 >= clutter_required_version)
 AC_SUBST(CLUTTER_CFLAGS)
@@ -89,57 +89,103 @@ fi
 
 dnl check for sub modules
 
-build_cluttergst=no
-PKG_CHECK_MODULES(CLUTTERGST,
-                  clutter-gst-0.5 >= cluttergst_required_version,
-                  build_cluttergst=yes,
-                  build_cluttergst=no)
-AC_SUBST(CLUTTERGST_CFLAGS)
-AC_SUBST(CLUTTERGST_LIBS)
-if test -n "$export_dynamic"; then
-  CLUTTERGST_LIBS=`echo $CLUTTERGST_LIBS | sed -e "s/$export_dynamic//"`
+if test "x$PYGST_DEFSDIR" = "x"; then
+  build_cluttergst=no
+else
+  build_cluttergst=yes
+fi
+
+AC_ARG_WITH(cluttergst,
+            AC_HELP_STRING([--with-cluttergst=@<:@yes/no@:>@],
+                           [Build clutter.cluttergst submodule]),
+            build_cluttergst=$with_cluttergst)
+
+if test "x$build_cluttergst" = "xyes"; then
+  PKG_CHECK_MODULES(CLUTTERGST,
+                    clutter-gst-0.5 >= cluttergst_required_version,
+                    build_cluttergst=yes,
+                    build_cluttergst=no)
+  AC_SUBST(CLUTTERGST_CFLAGS)
+  AC_SUBST(CLUTTERGST_LIBS)
+  if test -n "$export_dynamic"; then
+    CLUTTERGST_LIBS=`echo $CLUTTERGST_LIBS | sed -e "s/$export_dynamic//"`
+  fi
 fi
 
 AM_CONDITIONAL(BUILD_CLUTTERGST, [test "x$build_cluttergst" = "xyes"])
 
-build_cluttergtk=no
-PKG_CHECK_MODULES(CLUTTERGTK,
-                  clutter-gtk-0.5 >= cluttergtk_required_version,
-                  build_cluttergtk=yes,
-                  build_cluttergtk=no)
-AC_SUBST(CLUTTERGTK_CFLAGS)
-AC_SUBST(CLUTTERGTK_LIBS)
-if test -n "$export_dynamic"; then
-  CLUTTERGTK_LIBS=`echo $CLUTTERGTK_LIBS | sed -e "s/$export_dynamic//"`
+build_cluttergtk=yes
+AC_ARG_WITH(cluttergtk,
+            AC_HELP_STRING([--with-cluttergtk=@<:@yes/no@:>@],
+                           [Build clutter.cluttergtk submodule]),
+            build_cluttergtk=$with_cluttergtk)
+
+if test "x$build_cluttergtk" = "xyes"; then
+  PKG_CHECK_MODULES(CLUTTERGTK,
+                    clutter-gtk-0.5 >= cluttergtk_required_version,
+                    build_cluttergtk=yes,
+                    build_cluttergtk=no)
+  AC_SUBST(CLUTTERGTK_CFLAGS)
+  AC_SUBST(CLUTTERGTK_LIBS)
+  if test -n "$export_dynamic"; then
+    CLUTTERGTK_LIBS=`echo $CLUTTERGTK_LIBS | sed -e "s/$export_dynamic//"`
+  fi
 fi
 
 AM_CONDITIONAL(BUILD_CLUTTERGTK, [test "x$build_cluttergtk" = "xyes"])
 
-build_cluttercairo=no
-PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
-                  have_pycairo=true,
-                  have_pycairo=false)
-AC_SUBST(PYCAIRO_CFLAGS)
-AC_SUBST(PYCAIRO_LIBS)
-if test $have_pycairo; then
-  PYGTK_CODEGEN_DEFINES="-DHAVE_PYCAIRO $PYGTK_CODEGEN_DEFINES";
-  AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
-  build_cluttercairo=yes
+build_cluttercairo=yes
+AC_ARG_WITH(cluttercairo,
+            AC_HELP_STRING([--with-cluttercairo=@<:@yes/no@:>@],
+                           [Build clutter.cluttercairo submodule]),
+            build_cluttercairo=$with_cluttercairo)
 
-  PKG_CHECK_MODULES(CLUTTERCAIRO,
-                    clutter-cairo-0.5 >= cluttercairo_required_version,
-                    build_cluttercairo=yes,
-                    build_cluttercairo=no)
-  AC_SUBST(CLUTTERCAIRO_CFLAGS)
-  AC_SUBST(CLUTTERCAIRO_LIBS)
-  if test -n "$export_dynamic"; then
-    CLUTTERCAIRO_LIBS=`echo $CLUTTERCAIRO_LIBS | sed -e "s/$export_dynamic//"`
+if test "x$build_cluttercairo" = "xyes"; then
+  PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
+                    have_pycairo=true,
+                    have_pycairo=false)
+  AC_SUBST(PYCAIRO_CFLAGS)
+  AC_SUBST(PYCAIRO_LIBS)
+  if test $have_pycairo; then
+    PYGTK_CODEGEN_DEFINES="-DHAVE_PYCAIRO $PYGTK_CODEGEN_DEFINES";
+    AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
+    build_cluttercairo=yes
+
+    PKG_CHECK_MODULES(CLUTTERCAIRO,
+                      clutter-cairo-0.5 >= cluttercairo_required_version,
+                      build_cluttercairo=yes,
+                      build_cluttercairo=no)
+    AC_SUBST(CLUTTERCAIRO_CFLAGS)
+    AC_SUBST(CLUTTERCAIRO_LIBS)
+    if test -n "$export_dynamic"; then
+      CLUTTERCAIRO_LIBS=`echo $CLUTTERCAIRO_LIBS | sed -e "s/$export_dynamic//"`
+    fi
+  else
+    build_cluttercairo=no
   fi
-else
-  build_cluttercairo=no
 fi
 
 AM_CONDITIONAL(BUILD_CLUTTERCAIRO, [test "x$build_cluttercairo" = "xyes"])
+
+build_tidy=no
+AC_ARG_WITH(tidy,
+            AC_HELP_STRING([--with-tidy=@<:@no/yes@:>@],
+                           [Build clutter.tidy submodule]),
+            build_tidy=$with_tidy)
+
+if test "x$build_tidy" = "xyes"; then
+  PKG_CHECK_MODULES(TIDY, tidy-1.0,
+                    build_tidy="yes",
+                    build_tidy="no")
+  AC_SUBST(TIDY_CFLAGS)
+  AC_SUBST(TIDY_LIBS)
+
+  if test -n "$export_dynamic"; then
+    TIDY_LIBS=`echo $TIDY_LIBS | sed -e "s/$export_dynamic//"`
+  fi
+fi
+
+AM_CONDITIONAL(BUILD_TIDY, [test "x$build_tidy" = "xyes"])
 
 dnl Building documentation
 m4_define([docs_default],
@@ -183,6 +229,7 @@ AC_CONFIG_FILES([
         clutter-gst/Makefile
         clutter-gtk/Makefile
         clutter-cairo/Makefile
+        tidy/Makefile
 ])
 
 AC_OUTPUT
@@ -191,5 +238,6 @@ echo "* PyClutter:
         build cluttergst:     $build_cluttergst
         build cluttergtk:     $build_cluttergtk
         build cluttercairo:   $build_cluttercairo
+        build tidy:           $build_tidy
         enable documentation: $enable_docs
 "

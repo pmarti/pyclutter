@@ -1,0 +1,295 @@
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#include "pygobject.h"
+#include <clutter/clutter.h>
+#include <tidy/tidy.h>
+%%
+modulename tidy
+%%
+import gobject.GObject as PyGObject_Type
+import gobject.GInitiallyUnowned as PyGInitiallyUnowned_Type
+import clutter.Actor as PyClutterActor_Type
+import clutter.Alpha as PyClutterAlpha_Type
+import clutter.Behaviour as PyClutterBehaviour_Type
+import clutter.Model as PyClutterModel_Type
+import clutter.Texture as PyClutterTexture_Type
+import clutter.CloneTexture as PyClutterCloneTexture_Type
+import clutter.Group as PyClutterGroup_Type
+%%
+ignore-glob
+  *_get_type
+%%
+ignore
+  tidy_actor_set_alignmentx
+  tidy_actor_get_alignmentx
+  tidy_adjustment_newx
+  tidy_adjustment_set_valuex
+  tidy_adjustment_get_valuex
+  tidy_adjustment_clamp_pagex
+  tidy_adjustment_set_valuesx
+  tidy_adjustment_get_valuesx
+  tidy_button_new_with_label
+  tidy_util_preload_glyphs
+  tidy_stylable_set_property
+  tidy_stylable_get_property
+  tidy_style_set_property
+  tidy_style_get_property
+  tidy_viewport_set_originu
+  tidy_viewport_get_originu
+%%
+override tidy_padding_new kwargs
+static int
+_wrap_tidy_padding_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
+{
+	static char *kwlist[] = { "top", "right", "bottom", "left", NULL };
+	TidyPadding padding = { 0, 0, 0, 0 };
+
+	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+					 "|iiii:TidyPadding.__init__",
+					 kwlist,
+					 &(padding.top),
+                                         &(padding.right),
+					 &(padding.bottom),
+                                         &(padding.left)))
+		return -1;
+	
+	self->boxed = g_boxed_copy (TIDY_TYPE_PADDING, &padding);
+	self->free_on_dealloc = TRUE;
+	self->gtype = TIDY_TYPE_PADDING;
+	
+	return 0;
+}
+%%
+override-slot TidyPadding.tp_as_sequence
+static int
+_wrap_tidy_padding_length (PyGBoxed *self)
+{
+	return 4;
+}
+static PyObject *
+_wrap_tidy_padding_getitem (PyGBoxed *self, int pos)
+{
+	TidyPadding *padding;
+
+	if (pos < 0)
+		pos += 4;
+	
+	if (pos < 0 || pos >= 4) {
+		PyErr_SetString(PyExc_IndexError, "index out of range");
+		
+		return NULL;
+	}
+
+	padding = pyg_boxed_get (self, TidyPadding);
+	switch (pos) {
+		case 0: return PyInt_FromLong (padding->top);
+		case 1: return PyInt_FromLong (padding->right);
+		case 2: return PyInt_FromLong (padding->bottom);
+		case 3: return PyInt_FromLong (padding->left);
+		default:
+			g_assert_not_reached();
+			return NULL;
+	}
+}
+static int
+_wrap_tidy_padding_setitem (PyGBoxed *self, int pos, PyObject *value)
+{
+	TidyPadding *padding;
+	gint val;
+
+	if (pos < 0)
+		pos += 4;
+	
+	if (pos < 0 || pos >= 4) {
+		PyErr_SetString(PyExc_IndexError, "index out of range");
+		
+		return -1;
+	}
+
+	padding = pyg_boxed_get (self, TidyPadding);
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+	
+	switch(pos) {
+		case 0: padding->top = val; break;
+		case 1: padding->right = val; break;
+		case 2: padding->bottom = val; break;
+		case 3: padding->left = val; break;
+		default:
+			g_assert_not_reached();
+			return -1;
+	}
+
+	return 0;
+}
+static PySequenceMethods _wrap_tidy_padding_tp_as_sequence = {
+	(lenfunc) _wrap_tidy_padding_length,
+	0,
+	0,
+	(ssizeargfunc) _wrap_tidy_padding_getitem,
+	0,
+	(ssizeobjargproc) _wrap_tidy_padding_setitem,
+	0
+};
+%%
+override-attr TidyPadding.top
+static int
+_wrap_tidy_padding__set_top (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, TidyPadding)->top = val;
+
+	return 0;
+}
+%%
+override-attr TidyPadding.right
+static int
+_wrap_tidy_padding__set_right (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+
+	pyg_boxed_get (self, TidyPadding)->right = val;
+
+	return 0;
+}
+%%
+override-attr TidyPadding.bottom
+static int
+_wrap_tidy_padding__set_bottom (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+        	return -1;
+	
+	pyg_boxed_get(self, TidyPadding)->bottom = val;
+	
+	return 0;
+}
+%%
+override-attr TidyPadding.left
+static int
+_wrap_tidy_padding__set_left (PyGBoxed *self, PyObject *value, void *closure)
+{
+	gint val;
+
+	val = PyInt_AsLong (value);
+	if (PyErr_Occurred ())
+		return -1;
+	
+	pyg_boxed_get (self, TidyPadding)->left = val;
+
+	return 0;
+}
+%%
+override tidy_actor_set_padding kwargs
+static PyObject *
+_wrap_tidy_actor_set_padding (PyGObject *self,
+                              PyObject  *args,
+                              PyObject  *kwargs)
+{
+        static char *kwlist[] = { "padding", NULL };
+        PyObject *py_padding;
+        TidyPadding padding = { 0, };
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O:tidy.Actor.set_padding", kwlist,
+                                          &py_padding))
+                return NULL;
+
+        if (!pyg_boxed_check (py_padding, TIDY_TYPE_PADDING))
+                padding = *pyg_boxed_get (py_padding, TidyPadding);
+        else if (PyTuple_Check (py_padding) &&
+                 PyTuple_Size (py_padding) == 4) {
+                int i;
+
+                for (i = 0; i < 4; i++) {
+                        PyObject *comp = PyTuple_GetItem (py_padding, i);
+
+                        if (!PyInt_Check (comp)) {
+                                PyErr_Clear ();
+                                PyErr_SetString (PyExc_TypeError,
+                                                 "could not convert tuple to "
+                                                 "a TidyPadding");
+                                return NULL;
+                        }
+
+                        switch (i) {
+                        case 0: padding.top = PyInt_AsLong (comp); break;
+                        case 1: padding.right = PyInt_AsLong (comp); break;
+                        case 2: padding.bottom = PyInt_AsLong (comp); break;
+                        case 3: padding.left = PyInt_AsLong (comp); break;
+                        }
+                }
+        }
+        else {
+                PyErr_Clear ();
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must either be a "
+                                 "tidy.Padding or a 4-element tuple");
+                return NULL;
+        }
+
+        tidy_actor_set_padding (TIDY_ACTOR (self->obj), &padding);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override tidy_actor_get_alignment noargs
+static PyObject *
+_wrap_tidy_actor_get_alignment (PyGObject *self)
+{
+        gdouble x_align, y_align;
+
+        x_align = y_align = 0.0;
+
+        tidy_actor_get_alignment (TIDY_ACTOR (self->obj), &x_align, &y_align);
+
+        return Py_BuildValue ("(dd)", x_align, y_align);
+}
+%%
+override tidy_adjustment_get_values noargs
+static PyObject *
+_wrap_tidy_adjustment_get_values (PyGObject *self)
+{
+  gdouble value;
+  gdouble lower, upper;
+  gdouble step_increment, page_increment;
+  gdouble page_size;
+
+  tidy_adjustment_get_values (TIDY_ADJUSTMENT (self->obj),
+                              &value,
+                              &lower, &upper,
+                              &step_increment, &page_increment,
+                              &page_size);
+
+  return Py_BuildValue ("(dddddd)",
+                        value,
+                        lower, upper,
+                        step_increment, page_increment,
+                        page_size);
+}
+%%
+override tidy_viewport_get_origin noargs
+static PyObject *
+_wrap_tidy_viewport_get_origin (PyGObject *self)
+{
+  gint x, y, z;
+
+  tidy_viewport_get_origin (TIDY_VIEWPORT (self->obj), &x, &y, &z);
+
+  return Py_BuildValue ("(iii)", x, y, z);
+}
