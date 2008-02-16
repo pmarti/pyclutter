@@ -132,6 +132,7 @@ _wrap_clutter_actor_get_vertices (PyGObject *self)
                 pyvertex = pyg_boxed_new (CLUTTER_TYPE_VERTEX, &vertices[i],
                                           TRUE, TRUE);
                 PyTuple_SetItem (pyvertices, i, pyvertex);
+                Py_XDECREF (pyvertex);
         }
 
         return pyvertices;
@@ -357,3 +358,45 @@ _wrap_clutter_actor_get_anchor_point (PyGObject *self)
 
   return Py_BuildValue ("(ii)", anchor_x, anchor_y);
 }
+%%
+override clutter_actor_get_relative_vertices
+static PyObject *
+_wrap_clutter_actor_get_relative_vertices (PyGObject *self, PyObject *args)
+{
+        PyObject *pyvertices, *pyancestor;
+        ClutterActor *ancestor;
+        ClutterVertex vertices[4];
+        int i;
+
+        pyancestor = PyTuple_GetItem (args, 0);
+        if (!pyancestor || pyancestor == Py_None)
+                ancestor = NULL;
+        else if (pygobject_check (pyancestor, &PyClutterActor_Type))
+                ancestor = CLUTTER_ACTOR (pygobject_get (pyancestor));
+        else {
+                PyErr_SetString (PyExc_TypeError,
+                                 "first argument must either be None or"
+                                 "a clutter.Actor");
+                return NULL;
+        }
+
+        ancestor = CLUTTER_ACTOR (pygobject_get (pyancestor));
+
+        clutter_actor_get_relative_vertices (CLUTTER_ACTOR (self->obj),
+                                             ancestor,
+                                             vertices);
+
+        pyvertices = PyTuple_New (4);
+        for (i = 0; i < 4; i++) {
+                PyObject *pyvertex;
+
+                pyvertex = pyg_boxed_new (CLUTTER_TYPE_VERTEX,
+                                          &vertices[i],
+                                          TRUE, TRUE);
+                PyTuple_SetItem (pyvertices, i, pyvertex);
+                Py_XDECREF (pyvertex);
+        }
+
+        return pyvertices;
+}
+%%

@@ -1,5 +1,11 @@
 2008-02-16  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/clutter-actor.override:
+	* clutter/clutter-base.defs: Add new relative transformation
+	API from Clutter core.
+
+2008-02-16  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* Makefile.am:
 	* configure.ac: Fill in the pyclutter pkg-config file and
 	install it in the right place.

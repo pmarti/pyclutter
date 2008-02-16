@@ -504,6 +504,43 @@
   )
 )
 
+(define-method is_scaled
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_is_scaled")
+  (return-type "gboolean")
+  (parameters
+  )
+)
+
+(define-method is_rotated
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_is_rotated")
+  (return-type "gboolean")
+  (parameters
+  )
+)
+
+(define-method get_relative_vertices
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_relative_vertices")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "ancestor")
+    '("ClutterVertex" "verts[4]")
+  )
+)
+
+(define-method apply_relative_transform_to_point
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_apply_relative_transform_to_point")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "ancestor")
+    '("ClutterVertex*" "point")
+    '("ClutterVertex*" "vertex")
+  )
+)
+
 (define-method get_clip
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_clip")
