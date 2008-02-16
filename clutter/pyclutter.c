@@ -98,6 +98,7 @@ pyclutter_callback_invoke (PyClutterCallback *cb,
                         PyObject *param = va_arg (var_args, PyObject*);
                         
                         PyTuple_SetItem (args, i, param);
+			Py_INCREF (param);
                 }
         }
         else {
@@ -109,10 +110,13 @@ pyclutter_callback_invoke (PyClutterCallback *cb,
         /* append the data */
         if (cb->data) {
                 PyTuple_SetItem (args, i, cb->data);
+                Py_INCREF (cb->data);
         }
 
         retobj = PyObject_CallObject (cb->func, args);
 
+	Py_XDECREF (args);
+	
         return retobj;
 }
 
@@ -267,6 +271,7 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         }
 
         Py_XDECREF (retobj);
+	Py_XDECREF (py_alpha);
 
         pyg_gil_state_release (state);
         
@@ -289,6 +294,7 @@ pyclutter_effect_complete (ClutterActor *actor,
                 PyErr_Print ();
 
         Py_XDECREF (retobj);
+	Py_XDECREF (py_actor);
 
         pyg_gil_state_release (state);
 

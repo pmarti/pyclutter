@@ -1,3 +1,16 @@
+2008-02-16  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* Makefile.am:
+	* configure.ac: Fill in the pyclutter pkg-config file and
+	install it in the right place.
+
+	* clutter/clutter-base.defs: Wrap clutter.texture_from_actor().
+
+	* clutter/pyclutter.c:
+	(pyclutter_callback_invoke), (pyclutter_alpha_func),
+	(pyclutter_effect_complete): Fix reference counting bugs
+	that caused alpha functions to leak. (#797, Tero Saarni)
+
 2008-02-11  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* NEWS:
