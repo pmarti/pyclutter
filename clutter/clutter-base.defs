@@ -677,6 +677,15 @@
   )
 )
 
+(define-function actor_box_get_from_vertices
+  (c-name "clutter_actor_box_get_from_vertices")
+  (return-type "none")
+  (parameters
+    '("ClutterVertex" "vtx[4]")
+    '("ClutterActorBox*" "box")
+  )
+)
+
 
 
 ;; From clutter-alpha.h

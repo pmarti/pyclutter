@@ -44,13 +44,12 @@ ignore
   clutter_threads_set_lock_functions
   clutter_texture_new_from_pixbuf
   clutter_timeline_new_for_duration
-
+  clutter_actor_box_get_from_vertices
 %%
 ignore-glob
   *_quark
   *_get_type
   _*
-
 %%
 override clutter_init noargs
 static PyObject *
@@ -742,4 +741,35 @@ _wrap_clutter_score_append (PyGObject *self,
         g_assert (timeline == clutter_score_get_timeline (score, ret));
 
         return PyLong_FromUnsignedLong (ret);
+}
+%%
+override clutter_stage_set_key_focus kwargs
+static PyObject *
+_wrap_clutter_stage_set_key_focus (PyGObject *self,
+                                   PyObject  *args,
+                                   PyObject  *kwargs)
+{
+  static char *kwlist[] = { "actor", NULL };
+  PyObject *py_actor = NULL;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "O:clutter.Stage.set_key_focus", kwlist,
+                                    &py_actor))
+    return NULL;
+
+  if (!py_actor || py_actor == Py_None)
+    clutter_stage_set_key_focus (CLUTTER_STAGE (self->obj), NULL);
+  else if (pygobject_check (py_actor, &PyClutterActor_Type)) {
+    ClutterActor *actor = CLUTTER_ACTOR (pygobject_get (py_actor));
+
+    clutter_stage_set_key_focus(CLUTTER_STAGE(self->obj), actor);
+  }
+  else {
+    PyErr_SetString (PyExc_TypeError, "first argument must either be None "
+                                      "or a clutter.Actor");
+    return NULL;
+  }
+
+  Py_INCREF (Py_None);
+  return Py_None;
 }
