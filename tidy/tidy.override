@@ -2,6 +2,7 @@
 headers
 #define NO_IMPORT_PYGOBJECT
 #include "pygobject.h"
+#include "pyclutter.h"
 #include <clutter/clutter.h>
 #include <tidy/tidy.h>
 %%
@@ -19,6 +20,8 @@ import clutter.Group as PyClutterGroup_Type
 %%
 ignore-glob
   *_get_type
+  *_quark
+  _*
 %%
 ignore
   tidy_actor_set_alignmentx

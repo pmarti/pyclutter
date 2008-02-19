@@ -21,6 +21,13 @@
   (gtype-id "TIDY_TYPE_BEHAVIOUR_BOUNCE")
 )
 
+(define-object BehaviourGrow
+  (in-module "Tidy")
+  (parent "ClutterBehaviour")
+  (c-name "TidyBehaviourGrow")
+  (gtype-id "TIDY_TYPE_BEHAVIOUR_GROW")
+)
+
 (define-object CellRenderer
   (in-module "Tidy")
   (parent "GInitiallyUnowned")

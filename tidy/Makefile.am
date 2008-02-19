@@ -5,7 +5,7 @@ pkgpyexecdir = $(pyexecdir)
 # clutter python extension modules
 pyclutterexecdir = $(pkgpyexecdir)/clutter
 
-INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS)
+INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS) -I$(top_srcdir)/clutter
 
 pyclutterexec_LTLIBRARIES = tidy.la
 

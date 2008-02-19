@@ -1,5 +1,15 @@
 2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* tidy/Makefile.am: Add clutter/ to the includes
+
+	* tidy/tidy-types.defs:
+	* tidy/tidy.defs: Update with the latest types/APIs
+
+	* tidy/tidy.override: Include pyclutter.h and ignore more
+	functions.
+
+2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/deprecation.py: Add a modified copy of the deprecation
 	module from gtk.
 

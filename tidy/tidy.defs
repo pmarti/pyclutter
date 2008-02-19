@@ -227,6 +227,28 @@
 
 
 
+;; From tidy-behaviour-grow.h
+
+(define-function behaviour_grow_get_type
+  (c-name "tidy_behaviour_grow_get_type")
+  (return-type "GType")
+)
+
+(define-function behaviour_grow_new
+  (c-name "tidy_behaviour_grow_new")
+  (is-constructor-of "TidyBehaviourGrow")
+  (return-type "ClutterBehaviour*")
+  (properties
+    '("alpha" (optional))
+    '("w_start")
+    '("h_start")
+    '("w_end")
+    '("h_end")
+  )
+)
+
+
+
 ;; From tidy-button.h
 
 (define-function button_get_type
