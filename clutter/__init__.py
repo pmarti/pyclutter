@@ -47,6 +47,9 @@ MAX_ALPHA = _clutter.MAX_ALPHA
 
 from clutter._clutter import *
 
-stage_get_default = _Deprecated(_clutter, 'Stage', 'stage_get_default', 'clutter')
+stage_get_default =         _Deprecated(_clutter, 'Stage', 'stage_get_default', 'clutter')
+texture_new_from_pixbuf =   _Deprecated(_clutter, 'Texture', 'texture_new_from_pixbuf', 'clutter')
+timeline_new_for_duration = _Deprecated(_clutter, 'Timeline', 'timeline_new_for_duration', 'clutter')
+rectangle_new_with_color =  _Deprecated(_clutter, 'Rectangle', 'rectangle_new_with_color', 'clutter')
 
 del _Deprecated, _DeprecatedConstant

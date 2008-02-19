@@ -1,5 +1,9 @@
 2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/__init__.py: Add more deprecation warnings
+
+2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* tidy/Makefile.am: Add clutter/ to the includes
 
 	* tidy/tidy-types.defs:
