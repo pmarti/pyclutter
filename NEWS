@@ -1,3 +1,13 @@
+Overview of changes between 0.5.2 and 0.6.0
+===========================================
+
+* Require clutter-core >= 0.6.0
+* Require 0.6 releases of the whole clutter suite
+* Add optional Tidy bindings (not enabled by default)
+* Resync with upstream changes
+* Add deprecation warnings
+* Fix bug #797 - Memory leak with pyclutter [Tero Saarni]
+
 Overview of changes between 0.5.1 and 0.5.2
 ===========================================
 

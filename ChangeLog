@@ -1,5 +1,11 @@
 2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* NEWS:
+	* README:
+	* configure.ac: Release 0.6.0
+
+2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* docs/Makefile.am: Update documentation build to be shipped
 	with the tarball and be installed in the right place.
 
