@@ -1,5 +1,10 @@
 2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* docs/Makefile.am: Update documentation build to be shipped
+	with the tarball and be installed in the right place.
+
+2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/__init__.py: Add more deprecation warnings
 
 2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>

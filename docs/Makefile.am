@@ -19,8 +19,7 @@ XMLFILES = 					\
     reference/clutter-cluttertexture.xml	\
     $(NULL)
 
-HTMLdir = $(datadir)/gtk-doc/html/pyclutter-$(REF_VERSION)
-HTML_DATA =					\
+HTML_FILES =					\
 	html/index.html				\
 	html/index.sgml				\
 	html/pt01.html 				\
@@ -38,53 +37,59 @@ HTML_DATA =					\
 	html/pyclutter.devhelp
 
 CSS_FILES = $(PYGOBJECT_PYGDOCS)/style.css
+
+TARGET_DIR = $(datadir)/gtk-doc/html/pyclutter
 CSSdir = $(HTMLdir)
 CSS_DATA = $(CSS_FILES)
 
-BUILT_SOURCES = 		\
-	build_stamp 		\
-	reference/builddate.xml	\
-	$(HTML_DATA)
-
-CLEANFILES = 			\
-	build_stamp 		\
-	clutter-ref.*		\
-	reference/builddate.xml	\
-	$(HTML_DATA)
-
-EXTRA_DIST = 		\
-	$(XMLFILES) 	\
-	$(XSLFILES)	\
-	$(FIX_XREF)
-
-REFERENCE_DEPS = 	\
-	reference 	\
+EXTRA_DIST = \
+	$(HTML_FILES)	\
 	$(XMLFILES)	\
-	$(XSLFILES)
+	$(XSLFILES)	
+	$(NULL)
 
-$(HTML_DATA): build_stamp
+install-data-local:
+	installfiles=`echo $(top_srcdir)/docs/html/*`; \
+	if test "$$installfiles" = '$(top_srcdir)/docs/html/*'; \
+	then echo '-- Nothing to install' ; \
+	else \
+	  $(mkinstalldirs) $(DESTDIR)$(TARGET_DIR); \
+	  for i in $$installfiles; do \
+	    echo '-- Installing '$$i ; \
+	    $(INSTALL_DATA) $$i $(DESTDIR)$(TARGET_DIR); \
+	  done; \
+	  echo '-- Installing $(srcdir)/html/index.sgml' ; \
+	  $(INSTALL_DATA) $(srcdir)/html/index.sgml $(DESTDIR)$(TARGET_DIR) || :; \
+	fi
+
+install-data-hook:
+	@$(PYGOBJECT_FIXXREF) -i $(PYGOBJECT_PYGDOCS) $(DESTDIR)$(TARGET_DIR)
+
+uninstall-local:
+	rm -rf $(DESTDIR)$(TARGET_DIR)/*
 
 if ENABLE_DOCS
+
+BUILT_SOURCES = reference/builddate.xml $(HTML_FILES)
+DISTCLEANFILES = reference/builddate.xml $(HTML_FILES)
 
 reference/builddate.xml: $(REFERENCE_DEPS)
 	$(PYTHON) -c 'import datetime; print datetime.date.today()' > $@
 
-build_stamp: reference/builddate.xml
+$(HTML_FILES): $(XMLFILES) $(XSLFILES)
 	xsltproc --nonet --xinclude -o $(BUILDDIR)/html/ \
 		--path $(BUILDDIR)/reference:$(srcdir)/reference \
 		--stringparam gtkdoc.bookname "pyclutter" \
 		--stringparam gtkdoc.version ${REF_VERSION} \
 		$(HTML_STYLE) \
-	$(srcdir)/reference/clutter-ref.xml \
-	&& $(PYGOBJECT_FIXXREF) -i $(PYGOBJECT_PYGDOCS) $(BUILDDIR)/html \
-	&& touch $@
+	$(srcdir)/reference/clutter-ref.xml
 
-pdf: reference/builddate.xml
-	xsltproc \
-		--nonet \
-		--xinclude \
-		-o pyclutter-ref.fo \
-	$(PDF_STYLE) reference/clutter-ref.xml \
-	&& pdfxmltex pyclutter-ref.fo > output < /dev/null
+#pdf: reference/builddate.xml
+#	xsltproc \
+#		--nonet \
+#		--xinclude \
+#		-o pyclutter-ref.fo \
+#	$(PDF_STYLE) reference/clutter-ref.xml \
+#	&& pdfxmltex pyclutter-ref.fo > output < /dev/null
 
 endif
