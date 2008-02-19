@@ -17,7 +17,7 @@ pyclutterexecdir = $(pkgpyexecdir)/clutter
 
 # clutter python scripts
 pyclutterdir = $(pkgpythondir)/clutter
-pyclutter_PYTHON = __init__.py keysyms.py
+pyclutter_PYTHON = __init__.py keysyms.py deprecation.py
 
 # clutter headers
 pkgincludedir = $(includedir)/pyclutter-$(PLATFORM_VERSION)/pyclutter

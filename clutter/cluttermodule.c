@@ -11,6 +11,9 @@ void pyclutter_add_constants (PyObject *module, const gchar *prefix);
 
 extern PyMethodDef pyclutter_functions[];
 
+static PyObject *PyClutterDeprecationWarning;
+PyObject *PyClutterWarning;
+
 static void
 sink_clutteractor (GObject *object)
 {
@@ -32,7 +35,7 @@ init_clutter (void)
 {
   PyObject *m, *d;
 
-  init_pygobject ();
+  init_pygobject_check (2, 12, 0);
 
   clutter_base_init ();
 
@@ -40,6 +43,8 @@ init_clutter (void)
   pygobject_register_sinkfunc (CLUTTER_TYPE_ALPHA, sink_clutteralpha);
 
   m = Py_InitModule ("_clutter", pyclutter_functions);
+  d = PyModule_GetDict (m);
+
   PyModule_AddObject (m, "__version__",
 		      Py_BuildValue ("(iii)",
 			             PYCLUTTER_MAJOR_VERSION,
@@ -47,13 +52,19 @@ init_clutter (void)
 				     PYCLUTTER_MICRO_VERSION));
   PyModule_AddObject (m, "MAX_ALPHA",
                       Py_BuildValue ("i", CLUTTER_ALPHA_MAX_ALPHA));
-  d = PyModule_GetDict (m);
 
   pyclutter_add_constants (m, "CLUTTER_");
   pyclutter_register_classes (d);
 
+  PyClutterDeprecationWarning =
+    PyErr_NewException ("clutter.DeprecationWarning",
+                        PyExc_DeprecationWarning,
+                        NULL);
+  PyDict_SetItemString (d, "DeprecationWarning", PyClutterDeprecationWarning);
+
+  PyClutterWarning = PyErr_NewException ("clutter.Warning", PyExc_Warning, NULL);
+  PyDict_SetItemString (d, "Warning", PyClutterWarning);
+
   if (PyErr_Occurred ()) 
-    {
-      Py_FatalError ("can't initialise module clutter");
-    }
+    Py_FatalError ("can't initialise module clutter");
 }

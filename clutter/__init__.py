@@ -20,12 +20,33 @@ else:
 
 # use the pygtk module lazy loading stuff
 from gtk._lazyutils import LazyNamespace, LazyModule
+# and our own for the deprecation warnings
+from clutter.deprecation import _Deprecated, _DeprecatedConstant
+
+def _init ():
+    import sys
+
+    try:
+        sys_path = sys.path[:]
+
+        try:
+            _clutter.init()
+        except RuntimeError, e:
+            import warnings
+            warnings.warn(str(e), _clutter.Warning)
+    finally:
+        if sys.path != sys_path:
+            sys.path[:] = sys_path
 
 keysyms = LazyModule('keysyms', locals())
 
-_clutter.init()
-
-from clutter._clutter import *
+_init()
 
 __version__ = _clutter.__version__
 MAX_ALPHA = _clutter.MAX_ALPHA
+
+from clutter._clutter import *
+
+stage_get_default = _Deprecated(_clutter, 'Stage', 'stage_get_default', 'clutter')
+
+del _Deprecated, _DeprecatedConstant

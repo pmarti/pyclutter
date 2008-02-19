@@ -1,3 +1,17 @@
+2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/deprecation.py: Add a modified copy of the deprecation
+	module from gtk.
+
+	* clutter/Makefile.am: Add deprecation.py to the installed
+	modules.
+
+	* clutter/__init__.py: Make the initialization more safe, and
+	add the deprecation warning for clutter.stage_get_default().
+
+	* clutter/cluttermodule.c (init_clutter): Create the
+	DeprecationWarning and Warning exceptions in the clutter module.
+
 2008-02-18  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-base.defs: Add missing
