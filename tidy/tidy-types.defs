@@ -30,7 +30,7 @@
 
 (define-object CellRenderer
   (in-module "Tidy")
-  (parent "GInitiallyUnowned")
+  (parent "GObject")
   (c-name "TidyCellRenderer")
   (gtype-id "TIDY_TYPE_CELL_RENDERER")
 )
@@ -58,7 +58,7 @@
 
 (define-object ListColumn
   (in-module "Tidy")
-  (parent "GInitiallyUnowned")
+  (parent "GObject")
   (c-name "TidyListColumn")
   (gtype-id "TIDY_TYPE_LIST_COLUMN")
 )

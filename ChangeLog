@@ -1,3 +1,11 @@
+2008-02-25  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter.override: Fix error message for clutter.Stage()
+
+	* tidy/tidy-types.defs:
+	* tidy/tidy.override:
+	* tidy/tidymodule.c: Make tidy bindings actually work.
+
 2008-02-19  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* NEWS:

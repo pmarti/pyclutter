@@ -2,26 +2,22 @@
 headers
 #define NO_IMPORT_PYGOBJECT
 #include "pygobject.h"
-#include "pyclutter.h"
 #include <clutter/clutter.h>
 #include <tidy/tidy.h>
 %%
 modulename tidy
 %%
 import gobject.GObject as PyGObject_Type
-import gobject.GInitiallyUnowned as PyGInitiallyUnowned_Type
 import clutter.Actor as PyClutterActor_Type
 import clutter.Alpha as PyClutterAlpha_Type
 import clutter.Behaviour as PyClutterBehaviour_Type
-import clutter.Model as PyClutterModel_Type
-import clutter.Texture as PyClutterTexture_Type
 import clutter.CloneTexture as PyClutterCloneTexture_Type
 import clutter.Group as PyClutterGroup_Type
+import clutter.Model as PyClutterModel_Type
+import clutter.Texture as PyClutterTexture_Type
 %%
 ignore-glob
   *_get_type
-  *_quark
-  _*
 %%
 ignore
   tidy_actor_set_alignmentx
@@ -296,3 +292,4 @@ _wrap_tidy_viewport_get_origin (PyGObject *self)
 
   return Py_BuildValue ("(iii)", x, y, z);
 }
+%%

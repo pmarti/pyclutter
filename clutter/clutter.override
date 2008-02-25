@@ -690,7 +690,7 @@ _wrap_clutter_stage_new (PyGObject *self)
   self->obj = (GObject *) clutter_stage_get_default ();
   if (!self->obj)
     {
-      PyErr_SetString (PyExc_RuntimeError, "could not get default display");
+      PyErr_SetString (PyExc_RuntimeError, "could not get default stage");
       return -1;
     }
 
