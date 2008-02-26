@@ -646,7 +646,7 @@ _wrap_clutter_behaviour_ellipse_new (PyGObject *self,
         end = 360.0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "O|iiiidd:clutter.BehaviourEllipse.__init__",
+                                          "|Oiiiidd:clutter.BehaviourEllipse.__init__",
                                           kwlist,
                                           &py_alpha,
                                           &x, &y, &width, &height,
