@@ -1,3 +1,8 @@
+2008-02-26  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* configure.ac: Require python2.5; anything older is probably
+	broken, leaking or worse.
+
 2008-02-25  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter.override: Fix error message for clutter.Stage()
