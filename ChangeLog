@@ -1,3 +1,8 @@
+2008-02-29  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* configure.ac: Post release bump to 0.6.1 - I should have done
+	this earlier.
+
 2008-02-26  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/clutter-behaviour.override: Update the BehaviourEllipse
