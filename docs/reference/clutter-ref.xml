@@ -47,6 +47,7 @@
   </part>
   <part>
     <title>Clutter Animation Support</title>
+    <xi:include href="clutter-cluttertimeline.xml"/>
   </part>
   <part>
     <title>Clutter Tools</title>

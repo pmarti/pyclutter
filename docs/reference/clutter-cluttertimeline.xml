@@ -1,0 +1,332 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+
+<refentry id="class-cluttertimeline">
+  <refnamediv>
+    <refname>clutter.Timeline</refname>
+    <refpurpose>A class for time based animations</refpurpose>
+  </refnamediv>
+
+<!-- ************************* -->
+<!-- BEGIN OF CLUTTER SYNOPSIS -->
+<!-- ************************* -->
+
+  <refsect1>
+    <title>Synopsis</title>
+
+    <classsynopsis language="python">
+      <ooclass><classname>clutter.Timeline</classname></ooclass>
+
+      <constructorsynopsis language="python">
+        <methodname><link linkend="constructor-cluttertimeline">clutter.Timeline</link></methodname>
+        <methodparam><parameter role="keyword">fps</parameter></methodparam>
+        <methodparam><parameter role="keyword">num_frames</parameter></methodparam>
+        <methodparam><parameter role="keyword">duration</parameter></methodparam>
+      </constructorsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--get-duration">get_duration</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--set-duration">set_duration</link></methodname>
+        <methodparam><parameter role="keyword">msecs</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--remove-all">remove_all</link></methodname>
+        <methodparam></methodparam>
+      </methodsynopsis>
+
+    </classsynopsis>
+  </refsect1>
+
+<!-- ************************* -->
+<!-- BEGIN OF CLUTTER ANCESTRY -->
+<!-- ************************* -->
+
+  <refsect1>
+    <title>Ancestry</title>
+
+    <synopsis>
+<link linkend="class-gobject">gobject.GObject</link>
+ +--<link linkend="class-cluttertimeline">clutter.Timeline</link>
+  </synopsis>
+
+  </refsect1>
+
+<!-- ********************************* -->
+<!-- BEGIN OF CLUTTER PROPERTIES -->
+<!-- ********************************* -->
+
+  <refsect1>
+    <title>Properties</title>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+        <tgroup cols="3">
+          <colspec column="1" colwidth="1in"/>
+          <colspec column="2" colwidth="1in"/>
+          <colspec column="3" colwidth="4in"/>
+          <tbody>
+            <row valign="top">
+              <entry>"duration"</entry>
+              <entry>Read-Write</entry>
+              <entry>The duration of the timeline, in milliseconds.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"fpd"</entry>
+              <entry>Read-Write</entry>
+              <entry>Frames per second.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"num-frames"</entry>
+              <entry>Read-Write</entry>
+              <entry>The total number of frames.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"loop"</entry>
+              <entry>Read-Write</entry>
+              <entry>Wether the timeline should loop.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"delay"</entry>
+              <entry>Read-Write</entry>
+              <entry>A delay, in milliseconds, that should be observed by
+              the timeline before actually starting.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"direction"</entry>
+              <entry>Read-Write</entry>
+              <entry>The direction of the timeline, either
+              <literal>clutter.TIMELINE_FORWARD</literal> or
+              <literal>clutter.TIMELINE_BACKWARD</literal>.</entry>
+            </row>
+
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+<!-- ********************************** -->
+<!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
+<!-- ********************************** -->
+
+  <refsect1>
+    <title>Signal Prototypes</title>
+
+    <variablelist>
+      
+      <varlistentry>
+        <term>
+          "<link linkend="signal-cluttertimeline--new-frame">new-frame</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>timeline</parameter></methodparam>
+            <methodparam><parameter>frame_num</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-cluttertimeline--completed">completed</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>timeline</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-cluttertimeline--started">started</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>timeline</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-cluttertimeline--paused">paused</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>timeline</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+
+  </refsect1>
+
+<!-- **************************** -->
+<!-- BEGIN OF CLUTTER DESCRIPTION -->
+<!-- **************************** -->
+
+  <refsect1 id="description-cluttertimeline">
+    <title>Description</title>
+    <para>
+      <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link>
+      is a base class for managing time based events such as animations.
+    </para>
+
+    <para>
+       Every timeline shares the same timeout pool to decrease the
+       possibility of starvating the main loop when using many timelines
+       at the same time; this might cause problems if you are also using
+       a library making heavy use of threads with no GLib main loop
+       integration. In that case you might disable the common timeline
+       pool by setting the <literal>CLUTTER_TIMELINE=no-pool</literal>
+       environment variable prior to launching your application.
+    </para>
+
+  </refsect1>
+
+<!-- ************************************ -->
+<!-- BEGIN OF CLUTTER CONSTRUCTOR         -->
+<!-- ************************************ -->
+
+<refsect1 id="constructor-cluttertimeline">
+  <title>Constructor</title>
+
+  <programlisting><constructorsynopsis language="python">
+    <methodname>clutter.Timeline</methodname>
+    <methodparam><parameter role="keyword">fps</parameter></methodparam>
+    <methodparam><parameter role="keyword">num_frames</parameter></methodparam>
+    <methodparam><parameter role="keyword">duration</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+    
+  <variablelist>
+
+    <varlistentry>
+      <term><parameter role="keyword">fps</parameter>&nbsp;</term>
+      <listitem><simpara>frames per second (optional)</simpara></listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><parameter role="keyword">num_frames</parameter>&nbsp;</term>
+      <listitem><simpara>number of frames (optional)</simpara></listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><parameter role="keyword">duration</parameter>&nbsp;</term>
+      <listitem><simpara>duration in milliseconds (optional)</simpara></listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a new <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link>.
+        </simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+  <para>
+    Creates a new <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link> object.
+  </para>
+
+</refsect1>
+
+<!-- ****************************** -->
+<!-- BEGIN OF CLUTTER METHODS       -->
+<!-- ****************************** -->
+
+<refsect1>
+  <title>Methods</title>
+
+  <refsect2 id="method-cluttertimeline--get-duration">
+    <title>clutter.Timeline.get_duration</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>get_duration</methodname>
+      </methodsynopsis>
+    </programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><emphasis>Returns</emphasis>&nbsp;:</term>
+        <listitem><simpara>the duration of the <link linkend="class-cluttertimeline">timeline</link> in milliseconds.</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      The <methodname>get_duration</methodname>() method retrieves the
+      duration of the timeline in milliseconds, at the current frame
+      rate.
+    </para>
+  </refsect2>
+  
+</refsect1>
+
+<!-- ************************ -->
+<!-- BEGIN OF CLUTTER SIGNALS -->
+<!-- ************************ --> 
+
+<refsect1>
+  <title>Signals</title>
+
+  <refsect2 id="signal-cluttertimeline--new-frame">
+    <title>The "new-frame" clutter.Timeline Signal</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>timeline</parameter></methodparam>
+        <methodparam><parameter>frame_num</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+      </methodsynopsis>
+    </programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>timeline</parameter>&nbsp;:</term>
+        <listitem><simpara>the timeline that received the signal</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>frame_num</parameter>&nbsp;:</term>
+        <listitem><simpara>the new frame</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>user_param1</parameter>&nbsp;:</term>
+        <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "new-frame" signal is emitted each time a new frame in the
+    timeline is reached. The frame number is provided because
+    <classname>clutter.Timeline</classname> might drop frames to maintain
+    the overall duration.</para>
+
+  </refsect2>
+
+</refsect1>
+
+</refentry>

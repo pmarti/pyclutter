@@ -54,7 +54,7 @@
  +--<link linkend="class-gobject">gobject.GInitiallyUnowned</link>
      +--<link linkend="class-clutteractor">clutter.Actor</link>
          +--<link linkend="class-cluttertexture">clutter.Texture</link>
-  </synopsis>
+    </synopsis>
 
   </refsect1>
 

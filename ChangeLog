@@ -1,3 +1,10 @@
+2008-03-03  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* docs/Makefile.am:
+	* docs/reference/clutter-cluttertimeline.xml:
+	* docs/reference/clutter-ref.xml: Add initial page for
+	clutter.Timeline in the PyClutter API reference.
+
 2008-02-29  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* configure.ac: Post release bump to 0.6.1 - I should have done

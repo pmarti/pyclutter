@@ -17,6 +17,7 @@ XMLFILES = 					\
     reference/clutter-cluttergroup.xml		\
     reference/clutter-clutterrectangle.xml	\
     reference/clutter-cluttertexture.xml	\
+    reference/clutter-cluttertimeline.xml	\
     $(NULL)
 
 HTML_FILES =					\
@@ -34,6 +35,7 @@ HTML_FILES =					\
 	html/class-cluttergroup.html		\
 	html/class-clutterrectangle.html	\
 	html/class-cluttertexture.html		\
+	html/class-cluttertimeline.html		\
 	html/pyclutter.devhelp
 
 CSS_FILES = $(PYGOBJECT_PYGDOCS)/style.css
