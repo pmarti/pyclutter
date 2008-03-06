@@ -13,7 +13,7 @@ common_ldflags = -module -avoid-version
 
 TIDY_DEFS = tidy.defs
 CLEANFILES = tidy.c
-EXTRA_DIST = $(TIDY_DEFS) tidy.override
+EXTRA_DIST = $(TIDY_DEFS) tidy-types.defs tidy.override
 tidy.c: $(TIDY_DEFS) tidy.override
 tidy_la_CFLAGS = $(TIDY_CFLAGS)
 tidy_la_LDFLAGS = $(common_ldflags) -export-symbols-regex inittidy
