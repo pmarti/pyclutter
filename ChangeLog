@@ -1,3 +1,14 @@
+2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* INSTALL: Remove from revision control.
+
+	* README: Make the build time dependencies more explicit.
+
+	* autogen.sh: Prepare for the (future) switch to automake-1.10
+
+	* configure.ac: Fail if we don't find python 2.5, instead
+	of silently ignoring it.
+
 2008-03-06  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* tidy/Makefile.am: Add tidy-types.defs to the dist.

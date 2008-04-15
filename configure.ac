@@ -8,7 +8,7 @@ m4_define(pyclutter_version_minor, 6)
 m4_define(pyclutter_version_micro, 1)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
-m4_define(clutter_required_version,      0.6.0)
+m4_define(clutter_required_version,      0.6.2)
 m4_define(cluttergtk_required_version,   0.6.0)
 m4_define(cluttergst_required_version,   0.6.1)
 m4_define(cluttercairo_required_version, 0.6.0)
@@ -42,8 +42,8 @@ AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AM_PATH_PYTHON(2.5.0)
-AM_CHECK_PYTHON_HEADERS(,[AC_MSG_ERROR(could not find Python headers)])
+AM_PATH_PYTHON(2.5.0,,[AC_MSG_ERROR([could not find Python 2.5.0])])
+AM_CHECK_PYTHON_HEADERS(,[AC_MSG_ERROR([could not find Python headers])])
 
 PLATFORM=`$PYTHON -c "from distutils import util; print util.get_platform()"`
 AC_SUBST(PLATFORM)
@@ -90,6 +90,7 @@ fi
 dnl check for sub modules
 
 if test "x$PYGST_DEFSDIR" = "x"; then
+  AC_MSG_WARN([No PyGStreamer definitions found, disabling clutter-gst])
   build_cluttergst=no
 else
   build_cluttergst=yes

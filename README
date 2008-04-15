@@ -17,9 +17,20 @@ Requirements
   * PyGObject 2.12.1 or higher
   * Python 2.3.5 or higher
 
+In order to build the bindings for clutter-cairo you will also need:
+  * PyCairo
+
+In order to build the bindings for clutter-gst you will also need:
+  * GStreamer >= 0.10
+  * PyGStreamer
+
+In order to build the bindings for clutter-gtk you will also need:
+  * GTK+ >= 2.10
+  * PyGTK
+
 This release is supporting the following Clutter releases:
 
-        clutter-core    0.6.0
+        clutter-core    0.6.2
         clutter-gst     0.6.1
         clutter-gtk     0.6.0
         clutter-cairo   0.6.0
