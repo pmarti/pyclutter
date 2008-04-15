@@ -35,8 +35,41 @@
       </methodsynopsis>
 
       <methodsynopsis language="python">
-        <methodname><link linkend="method-cluttertimeline--remove-all">remove_all</link></methodname>
-        <methodparam></methodparam>
+        <methodname><link linkend="method-cluttertimeline--get-direction">get_direction</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--set-direction">set_direction</link></methodname>
+        <methodparam><parameter role="keyword">direction</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--get-loop">get_loop</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--set-loop">set_loop</link></methodname>
+        <methodparam><parameter role="keyword">loop</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--get-progress">get_progress</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--start">start</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--pause">pause</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--stop">stop</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-cluttertimeline--rewind">rewind</link></methodname>
       </methodsynopsis>
 
     </classsynopsis>
@@ -278,7 +311,200 @@
       rate.
     </para>
   </refsect2>
-  
+
+  <refsect2 id="method-cluttertimeline--set-duration">
+    <title>clutter.Timeline.set_duration</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>set_duration</methodname>
+        <methodparam><parameter role="keyword">duration</parameter></methodparam>
+      </methodsynopsis>
+    </programlisting>
+
+    <varlistentry>
+      <term><parameter role="keyword">duration</parameter>&nbsp;</term>
+      <listitem><simpara>duration in milliseconds</simpara></listitem>
+    </varlistentry>
+
+    <para>
+      The <methodname>set_duration</methodname>() method sets the
+      duration of the timeline in milliseconds, at the current frame
+      rate.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--get-direction">
+    <title>clutter.Timeline.get_direction</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>get_direction</methodname>
+      </methodsynopsis>
+    </programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><emphasis>Returns</emphasis>&nbsp;:</term>
+        <listitem><simpara>the direction of the <link linkend="class-cluttertimeline">timeline</link>.</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      The <methodname>get_direction</methodname>() method retrieves the
+      direction of the timeline, either forward or backward.
+      rate.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--set-direction">
+    <title>clutter.Timeline.set_direction</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>set_direction</methodname>
+        <methodparam><parameter role="keyword">direction</parameter></methodparam>
+      </methodsynopsis>
+    </programlisting>
+
+    <varlistentry>
+      <term><parameter role="keyword">direction</parameter>&nbsp;</term>
+      <listitem><simpara>either <literal>clutter.TIMELINE_FORWARD</literal> or
+      <literal>clutter.TIMELINE_BACKWARD</literal></simpara></listitem>
+    </varlistentry>
+
+    <para>
+      The <methodname>set_direction</methodname>() method sets the
+      direction of the timeline.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--get-loop">
+    <title>clutter.Timeline.get_loop</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>get_loop</methodname>
+      </methodsynopsis>
+    </programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><emphasis>Returns</emphasis>&nbsp;:</term>
+        <listitem><simpara>whether the <link linkend="class-cluttertimeline">timeline</link> is looping or not.</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      The <methodname>get_loop</methodname>() method will return
+      whether the timeline is looping or not. A looping timeline
+      will restart from the beginning every time it reaches its
+      duration.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--set-loop">
+    <title>clutter.Timeline.set_loop</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>set_loop</methodname>
+        <methodparam><parameter role="keyword">loop</parameter></methodparam>
+      </methodsynopsis>
+    </programlisting>
+
+    <varlistentry>
+      <term><parameter role="keyword">loop</parameter>&nbsp;</term>
+      <listitem><simpara>True if the timeline should loop, False otherwise</simpara></listitem>
+    </varlistentry>
+
+    <para>
+      The <methodname>set_loop</methodname>() method sets whether
+      the timeline should loop or not.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--get-progress">
+    <title>clutter.Timeline.get_progress</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>get_progress</methodname>
+      </methodsynopsis>
+    </programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><emphasis>Returns</emphasis>&nbsp;:</term>
+        <listitem><simpara>the progress of the <link linkend="class-cluttertimeline">timeline</link>.</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      The <methodname>get_progress</methodname>() method retrieves the
+      progress of the timeline as a floating point number in the [0, 1]
+      interval.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--start">
+    <title>clutter.Timeline.start</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>start</methodname>
+      </methodsynopsis>
+    </programlisting>
+
+    <para>
+      The <methodname>start</methodname>() method starts the timeline.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--pause">
+    <title>clutter.Timeline.pause</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>pause</methodname>
+      </methodsynopsis>
+    </programlisting>
+
+    <para>
+      The <methodname>pause</methodname>() method pauses the timeline.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--stop">
+    <title>clutter.Timeline.stop</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>stop</methodname>
+      </methodsynopsis>
+    </programlisting>
+
+    <para>
+      The <methodname>stop</methodname>() method pauses the timeline
+      and rewinds it to the beginning.
+    </para>
+  </refsect2>
+
+  <refsect2 id="method-cluttertimeline--rewind">
+    <title>clutter.Timeline.rewind</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>rewind</methodname>
+      </methodsynopsis>
+    </programlisting>
+
+    <para>
+      The <methodname>rewind</methodname>() method moves the
+      timeline to its beginning frame without stopping it.
+    </para>
+  </refsect2>
+
 </refsect1>
 
 <!-- ************************ -->
@@ -324,6 +550,103 @@
     timeline is reached. The frame number is provided because
     <classname>clutter.Timeline</classname> might drop frames to maintain
     the overall duration.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-cluttertimeline--started">
+    <title>The "started" clutter.Timeline Signal</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>timeline</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+      </methodsynopsis>
+    </programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>timeline</parameter>&nbsp;:</term>
+        <listitem><simpara>the timeline that received the signal</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>user_param1</parameter>&nbsp;:</term>
+        <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "started" signal is emitted each time a timeline is
+    started.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-cluttertimeline--paused">
+    <title>The "paused" clutter.Timeline Signal</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>timeline</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+      </methodsynopsis>
+    </programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>timeline</parameter>&nbsp;:</term>
+        <listitem><simpara>the timeline that received the signal</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>user_param1</parameter>&nbsp;:</term>
+        <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "paused" signal is emitted each time a timeline is
+    paused.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-cluttertimeline--completed">
+    <title>The "completed" clutter.Timeline Signal</title>
+
+    <programlisting>
+      <methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>timeline</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+      </methodsynopsis>
+    </programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term><parameter>timeline</parameter>&nbsp;:</term>
+        <listitem><simpara>the timeline that received the signal</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>user_param1</parameter>&nbsp;:</term>
+        <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><parameter>...</parameter>&nbsp;:</term>
+        <listitem><simpara>additional user parameters (if any)</simpara></listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "completed" signal is emitted each time a timeline reaches
+    its last frame. The signal will be emitted multiple times if the
+    timeline is looping.</para>
 
   </refsect2>
 

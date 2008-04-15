@@ -1,5 +1,10 @@
 2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* docs/reference/clutter-cluttertimeline.xml: Add more
+	documentation to the clutter.Timeline page.
+
+2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* README: Update the README with the revised dependency
 	from the previous commit.
 
