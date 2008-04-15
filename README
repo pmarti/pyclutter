@@ -15,7 +15,7 @@ Requirements
   * GTK+ 2.10.0 or higher
   * Clutter 0.5.4 or higher
   * PyGObject 2.12.1 or higher
-  * Python 2.3.5 or higher
+  * Python 2.4.0 or higher
 
 In order to build the bindings for clutter-cairo you will also need:
   * PyCairo

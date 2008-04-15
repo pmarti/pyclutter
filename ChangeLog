@@ -1,5 +1,10 @@
 2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* README: Update the README with the revised dependency
+	from the previous commit.
+
+2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* configure.ac: Keep requiring python 2.4. We'll move
 	to python 2.5 in 0.7/0.8 to keep the stable cycle, well,
 	stable.
