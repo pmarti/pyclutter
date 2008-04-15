@@ -1,7 +1,7 @@
 AC_PREREQ(2.53)
 
 # clutter package version number, (as distinct from shared library version)
-# An odd micro number indicates in-progress development, (eg. from CVS)
+# An odd micro number indicates in-progress development, (eg. from svn)
 # An even micro number indicates a released version.
 m4_define(pyclutter_version_major, 0)
 m4_define(pyclutter_version_minor, 6)
@@ -42,7 +42,9 @@ AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AM_PATH_PYTHON(2.5.0,,[AC_MSG_ERROR([could not find Python 2.5.0])])
+# uncomment in 0.7
+#AM_PATH_PYTHON(2.5.0,,[AC_MSG_ERROR([could not find Python 2.5.0])])
+AM_PATH_PYTHON(2.4.0,,[AC_MSG_ERROR([could not find Python 2.4.0])])
 AM_CHECK_PYTHON_HEADERS(,[AC_MSG_ERROR([could not find Python headers])])
 
 PLATFORM=`$PYTHON -c "from distutils import util; print util.get_platform()"`

@@ -1,5 +1,11 @@
 2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* configure.ac: Keep requiring python 2.4. We'll move
+	to python 2.5 in 0.7/0.8 to keep the stable cycle, well,
+	stable.
+
+2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	Bug #841 - pyclutter shader API doesn't seem to work
 
 	* clutter/__init__.py: Change the dlopen() flags; this should
