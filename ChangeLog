@@ -1,5 +1,9 @@
 2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* configure.ac: Post-release bump to 0.6.3
+
+2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* docs/reference/clutter-cluttertimeline.xml: Add more
 	documentation to the clutter.Timeline page.
 

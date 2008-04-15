@@ -1,3 +1,15 @@
+Overview of changes between 0.6.0 and 0.6.2
+===========================================
+
+* Require clutter-core >= 0.6.2
+* Require Python >= 2.4.0
+* Fix bug #841 - override the dlopen() flags to allow loading
+  symbols from the underlying C libraries [Blake Ramsdell]
+* Add more documentation
+* Fix the BehaviourEllipse constructor to follow the same
+  pattern of the other behaviours
+* Fix the clutter.tidy optional module
+
 Overview of changes between 0.5.2 and 0.6.0
 ===========================================
 
