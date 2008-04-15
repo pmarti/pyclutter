@@ -1,6 +1,19 @@
 # -*- Mode: Python; py-indent-offset: 4 -*-
 
+try:
+    import ltihooks
+    ltihooks # pyflakes
+    del ltihooks
+except ImportError:
+    pass
+
 import sys
+
+try:
+    import dl
+    sys.setdlopenflags(dl.RTLD_LAZY|dl.RTLD_GLOBAL)
+except ImportError:
+    pass
 
 # For broken embedded programs which forgot to call Sys_SetArgv
 if not hasattr(sys, 'argv'):
@@ -11,7 +24,7 @@ import gobject as _gobject
 
 ver = getattr(_gobject, 'pygobject_version', ())
 if ver < (2, 11, 1):
-    raise ImportError("PyGTK requires PyGObject 2.11.1 or higher, but %s was found" % (ver,))
+    raise ImportError("PyClutter requires PyGObject 2.11.1 or higher, but %s was found" % (ver,))
 
 if 'clutter._clutter' in sys.modules:
     _clutter = sys.modules['clutter._clutter']

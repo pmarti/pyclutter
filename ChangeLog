@@ -1,5 +1,13 @@
 2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	Bug #841 - pyclutter shader API doesn't seem to work
+
+	* clutter/__init__.py: Change the dlopen() flags; this should
+	fix the dlopen() errors that happen with nvidia cards. (thanks
+	to Blake Ramsdell)
+
+2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* INSTALL: Remove from revision control.
 
 	* README: Make the build time dependencies more explicit.
