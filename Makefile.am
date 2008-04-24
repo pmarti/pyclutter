@@ -1,4 +1,4 @@
-SUBDIRS = clutter examples 
+SUBDIRS = clutter examples demos 
 
 if BUILD_CLUTTERGST
 SUBDIRS += clutter-gst

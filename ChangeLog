@@ -1,5 +1,24 @@
 2008-04-24  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	Merge from pyclutter-0-6
+
+	* clutter-cairo/cluttercairo.defs: Add the new API from
+	clutter-cairo >= 0.7
+
+	* clutter-cairo/cluttercairo.override: Wrap the cairo context
+	into a PyObject inheriting from pangocairo.CairoContext; this
+	allows wrapping clutter_cairo_set_source_color(). Fix the
+	methods returning a cairo_t* in C to return a cluttercairo
+	CairoContext instead.
+
+	* clutter-cairo/cluttercairomodule.c: Remove cruft.
+
+	* examples/cairo-texture.py: Use cluttercairo.CairoContext's
+	method set_source_color() to test the extension of the pangocairo
+	CairoContext class.
+
+2008-04-24  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* configure.ac: Bump to 0.7.0
 
 2008-04-15  Emmanuele Bassi  <ebassi@openedhand.com>

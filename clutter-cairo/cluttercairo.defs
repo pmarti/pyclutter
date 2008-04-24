@@ -25,3 +25,33 @@
   (c-name "clutter_cairo_create")
   (return-type "cairo_t*")
 )
+
+(define-method cairo_create_region
+  (of-object "ClutterCairo")
+  (c-name "clutter_cairo_create_region")
+  (return-type "cairo_t*")
+  (parameters
+    '("gint" "x_offset")
+    '("gint" "y_offset")
+    '("guint" "width")
+    '("guint" "height")
+  )
+)
+
+(define-method surface_resize
+  (of-object "ClutterCairo")
+  (c-name "clutter_cairo_surface_resize")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
+  )
+)
+
+(define-function set_source_color
+  (c-name "clutter_cairo_set_source_color")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "cr")
+    '("ClutterColor*" "color")
+  )
+)

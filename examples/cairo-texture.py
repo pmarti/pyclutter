@@ -26,7 +26,7 @@ def main ():
     # we scale the context to the size of the surface
     context.scale(200, 200)
     context.set_line_width(0.1)
-    context.set_source_rgba(0, 0, 0, 1)
+    context.set_source_color(clutter.Color(255, 0, 0, 0x88))
     context.translate(0.5, 0.5)
     context.arc(0, 0, 0.4, 0, pi * 2)
     context.stroke()
