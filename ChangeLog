@@ -1,3 +1,12 @@
+2008-05-28  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	Merge from pyclutter-0-6.
+
+	Bug #923 - Clutter.Color() undesired results on amd64 platform
+
+	* clutter/clutter-color.override: Use 'B' as the parser
+	format for the Color components. (Julius Caro, Tommi Komulainen)
+
 2008-04-24  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	Merge from pyclutter-0-6

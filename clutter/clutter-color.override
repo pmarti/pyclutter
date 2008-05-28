@@ -20,7 +20,7 @@ _wrap_clutter_color_new (PyGBoxed *self,
         alpha = 0xff;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|kkkk:clutter.Color", kwlist,
+                                          "|BBBB:clutter.Color", kwlist,
                                           &red, &green, &blue, &alpha))
                 return -1;
 
@@ -42,14 +42,16 @@ _wrap_clutter_color_tp_setattr (PyGBoxed *self,
                                 char     *attr,
                                 PyObject *value)
 {
+        unsigned int i;
+
         if (value == NULL) {
                 PyErr_SetString (PyExc_TypeError, "can't delete attributes");
                 return -1;
         }
 
         if (PyInt_Check (value)) {
-                unsigned int i = PyInt_AsLong (value);
-                
+                i = PyInt_AsLong (value);
+
                 switch (attr[0]) {
                         case 'r':
                                 pyg_boxed_get (self, ClutterColor)->red = i;
@@ -80,7 +82,7 @@ _wrap_clutter_color_to_hls (PyGBoxed *self)
         color = pyg_boxed_get (self, ClutterColor);
         clutter_color_to_hls (color, &h, &l, &s);
 
-        return Py_BuildValue ("(kkk)", h, l, s);
+        return Py_BuildValue ("(BBB)", h, l, s);
 }
 %%
 override clutter_color_from_hls kwargs
@@ -94,7 +96,7 @@ _wrap_clutter_color_from_hls (PyObject *self,
         ClutterColor color = { 0, };
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|kkk:color_from_hls", kwlist,
+                                          "|BBB:color_from_hls", kwlist,
                                           &h, &l, &s))
                 return NULL;
 
