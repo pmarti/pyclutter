@@ -224,8 +224,6 @@ JH_ADD_CFLAG([-fno-strict-aliasing])
 AC_CONFIG_FILES([
         Makefile
         pyclutter.pc
-        demos/Makefile
-        demos/carousel/Makefile
         docs/Makefile
         docs/reference/entities.docbook
         examples/Makefile

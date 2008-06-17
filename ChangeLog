@@ -1,3 +1,8 @@
+2008-06-17  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* configure.ac: Remove the demos directory from the configure:
+	it's not ready.
+
 2008-05-28  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	Merge from pyclutter-0-6.
