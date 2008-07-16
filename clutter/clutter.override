@@ -5,6 +5,11 @@ headers
 #include "pygobject.h"
 #include "pyclutter.h"
 
+#ifdef HAVE_PYCAIRO
+# include <pycairo.h>
+extern Pycairo_CAPI_t *Pycairo_CAPI;
+#endif
+
 %%
 include
   clutter-actor.override
@@ -41,10 +46,15 @@ ignore
   clutter_threads_add_idle
   clutter_threads_add_timeout_full
   clutter_threads_add_timeout
+  clutter_threads_add_frame_source
+  clutter_threads_add_frame_source_full
   clutter_threads_set_lock_functions
-  clutter_texture_new_from_pixbuf
   clutter_timeline_new_for_duration
   clutter_actor_box_get_from_vertices
+  clutter_stage_manager_get_default
+  clutter_get_input_device_for_id
+  clutter_texture_set_cogl_texture
+  clutter_texture_get_cogl_texture
 %%
 ignore-glob
   *_quark
@@ -124,60 +134,6 @@ _wrap_clutter_texture_get_base_size (PyGObject *self)
 				       &width,
 				       &height);
 	return Py_BuildValue ("(ii)", width, height);
-}
-%%
-override clutter_texture_get_n_tiles
-static PyObject *
-_wrap_clutter_texture_get_n_tiles (PyGObject *self)
-{
-	gint n_x_tiles, n_y_tiles;
-
-	clutter_texture_get_n_tiles (CLUTTER_TEXTURE (self->obj),
-				     &n_x_tiles,
-				     &n_y_tiles);
-	return Py_BuildValue ("(ii)", n_x_tiles, n_y_tiles);
-}
-%%
-override clutter_texture_get_x_tile_detail kwargs
-static PyObject *
-_wrap_clutter_texture_get_x_tile_detail (PyGObject *self,
-                                         PyObject  *args,
-					 PyObject  *kwargs)
-{
-	static char *kwlist[] = { "x_index", NULL };
-	gint x_index;
-	gint pos, size, waste;
-
-	if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-					  "i:ClutterTexture.get_x_tile_detail",
-					  kwlist, &x_index))
-		return NULL;
-	
-	clutter_texture_get_x_tile_detail (CLUTTER_TEXTURE (self->obj),
-					   x_index,
-					   &pos, &size, &waste);
-	return Py_BuildValue ("(iii)", pos, size, waste);
-}
-%%
-override clutter_texture_get_y_tile_detail kwargs
-static PyObject *
-_wrap_clutter_texture_get_y_tile_detail (PyGObject *self,
-                                         PyObject  *args,
-					 PyObject  *kwargs)
-{
-	static char *kwlist[] = { "y_index", NULL };
-	gint y_index;
-	gint pos, size, waste;
-
-	if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-					  "i:ClutterTexture.get_y_tile_detail",
-					  kwlist, &y_index))
-		return NULL;
-	
-	clutter_texture_get_y_tile_detail (CLUTTER_TEXTURE (self->obj),
-					   y_index,
-					   &pos, &size, &waste);
-	return Py_BuildValue ("(iii)", pos, size, waste);
 }
 %%
 override clutter_container_add
@@ -553,35 +509,6 @@ _wrap_clutter_container_get_children (PyGObject *self)
         return py_list;
 }
 %%
-override clutter_entry_handle_key_event kwargs
-static PyObject *
-_wrap_clutter_entry_handle_key_event (PyGObject *self,
-                                      PyObject  *args,
-                                      PyObject  *kwargs)
-{
-        static char *kwlist[] = { "event", NULL };
-        PyObject *py_event;
-        ClutterEvent *event;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "O:clutter.Entry.handle_key_event",
-                                          kwlist,
-                                          &py_event))
-                return NULL;
-
-        if (!pyg_boxed_check (py_event, CLUTTER_TYPE_EVENT)) {
-                PyErr_SetString(PyExc_TypeError, "event must be a clutter.Event");
-                return NULL;
-        }
-
-        event = pyg_boxed_get (py_event, ClutterEvent);
-        clutter_entry_handle_key_event (CLUTTER_ENTRY (self->obj),
-                                        (ClutterKeyEvent *) event);
-        
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
 override clutter_stage_get_fog noargs
 static PyObject *
 _wrap_clutter_stage_get_fog (PyGObject *self)
@@ -681,16 +608,62 @@ _wrap_clutter_score_list_timelines (PyGObject *self)
   return py_list;
 }
 %%
-new-constructor CLUTTER_TYPE_STAGE
+override clutter_timeline_list_markers kwargs
+static PyObject *
+_wrap_clutter_timeline_list_markers (PyGObject *self,
+                                     PyObject  *args,
+                                     PyObject  *kwargs)
+{
+  static char *kwlist[] = { "frame_num", NULL };
+  gchar **markers;
+  gint frame_num = 0;
+  guint n_markers, i;
+  PyObject *py_ret;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "i:ClutterTimeline.list_markers", kwlist,
+                                    &frame_num))
+    {
+      return NULL;
+    }
+
+  markers = clutter_timeline_list_markers (CLUTTER_TIMELINE (self->obj),
+                                           frame_num,
+                                           &n_markers);
+  if (n_markers == 0)
+    {
+      Py_INCREF (Py_None);
+      return Py_None;
+    }
+
+  if ((py_ret = PyList_New (n_markers)) == NULL)
+    {
+      g_strfreev (markers);
+      return NULL;
+    }
+
+  for (i = 0; i < n_markers; i++)
+    {
+      gchar *marker_name = markers[i];
+
+      PyList_Append (py_ret, PyString_FromString (marker_name));
+    }
+
+  g_strfreev (markers);
+
+  return py_ret;
+}
 %%
-override clutter_stage_new noargs
+new-constructor CLUTTER_TYPE_STAGE_MANAGER
+%%
+override clutter_stage_manager_new noargs
 static int
 _wrap_clutter_stage_new (PyGObject *self)
 {
-  self->obj = (GObject *) clutter_stage_get_default ();
+  self->obj = (GObject *) clutter_stage_manager_get_default ();
   if (!self->obj)
     {
-      PyErr_SetString (PyExc_RuntimeError, "could not get default stage");
+      PyErr_SetString (PyExc_RuntimeError, "could not get the default stage manager");
       return -1;
     }
 
@@ -753,7 +726,7 @@ _wrap_clutter_stage_set_key_focus (PyGObject *self,
   PyObject *py_actor = NULL;
 
   if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                    "O:clutter.Stage.set_key_focus", kwlist,
+                                    "|O:clutter.Stage.set_key_focus", kwlist,
                                     &py_actor))
     return NULL;
 
@@ -771,5 +744,60 @@ _wrap_clutter_stage_set_key_focus (PyGObject *self,
   }
 
   Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override clutter_backend_get_font_options noargs
+static PyObject *
+_wrap_clutter_backend_get_font_options (PyGObject *self)
+{
+#ifdef HAVE_PYCAIRO
+  const cairo_font_options_t *options;
+
+  options = clutter_backend_get_font_options (CLUTTER_BACKEND (self->obj));
+  if (!options)
+    {
+      Py_INCREF (Py_None);
+      return Py_None;
+    }
+
+  return PycairoFontOptions_FromFontOptions (cairo_font_options_copy (options));
+#else
+  Py_INCREF (Py_None);
+  return Py_None;
+#endif
+}
+%%
+override clutter_backend_set_font_options kwargs
+static PyObject *
+_wrap_clutter_backend_set_font_options (PyGObject *self,
+                                        PyObject  *args,
+                                        PyObject  *kwargs)
+{
+#ifdef HAVE_PYCAIRO
+  static char *kwlist[] = { "options", NULL };
+  PyGObject *py_options;
+  cairo_font_options_t *options;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "O:clutter.Backend.set_font_options",
+                                    kwlist, &py_options))
+    return NULL;
+
+  if ((PyObject*) py_options == Py_None)
+    options = NULL;
+  else if (pygobject_check(py_options, &PycairoFontOptions_Type))
+    options = ((PycairoFontOptions *) py_options)->font_options;
+  else
+    {
+      PyErr_SetString(PyExc_TypeError,
+                      "options must be a cairo.FontOptions or None");
+      return NULL;
+    }
+
+  clutter_backend_set_font_options (CLUTTER_BACKEND (self->obj), options);
+#endif
+
+  Py_INCREF(Py_None);
   return Py_None;
 }

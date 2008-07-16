@@ -26,7 +26,7 @@ class EntryWidget (clutter.Entry):
 
     def key_cb(self, stage, event):
         print "key_cb called"
-        self.handle_key_event(event)
+        return False
 
     def activated_cb(self, stage):
         print "Entered text was: "+self.get_text()
@@ -36,11 +36,13 @@ class EntryWidget (clutter.Entry):
     def on_press_cb(self, stage, event):
         # acquire key focus
         self.stage.set_key_focus(self)
+        return False
 
 if __name__ == '__main__':
     stage = clutter.Stage()
     stage.set_color(clutter.Color(0xcc, 0xcc, 0xcc, 0xff))
     stage.set_size(320,240)
+    stage.connect('destroy', clutter.main_quit)
 
     entry_test = EntryWidget(stage)
 

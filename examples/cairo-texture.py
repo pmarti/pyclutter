@@ -13,6 +13,7 @@ def main ():
     stage.set_color(clutter.Color(red=0xff, green=0xcc, blue=0xcc, alpha=0xff))
     stage.set_size(width=400, height=300)
     stage.connect('button-press-event', on_button_press_event)
+    stage.connect('destroy', clutter.main_quit)
 
     cairo_tex = cluttercairo.CairoTexture(width=200, height=200)
     cairo_tex.set_position(x=(stage.get_width() - 200) / 2,

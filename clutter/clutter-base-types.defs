@@ -280,6 +280,13 @@
   (gtype-id "CLUTTER_TYPE_SCRIPT")
 )
 
+(define-object ChildMeta
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterChildMeta")
+  (gtype-id "CLUTTER_TYPE_CHILD_META")
+)
+
 ;; Enumerations and flags ...
 
 (define-flags EventFlags
@@ -483,6 +490,27 @@
   (values
     '("w" "CLUTTER_ROTATE_CW")
     '("cw" "CLUTTER_ROTATE_CCW")
+  )
+)
+
+(define-enum TextureQuality
+  (in-module "Clutter")
+  (c-name "ClutterTextureQuality")
+  (gtype-id "CLUTTER_TYPE_TEXTURE_QUALITY")
+  (values
+    '("low" "CLUTTER_TEXTURE_QUALITY_LOW")
+    '("medium" "CLUTTER_TEXTURE_QUALITY_MEDIUM")
+    '("high" "CLUTTER_TEXTURE_QUALITY_HIGH")
+  )
+)
+
+(define-enum RequestMode
+  (in-module "Clutter")
+  (c-name "ClutterRequestMode")
+  (gtype-id "CLUTTER_TYPE_REQUEST_MODE")
+  (values
+    '("height-for-width" "CLUTTER_REQUEST_HEIGHT_FOR_WIDTH")
+    '("width-for-height" "CLUTTER_REQUEST_WIDTH_FOR_HEIGHT")
   )
 )
 

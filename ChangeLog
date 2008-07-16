@@ -1,3 +1,30 @@
+2008-07-16  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* configure.ac: Bump requirements to Clutter 0.8.0; PyClutter
+	softly depends on PyCairo for core as well.
+
+	* clutter/Makefile.am: Use automake 1.9 like the rest of the
+	build.
+
+	* clutter/__init__.py: Update the deprecations; stage_get_default()
+	has been undeprecated because now clutter.Stage() will create
+	a new stage.
+
+	* clutter/clutter-base-types.defs:
+	* clutter/clutter-base.defs: Update with 0.8 API.
+
+	* clutter/clutter-actor.override:
+	* clutter/clutter-behaviour.override:
+	* clutter/clutter-script.override:
+	* clutter/clutter.override: Update the overrides.
+
+	* clutter/cluttermodule.c (init_clutter): Import PyCairo if
+	found.
+
+	* examples/behave.py:
+	* examples/cairo-texture.py:
+	* examples/entry.py: Slight update.
+
 2008-06-17  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* configure.ac: Remove the demos directory from the configure:

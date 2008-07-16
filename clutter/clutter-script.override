@@ -138,3 +138,42 @@ _wrap_clutter_script_get_objects (PyGObject *self,
 
     return retval;
 }
+%%
+override clutter_script_add_search_paths
+static PyObject *
+_wrap_clutter_script_add_search_paths (PyGObject *self,
+                                       PyObject  *args)
+{
+    int len, i;
+    gchar **paths;
+
+    if (!PyTuple_Check (args)) {
+        PyErr_SetString (PyExc_TypeError, "expecting a tuple of paths");
+        return NULL;
+    }
+
+    len = PyTuple_Size (args);
+    paths = g_new0 (gchar*, len + 1);
+
+    for (i = 0; i < len; i++) {
+        PyObject *py_path;
+
+        py_path = PyTuple_GetItem (args, i);
+        if (!PyString_Check (py_path)) {
+            PyErr_SetString (PyExc_TypeError, "expecting a string");
+            g_strfreev (paths);
+            return NULL;
+        }
+
+        paths[i] = g_strdup (PyString_AsString (py_path));
+    }
+
+    clutter_script_add_search_paths (CLUTTER_SCRIPT (self->obj),
+                                     (const gchar **) paths,
+                                     len);
+
+    g_strfreev (paths);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}

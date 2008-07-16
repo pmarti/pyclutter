@@ -6,6 +6,11 @@
 #include <clutter/clutter.h>
 #include "pyclutter.h"
 
+#ifdef HAVE_PYCAIRO
+# include <pycairo.h>
+Pycairo_CAPI_t *Pycairo_CAPI;
+#endif
+
 void pyclutter_register_classes (PyObject *dict);
 void pyclutter_add_constants (PyObject *module, const gchar *prefix);
 
@@ -36,6 +41,15 @@ init_clutter (void)
   PyObject *m, *d;
 
   init_pygobject_check (2, 12, 0);
+  g_assert (pygobject_register_class != NULL);
+
+#ifdef HAVE_PYCAIRO
+  {
+    Pycairo_IMPORT;
+    if (Pycairo_CAPI == NULL)
+      return;
+  }
+#endif
 
   clutter_base_init ();
 

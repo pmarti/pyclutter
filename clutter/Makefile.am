@@ -1,5 +1,3 @@
-AUTOMAKE_OPTIONS = 1.7
-
 PLATFORM_VERSION = 1.0
 
 CLEANFILES =
@@ -54,9 +52,10 @@ clutter-types.defs: $(CLUTTER_TYPES_DEFS)
 CLEANFILES += clutter.defs clutter-types.defs
 
 clutter.c: clutter-types.defs clutter.defs $(CLUTTER_OVERRIDES)
-_clutter_la_CFLAGS = $(CLUTTER_CFLAGS)
+
+_clutter_la_CFLAGS  = $(PYCAIRO_CFLAGS) $(CLUTTER_CFLAGS)
 _clutter_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_clutter
-_clutter_la_LIBADD = $(PYGTK_LIBS) $(CLUTTER_LIBS)
+_clutter_la_LIBADD  = $(PYCAIRO_LIBS) $(PYGTK_LIBS) $(CLUTTER_LIBS)
 _clutter_la_SOURCES = 		\
 	pyclutter.c		\
 	cluttermodule.c 
@@ -83,7 +82,7 @@ defs_DATA = \
 	    --register $(PYGTK_DEFSDIR)/pango-types.defs \
 	    --register clutter-types.defs \
 	    --override $(srcdir)/$*.override \
-	    --prefix py$* $<) > gen-$*.c \
+	    --prefix py$* $< ) > gen-$*.c \
 	&& cp -f gen-$*.c $*.c \
 	&& rm -f gen-$*.c
 

@@ -4,25 +4,28 @@ AC_PREREQ(2.53)
 # An odd micro number indicates in-progress development, (eg. from svn)
 # An even micro number indicates a released version.
 m4_define(pyclutter_version_major, 0)
-m4_define(pyclutter_version_minor, 7)
-m4_define(pyclutter_version_micro, 1)
+m4_define(pyclutter_version_minor, 8)
+m4_define(pyclutter_version_micro, 0)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
-m4_define(clutter_required_version,      0.7.0)
-m4_define(cluttergtk_required_version,   0.7.0)
-m4_define(cluttergst_required_version,   0.7.0)
-m4_define(cluttercairo_required_version, 0.7.0)
+m4_define(clutter_required_version,      0.8.0)
+m4_define(cluttergtk_required_version,   0.8.0)
+m4_define(cluttergst_required_version,   0.8.0)
+m4_define(cluttercairo_required_version, 0.8.0)
 m4_define(pycairo_required_version,      1.0.2) dnl or 1.1.7
 m4_define(pygtk_required_version,        2.8.0)
 
-AC_INIT([pyclutter], pyclutter_version, 
+AC_INIT([pyclutter], [pyclutter_version],
         [http://bugzilla.o-hand.com/enter_bug.cgi?product=Clutter])
 
-AC_DEFINE(PYCLUTTER_MAJOR_VERSION, [pyclutter_version_major], [pyclutter major version])
+AC_DEFINE(PYCLUTTER_MAJOR_VERSION,
+          [pyclutter_version_major], [pyclutter major version])
 AC_SUBST(PYCLUTTER_MAJOR_VERSION, [pyclutter_version_major])
-AC_DEFINE(PYCLUTTER_MINOR_VERSION, [pyclutter_version_minor], [pyclutter minor version])
+AC_DEFINE(PYCLUTTER_MINOR_VERSION,
+          [pyclutter_version_minor], [pyclutter minor version])
 AC_SUBST(PYCLUTTER_MINOR_VERSION, [pyclutter_version_minor])
-AC_DEFINE(PYCLUTTER_MICRO_VERSION, [pyclutter_version_micro], [pyclutter micro version])
+AC_DEFINE(PYCLUTTER_MICRO_VERSION, [pyclutter_version_micro],
+          [pyclutter micro version])
 AC_SUBST(PYCLUTTER_MICRO_VERSION, [pyclutter_version_micro])
 AC_DEFINE(PYCLUTTER_VERSION, [pyclutter_version], [pyclutter version])
 AC_SUBST(PYCLUTTER_VERSION, [pyclutter_version])
@@ -71,6 +74,16 @@ if test "x$PYGTK_CODEGEN" = "xno"; then
   AC_MSG_ERROR([could not find pygtk-codegen-2.0 script])
 fi
 
+dnl check for pycairo
+PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
+                           [have_pycairo=yes],
+                           [have_pycairo=no])
+if test "x$have_pycairo" = "xyes"; then
+  AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
+  AC_SUBST(PYCAIRO_CFLAGS)
+  AC_SUBST(PYCAIRO_LIBS)
+fi
+
 AC_MSG_CHECKING(for pygtk defs)
 PYGTK_DEFSDIR=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
 AC_SUBST(PYGTK_DEFSDIR)
@@ -82,7 +95,7 @@ AC_SUBST(PYGST_DEFSDIR)
 AC_MSG_RESULT($PYGST_DEFSDIR)
 
 dnl check for clutter
-PKG_CHECK_MODULES(CLUTTER, clutter-0.7 >= clutter_required_version)
+PKG_CHECK_MODULES(CLUTTER, clutter-0.8 >= clutter_required_version)
 AC_SUBST(CLUTTER_CFLAGS)
 AC_SUBST(CLUTTER_LIBS)
 if test -n "$export_dynamic"; then
@@ -105,7 +118,7 @@ AC_ARG_WITH(cluttergst,
 
 if test "x$build_cluttergst" = "xyes"; then
   PKG_CHECK_MODULES(CLUTTERGST,
-                    clutter-gst-0.7 >= cluttergst_required_version,
+                    clutter-gst-0.8 >= cluttergst_required_version,
                     build_cluttergst=yes,
                     build_cluttergst=no)
   AC_SUBST(CLUTTERGST_CFLAGS)
@@ -125,7 +138,7 @@ AC_ARG_WITH(cluttergtk,
 
 if test "x$build_cluttergtk" = "xyes"; then
   PKG_CHECK_MODULES(CLUTTERGTK,
-                    clutter-gtk-0.7 >= cluttergtk_required_version,
+                    clutter-gtk-0.8 >= cluttergtk_required_version,
                     build_cluttergtk=yes,
                     build_cluttergtk=no)
   AC_SUBST(CLUTTERGTK_CFLAGS)
@@ -144,17 +157,9 @@ AC_ARG_WITH(cluttercairo,
             build_cluttercairo=$with_cluttercairo)
 
 if test "x$build_cluttercairo" = "xyes"; then
-  PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
-                    have_pycairo=true,
-                    have_pycairo=false)
-  AC_SUBST(PYCAIRO_CFLAGS)
-  AC_SUBST(PYCAIRO_LIBS)
-  if test "x$have_pycairo" == "xtrue"; then
-    AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
-    build_cluttercairo=yes
-
+  if test "x$have_pycairo" = "xyes"; then
     PKG_CHECK_MODULES(CLUTTERCAIRO,
-                      clutter-cairo-0.7 >= cluttercairo_required_version,
+                      clutter-cairo-0.8 >= cluttercairo_required_version,
                       build_cluttercairo=yes,
                       build_cluttercairo=no)
     AC_SUBST(CLUTTERCAIRO_CFLAGS)

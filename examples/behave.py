@@ -26,6 +26,7 @@ def main (args):
     stage.set_size(800, 600)
     stage.set_color(clutter.Color(0xcc, 0xcc, 0xcc, 0xff))
     stage.connect('key-press-event', clutter.main_quit)
+    stage.connect('destroy', clutter.main_quit)
 
     rect = clutter.Rectangle()
     rect.set_position(0, 0)

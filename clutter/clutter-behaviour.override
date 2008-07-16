@@ -1,6 +1,7 @@
 %%
 ignore
   clutter_alpha_new_full
+  clutter_alpha_set_closure
   clutter_behaviour_path_append_knot
   clutter_behaviour_path_append_knots_valist
   clutter_behaviour_bspline_append_knot
