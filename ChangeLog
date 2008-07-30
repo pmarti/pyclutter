@@ -1,5 +1,9 @@
 2008-07-30  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/Makefile.am: Build clutter before clutter.cogl.
+
+2008-07-30  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/Makefile.am:
 	* clutter/cogl-base.defs:
 	* clutter/cogl.override: Provide some of the general purpose API and

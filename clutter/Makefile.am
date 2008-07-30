@@ -74,9 +74,9 @@ _clutter_la_LIBADD  = $(PYCAIRO_LIBS) $(PYGTK_LIBS) $(CLUTTER_LIBS)
 _clutter_la_SOURCES = 		\
 	pyclutter.c		\
 	cluttermodule.c 
-nodist__clutter_la_SOURCES = cogl.c clutter.c
+nodist__clutter_la_SOURCES = clutter.c cogl.c
 
-CLEANFILES += cogl.c clutter.c
+CLEANFILES += clutter.c cogl.c
 
 pyclutterexec_LTLIBRARIES = _clutter.la
 
