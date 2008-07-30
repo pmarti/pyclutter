@@ -282,7 +282,7 @@ _wrap_clutter_actor_get_allocation_box (PyGObject *self)
 {
         ClutterActorBox box = { 0, };
 
-        clutter_actor_get_allocation_box (CLUTTER_ACTOR (self), &box);
+        clutter_actor_get_allocation_box (CLUTTER_ACTOR (self->obj), &box);
 
         return Py_BuildValue ("(iiii)", box.x1, box.y1, box.x2, box.y2);
 }
@@ -296,7 +296,7 @@ _wrap_clutter_actor_get_preferred_size (PyGObject *self)
 
         min_width = natural_width = 0;
         min_height = natural_height = 0;
-        clutter_actor_get_preferred_size (CLUTTER_ACTOR (self),
+        clutter_actor_get_preferred_size (CLUTTER_ACTOR (self->obj),
                                           &min_width, &min_height,
                                           &natural_width, &natural_height);
 
@@ -322,7 +322,7 @@ _wrap_clutter_actor_get_preferred_width (PyGObject *self,
         }
 
         min_width = natural_width = 0;
-        clutter_actor_get_preferred_width (CLUTTER_ACTOR (self), for_height,
+        clutter_actor_get_preferred_width (CLUTTER_ACTOR (self->obj), for_height,
                                            &min_width,
                                            &natural_width);
 
@@ -468,7 +468,7 @@ _wrap_clutter_actor_get_preferred_height (PyGObject *self,
         }
 
         min_height = natural_height = 0;
-        clutter_actor_get_preferred_height (CLUTTER_ACTOR (self), for_width,
+        clutter_actor_get_preferred_height (CLUTTER_ACTOR (self->obj), for_width,
                                             &min_height,
                                             &natural_height);
 
