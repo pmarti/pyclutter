@@ -1,3 +1,8 @@
+2008-07-30  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter.override: Fix the stage and stage manager
+	constructors.
+
 2008-07-16  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* configure.ac: Bump requirements to Clutter 0.8.0; PyClutter

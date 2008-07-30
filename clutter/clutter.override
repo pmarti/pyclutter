@@ -658,12 +658,31 @@ new-constructor CLUTTER_TYPE_STAGE_MANAGER
 %%
 override clutter_stage_manager_new noargs
 static int
-_wrap_clutter_stage_new (PyGObject *self)
+_wrap_clutter_stage_manager_new (PyGObject *self)
 {
   self->obj = (GObject *) clutter_stage_manager_get_default ();
   if (!self->obj)
     {
       PyErr_SetString (PyExc_RuntimeError, "could not get the default stage manager");
+      return -1;
+    }
+
+  g_object_ref (self->obj);
+  pygobject_register_wrapper ((PyObject *) self);
+
+  return 0;
+}
+%%
+new-constructor CLUTTER_TYPE_STAGE
+%%
+override clutter_stage_new noargs
+static int
+_wrap_clutter_stage_new (PyGObject *self)
+{
+  self->obj = (GObject *) clutter_stage_new ();
+  if (!self->obj)
+    {
+      PyErr_SetString (PyExc_RuntimeError, "could not create a clutter.Stage");
       return -1;
     }
 
