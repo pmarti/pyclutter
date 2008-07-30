@@ -1,0 +1,336 @@
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#include "pygobject.h"
+#include "pyclutter.h"
+
+#include <cogl/cogl.h>
+%%
+modulename clutter.cogl
+%%
+override cogl_get_bitmasks noargs
+static PyObject *
+_wrap_cogl_get_bitmasks (PyObject *self)
+{
+  gint red, green, blue, alpha;
+
+  cogl_get_bitmasks (&red, &green, &blue, &alpha);
+
+  return Py_BuildValue ("(iiii)", red, green, blue, alpha);
+}
+%%
+override cogl_scale kwargs
+static PyObject *
+_wrap_cogl_scale (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "scale_x", "scale_y", NULL };
+  float scale_x, scale_y;
+
+  scale_x = scale_y = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ff:scale", kwlist, &scale_x, &scale_y))
+    return NULL;
+    
+  cogl_scale (CLUTTER_FLOAT_TO_FIXED (scale_x),
+              CLUTTER_FLOAT_TO_FIXED (scale_y));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_translate kwargs
+static PyObject *
+_wrap_cogl_translate (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x", "y", "z", NULL };
+  float x, y, z;
+
+  x = y = z = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"fff:translate", kwlist, &x, &y, &z))
+    return NULL;
+    
+  cogl_translatex (CLUTTER_FLOAT_TO_FIXED (x),
+                   CLUTTER_FLOAT_TO_FIXED (y),
+                   CLUTTER_FLOAT_TO_FIXED (z));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_rotate kwargs
+static PyObject *
+_wrap_cogl_rotate (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "angle", "x", "y", "z", NULL };
+  float angle;
+  int x, y, z;
+
+  angle = 0;
+  x = y = z = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"fiii:rotate", kwlist, &angle, &x, &y, &z))
+    return NULL;
+    
+  cogl_rotatex (CLUTTER_FLOAT_TO_FIXED (angle), x, y, z);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_rectangle kwargs
+static PyObject *
+_wrap_cogl_rectangle (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x", "y", "width", "height", NULL };
+  float x, y, width, height;
+
+  x = y = width = height = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffff:rectangle", kwlist, &x, &y, &width, &height))
+    return NULL;
+    
+  cogl_rectanglex (CLUTTER_FLOAT_TO_FIXED (x),
+                   CLUTTER_FLOAT_TO_FIXED (y),
+                   CLUTTER_FLOAT_TO_FIXED (width),
+                   CLUTTER_FLOAT_TO_FIXED (height));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_move_to kwargs
+static PyObject *
+_wrap_cogl_path_move_to (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x", "y", NULL };
+  float x, y;
+
+  x = y = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ff:path_move_to", kwlist, &x, &y))
+    return NULL;
+    
+  cogl_path_move_to (CLUTTER_FLOAT_TO_FIXED (x),
+                     CLUTTER_FLOAT_TO_FIXED (y));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_rel_move_to kwargs
+static PyObject *
+_wrap_cogl_path_rel_move_to (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x", "y", NULL };
+  float x, y;
+
+  x = y = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ff:path_rel_move_to", kwlist, &x, &y))
+    return NULL;
+    
+  cogl_path_rel_move_to (CLUTTER_FLOAT_TO_FIXED (x),
+                         CLUTTER_FLOAT_TO_FIXED (y));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_line_to kwargs
+static PyObject *
+_wrap_cogl_path_line_to (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x", "y", NULL };
+  float x, y;
+
+  x = y = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ff:path_line_to", kwlist, &x, &y))
+    return NULL;
+    
+  cogl_path_line_to (CLUTTER_FLOAT_TO_FIXED (x),
+                     CLUTTER_FLOAT_TO_FIXED (y));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_rel_line_to kwargs
+static PyObject *
+_wrap_cogl_path_rel_line_to (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x", "y", NULL };
+  float x, y;
+
+  x = y = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ff:path_rel_line_to", kwlist, &x, &y))
+    return NULL;
+    
+  cogl_path_rel_line_to (CLUTTER_FLOAT_TO_FIXED (x),
+                         CLUTTER_FLOAT_TO_FIXED (y));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_arc kwargs
+static PyObject *
+_wrap_cogl_path_arc (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "center_x", "center_y", "radius_x", "radius_y", "angle_start", "angle_end", NULL };
+  float center_x, center_y, radius_x, radius_y, angle_start, angle_end;
+
+  center_x = center_y = 0;
+  radius_x = radius_y = 0;
+  angle_start = angle_end = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffffff:path_arc", kwlist, &center_x, &center_y, &radius_x, &radius_y, &angle_start, &angle_end))
+    return NULL;
+    
+  cogl_path_arc (CLUTTER_FLOAT_TO_FIXED (center_x),
+                 CLUTTER_FLOAT_TO_FIXED (center_y),
+                 CLUTTER_FLOAT_TO_FIXED (radius_x),
+                 CLUTTER_FLOAT_TO_FIXED (radius_y),
+                 CLUTTER_ANGLE_FROM_DEGF (angle_start),
+                 CLUTTER_ANGLE_FROM_DEGF (angle_end));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_curve_to kwargs
+static PyObject *
+_wrap_cogl_path_curve_to (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x1", "y1", "x2", "y2", "x3", "y3", NULL };
+  float x1, y1, x2, y2, x3, y3;
+
+  x1 = y1 = x2 = y2 = x3 = y3 = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffffff:path_curve_to", kwlist, &x1, &y1, &x2, &y2, &x3, &y3))
+    return NULL;
+    
+  cogl_path_curve_to (CLUTTER_FLOAT_TO_FIXED (x1),
+                      CLUTTER_FLOAT_TO_FIXED (y1),
+                      CLUTTER_FLOAT_TO_FIXED (x2),
+                      CLUTTER_FLOAT_TO_FIXED (y2),
+                      CLUTTER_FLOAT_TO_FIXED (x3),
+                      CLUTTER_FLOAT_TO_FIXED (y3));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_rel_curve_to kwargs
+static PyObject *
+_wrap_cogl_path_rel_curve_to (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x1", "y1", "x2", "y2", "x3", "y3", NULL };
+  float x1, y1, x2, y2, x3, y3;
+
+  x1 = y1 = x2 = y2 = x3 = y3 = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffffff:path_rel_curve_to", kwlist, &x1, &y1, &x2, &y2, &x3, &y3))
+    return NULL;
+    
+  cogl_path_rel_curve_to (CLUTTER_FLOAT_TO_FIXED (x1),
+                          CLUTTER_FLOAT_TO_FIXED (y1),
+                          CLUTTER_FLOAT_TO_FIXED (x2),
+                          CLUTTER_FLOAT_TO_FIXED (y2),
+                          CLUTTER_FLOAT_TO_FIXED (x3),
+                          CLUTTER_FLOAT_TO_FIXED (y3));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_line kwargs
+static PyObject *
+_wrap_cogl_path_line (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x1", "y1", "x2", "y2", NULL };
+  float x1, y1, x2, y2;
+
+  x1 = y1 = x2 = y2 = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffff:path_line_to", kwlist, &x1, &y1, &x2, &y2))
+    return NULL;
+    
+  cogl_path_line (CLUTTER_FLOAT_TO_FIXED (x1),
+                  CLUTTER_FLOAT_TO_FIXED (y1),
+                  CLUTTER_FLOAT_TO_FIXED (x2),
+                  CLUTTER_FLOAT_TO_FIXED (y2));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_rectangle kwargs
+static PyObject *
+_wrap_cogl_path_rectangle (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x", "y", "width", "height", NULL };
+  float x, y, width, height;
+
+  x = y = 0;
+  width = height = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffff:path_rectangle", kwlist, &x, &y, &width, &height))
+    return NULL;
+    
+  cogl_path_rectangle (CLUTTER_FLOAT_TO_FIXED (x),
+                       CLUTTER_FLOAT_TO_FIXED (y),
+                       CLUTTER_FLOAT_TO_FIXED (width),
+                       CLUTTER_FLOAT_TO_FIXED (height));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_ellipse kwargs
+static PyObject *
+_wrap_cogl_path_ellipse (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "center_x", "center_y", "radius_x", "radius_y", NULL };
+  float center_x, center_y, radius_x, radius_y;
+
+  center_x = center_y = 0;
+  radius_x = radius_y = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffff:path_ellipse", kwlist, &center_x, &center_y, &radius_x, &radius_y))
+    return NULL;
+    
+  cogl_path_ellipse (CLUTTER_FLOAT_TO_FIXED (center_x),
+                     CLUTTER_FLOAT_TO_FIXED (center_y),
+                     CLUTTER_FLOAT_TO_FIXED (radius_x),
+                     CLUTTER_FLOAT_TO_FIXED (radius_y));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_round_rectangle kwargs
+static PyObject *
+_wrap_cogl_path_round_rectangle (PyObject *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "x", "y", "width", "height", "radius", "angle_step", NULL };
+  float x, y, width, height, radius, angle_step;
+
+  x = y = width = height = 0;
+  radius = angle_step = 0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffffdd:path_ellipse", kwlist, &x, &y, &width, &height, &radius, &angle_step))
+    return NULL;
+    
+  cogl_path_round_rectangle (CLUTTER_FLOAT_TO_FIXED (x),
+                             CLUTTER_FLOAT_TO_FIXED (y),
+                             CLUTTER_FLOAT_TO_FIXED (width),
+                             CLUTTER_FLOAT_TO_FIXED (height),
+                             CLUTTER_FLOAT_TO_FIXED (radius),
+                             CLUTTER_ANGLE_FROM_DEGF (angle_step));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}

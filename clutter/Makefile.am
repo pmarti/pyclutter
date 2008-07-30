@@ -24,6 +24,11 @@ pkginclude_HEADERS = pyclutter.h
 # linker flags
 common_ldflags = -module -avoid-version
 
+# cogl
+COGL_DEFS = cogl-base.defs
+COGL_TYPES_DEFS = cogl-base-types.defs
+COGL_OVERRIDES = cogl.override
+
 # clutter module
 CLUTTER_DEFS = clutter-base.defs
 CLUTTER_TYPES_DEFS = clutter-base-types.defs
@@ -39,9 +44,18 @@ CLUTTER_OVERRIDES = 			\
 	clutter-script.override
 
 EXTRA_DIST += 			\
+	$(COGL_DEFS)		\
+	$(COGL_TYPES_DEFS)	\
+	$(COGL_OVERRIDES)	\
 	$(CLUTTER_DEFS) 	\
 	$(CLUTTER_TYPES_DEFS)	\
 	$(CLUTTER_OVERRIDES)
+
+cogl.defs: $(COGL_DEFS)
+	$(CREATEDEFS) $@ $(COGL_DEFS)
+
+cogl-types.defs: $(COGL_TYPES_DEFS)
+	$(CREATEDEFS) $@ $(COGL_TYPES_DEFS)
 
 clutter.defs: $(CLUTTER_DEFS)
 	$(CREATEDEFS) $@ $(CLUTTER_DEFS)
@@ -49,8 +63,9 @@ clutter.defs: $(CLUTTER_DEFS)
 clutter-types.defs: $(CLUTTER_TYPES_DEFS)
 	$(CREATEDEFS) $@ $(CLUTTER_TYPES_DEFS)
 
-CLEANFILES += clutter.defs clutter-types.defs
+CLEANFILES += clutter.defs clutter-types.defs cogl.defs cogl-types.defs
 
+cogl.c: cogl-types.defs cogl.defs $(COGL_OVERRIDES)
 clutter.c: clutter-types.defs clutter.defs $(CLUTTER_OVERRIDES)
 
 _clutter_la_CFLAGS  = $(PYCAIRO_CFLAGS) $(CLUTTER_CFLAGS)
@@ -59,9 +74,9 @@ _clutter_la_LIBADD  = $(PYCAIRO_LIBS) $(PYGTK_LIBS) $(CLUTTER_LIBS)
 _clutter_la_SOURCES = 		\
 	pyclutter.c		\
 	cluttermodule.c 
-nodist__clutter_la_SOURCES = clutter.c
+nodist__clutter_la_SOURCES = cogl.c clutter.c
 
-CLEANFILES += clutter.c
+CLEANFILES += cogl.c clutter.c
 
 pyclutterexec_LTLIBRARIES = _clutter.la
 
@@ -70,8 +85,12 @@ defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
 	$(CLUTTER_TYPES_DEFS) 	\
 	$(CLUTTER_DEFS) 	\
+	$(COGL_TYPES_DEFS)	\
+	$(COGL_DEFS)		\
 	clutter-types.defs	\
-	clutter.defs
+	clutter.defs		\
+	cogl-types.defs		\
+	cogl.defs
 
 .defs.c:
 	@echo "***INFO*** Generating $*.c from $*.defs" \

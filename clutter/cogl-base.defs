@@ -1,0 +1,247 @@
+(define-function check_extension
+  (c-name "cogl_check_extension")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "extension")
+  )
+)
+
+(define-function get_bitmasks
+  (c-name "cogl_get_bitmasks")
+  (return-type "none")
+  (parameters
+    '("gint*" "red")
+    '("gint*" "green")
+    '("gint*" "blue")
+    '("gint*" "alpha")
+  )
+)
+
+(define-function push_matrix
+  (c-name "cogl_push_matrix")
+  (return-type "none")
+)
+
+(define-function pop_matrix
+  (c-name "cogl_pop_matrix")
+  (return-type "none")
+)
+
+(define-function scale
+  (c-name "cogl_scale")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+  )
+)
+
+(define-function translate
+  (c-name "cogl_translate")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+    '("ClutterFixed" "z")
+  )
+)
+
+(define-function rotate 
+  (c-name "cogl_rotate")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "angle")
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-function clip_set 
+  (c-name "cogl_clip_set")
+  (return-type "none")
+  (parameters
+    '("gint" "x_offset")
+    '("gint" "y_offset")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-function clip_unset
+  (c-name "cogl_clip_unset")
+  (return-type "none")
+)
+
+(define-function enable_depth_test
+  (c-name "cogl_enable_depth_test")
+  (return-type "none")
+  (parameters
+    '("gboolean" "enable")
+  )
+)
+
+(define-function paint_init
+  (c-name "cogl_paint_init")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-function color
+  (c-name "cogl_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-function rectangle
+  (c-name "cogl_rectangle")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+    '("ClutterFixed" "width")
+    '("ClutterFixed" "height")
+  )
+)
+
+(define-function path_fill
+  (c-name "cogl_path_fill")
+  (return-type "none")
+)
+
+(define-function path_stroke
+  (c-name "cogl_path_stroke")
+  (return-type "none")
+)
+
+(define-function path_move_to
+  (c-name "cogl_path_move_to")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+  )
+)
+
+(define-function path_rel_move_to
+  (c-name "cogl_path_rel_move_to")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+  )
+)
+
+(define-function path_line_to
+  (c-name "cogl_path_line_to")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+  )
+)
+
+(define-function path_rel_line_to
+  (c-name "cogl_path_rel_line_to")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+  )
+)
+
+(define-function path_close
+  (c-name "cogl_path_close")
+  (return-type "none")
+)
+
+(define-function path_arc
+  (c-name "cogl_path_arc")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "center_x")
+    '("ClutterFixed" "center_y")
+    '("ClutterFixed" "radius_x")
+    '("ClutterFixed" "radius_y")
+    '("ClutterAngle" "angle_start")
+    '("ClutterAngle" "angle_end")
+  )
+)
+
+(define-function path_curve_to
+  (c-name "cogl_path_curve_to")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x1")
+    '("ClutterFixed" "y1")
+    '("ClutterFixed" "x2")
+    '("ClutterFixed" "y2")
+    '("ClutterFixed" "x3")
+    '("ClutterFixed" "y3")
+  )
+)
+
+(define-function path_rel_curve_to
+  (c-name "cogl_path_rel_curve_to")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x1")
+    '("ClutterFixed" "y1")
+    '("ClutterFixed" "x2")
+    '("ClutterFixed" "y2")
+    '("ClutterFixed" "x3")
+    '("ClutterFixed" "y3")
+  )
+)
+
+(define-function path_line
+  (c-name "cogl_path_line")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x1")
+    '("ClutterFixed" "y1")
+    '("ClutterFixed" "x2")
+    '("ClutterFixed" "y2")
+  )
+)
+
+(define-function path_rectangle
+  (c-name "cogl_path_rectangle")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+    '("ClutterFixed" "width")
+    '("ClutterFixed" "height")
+  )
+)
+
+(define-function path_ellipse
+  (c-name "cogl_path_ellipse")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "center_x")
+    '("ClutterFixed" "center_y")
+    '("ClutterFixed" "radius_x")
+    '("ClutterFixed" "radius_y")
+  )
+)
+
+(define-function path_round_rectangle
+  (c-name "cogl_path_round_rectangle")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+    '("ClutterFixed" "width")
+    '("ClutterFixed" "height")
+    '("ClutterFixed" "radius")
+    '("ClutterAngle" "arc_step")
+  )
+)
+

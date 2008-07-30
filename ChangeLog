@@ -1,5 +1,23 @@
 2008-07-30  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter/Makefile.am:
+	* clutter/cogl-base.defs:
+	* clutter/cogl.override: Provide some of the general purpose API and
+	the path API from COGL.
+
+	* clutter/cluttermodule.c:
+	* clutter/__init__.py: Import cogl as clutter.cogl.
+
+	* clutter/clutter-actor.override: Fix the get_allocation_geometry()
+	method.
+
+	* examples/Makefile.am:
+	* examples/custom-actor.py: Add a custom actor example, showcasing
+	subclassing clutter.Actor and using clutter.cogl to draw a
+	non-rectangular shape.
+
+2008-07-30  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	Bug 1060 - pyclutter/clutter-actor.override problem (Lee Jusung)
 
 	* clutter/clutter-actor.override: Dereference the GObject from

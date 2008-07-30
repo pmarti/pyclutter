@@ -8,6 +8,18 @@ ignore
   clutter_actor_set_rotationx
   clutter_actor_get_rotationx
 %%
+override clutter_actor_get_allocation_geometry noargs
+static PyObject *
+_wrap_clutter_actor_get_allocation_geometry (PyGObject *self)
+{
+        ClutterGeometry geom = { 0, };
+
+        clutter_actor_get_allocation_geometry (CLUTTER_ACTOR (self->obj), &geom);
+
+        return Py_BuildValue ("(iiii)",
+                              geom.x, geom.y, geom.width, geom.height);
+}
+%%
 override clutter_actor_get_geometry noargs
 static PyObject *
 _wrap_clutter_actor_get_geometry (PyGObject *self)

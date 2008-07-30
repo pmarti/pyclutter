@@ -3,12 +3,12 @@
 try:
     import ltihooks
     ltihooks # pyflakes
-    del ltihooks
 except ImportError:
-    pass
+    ltihooks = None
 
 import sys
 
+# fixes weird linker bugs on nvidia
 try:
     import dl
     sys.setdlopenflags(dl.RTLD_LAZY|dl.RTLD_GLOBAL)
@@ -30,6 +30,15 @@ if 'clutter._clutter' in sys.modules:
     _clutter = sys.modules['clutter._clutter']
 else:
     from clutter import _clutter
+
+import cogl
+
+if ltihooks:
+    try:
+        ltihooks.uninstall()
+        del ltihooks
+    except:
+        pass
 
 # use the pygtk module lazy loading stuff
 from gtk._lazyutils import LazyNamespace, LazyModule
