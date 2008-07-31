@@ -6,8 +6,8 @@
 # Released under the terms of the LGPL
 
 import sys
+import cluttergst
 import clutter, gst
-from clutter import cluttergst
 
 def main (args):
     stage = clutter.Stage()
