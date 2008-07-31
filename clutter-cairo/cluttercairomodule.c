@@ -14,30 +14,23 @@ extern PyMethodDef pycluttercairo_functions[];
 Pycairo_CAPI_t *Pycairo_CAPI;
 
 DL_EXPORT(void)
-initcluttercairo (void)
+init_cluttercairo (void)
 {
-    PyObject *m, *d;
+  PyObject *m, *d;
     
-    init_pygobject ();
+  init_pygobject ();
     
-    Pycairo_IMPORT;
-    if (Pycairo_CAPI == NULL)
-        return;
+  Pycairo_IMPORT;
+  if (Pycairo_CAPI == NULL)
+    return;
 
-    if (PyImport_ImportModule ("clutter") == NULL) {
-        PyErr_SetString (PyExc_ImportError,
-                         "could not import clutter");
-        return;
-    }
+  /* perform any initialisation required by the library here */
 
-    /* perform any initialisation required by the library here */
+  m = Py_InitModule ("_cluttercairo", pycluttercairo_functions);
+  d = PyModule_GetDict (m);
 
-    m = Py_InitModule ("cluttercairo", pycluttercairo_functions);
-    d = PyModule_GetDict (m);
+  pycluttercairo_register_classes (d);
 
-    pycluttercairo_register_classes (d);
-
-    if (PyErr_Occurred ()) {
-        Py_FatalError ("unable to initialise cluttercairo module");
-    }
+  if (PyErr_Occurred ())
+    Py_FatalError ("unable to initialise cluttercairo module");
 }

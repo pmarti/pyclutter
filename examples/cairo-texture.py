@@ -3,7 +3,7 @@ from math import pi
 
 import cairo
 import clutter
-from clutter import cluttercairo
+import cluttercairo
 
 def on_button_press_event (stage, event):
     clutter.main_quit()

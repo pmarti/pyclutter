@@ -1,5 +1,13 @@
 2008-07-31  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter-cairo/Makefile.am:
+	* clutter-cairo/__init__.py:
+	* clutter-cairo/cluttercairomodule.c:
+	* examples/cairo-texture.py: Update the cluttercairo module as
+	a stand-alone module, like cluttergst and cluttergtk
+
+2008-07-31  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter-gtk/Makefile.am:
 	* clutter-gtk/__init__.py:
 	* clutter-gtk/cluttergtk.defs:
