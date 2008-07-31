@@ -1,5 +1,25 @@
 2008-07-31  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter-gtk/Makefile.am:
+	* clutter-gtk/__init__.py:
+	* clutter-gtk/cluttergtk.defs:
+	* clutter-gtk/cluttergtk.override:
+	* clutter-gtk/cluttergtkmodule.c: Overhaul the cluttergtk module,
+	similarly to what we did for the cluttergst one. In this case, the
+	init function is strictly required in order to make everything work.
+	Just like cluttergst, to import cluttergtk you need to do:
+
+		import cluttergtk
+
+	inside your Python application. The cluttergtk module also provides
+	a cluttergtk.Texture class which can be used with gtk.gdk.Pixbuf
+	objects, gtk+ stock ids and icon names from the gtk+ icon theme.
+
+	* examples/gtk-clutter.py: Add an example of the usage of the
+	cluttergtk.Embed widget and the cluttergtk.Texture.
+
+2008-07-31  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter-gst/Makefile.am:
 	* clutter-gst/__init__.py:
 	* clutter-gst/cluttergst.defs:

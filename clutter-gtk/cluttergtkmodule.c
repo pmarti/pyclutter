@@ -10,31 +10,90 @@
 void pycluttergtk_register_classes (PyObject *d);
 extern PyMethodDef pycluttergtk_functions[];
 
-DL_EXPORT (void)
-initcluttergtk (void)
+/* clutter-gtk requires its own initialization function, which calls the
+ * equivalent functions from GTK+ and Clutter in the right order.
+ */
+static void
+init_clutter_gtk (void)
 {
-        PyObject *m, *d;
+  PyObject *av;
+  int argc, i;
+  char **argv;
 
-        init_pygobject ();
-
-        if (PyImport_ImportModule ("clutter") == NULL) {
-                PyErr_SetString (PyExc_ImportError,
-                                 "could not import clutter");
-                return;
+  av = PySys_GetObject ("argv");
+  if (!av)
+    {
+      if (!PyList_Check (av))
+        {
+	  PyErr_Warn (PyExc_Warning, "ignoring sys.argv: it must be a list of strings");
+	  av = NULL;
         }
-
-        if (PyImport_ImportModule ("gtk") == NULL) {
-                PyErr_SetString (PyExc_ImportError,
-                                 "could not import gtk");
-                return;
+      else
+        {
+          argc = PyList_Size (av);
+          for (i = 0; i < argc; i++)
+            {
+              if (!PyString_Check (PyList_GetItem (av, i)))
+                {
+		  PyErr_Warn (PyExc_Warning, "ignoring sys.argv: it must be a list of strings");
+                  av = NULL;
+                  break;
+		}
+            }
         }
+    }
 
-        m = Py_InitModule ("cluttergtk", pycluttergtk_functions);
-        d = PyModule_GetDict (m);
+  if (av != NULL)
+    {
+      argv = g_new (char*, argc);
 
-        pycluttergtk_register_classes (d);
+      for (i = 0; i < argc; i++)
+        argv[i] = g_strdup (PyString_AsString (PyList_GetItem (av, i)));
+    }
+  else
+    {
+      argc = 0;
+      argv = NULL;
+    }
 
-        if (PyErr_Occurred ()) {
-                Py_FatalError ("unable to initialise cluttergtk module");
-        }
+  if (!gtk_clutter_init (&argc, &argv))
+    {
+      if (argv != NULL)
+        g_strfreev (argv);
+
+      PyErr_SetString (PyExc_RuntimeError, "cluttergtk initialization error");
+
+	/* set the LC_NUMERIC locale back to "C", as Python < 2.4 requires
+	 * that it be set that way. */
+#if PY_VERSION_HEX < 0x020400F0
+      setlocale(LC_NUMERIC, "C");
+#endif
+      return;
+    }
+
+  /* set the LC_NUMERIC locale back to "C", as Python < 2.4 requires that
+   * it be set that way. */
+#if PY_VERSION_HEX < 0x020400F0
+  setlocale(LC_NUMERIC, "C");
+#endif
+
+  if (argv != NULL)
+    g_strfreev (argv);
+}
+
+DL_EXPORT (void)
+init_cluttergtk (void)
+{
+  PyObject *m, *d;
+
+  init_pygobject ();
+
+  m = Py_InitModule ("_cluttergtk", pycluttergtk_functions);
+  d = PyModule_GetDict (m);
+
+  init_clutter_gtk ();
+  pycluttergtk_register_classes (d);
+
+  if (PyErr_Occurred ())
+    Py_FatalError ("unable to initialise cluttergtk module");
 }

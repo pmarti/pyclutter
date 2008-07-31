@@ -25,3 +25,75 @@
   (parameters
   )
 )
+
+(define-function get_fg_color
+  (c-name "gtk_clutter_get_fg_color")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkStateType" "state")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-function get_bg_color
+  (c-name "gtk_clutter_get_bg_color")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkStateType" "state")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-function get_text_color
+  (c-name "gtk_clutter_get_text_color")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkStateType" "state")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-function get_base_color
+  (c-name "gtk_clutter_get_base_color")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkStateType" "state")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_from_pixbuf
+  (of-object "ClutterTexture")
+  (c-name "gtk_clutter_texture_set_from_pixbuf")
+  (return-type "none")
+  (parameters
+    '("GdkPixbuf*" "pixbuf")
+  )
+)
+
+(define-method set_from_stock
+  (of-object "ClutterTexture")
+  (c-name "gtk_clutter_texture_set_from_stock")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "stock_id")
+    '("GtkIconSize" "icon_size")
+  )
+)
+
+(define-method set_from_icon_name
+  (of-object "ClutterTexture")
+  (c-name "gtk_clutter_texture_set_from_icon_name")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("const-gchar*" "icon_name")
+    '("GtkIconSize" "icon_size")
+  )
+)
+
