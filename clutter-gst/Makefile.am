@@ -3,11 +3,12 @@ pkgpythondir = $(pyexecdir)
 pkgpyexecdir = $(pyexecdir)
 
 # clutter python extension modules
-pyclutterexecdir = $(pkgpyexecdir)/clutter
+pycluttergstexecdir = $(pkgpyexecdir)/cluttergst
 
 INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS)
 
-pyclutterexec_LTLIBRARIES = cluttergst.la
+pycluttergstexec_PYTHON = __init__.py
+pycluttergstexec_LTLIBRARIES = _cluttergst.la
 
 common_ldflags = -module -avoid-version
 
@@ -15,11 +16,11 @@ CLUTTERGST_DEFS = cluttergst.defs
 CLEANFILES = cluttergst.c
 EXTRA_DIST = $(CLUTTERGST_DEFS) cluttergst.override
 cluttergst.c: $(CLUTTERGST_DEFS) cluttergst.override
-cluttergst_la_CFLAGS = $(CLUTTERGST_CFLAGS)
-cluttergst_la_LDFLAGS = $(common_ldflags) -export-symbols-regex initcluttergst
-cluttergst_la_LIBADD = $(PYGTK_LIBS) $(CLUTTERGST_LIBS)
-cluttergst_la_SOURCES = cluttergstmodule.c
-nodist_cluttergst_la_SOURCES = cluttergst.c
+_cluttergst_la_CFLAGS = $(CLUTTERGST_CFLAGS)
+_cluttergst_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_cluttergst
+_cluttergst_la_LIBADD = $(PYGTK_LIBS) $(CLUTTERGST_LIBS)
+_cluttergst_la_SOURCES = cluttergstmodule.c
+nodist__cluttergst_la_SOURCES = cluttergst.c
 
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = $(CLUTTERGST_DEFS)

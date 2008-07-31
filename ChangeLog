@@ -1,3 +1,23 @@
+2008-07-31  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter-gst/Makefile.am:
+	* clutter-gst/__init__.py:
+	* clutter-gst/cluttergst.defs:
+	* clutter-gst/cluttergst.override:
+	* clutter-gst/cluttergstmodule.c: Overhaul the cluttergst module.
+	Because clutter-gst requires its own initialization function, we need
+	to put it into its own module, in order for it to have an __init__.py.
+	Thus, the way you import cluttergst has changed from this:
+
+		from clutter.cluttergst import cluttergst
+	
+	to this:
+
+		import cluttergst
+
+	which is fairly more pythonic and solves the initialization problems
+	that we have.
+
 2008-07-30  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter/Makefile.am: Build clutter before clutter.cogl.

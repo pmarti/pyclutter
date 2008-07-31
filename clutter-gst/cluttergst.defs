@@ -21,6 +21,15 @@
   (gtype-id "CLUTTER_GST_TYPE_VIDEO_SINK")
 )
 
+(define-function init
+  (c-name "clutter_gst_init")
+  (return-type "ClutterInitError")
+  (parameters
+    '("int*" "argc")
+    '("char***" "argv")
+  )
+)
+
 (define-function audio_get_type
   (c-name "clutter_gst_audio_get_type")
   (return-type "GType")
@@ -30,6 +39,12 @@
   (c-name "clutter_gst_audio_new")
   (is-constructor-of "ClutterGstAudio")
   (return-type "ClutterGstAudio*")
+)
+
+(define-method get_playbin
+  (of-object "ClutterGstAudio")
+  (c-name "clutter_gst_audio_get_playbin")
+  (return-type "GstElement*")
 )
 
 (define-function video_texture_get_type
