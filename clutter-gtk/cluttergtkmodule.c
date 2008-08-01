@@ -45,10 +45,17 @@ init_clutter_gtk (void)
 
   if (av != NULL)
     {
-      argv = g_new (char*, argc);
+      argv = g_new0 (char*, argc + 1);
 
       for (i = 0; i < argc; i++)
-        argv[i] = g_strdup (PyString_AsString (PyList_GetItem (av, i)));
+        {
+          PyObject *arg = PyList_GetItem (av, i);
+
+          if (arg && PyString_Check (arg))
+            argv[i] = g_strdup (PyString_AsString (arg));
+          else
+            g_warning ("Invalid string object. This should not happen");
+        }
     }
   else
     {
@@ -57,19 +64,7 @@ init_clutter_gtk (void)
     }
 
   if (!gtk_clutter_init (&argc, &argv))
-    {
-      if (argv != NULL)
-        g_strfreev (argv);
-
-      PyErr_SetString (PyExc_RuntimeError, "cluttergtk initialization error");
-
-	/* set the LC_NUMERIC locale back to "C", as Python < 2.4 requires
-	 * that it be set that way. */
-#if PY_VERSION_HEX < 0x020400F0
-      setlocale(LC_NUMERIC, "C");
-#endif
-      return;
-    }
+    PyErr_SetString (PyExc_RuntimeError, "cluttergtk initialization error");
 
   /* set the LC_NUMERIC locale back to "C", as Python < 2.4 requires that
    * it be set that way. */

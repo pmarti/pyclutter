@@ -1,5 +1,17 @@
 2008-08-01  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* clutter-gst/cluttergstmodule.c (init_clutter_gst): Create a
+	real NULL-terminated string vector for the argv parameter.
+
+	* clutter-gtk/cluttergtkmodule.c (init_clutter_gtk): Ditto as
+	above.
+
+	* clutter/Makefile.am: When installing the clutter module
+	remove the shared objects for the old submodules inside the same
+	directory, to avoid potential collisions.
+
+2008-08-01  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter/clutter-base.defs: Fix the names of the set_clip()
 	method parameters.
 

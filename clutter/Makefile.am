@@ -105,3 +105,9 @@ defs_DATA = \
 	&& cp -f gen-$*.c $*.c \
 	&& rm -f gen-$*.c
 
+# delete the old submodules, if any, to avoid collisions
+install-data-local:
+	(cd $(DESTDIR)$(pyclutterexecdir) && \
+	 rm -f cluttercairo.so && \
+	 rm -f cluttergst.so && \
+	 rm -f cluttergtk.so)
