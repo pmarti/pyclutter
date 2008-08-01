@@ -1,5 +1,16 @@
 2008-08-01  Emmanuele Bassi  <ebassi@openedhand.com>
 
+	* examples/Makefile.am: Add all the examples to the DIST.
+
+	* examples/bubbles.py:
+	* examples/clock.py:
+	* examples/flowers.py: Add the examples ported from
+	clutter-cairo. (#1081, Damien Boucard)
+
+	* examples/script.py: Update the clutter.Script example.
+
+2008-08-01  Emmanuele Bassi  <ebassi@openedhand.com>
+
 	* clutter-gst/cluttergstmodule.c (init_clutter_gst): Create a
 	real NULL-terminated string vector for the argv parameter.
 

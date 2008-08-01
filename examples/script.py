@@ -41,7 +41,8 @@ BUFFER = '''
     "visible" : true,
     "reactive" : true,
     "signals" : [
-      { "name" : "key-press-event", "handler" : "do_quit" }
+      { "name" : "key-press-event", "handler" : "do_quit" },
+      { "name" : "destroy", "handler" : "do_quit" }
     ],
     "children" : [
       {
