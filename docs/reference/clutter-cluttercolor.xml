@@ -29,7 +29,65 @@
 			<methodname><link linkend="method-cluttercolor--foo">foo</link></methodname>
 			<methodparam><parameter role="keyword">bar</parameter></methodparam>
 		</methodsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-cluttercolor--add">add</link></methodname>
+			<methodparam><parameter role="keyword">color</parameter></methodparam>
+		</methodsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-cluttercolor--subtract">subtract</link></methodname>
+			<methodparam><parameter role="keyword">color</parameter></methodparam>
+		</methodsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-cluttercolor--lighten">lighten</link></methodname>
+		</methodsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-cluttercolor--darken">darken</link></methodname>
+		</methodsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-cluttercolor--shade">shade</link></methodname>
+			<methodparam><parameter role="keyword">factor</parameter></methodparam>
+		</methodsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-cluttercolor--to_hls">darken</link></methodname>
+		</methodsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-cluttercolor--to_pixel">darken</link></methodname>
+		</methodsynopsis>
+
+		<methodsynopsis language="python">
+			<methodname><link linkend="method-cluttercolor--to-string">to_string</link></methodname>
+		</methodsynopsis>
+
 	</classsynopsis>
+
+        <programlisting>
+                <emphasis role="bold">Functions</emphasis>
+
+                <methodsynopsis language="python">
+                        <methodname><link linkend="function-clutter--color-parse">clutter.color_parse</link></methodname>
+                        <methodparam><parameter role="keyword">spec</parameter></methodparam>
+                </methodsynopsis>
+
+                <methodsynopsis language="python">
+                        <methodname><link linkend="function-clutter--color-from-hls">clutter.color_from_hls</link></methodname>
+                        <methodparam><parameter role="keyword">hue</parameter></methodparam>
+                        <methodparam><parameter role="keyword">luminance</parameter></methodparam>
+                        <methodparam><parameter role="keyword">saturation</parameter></methodparam>
+                </methodsynopsis>
+
+                <methodsynopsis language="python">
+                        <methodname><link linkend="function-clutter--color-from-pixel">clutter.color_from_pixel</link></methodname>
+                        <methodparam><parameter role="keyword">pixel</parameter></methodparam>
+                </methodsynopsis>
+
+        </programlisting>
 </refsect1>
 
 <!-- ******************************* -->

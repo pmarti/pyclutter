@@ -21,8 +21,320 @@
 
       <methodsynopsis language="python">
         <methodname><link linkend="method-clutteractor--show">show</link></methodname>
-          <methodparam></methodparam>
       </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--show-all">show_all</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--hide">hide</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--hide-all">hide_all</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--realize">realize</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--unrealize">unrealize</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--destroy">destroy</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--unrealize">unrealize</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--unrealize">unrealize</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--paint">paint</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--queue-redraw">queue_redraw</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--queue-relayout">queue_relayout</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--allocate">allocate</link></methodname>
+        <methodparam><parameter role="keyword">box</parameter></methodparam>
+        <methodparam><parameter role="keyword">origin_changed</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--allocate">allocate</link></methodname>
+        <methodparam><parameter role="keyword">box</parameter></methodparam>
+        <methodparam><parameter role="keyword">origin_changed</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--allocate-preferred-size">allocate_preferred_size</link></methodname>
+        <methodparam><parameter role="keyword">origin_changed</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-preferred-width">get_preferred_width</link></methodname>
+        <methodparam><parameter role="keyword">for_heigth</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-preferred-height">get_preferred_height</link></methodname>
+        <methodparam><parameter role="keyword">for_width</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-preferred-size">get_preferred_size</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-geometry">set_geometry</link></methodname>
+        <methodparam><parameter role="keyword">geometry</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-geometry">get_geometry</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-position">set_position</link></methodname>
+        <methodparam><parameter role="keyword">x</parameter></methodparam>
+        <methodparam><parameter role="keyword">y</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-position">get_position</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-size">set_size</link></methodname>
+        <methodparam><parameter role="keyword">width</parameter></methodparam>
+        <methodparam><parameter role="keyword">height</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-size">get_size</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-x">set_x</link></methodname>
+        <methodparam><parameter role="keyword">x</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-x">get_x</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-y">set_y</link></methodname>
+        <methodparam><parameter role="keyword">y</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-y">get_y</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-width">set_width</link></methodname>
+        <methodparam><parameter role="keyword">width</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-width">get_width</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-height">set_height</link></methodname>
+        <methodparam><parameter role="keyword">height</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-height">get_height</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-rotation">set_rotation</link></methodname>
+        <methodparam><parameter role="keyword">axis</parameter></methodparam>
+        <methodparam><parameter role="keyword">angle</parameter></methodparam>
+        <methodparam><parameter role="keyword">x</parameter></methodparam>
+        <methodparam><parameter role="keyword">y</parameter></methodparam>
+        <methodparam><parameter role="keyword">z</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-rotation">get_rotation</link></methodname>
+        <methodparam><parameter role="keyword">axis</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-opacity">set_opacity</link></methodname>
+        <methodparam><parameter role="keyword">opacity</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-opacity">get_opacity</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-paint-opacity">get_paint_opacity</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-name">set_name</link></methodname>
+        <methodparam><parameter role="keyword">name</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-name">get_name</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-gid">get_gid</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-clip">set_clip</link></methodname>
+        <methodparam><parameter role="keyword">x_offset</parameter></methodparam>
+        <methodparam><parameter role="keyword">y_offset</parameter></methodparam>
+        <methodparam><parameter role="keyword">width</parameter></methodparam>
+        <methodparam><parameter role="keyword">height</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-clip">get_clip</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--has-clip">has_clip</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--remove-clip">remove_clip</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-parent">set_parent</link></methodname>
+        <methodparam><parameter role="keyword">parent</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-parent">get_parent</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--reparent">reparent</link></methodname>
+        <methodparam><parameter role="keyword">new_parent</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--unparent">unparent</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--raise-actor">raise_actor</link></methodname>
+        <methodparam><parameter role="keyword">above</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--raise-actor">lower_actor</link></methodname>
+        <methodparam><parameter role="keyword">below</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--raise-top">raise_top</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--lower-bottom">lower_bottom</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-depth">set_depth</link></methodname>
+        <methodparam><parameter role="keyword">depth</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-depth">get_depth</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-scale">set_scale</link></methodname>
+        <methodparam><parameter role="keyword">scale_x</parameter></methodparam>
+        <methodparam><parameter role="keyword">scale_y</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-scale">get_scale</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--move-by">move_by</link></methodname>
+        <methodparam><parameter role="keyword">dx</parameter></methodparam>
+        <methodparam><parameter role="keyword">dy</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--is-scaled">is_scaled</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--is-rotated">is_rotated</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-reactive">set_reactive</link></methodname>
+        <methodparam><parameter role="keyword">reactive</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-reactive">get_reactive</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--should-pick-paint">should_pick_paint</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--set-anchor-point">set_anchor_point</link></methodname>
+        <methodparam><parameter role="keyword">anchor_x</parameter></methodparam>
+        <methodparam><parameter role="keyword">anchor_y</parameter></methodparam>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-anchor-point">get_anchor_point</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-allocation-box">get_allocation_box</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-allocation-geometry">get_allocation_geometry</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-allocation-coords">get_allocation_coords</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-transformed-position">get_transformed_position</link></methodname>
+      </methodsynopsis>
+
+      <methodsynopsis language="python">
+        <methodname><link linkend="method-clutteractor--get-transformed-size">get_transformed_size</link></methodname>
+      </methodsynopsis>
+
     </classsynopsis>
   </refsect1>
 

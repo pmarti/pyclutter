@@ -1,3 +1,15 @@
+2008-08-01  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* clutter/clutter-base.defs: Fix the names of the set_clip()
+	method parameters.
+
+	* docs/reference/clutter-clutteractor.xml: Add more methods to
+	the class synopsis; the actual documentation is still missing.
+
+	* docs/reference/clutter-cluttercolor.xml: Ditto, as above.
+
+	* docs/reference/clutter-cluttertimeline.xml: Ditto, as above.
+
 2008-07-31  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* clutter-cairo/Makefile.am:

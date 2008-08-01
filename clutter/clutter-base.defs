@@ -314,8 +314,8 @@
   (c-name "clutter_actor_set_clip")
   (return-type "none")
   (parameters
-    '("gint" "xoff")
-    '("gint" "yoff")
+    '("gint" "x_offset")
+    '("gint" "y_offset")
     '("gint" "width")
     '("gint" "height")
   )
