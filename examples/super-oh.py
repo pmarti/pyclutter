@@ -21,12 +21,11 @@ class SuperOh (clutter.Group) :
 
     def create_hands (self):
         try:
-            pixbuf = gtk.gdk.pixbuf_new_from_file("redhand.png")
+            redhand = clutter.Texture(filename="redhand.png")
         except Exception:
-            print "Unable to find redhand.png"
+            print "Unable to load redhand.png"
             sys.exit(1)
 
-        redhand = clutter.Texture(pixbuf)
         (w, h) = redhand.get_size()
 
         for i in range(self.n_hands):
@@ -73,7 +72,7 @@ class SuperOh (clutter.Group) :
             hand.hide()
 
 def main (args):
-    stage = clutter.Stage()
+    stage = clutter.stage_get_default()
 
     stage.set_color(clutter.Color(0xcc, 0xcc, 0xcc, 0xff))
     stage.connect('key-press-event', clutter.main_quit)
