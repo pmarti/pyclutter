@@ -1,0 +1,190 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterbehaviourpath">
+  <refmeta>
+    <refentrytitle>clutter.BehaviourPath</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.BehaviourPath</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.BehaviourPath</classname></ooclass>
+  <ooclass><classname><link linkend="class-clutterbehaviour">clutter.Behaviour</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>alpha</parameter></methodparam>
+    <methodparam><parameter>knots</parameter></methodparam>
+    <methodparam><parameter>n_knots</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourpath--get-knots">get_knots</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourpath--append-knot">append_knot</link></methodname>
+    <methodparam><parameter>knot</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourpath--append-knots">append_knots</link></methodname>
+    <methodparam><parameter>first_knot</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourpath--insert-knot">insert_knot</link></methodname>
+    <methodparam><parameter>offset</parameter></methodparam>
+    <methodparam><parameter>knot</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourpath--remove-knot">remove_knot</link></methodname>
+    <methodparam><parameter>offset</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourpath--clear">clear</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutterbehaviour">clutter.Behaviour</link>
+    +-- <link linkend="class-clutterbehaviourpath">clutter.BehaviourPath</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>alpha</parameter></methodparam>
+    <methodparam><parameter>knots</parameter></methodparam>
+    <methodparam><parameter>n_knots</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>alpha</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterAlpha*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>knots</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterKnot*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>n_knots</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterBehaviour*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterbehaviourpath--get-knots">
+    <title>clutter.BehaviourPath.get_knots</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_knots</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a GSList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourpath--append-knot">
+    <title>clutter.BehaviourPath.append_knot</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>append_knot</methodname>
+    <methodparam><parameter>knot</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>knot</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterKnot*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourpath--append-knots">
+    <title>clutter.BehaviourPath.append_knots</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>append_knots</methodname>
+    <methodparam><parameter>first_knot</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>first_knot</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterKnot*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourpath--insert-knot">
+    <title>clutter.BehaviourPath.insert_knot</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>insert_knot</methodname>
+    <methodparam><parameter>offset</parameter></methodparam>
+    <methodparam><parameter>knot</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>offset</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>knot</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterKnot*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourpath--remove-knot">
+    <title>clutter.BehaviourPath.remove_knot</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>remove_knot</methodname>
+    <methodparam><parameter>offset</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>offset</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourpath--clear">
+    <title>clutter.BehaviourPath.clear</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>clear</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

@@ -1,0 +1,100 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterclonetexture">
+  <refmeta>
+    <refentrytitle>clutter.CloneTexture</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.CloneTexture</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.CloneTexture</classname></ooclass>
+  <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>parent-texture</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterclonetexture--get-parent-texture">get_parent_texture</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterclonetexture--set-parent-texture">set_parent_texture</link></methodname>
+    <methodparam><parameter>texture</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutteractor">clutter.Actor</link>
+    +-- <link linkend="class-clutterclonetexture">clutter.CloneTexture</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>parent-texture</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>parent-texture</parameter>&nbsp;:</term>
+      <listitem><simpara>a </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterclonetexture--get-parent-texture">
+    <title>clutter.CloneTexture.get_parent_texture</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_parent_texture</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterTexture*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterclonetexture--set-parent-texture">
+    <title>clutter.CloneTexture.set_parent_texture</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_parent_texture</methodname>
+    <methodparam><parameter>texture</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>texture</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTexture*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

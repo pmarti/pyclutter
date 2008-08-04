@@ -1,361 +1,515 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-
 <refentry id="class-clutteractor">
-  <refnamediv>
-    <refname>clutter.Actor</refname>
-    <refpurpose>Base abstract class for all visual stage actors.</refpurpose>
-  </refnamediv>
+  <refmeta>
+    <refentrytitle>clutter.Actor</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
 
-<!-- ************************* -->
-<!-- BEGIN OF CLUTTER SYNOPSIS -->
-<!-- ************************* -->
+  <refnamediv>
+    <refname>clutter.Actor</refname><refpurpose></refpurpose>
+  </refnamediv>
 
   <refsect1>
     <title>Synopsis</title>
 
-    <classsynopsis language="python">
-      <ooclass><classname>clutter.Actor</classname></ooclass>
-      <ooclass><classname>gobject.GInitiallyUnowned</classname></ooclass>
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Actor</classname></ooclass>
+  <ooclass><classname>gobject.GInitiallyUnowned</classname></ooclass>
+
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--show">show</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--show-all">show_all</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--hide">hide</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--hide-all">hide_all</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--realize">realize</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--unrealize">unrealize</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--paint">paint</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--pick">pick</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--queue-redraw">queue_redraw</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--destroy">destroy</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-geometry">set_geometry</link></methodname>
+    <methodparam><parameter>geometry</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-geometry">get_geometry</link></methodname>
+    <methodparam><parameter>geometry</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-size">set_size</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-position">set_position</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-position">get_position</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-x">set_x</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-y">set_y</link></methodname>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-width">get_width</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-height">get_height</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-width">set_width</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-height">set_height</link></methodname>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-x">get_x</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-y">get_y</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-rotation">set_rotation</link></methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>angle</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-rotation">get_rotation</link></methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-opacity">set_opacity</link></methodname>
+    <methodparam><parameter>opacity</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-opacity">get_opacity</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-name">set_name</link></methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-name">get_name</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-gid">get_gid</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-clip">set_clip</link></methodname>
+    <methodparam><parameter>x_offset</parameter></methodparam>
+    <methodparam><parameter>y_offset</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--remove-clip">remove_clip</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--has-clip">has_clip</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-parent">set_parent</link></methodname>
+    <methodparam><parameter>parent</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-parent">get_parent</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--reparent">reparent</link></methodname>
+    <methodparam><parameter>new_parent</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--unparent">unparent</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--raise-actor">raise_actor</link></methodname>
+    <methodparam><parameter>below</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--lower-actor">lower_actor</link></methodname>
+    <methodparam><parameter>above</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--raise-top">raise_top</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--lower-bottom">lower_bottom</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-depth">set_depth</link></methodname>
+    <methodparam><parameter>depth</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-depth">get_depth</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-scale">set_scale</link></methodname>
+    <methodparam><parameter>scale_x</parameter></methodparam>
+    <methodparam><parameter>scale_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-scale">get_scale</link></methodname>
+    <methodparam><parameter>scale_x</parameter></methodparam>
+    <methodparam><parameter>scale_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-size">get_size</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--move-by">move_by</link></methodname>
+    <methodparam><parameter>dx</parameter></methodparam>
+    <methodparam><parameter>dy</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--apply-transform-to-point">apply_transform_to_point</link></methodname>
+    <methodparam><parameter>point</parameter></methodparam>
+    <methodparam><parameter>vertex</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--is-scaled">is_scaled</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--is-rotated">is_rotated</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--apply-relative-transform-to-point">apply_relative_transform_to_point</link></methodname>
+    <methodparam><parameter>ancestor</parameter></methodparam>
+    <methodparam><parameter>point</parameter></methodparam>
+    <methodparam><parameter>vertex</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-clip">get_clip</link></methodname>
+    <methodparam><parameter>xoff</parameter></methodparam>
+    <methodparam><parameter>yoff</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-reactive">set_reactive</link></methodname>
+    <methodparam><parameter>reactive</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-reactive">get_reactive</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--event">event</link></methodname>
+    <methodparam><parameter>event</parameter></methodparam>
+    <methodparam><parameter>capture</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--should-pick-paint">should_pick_paint</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-shader">set_shader</link></methodname>
+    <methodparam><parameter>shader</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-shader">get_shader</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-shader-param">set_shader_param</link></methodname>
+    <methodparam><parameter>param</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-anchor-point">set_anchor_point</link></methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--move-anchor-point">move_anchor_point</link></methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-anchor-point">get_anchor_point</link></methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-anchor-point-from-gravity">set_anchor_point_from_gravity</link></methodname>
+    <methodparam><parameter>gravity</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--move-anchor-point-from-gravity">move_anchor_point_from_gravity</link></methodname>
+    <methodparam><parameter>gravity</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--transform-stage-point">transform_stage_point</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>x_out</parameter></methodparam>
+    <methodparam><parameter>y_out</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--queue-relayout">queue_relayout</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-preferred-width">get_preferred_width</link></methodname>
+    <methodparam><parameter>for_height</parameter></methodparam>
+    <methodparam><parameter>min_width_p</parameter></methodparam>
+    <methodparam><parameter>natural_width_p</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-preferred-height">get_preferred_height</link></methodname>
+    <methodparam><parameter>for_width</parameter></methodparam>
+    <methodparam><parameter>min_height_p</parameter></methodparam>
+    <methodparam><parameter>natural_height_p</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-preferred-size">get_preferred_size</link></methodname>
+    <methodparam><parameter>min_width_p</parameter></methodparam>
+    <methodparam><parameter>min_height_p</parameter></methodparam>
+    <methodparam><parameter>natural_width_p</parameter></methodparam>
+    <methodparam><parameter>natural_height_p</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--allocate">allocate</link></methodname>
+    <methodparam><parameter>box</parameter></methodparam>
+    <methodparam><parameter>absolute_origin_changed</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--allocate-preferred-size">allocate_preferred_size</link></methodname>
+    <methodparam><parameter>absolute_origin_changed</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-allocation-coords">get_allocation_coords</link></methodname>
+    <methodparam><parameter>x_1</parameter></methodparam>
+    <methodparam><parameter>y_1</parameter></methodparam>
+    <methodparam><parameter>x_2</parameter></methodparam>
+    <methodparam><parameter>y_2</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-allocation-box">get_allocation_box</link></methodname>
+    <methodparam><parameter>box</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-allocation-geometry">get_allocation_geometry</link></methodname>
+    <methodparam><parameter>geom</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-allocation-vertices">get_allocation_vertices</link></methodname>
+    <methodparam><parameter>ancestor</parameter></methodparam>
+    <methodparam><parameter>verts[4]</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-sizeu">set_sizeu</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-sizeu">get_sizeu</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-transformed-size">get_transformed_size</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-transformed-sizeu">get_transformed_sizeu</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-positionu">set_positionu</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-positionu">get_positionu</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-transformed-position">get_transformed_position</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-transformed-positionu">get_transformed_positionu</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-fixed-position-set">get_fixed_position_set</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-fixed-position-set">set_fixed_position_set</link></methodname>
+    <methodparam><parameter>is_set</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-widthu">get_widthu</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-heightu">get_heightu</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-widthu">set_widthu</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-heightu">set_heightu</link></methodname>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-xu">get_xu</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-yu">get_yu</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-xu">set_xu</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-yu">set_yu</link></methodname>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-rotationx">set_rotationx</link></methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>angle</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-rotationu">set_rotationu</link></methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>angle</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-rotationx">get_rotationx</link></methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-rotationu">get_rotationu</link></methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-paint-opacity">get_paint_opacity</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-clipu">set_clipu</link></methodname>
+    <methodparam><parameter>xoff</parameter></methodparam>
+    <methodparam><parameter>yoff</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-clipu">get_clipu</link></methodname>
+    <methodparam><parameter>xoff</parameter></methodparam>
+    <methodparam><parameter>yoff</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-stage">get_stage</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-depthu">set_depthu</link></methodname>
+    <methodparam><parameter>depth</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-depthu">get_depthu</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-scalex">set_scalex</link></methodname>
+    <methodparam><parameter>scale_x</parameter></methodparam>
+    <methodparam><parameter>scale_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-scalex">get_scalex</link></methodname>
+    <methodparam><parameter>scale_x</parameter></methodparam>
+    <methodparam><parameter>scale_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--move-byu">move_byu</link></methodname>
+    <methodparam><parameter>dx</parameter></methodparam>
+    <methodparam><parameter>dy</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--set-anchor-pointu">set_anchor_pointu</link></methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--move-anchor-pointu">move_anchor_pointu</link></methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-anchor-pointu">get_anchor_pointu</link></methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-abs-allocation-vertices">get_abs_allocation_vertices</link></methodname>
+    <methodparam><parameter>verts[4]</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
 
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--show">show</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--show-all">show_all</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--hide">hide</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--hide-all">hide_all</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--realize">realize</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--unrealize">unrealize</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--destroy">destroy</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--unrealize">unrealize</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--unrealize">unrealize</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--paint">paint</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--queue-redraw">queue_redraw</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--queue-relayout">queue_relayout</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--allocate">allocate</link></methodname>
-        <methodparam><parameter role="keyword">box</parameter></methodparam>
-        <methodparam><parameter role="keyword">origin_changed</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--allocate">allocate</link></methodname>
-        <methodparam><parameter role="keyword">box</parameter></methodparam>
-        <methodparam><parameter role="keyword">origin_changed</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--allocate-preferred-size">allocate_preferred_size</link></methodname>
-        <methodparam><parameter role="keyword">origin_changed</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-preferred-width">get_preferred_width</link></methodname>
-        <methodparam><parameter role="keyword">for_heigth</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-preferred-height">get_preferred_height</link></methodname>
-        <methodparam><parameter role="keyword">for_width</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-preferred-size">get_preferred_size</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-geometry">set_geometry</link></methodname>
-        <methodparam><parameter role="keyword">geometry</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-geometry">get_geometry</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-position">set_position</link></methodname>
-        <methodparam><parameter role="keyword">x</parameter></methodparam>
-        <methodparam><parameter role="keyword">y</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-position">get_position</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-size">set_size</link></methodname>
-        <methodparam><parameter role="keyword">width</parameter></methodparam>
-        <methodparam><parameter role="keyword">height</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-size">get_size</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-x">set_x</link></methodname>
-        <methodparam><parameter role="keyword">x</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-x">get_x</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-y">set_y</link></methodname>
-        <methodparam><parameter role="keyword">y</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-y">get_y</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-width">set_width</link></methodname>
-        <methodparam><parameter role="keyword">width</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-width">get_width</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-height">set_height</link></methodname>
-        <methodparam><parameter role="keyword">height</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-height">get_height</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-rotation">set_rotation</link></methodname>
-        <methodparam><parameter role="keyword">axis</parameter></methodparam>
-        <methodparam><parameter role="keyword">angle</parameter></methodparam>
-        <methodparam><parameter role="keyword">x</parameter></methodparam>
-        <methodparam><parameter role="keyword">y</parameter></methodparam>
-        <methodparam><parameter role="keyword">z</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-rotation">get_rotation</link></methodname>
-        <methodparam><parameter role="keyword">axis</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-opacity">set_opacity</link></methodname>
-        <methodparam><parameter role="keyword">opacity</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-opacity">get_opacity</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-paint-opacity">get_paint_opacity</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-name">set_name</link></methodname>
-        <methodparam><parameter role="keyword">name</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-name">get_name</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-gid">get_gid</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-clip">set_clip</link></methodname>
-        <methodparam><parameter role="keyword">x_offset</parameter></methodparam>
-        <methodparam><parameter role="keyword">y_offset</parameter></methodparam>
-        <methodparam><parameter role="keyword">width</parameter></methodparam>
-        <methodparam><parameter role="keyword">height</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-clip">get_clip</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--has-clip">has_clip</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--remove-clip">remove_clip</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-parent">set_parent</link></methodname>
-        <methodparam><parameter role="keyword">parent</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-parent">get_parent</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--reparent">reparent</link></methodname>
-        <methodparam><parameter role="keyword">new_parent</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--unparent">unparent</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--raise-actor">raise_actor</link></methodname>
-        <methodparam><parameter role="keyword">above</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--raise-actor">lower_actor</link></methodname>
-        <methodparam><parameter role="keyword">below</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--raise-top">raise_top</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--lower-bottom">lower_bottom</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-depth">set_depth</link></methodname>
-        <methodparam><parameter role="keyword">depth</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-depth">get_depth</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-scale">set_scale</link></methodname>
-        <methodparam><parameter role="keyword">scale_x</parameter></methodparam>
-        <methodparam><parameter role="keyword">scale_y</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-scale">get_scale</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--move-by">move_by</link></methodname>
-        <methodparam><parameter role="keyword">dx</parameter></methodparam>
-        <methodparam><parameter role="keyword">dy</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--is-scaled">is_scaled</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--is-rotated">is_rotated</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-reactive">set_reactive</link></methodname>
-        <methodparam><parameter role="keyword">reactive</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-reactive">get_reactive</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--should-pick-paint">should_pick_paint</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--set-anchor-point">set_anchor_point</link></methodname>
-        <methodparam><parameter role="keyword">anchor_x</parameter></methodparam>
-        <methodparam><parameter role="keyword">anchor_y</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-anchor-point">get_anchor_point</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-allocation-box">get_allocation_box</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-allocation-geometry">get_allocation_geometry</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-allocation-coords">get_allocation_coords</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-transformed-position">get_transformed_position</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutteractor--get-transformed-size">get_transformed_size</link></methodname>
-      </methodsynopsis>
-
-    </classsynopsis>
   </refsect1>
-
-<!-- ************************* -->
-<!-- BEGIN OF CLUTTER ANCESTRY -->
-<!-- ************************* -->
-
   <refsect1>
     <title>Ancestry</title>
 
-    <synopsis>
+<synopsis>
 <link linkend="class-gobject">gobject.GObject</link>
- +--<link linkend="class-gobject">gobject.GInitiallyUnowned</link>
-     +--<link linkend="class-clutteractor">clutter.Actor</link>
-  </synopsis>
-
-  </refsect1>
-
-<!-- ********************************* -->
-<!-- BEGIN OF CLUTTER PROPERTIES -->
-<!-- ********************************* -->
++-- <link linkend="class-gobject">gobject.GInitiallyUnowned</link>
+  +-- <link linkend="class-clutteractor">clutter.Actor</link>
+</synopsis>
 
   <refsect1 id="properties-clutteractor">
     <title>Properties</title>
@@ -495,10 +649,6 @@
 
   </refsect1>
 
-<!-- ********************************** -->
-<!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
-<!-- ********************************** -->
-
   <refsect1 id="signal-prototypes-clutteractor">
     <title>Signal Prototypes</title>
 
@@ -615,19 +765,6 @@
 
       <varlistentry>
         <term>
-          "<link linkend="signal-clutteractor--hide">hide</link>"
-        </term>
-        <listitem>
-          <methodsynopsis language="python"><methodname>callback</methodname>
-            <methodparam><parameter>actor</parameter></methodparam>
-            <methodparam><parameter>user_param1</parameter></methodparam>
-            <methodparam><parameter>...</parameter></methodparam>
-          </methodsynopsis>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>
           "<link linkend="signal-clutteractor--key-press-event">key-press-event</link>"
         </term>
         <listitem>
@@ -684,12 +821,12 @@
 
       <varlistentry>
         <term>
-          "<link linkend="signal-clutteractor--parent-set">parent-set</link>"
+          "<link linkend="signal-clutteractor--scroll-event">scroll-event</link>"
         </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
-            <methodparam><parameter>old_parent</parameter></methodparam>
+            <methodparam><parameter>event</parameter></methodparam>
             <methodparam><parameter>user_param1</parameter></methodparam>
             <methodparam><parameter>...</parameter></methodparam>
           </methodsynopsis>
@@ -698,12 +835,12 @@
 
       <varlistentry>
         <term>
-          "<link linkend="signal-clutteractor--scroll-event">scroll-event</link>"
+          "<link linkend="signal-clutteractor--parent-set">parent-set</link>"
         </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
-            <methodparam><parameter>event</parameter></methodparam>
+            <methodparam><parameter>old_parent</parameter></methodparam>
             <methodparam><parameter>user_param1</parameter></methodparam>
             <methodparam><parameter>...</parameter></methodparam>
           </methodsynopsis>
@@ -723,13 +860,61 @@
         </listitem>
       </varlistentry>
 
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--hide">hide</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--paint">paint</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--realize">realize</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>
+          "<link linkend="signal-clutteractor--unrealize">unrealize</link>"
+        </term>
+        <listitem>
+          <methodsynopsis language="python"><methodname>callback</methodname>
+            <methodparam><parameter>actor</parameter></methodparam>
+            <methodparam><parameter>user_param1</parameter></methodparam>
+            <methodparam><parameter>...</parameter></methodparam>
+          </methodsynopsis>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
 
   </refsect1>
-
-<!-- **************************** -->
-<!-- BEGIN OF CLUTTER DESCRIPTION -->
-<!-- **************************** -->
 
   <refsect1 id="description-clutteractor">
     <title>Description</title>
@@ -742,88 +927,2054 @@
       <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link> subclass.</para>
   </refsect1>
 
-
-<!-- ****************************** -->
-<!-- BEGIN OF CLUTTER METHODS -->
-<!-- ****************************** -->
-
-<refsect1>
-  <title>Methods</title>
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
 
   <refsect2 id="method-clutteractor--show">
     <title>clutter.Actor.show</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>show</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-    </variablelist>
-
-    <para>
-      Flags a clutter actor to be displayed. An actor not shown will 
-      not appear on the display.
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>show</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
   </refsect2>
-  
+
+
   <refsect2 id="method-clutteractor--show-all">
     <title>clutter.Actor.show_all</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>show_all</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-    </variablelist>
-
-    <para>
-      Flags a clutter actor to be displayed, along with all its children.
-      Whether or not show_all recurses it's an implementation detail of
-      the actor itself.
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>show_all</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
   </refsect2>
-  
+
+
   <refsect2 id="method-clutteractor--hide">
     <title>clutter.Actor.hide</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>hide</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-    </variablelist>
-
-    <para>
-      Flags a visible clutter actor to be hidden.
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>hide</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
   </refsect2>
+
 
   <refsect2 id="method-clutteractor--hide-all">
     <title>clutter.Actor.hide_all</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>hide_all</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-    </variablelist>
-
-    <para>
-      Flags a visible clutter actor to be hidden, along with all its
-      children.
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>hide_all</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
   </refsect2>
 
-</refsect1>
 
-<!-- ************************ -->
-<!-- BEGIN OF CLUTTER SIGNALS -->
-<!-- ************************ --> 
+  <refsect2 id="method-clutteractor--realize">
+    <title>clutter.Actor.realize</title>
 
+<programlisting><methodsynopsis language="python">
+    <methodname>realize</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--unrealize">
+    <title>clutter.Actor.unrealize</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>unrealize</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--paint">
+    <title>clutter.Actor.paint</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>paint</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--pick">
+    <title>clutter.Actor.pick</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>pick</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a clutter.Color</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--queue-redraw">
+    <title>clutter.Actor.queue_redraw</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>queue_redraw</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--destroy">
+    <title>clutter.Actor.destroy</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>destroy</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-geometry">
+    <title>clutter.Actor.set_geometry</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_geometry</methodname>
+    <methodparam><parameter>geometry</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>geometry</parameter>&nbsp;:</term>
+      <listitem><simpara>a clutter.Geometry</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-geometry">
+    <title>clutter.Actor.get_geometry</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_geometry</methodname>
+    <methodparam><parameter>geometry</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>geometry</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterGeometry*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-size">
+    <title>clutter.Actor.set_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_size</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-position">
+    <title>clutter.Actor.set_position</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_position</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-position">
+    <title>clutter.Actor.get_position</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_position</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-x">
+    <title>clutter.Actor.set_x</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_x</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-y">
+    <title>clutter.Actor.set_y</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_y</methodname>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-width">
+    <title>clutter.Actor.get_width</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_width</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-height">
+    <title>clutter.Actor.get_height</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_height</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-width">
+    <title>clutter.Actor.set_width</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_width</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-height">
+    <title>clutter.Actor.set_height</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_height</methodname>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-x">
+    <title>clutter.Actor.get_x</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_x</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-y">
+    <title>clutter.Actor.get_y</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_y</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-rotation">
+    <title>clutter.Actor.set_rotation</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_rotation</methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>angle</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>axis</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>angle</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-rotation">
+    <title>clutter.Actor.get_rotation</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_rotation</methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>axis</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-opacity">
+    <title>clutter.Actor.set_opacity</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_opacity</methodname>
+    <methodparam><parameter>opacity</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>opacity</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint8</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-opacity">
+    <title>clutter.Actor.get_opacity</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_opacity</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint8</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-name">
+    <title>clutter.Actor.set_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_name</methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>name</parameter>&nbsp;:</term>
+      <listitem><simpara>a string</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-name">
+    <title>clutter.Actor.get_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_name</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a string</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-gid">
+    <title>clutter.Actor.get_gid</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_gid</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-clip">
+    <title>clutter.Actor.set_clip</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_clip</methodname>
+    <methodparam><parameter>x_offset</parameter></methodparam>
+    <methodparam><parameter>y_offset</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x_offset</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y_offset</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--remove-clip">
+    <title>clutter.Actor.remove_clip</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>remove_clip</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--has-clip">
+    <title>clutter.Actor.has_clip</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>has_clip</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-parent">
+    <title>clutter.Actor.set_parent</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_parent</methodname>
+    <methodparam><parameter>parent</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>parent</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-parent">
+    <title>clutter.Actor.get_parent</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_parent</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--reparent">
+    <title>clutter.Actor.reparent</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>reparent</methodname>
+    <methodparam><parameter>new_parent</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>new_parent</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--unparent">
+    <title>clutter.Actor.unparent</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>unparent</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--raise-actor">
+    <title>clutter.Actor.raise_actor</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>raise_actor</methodname>
+    <methodparam><parameter>below</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>below</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--lower-actor">
+    <title>clutter.Actor.lower_actor</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>lower_actor</methodname>
+    <methodparam><parameter>above</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>above</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--raise-top">
+    <title>clutter.Actor.raise_top</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>raise_top</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--lower-bottom">
+    <title>clutter.Actor.lower_bottom</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>lower_bottom</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-depth">
+    <title>clutter.Actor.set_depth</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_depth</methodname>
+    <methodparam><parameter>depth</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>depth</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-depth">
+    <title>clutter.Actor.get_depth</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_depth</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-scale">
+    <title>clutter.Actor.set_scale</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_scale</methodname>
+    <methodparam><parameter>scale_x</parameter></methodparam>
+    <methodparam><parameter>scale_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>scale_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>scale_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-scale">
+    <title>clutter.Actor.get_scale</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_scale</methodname>
+    <methodparam><parameter>scale_x</parameter></methodparam>
+    <methodparam><parameter>scale_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>scale_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>scale_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-size">
+    <title>clutter.Actor.get_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_size</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--move-by">
+    <title>clutter.Actor.move_by</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>move_by</methodname>
+    <methodparam><parameter>dx</parameter></methodparam>
+    <methodparam><parameter>dy</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>dx</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>dy</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--apply-transform-to-point">
+    <title>clutter.Actor.apply_transform_to_point</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>apply_transform_to_point</methodname>
+    <methodparam><parameter>point</parameter></methodparam>
+    <methodparam><parameter>vertex</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>point</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterVertex*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>vertex</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterVertex*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--is-scaled">
+    <title>clutter.Actor.is_scaled</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_scaled</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--is-rotated">
+    <title>clutter.Actor.is_rotated</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_rotated</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--apply-relative-transform-to-point">
+    <title>clutter.Actor.apply_relative_transform_to_point</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>apply_relative_transform_to_point</methodname>
+    <methodparam><parameter>ancestor</parameter></methodparam>
+    <methodparam><parameter>point</parameter></methodparam>
+    <methodparam><parameter>vertex</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>ancestor</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>point</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterVertex*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>vertex</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterVertex*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-clip">
+    <title>clutter.Actor.get_clip</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_clip</methodname>
+    <methodparam><parameter>xoff</parameter></methodparam>
+    <methodparam><parameter>yoff</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>xoff</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>yoff</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-reactive">
+    <title>clutter.Actor.set_reactive</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_reactive</methodname>
+    <methodparam><parameter>reactive</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>reactive</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-reactive">
+    <title>clutter.Actor.get_reactive</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_reactive</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--event">
+    <title>clutter.Actor.event</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>event</methodname>
+    <methodparam><parameter>event</parameter></methodparam>
+    <methodparam><parameter>capture</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>event</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterEvent*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>capture</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--should-pick-paint">
+    <title>clutter.Actor.should_pick_paint</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>should_pick_paint</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-shader">
+    <title>clutter.Actor.set_shader</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_shader</methodname>
+    <methodparam><parameter>shader</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>shader</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterShader*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-shader">
+    <title>clutter.Actor.get_shader</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_shader</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterShader*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-shader-param">
+    <title>clutter.Actor.set_shader_param</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_shader_param</methodname>
+    <methodparam><parameter>param</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>param</parameter>&nbsp;:</term>
+      <listitem><simpara>a string</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a float</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-anchor-point">
+    <title>clutter.Actor.set_anchor_point</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_anchor_point</methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>anchor_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>anchor_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--move-anchor-point">
+    <title>clutter.Actor.move_anchor_point</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>move_anchor_point</methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>anchor_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>anchor_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-anchor-point">
+    <title>clutter.Actor.get_anchor_point</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_anchor_point</methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>anchor_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>anchor_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-anchor-point-from-gravity">
+    <title>clutter.Actor.set_anchor_point_from_gravity</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_anchor_point_from_gravity</methodname>
+    <methodparam><parameter>gravity</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>gravity</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterGravity</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--move-anchor-point-from-gravity">
+    <title>clutter.Actor.move_anchor_point_from_gravity</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>move_anchor_point_from_gravity</methodname>
+    <methodparam><parameter>gravity</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>gravity</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterGravity</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--transform-stage-point">
+    <title>clutter.Actor.transform_stage_point</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>transform_stage_point</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>x_out</parameter></methodparam>
+    <methodparam><parameter>y_out</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x_out</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y_out</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--queue-relayout">
+    <title>clutter.Actor.queue_relayout</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>queue_relayout</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-preferred-width">
+    <title>clutter.Actor.get_preferred_width</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_preferred_width</methodname>
+    <methodparam><parameter>for_height</parameter></methodparam>
+    <methodparam><parameter>min_width_p</parameter></methodparam>
+    <methodparam><parameter>natural_width_p</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>for_height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>min_width_p</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>natural_width_p</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-preferred-height">
+    <title>clutter.Actor.get_preferred_height</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_preferred_height</methodname>
+    <methodparam><parameter>for_width</parameter></methodparam>
+    <methodparam><parameter>min_height_p</parameter></methodparam>
+    <methodparam><parameter>natural_height_p</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>for_width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>min_height_p</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>natural_height_p</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-preferred-size">
+    <title>clutter.Actor.get_preferred_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_preferred_size</methodname>
+    <methodparam><parameter>min_width_p</parameter></methodparam>
+    <methodparam><parameter>min_height_p</parameter></methodparam>
+    <methodparam><parameter>natural_width_p</parameter></methodparam>
+    <methodparam><parameter>natural_height_p</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>min_width_p</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>min_height_p</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>natural_width_p</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>natural_height_p</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--allocate">
+    <title>clutter.Actor.allocate</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>allocate</methodname>
+    <methodparam><parameter>box</parameter></methodparam>
+    <methodparam><parameter>absolute_origin_changed</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>box</parameter>&nbsp;:</term>
+      <listitem><simpara>a clutter.ActorBox</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>absolute_origin_changed</parameter>&nbsp;:</term>
+      <listitem><simpara>a boolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--allocate-preferred-size">
+    <title>clutter.Actor.allocate_preferred_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>allocate_preferred_size</methodname>
+    <methodparam><parameter>absolute_origin_changed</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>absolute_origin_changed</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-allocation-coords">
+    <title>clutter.Actor.get_allocation_coords</title>
+
+<programlisting>
+  <methodsynopsis language="python">
+    <methodname>get_allocation_coords</methodname>
+  </methodsynopsis>
+</programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x_1</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y_1</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x_2</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y_2</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-allocation-box">
+    <title>clutter.Actor.get_allocation_box</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_allocation_box</methodname>
+    <methodparam><parameter>box</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>box</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActorBox*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-allocation-geometry">
+    <title>clutter.Actor.get_allocation_geometry</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_allocation_geometry</methodname>
+    <methodparam><parameter>geom</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>geom</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterGeometry*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-allocation-vertices">
+    <title>clutter.Actor.get_allocation_vertices</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_allocation_vertices</methodname>
+    <methodparam><parameter>ancestor</parameter></methodparam>
+    <methodparam><parameter>verts[4]</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>ancestor</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>verts[4]</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterVertex</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-sizeu">
+    <title>clutter.Actor.set_sizeu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_sizeu</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-sizeu">
+    <title>clutter.Actor.get_sizeu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_sizeu</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-transformed-size">
+    <title>clutter.Actor.get_transformed_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_transformed_size</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-transformed-sizeu">
+    <title>clutter.Actor.get_transformed_sizeu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_transformed_sizeu</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-positionu">
+    <title>clutter.Actor.set_positionu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_positionu</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-positionu">
+    <title>clutter.Actor.get_positionu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_positionu</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-transformed-position">
+    <title>clutter.Actor.get_transformed_position</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_transformed_position</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-transformed-positionu">
+    <title>clutter.Actor.get_transformed_positionu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_transformed_positionu</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-fixed-position-set">
+    <title>clutter.Actor.get_fixed_position_set</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_fixed_position_set</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-fixed-position-set">
+    <title>clutter.Actor.set_fixed_position_set</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_fixed_position_set</methodname>
+    <methodparam><parameter>is_set</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>is_set</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-widthu">
+    <title>clutter.Actor.get_widthu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_widthu</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-heightu">
+    <title>clutter.Actor.get_heightu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_heightu</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-widthu">
+    <title>clutter.Actor.set_widthu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_widthu</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-heightu">
+    <title>clutter.Actor.set_heightu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_heightu</methodname>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-xu">
+    <title>clutter.Actor.get_xu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_xu</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-yu">
+    <title>clutter.Actor.get_yu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_yu</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-xu">
+    <title>clutter.Actor.set_xu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_xu</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-yu">
+    <title>clutter.Actor.set_yu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_yu</methodname>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-rotationx">
+    <title>clutter.Actor.set_rotationx</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_rotationx</methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>angle</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>axis</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>angle</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-rotationu">
+    <title>clutter.Actor.set_rotationu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_rotationu</methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>angle</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>axis</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>angle</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-rotationx">
+    <title>clutter.Actor.get_rotationx</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_rotationx</methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>axis</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-rotationu">
+    <title>clutter.Actor.get_rotationu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_rotationu</methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>axis</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-paint-opacity">
+    <title>clutter.Actor.get_paint_opacity</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_paint_opacity</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint8</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-clipu">
+    <title>clutter.Actor.set_clipu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_clipu</methodname>
+    <methodparam><parameter>xoff</parameter></methodparam>
+    <methodparam><parameter>yoff</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>xoff</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>yoff</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-clipu">
+    <title>clutter.Actor.get_clipu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_clipu</methodname>
+    <methodparam><parameter>xoff</parameter></methodparam>
+    <methodparam><parameter>yoff</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>xoff</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>yoff</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-stage">
+    <title>clutter.Actor.get_stage</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_stage</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-depthu">
+    <title>clutter.Actor.set_depthu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_depthu</methodname>
+    <methodparam><parameter>depth</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>depth</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-depthu">
+    <title>clutter.Actor.get_depthu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_depthu</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-scalex">
+    <title>clutter.Actor.set_scalex</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_scalex</methodname>
+    <methodparam><parameter>scale_x</parameter></methodparam>
+    <methodparam><parameter>scale_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>scale_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>scale_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-scalex">
+    <title>clutter.Actor.get_scalex</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_scalex</methodname>
+    <methodparam><parameter>scale_x</parameter></methodparam>
+    <methodparam><parameter>scale_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>scale_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>scale_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--move-byu">
+    <title>clutter.Actor.move_byu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>move_byu</methodname>
+    <methodparam><parameter>dx</parameter></methodparam>
+    <methodparam><parameter>dy</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>dx</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>dy</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--set-anchor-pointu">
+    <title>clutter.Actor.set_anchor_pointu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_anchor_pointu</methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>anchor_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>anchor_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--move-anchor-pointu">
+    <title>clutter.Actor.move_anchor_pointu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>move_anchor_pointu</methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>anchor_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>anchor_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-anchor-pointu">
+    <title>clutter.Actor.get_anchor_pointu</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_anchor_pointu</methodname>
+    <methodparam><parameter>anchor_x</parameter></methodparam>
+    <methodparam><parameter>anchor_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>anchor_x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>anchor_y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint32*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--get-abs-allocation-vertices">
+    <title>clutter.Actor.get_abs_allocation_vertices</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_abs_allocation_vertices</methodname>
+    <methodparam><parameter>verts[4]</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>verts[4]</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterVertex</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
 <refsect1>
   <title>Signals</title>
 
@@ -1693,6 +3844,133 @@
 
   </refsect2>
 
+  <refsect2 id="signal-clutteractor--paint">
+    <title>The "paint" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "paint" signal is emitted when an actor is being painted.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--realize">
+    <title>The "realize" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "realize" signal is emitted when an actor is being realized.</para>
+
+  </refsect2>
+
+  <refsect2 id="signal-clutteractor--unrealize">
+    <title>The "unrealize" clutter.Actor signal</title>
+
+    <programlisting><methodsynopsis language="python">
+        <methodname>callback</methodname>
+        <methodparam><parameter>actor</parameter></methodparam>
+        <methodparam><parameter>user_param1</parameter></methodparam>
+        <methodparam><parameter>...</parameter></methodparam>
+    </methodsynopsis></programlisting>
+
+    <variablelist>
+      <varlistentry>
+        <term>
+          <parameter>actor</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the actor which received the event</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>user_param1</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>the first user parameter (if any) specified
+            with the <methodname>connect</methodname>() method</simpara>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <parameter>...</parameter>&nbsp;:
+        </term>
+        <listitem>
+          <simpara>additional user parameters (if any)</simpara>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>The "unrealize" signal is emitted when an actor is being unrealized.</para>
+
+  </refsect2>
+
 </refsect1>
 
+  </refsect1>
 </refentry>

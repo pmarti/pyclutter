@@ -1,213 +1,174 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-
 <refentry id="class-cluttergroup">
-  <refnamediv>
-    <refname>clutter.Group</refname>
-    <refpurpose>An actor that can contain multiple children</refpurpose>
-  </refnamediv>
+  <refmeta>
+    <refentrytitle>clutter.Group</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
 
-<!-- ************************* -->
-<!-- BEGIN OF CLUTTER SYNOPSIS -->
-<!-- ************************* -->
+  <refnamediv>
+    <refname>clutter.Group</refname><refpurpose></refpurpose>
+  </refnamediv>
 
   <refsect1>
     <title>Synopsis</title>
 
-    <classsynopsis language="python">
-      <ooclass><classname>clutter.Group</classname></ooclass>
-      <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
-      <ooclass><classname><link linkend="class-cluttercontainer">clutter.Container</link></classname></ooclass>
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Group</classname></ooclass>
+  <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttergroup--get-nth-child">get_nth_child</link></methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttergroup--get-n-children">get_n_children</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttergroup--remove-all">remove_all</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttergroup--raise">raise</link></methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+    <methodparam><parameter>sibling</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttergroup--lower">lower</link></methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+    <methodparam><parameter>sibling</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttergroup--sort-depth-order">sort_depth_order</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
 
-      <constructorsynopsis language="python">
-        <methodname><link linkend="constructor-cluttergroup">clutter.Group</link></methodname>
-        <methodparam>
-        </methodparam>
-      </constructorsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-cluttergroup--get-nth-child">get_nth_child</link></methodname>
-        <methodparam><parameter role="keyword">index</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-cluttergroup--get-n-children">get_n_children</link></methodname>
-        <methodparam></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-cluttergroup--remove-all">remove_all</link></methodname>
-        <methodparam></methodparam>
-      </methodsynopsis>
-
-    </classsynopsis>
   </refsect1>
-
-<!-- ************************* -->
-<!-- BEGIN OF CLUTTER ANCESTRY -->
-<!-- ************************* -->
-
   <refsect1>
     <title>Ancestry</title>
 
-    <synopsis>
-<link linkend="class-gobject">gobject.GObject</link>
- +--<link linkend="class-gobject">gobject.GInitiallyUnowned</link>
-     +--<link linkend="class-clutteractor">clutter.Actor</link>
-         +--<link linkend="class-cluttergroup">clutter.Group</link>
-  </synopsis>
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutteractor">clutter.Actor</link>
+    +-- <link linkend="class-cluttergroup">clutter.Group</link>
+</synopsis>
 
   </refsect1>
-
-<!-- ********************************* -->
-<!-- BEGIN OF CLUTTER PROPERTIES -->
-<!-- ********************************* -->
-
   <refsect1>
-    <title>Properties</title>
+    <title>Constructor</title>
 
-    <para><link linkend="properties-clutteractor">clutter.Actor Properties</link></para>
-    <para><link linkend="properties-cluttercontainer">clutter.Container Properties</link></para>
-  </refsect1>
-
-<!-- ********************************** -->
-<!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
-<!-- ********************************** -->
-
-  <refsect1>
-    <title>Signal Prototypes</title>
-
-    <para><link linkend="signal-prototypes-clutteractor">clutter.Actor Signal Prototypes</link></para>
-    <para><link linkend="signal-prototypes-cluttercontainer">clutter.Container Signal Prototypes</link></para>
-
-  </refsect1>
-
-<!-- **************************** -->
-<!-- BEGIN OF CLUTTER DESCRIPTION -->
-<!-- **************************** -->
-
-  <refsect1 id="description-cluttergroup">
-    <title>Description</title>
-    <para>
-      <link linkend="class-cluttergroup"><classname>clutter.Group</classname></link>
-      is an Actor which contains multiple child actors positioned relative
-      to the Group position. Other operations such as scaling, rotating and
-      clipping of the group will affect its children.
-    </para>
-
-    <para>
-      A Group size is defined by the size and position of its children. Resize
-      requests via <link linkend="class-clutteractor">clutter.Actor</link>
-      methods wil be ignored.
-    </para>
-
-  </refsect1>
-
-<!-- ************************************ -->
-<!-- BEGIN OF CLUTTER CONSTRUCTOR         -->
-<!-- ************************************ -->
-
-<refsect1 id="constructor-cluttergroup">
-  <title>Constructor</title>
-
-  <programlisting><constructorsynopsis language="python">
-    <methodname>clutter.Group</methodname>
-    <methodparam></methodparam>
-  </constructorsynopsis></programlisting>
-    
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
   <variablelist>
-
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a new <link linkend="class-cluttergroup"><classname>clutter.Group</classname></link>.
-        </simpara></listitem>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
     </varlistentry>
   </variablelist>
 
-  <para>
-    Creates a new <link linkend="class-cluttergroup"><classname>clutter.Group</classname></link> object.
-  </para>
 
-</refsect1>
 
-<!-- ****************************** -->
-<!-- BEGIN OF CLUTTER METHODS       -->
-<!-- ****************************** -->
-
-<refsect1>
-  <title>Methods</title>
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
 
   <refsect2 id="method-cluttergroup--get-nth-child">
     <title>clutter.Group.get_nth_child</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>get_nth_child</methodname>
-        <methodparam><parameter role="keyword">index</parameter></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-      <varlistentry>
-        <term><emphasis>Returns</emphasis>&nbsp;:</term>
-        <listitem><simpara> the child <link linkend="class-clutteractor">actor</link> at index.</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>
-      The <methodname>get_nth_child</methodname>() method retrieves the
-      child <link linkend="class-clutteractor">clutter.Actor</link> at
-      the given index.
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>get_nth_child</methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>index_</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
-  
+
+
   <refsect2 id="method-cluttergroup--get-n-children">
     <title>clutter.Group.get_n_children</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>get_n_children</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-      <varlistentry>
-        <term><emphasis>Returns</emphasis>&nbsp;:</term>
-        <listitem><simpara> the number of <link linkend="class-clutteractor">actor</link> children.</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>
-      The <methodname>get_n_children</methodname>() method retrieves the
-      number of <link linkend="class-clutteractor">clutter.Actor</link>
-      children.
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>get_n_children</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
-  
+
+
   <refsect2 id="method-cluttergroup--remove-all">
     <title>clutter.Group.remove_all</title>
-    <programlisting><methodsynopsis language="python">
-        <methodname>remove_all</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
-      
-    <variablelist>
-    </variablelist>
 
-    <para>
-      The <methodname>remove_all</methodname>() method removes all
-      the children of a Group.
-    </para>
-
+<programlisting><methodsynopsis language="python">
+    <methodname>remove_all</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
   </refsect2>
 
-</refsect1>
 
-<!-- ************************ -->
-<!-- BEGIN OF CLUTTER SIGNALS -->
-<!-- ************************ --> 
+  <refsect2 id="method-cluttergroup--raise">
+    <title>clutter.Group.raise</title>
 
-<refsect1>
-  <title>Signals</title>
+<programlisting><methodsynopsis language="python">
+    <methodname>raise</methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+    <methodparam><parameter>sibling</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>actor</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>sibling</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
 
-</refsect1>
 
+  <refsect2 id="method-cluttergroup--lower">
+    <title>clutter.Group.lower</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>lower</methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+    <methodparam><parameter>sibling</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>actor</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>sibling</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttergroup--sort-depth-order">
+    <title>clutter.Group.sort_depth_order</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>sort_depth_order</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  </refsect1>
 </refentry>

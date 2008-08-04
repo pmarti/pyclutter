@@ -1,0 +1,539 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterstage">
+  <refmeta>
+    <refentrytitle>clutter.Stage</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Stage</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Stage</classname></ooclass>
+  <ooclass><classname><link linkend="class-cluttergroup">clutter.Group</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--set-color">set_color</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-color">get_color</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--set-perspective">set_perspective</link></methodname>
+    <methodparam><parameter>fovy</parameter></methodparam>
+    <methodparam><parameter>aspect</parameter></methodparam>
+    <methodparam><parameter>z_near</parameter></methodparam>
+    <methodparam><parameter>z_far</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-perspective">get_perspective</link></methodname>
+    <methodparam><parameter>fovy</parameter></methodparam>
+    <methodparam><parameter>aspect</parameter></methodparam>
+    <methodparam><parameter>z_near</parameter></methodparam>
+    <methodparam><parameter>z_far</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--fullscreen">fullscreen</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--unfullscreen">unfullscreen</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--show-cursor">show_cursor</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--hide-cursor">hide_cursor</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-actor-at-pos">get_actor_at_pos</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--event">event</link></methodname>
+    <methodparam><parameter>event</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--set-title">set_title</link></methodname>
+    <methodparam><parameter>title</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-title">get_title</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--set-user-resizable">set_user_resizable</link></methodname>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-user-resizable">get_user_resizable</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--set-use-fog">set_use_fog</link></methodname>
+    <methodparam><parameter>fog</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-use-fog">get_use_fog</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--set-fog">set_fog</link></methodname>
+    <methodparam><parameter>density</parameter></methodparam>
+    <methodparam><parameter>z_near</parameter></methodparam>
+    <methodparam><parameter>z_far</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-fog">get_fog</link></methodname>
+    <methodparam><parameter>density</parameter></methodparam>
+    <methodparam><parameter>z_near</parameter></methodparam>
+    <methodparam><parameter>z_far</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--set-key-focus">set_key_focus</link></methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-key-focus">get_key_focus</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--get-resolution">get_resolution</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--is-default">is_default</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterstage--queue-redraw">queue_redraw</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutteractor">clutter.Actor</link>
+    +-- <link linkend="class-cluttergroup">clutter.Group</link>
+      +-- <link linkend="class-clutterstage">clutter.Stage</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterstage--set-color">
+    <title>clutter.Stage.set_color</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_color</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-color">
+    <title>clutter.Stage.get_color</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_color</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--set-perspective">
+    <title>clutter.Stage.set_perspective</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_perspective</methodname>
+    <methodparam><parameter>fovy</parameter></methodparam>
+    <methodparam><parameter>aspect</parameter></methodparam>
+    <methodparam><parameter>z_near</parameter></methodparam>
+    <methodparam><parameter>z_far</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>fovy</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>aspect</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z_near</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z_far</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-perspective">
+    <title>clutter.Stage.get_perspective</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_perspective</methodname>
+    <methodparam><parameter>fovy</parameter></methodparam>
+    <methodparam><parameter>aspect</parameter></methodparam>
+    <methodparam><parameter>z_near</parameter></methodparam>
+    <methodparam><parameter>z_far</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>fovy</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>aspect</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z_near</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z_far</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--fullscreen">
+    <title>clutter.Stage.fullscreen</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>fullscreen</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--unfullscreen">
+    <title>clutter.Stage.unfullscreen</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>unfullscreen</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--show-cursor">
+    <title>clutter.Stage.show_cursor</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>show_cursor</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--hide-cursor">
+    <title>clutter.Stage.hide_cursor</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>hide_cursor</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-actor-at-pos">
+    <title>clutter.Stage.get_actor_at_pos</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_actor_at_pos</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--event">
+    <title>clutter.Stage.event</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>event</methodname>
+    <methodparam><parameter>event</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>event</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterEvent*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--set-title">
+    <title>clutter.Stage.set_title</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_title</methodname>
+    <methodparam><parameter>title</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>title</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-title">
+    <title>clutter.Stage.get_title</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_title</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--set-user-resizable">
+    <title>clutter.Stage.set_user_resizable</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_user_resizable</methodname>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-user-resizable">
+    <title>clutter.Stage.get_user_resizable</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_user_resizable</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--set-use-fog">
+    <title>clutter.Stage.set_use_fog</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_use_fog</methodname>
+    <methodparam><parameter>fog</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>fog</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-use-fog">
+    <title>clutter.Stage.get_use_fog</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_use_fog</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--set-fog">
+    <title>clutter.Stage.set_fog</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_fog</methodname>
+    <methodparam><parameter>density</parameter></methodparam>
+    <methodparam><parameter>z_near</parameter></methodparam>
+    <methodparam><parameter>z_far</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>density</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z_near</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z_far</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-fog">
+    <title>clutter.Stage.get_fog</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_fog</methodname>
+    <methodparam><parameter>density</parameter></methodparam>
+    <methodparam><parameter>z_near</parameter></methodparam>
+    <methodparam><parameter>z_far</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>density</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z_near</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z_far</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--set-key-focus">
+    <title>clutter.Stage.set_key_focus</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_key_focus</methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>actor</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-key-focus">
+    <title>clutter.Stage.get_key_focus</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_key_focus</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--get-resolution">
+    <title>clutter.Stage.get_resolution</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_resolution</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--is-default">
+    <title>clutter.Stage.is_default</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_default</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterstage--queue-redraw">
+    <title>clutter.Stage.queue_redraw</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>queue_redraw</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

@@ -1,326 +1,180 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-
 <refentry id="class-clutterrectangle">
-  <refnamediv>
-    <refname>clutter.Rectangle</refname>
-    <refpurpose>An actor that displays simple rectangles</refpurpose>
-  </refnamediv>
+  <refmeta>
+    <refentrytitle>clutter.Rectangle</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
 
-<!-- ************************* -->
-<!-- BEGIN OF CLUTTER SYNOPSIS -->
-<!-- ************************* -->
+  <refnamediv>
+    <refname>clutter.Rectangle</refname><refpurpose></refpurpose>
+  </refnamediv>
 
   <refsect1>
     <title>Synopsis</title>
 
-    <classsynopsis language="python">
-      <ooclass><classname>clutter.Rectangle</classname></ooclass>
-      <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Rectangle</classname></ooclass>
+  <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>color</parameter><initializer>True</initializer></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterrectangle--get-color">get_color</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterrectangle--set-color">set_color</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterrectangle--get-border-width">get_border_width</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterrectangle--set-border-width">set_border_width</link></methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterrectangle--get-border-color">get_border_color</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterrectangle--set-border-color">set_border_color</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
 
-      <constructorsynopsis language="python">
-        <methodname><link linkend="constructor-clutterrectangle">clutter.Rectangle</link></methodname>
-        <methodparam>
-          <parameter role="keyword">color</parameter>
-          <initializer>None</initializer>
-        </methodparam>
-      </constructorsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutterrectangle--get-color">get_color</link></methodname>
-        <methodparam></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutterrectangle--set-color">set_color</link></methodname>
-        <methodparam><parameter role="keyword">color</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutterrectangle--get-border-color">get_border_color</link></methodname>
-        <methodparam></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutterrectangle--set-border-color">set_border_color</link></methodname>
-        <methodparam><parameter role="keyword">color</parameter></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutterrectangle--get-border-width">get_border_width</link></methodname>
-        <methodparam></methodparam>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-clutterrectangle--set-border-width">set_border_width</link></methodname>
-        <methodparam><parameter role="keyword">width</parameter></methodparam>
-      </methodsynopsis>
-
-    </classsynopsis>
   </refsect1>
-
-<!-- ************************* -->
-<!-- BEGIN OF CLUTTER ANCESTRY -->
-<!-- ************************* -->
-
   <refsect1>
     <title>Ancestry</title>
 
-    <synopsis>
-<link linkend="class-gobject">gobject.GObject</link>
- +--<link linkend="class-gobject">gobject.GInitiallyUnowned</link>
-     +--<link linkend="class-clutteractor">clutter.Actor</link>
-         +--<link linkend="class-clutterrectangle">clutter.Rectangle</link>
-  </synopsis>
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutteractor">clutter.Actor</link>
+    +-- <link linkend="class-clutterrectangle">clutter.Rectangle</link>
+</synopsis>
 
   </refsect1>
+  <refsect1>
+    <title>Constructor</title>
 
-<!-- ********************************* -->
-<!-- BEGIN OF CLUTTER PROPERTIES -->
-<!-- ********************************* -->
-
-  <refsect1 id="properties-clutterrectangle">
-    <title>Properties</title>
-
-    <para><link linkend="properties-clutteractor">clutter.Actor Properties</link></para>
-
-    <blockquote role="properties">
-      <informaltable pgwide="1" frame="none">
-        <tgroup cols="3">
-          <colspec column="1" colwidth="1in"/>
-          <colspec column="2" colwidth="1in"/>
-          <colspec column="3" colwidth="4in"/>
-          <tbody>
-            <row valign="top">
-              <entry>"color"</entry>
-              <entry>Read-Write</entry>
-              <entry>The color of the rectangle.</entry>
-            </row>
-
-            <row valign="top">
-              <entry>"border-color"</entry>
-              <entry>Read-Write</entry>
-              <entry>The color of the border</entry>
-            </row>
-
-            <row valign="top">
-              <entry>"border-width"</entry>
-              <entry>Read-Write</entry>
-              <entry>Width of the border of the rectangle (in pixels). Allowed values: >= 0. Default value: 0.</entry>
-            </row>
-
-            <row valign="top">
-              <entry>"has-border"</entry>
-              <entry>Read</entry>
-              <entry>Whether the rectangle should have a border or not. Default value: False.</entry>
-            </row>
-
-          </tbody>
-        </tgroup>
-      </informaltable>
-    </blockquote>
-
-  </refsect1>
-
-<!-- ********************************** -->
-<!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
-<!-- ********************************** -->
-
-  <refsect1 id="signal-prototypes-clutterrectangle">
-    <title>Signal Prototypes</title>
-
-    <para><link linkend="signal-prototypes-clutteractor">clutter.Actor Signal Prototypes</link></para>
-
-  </refsect1>
-
-<!-- **************************** -->
-<!-- BEGIN OF CLUTTER DESCRIPTION -->
-<!-- **************************** -->
-
-  <refsect1 id="description-clutterrectangle">
-    <title>Description</title>
-    <para>
-      <link linkend="class-clutterrectangle"><classname>clutter.Rectangle</classname></link>
-      is a simple actor which draws rectangles.</para>
-  </refsect1>
-
-<!-- ************************************ -->
-<!-- BEGIN OF CLUTTER CONSTRUCTOR -->
-<!-- ************************************ -->
-
-<refsect1 id="constructor-clutterrectangle">
-  <title>Constructor</title>
-
-  <programlisting><constructorsynopsis language="python">
-    <methodname>clutter.Rectangle</methodname>
-    <methodparam><parameter role="keyword">color</parameter><initializer>None</initializer></methodparam>
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>color</parameter><initializer>True</initializer></methodparam>
   </constructorsynopsis></programlisting>
-    
   <variablelist>
     <varlistentry>
-      <term><parameter role="keyword">color</parameter>&nbsp;:</term>
-      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link> or <literal>None</literal></simpara></listitem>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a </simpara></listitem>
     </varlistentry>
-
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a new <link linkend="class-clutterrectangle"><classname>clutter.Rectangle</classname></link>.
-        </simpara></listitem>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
     </varlistentry>
   </variablelist>
 
-  <para>
-    Creates a new <link linkend="class-clutterrectangle"><classname>clutter.Rectangle</classname></link> object.
-  </para>
 
-</refsect1>
 
-<!-- ****************************** -->
-<!-- BEGIN OF CLUTTER METHODS -->
-<!-- ****************************** -->
-
-<refsect1>
-  <title>Methods</title>
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
 
   <refsect2 id="method-clutterrectangle--get-color">
     <title>clutter.Rectangle.get_color</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>get_color</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-      <varlistentry>
-        <term><emphasis>Returns</emphasis>&nbsp;:</term>
-        <listitem><simpara> the rectangle color.</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>
-      The <methodname>get_color</methodname>() method retrieves the
-      <link linkend="class-cluttercolor">clutter.Color</link> used by
-      the <link linkend="class-clutterrectangle">clutter.Rectangle</link>
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>get_color</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
-  
-  <refsect2 id="method-clutterrectangle--get-border-color">
-    <title>clutter.Rectangle.get_border_color</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>get_border_color</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
 
-    <variablelist>
-      <varlistentry>
-        <term><emphasis>Returns</emphasis>&nbsp;:</term>
-        <listitem><simpara> the border color.</simpara></listitem>
-      </varlistentry>
-    </variablelist>
+  <refsect2 id="method-clutterrectangle--set-color">
+    <title>clutter.Rectangle.set_color</title>
 
-    <para>
-      The <methodname>get_border_color</methodname>() method retrieves the
-      <link linkend="class-cluttercolor">clutter.Color</link> used by
-      the <link linkend="class-clutterrectangle">clutter.Rectangle</link>
-      to draw its border.
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>set_color</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
+
 
   <refsect2 id="method-clutterrectangle--get-border-width">
     <title>clutter.Rectangle.get_border_width</title>
 
-    <programlisting><methodsynopsis language="python">
-        <methodname>get_border_width</methodname>
-        <methodparam></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-      <varlistentry>
-        <term><emphasis>Returns</emphasis>&nbsp;:</term>
-        <listitem><simpara> the border width in pixels.</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>
-      The <methodname>get_border_width</methodname>() method retrieves the
-      width of the rectangle's border.
-    </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>get_border_width</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
 
-  <refsect2 id="method-clutterrectangle--set-color">
-    <title>clutter.Rectangle.set_color</title>
-    <programlisting><methodsynopsis language="python">
-        <methodname>set_color</methodname>
-        <methodparam><parameter role="keyword">color</parameter></methodparam>
-    </methodsynopsis></programlisting>
-      
-    <variablelist>
-      <varlistentry>
-        <term><parameter role="keyword">color</parameter>&nbsp;:</term>
-        <listitem><simpara>the <link linkend="class-cluttercolor">clutter.Color</link> to be used to draw the rectangle</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>
-      The <methodname>set_color</methodname>() method controls the color
-      of the rectangle.
-    </para>
-
-  </refsect2>
-
-  <refsect2 id="method-clutterrectangle--set-border-color">
-    <title>clutter.Rectangle.set_border_color</title>
-    <programlisting><methodsynopsis language="python">
-        <methodname>set_border_color</methodname>
-        <methodparam><parameter role="keyword">color</parameter></methodparam>
-    </methodsynopsis></programlisting>
-      
-    <variablelist>
-      <varlistentry>
-        <term><parameter role="keyword">color</parameter>&nbsp;:</term>
-        <listitem><simpara>the <link linkend="class-cluttercolor">clutter.Color</link> to be used to draw the border of the rectangle</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>
-      The <methodname>set_border_color</methodname>() method controls the color
-      of the border of the rectangle.
-    </para>
-
-  </refsect2>
 
   <refsect2 id="method-clutterrectangle--set-border-width">
     <title>clutter.Rectangle.set_border_width</title>
-    <programlisting><methodsynopsis language="python">
-        <methodname>set_border_width</methodname>
-        <methodparam><parameter role="keyword">width</parameter></methodparam>
-    </methodsynopsis></programlisting>
-      
-    <variablelist>
-      <varlistentry>
-        <term><parameter role="keyword">width</parameter>&nbsp;:</term>
-        <listitem><simpara>the width of the border of the rectangle</simpara></listitem>
-      </varlistentry>
-    </variablelist>
 
-    <para>
-      The <methodname>set_border_width</methodname>() method controls the
-      width of the border of the rectangle.
-    </para>
-
+<programlisting><methodsynopsis language="python">
+    <methodname>set_border_width</methodname>
+    <methodparam><parameter>width</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
 
-</refsect1>
 
-<!-- ************************ -->
-<!-- BEGIN OF CLUTTER SIGNALS -->
-<!-- ************************ --> 
+  <refsect2 id="method-clutterrectangle--get-border-color">
+    <title>clutter.Rectangle.get_border_color</title>
 
-<refsect1>
-  <title>Signals</title>
+<programlisting><methodsynopsis language="python">
+    <methodname>get_border_color</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
 
-</refsect1>
 
+  <refsect2 id="method-clutterrectangle--set-border-color">
+    <title>clutter.Rectangle.set_border_color</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_border_color</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
 </refentry>

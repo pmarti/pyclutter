@@ -8,34 +8,51 @@ FULL_VERSION = $(REF_VERSION).$(PYCLUTTER_MICRO_VERSION)
 HTML_STYLE = $(PYGOBJECT_DATADIR)/pygobject/xsl/ref-html-style.xsl
 PDF_STYLE = $(PYGOBJECT_DATADIR)/pygobject/xsl/pdf-style.xsl
 
-XMLFILES = 					\
-    reference/clutter-ref.xml			\
-    reference/clutter-overview.xml		\
-    reference/clutter-clutteractor.xml		\
-    reference/clutter-cluttercolor.xml		\
-    reference/clutter-cluttercontainer.xml	\
-    reference/clutter-cluttergroup.xml		\
-    reference/clutter-clutterrectangle.xml	\
-    reference/clutter-cluttertexture.xml	\
-    reference/clutter-cluttertimeline.xml	\
+XMLFILES = 						\
+    reference/clutter-ref.xml				\
+    reference/clutter-overview.xml			\
+    reference/clutter-clutteractorbox.xml		\
+    reference/clutter-clutteractor.xml			\
+    reference/clutter-clutteralpha.xml			\
+    reference/clutter-clutterbackend.xml		\
+    reference/clutter-clutterbehaviourbspline.xml	\
+    reference/clutter-clutterbehaviourdepth.xml		\
+    reference/clutter-clutterbehaviourellipse.xml	\
+    reference/clutter-clutterbehaviouropacity.xml	\
+    reference/clutter-clutterbehaviourpath.xml		\
+    reference/clutter-clutterbehaviourrotate.xml	\
+    reference/clutter-clutterbehaviourscale.xml		\
+    reference/clutter-clutterbehaviour.xml		\
+    reference/clutter-clutterchildmeta.xml		\
+    reference/clutter-clutterclonetexture.xml		\
+    reference/clutter-cluttercolor.xml			\
+    reference/clutter-cluttercontainer.xml		\
+    reference/clutter-cluttergroup.xml			\
+    reference/clutter-cluttereffecttemplate.xml		\
+    reference/clutter-clutterentry.xml			\
+    reference/clutter-clutterevent.xml			\
+    reference/clutter-cluttergeometry.xml		\
+    reference/clutter-cluttergroup.xml			\
+    reference/clutter-clutterknot.xml			\
+    reference/clutter-clutterlabel.xml			\
+    reference/clutter-clutterlistmodel.xml		\
+    reference/clutter-cluttermedia.xml			\
+    reference/clutter-cluttermodeliter.xml		\
+    reference/clutter-cluttermodel.xml			\
+    reference/clutter-clutterrectangle.xml		\
+    reference/clutter-clutterscore.xml			\
+    reference/clutter-clutterscriptable.xml		\
+    reference/clutter-clutterscript.xml			\
+    reference/clutter-cluttershader.xml			\
+    reference/clutter-clutterstage.xml			\
+    reference/clutter-cluttertexture.xml		\
+    reference/clutter-cluttertimeline.xml		\
+    reference/clutter-cluttervertex.xml 		\
     $(NULL)
 
 HTML_FILES =					\
-	html/index.html				\
+	html/*.html				\
 	html/index.sgml				\
-	html/pt01.html 				\
-	html/pt02.html 				\
-	html/pt03.html 				\
-	html/pt04.html 				\
-	html/ch01.html 				\
-	html/ch02.html 				\
-	html/class-clutteractor.html		\
-	html/class-cluttercolor.html		\
-	html/class-cluttercontainer.html	\
-	html/class-cluttergroup.html		\
-	html/class-clutterrectangle.html	\
-	html/class-cluttertexture.html		\
-	html/class-cluttertimeline.html		\
 	html/pyclutter.devhelp
 
 CSS_FILES = $(PYGOBJECT_PYGDOCS)/style.css

@@ -1,0 +1,261 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-cluttershader">
+  <refmeta>
+    <refentrytitle>clutter.Shader</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Shader</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Shader</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--set-is-enabled">set_is_enabled</link></methodname>
+    <methodparam><parameter>enabled</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--get-is-enabled">get_is_enabled</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--compile">compile</link></methodname>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--is-compiled">is_compiled</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--release">release</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--set-vertex-source">set_vertex_source</link></methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>length</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--set-fragment-source">set_fragment_source</link></methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>length</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--get-vertex-source">get_vertex_source</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--get-fragment-source">get_fragment_source</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttershader--set-uniform-1f">set_uniform_1f</link></methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-cluttershader">clutter.Shader</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterShader*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-cluttershader--set-is-enabled">
+    <title>clutter.Shader.set_is_enabled</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_is_enabled</methodname>
+    <methodparam><parameter>enabled</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>enabled</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--get-is-enabled">
+    <title>clutter.Shader.get_is_enabled</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_is_enabled</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--compile">
+    <title>clutter.Shader.compile</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>compile</methodname>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>error</parameter>&nbsp;:</term>
+      <listitem><simpara>a GError**</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--is-compiled">
+    <title>clutter.Shader.is_compiled</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_compiled</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--release">
+    <title>clutter.Shader.release</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>release</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--set-vertex-source">
+    <title>clutter.Shader.set_vertex_source</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_vertex_source</methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>length</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>data</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>length</parameter>&nbsp;:</term>
+      <listitem><simpara>a gssize</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--set-fragment-source">
+    <title>clutter.Shader.set_fragment_source</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_fragment_source</methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>length</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>data</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>length</parameter>&nbsp;:</term>
+      <listitem><simpara>a gssize</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--get-vertex-source">
+    <title>clutter.Shader.get_vertex_source</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_vertex_source</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--get-fragment-source">
+    <title>clutter.Shader.get_fragment_source</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_fragment_source</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttershader--set-uniform-1f">
+    <title>clutter.Shader.set_uniform_1f</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_uniform_1f</methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>name</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a gfloat</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

@@ -1,3 +1,14 @@
+2008-08-04  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* docs/reference/clutter-*.xml: Regenerate the documentation
+	using the docgen.py script from pygobject. This provides full
+	method coverage - but neither the classes signals nor the
+	properties are available.
+
+	* docs/Makefile.am:
+	* docs/reference/clutter-ref.xml: Update the build to include
+	all the newly added files.
+
 2008-08-01  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* examples/Makefile.am: Add all the examples to the DIST.

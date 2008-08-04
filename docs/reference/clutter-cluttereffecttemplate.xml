@@ -1,0 +1,143 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-cluttereffecttemplate">
+  <refmeta>
+    <refentrytitle>clutter.EffectTemplate</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.EffectTemplate</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.EffectTemplate</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>timeline</parameter></methodparam>
+    <methodparam><parameter>alpha_func</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttereffecttemplate--construct">construct</link></methodname>
+    <methodparam><parameter>timeline</parameter></methodparam>
+    <methodparam><parameter>alpha_func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+    <methodparam><parameter>notify</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttereffecttemplate--set-timeline-clone">set_timeline_clone</link></methodname>
+    <methodparam><parameter>setting</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttereffecttemplate--get-timeline-clone">get_timeline_clone</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-cluttereffecttemplate">clutter.EffectTemplate</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>timeline</parameter></methodparam>
+    <methodparam><parameter>alpha_func</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>timeline</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>alpha_func</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterAlphaFunc</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterEffectTemplate*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-cluttereffecttemplate--construct">
+    <title>clutter.EffectTemplate.construct</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>construct</methodname>
+    <methodparam><parameter>timeline</parameter></methodparam>
+    <methodparam><parameter>alpha_func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+    <methodparam><parameter>notify</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>timeline</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>alpha_func</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterAlphaFunc</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>user_data</parameter>&nbsp;:</term>
+      <listitem><simpara>a gpointer</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>notify</parameter>&nbsp;:</term>
+      <listitem><simpara>a GDestroyNotify</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttereffecttemplate--set-timeline-clone">
+    <title>clutter.EffectTemplate.set_timeline_clone</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_timeline_clone</methodname>
+    <methodparam><parameter>setting</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>setting</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttereffecttemplate--get-timeline-clone">
+    <title>clutter.EffectTemplate.get_timeline_clone</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_timeline_clone</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

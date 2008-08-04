@@ -1,0 +1,278 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-cluttermodeliter">
+  <refmeta>
+    <refentrytitle>clutter.ModelIter</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.ModelIter</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.ModelIter</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--get">get</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--get-valist">get_valist</link></methodname>
+    <methodparam><parameter>args</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--get-value">get_value</link></methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--set">set</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--set-valist">set_valist</link></methodname>
+    <methodparam><parameter>args</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--set-value">set_value</link></methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--is-first">is_first</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--is-last">is_last</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--next">next</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--prev">prev</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--get-model">get_model</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--get-row">get_row</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodeliter--copy">copy</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-cluttermodeliter">clutter.ModelIter</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-cluttermodeliter--get">
+    <title>clutter.ModelIter.get</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--get-valist">
+    <title>clutter.ModelIter.get_valist</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_valist</methodname>
+    <methodparam><parameter>args</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>args</parameter>&nbsp;:</term>
+      <listitem><simpara>a va_list</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--get-value">
+    <title>clutter.ModelIter.get_value</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_value</methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a GValue*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--set">
+    <title>clutter.ModelIter.set</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--set-valist">
+    <title>clutter.ModelIter.set_valist</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_valist</methodname>
+    <methodparam><parameter>args</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>args</parameter>&nbsp;:</term>
+      <listitem><simpara>a va_list</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--set-value">
+    <title>clutter.ModelIter.set_value</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_value</methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-GValue*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--is-first">
+    <title>clutter.ModelIter.is_first</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_first</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--is-last">
+    <title>clutter.ModelIter.is_last</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_last</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--next">
+    <title>clutter.ModelIter.next</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>next</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelIter*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--prev">
+    <title>clutter.ModelIter.prev</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>prev</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelIter*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--get-model">
+    <title>clutter.ModelIter.get_model</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_model</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterModel*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--get-row">
+    <title>clutter.ModelIter.get_row</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_row</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodeliter--copy">
+    <title>clutter.ModelIter.copy</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>copy</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelIter*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

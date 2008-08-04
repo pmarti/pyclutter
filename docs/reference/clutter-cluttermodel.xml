@@ -1,0 +1,594 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-cluttermodel">
+  <refmeta>
+    <refentrytitle>clutter.Model</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Model</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Model</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--set-types">set_types</link></methodname>
+    <methodparam><parameter>n_columns</parameter></methodparam>
+    <methodparam><parameter>types</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--set-names">set_names</link></methodname>
+    <methodparam><parameter>n_columns</parameter></methodparam>
+    <methodparam><parameter>names</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--append-value">append_value</link></methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--prepend-value">prepend_value</link></methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--get-n-columns">get_n_columns</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--get-column-name">get_column_name</link></methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--get-column-type">get_column_type</link></methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--resort">resort</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--filter-row">filter_row</link></methodname>
+    <methodparam><parameter>row</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--filter-iter">filter_iter</link></methodname>
+    <methodparam><parameter>iter</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--append">append</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--prepend">prepend</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--insert">insert</link></methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--insert-value">insert_value</link></methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--remove">remove</link></methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--get-n-rows">get_n_rows</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--get-first-iter">get_first_iter</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--get-last-iter">get_last_iter</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--get-iter-at-row">get_iter_at_row</link></methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--set-sorting-column">set_sorting_column</link></methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--get-sorting-column">get_sorting_column</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--foreach">foreach</link></methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--set-sort">set_sort</link></methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+    <methodparam><parameter>notify</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermodel--set-filter">set_filter</link></methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+    <methodparam><parameter>notify</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-cluttermodel">clutter.Model</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-cluttermodel--set-types">
+    <title>clutter.Model.set_types</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_types</methodname>
+    <methodparam><parameter>n_columns</parameter></methodparam>
+    <methodparam><parameter>types</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>n_columns</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>types</parameter>&nbsp;:</term>
+      <listitem><simpara>a GType*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--set-names">
+    <title>clutter.Model.set_names</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_names</methodname>
+    <methodparam><parameter>n_columns</parameter></methodparam>
+    <methodparam><parameter>names</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>n_columns</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>names</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*-const[]</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--append-value">
+    <title>clutter.Model.append_value</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>append_value</methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-GValue*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--prepend-value">
+    <title>clutter.Model.prepend_value</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>prepend_value</methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-GValue*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--get-n-columns">
+    <title>clutter.Model.get_n_columns</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_n_columns</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--get-column-name">
+    <title>clutter.Model.get_column_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_column_name</methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--get-column-type">
+    <title>clutter.Model.get_column_type</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_column_type</methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a GType</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--resort">
+    <title>clutter.Model.resort</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>resort</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--filter-row">
+    <title>clutter.Model.filter_row</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>filter_row</methodname>
+    <methodparam><parameter>row</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>row</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--filter-iter">
+    <title>clutter.Model.filter_iter</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>filter_iter</methodname>
+    <methodparam><parameter>iter</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>iter</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelIter*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--append">
+    <title>clutter.Model.append</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>append</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--prepend">
+    <title>clutter.Model.prepend</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>prepend</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--insert">
+    <title>clutter.Model.insert</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>insert</methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>index_</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--insert-value">
+    <title>clutter.Model.insert_value</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>insert_value</methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>index_</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-GValue*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--remove">
+    <title>clutter.Model.remove</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>remove</methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>index_</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--get-n-rows">
+    <title>clutter.Model.get_n_rows</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_n_rows</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--get-first-iter">
+    <title>clutter.Model.get_first_iter</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_first_iter</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelIter*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--get-last-iter">
+    <title>clutter.Model.get_last_iter</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_last_iter</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelIter*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--get-iter-at-row">
+    <title>clutter.Model.get_iter_at_row</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_iter_at_row</methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>index_</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelIter*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--set-sorting-column">
+    <title>clutter.Model.set_sorting_column</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_sorting_column</methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--get-sorting-column">
+    <title>clutter.Model.get_sorting_column</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_sorting_column</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--foreach">
+    <title>clutter.Model.foreach</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>foreach</methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>func</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelForeachFunc</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>user_data</parameter>&nbsp;:</term>
+      <listitem><simpara>a gpointer</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--set-sort">
+    <title>clutter.Model.set_sort</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_sort</methodname>
+    <methodparam><parameter>column</parameter></methodparam>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+    <methodparam><parameter>notify</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>column</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>func</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelSortFunc</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>user_data</parameter>&nbsp;:</term>
+      <listitem><simpara>a gpointer</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>notify</parameter>&nbsp;:</term>
+      <listitem><simpara>a GDestroyNotify</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermodel--set-filter">
+    <title>clutter.Model.set_filter</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_filter</methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+    <methodparam><parameter>notify</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>func</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterModelFilterFunc</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>user_data</parameter>&nbsp;:</term>
+      <listitem><simpara>a gpointer</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>notify</parameter>&nbsp;:</term>
+      <listitem><simpara>a GDestroyNotify</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

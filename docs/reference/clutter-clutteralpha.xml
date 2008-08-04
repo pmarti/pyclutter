@@ -1,0 +1,215 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutteralpha">
+  <refmeta>
+    <refentrytitle>clutter.Alpha</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Alpha</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Alpha</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+  <constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>timeline</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter>func</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter>data</parameter><initializer>None</initializer></methodparam>
+  </constructorsynopsis>
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteralpha--get-alpha">get_alpha</link></methodname>
+    <methodparam></methodparam>
+  </methodsynopsis>
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteralpha--set-func">set_func</link></methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>data</parameter></methodparam>
+  </methodsynopsis>
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteralpha--set-timeline">set_timeline</link></methodname>
+    <methodparam><parameter>timeline</parameter></methodparam>
+  </methodsynopsis>
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteralpha--get-timeline">get_timeline</link></methodname>
+    <methodparam></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>
+<link linkend="class-gobject">gobject.GObject</link>
++-- <link linkend="class-gobject">gobject.GInitiallyUnowned</link>
+  +-- <link linkend="class-clutteralpha">clutter.Alpha</link>
+</synopsis>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Description</title>
+
+    <para>clutter.Alpha is a class for calculating an integer value between
+    0 and clutter.ALPHA_MAX_ALPHA as a function of time. You should
+    provide a clutter.Timeline and bind it to the clutter.Alpha object;
+    you should also provide a function returning the alpha value depending
+    on the position inside the timeline; this function will be executed
+    each time a new frame in the clutter.Timeline is reached. Since
+    the alpha function is controlled by the timeline instance, you can
+    pause or stop the clutter.Alpha from calling the alpha function by
+    controlling the clutter.Timeline object.</para>
+
+    <para>clutter.Alpha is used to "drive" a clutter.Behaviour
+    instance.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting>
+  <constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>timeline</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter>func</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter>data</parameter><initializer>None</initializer></methodparam>
+  </constructorsynopsis>
+</programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a clutter.Alpha</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+  <para>Creates a new clutter.Alpha instance. You should use the newly
+  created clutter.Alpha instance inside a clutter.Behaviour object.</para>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutteralpha--get-alpha">
+    <title>clutter.Alpha.get_alpha</title>
+
+<programlisting>
+  <methodsynopsis language="python">
+    <methodname>get_alpha</methodname>
+    <methodparam></methodparam>
+  </methodsynopsis>
+</programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a integer value between 0 and clutter.ALPHA_MAX_ALPHA</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Queries the current alpha value.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteralpha--set-func">
+    <title>clutter.Alpha.set_func</title>
+
+<programlisting>
+  <methodsynopsis language="python">
+    <methodname>set_func</methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>data</parameter></methodparam>
+  </methodsynopsis>
+</programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>func</parameter>&nbsp;:</term>
+      <listitem><simpara>a callable</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>data</parameter>&nbsp;:</term>
+      <listitem><simpara>data to pass to the callable</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Sets the function used to compute the alpha value at each frame
+  of the clutter.Timeline bound to the alpha instance.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteralpha--set-timeline">
+    <title>clutter.Alpha.set_timeline</title>
+
+<programlisting>
+  <methodsynopsis language="python">
+    <methodname>set_timeline</methodname>
+    <methodparam><parameter>timeline</parameter></methodparam>
+  </methodsynopsis>
+</programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>timeline</parameter>&nbsp;:</term>
+      <listitem><simpara>a clutter.Timeline</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Binds a clutter.Alpha to a clutter.Timeline.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteralpha--get-timeline">
+    <title>clutter.Alpha.get_timeline</title>
+
+<programlisting>
+  <methodsynopsis language="python">
+    <methodname>get_timeline</methodname>
+    <methodparam></methodparam>
+  </methodsynopsis>
+</programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a clutter.Timeline</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Retrieves the clutter.Timeline bound to the alpha instance.</para>
+  </refsect2>
+
+  </refsect1>
+
+  <refsect1>
+    <title>Properties</title>
+
+    <para><link linkend="properties-clutteralpha">clutter.Alpha Properties</link></para>
+
+    <blockquote role="properties">
+      <informaltable pgwide="1" frame="none">
+        <tgroup cols="3">
+          <colspec column="1" colwidth="1in"/>
+          <colspec column="2" colwidth="1in"/>
+          <colspec column="3" colwidth="4in"/>
+          <tbody>
+            <row valign="top">
+              <entry>"timeline"</entry>
+              <entry>Read-Write</entry>
+              <entry>a <link linkend="class-cluttertimeline">clutter.Timeline</link> instance
+              used as the time source for the alpha function.</entry>
+            </row>
+
+            <row valign="top">
+              <entry>"alpha"</entry>
+              <entry>Read-only</entry>
+              <entry>The alpha value as computed by the alpha function</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </informaltable>
+    </blockquote>
+
+  </refsect1>
+
+</refentry>

@@ -1,0 +1,299 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterscore">
+  <refmeta>
+    <refentrytitle>clutter.Score</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Score</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Score</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--set-loop">set_loop</link></methodname>
+    <methodparam><parameter>loop</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--get-loop">get_loop</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--rewind">rewind</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--is-playing">is_playing</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--start">start</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--stop">stop</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--pause">pause</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--append">append</link></methodname>
+    <methodparam><parameter>parent</parameter></methodparam>
+    <methodparam><parameter>timeline</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--append-at-marker">append_at_marker</link></methodname>
+    <methodparam><parameter>parent</parameter></methodparam>
+    <methodparam><parameter>marker_name</parameter></methodparam>
+    <methodparam><parameter>timeline</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--remove">remove</link></methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--remove-all">remove_all</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--get-timeline">get_timeline</link></methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscore--list-timelines">list_timelines</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutterscore">clutter.Score</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterScore*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterscore--set-loop">
+    <title>clutter.Score.set_loop</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_loop</methodname>
+    <methodparam><parameter>loop</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>loop</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--get-loop">
+    <title>clutter.Score.get_loop</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_loop</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--rewind">
+    <title>clutter.Score.rewind</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>rewind</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--is-playing">
+    <title>clutter.Score.is_playing</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_playing</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--start">
+    <title>clutter.Score.start</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>start</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--stop">
+    <title>clutter.Score.stop</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>stop</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--pause">
+    <title>clutter.Score.pause</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>pause</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--append">
+    <title>clutter.Score.append</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>append</methodname>
+    <methodparam><parameter>parent</parameter></methodparam>
+    <methodparam><parameter>timeline</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>parent</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>timeline</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--append-at-marker">
+    <title>clutter.Score.append_at_marker</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>append_at_marker</methodname>
+    <methodparam><parameter>parent</parameter></methodparam>
+    <methodparam><parameter>marker_name</parameter></methodparam>
+    <methodparam><parameter>timeline</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>parent</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>marker_name</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>timeline</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gulong</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--remove">
+    <title>clutter.Score.remove</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>remove</methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>id</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--remove-all">
+    <title>clutter.Score.remove_all</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>remove_all</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--get-timeline">
+    <title>clutter.Score.get_timeline</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_timeline</methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>id</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscore--list-timelines">
+    <title>clutter.Score.list_timelines</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>list_timelines</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a GSList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

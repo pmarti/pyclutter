@@ -1,0 +1,456 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterlabel">
+  <refmeta>
+    <refentrytitle>clutter.Label</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Label</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Label</classname></ooclass>
+  <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-text">set_text</link></methodname>
+    <methodparam><parameter>text</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-text">get_text</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-font-name">set_font_name</link></methodname>
+    <methodparam><parameter>font_name</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-font-name">get_font_name</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-color">set_color</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-color">get_color</link></methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-ellipsize">set_ellipsize</link></methodname>
+    <methodparam><parameter>mode</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-ellipsize">get_ellipsize</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-line-wrap">set_line_wrap</link></methodname>
+    <methodparam><parameter>wrap</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-line-wrap">get_line_wrap</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-line-wrap-mode">set_line_wrap_mode</link></methodname>
+    <methodparam><parameter>wrap_mode</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-line-wrap-mode">get_line_wrap_mode</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-layout">get_layout</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-attributes">set_attributes</link></methodname>
+    <methodparam><parameter>attrs</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-attributes">get_attributes</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-use-markup">set_use_markup</link></methodname>
+    <methodparam><parameter>setting</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-use-markup">get_use_markup</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-alignment">set_alignment</link></methodname>
+    <methodparam><parameter>alignment</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-alignment">get_alignment</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--set-justify">set_justify</link></methodname>
+    <methodparam><parameter>justify</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterlabel--get-justify">get_justify</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutteractor">clutter.Actor</link>
+    +-- <link linkend="class-clutterlabel">clutter.Label</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterlabel--set-text">
+    <title>clutter.Label.set_text</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_text</methodname>
+    <methodparam><parameter>text</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>text</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-text">
+    <title>clutter.Label.get_text</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_text</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-font-name">
+    <title>clutter.Label.set_font_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_font_name</methodname>
+    <methodparam><parameter>font_name</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>font_name</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-font-name">
+    <title>clutter.Label.get_font_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_font_name</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-color">
+    <title>clutter.Label.set_color</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_color</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-color">
+    <title>clutter.Label.get_color</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_color</methodname>
+    <methodparam><parameter>color</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>color</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-ellipsize">
+    <title>clutter.Label.set_ellipsize</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_ellipsize</methodname>
+    <methodparam><parameter>mode</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>mode</parameter>&nbsp;:</term>
+      <listitem><simpara>a PangoEllipsizeMode</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-ellipsize">
+    <title>clutter.Label.get_ellipsize</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_ellipsize</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a PangoEllipsizeMode</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-line-wrap">
+    <title>clutter.Label.set_line_wrap</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_line_wrap</methodname>
+    <methodparam><parameter>wrap</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>wrap</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-line-wrap">
+    <title>clutter.Label.get_line_wrap</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_line_wrap</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-line-wrap-mode">
+    <title>clutter.Label.set_line_wrap_mode</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_line_wrap_mode</methodname>
+    <methodparam><parameter>wrap_mode</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>wrap_mode</parameter>&nbsp;:</term>
+      <listitem><simpara>a PangoWrapMode</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-line-wrap-mode">
+    <title>clutter.Label.get_line_wrap_mode</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_line_wrap_mode</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a PangoWrapMode</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-layout">
+    <title>clutter.Label.get_layout</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_layout</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a PangoLayout*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-attributes">
+    <title>clutter.Label.set_attributes</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_attributes</methodname>
+    <methodparam><parameter>attrs</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>attrs</parameter>&nbsp;:</term>
+      <listitem><simpara>a PangoAttrList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-attributes">
+    <title>clutter.Label.get_attributes</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_attributes</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a PangoAttrList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-use-markup">
+    <title>clutter.Label.set_use_markup</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_use_markup</methodname>
+    <methodparam><parameter>setting</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>setting</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-use-markup">
+    <title>clutter.Label.get_use_markup</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_use_markup</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-alignment">
+    <title>clutter.Label.set_alignment</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_alignment</methodname>
+    <methodparam><parameter>alignment</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>alignment</parameter>&nbsp;:</term>
+      <listitem><simpara>a PangoAlignment</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-alignment">
+    <title>clutter.Label.get_alignment</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_alignment</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a PangoAlignment</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--set-justify">
+    <title>clutter.Label.set_justify</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_justify</methodname>
+    <methodparam><parameter>justify</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>justify</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterlabel--get-justify">
+    <title>clutter.Label.get_justify</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_justify</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

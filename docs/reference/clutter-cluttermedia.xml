@@ -1,0 +1,254 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-cluttermedia">
+  <refmeta>
+    <refentrytitle>clutter.Media</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Media</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Media</classname></ooclass>
+  <ooclass><classname>gobject.GInterface</classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--set-uri">set_uri</link></methodname>
+    <methodparam><parameter>uri</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--get-uri">get_uri</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--set-playing">set_playing</link></methodname>
+    <methodparam><parameter>playing</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--get-playing">get_playing</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--set-position">set_position</link></methodname>
+    <methodparam><parameter>position</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--get-position">get_position</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--set-volume">set_volume</link></methodname>
+    <methodparam><parameter>volume</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--get-volume">get_volume</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--get-can-seek">get_can_seek</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--get-buffer-percent">get_buffer_percent</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--get-duration">get_duration</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttermedia--set-filename">set_filename</link></methodname>
+    <methodparam><parameter>filename</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-cluttermedia--set-uri">
+    <title>clutter.Media.set_uri</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_uri</methodname>
+    <methodparam><parameter>uri</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>uri</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--get-uri">
+    <title>clutter.Media.get_uri</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_uri</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--set-playing">
+    <title>clutter.Media.set_playing</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_playing</methodname>
+    <methodparam><parameter>playing</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>playing</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--get-playing">
+    <title>clutter.Media.get_playing</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_playing</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--set-position">
+    <title>clutter.Media.set_position</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_position</methodname>
+    <methodparam><parameter>position</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>position</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--get-position">
+    <title>clutter.Media.get_position</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_position</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a int</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--set-volume">
+    <title>clutter.Media.set_volume</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_volume</methodname>
+    <methodparam><parameter>volume</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>volume</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--get-volume">
+    <title>clutter.Media.get_volume</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_volume</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--get-can-seek">
+    <title>clutter.Media.get_can_seek</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_can_seek</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--get-buffer-percent">
+    <title>clutter.Media.get_buffer_percent</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_buffer_percent</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--get-duration">
+    <title>clutter.Media.get_duration</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_duration</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttermedia--set-filename">
+    <title>clutter.Media.set_filename</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_filename</methodname>
+    <methodparam><parameter>filename</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>filename</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

@@ -1,0 +1,76 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutteractorbox">
+  <refmeta>
+    <refentrytitle>clutter.ActorBox</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.ActorBox</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.ActorBox</classname></ooclass>
+  <ooclass><classname>gobject.GBoxed</classname></ooclass>
+  <constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam>x1</methodparam>
+    <methodparam>y1</methodparam>
+    <methodparam>x2</methodparam>
+    <methodparam>y2</methodparam>
+  </constructorsynopsis>
+
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractorbox--x1">x1</link></methodname>
+  </methodsynopsis>
+
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractorbox--y1">y1</link></methodname>
+  </methodsynopsis>
+
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractorbox--x2">x2</link></methodname>
+  </methodsynopsis>
+
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractorbox--y2">y2</link></methodname>
+  </methodsynopsis>
+
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractorbox--get-origin">get_origin</link></methodname>
+  </methodsynopsis>
+
+  <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractorbox--get-size">get_size</link></methodname>
+  </methodsynopsis>
+
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+    <programlisting>
+      <constructorsynopsis language="python">
+        <methodname>__init__</methodname>
+        <methodparam>x1</methodparam>
+        <methodparam>y1</methodparam>
+        <methodparam>x2</methodparam>
+        <methodparam>y2</methodparam>
+      </constructorsynopsis>
+    </programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a clutter.ActorBox</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+  </refsect1>
+</refentry>

@@ -1,189 +1,429 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-
 <refentry id="class-cluttercolor">
+  <refmeta>
+    <refentrytitle>clutter.Color</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
   <refnamediv>
-    <refname>Colors</refname>
-    <refpurpose>Color management and manipulation.</refpurpose>
+    <refname>clutter.Color</refname><refpurpose></refpurpose>
   </refnamediv>
 
-<!-- ******************************* -->
-<!-- BEGIN OF CLUTTER SYNOPSIS       -->
-<!-- ******************************* -->
+  <refsect1>
+    <title>Synopsis</title>
 
-<refsect1>
-	<title>Synopsis</title>
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Color</classname></ooclass>
+  <ooclass><classname>gobject.GBoxed</classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--copy">copy</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--free">free</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--equal">equal</link></methodname>
+    <methodparam><parameter>b</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--to-string">to_string</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--add">add</link></methodname>
+    <methodparam><parameter>src2</parameter></methodparam>
+    <methodparam><parameter>dest</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--subtract">subtract</link></methodname>
+    <methodparam><parameter>src2</parameter></methodparam>
+    <methodparam><parameter>dest</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--lighten">lighten</link></methodname>
+    <methodparam><parameter>dest</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--darken">darken</link></methodname>
+    <methodparam><parameter>dest</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--shade">shade</link></methodname>
+    <methodparam><parameter>dest</parameter></methodparam>
+    <methodparam><parameter>shade</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--shadex">shadex</link></methodname>
+    <methodparam><parameter>dest</parameter></methodparam>
+    <methodparam><parameter>shade</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--to-hlsx">to_hlsx</link></methodname>
+    <methodparam><parameter>hue</parameter></methodparam>
+    <methodparam><parameter>luminance</parameter></methodparam>
+    <methodparam><parameter>saturation</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--from-hlsx">from_hlsx</link></methodname>
+    <methodparam><parameter>hue</parameter></methodparam>
+    <methodparam><parameter>luminance</parameter></methodparam>
+    <methodparam><parameter>saturation</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--to-hls">to_hls</link></methodname>
+    <methodparam><parameter>hue</parameter></methodparam>
+    <methodparam><parameter>luminance</parameter></methodparam>
+    <methodparam><parameter>saturation</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--from-hls">from_hls</link></methodname>
+    <methodparam><parameter>hue</parameter></methodparam>
+    <methodparam><parameter>luminance</parameter></methodparam>
+    <methodparam><parameter>saturation</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--to-pixel">to_pixel</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttercolor--from-pixel">from_pixel</link></methodname>
+    <methodparam><parameter>pixel</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
 
-	<classsynopsis language="python">
-		<ooclass><classname>clutter.Color</classname></ooclass>
-		<constructorsynopsis language="python">
-			<methodname><link linkend="constructor-cluttercolor">clutter.Color</link></methodname>
-			<methodparam><parameter role="keyword">red</parameter><initializer>0</initializer></methodparam>
-			<methodparam><parameter role="keyword">green</parameter><initializer>0</initializer></methodparam>
-			<methodparam><parameter role="keyword">blue</parameter><initializer>0</initializer></methodparam>
-			<methodparam><parameter role="keyword">alpha</parameter><initializer>0</initializer></methodparam>
-		</constructorsynopsis>
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
 
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--foo">foo</link></methodname>
-			<methodparam><parameter role="keyword">bar</parameter></methodparam>
-		</methodsynopsis>
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
 
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--add">add</link></methodname>
-			<methodparam><parameter role="keyword">color</parameter></methodparam>
-		</methodsynopsis>
 
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--subtract">subtract</link></methodname>
-			<methodparam><parameter role="keyword">color</parameter></methodparam>
-		</methodsynopsis>
 
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--lighten">lighten</link></methodname>
-		</methodsynopsis>
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
 
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--darken">darken</link></methodname>
-		</methodsynopsis>
+  <refsect2 id="method-cluttercolor--copy">
+    <title>clutter.Color.copy</title>
 
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--shade">shade</link></methodname>
-			<methodparam><parameter role="keyword">factor</parameter></methodparam>
-		</methodsynopsis>
-
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--to_hls">darken</link></methodname>
-		</methodsynopsis>
-
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--to_pixel">darken</link></methodname>
-		</methodsynopsis>
-
-		<methodsynopsis language="python">
-			<methodname><link linkend="method-cluttercolor--to-string">to_string</link></methodname>
-		</methodsynopsis>
-
-	</classsynopsis>
-
-        <programlisting>
-                <emphasis role="bold">Functions</emphasis>
-
-                <methodsynopsis language="python">
-                        <methodname><link linkend="function-clutter--color-parse">clutter.color_parse</link></methodname>
-                        <methodparam><parameter role="keyword">spec</parameter></methodparam>
-                </methodsynopsis>
-
-                <methodsynopsis language="python">
-                        <methodname><link linkend="function-clutter--color-from-hls">clutter.color_from_hls</link></methodname>
-                        <methodparam><parameter role="keyword">hue</parameter></methodparam>
-                        <methodparam><parameter role="keyword">luminance</parameter></methodparam>
-                        <methodparam><parameter role="keyword">saturation</parameter></methodparam>
-                </methodsynopsis>
-
-                <methodsynopsis language="python">
-                        <methodname><link linkend="function-clutter--color-from-pixel">clutter.color_from_pixel</link></methodname>
-                        <methodparam><parameter role="keyword">pixel</parameter></methodparam>
-                </methodsynopsis>
-
-        </programlisting>
-</refsect1>
-
-<!-- ******************************* -->
-<!-- BEGIN OF CLUTTER ANCESTRY       -->
-<!-- ******************************* -->
-
-<refsect1>
-	<title>Ancestry</title>
-
-	<synopsis>+-- <link linkend="class-cluttercolor">clutter.Color</link>
-	</synopsis>
-
-</refsect1>
-
-<!-- ********************************** -->
-<!-- BEGIN OF CLUTTER DESCRIPTION       -->
-<!-- ********************************** -->
-
-<refsect1 id="description-cluttercolor">
-	<title>Description</title>
-	<para><link linkend="class-cluttercolor"><classname>clutter.Color</classname></link> is a simple 
-		type for representing colors.</para>
-</refsect1>
-
-<!-- ********************************** -->
-<!-- BEGIN OF CLUTTER CONSTRUCTOR       -->
-<!-- ********************************** -->
-
-<refsect1 id="constructor-cluttercolor">
-	<title>Constructor</title>
-
-	<programlisting><constructorsynopsis language="python">
-			<methodname>clutter.Color</methodname>
-			<methodparam><parameter role="keyword">red</parameter><initializer>0</initializer></methodparam>
-			<methodparam><parameter role="keyword">green</parameter><initializer>0</initializer></methodparam>
-			<methodparam><parameter role="keyword">blue</parameter><initializer>0</initializer></methodparam>
-			<methodparam><parameter role="keyword">alpha</parameter><initializer>0</initializer></methodparam>
-	</constructorsynopsis></programlisting>
-	<variablelist>
-		<varlistentry>
-			<term><parameter role="keyword">red</parameter>&nbsp;:</term>
-			<listitem><simpara>red component, between 0 and 255</simpara></listitem>
-		</varlistentry>
-		<varlistentry>
-			<term><parameter role="keyword">green</parameter>&nbsp;:</term>
-			<listitem><simpara>green component, between 0 and 255</simpara></listitem>
-		</varlistentry>
-		<varlistentry>
-			<term><parameter role="keyword">blue</parameter>&nbsp;:</term>
-			<listitem><simpara>blue component, between 0 and 255</simpara></listitem>
-		</varlistentry>
-		<varlistentry>
-			<term><parameter role="keyword">alpha</parameter>&nbsp;:</term>
-			<listitem><simpara>alpha component, between 0 and 255</simpara></listitem>
-		</varlistentry>
-		<varlistentry>
-			<term><emphasis>Returns</emphasis>&nbsp;:</term>
-			<listitem><simpara>a new <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link>.
-			</simpara></listitem>
-		</varlistentry>
-	</variablelist>
-
-	<para>
-	</para>
-
-</refsect1>
-
-<!-- ************************ -->
-<!-- BEGIN OF CLUTTER METHODS -->
-<!-- ************************ -->
-
-<refsect1>
-	<title>Methods</title>
-
-	<refsect2 id="method-cluttercolor--foo">
-		<title>clutter.Color.foo</title>
-
-    <programlisting>
-      <methodsynopsis language="python">
-	<methodname>foo</methodname>
-        <methodparam><parameter>bar</parameter></methodparam>
-      </methodsynopsis>
-    </programlisting>
-
-    <variablelist>
-      <varlistentry>
-        <term><parameter>vanizzle</parameter>&nbsp;:</term>
-        <listitem><simpara>test</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>
-      Some text.
-   </para>
+<programlisting><methodsynopsis language="python">
+    <methodname>copy</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
 
-</refsect1>
 
+  <refsect2 id="method-cluttercolor--free">
+    <title>clutter.Color.free</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>free</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--equal">
+    <title>clutter.Color.equal</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>equal</methodname>
+    <methodparam><parameter>b</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>b</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--to-string">
+    <title>clutter.Color.to_string</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>to_string</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--add">
+    <title>clutter.Color.add</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>add</methodname>
+    <methodparam><parameter>src2</parameter></methodparam>
+    <methodparam><parameter>dest</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>src2</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>dest</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--subtract">
+    <title>clutter.Color.subtract</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>subtract</methodname>
+    <methodparam><parameter>src2</parameter></methodparam>
+    <methodparam><parameter>dest</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>src2</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>dest</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--lighten">
+    <title>clutter.Color.lighten</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>lighten</methodname>
+    <methodparam><parameter>dest</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>dest</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--darken">
+    <title>clutter.Color.darken</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>darken</methodname>
+    <methodparam><parameter>dest</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>dest</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--shade">
+    <title>clutter.Color.shade</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>shade</methodname>
+    <methodparam><parameter>dest</parameter></methodparam>
+    <methodparam><parameter>shade</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>dest</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>shade</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--shadex">
+    <title>clutter.Color.shadex</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>shadex</methodname>
+    <methodparam><parameter>dest</parameter></methodparam>
+    <methodparam><parameter>shade</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>dest</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterColor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>shade</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--to-hlsx">
+    <title>clutter.Color.to_hlsx</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>to_hlsx</methodname>
+    <methodparam><parameter>hue</parameter></methodparam>
+    <methodparam><parameter>luminance</parameter></methodparam>
+    <methodparam><parameter>saturation</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>hue</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>luminance</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>saturation</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--from-hlsx">
+    <title>clutter.Color.from_hlsx</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>from_hlsx</methodname>
+    <methodparam><parameter>hue</parameter></methodparam>
+    <methodparam><parameter>luminance</parameter></methodparam>
+    <methodparam><parameter>saturation</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>hue</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>luminance</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>saturation</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterFixed</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--to-hls">
+    <title>clutter.Color.to_hls</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>to_hls</methodname>
+    <methodparam><parameter>hue</parameter></methodparam>
+    <methodparam><parameter>luminance</parameter></methodparam>
+    <methodparam><parameter>saturation</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>hue</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint8*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>luminance</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint8*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>saturation</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint8*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--from-hls">
+    <title>clutter.Color.from_hls</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>from_hls</methodname>
+    <methodparam><parameter>hue</parameter></methodparam>
+    <methodparam><parameter>luminance</parameter></methodparam>
+    <methodparam><parameter>saturation</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>hue</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint8</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>luminance</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint8</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>saturation</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint8</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--to-pixel">
+    <title>clutter.Color.to_pixel</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>to_pixel</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttercolor--from-pixel">
+    <title>clutter.Color.from_pixel</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>from_pixel</methodname>
+    <methodparam><parameter>pixel</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>pixel</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint32</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
 </refentry>

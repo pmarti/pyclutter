@@ -1,0 +1,140 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterscriptable">
+  <refmeta>
+    <refentrytitle>clutter.Scriptable</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Scriptable</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Scriptable</classname></ooclass>
+  <ooclass><classname>gobject.GInterface</classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscriptable--set-id">set_id</link></methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscriptable--get-id">get_id</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscriptable--parse-custom-node">parse_custom_node</link></methodname>
+    <methodparam><parameter>script</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+    <methodparam><parameter>name</parameter></methodparam>
+    <methodparam><parameter>node</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscriptable--set-custom-property">set_custom_property</link></methodname>
+    <methodparam><parameter>script</parameter></methodparam>
+    <methodparam><parameter>name</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterscriptable--set-id">
+    <title>clutter.Scriptable.set_id</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_id</methodname>
+    <methodparam><parameter>id</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>id</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscriptable--get-id">
+    <title>clutter.Scriptable.get_id</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_id</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscriptable--parse-custom-node">
+    <title>clutter.Scriptable.parse_custom_node</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>parse_custom_node</methodname>
+    <methodparam><parameter>script</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+    <methodparam><parameter>name</parameter></methodparam>
+    <methodparam><parameter>node</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>script</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterScript*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a GValue*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>name</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>node</parameter>&nbsp;:</term>
+      <listitem><simpara>a JsonNode*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscriptable--set-custom-property">
+    <title>clutter.Scriptable.set_custom_property</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_custom_property</methodname>
+    <methodparam><parameter>script</parameter></methodparam>
+    <methodparam><parameter>name</parameter></methodparam>
+    <methodparam><parameter>value</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>script</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterScript*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>name</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>value</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-GValue*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

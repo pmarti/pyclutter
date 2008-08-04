@@ -1,316 +1,398 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-
 <refentry id="class-cluttertexture">
-  <refnamediv>
-    <refname>clutter.Texture</refname>
-    <refpurpose>An actor for displaying and manipulating images</refpurpose>
-  </refnamediv>
+  <refmeta>
+    <refentrytitle>clutter.Texture</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
 
-<!-- ************************* -->
-<!-- BEGIN OF CLUTTER SYNOPSIS -->
-<!-- ************************* -->
+  <refnamediv>
+    <refname>clutter.Texture</refname><refpurpose></refpurpose>
+  </refnamediv>
 
   <refsect1>
     <title>Synopsis</title>
 
-    <classsynopsis language="python">
-      <ooclass><classname>clutter.Texture</classname></ooclass>
-      <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Texture</classname></ooclass>
+  <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>filename</parameter><initializer>True</initializer></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-from-rgb-data">set_from_rgb_data</link></methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>has_alpha</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter>rowstride</parameter></methodparam>
+    <methodparam><parameter>bpp</parameter></methodparam>
+    <methodparam><parameter>flags</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-from-yuv-data">set_from_yuv_data</link></methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter>flags</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-area-from-rgb-data">set_area_from_rgb_data</link></methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>has_alpha</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter>rowstride</parameter></methodparam>
+    <methodparam><parameter>bpp</parameter></methodparam>
+    <methodparam><parameter>flags</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-from-file">set_from_file</link></methodname>
+    <methodparam><parameter>filename</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-filter-quality">set_filter_quality</link></methodname>
+    <methodparam><parameter>filter_quality</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-filter-quality">get_filter_quality</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-max-tile-waste">set_max_tile_waste</link></methodname>
+    <methodparam><parameter>max_tile_waste</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-max-tile-waste">get_max_tile_waste</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-cogl-texture">get_cogl_texture</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-cogl-texture">set_cogl_texture</link></methodname>
+    <methodparam><parameter>cogl_tex</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
 
-      <constructorsynopsis language="python">
-        <methodname><link linkend="constructor-cluttertexture">clutter.Texture</link></methodname>
-        <methodparam>
-          <parameter role="keyword">pixbuf</parameter>
-          <initializer>None</initializer>
-        </methodparam>
-      </constructorsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-cluttertexture--get-pixbuf">get_pixbuf</link></methodname>
-      </methodsynopsis>
-
-      <methodsynopsis language="python">
-        <methodname><link linkend="method-cluttertexture--set-pixbuf">set_pixbuf</link></methodname>
-        <methodparam>
-          <parameter role="keyword">pixbuf</parameter>
-          <initializer>None</initializer>
-        </methodparam>
-      </methodsynopsis>
-
-    </classsynopsis>
   </refsect1>
-
-<!-- ************************* -->
-<!-- BEGIN OF CLUTTER ANCESTRY -->
-<!-- ************************* -->
-
   <refsect1>
     <title>Ancestry</title>
 
-    <synopsis>
-<link linkend="class-gobject">gobject.GObject</link>
- +--<link linkend="class-gobject">gobject.GInitiallyUnowned</link>
-     +--<link linkend="class-clutteractor">clutter.Actor</link>
-         +--<link linkend="class-cluttertexture">clutter.Texture</link>
-    </synopsis>
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutteractor">clutter.Actor</link>
+    +-- <link linkend="class-cluttertexture">clutter.Texture</link>
+</synopsis>
 
   </refsect1>
-
-<!-- ********************************* -->
-<!-- BEGIN OF CLUTTER PROPERTIES       -->
-<!-- ********************************* -->
-
   <refsect1>
-    <title>Properties</title>
+    <title>Constructor</title>
 
-    <para><link linkend="properties-clutteractor">clutter.Actor Properties</link></para>
-
-    <blockquote role="properties">
-      <informaltable pgwide="1" frame="none">
-        <tgroup cols="3">
-          <colspec column="1" colwidth="1in"/>
-          <colspec column="2" colwidth="1in"/>
-          <colspec column="3" colwidth="4in"/>
-          <tbody>
-            <row valign="top">
-              <entry>"pixbuf"</entry>
-              <entry>Read-Write</entry>
-              <entry><link linkend="class-gdkpixbuf">gdk.Pixbuf</link> source
-              for the texture.</entry>
-            </row>
-
-            <row valign="top">
-              <entry>"tiled"</entry>
-              <entry>Read-Write-Construct Only</entry>
-              <entry>Enables the use of tiled GL texture to use the texture
-              memory more efficiently.</entry>
-            </row>
-
-            <row valign="top">
-              <entry>"sync-size"</entry>
-              <entry>Read-Write</entry>
-              <entry>Auto sync size of actor to underlying pixbuf
-              dimensions</entry>
-            </row>
-
-            <row valign="top">
-              <entry>"repeat-x"</entry>
-              <entry>Read-Write</entry>
-              <entry>Repeat the underlying pixbuf on the X axis rather than
-              scale it. Currently ignored.</entry>
-            </row>
-
-            <row valign="top">
-              <entry>"repeat-y"</entry>
-              <entry>Read-Write</entry>
-              <entry>Repeat the underlying pixbuf on the Y axis rather than
-              scale it. Currently ignored.</entry>
-            </row>
-
-          </tbody>
-        </tgroup>
-      </informaltable>
-    </blockquote>
-
-  </refsect1>
-
-<!-- ********************************** -->
-<!-- BEGIN OF CLUTTER SIGNAL PROTOTYPES -->
-<!-- ********************************** -->
-
-  <refsect1>
-    <title>Signal Prototypes</title>
-
-    <para><link linkend="signal-prototypes-clutteractor">clutter.Actor Signal Prototypes</link></para>
-
-    <variablelist>
-
-      <varlistentry>
-        <term>"<link linkend="signal-cluttertexture--size-change">size-change</link>"</term>
-        <listitem>
-          <methodsynopsis
-            language="python"><methodname>callback</methodname>
-            <methodparam><parameter>texture</parameter></methodparam>
-            <methodparam><parameter>width</parameter></methodparam>
-            <methodparam><parameter>height</parameter></methodparam>
-            <methodparam><parameter>user_param1</parameter></methodparam>
-            <methodparam><parameter>...</parameter></methodparam>
-          </methodsynopsis>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>"<link linkend="signal-cluttertexture--pixbuf-change">pixbuf-change</link>"</term>
-        <listitem>
-          <methodsynopsis
-            language="python"><methodname>callback</methodname>
-            <methodparam><parameter>texture</parameter></methodparam>
-            <methodparam><parameter>user_param1</parameter></methodparam>
-            <methodparam><parameter>...</parameter></methodparam>
-          </methodsynopsis>
-        </listitem>
-      </varlistentry>
-
-    </variablelist>
-
-  </refsect1>
-
-<!-- **************************** -->
-<!-- BEGIN OF CLUTTER DESCRIPTION -->
-<!-- **************************** -->
-
-  <refsect1 id="description-cluttertexture">
-    <title>Description</title>
-    <para>
-      <link linkend="class-cluttertexture"><classname>clutter.Texture</classname></link>
-      is a base class for displaying and manipulating pixel buffer type data.
-    </para>
-
-    <para>
-      The <methodname>set_from_rgb_data</methodname>() and
-      <methodname>set_pixbuf</methodname>() methods are used to copy image
-      data into texture memory and subsequently realize the texture.
-    </para>
-
-    <para>
-      If texture reads are supported by underlying GL implementation
-      unrealizing/hiding frees image data from texture memory moving
-      to main system memory. Re-realizing then performs the opposite
-      operation. This process allows basic management of commonly
-      limited available texture memory.
-    </para>
-
-    <para>
-      <note>a ClutterTexture will scale its contents to fit the bounding
-      box requested using <methodname>request_coords</methodname>() and its
-      wrappers. To display an area of a texture without scaling, you should
-      set the clip area using <methodname>set_clip</methodname>().</note>
-    </para>
-
-  </refsect1>
-
-<!-- ************************************ -->
-<!-- BEGIN OF CLUTTER CONSTRUCTOR         -->
-<!-- ************************************ -->
-
-<refsect1 id="constructor-cluttertexture">
-  <title>Constructor</title>
-
-  <programlisting><constructorsynopsis language="python">
-    <methodname>clutter.Texture</methodname>
-    <methodparam><parameter role="keyword">pixbuf</parameter><initializer>None</initializer></methodparam>
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>filename</parameter><initializer>True</initializer></methodparam>
   </constructorsynopsis></programlisting>
-    
   <variablelist>
-
     <varlistentry>
-      <term>pixbuf&nbsp;:</term>
-      <listitem><simpara>The pixbuf to be displayed by the texture,
-      or <literal>None</literal>.</simpara></listitem>
+      <term><parameter>filename</parameter>&nbsp;:</term>
+      <listitem><simpara>a </simpara></listitem>
     </varlistentry>
-
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a new <link linkend="class-cluttertexture"><classname>clutter.Texture</classname></link>.
-        </simpara></listitem>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
     </varlistentry>
   </variablelist>
 
-  <para>
-    Creates a new <link linkend="class-cluttertexture"><classname>clutter.Texture</classname></link> object.
-  </para>
 
-</refsect1>
 
-<!-- ****************************** -->
-<!-- BEGIN OF CLUTTER METHODS       -->
-<!-- ****************************** -->
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
 
-<refsect1>
-  <title>Methods</title>
+  <refsect2 id="method-cluttertexture--set-from-rgb-data">
+    <title>clutter.Texture.set_from_rgb_data</title>
 
-</refsect1>
-
-<!-- ************************ -->
-<!-- BEGIN OF CLUTTER SIGNALS -->
-<!-- ************************ --> 
-
-<refsect1>
-  <title>Signals</title>
-
-  <refsect2 id="signal-cluttertexture--size-change">
-    <title>The "size-change" clutter.Texture Signal</title>
-
-    <programlisting><methodsynopsis language="python">
-      <methodname>callback</methodname>
-      <methodparam><parameter>texture</parameter></methodparam>
-      <methodparam><parameter>width</parameter></methodparam>
-      <methodparam><parameter>height</parameter></methodparam>
-      <methodparam><parameter>user_param1</parameter></methodparam>
-      <methodparam><parameter>...</parameter></methodparam>
-    </methodsynopsis></programlisting>
-
-    <variablelist>
-      <varlistentry>
-        <term><parameter>texture</parameter>&nbsp;:</term>
-        <listitem><simpara>the texture that received the signal</simpara></listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><parameter>width</parameter>&nbsp;:</term>
-        <listitem><simpara>the new width of the source data</simpara></listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><parameter>height</parameter>&nbsp;:</term>
-        <listitem><simpara>the new height of the source data</simpara></listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><parameter>user_param1</parameter>&nbsp;:</term>
-        <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><parameter>...</parameter>&nbsp;:</term>
-        <listitem><simpara>additional user parameters (if any)</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>The "size-change" signal is emitted  each time the size of the
-    pixbuf used by @texture changes.  The new size is given as argument to
-    the callback.</para>
-
+<programlisting><methodsynopsis language="python">
+    <methodname>set_from_rgb_data</methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>has_alpha</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter>rowstride</parameter></methodparam>
+    <methodparam><parameter>bpp</parameter></methodparam>
+    <methodparam><parameter>flags</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>data</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-guchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>has_alpha</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>rowstride</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>bpp</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>flags</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTextureFlags</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>error</parameter>&nbsp;:</term>
+      <listitem><simpara>a GError**</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
 
-  <refsect2 id="signal-cluttertexture--pixbuf-change">
-    <title>The "pixbuf-change" clutter.Texture Signal</title>
 
-    <programlisting><methodsynopsis language="python">
-      <methodname>callback</methodname>
-      <methodparam><parameter>texture</parameter></methodparam>
-      <methodparam><parameter>user_param1</parameter></methodparam>
-      <methodparam><parameter>...</parameter></methodparam>
-    </methodsynopsis></programlisting>
+  <refsect2 id="method-cluttertexture--set-from-yuv-data">
+    <title>clutter.Texture.set_from_yuv_data</title>
 
-    <variablelist>
-      <varlistentry>
-        <term><parameter>texture</parameter>&nbsp;:</term>
-        <listitem><simpara>the texture that received the signal</simpara></listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><parameter>user_param1</parameter>&nbsp;:</term>
-        <listitem><simpara>the first user parameter (if any) specified with the <link linkend="method-gobject--connect"><methodname>connect</methodname>()</link> method</simpara></listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><parameter>...</parameter>&nbsp;:</term>
-        <listitem><simpara>additional user parameters (if any)</simpara></listitem>
-      </varlistentry>
-    </variablelist>
-
-    <para>The "pixbuf-change" signal is emitted each time the pixbuf
-    used by the <link linkend="class-cluttertexture"><classname>clutter.Texture</classname></link> changes.</para>
-
+<programlisting><methodsynopsis language="python">
+    <methodname>set_from_yuv_data</methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter>flags</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>data</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-guchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>flags</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTextureFlags</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>error</parameter>&nbsp;:</term>
+      <listitem><simpara>a GError**</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
   </refsect2>
 
-</refsect1>
 
+  <refsect2 id="method-cluttertexture--set-area-from-rgb-data">
+    <title>clutter.Texture.set_area_from_rgb_data</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_area_from_rgb_data</methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>has_alpha</parameter></methodparam>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>width</parameter></methodparam>
+    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter>rowstride</parameter></methodparam>
+    <methodparam><parameter>bpp</parameter></methodparam>
+    <methodparam><parameter>flags</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>data</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-guchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>has_alpha</parameter>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>width</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>height</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>rowstride</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>bpp</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>flags</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTextureFlags</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>error</parameter>&nbsp;:</term>
+      <listitem><simpara>a GError**</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--set-from-file">
+    <title>clutter.Texture.set_from_file</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_from_file</methodname>
+    <methodparam><parameter>filename</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>filename</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>error</parameter>&nbsp;:</term>
+      <listitem><simpara>a GError**</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--set-filter-quality">
+    <title>clutter.Texture.set_filter_quality</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_filter_quality</methodname>
+    <methodparam><parameter>filter_quality</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>filter_quality</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterTextureQuality</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--get-filter-quality">
+    <title>clutter.Texture.get_filter_quality</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_filter_quality</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterTextureQuality</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--set-max-tile-waste">
+    <title>clutter.Texture.set_max_tile_waste</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_max_tile_waste</methodname>
+    <methodparam><parameter>max_tile_waste</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>max_tile_waste</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--get-max-tile-waste">
+    <title>clutter.Texture.get_max_tile_waste</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_max_tile_waste</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--get-cogl-texture">
+    <title>clutter.Texture.get_cogl_texture</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_cogl_texture</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a CoglHandle</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--set-cogl-texture">
+    <title>clutter.Texture.set_cogl_texture</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_cogl_texture</methodname>
+    <methodparam><parameter>cogl_tex</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>cogl_tex</parameter>&nbsp;:</term>
+      <listitem><simpara>a CoglHandle</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
 </refentry>

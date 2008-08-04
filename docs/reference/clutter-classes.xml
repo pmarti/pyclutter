@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<reference id="class-reference" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <title>Class Reference</title>
+  <xi:include href="clutter-clutteractor.xml"/>
+  <xi:include href="clutter-clutteractorbox.xml"/>
+  <xi:include href="clutter-clutteralpha.xml"/>
+  <xi:include href="clutter-clutterbackend.xml"/>
+  <xi:include href="clutter-clutterbehaviour.xml"/>
+  <xi:include href="clutter-clutterbehaviourbspline.xml"/>
+  <xi:include href="clutter-clutterbehaviourdepth.xml"/>
+  <xi:include href="clutter-clutterbehaviourellipse.xml"/>
+  <xi:include href="clutter-clutterbehaviouropacity.xml"/>
+  <xi:include href="clutter-clutterbehaviourpath.xml"/>
+  <xi:include href="clutter-clutterbehaviourrotate.xml"/>
+  <xi:include href="clutter-clutterbehaviourscale.xml"/>
+  <xi:include href="clutter-clutterchildmeta.xml"/>
+  <xi:include href="clutter-clutterclonetexture.xml"/>
+  <xi:include href="clutter-cluttercolor.xml"/>
+  <xi:include href="clutter-cluttercontainer.xml"/>
+  <xi:include href="clutter-cluttereffecttemplate.xml"/>
+  <xi:include href="clutter-clutterentry.xml"/>
+  <xi:include href="clutter-clutterevent.xml"/>
+  <xi:include href="clutter-cluttergeometry.xml"/>
+  <xi:include href="clutter-cluttergroup.xml"/>
+  <xi:include href="clutter-clutterknot.xml"/>
+  <xi:include href="clutter-clutterlabel.xml"/>
+  <xi:include href="clutter-clutterlistmodel.xml"/>
+  <xi:include href="clutter-cluttermedia.xml"/>
+  <xi:include href="clutter-cluttermodel.xml"/>
+  <xi:include href="clutter-cluttermodeliter.xml"/>
+  <xi:include href="clutter-clutterrectangle.xml"/>
+  <xi:include href="clutter-clutterscore.xml"/>
+  <xi:include href="clutter-clutterscript.xml"/>
+  <xi:include href="clutter-clutterscriptable.xml"/>
+  <xi:include href="clutter-cluttershader.xml"/>
+  <xi:include href="clutter-clutterstage.xml"/>
+  <xi:include href="clutter-cluttertexture.xml"/>
+  <xi:include href="clutter-cluttertimeline.xml"/>
+  <xi:include href="clutter-cluttervertex.xml"/>
+</reference>

@@ -1,0 +1,42 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE synopsis PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<synopsis><link linkend="class-clutteractor">clutter.Actor</link>
+  <link linkend="class-clutterclonetexture">clutter.CloneTexture</link>
+  <link linkend="class-clutterentry">clutter.Entry</link>
+  <link linkend="class-cluttergroup">clutter.Group</link>
+    <link linkend="class-clutterstage">clutter.Stage</link>
+  <link linkend="class-clutterlabel">clutter.Label</link>
+  <link linkend="class-clutterrectangle">clutter.Rectangle</link>
+  <link linkend="class-cluttertexture">clutter.Texture</link>
+<link linkend="class-clutteralpha">clutter.Alpha</link>
+<link linkend="class-clutterbackend">clutter.Backend</link>
+<link linkend="class-clutterbehaviour">clutter.Behaviour</link>
+  <link linkend="class-clutterbehaviourbspline">clutter.BehaviourBspline</link>
+  <link linkend="class-clutterbehaviourdepth">clutter.BehaviourDepth</link>
+  <link linkend="class-clutterbehaviourellipse">clutter.BehaviourEllipse</link>
+  <link linkend="class-clutterbehaviouropacity">clutter.BehaviourOpacity</link>
+  <link linkend="class-clutterbehaviourpath">clutter.BehaviourPath</link>
+  <link linkend="class-clutterbehaviourrotate">clutter.BehaviourRotate</link>
+  <link linkend="class-clutterbehaviourscale">clutter.BehaviourScale</link>
+<link linkend="class-clutterchildmeta">clutter.ChildMeta</link>
+<link linkend="class-cluttereffecttemplate">clutter.EffectTemplate</link>
+<link linkend="class-cluttermodel">clutter.Model</link>
+  <link linkend="class-clutterlistmodel">clutter.ListModel</link>
+<link linkend="class-cluttermodeliter">clutter.ModelIter</link>
+<link linkend="class-clutterscore">clutter.Score</link>
+<link linkend="class-clutterscript">clutter.Script</link>
+<link linkend="class-cluttershader">clutter.Shader</link>
+<link linkend="class-cluttertimeline">clutter.Timeline</link>
+<link linkend="class-gobject-gboxed">gobject.GBoxed</link>
+  <link linkend="class-clutteractorbox">clutter.ActorBox</link>
+  <link linkend="class-cluttercolor">clutter.Color</link>
+  <link linkend="class-clutterevent">clutter.Event</link>
+  <link linkend="class-cluttergeometry">clutter.Geometry</link>
+  <link linkend="class-clutterknot">clutter.Knot</link>
+  <link linkend="class-cluttervertex">clutter.Vertex</link>
+<link linkend="class-gobject-ginterface">gobject.GInterface</link>
+  <link linkend="class-cluttercontainer">clutter.Container</link>
+  <link linkend="class-cluttermedia">clutter.Media</link>
+  <link linkend="class-clutterscriptable">clutter.Scriptable</link>
+</synopsis>

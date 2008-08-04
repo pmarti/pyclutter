@@ -1,0 +1,278 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterbehaviourrotate">
+  <refmeta>
+    <refentrytitle>clutter.BehaviourRotate</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.BehaviourRotate</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.BehaviourRotate</classname></ooclass>
+  <ooclass><classname><link linkend="class-clutterbehaviour">clutter.Behaviour</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>alpha</parameter><initializer>True</initializer></methodparam>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>direction</parameter><initializer>True</initializer></methodparam>
+    <methodparam><parameter>angle_start</parameter></methodparam>
+    <methodparam><parameter>angle_end</parameter></methodparam>
+  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourrotate--get-center">get_center</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourrotate--set-center">set_center</link></methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourrotate--get-axis">get_axis</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourrotate--set-axis">set_axis</link></methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourrotate--get-direction">get_direction</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourrotate--set-direction">set_direction</link></methodname>
+    <methodparam><parameter>direction</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourrotate--get-bounds">get_bounds</link></methodname>
+    <methodparam><parameter>angle_start</parameter></methodparam>
+    <methodparam><parameter>angle_end</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviourrotate--set-bounds">set_bounds</link></methodname>
+    <methodparam><parameter>angle_start</parameter></methodparam>
+    <methodparam><parameter>angle_end</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutterbehaviour">clutter.Behaviour</link>
+    +-- <link linkend="class-clutterbehaviourrotate">clutter.BehaviourRotate</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam><parameter>alpha</parameter><initializer>True</initializer></methodparam>
+    <methodparam><parameter>axis</parameter></methodparam>
+    <methodparam><parameter>direction</parameter><initializer>True</initializer></methodparam>
+    <methodparam><parameter>angle_start</parameter></methodparam>
+    <methodparam><parameter>angle_end</parameter></methodparam>
+  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>alpha</parameter>&nbsp;:</term>
+      <listitem><simpara>a </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>axis</parameter>&nbsp;:</term>
+      <listitem><simpara>a </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>direction</parameter>&nbsp;:</term>
+      <listitem><simpara>a </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>angle_start</parameter>&nbsp;:</term>
+      <listitem><simpara>a </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>angle_end</parameter>&nbsp;:</term>
+      <listitem><simpara>a </simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterBehaviour*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterbehaviourrotate--get-center">
+    <title>clutter.BehaviourRotate.get_center</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_center</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourrotate--set-center">
+    <title>clutter.BehaviourRotate.set_center</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_center</methodname>
+    <methodparam><parameter>x</parameter></methodparam>
+    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter>z</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>x</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>y</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>z</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourrotate--get-axis">
+    <title>clutter.BehaviourRotate.get_axis</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_axis</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourrotate--set-axis">
+    <title>clutter.BehaviourRotate.set_axis</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_axis</methodname>
+    <methodparam><parameter>axis</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>axis</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourrotate--get-direction">
+    <title>clutter.BehaviourRotate.get_direction</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_direction</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateDirection</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourrotate--set-direction">
+    <title>clutter.BehaviourRotate.set_direction</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_direction</methodname>
+    <methodparam><parameter>direction</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>direction</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterRotateDirection</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourrotate--get-bounds">
+    <title>clutter.BehaviourRotate.get_bounds</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_bounds</methodname>
+    <methodparam><parameter>angle_start</parameter></methodparam>
+    <methodparam><parameter>angle_end</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>angle_start</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>angle_end</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviourrotate--set-bounds">
+    <title>clutter.BehaviourRotate.set_bounds</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_bounds</methodname>
+    <methodparam><parameter>angle_start</parameter></methodparam>
+    <methodparam><parameter>angle_end</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>angle_start</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>angle_end</parameter>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

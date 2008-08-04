@@ -1,0 +1,321 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterscript">
+  <refmeta>
+    <refentrytitle>clutter.Script</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Script</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Script</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--load-from-file">load_from_file</link></methodname>
+    <methodparam><parameter>filename</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--load-from-data">load_from_data</link></methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>length</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--get-object">get_object</link></methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--get-objects">get_objects</link></methodname>
+    <methodparam><parameter>first_name</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--unmerge-objects">unmerge_objects</link></methodname>
+    <methodparam><parameter>merge_id</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--ensure-objects">ensure_objects</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--get-type-from-name">get_type_from_name</link></methodname>
+    <methodparam><parameter>type_name</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--connect-signals">connect_signals</link></methodname>
+    <methodparam><parameter>user_data</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--connect-signals-full">connect_signals_full</link></methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--add-search-paths">add_search_paths</link></methodname>
+    <methodparam><parameter>paths</parameter></methodparam>
+    <methodparam><parameter>n_paths</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterscript--lookup-filename">lookup_filename</link></methodname>
+    <methodparam><parameter>filename</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutterscript">clutter.Script</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Constructor</title>
+
+<programlisting><constructorsynopsis language="python">
+    <methodname>__init__</methodname>
+    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterScript*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterscript--load-from-file">
+    <title>clutter.Script.load_from_file</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>load_from_file</methodname>
+    <methodparam><parameter>filename</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>filename</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>error</parameter>&nbsp;:</term>
+      <listitem><simpara>a GError**</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--load-from-data">
+    <title>clutter.Script.load_from_data</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>load_from_data</methodname>
+    <methodparam><parameter>data</parameter></methodparam>
+    <methodparam><parameter>length</parameter></methodparam>
+    <methodparam><parameter>error</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>data</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>length</parameter>&nbsp;:</term>
+      <listitem><simpara>a gsize</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>error</parameter>&nbsp;:</term>
+      <listitem><simpara>a GError**</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--get-object">
+    <title>clutter.Script.get_object</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_object</methodname>
+    <methodparam><parameter>name</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>name</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a GObject*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--get-objects">
+    <title>clutter.Script.get_objects</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_objects</methodname>
+    <methodparam><parameter>first_name</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>first_name</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--unmerge-objects">
+    <title>clutter.Script.unmerge_objects</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>unmerge_objects</methodname>
+    <methodparam><parameter>merge_id</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>merge_id</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--ensure-objects">
+    <title>clutter.Script.ensure_objects</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>ensure_objects</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--get-type-from-name">
+    <title>clutter.Script.get_type_from_name</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_type_from_name</methodname>
+    <methodparam><parameter>type_name</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>type_name</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a GType</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--connect-signals">
+    <title>clutter.Script.connect_signals</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>connect_signals</methodname>
+    <methodparam><parameter>user_data</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>user_data</parameter>&nbsp;:</term>
+      <listitem><simpara>a gpointer</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--connect-signals-full">
+    <title>clutter.Script.connect_signals_full</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>connect_signals_full</methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>user_data</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>func</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterScriptConnectFunc</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>user_data</parameter>&nbsp;:</term>
+      <listitem><simpara>a gpointer</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--add-search-paths">
+    <title>clutter.Script.add_search_paths</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>add_search_paths</methodname>
+    <methodparam><parameter>paths</parameter></methodparam>
+    <methodparam><parameter>n_paths</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>paths</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*-const[]</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>n_paths</parameter>&nbsp;:</term>
+      <listitem><simpara>a gsize</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterscript--lookup-filename">
+    <title>clutter.Script.lookup_filename</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>lookup_filename</methodname>
+    <methodparam><parameter>filename</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>filename</parameter>&nbsp;:</term>
+      <listitem><simpara>a const-gchar*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gchar*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

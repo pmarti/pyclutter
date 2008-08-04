@@ -1,0 +1,236 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterbehaviour">
+  <refmeta>
+    <refentrytitle>clutter.Behaviour</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Behaviour</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Behaviour</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--apply">apply</link></methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--remove">remove</link></methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--remove-all">remove_all</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--actors-foreach">actors_foreach</link></methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>data</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--get-n-actors">get_n_actors</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--get-nth-actor">get_nth_actor</link></methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--get-actors">get_actors</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--get-alpha">get_alpha</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--set-alpha">set_alpha</link></methodname>
+    <methodparam><parameter>alpha</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbehaviour--is-applied">is_applied</link></methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutterbehaviour">clutter.Behaviour</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterbehaviour--apply">
+    <title>clutter.Behaviour.apply</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>apply</methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>actor</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--remove">
+    <title>clutter.Behaviour.remove</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>remove</methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>actor</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--remove-all">
+    <title>clutter.Behaviour.remove_all</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>remove_all</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--actors-foreach">
+    <title>clutter.Behaviour.actors_foreach</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>actors_foreach</methodname>
+    <methodparam><parameter>func</parameter></methodparam>
+    <methodparam><parameter>data</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>func</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterBehaviourForeachFunc</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>data</parameter>&nbsp;:</term>
+      <listitem><simpara>a gpointer</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--get-n-actors">
+    <title>clutter.Behaviour.get_n_actors</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_n_actors</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--get-nth-actor">
+    <title>clutter.Behaviour.get_nth_actor</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_nth_actor</methodname>
+    <methodparam><parameter>index_</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>index_</parameter>&nbsp;:</term>
+      <listitem><simpara>a gint</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--get-actors">
+    <title>clutter.Behaviour.get_actors</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_actors</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a GSList*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--get-alpha">
+    <title>clutter.Behaviour.get_alpha</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_alpha</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a ClutterAlpha*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--set-alpha">
+    <title>clutter.Behaviour.set_alpha</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_alpha</methodname>
+    <methodparam><parameter>alpha</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>alpha</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterAlpha*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbehaviour--is-applied">
+    <title>clutter.Behaviour.is_applied</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>is_applied</methodname>
+    <methodparam><parameter>actor</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>actor</parameter>&nbsp;:</term>
+      <listitem><simpara>a ClutterActor*</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gboolean</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>

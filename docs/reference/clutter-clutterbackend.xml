@@ -1,0 +1,188 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+    "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<refentry id="class-clutterbackend">
+  <refmeta>
+    <refentrytitle>clutter.Backend</refentrytitle>
+    <manvolnum>3</manvolnum>
+    <refmiscinfo>PyGTK Docs</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>clutter.Backend</refname><refpurpose></refpurpose>
+  </refnamediv>
+
+  <refsect1>
+    <title>Synopsis</title>
+
+<classsynopsis language="python">
+  <ooclass><classname>clutter.Backend</classname></ooclass>
+  <ooclass><classname><link linkend="class-gobject">GObject</link></classname></ooclass>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbackend--set-resolution">set_resolution</link></methodname>
+    <methodparam><parameter>dpi</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbackend--get-resolution">get_resolution</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbackend--set-double-click-time">set_double_click_time</link></methodname>
+    <methodparam><parameter>msec</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbackend--get-double-click-time">get_double_click_time</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbackend--set-double-click-distance">set_double_click_distance</link></methodname>
+    <methodparam><parameter>distance</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbackend--get-double-click-distance">get_double_click_distance</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbackend--set-font-options">set_font_options</link></methodname>
+    <methodparam><parameter>options</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutterbackend--get-font-options">get_font_options</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+</classsynopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Ancestry</title>
+
+<synopsis>+-- <link linkend="class-gobject">GObject</link>
+  +-- <link linkend="class-clutterbackend">clutter.Backend</link>
+</synopsis>
+
+  </refsect1>
+  <refsect1>
+    <title>Methods</title>
+
+  <refsect2 id="method-clutterbackend--set-resolution">
+    <title>clutter.Backend.set_resolution</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_resolution</methodname>
+    <methodparam><parameter>dpi</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>dpi</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbackend--get-resolution">
+    <title>clutter.Backend.get_resolution</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_resolution</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a gdouble</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbackend--set-double-click-time">
+    <title>clutter.Backend.set_double_click_time</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_double_click_time</methodname>
+    <methodparam><parameter>msec</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>msec</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbackend--get-double-click-time">
+    <title>clutter.Backend.get_double_click_time</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_double_click_time</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbackend--set-double-click-distance">
+    <title>clutter.Backend.set_double_click_distance</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_double_click_distance</methodname>
+    <methodparam><parameter>distance</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>distance</parameter>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbackend--get-double-click-distance">
+    <title>clutter.Backend.get_double_click_distance</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_double_click_distance</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a guint</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbackend--set-font-options">
+    <title>clutter.Backend.set_font_options</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_font_options</methodname>
+    <methodparam><parameter>options</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>options</parameter>&nbsp;:</term>
+      <listitem><simpara>a cairo_font_options_t*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  <refsect2 id="method-clutterbackend--get-font-options">
+    <title>clutter.Backend.get_font_options</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_font_options</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a cairo_font_options_t*</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect2>
+
+
+  </refsect1>
+</refentry>
