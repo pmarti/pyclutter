@@ -111,7 +111,7 @@ _wrap_gtk_clutter_texture_new (PyGObject *self, PyObject *args, PyObject *kwargs
 static PyMethodDef _PyClutterGtkTexture_methods[] = {
   { "set_from_pixbuf", (PyCFunction) _wrap_gtk_clutter_texture_set_from_pixbuf, METH_VARARGS | METH_KEYWORDS },
   { "set_from_stock", (PyCFunction) _wrap_gtk_clutter_texture_set_from_stock, METH_VARARGS | METH_KEYWORDS },
-  { "set_from_icon_name", (PyCFunction) _wrap_gtk_clutter_texture_set_from_stock, METH_VARARGS | METH_KEYWORDS },
+  { "set_from_icon_name", (PyCFunction) _wrap_gtk_clutter_texture_set_from_icon_name, METH_VARARGS | METH_KEYWORDS },
   { NULL, NULL, 0 }
 };
 
