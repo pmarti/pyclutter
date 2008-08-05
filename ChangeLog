@@ -1,3 +1,9 @@
+2008-08-05  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	* examples/gtk-clutter.py: Update the example to show how
+	to keep actors centered on the stage even when resizing the
+	embedding window.
+
 2008-08-04  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* docs/reference/clutter-*.xml: Regenerate the documentation

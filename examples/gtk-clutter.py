@@ -4,6 +4,13 @@ import cluttergtk   # must be the first to be imported
 import clutter
 import gtk
 
+def on_stage_allocate (actor, pspec, rect, icon):
+    (stage_w, stage_h) = actor.get_size()
+    # the rectangle has its anchor point set
+    rect.set_position(stage_w / 2, stage_h / 2)
+    icon.set_position(stage_w / 2, stage_h / 2)
+
+
 def main ():
     window = gtk.Window()
     window.connect('destroy', gtk.main_quit)
@@ -13,8 +20,8 @@ def main ():
     window.add(vbox)
 
     embed = cluttergtk.Embed()
+    vbox.pack_start(embed, True, True, 0)
     embed.set_size_request(300, 300)
-    vbox.pack_start(embed, True, False, 0)
 
     # we need to realize the widget before we get the stage
     embed.realize()
@@ -37,6 +44,10 @@ def main ():
     tex.set_position(150, 150)
     tex.set_rotation(clutter.Z_AXIS, 60.0, 0, 0, 0)
     stage.add(tex)
+
+    # update the position of the actors when the stage changes
+    # size due to an allocation
+    stage.connect('notify::allocation', on_stage_allocate, rect, tex)
 
     button = gtk.Button('Click me to quit')
     button.connect('clicked', gtk.main_quit)
