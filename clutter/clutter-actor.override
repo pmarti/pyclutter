@@ -312,7 +312,7 @@ _wrap_clutter_actor_get_preferred_size (PyGObject *self)
                                           &min_width, &min_height,
                                           &natural_width, &natural_height);
 
-        return Py_BuildValue ("(ii)",
+        return Py_BuildValue ("(iiii)",
                               min_width, min_height,
                               natural_width, natural_height);
 }

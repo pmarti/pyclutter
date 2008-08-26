@@ -1,3 +1,10 @@
+2008-08-26  Emmanuele Bassi  <ebassi@openedhand.com>
+
+	Bug 1101 - get_preferred_size Pyclutter wrapper bug (?)
+
+	* clutter/clutter-actor.override: Use the right format string
+	for the return value of get_preferred_size(). (Nati Berkover)
+
 2008-08-05  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	* examples/gtk-clutter.py: Update the example to show how
