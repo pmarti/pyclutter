@@ -21,7 +21,7 @@ init_clutter_gtk (void)
   char **argv;
 
   av = PySys_GetObject ("argv");
-  if (!av)
+  if (av)
     {
       if (!PyList_Check (av))
         {

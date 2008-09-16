@@ -1,3 +1,14 @@
+2008-09-16  Emmanuele Bassi  <emmanuele.bassi@intel.com>
+
+	Bug 1141 - Wrong allocation size
+
+	* clutter-gst/cluttergstmodule.c (init_clutter_gst): Invert a
+	condition to avoid g_new0() bombing out while trying to allocate
+	G_MAXINT - 1. (Eduardo Matus)
+
+	* clutter-gtk/cluttergtkmodule.c (init_clutter_gtk): Ditto as
+	above.
+
 2008-08-26  Emmanuele Bassi  <ebassi@openedhand.com>
 
 	Bug 1101 - get_preferred_size Pyclutter wrapper bug (?)
