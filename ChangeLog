@@ -1,3 +1,10 @@
+2008-09-26  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	Bug 1157 - Fix for pyclutter cogl_path_round_rectangle
+
+	* clutter/cogl.override: Use the right parameter types and
+	function name for cogl.path_round_rectangle(). (Bastian Winkler)
+
 2008-09-16  Emmanuele Bassi  <emmanuele.bassi@intel.com>
 
 	Bug 1141 - Wrong allocation size

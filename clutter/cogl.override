@@ -321,7 +321,7 @@ _wrap_cogl_path_round_rectangle (PyObject *self, PyObject *args, PyObject *kwarg
   x = y = width = height = 0;
   radius = angle_step = 0;
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffffdd:path_ellipse", kwlist, &x, &y, &width, &height, &radius, &angle_step))
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffffff:path_round_rectangle", kwlist, &x, &y, &width, &height, &radius, &angle_step))
     return NULL;
     
   cogl_path_round_rectangle (CLUTTER_FLOAT_TO_FIXED (x),
