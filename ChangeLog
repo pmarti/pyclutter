@@ -1,3 +1,8 @@
+2008-09-29  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	* Makefile.am:
+	* configure.ac: Remove the Tidy bindings from the build.
+
 2008-09-26  Emmanuele Bassi  <ebassi@linux.intel.com>
 
 	Bug 1157 - Fix for pyclutter cogl_path_round_rectangle

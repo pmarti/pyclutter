@@ -174,26 +174,6 @@ fi
 
 AM_CONDITIONAL(BUILD_CLUTTERCAIRO, [test "x$build_cluttercairo" = "xyes"])
 
-build_tidy=no
-AC_ARG_WITH(tidy,
-            AC_HELP_STRING([--with-tidy=@<:@no/yes@:>@],
-                           [Build clutter.tidy submodule]),
-            build_tidy=$with_tidy)
-
-if test "x$build_tidy" = "xyes"; then
-  PKG_CHECK_MODULES(TIDY, tidy-1.0,
-                    build_tidy="yes",
-                    build_tidy="no")
-  AC_SUBST(TIDY_CFLAGS)
-  AC_SUBST(TIDY_LIBS)
-
-  if test -n "$export_dynamic"; then
-    TIDY_LIBS=`echo $TIDY_LIBS | sed -e "s/$export_dynamic//"`
-  fi
-fi
-
-AM_CONDITIONAL(BUILD_TIDY, [test "x$build_tidy" = "xyes"])
-
 dnl Building documentation
 m4_define([docs_default],
           m4_if(m4_eval(pyclutter_version_minor % 2), [0], [yes], [no]))
@@ -236,7 +216,6 @@ AC_CONFIG_FILES([
         clutter-gst/Makefile
         clutter-gtk/Makefile
         clutter-cairo/Makefile
-        tidy/Makefile
 ])
 
 AC_OUTPUT
@@ -245,6 +224,5 @@ echo "* PyClutter:
         build cluttergst:     $build_cluttergst
         build cluttergtk:     $build_cluttergtk
         build cluttercairo:   $build_cluttercairo
-        build tidy:           $build_tidy
         enable documentation: $enable_docs
 "
