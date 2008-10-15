@@ -177,3 +177,42 @@ _wrap_clutter_script_add_search_paths (PyGObject *self,
     Py_INCREF (Py_None);
     return Py_None;
 }
+%%
+override clutter_script_list_objects noargs
+static PyObject *
+_wrap_clutter_script_list_objects (PyGObject *self)
+{
+#if CLUTTER_CHECK_VERSION(0, 8, 2)
+    GList *objects, *l;
+    PyObject *py_list;
+
+    objects = clutter_script_list_objects (CLUTTER_SCRIPT (self->obj));
+
+    if ((py_list = PyList_New (0)) == NULL) {
+        g_list_free (objects);
+        return NULL;
+    }
+
+    for (l = objects; l != NULL; l = l->next) {
+        GObject *object = l->data;
+        PyObject *py_object;
+
+        py_object = pygobject_new (object);
+        if (py_object == NULL) {
+            g_list_free (objects);
+            Py_DECREF (py_list);
+            return NULL;
+        }
+
+        PyList_Append (py_list, py_object);
+        Py_DECREF (py_object);
+    }
+
+    g_list_free (objects);
+
+    return py_list;
+#else
+    return NULL;
+#endif /* CLUTTER_CHECK_VERSION(0, 8, 2) */
+}
+%%

@@ -1,5 +1,9 @@
 2008-10-15  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/clutter-script.override: Bind list_objects().
+
+2008-10-15  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* Makefile.am:
 	* docs/Makefile.am: Small build fixes for passing distcheck.
 
