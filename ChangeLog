@@ -1,3 +1,8 @@
+2008-10-15  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	* tidy/*: Remove the Tidy files from SVN. They will be moved
+	into the Tidy repository.
+
 2008-09-29  Emmanuele Bassi  <ebassi@linux.intel.com>
 
 	* Makefile.am:
