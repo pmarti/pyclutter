@@ -13,12 +13,10 @@ Requirements
 ------------
   * GLib 2.14.0 or higher
   * GTK+ 2.10.0 or higher
-  * Clutter 0.5.4 or higher
+  * Clutter 0.8.2 or higher
+  * PyCairo
   * PyGObject 2.12.1 or higher
   * Python 2.4.0 or higher
-
-In order to build the bindings for clutter-cairo you will also need:
-  * PyCairo
 
 In order to build the bindings for clutter-gst you will also need:
   * GStreamer >= 0.10
@@ -30,29 +28,64 @@ In order to build the bindings for clutter-gtk you will also need:
 
 This release is supporting the following Clutter releases:
 
-        clutter-core    0.6.2
-        clutter-gst     0.6.1
-        clutter-gtk     0.6.0
-        clutter-cairo   0.6.0
+        clutter-core    0.8.2
+        clutter-gst     0.8.0
+        clutter-gtk     0.8.2
+        clutter-cairo   0.8.0
 
 Installation
 ------------
 
 In order to install this module type the following:
 
-  ./configure
-  make
-  make install
+  $ ./configure
+  $ make
+  # make install
 
 To avoid installing to a system directory you can change the installation
 prefix at configure time with
 
   ./configure --prefix=/some/other/place
 
+Release notes for PyClutter 0.8.0
+---------------------------------
+
+The cluttercairo, cluttergst and cluttergtk submodules of clutter have
+been moved into their own modules. In order to import them, the import
+directive must be changed from:
+
+        from clutter import cluttercairo
+        from clutter import cluttergst
+        from clutter import cluttergtk
+
+to:
+
+        import cluttercairo
+        import cluttergst
+        import cluttergtk
+
+The order of the import directives is also relevant, because of the
+required initialization process of the underlying C libraries. The
+correct order for importing the clutter and related modules is:
+
+        first ↑
+              | import cluttergtk
+              | import cluttergst
+              | import clutter
+              | import cluttercairo
+         last ↓
+
+If you are importing the gst module, you must import it after the
+cluttergst module.
+
+If you are importing the gtk module, you must import it after the
+cluttergtk module.
+
 Copyright and License
 ---------------------
 
-Copyright (C) 2006-2008  OpenedHand Ltd.  (see the file AUTHORS)
+Copyright (C) 2006      OpenedHand Ltd
+Copyright (C) 2008      Intel Corporation
 
 This library is free software; you can redistribute it and/or modify it under
 the terms of the GNU Library General Public License as published by the Free

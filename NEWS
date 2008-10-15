@@ -1,3 +1,15 @@
+Overview of changes between 0.6.2 and 0.8.0
+===========================================
+
+* Require clutter core >= 0.8.2
+* Require clutter suite >= 0.8
+* Split up the clutter submodules into their own modules, to
+  allow proper initialization for cluttergtk and cluttergst
+* Initial support for the COGL path API
+* Removed the tidy submodule
+* Documentation has been regenerated but it's still incomplete
+  and unfinished
+
 Overview of changes between 0.6.0 and 0.6.2
 ===========================================
 

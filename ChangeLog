@@ -1,3 +1,11 @@
+======== PyClutter 0.8.0 ======================================================
+
+2008-10-15  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	* NEWS:
+	* README:
+	* configure.ac: Release PyClutter 0.8.0
+
 2008-10-15  Emmanuele Bassi  <ebassi@linux.intel.com>
 
 	* clutter/clutter-script.override: Bind list_objects().
