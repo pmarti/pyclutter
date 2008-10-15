@@ -2,11 +2,11 @@ NULL =
 
 BUILDDIR = $(top_builddir)/docs
 
-REF_VERSION = $(PYCLUTTER_MAJOR_VERSION).$(PYCLUTTER_MINOR_VERSION)
+REF_VERSION  = $(PYCLUTTER_MAJOR_VERSION).$(PYCLUTTER_MINOR_VERSION)
 FULL_VERSION = $(REF_VERSION).$(PYCLUTTER_MICRO_VERSION)
 
-HTML_STYLE = $(PYGOBJECT_DATADIR)/pygobject/xsl/ref-html-style.xsl
-PDF_STYLE = $(PYGOBJECT_DATADIR)/pygobject/xsl/pdf-style.xsl
+HTML_STYLE = @PYGOBJECT_DATADIR@/pygobject/xsl/ref-html-style.xsl
+PDF_STYLE  = @PYGOBJECT_DATADIR@/pygobject/xsl/pdf-style.xsl
 
 XMLFILES = 						\
     reference/clutter-ref.xml				\
@@ -55,11 +55,16 @@ HTML_FILES =					\
 	html/index.sgml				\
 	html/pyclutter.devhelp
 
-CSS_FILES = $(PYGOBJECT_PYGDOCS)/style.css
+CSS_FILES = @PYGOBJECT_PYGDOCS@/style.css
 
 TARGET_DIR = $(datadir)/gtk-doc/html/pyclutter
-CSSdir = $(HTMLdir)
-CSS_DATA = $(CSS_FILES)
+CSSdir = $(TARGET_DIR)
+CSS_DATA = style.css
+
+style.css:
+	@cp -f $(CSS_FILES) $@
+
+CLEANFILES = $(CSS_DATA)
 
 EXTRA_DIST = \
 	$(HTML_FILES)	\

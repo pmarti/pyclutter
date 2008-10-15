@@ -23,6 +23,8 @@ pkgfiles = pyclutter-$(PYCLUTTER_MAJOR_VERSION).$(PYCLUTTER_MINOR_VERSION).pc
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = $(pkgfiles)
 
+DISTCHECK_CONFIGURE_FLAGS = --enable-docs
+
 DIST_SUBDIRS = \
 	docs \
 	clutter \
