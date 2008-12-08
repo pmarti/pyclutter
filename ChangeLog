@@ -1,5 +1,12 @@
 2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	Bug 1327 - [PATCH] pyclutter ClutterListModel with multiple columns
+
+	* clutter/clutter-model.override: Fix the model creation with
+	multiple columns. (Bastian Winkler)
+
+2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/clutter-actor.override: Override the units-based actor
 	API and use floating point values instead of integers encoding
 	units. ClutterUnits in C are used to express sub-pixel precision
