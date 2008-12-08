@@ -1,5 +1,12 @@
 2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	Bug 1287 - clutter_event_get_device_id not available in pyclutter
+
+	* clutter/clutter-base.defs: Add get_device_id() method for
+	clutter.Event. (Thomas Steinacher)
+
+2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	Bug 1288 - clutter_container_raise_child's second argument should be
 	optional
 

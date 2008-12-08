@@ -2884,6 +2884,18 @@
   )
 )
 
+(define-method get_stage
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_stage")
+  (return-type "ClutterActor*")
+)
+
+(define-method get_device_id
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_device_id")
+  (return-type "gint")
+)
+
 
 
 ;; From clutter-feature.h
