@@ -1,5 +1,17 @@
 2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	Bug 1288 - clutter_container_raise_child's second argument should be
+	optional
+
+	* clutter/clutter-actor.override: Fix condition checks on
+	clutter.Actor.raise() and clutter.Actor.lower().
+
+	* clutter/clutter-base.defs: Allow None to be used as the
+	value for the sibling argument in clutter.Container raise_child()
+	and lower_child() methods. (Thomas Steinacher)
+
+2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	Bug 1296 - Adding unicode_value attribute to ClutterKeyEvent
 
 	* clutter/clutter-event.override: Sync up the clutter.Event

@@ -1085,7 +1085,7 @@ _wrap_clutter_actor_raise (PyGObject *self,
 
     if (py_above == Py_None)
         clutter_actor_raise (CLUTTER_ACTOR (self->obj), NULL);
-    else if (pygobject_check (py_above, &PyClutterActor_Type)) {
+    else if (py_above && pygobject_check (py_above, &PyClutterActor_Type)) {
         ClutterActor *actor;
 
         actor = CLUTTER_ACTOR (pygobject_get (py_above));
@@ -1114,7 +1114,7 @@ _wrap_clutter_actor_lower (PyGObject *self,
 
     if (py_below == Py_None)
         clutter_actor_lower (CLUTTER_ACTOR (self->obj), NULL);
-    else if (pygobject_check (py_below, &PyClutterActor_Type)) {
+    else if (py_below && pygobject_check (py_below, &PyClutterActor_Type)) {
         ClutterActor *actor;
 
         actor = CLUTTER_ACTOR (pygobject_get (py_below));

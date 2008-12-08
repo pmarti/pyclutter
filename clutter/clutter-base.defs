@@ -2285,7 +2285,7 @@
   (return-type "none")
   (parameters
     '("ClutterActor*" "actor")
-    '("ClutterActor*" "sibling" (optional))
+    '("ClutterActor*" "sibling" (null-ok) (default NULL))
   )
 )
 
@@ -2295,7 +2295,7 @@
   (return-type "none")
   (parameters
     '("ClutterActor*" "actor")
-    '("ClutterActor*" "sibling" (optional))
+    '("ClutterActor*" "sibling" (null-ok) (default NULL))
   )
 )
 
