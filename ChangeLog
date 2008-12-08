@@ -1,5 +1,13 @@
 2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	Bug 1296 - Adding unicode_value attribute to ClutterKeyEvent
+
+	* clutter/clutter-event.override: Sync up the clutter.Event
+	bindings to access all the public attributes of ClutterEvent
+	and related structures. (Based on a patch by Julien Pauty)
+
+2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	Bug 1326 - [PATCH] pyclutter ClutterTimline list_markers returns <nil>
 
 	* clutter/clutter.override: Fix return value of list_markers()

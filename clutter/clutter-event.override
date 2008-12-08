@@ -144,6 +144,11 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 				event->key.hardware_keycode = PyInt_AsLong (value);
 				return 0;
 			}
+                        else if (!strcmp (attr, "unicode_value")) {
+                                CHECK_VALUE_IS_INT (attr, value);
+                                event->key.unicode_value = PyInt_AsLong (value);
+                                return 0;
+                        }
 			break;
 		default:
 			break;
@@ -167,9 +172,11 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 			break;
 		case CLUTTER_MOTION: /* ClutterMotionEvent	motion */
 			if (!strcmp (attr, "__members__"))
-				return Py_BuildValue ("[ssssss]",
+				return Py_BuildValue ("[ssssssss]",
 						      "type",
 						      "time",
+                                                      "flags",
+                                                      "stage",
                                                       "source",
 						      "modifier_state",
 						      "x", "y");
@@ -181,9 +188,11 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 		case CLUTTER_BUTTON_PRESS:
 		case CLUTTER_BUTTON_RELEASE:
 			if (!strcmp (attr, "__members__"))
-				return Py_BuildValue ("[ssssssss]",
+				return Py_BuildValue ("[ssssssssss]",
 						      "type",
 						      "time",
+                                                      "flags",
+                                                      "stage",
                                                       "source",
 						      "modifier_state",
 						      "x", "y",
@@ -200,9 +209,11 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 			break;
                 case CLUTTER_SCROLL:
                         if (!strcmp (attr, "__members__"))
-				return Py_BuildValue ("[sssssss]",
+				return Py_BuildValue ("[sssssssss]",
 						      "type",
 						      "time",
+                                                      "flags",
+                                                      "stage",
                                                       "source",
 						      "modifier_state",
 						      "x", "y",
@@ -217,24 +228,31 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 		case CLUTTER_KEY_PRESS:
 		case CLUTTER_KEY_RELEASE:
 			if (!strcmp (attr, "__members__"))
-				return Py_BuildValue ("[ssssss]",
+				return Py_BuildValue ("[sssssssss]",
 						      "type",
 						      "time",
+                                                      "flags"
+                                                      "stage",
                                                       "source",
 						      "modifier_state",
 						      "keyval",
-						      "hardware_keycode");
+						      "hardware_keycode",
+                                                      "unicode_value");
 			if (!strcmp (attr, "keyval"))
-				return PyInt_FromLong (event->key.keyval);
+				return PyInt_FromLong (clutter_key_event_symbol ((ClutterKeyEvent *) event));
 			if (!strcmp (attr, "hardware_keycode"))
-				return PyInt_FromLong (event->key.hardware_keycode);
+				return PyInt_FromLong (clutter_key_event_code ((ClutterKeyEvent *) event));
+                        if (!strcmp (attr, "unicode_value"))
+                                return PyInt_FromLong (clutter_key_event_unicode ((ClutterKeyEvent *) event));
 			break;
                 case CLUTTER_ENTER:
                 case CLUTTER_LEAVE:
                         if (!strcmp (attr, "__members__"))
-                                return Py_BuildValue ("[ssssss]",
+                                return Py_BuildValue ("[ssssssss]",
                                                       "type",
                                                       "time",
+                                                      "flags",
+                                                      "stage",
                                                       "source",
                                                       "x", "y",
                                                       "related");
@@ -242,10 +260,14 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 				return PyInt_FromLong (event->crossing.x);
 			if (!strcmp (attr, "y"))
 				return PyInt_FromLong (event->crossing.y);
+                        if (!strcmp (attr, "related"))
+                                return pygobject_new ((GObject *) event->crossing.related);
                         break;
 		default:
 			break;
 	}
+
+        /* common attributes, see ClutterAnyEvent */
 
 	if (!strcmp (attr, "type"))
 		return pyg_enum_from_gtype (CLUTTER_TYPE_EVENT_TYPE, event->type);
@@ -253,13 +275,19 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 	if (!strcmp (attr, "time"))
                 return PyInt_FromLong (clutter_event_get_time (event));
 
+        if (!strcmp (attr, "flags"))
+                return pyg_flags_from_gtype (CLUTTER_TYPE_EVENT_FLAGS, event->any.flags);
+
         if (!strcmp (attr, "modifier_state"))
                 return pyg_flags_from_gtype (CLUTTER_TYPE_MODIFIER_TYPE,
                                              clutter_event_get_state (event));
 
         if (!strcmp (attr, "source"))
                 return pygobject_new ((GObject *) clutter_event_get_source (event));
-	
+
+        if (!strcmp (attr, "stage"))
+                return pygobject_new ((GObject *) clutter_event_get_stage (event));
+
 	return Py_FindMethod ((PyMethodDef *) _PyClutterEvent_methods, self, attr);
 }
 %%
