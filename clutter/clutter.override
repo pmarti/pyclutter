@@ -617,7 +617,8 @@ _wrap_clutter_timeline_list_markers (PyGObject *self,
   static char *kwlist[] = { "frame_num", NULL };
   gchar **markers;
   gint frame_num = 0;
-  guint n_markers, i;
+  guint i;
+  gsize n_markers;
   PyObject *py_ret;
 
   if (!PyArg_ParseTupleAndKeywords (args, kwargs,
@@ -636,7 +637,7 @@ _wrap_clutter_timeline_list_markers (PyGObject *self,
       return Py_None;
     }
 
-  if ((py_ret = PyList_New (n_markers)) == NULL)
+  if ((py_ret = PyList_New (0)) == NULL)
     {
       g_strfreev (markers);
       return NULL;
