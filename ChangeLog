@@ -1,3 +1,17 @@
+2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	* clutter/clutter-actor.override: Override the units-based actor
+	API and use floating point values instead of integers encoding
+	units. ClutterUnits in C are used to express sub-pixel precision
+	in an efficient way, but since bindings do not expose fixed-point
+	API and conversion macros, we should use floating point values
+	for sub-pixel units.
+
+	* clutter/clutter-boxed.override: Ditto as above for ActorBox and
+	Vertex types.
+
+	* examples/custom-actor.py: Update.
+
 2008-10-15  Emmanuele Bassi  <ebassi@linux.intel.com>
 
 	* configure.ac: Post release bump to 0.8.1

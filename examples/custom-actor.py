@@ -71,31 +71,31 @@ class Triangle (clutter.Actor):
             return False
 
     def __paint_triangle (self, width, height, color):
-        cogl.path_move_to(float(width / 2), 0)
+        cogl.path_move_to(width / 2, 0)
         cogl.path_line_to(width, height)
         cogl.path_line_to(0, height)
-        cogl.path_line_to(float(width / 2), 0)
+        cogl.path_line_to(width / 2, 0)
         cogl.path_close()
 
         cogl.color(color)
         cogl.path_fill()
 
     def do_paint (self):
-        (x, y, width, height) = self.get_allocation_geometry()
+        (x1, y1, x2, y2) = self.get_allocation_box()
 
         paint_color = self._color
 
         real_alpha = self.get_paint_opacity() * paint_color.alpha / 255
         paint_color.alpha = real_alpha
 
-        self.__paint_triangle(width, height, paint_color)
+        self.__paint_triangle(x2 - x1, y2 - y1, paint_color)
 
     def do_pick (self, pick_color):
         if self.should_pick_paint() == False:
             return
 
-        (x, y, width, height) = self.get_allocation_geometry()
-        self.__paint_triangle(width, height, pick_color)
+        (x1, y1, x2, y2) = self.get_allocation_box()
+        self.__paint_triangle(x2 - x1, y2 - y1, pick_color)
 
     def do_clicked (self):
         sys.stdout.write("Clicked!\n")

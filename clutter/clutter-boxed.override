@@ -162,14 +162,20 @@ _wrap_clutter_actor_box_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
 {
 	static char *kwlist[] = { "x1", "y1", "x2", "y2", NULL };
 	ClutterActorBox box = { 0, 0, 0, 0 };
+        double x1, y1, x2, y2;
 
 	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
-					 "|iiii:ClutterActorBox.__init__",
+					 "|dddd:ClutterActorBox.__init__",
 					 kwlist,
-					 &(box.x1), &(box.y1),
-					 &(box.x2), &(box.y2)))
+					 &x1, &y1,
+					 &x2, &y2))
 		return -1;
-	
+
+        box.x1 = CLUTTER_UNITS_FROM_FLOAT (x1);
+        box.y1 = CLUTTER_UNITS_FROM_FLOAT (y1);
+        box.x2 = CLUTTER_UNITS_FROM_FLOAT (x2);
+        box.y2 = CLUTTER_UNITS_FROM_FLOAT (y2);
+
 	self->boxed = g_boxed_copy (CLUTTER_TYPE_ACTOR_BOX, &box);
 	self->free_on_dealloc = TRUE;
 	self->gtype = CLUTTER_TYPE_ACTOR_BOX;
@@ -187,6 +193,7 @@ static PyObject *
 _wrap_clutter_actor_box_getitem(PyGBoxed *self, int pos)
 {
 	ClutterActorBox *box;
+        ClutterUnit res;
 
 	if (pos < 0)
 		pos += 4;
@@ -199,20 +206,22 @@ _wrap_clutter_actor_box_getitem(PyGBoxed *self, int pos)
 
 	box = pyg_boxed_get (self, ClutterActorBox);
 	switch (pos) {
-		case 0: return PyInt_FromLong (box->x1);
-		case 1: return PyInt_FromLong (box->y1);
-		case 2: return PyInt_FromLong (box->x2);
-		case 3: return PyInt_FromLong (box->y2);
+		case 0: res = box->x1;
+		case 1: res = box->y1;
+		case 2: res = box->x2;
+		case 3: res = box->y2;
 		default:
 			g_assert_not_reached();
 			return NULL;
 	}
+
+        return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (res));
 }
 static int
 _wrap_clutter_actor_box_setitem (PyGBoxed *self, int pos, PyObject *value)
 {
 	ClutterActorBox *box;
-	gint val;
+	double val;
 
 	if (pos < 0)
 		pos += 4;
@@ -223,16 +232,21 @@ _wrap_clutter_actor_box_setitem (PyGBoxed *self, int pos, PyObject *value)
 		return -1;
 	}
 
+        if (!PyFloat_Check (value)) {
+                PyErr_SetString (PyExc_TypeError, "value must be floating point");
+                return -1;
+        }
+
 	box = pyg_boxed_get (self, ClutterActorBox);
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
 		return -1;
 	
 	switch(pos) {
-		case 0: box->x1 = val; break;
-		case 1: box->y1 = val; break;
-		case 2: box->x2 = val; break;
-		case 3: box->y2 = val; break;
+		case 0: box->x1 = CLUTTER_UNITS_FROM_FLOAT (val); break;
+		case 1: box->y1 = CLUTTER_UNITS_FROM_FLOAT (val); break;
+		case 2: box->x2 = CLUTTER_UNITS_FROM_FLOAT (val); break;
+		case 3: box->y2 = CLUTTER_UNITS_FROM_FLOAT (val); break;
 		default:
 			g_assert_not_reached();
 			return -1;
@@ -254,9 +268,16 @@ override-attr ClutterActorBox.origin
 static PyObject *
 _wrap_clutter_actor_box__get_origin (PyGBoxed *self, void *closure)
 {
-        return Py_BuildValue ("(ii)",
-                              pyg_boxed_get (self, ClutterActorBox)->x1,
-                              pyg_boxed_get (self, ClutterActorBox)->y1);
+        ClutterUnit val;
+        double x1, y1;
+        
+        val = pyg_boxed_get (self, ClutterActorBox)->x1;
+        x1  = CLUTTER_UNITS_TO_FLOAT (val);
+
+        val = pyg_boxed_get (self, ClutterActorBox)->y1;
+        y1  = CLUTTER_UNITS_TO_FLOAT (val);
+
+        return Py_BuildValue ("(dd)", x1, y1);
 }
 %%
 override-attr ClutterActorBox.size
@@ -264,23 +285,26 @@ static PyObject *
 _wrap_clutter_actor_box__get_size (PyGBoxed *self, void *closure)
 {
         ClutterActorBox *box = pyg_boxed_get (self, ClutterActorBox);
+        double width, height;
 
-        return Py_BuildValue ("(ii)",
-                              (box->x2 - box->x1),
-                              (box->y2 - box->y1));
+        width  = CLUTTER_UNITS_TO_FLOAT (box->x2 - box->x1);
+        height = CLUTTER_UNITS_TO_FLOAT (box->y2 - box->y1);
+
+        return Py_BuildValue ("(dd)", width, height);
 }
 %%
 override-attr ClutterActorBox.x1
 static int
 _wrap_clutter_actor_box__set_x1 (PyGBoxed *self, PyObject *value, void *closure)
 {
-	gint val;
+	double val;
 
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
 		return -1;
 
-	pyg_boxed_get (self, ClutterActorBox)->x1 = val;
+	pyg_boxed_get (self, ClutterActorBox)->x1 =
+          CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
 }
@@ -289,13 +313,14 @@ override-attr ClutterActorBox.y1
 static int
 _wrap_clutter_actor_box__set_y1 (PyGBoxed *self, PyObject *value, void *closure)
 {
-	gint val;
+	double val;
 
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
 		return -1;
 
-	pyg_boxed_get (self, ClutterActorBox)->y1 = val;
+	pyg_boxed_get (self, ClutterActorBox)->y1 =
+          CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
 }
@@ -304,14 +329,15 @@ override-attr ClutterActorBox.x2
 static int
 _wrap_clutter_actor_box__set_x2 (PyGBoxed *self, PyObject *value, void *closure)
 {
-	gint val;
+	double val;
 
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
-        	return -1;
-	
-	pyg_boxed_get(self, ClutterActorBox)->x2 = val;
-	
+		return -1;
+
+	pyg_boxed_get (self, ClutterActorBox)->x2 =
+          CLUTTER_UNITS_FROM_FLOAT (val);
+
 	return 0;
 }
 %%
@@ -319,13 +345,14 @@ override-attr ClutterActorBox.y2
 static int
 _wrap_clutter_actor_box__set_y2 (PyGBoxed *self, PyObject *value, void *closure)
 {
-	gint val;
+	double val;
 
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
 		return -1;
-	
-	pyg_boxed_get (self, ClutterActorBox)->y2 = val;
+
+	pyg_boxed_get (self, ClutterActorBox)->y2 =
+          CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
 }
@@ -455,13 +482,18 @@ _wrap_clutter_vertex_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
 {
 	static char *kwlist[] = { "x", "y", "z", NULL };
 	ClutterVertex vertex = { 0, 0, 0 };
+        double x, y, z;
 
 	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
-					 "|iii:ClutterVertex.__init__",
+					 "|d:ClutterVertex.__init__",
 					 kwlist,
-					 &(vertex.x), &(vertex.y), &(vertex.z)))
+					 &x, &y, &z))
 		return -1;
-	
+
+        vertex.x = CLUTTER_UNITS_FROM_FLOAT (x);
+        vertex.y = CLUTTER_UNITS_FROM_FLOAT (y);
+        vertex.z = CLUTTER_UNITS_FROM_FLOAT (z);
+
 	self->boxed = g_boxed_copy (CLUTTER_TYPE_VERTEX, &vertex);
 	self->free_on_dealloc = TRUE;
 	self->gtype = CLUTTER_TYPE_VERTEX;
@@ -476,9 +508,10 @@ _wrap_clutter_vertex_length (PyGBoxed *self)
 	return 3;
 }
 static PyObject *
-_wrap_clutter_vertex_getitem(PyGBoxed *self, Py_ssize_t pos)
+_wrap_clutter_vertex_getitem (PyGBoxed *self, Py_ssize_t pos)
 {
 	ClutterVertex *vertex;
+        ClutterUnit res;
 
 	if (pos < 0)
 		pos += 1;
@@ -491,19 +524,21 @@ _wrap_clutter_vertex_getitem(PyGBoxed *self, Py_ssize_t pos)
 
 	vertex = pyg_boxed_get (self, ClutterVertex);
 	switch (pos) {
-		case 0: return PyInt_FromLong (vertex->x);
-		case 1: return PyInt_FromLong (vertex->y);
-		case 2: return PyInt_FromLong (vertex->z);
+		case 0: res = vertex->x;
+		case 1: res = vertex->y;
+		case 2: res = vertex->z;
 		default:
 			g_assert_not_reached();
 			return NULL;
 	}
+
+        return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (res));
 }
 static Py_ssize_t
 _wrap_clutter_vertex_setitem (PyGBoxed *self, Py_ssize_t pos, PyObject *value)
 {
 	ClutterVertex *vertex;
-	gint val;
+	double val;
 
 	if (pos < 0)
 		pos += 1;
@@ -514,15 +549,21 @@ _wrap_clutter_vertex_setitem (PyGBoxed *self, Py_ssize_t pos, PyObject *value)
 		return -1;
 	}
 
+        if (!PyFloat_Check (value)) {
+                PyErr_SetString(PyExc_TypeError, "value must be a float");
+
+                return -1;
+        }
+
 	vertex = pyg_boxed_get (self, ClutterVertex);
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
 		return -1;
 	
 	switch(pos) {
-		case 0: vertex->x = val; break;
-		case 1: vertex->y = val; break;
-		case 2: vertex->z = val; break;
+		case 0: vertex->x = CLUTTER_UNITS_FROM_FLOAT (val); break;
+		case 1: vertex->y = CLUTTER_UNITS_FROM_FLOAT (val); break;
+		case 2: vertex->z = CLUTTER_UNITS_FROM_FLOAT (val); break;
 		default:
 			g_assert_not_reached();
 			return -1;
@@ -544,13 +585,14 @@ override-attr ClutterVertex.x
 static int
 _wrap_clutter_vertex__set_x (PyGBoxed *self, PyObject *value, void *closure)
 {
-	gint32 val;
+	double val;
 
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
 		return -1;
 
-	pyg_boxed_get (self, ClutterVertex)->x = val;
+	pyg_boxed_get (self, ClutterVertex)->x =
+          CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
 }
@@ -559,13 +601,14 @@ override-attr ClutterVertex.y
 static int
 _wrap_clutter_vertex__set_y (PyGBoxed *self, PyObject *value, void *closure)
 {
-	gint32 val;
+	double val;
 
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
 		return -1;
 
-	pyg_boxed_get (self, ClutterVertex)->y = val;
+	pyg_boxed_get (self, ClutterVertex)->y =
+          CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
 }
@@ -574,13 +617,14 @@ override-attr ClutterVertex.z
 static int
 _wrap_clutter_vertex__set_z (PyGBoxed *self, PyObject *value, void *closure)
 {
-	gint32 val;
+	double val;
 
-	val = PyInt_AsLong (value);
+	val = PyFloat_AsDouble (value);
 	if (PyErr_Occurred ())
 		return -1;
 
-	pyg_boxed_get (self, ClutterVertex)->z = val;
+	pyg_boxed_get (self, ClutterVertex)->z =
+          CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
 }
