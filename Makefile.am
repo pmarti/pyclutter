@@ -33,7 +33,7 @@ DIST_SUBDIRS = \
 	clutter-gtk \
 	clutter-cairo
 
-EXTRA_DIST = createdefs.py py-compile
+EXTRA_DIST = createdefs.py py-compile Makefile.tmpl
 
 CLEANFILES = $(pkgfiles)
 

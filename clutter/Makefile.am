@@ -1,16 +1,10 @@
 include $(top_srcdir)/Makefile.tmpl
 
-PLATFORM_VERSION = 1.0
-
 CLEANFILES =
 EXTRA_DIST = 
-INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS) -I$(top_builddir)/clutter
+INCLUDES = $(pyclutter_common_includes)
 
 CREATEDEFS = $(PYTHON) $(top_srcdir)/createdefs.py
-
-# python scripts & extension modules
-pkgpythondir = $(pyexecdir)
-pkgpyexecdir = $(pyexecdir)
 
 # clutter python extension modules
 pyclutterexecdir = $(pkgpyexecdir)/clutter
@@ -22,12 +16,6 @@ pyclutter_PYTHON = __init__.py keysyms.py deprecation.py
 # clutter headers
 pkgincludedir = $(includedir)/pyclutter-$(PLATFORM_VERSION)/pyclutter
 pkginclude_HEADERS = pyclutter.h
-
-# linker flags
-common_ldflags = -module -avoid-version
-#if PLATFORM_WIN32
-#common_ldflags += -no-undefined
-#endif
 
 COGL_DEFS = cogl-base.defs
 CLUTTER_DEFS = clutter-base.defs
@@ -82,7 +70,7 @@ cogl.c: cogl-types.defs cogl.defs $(COGL_OVERRIDES)
 clutter.c: cogl-types.defs clutter-types.defs clutter.defs cogl.defs $(CLUTTER_OVERRIDES)
 
 _clutter_la_CFLAGS  = $(PYCAIRO_CFLAGS) $(CLUTTER_CFLAGS)
-_clutter_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_clutter
+_clutter_la_LDFLAGS = $(pyclutter_common_ldflags) -export-symbols-regex init_clutter
 _clutter_la_LIBADD  = $(PYCAIRO_LIBS) $(PYGTK_LIBS) $(CLUTTER_LIBS)
 _clutter_la_SOURCES = 		\
 	cluttermodule.c		\
@@ -94,7 +82,7 @@ nodist__clutter_la_SOURCES = clutter.c cogl.c
 pyclutterexec_LTLIBRARIES = _clutter.la
 
 # defs files
-defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
+defsdir = $(pyclutter_defsdir)
 defs_DATA = \
 	$(COGL_DEFS)		\
 	$(CLUTTER_DEFS) 	\
@@ -129,6 +117,6 @@ install-data-local:
 # this is a hack - do not remove
 # this rule is needed to prevent generating clutter-types.c because
 # we have clutter-types.defs
-clutter-types.c:
-	@:
+#clutter-types.c:
+#	@:
 

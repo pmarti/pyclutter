@@ -1,28 +1,24 @@
-# python scripts & extension modules
-pkgpythondir = $(pyexecdir)
-pkgpyexecdir = $(pyexecdir)
+include $(top_srcdir)/Makefile.tmpl
 
 # clutter python extension modules
 pycluttergstexecdir = $(pkgpyexecdir)/cluttergst
 
-INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS)
+INCLUDES = $(pyclutter_common_includes)
 
 pycluttergstexec_PYTHON = __init__.py
 pycluttergstexec_LTLIBRARIES = _cluttergst.la
-
-common_ldflags = -module -avoid-version
 
 CLUTTERGST_DEFS = cluttergst.defs
 CLEANFILES = cluttergst.c
 EXTRA_DIST = $(CLUTTERGST_DEFS) cluttergst.override
 cluttergst.c: $(CLUTTERGST_DEFS) cluttergst.override
 _cluttergst_la_CFLAGS = $(CLUTTERGST_CFLAGS)
-_cluttergst_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_cluttergst
+_cluttergst_la_LDFLAGS = $(pyclutter_common_ldflags) -export-symbols-regex init_cluttergst
 _cluttergst_la_LIBADD = $(PYGTK_LIBS) $(CLUTTERGST_LIBS)
 _cluttergst_la_SOURCES = cluttergstmodule.c
 nodist__cluttergst_la_SOURCES = cluttergst.c
 
-defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
+defsdir = $(pyclutter_defsdir)
 defs_DATA = $(CLUTTERGST_DEFS)
 
 # code generator

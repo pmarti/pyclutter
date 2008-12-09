@@ -1,28 +1,24 @@
-# python scripts & extension modules
-pkgpythondir = $(pyexecdir)
-pkgpyexecdir = $(pyexecdir)
+include $(top_srcdir)/Makefile.tmpl
 
 # clutter python extension modules
 pycluttercairoexecdir = $(pkgpyexecdir)/cluttercairo
 
-INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS)
+INCLUDES = $(pyclutter_common_includes)
 
 pycluttercairoexec_PYTHON = __init__.py
 pycluttercairoexec_LTLIBRARIES = _cluttercairo.la
-
-common_ldflags = -module -avoid-version
 
 CLUTTERCAIRO_DEFS = cluttercairo.defs
 CLEANFILES = cluttercairo.c
 EXTRA_DIST = $(CLUTTERCAIRO_DEFS) cluttercairo.override
 cluttercairo.c: $(CLUTTERCAIRO_DEFS) cluttercairo.override
 _cluttercairo_la_CFLAGS = $(PYCAIRO_CFLAGS) $(CLUTTERCAIRO_CFLAGS)
-_cluttercairo_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_cluttercairo
+_cluttercairo_la_LDFLAGS = $(pyclutter_common_ldflags) -export-symbols-regex init_cluttercairo
 _cluttercairo_la_LIBADD = $(PYGTK_LIBS) $(PYCAIRO_LIBS) $(CLUTTERCAIRO_LIBS)
 _cluttercairo_la_SOURCES = cluttercairomodule.c
 nodist__cluttercairo_la_SOURCES = cluttercairo.c
 
-defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
+defsdir = $(pyclutter_defsdir)
 defs_DATA = $(CLUTTERCAIRO_DEFS)
 
 # code generator

@@ -1,5 +1,20 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* Makefile.am: Add Makefile.tmpl to the dist.
+
+	* Makefile.tmpl: Move all the common bits of the modules Makefiles
+	into the template.
+
+	* clutter-cairo/Makefile.am:
+	* clutter-gst/Makefile.am:
+	* clutter-gtk/Makefile.am:
+	* clutter/Makefile.am: Update using the Makefile template.
+
+	* clutter/pyclutter.h: Do not include "config.h": the private header
+	will do it for us.
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* Makefile.tmpl: Add a Makefile template for common bits
 	of build infrastructure.
 

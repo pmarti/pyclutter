@@ -1,17 +1,16 @@
 #ifndef __PY_CLUTTER_H__
 #define __PY_CLUTTER_H__
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
 #include <glib.h>
 
 #define NO_IMPORT_PYGOBJECT
 #include <pygobject.h>
 #include <Python.h>
+
 #include <clutter/clutter.h>
 #include <clutter/clutter-feature.h>
+
+#include <cogl/cogl.h>
 
 G_BEGIN_DECLS
 
