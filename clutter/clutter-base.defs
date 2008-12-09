@@ -4844,7 +4844,7 @@
   (c-name "clutter_texture_set_cogl_texture")
   (return-type "none")
   (parameters
-    '("CoglHandle" "cogl_tex")
+    '("CoglHandle" "handle")
   )
 )
 

@@ -11,6 +11,18 @@ ignore
   clutter_key_event_unicode
   clutter_button_event_button
 %%
+override clutter_event_get_coords noargs
+static PyObject *
+_wrap_clutter_event_get_coords (PyObject *self)
+{
+  ClutterEvent *event = pyg_boxed_get (self, ClutterEvent);
+  gint x, y;
+
+  clutter_event_get_coords (event, &x, &y));
+
+  return Py_BuildValue ("(ii)", x, y);
+}
+%%
 override-slot ClutterEvent.tp_setattr
 #define CHECK_VALUE_IS_INT(a,v) \
 	G_STMT_START{ if (!PyInt_Check ((v))) { \

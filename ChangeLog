@@ -1,5 +1,45 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* Makefile.tmpl: Add a Makefile template for common bits
+	of build infrastructure.
+
+	* clutter/Makefile.am: Update the build's black magic.
+
+	* clutter/pyclutter-private.h: Add a private header defining
+	the types we have to install ourselves (like the COGL data
+	structures and enumerations) and that we don't want to expose
+	to the public.
+
+	* clutter/clutter-event.override: Add clutter.Event.get_coords()
+	binding for clutter_event_get_coords().
+
+	* clutter/cogl-base-types.defs:
+	* clutter/cogl-base.defs: Add COGL data types and some missing
+	function; contains the beginnings of the wrappers for the
+	COGL texture API.
+
+	* clutter/cogl.override: Add the boxed type machinery for
+	CoglHandle.
+
+	* clutter/clutter-base.defs:
+	* clutter/clutter.override: Use the CoglHandle wrapper object
+	to expose the clutter.Texture cogl-texture property accessors.
+
+	* clutter/cluttermodule.c (init_clutter): Call into the COGL
+	classes and constants registration.
+
+	* clutter/cogl-texture.override: Add override file for the
+	COGL texture API.
+
+	* clutter/pyclutter.c:
+	(pycogl_pixel_format_get_type),
+	(pycogl_feature_flags_get_type): Add the enum and flags types
+	registration.
+
+	* configure.ac: Pass the HAVE_PYCAIRO define to pygtk-codegen.
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	Bug 1258 - Improvement to pyclutter documentation, added full
 	documentation to clutter-clutteractor.xml
 

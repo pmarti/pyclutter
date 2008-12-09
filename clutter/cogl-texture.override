@@ -1,0 +1,16 @@
+override cogl_texture_get_gl_texture noargs
+static PyObject *
+_wrap_cogl_texture_get_gl_texture (PyObject *self)
+{
+    CoglHandle hnd = pyg_boxed_get(self, CoglHandle);
+    GLuint gl_handle = 0;
+    GLenum gl_target = 0;
+
+    if (cogl_is_texture (hnd)) {
+        cogl_texture_get_gl_texture (hnd, &gl_handle, &gl_target);
+
+        return Py_BuildValue ("(ii)", gl_handle, gl_target);
+    }
+
+    return Py_BuildValue ("()");
+}

@@ -1,0 +1,52 @@
+;; -*- scheme -*-
+
+(define-boxed Handle
+  (in-module "Cogl")
+  (c-name "CoglHandle")
+  (gtype-id "PYCOGL_TYPE_HANDLE")
+)
+
+(define-enum PixelFormat
+  (in-module "Cogl")
+  (c-name "CoglPixelFormat")
+  (gtype-id "PYCOGL_TYPE_PIXEL_FORMAT")
+  (values
+    '("any" "COGL_PIXEL_FORMAT_ANY")
+    '("a-8" "COGL_PIXEL_FORMAT_A_8")
+    '("rgb-565" "COGL_PIXEL_FORMAT_RGB_565")
+    '("rgba-4444" "COGL_PIXEL_FORMAT_RGBA_4444")
+    '("rgba-5551" "COGL_PIXEL_FORMAT_RGBA_5551")
+    '("yuv" "COGL_PIXEL_FORMAT_YUV")
+    '("g-8" "COGL_PIXEL_FORMAT_G_8")
+    '("rgb-888" "COGL_PIXEL_FORMAT_RGB_888")
+    '("bgr-888" "COGL_PIXEL_FORMAT_BGR_888")
+    '("rgba-8888" "COGL_PIXEL_FORMAT_RGBA_8888")
+    '("bgra-8888" "COGL_PIXEL_FORMAT_BGRA_8888")
+    '("argb-8888" "COGL_PIXEL_FORMAT_ARGB_8888")
+    '("abgr-8888" "COGL_PIXEL_FORMAT_ABGR_8888")
+    '("rgba-8888-pre" "COGL_PIXEL_FORMAT_RGBA_8888_PRE")
+    '("bgra-8888-pre" "COGL_PIXEL_FORMAT_BGRA_8888_PRE")
+    '("argb-8888-pre" "COGL_PIXEL_FORMAT_ARGB_8888_PRE")
+    '("abgr-8888-pre" "COGL_PIXEL_FORMAT_ABGR_8888_PRE")
+    '("rgba-4444-pre" "COGL_PIXEL_FORMAT_RGBA_4444_PRE")
+    '("rgba-5551-pre" "COGL_PIXEL_FORMAT_RGBA_5551_PRE")
+  )
+)
+
+(define-flags FeatureFlags
+  (in-module "Cogl")
+  (c-name "CoglFeatureFlags")
+  (gtype-id "PYCOGL_TYPE_FEATURE_FLAGS")
+  (values
+    '("texture-rectangle" "COGL_FEATURE_TEXTURE_RECTANGLE")
+    '("texture-npot" "COGL_FEATURE_TEXTURE_NPOT")
+    '("texture-yuv" "COGL_FEATURE_TEXTURE_YUV")
+    '("texture-read-pixels" "COGL_FEATURE_TEXTURE_READ_PIXELS")
+    '("shaders-glsl" "COGL_FEATURE_SHADERS_GLSL")
+    '("offscree" "COGL_FEATURE_OFFSCREEN")
+    '("offscreen-multisample" "COGL_FEATURE_OFFSCREEN_MULTISAMPLE")
+    '("offscreen-blit" "COGL_FEATURE_OFFSCREEN_BLIT")
+    '("four-clip-planes" "COGL_FEATURE_FOUR_CLIP_PLANES")
+    '("stencil-buffer" "COGL_FEATURE_STENCIL_BUFFER")
+  )
+)

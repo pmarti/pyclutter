@@ -14,6 +14,7 @@ Pycairo_CAPI_t *Pycairo_CAPI;
 void pyclutter_register_classes (PyObject *dict);
 void pyclutter_add_constants (PyObject *module, const gchar *prefix);
 void pycogl_register_classes (PyObject *dict);
+void pycogl_add_constants (PyObject *module, const gchar *prefix);
 
 extern PyMethodDef pyclutter_functions[];
 extern PyMethodDef pycogl_functions[];
@@ -95,6 +96,7 @@ init_clutter (void)
   d = PyModule_GetDict (m);
 
   pycogl_register_classes (d);
+  pycogl_add_constants (m, "COGL_");
 
   if (PyErr_Occurred ()) 
     Py_FatalError ("can't initialise module clutter");

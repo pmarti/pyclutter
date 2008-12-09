@@ -1,8 +1,10 @@
+include $(top_srcdir)/Makefile.tmpl
+
 PLATFORM_VERSION = 1.0
 
 CLEANFILES =
 EXTRA_DIST = 
-INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS)
+INCLUDES = $(PYTHON_INCLUDES) $(PYGTK_CFLAGS) -I$(top_builddir)/clutter
 
 CREATEDEFS = $(PYTHON) $(top_srcdir)/createdefs.py
 
@@ -23,15 +25,20 @@ pkginclude_HEADERS = pyclutter.h
 
 # linker flags
 common_ldflags = -module -avoid-version
+#if PLATFORM_WIN32
+#common_ldflags += -no-undefined
+#endif
 
-# cogl
 COGL_DEFS = cogl-base.defs
-COGL_TYPES_DEFS = cogl-base-types.defs
-COGL_OVERRIDES = cogl.override
-
-# clutter module
 CLUTTER_DEFS = clutter-base.defs
+
+COGL_TYPES_DEFS = cogl-base-types.defs
 CLUTTER_TYPES_DEFS = clutter-base-types.defs
+
+COGL_OVERRIDES =			\
+	cogl.override			\
+	cogl-texture.override
+
 CLUTTER_OVERRIDES = 			\
 	clutter.override		\
 	clutter-actor.override 		\
@@ -43,6 +50,14 @@ CLUTTER_OVERRIDES = 			\
 	clutter-model.override		\
 	clutter-script.override
 
+CLEANFILES += 			\
+	cogl.c 			\
+	clutter.c 		\
+	cogl-types.defs 	\
+	clutter-types.defs 	\
+	cogl.defs 		\
+	clutter.defs
+
 EXTRA_DIST += 			\
 	$(COGL_DEFS)		\
 	$(COGL_TYPES_DEFS)	\
@@ -51,54 +66,53 @@ EXTRA_DIST += 			\
 	$(CLUTTER_TYPES_DEFS)	\
 	$(CLUTTER_OVERRIDES)
 
-cogl.defs: $(COGL_DEFS)
-	$(CREATEDEFS) $@ $(COGL_DEFS)
+cogl.defs: $(COGL_DEFS) Makefile
+	$(QUIET_GEN)$(CREATEDEFS) $@ $(COGL_DEFS)
 
-cogl-types.defs: $(COGL_TYPES_DEFS)
-	$(CREATEDEFS) $@ $(COGL_TYPES_DEFS)
+clutter.defs: $(CLUTTER_DEFS) Makefile
+	$(QUIET_GEN)$(CREATEDEFS) $@ $(CLUTTER_DEFS)
 
-clutter.defs: $(CLUTTER_DEFS)
-	$(CREATEDEFS) $@ $(CLUTTER_DEFS)
+cogl-types.defs: $(COGL_TYPES_DEFS) Makefile
+	$(QUIET_GEN)$(CREATEDEFS) $@ $(COGL_TYPES_DEFS)
 
-clutter-types.defs: $(CLUTTER_TYPES_DEFS)
-	$(CREATEDEFS) $@ $(CLUTTER_TYPES_DEFS)
-
-CLEANFILES += clutter.defs clutter-types.defs cogl.defs cogl-types.defs
+clutter-types.defs: $(CLUTTER_TYPES_DEFS) Makefile
+	$(QUIET_GEN)$(CREATEDEFS) $@ $(CLUTTER_TYPES_DEFS)
 
 cogl.c: cogl-types.defs cogl.defs $(COGL_OVERRIDES)
-clutter.c: clutter-types.defs clutter.defs $(CLUTTER_OVERRIDES)
+clutter.c: cogl-types.defs clutter-types.defs clutter.defs cogl.defs $(CLUTTER_OVERRIDES)
 
 _clutter_la_CFLAGS  = $(PYCAIRO_CFLAGS) $(CLUTTER_CFLAGS)
 _clutter_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_clutter
 _clutter_la_LIBADD  = $(PYCAIRO_LIBS) $(PYGTK_LIBS) $(CLUTTER_LIBS)
 _clutter_la_SOURCES = 		\
-	pyclutter.c		\
-	cluttermodule.c 
+	cluttermodule.c		\
+        pyclutter-private.h     \
+	pyclutter.h		\
+	pyclutter.c
 nodist__clutter_la_SOURCES = clutter.c cogl.c
-
-CLEANFILES += clutter.c cogl.c
 
 pyclutterexec_LTLIBRARIES = _clutter.la
 
 # defs files
 defsdir = $(pkgdatadir)/$(PLATFORM_VERSION)/defs
 defs_DATA = \
-	$(CLUTTER_TYPES_DEFS) 	\
+	$(COGL_DEFS)		\
 	$(CLUTTER_DEFS) 	\
 	$(COGL_TYPES_DEFS)	\
-	$(COGL_DEFS)		\
-	clutter-types.defs	\
+	$(CLUTTER_TYPES_DEFS) 	\
+	cogl.defs		\
 	clutter.defs		\
 	cogl-types.defs		\
-	cogl.defs
+	clutter-types.defs
 
 .defs.c:
-	@echo "***INFO*** Generating $*.c from $*.defs" \
-	&& ( $(PYGTK_CODEGEN) \
+	$(QUIET_GEN)( $(PYGTK_CODEGEN) \
+	   $(PYGTK_CODEGEN_DEFINES) \
 	    -I $(srcdir) \
 	    --py_ssize_t-clean \
 	    --register $(PYGTK_DEFSDIR)/gdk-types.defs \
 	    --register $(PYGTK_DEFSDIR)/pango-types.defs \
+	    --register cogl-types.defs \
 	    --register clutter-types.defs \
 	    --override $(srcdir)/$*.override \
 	    --prefix py$* $< ) > gen-$*.c \
@@ -111,3 +125,10 @@ install-data-local:
 	 rm -f cluttercairo.so && \
 	 rm -f cluttergst.so && \
 	 rm -f cluttergtk.so)
+
+# this is a hack - do not remove
+# this rule is needed to prevent generating clutter-types.c because
+# we have clutter-types.defs
+clutter-types.c:
+	@:
+

@@ -74,6 +74,8 @@ if test "x$PYGTK_CODEGEN" = "xno"; then
   AC_MSG_ERROR([could not find pygtk-codegen-2.0 script])
 fi
 
+PYGTK_CODEGEN_DEFINES=
+
 dnl check for pycairo
 PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
                            [have_pycairo=yes],
@@ -82,6 +84,7 @@ if test "x$have_pycairo" = "xyes"; then
   AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
   AC_SUBST(PYCAIRO_CFLAGS)
   AC_SUBST(PYCAIRO_LIBS)
+  PYGTK_CODEGEN_DEFINES="$PYGTK_CODEGEN_DEFINES -DHAVE_PYCAIRO"
 fi
 
 AC_MSG_CHECKING(for pygtk defs)

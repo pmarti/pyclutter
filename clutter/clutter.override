@@ -3,12 +3,16 @@
 headers
 #define NO_IMPORT_PYGOBJECT
 #include "pygobject.h"
-#include "pyclutter.h"
+
+#include "pyclutter-private.h"
 
 #ifdef HAVE_PYCAIRO
 # include <pycairo.h>
 extern Pycairo_CAPI_t *Pycairo_CAPI;
 #endif
+
+/* from the cogl portion */
+extern PyTypeObject PyCoglHandle_Type;
 
 %%
 include
@@ -53,8 +57,6 @@ ignore
   clutter_actor_box_get_from_vertices
   clutter_stage_manager_get_default
   clutter_get_input_device_for_id
-  clutter_texture_set_cogl_texture
-  clutter_texture_get_cogl_texture
 %%
 ignore-glob
   *_quark

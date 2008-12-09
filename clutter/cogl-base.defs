@@ -1,9 +1,26 @@
+;; -*- scheme -*-
+
+(include "cogl-base-types.defs")
+
 (define-function check_extension
   (c-name "cogl_check_extension")
   (return-type "gboolean")
   (parameters
     '("const-gchar*" "name")
     '("const-gchar*" "extension")
+  )
+)
+
+(define-function get_features
+  (c-name "cogl_get_features")
+  (return-type "CoglFeatureFlags")
+)
+
+(define-function features_available
+  (c-name "cogl_features_available")
+  (return-type "gboolean")
+  (parameters
+    '("CoglFeatureFlags" "features")
   )
 )
 
@@ -55,6 +72,26 @@
     '("gint" "x")
     '("gint" "y")
     '("gint" "z")
+  )
+)
+
+(define-function perspective
+  (c-name "cogl_perspective")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "fovy")
+    '("ClutterFixed" "aspect")
+    '("ClutterFixed" "z_near")
+    '("ClutterFixed" "z_far")
+  )
+)
+
+(define-function viewport
+  (c-name "cogl_viewport")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
   )
 )
 
@@ -245,3 +282,85 @@
   )
 )
 
+(define-function texture_new_with_size
+  (c-name "cogl_texture_new_with_size")
+  (is-constructor-of "CoglHandle")
+  (return-type "CoglHandle")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
+    '("gint" "max_waste")
+    '("gboolean" "auto_mipmap")
+    '("CoglPixelFormat" "internal_format")
+  )
+)
+
+(define-function texture_new_from_file
+  (c-name "cogl_texture_new_from_file")
+  (is-constructor-of "CoglHandle")
+  (return-type "CoglHandle")
+  (parameters
+    '("const-gchar*" "filename")
+    '("gint" "max_waste")
+    '("CoglPixelFormat" "internal_format")
+    '("GError**" "error")
+  )
+)
+
+(define-method is_texture
+  (of-object "CoglHandle")
+  (c-name "cogl_is_texture")
+  (return-type "gboolean")
+)
+
+(define-method get_width
+  (of-object "CoglHandle")
+  (c-name "cogl_texture_get_width")
+  (return-type "guint")
+)
+
+(define-method get_height
+  (of-object "CoglHandle")
+  (c-name "cogl_texture_get_height")
+  (return-type "guint")
+)
+
+(define-method get_format
+  (of-object "CoglHandle")
+  (c-name "cogl_texture_get_format")
+  (return-type "CoglPixelFormat")
+)
+
+(define-method get_rowstride
+  (of-object "CoglHandle")
+  (c-name "cogl_texture_get_rowstride")
+  (return-type "guint")
+)
+
+(define-method get_min_filter
+  (of-object "CoglHandle")
+  (c-name "cogl_texture_get_min_filter")
+  (return-type "int")
+)
+
+(define-method get_mag_filter
+  (of-object "CoglHandle")
+  (c-name "cogl_texture_get_mag_filter")
+  (return-type "int")
+)
+
+(define-method is_sliced
+  (of-object "CoglHandle")
+  (c-name "cogl_texture_is_sliced")
+  (return-type "gboolean")
+)
+
+(define-method get_gl_texture
+  (of-object "CoglHandle")
+  (c-name "cogl_texture_get_gl_texture")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "out_gl_handle")
+    '("gint" "out_gl_target")
+  )
+)

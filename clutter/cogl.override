@@ -2,11 +2,91 @@
 headers
 #define NO_IMPORT_PYGOBJECT
 #include "pygobject.h"
-#include "pyclutter.h"
+
+#include "pyclutter-private.h"
 
 #include <cogl/cogl.h>
+
+#ifndef COGL_TYPE_HANDLE
+static gpointer
+pycogl_handle_ref (gpointer data)
+{
+  if (G_LIKELY (data))
+    {
+      CoglHandle hnd = data;
+
+      if (cogl_is_texture (hnd))
+        return cogl_texture_ref (hnd);
+      else
+        g_assert_not_reached ();
+    }
+
+  return NULL;
+}
+
+static void
+pycogl_handle_unref (gpointer data)
+{
+  if (G_LIKELY (data))
+    {
+      CoglHandle hnd = data;
+
+      if (cogl_is_texture (hnd))
+        cogl_texture_unref (hnd);
+      else
+        g_assert_not_reached ();
+    }
+}
+
+GType
+pycogl_handle_get_type (void)
+{
+  static GType hnd_type = 0;
+
+  if (G_UNLIKELY (hnd_type == 0))
+    hnd_type = g_boxed_type_register_static (g_intern_static_string ("CoglHandle"),
+                                             pycogl_handle_ref,
+                                             pycogl_handle_unref);
+
+  return hnd_type;
+}
+#endif /* COGL_TYPE_HANDLE */
+
+#ifndef COGL_TYPE_PIXEL_FORMAT
+#define COGL_TYPE_PIXEL_FORMAT  (pycogl_pixel_format_get_type ())
+#endif
+
+#ifndef COGL_TYPE_FEATURE_FLAGS
+#define COGL_TYPE_FEATURE_FLAGS (pycogl_feature_flags_get_type ())
+#endif
+%%
+include
+  cogl-texture.override
 %%
 modulename clutter.cogl
+%%
+override cogl_perspective kwargs
+static PyObject *
+_wrap_cogl_perspective (PyObject *self,
+                        PyObject *args,
+                        PyObject *kwargs)
+{
+  static char *kwlist[] = { "fovy", "aspect", "z_near", "z_far", NULL };
+  float fovy, aspect, z_near, z_far;
+
+  fovy = aspect = z_near = z_far = 0.0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffff:perspective", kwlist, &fovy, &aspect, &z_near, &z_far))
+    return NULL;
+    
+  cogl_perspective (CLUTTER_FLOAT_TO_FIXED (fovy),
+                    CLUTTER_FLOAT_TO_FIXED (aspect),
+                    CLUTTER_FLOAT_TO_FIXED (z_near),
+                    CLUTTER_FLOAT_TO_FIXED (z_far));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
 %%
 override cogl_get_bitmasks noargs
 static PyObject *
