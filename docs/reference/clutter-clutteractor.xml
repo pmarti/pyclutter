@@ -9,7 +9,8 @@
   </refmeta>
 
   <refnamediv>
-    <refname>clutter.Actor</refname><refpurpose></refpurpose>
+    <refname>clutter.Actor</refname>
+    <refpurpose>clutter.Actor — Base abstract class for all visual stage actors.</refpurpose>
   </refnamediv>
 
   <refsect1>
@@ -56,23 +57,20 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-geometry">get_geometry</link></methodname>
-    <methodparam><parameter>geometry</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-size">set_size</link></methodname>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter role="keyword">width</parameter></methodparam>
+    <methodparam><parameter role="keyword">height</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-position">set_position</link></methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter role="keyword">x</parameter></methodparam>
+    <methodparam><parameter role="keyword">y</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-position">get_position</link></methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-x">set_x</link></methodname>
     <methodparam><parameter>x</parameter></methodparam>
@@ -82,19 +80,19 @@
     <methodparam><parameter>y</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutteractor--get-width">get_width</link></methodname>
-    <methodparam></methodparam>  </methodsynopsis>
-<methodsynopsis language="python">
-    <methodname><link linkend="method-clutteractor--get-height">get_height</link></methodname>
-    <methodparam></methodparam>  </methodsynopsis>
-<methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-width">set_width</link></methodname>
     <methodparam><parameter>width</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-width">get_width</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-height">set_height</link></methodname>
     <methodparam><parameter>height</parameter></methodparam>
   </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-height">get_height</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-x">get_x</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
@@ -103,18 +101,15 @@
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-rotation">set_rotation</link></methodname>
-    <methodparam><parameter>axis</parameter></methodparam>
-    <methodparam><parameter>angle</parameter></methodparam>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-    <methodparam><parameter>z</parameter></methodparam>
+    <methodparam><parameter role="keyword">axis</parameter></methodparam>
+    <methodparam><parameter role="keyword">angle</parameter></methodparam>
+    <methodparam><parameter role="keyword">x</parameter></methodparam>
+    <methodparam><parameter role="keyword">y</parameter></methodparam>
+    <methodparam><parameter role="keyword">z</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-rotation">get_rotation</link></methodname>
     <methodparam><parameter>axis</parameter></methodparam>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-    <methodparam><parameter>z</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-opacity">set_opacity</link></methodname>
@@ -135,10 +130,10 @@
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-clip">set_clip</link></methodname>
-    <methodparam><parameter>x_offset</parameter></methodparam>
-    <methodparam><parameter>y_offset</parameter></methodparam>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter role="keyword">x_offset</parameter></methodparam>
+    <methodparam><parameter role="keyword">y_offset</parameter></methodparam>
+    <methodparam><parameter role="keyword">width</parameter></methodparam>
+    <methodparam><parameter role="keyword">height</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--remove-clip">remove_clip</link></methodname>
@@ -162,11 +157,11 @@
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--raise-actor">raise_actor</link></methodname>
-    <methodparam><parameter>below</parameter></methodparam>
+    <methodparam><parameter role="keyword">below</parameter><initializer>None</initializer></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--lower-actor">lower_actor</link></methodname>
-    <methodparam><parameter>above</parameter></methodparam>
+    <methodparam><parameter role="keyword">above</parameter><initializer>None</initializer></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--raise-top">raise_top</link></methodname>
@@ -176,26 +171,22 @@
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-depth">set_depth</link></methodname>
-    <methodparam><parameter>depth</parameter></methodparam>
+    <methodparam><parameter role="keyword">depth</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-depth">get_depth</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-scale">set_scale</link></methodname>
-    <methodparam><parameter>scale_x</parameter></methodparam>
-    <methodparam><parameter>scale_y</parameter></methodparam>
+    <methodparam><parameter role="keyword">scale_x</parameter></methodparam>
+    <methodparam><parameter role="keyword">scale_y</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-scale">get_scale</link></methodname>
-    <methodparam><parameter>scale_x</parameter></methodparam>
-    <methodparam><parameter>scale_y</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-size">get_size</link></methodname>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--move-by">move_by</link></methodname>
     <methodparam><parameter>dx</parameter></methodparam>
@@ -214,17 +205,15 @@
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--apply-relative-transform-to-point">apply_relative_transform_to_point</link></methodname>
-    <methodparam><parameter>ancestor</parameter></methodparam>
-    <methodparam><parameter>point</parameter></methodparam>
-    <methodparam><parameter>vertex</parameter></methodparam>
+    <methodparam><parameter role="keyword">ancestor</parameter></methodparam>
+    <methodparam><parameter role="keyword">point</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-clip">get_clip</link></methodname>
-    <methodparam><parameter>xoff</parameter></methodparam>
-    <methodparam><parameter>yoff</parameter></methodparam>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-clutteractor--get-clipu">get_clipu</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-reactive">set_reactive</link></methodname>
     <methodparam><parameter>reactive</parameter></methodparam>
@@ -264,9 +253,7 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-anchor-point">get_anchor_point</link></methodname>
-    <methodparam><parameter>anchor_x</parameter></methodparam>
-    <methodparam><parameter>anchor_y</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-anchor-point-from-gravity">set_anchor_point_from_gravity</link></methodname>
     <methodparam><parameter>gravity</parameter></methodparam>
@@ -277,10 +264,8 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--transform-stage-point">transform_stage_point</link></methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-    <methodparam><parameter>x_out</parameter></methodparam>
-    <methodparam><parameter>y_out</parameter></methodparam>
+    <methodparam><parameter role="keyword">x</parameter></methodparam>
+    <methodparam><parameter role="keyword">y</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--queue-relayout">queue_relayout</link></methodname>
@@ -288,22 +273,14 @@
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-preferred-width">get_preferred_width</link></methodname>
     <methodparam><parameter>for_height</parameter></methodparam>
-    <methodparam><parameter>min_width_p</parameter></methodparam>
-    <methodparam><parameter>natural_width_p</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-preferred-height">get_preferred_height</link></methodname>
     <methodparam><parameter>for_width</parameter></methodparam>
-    <methodparam><parameter>min_height_p</parameter></methodparam>
-    <methodparam><parameter>natural_height_p</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-preferred-size">get_preferred_size</link></methodname>
-    <methodparam><parameter>min_width_p</parameter></methodparam>
-    <methodparam><parameter>min_height_p</parameter></methodparam>
-    <methodparam><parameter>natural_width_p</parameter></methodparam>
-    <methodparam><parameter>natural_height_p</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--allocate">allocate</link></methodname>
     <methodparam><parameter>box</parameter></methodparam>
@@ -315,23 +292,16 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-allocation-coords">get_allocation_coords</link></methodname>
-    <methodparam><parameter>x_1</parameter></methodparam>
-    <methodparam><parameter>y_1</parameter></methodparam>
-    <methodparam><parameter>x_2</parameter></methodparam>
-    <methodparam><parameter>y_2</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-allocation-box">get_allocation_box</link></methodname>
-    <methodparam><parameter>box</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-allocation-geometry">get_allocation_geometry</link></methodname>
-    <methodparam><parameter>geom</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-allocation-vertices">get_allocation_vertices</link></methodname>
     <methodparam><parameter>ancestor</parameter></methodparam>
-    <methodparam><parameter>verts[4]</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-sizeu">set_sizeu</link></methodname>
@@ -345,14 +315,10 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-transformed-size">get_transformed_size</link></methodname>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-transformed-sizeu">get_transformed_sizeu</link></methodname>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-positionu">set_positionu</link></methodname>
     <methodparam><parameter>x</parameter></methodparam>
@@ -360,19 +326,13 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-positionu">get_positionu</link></methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-transformed-position">get_transformed_position</link></methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-transformed-positionu">get_transformed_positionu</link></methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-fixed-position-set">get_fixed_position_set</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
@@ -409,24 +369,9 @@
     <methodparam><parameter>y</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutteractor--set-rotationx">set_rotationx</link></methodname>
-    <methodparam><parameter>axis</parameter></methodparam>
-    <methodparam><parameter>angle</parameter></methodparam>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-    <methodparam><parameter>z</parameter></methodparam>
-  </methodsynopsis>
-<methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--set-rotationu">set_rotationu</link></methodname>
     <methodparam><parameter>axis</parameter></methodparam>
     <methodparam><parameter>angle</parameter></methodparam>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-    <methodparam><parameter>z</parameter></methodparam>
-  </methodsynopsis>
-<methodsynopsis language="python">
-    <methodname><link linkend="method-clutteractor--get-rotationx">get_rotationx</link></methodname>
-    <methodparam><parameter>axis</parameter></methodparam>
     <methodparam><parameter>x</parameter></methodparam>
     <methodparam><parameter>y</parameter></methodparam>
     <methodparam><parameter>z</parameter></methodparam>
@@ -466,16 +411,6 @@
     <methodname><link linkend="method-clutteractor--get-depthu">get_depthu</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutteractor--set-scalex">set_scalex</link></methodname>
-    <methodparam><parameter>scale_x</parameter></methodparam>
-    <methodparam><parameter>scale_y</parameter></methodparam>
-  </methodsynopsis>
-<methodsynopsis language="python">
-    <methodname><link linkend="method-clutteractor--get-scalex">get_scalex</link></methodname>
-    <methodparam><parameter>scale_x</parameter></methodparam>
-    <methodparam><parameter>scale_y</parameter></methodparam>
-  </methodsynopsis>
-<methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--move-byu">move_byu</link></methodname>
     <methodparam><parameter>dx</parameter></methodparam>
     <methodparam><parameter>dy</parameter></methodparam>
@@ -495,10 +430,6 @@
     <methodparam><parameter>anchor_x</parameter></methodparam>
     <methodparam><parameter>anchor_y</parameter></methodparam>
   </methodsynopsis>
-<methodsynopsis language="python">
-    <methodname><link linkend="method-clutteractor--get-abs-allocation-vertices">get_abs_allocation_vertices</link></methodname>
-    <methodparam><parameter>verts[4]</parameter></methodparam>
-  </methodsynopsis>
 </classsynopsis>
 
   </refsect1>
@@ -508,7 +439,7 @@
 <synopsis>
 <link linkend="class-gobject">gobject.GObject</link>
 +-- <link linkend="class-gobject">gobject.GInitiallyUnowned</link>
-  +-- <link linkend="class-clutteractor">clutter.Actor</link>
+   +-- <link linkend="class-clutteractor">clutter.Actor</link>
 </synopsis>
 
   <refsect1 id="properties-clutteractor">
@@ -517,9 +448,9 @@
     <blockquote role="properties">
       <informaltable pgwide="1" frame="none">
         <tgroup cols="3">
-          <colspec column="1" colwidth="1in"/>
-          <colspec column="2" colwidth="1in"/>
-          <colspec column="3" colwidth="4in"/>
+          <colspec column="1" colwidth="1in" />
+          <colspec column="2" colwidth="1in" />
+          <colspec column="3" colwidth="4in" />
           <tbody>
             <row valign="top">
               <entry>"clip"</entry>
@@ -536,15 +467,13 @@
             <row valign="top">
               <entry>"has-clip"</entry>
               <entry>Read</entry>
-              <entry>Whether the actor has the clip property set or not. 
-                Allowed values: >= -2147483647. Default value: False.</entry>
+              <entry>Whether the actor has the clip property set or not. Allowed values: >= -2147483647. Default value: False.</entry>
             </row>
 
             <row valign="top">
               <entry>"height"</entry>
               <entry>Read-Write</entry>
-              <entry>Height of the actor (in pixels). Allowed values: >= 0. 
-                Default value: 0.</entry>
+              <entry>Height of the actor (in pixels). Allowed values: >= 0. Default value: 0.</entry>
             </row>
 
             <row valign="top">
@@ -653,11 +582,9 @@
     <title>Signal Prototypes</title>
 
     <variablelist>
-      
+
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--button-press-event">button-press-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--button-press-event">button-press-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -669,9 +596,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--button-release-event">button-release-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--button-release-event">button-release-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -683,9 +608,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--captured-event">captured-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--captured-event">captured-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -697,9 +620,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--destroy">destroy</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--destroy">destroy</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -708,11 +629,9 @@
           </methodsynopsis>
         </listitem>
       </varlistentry>
-    
+
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--enter-event">enter-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--enter-event">enter-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -724,9 +643,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--event">event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--event">event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -738,9 +655,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--focus-in">focus-in</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--focus-in">focus-in</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -751,9 +666,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--focus-out">focus-out</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--focus-out">focus-out</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -764,9 +677,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--key-press-event">key-press-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--key-press-event">key-press-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -778,9 +689,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--key-release-event">key-release-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--key-release-event">key-release-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -792,9 +701,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--leave-event">leave-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--leave-event">leave-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -806,9 +713,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--motion-event">motion-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--motion-event">motion-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -820,9 +725,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--scroll-event">scroll-event</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--scroll-event">scroll-event</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -834,9 +737,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--parent-set">parent-set</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--parent-set">parent-set</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -848,9 +749,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--show">show</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--show">show</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -861,9 +760,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--hide">hide</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--hide">hide</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -874,9 +771,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--paint">paint</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--paint">paint</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -887,9 +782,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--realize">realize</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--realize">realize</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -900,9 +793,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          "<link linkend="signal-clutteractor--unrealize">unrealize</link>"
-        </term>
+        <term> "<link linkend="signal-clutteractor--unrealize">unrealize</link>" </term>
         <listitem>
           <methodsynopsis language="python"><methodname>callback</methodname>
             <methodparam><parameter>actor</parameter></methodparam>
@@ -916,15 +807,19 @@
 
   </refsect1>
 
+  <refsect1>
+    <title>Ancestry</title>
+
+    <synopsis>+-- <link linkend="class-clutteractor">clutter.Actor</link>
+    </synopsis>
+
+  </refsect1>
+
+
   <refsect1 id="description-clutteractor">
     <title>Description</title>
     <para>
-      <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link> is a 
-      base abstract class for all visual elements on the stage. Every object that must
-      appear on the main <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link> 
-      must also be a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>, 
-      either by using one of the classes provided by Clutter, or by implementing a new 
-      <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link> subclass.</para>
+      <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link> is a base abstract class for all visual elements on the stage. Every object that must appear on the main <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link> must also be a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>, either by using one of the classes provided by Clutter, or by implementing a new <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link> subclass.</para>
   </refsect1>
 
   </refsect1>
@@ -934,9 +829,15 @@
   <refsect2 id="method-clutteractor--show">
     <title>clutter.Actor.show</title>
 
-<programlisting><methodsynopsis language="python">
+
+<programlisting>
+  <methodsynopsis language="python">
     <methodname>show</methodname>
-    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <methodparam></methodparam>
+  </methodsynopsis>
+</programlisting>
+    <para>Flags an actor to be displayed. An actor that isn't shown will not be rendered on the stage.</para>
+    <para>Actors are visible by default. </para>
   </refsect2>
 
 
@@ -947,6 +848,7 @@
     <methodname>show_all</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   </refsect2>
+  <para>Calls <link linkend="method-clutteractor--show"><methodname>show()</methodname></link> on all children of an actor (if any).</para>
 
 
   <refsect2 id="method-clutteractor--hide">
@@ -955,6 +857,9 @@
 <programlisting><methodsynopsis language="python">
     <methodname>hide</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+<para>Flags an actor to be hidden. A hidden actor will not be rendered on the stage.</para>
+
+<para>Actors are visible by default</para>
   </refsect2>
 
 
@@ -964,7 +869,11 @@
 <programlisting><methodsynopsis language="python">
     <methodname>hide_all</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+
+    <para>Calls <link linkend="method-clutteractor--hide"><methodname>hide()</methodname></link> on all child actors (if any).</para>
   </refsect2>
+
+
 
 
   <refsect2 id="method-clutteractor--realize">
@@ -973,8 +882,9 @@
 <programlisting><methodsynopsis language="python">
     <methodname>realize</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
-  </refsect2>
 
+    <para>Creates any underlying graphics resources needed by the actor to be displayed.</para>
+  </refsect2>
 
   <refsect2 id="method-clutteractor--unrealize">
     <title>clutter.Actor.unrealize</title>
@@ -982,6 +892,7 @@
 <programlisting><methodsynopsis language="python">
     <methodname>unrealize</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Frees up any underlying graphics resources needed by the actor to be displayed.</para>
   </refsect2>
 
 
@@ -991,6 +902,80 @@
 <programlisting><methodsynopsis language="python">
     <methodname>paint</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+
+    <para>Renders the actor to display.</para>
+    <para>This function should not be called directly by applications. Call
+    <link linkend="method-clutteractor--queue-redraw"><methodname>queue_redraw()</methodname></link>
+    to queue paints, instead.</para>
+  </refsect2>
+
+  <refsect2 id="method-clutteractor--queue-redraw">
+    <title>clutter.Actor.queue_redraw</title>
+
+    <programlisting><methodsynopsis language="python">
+    <methodname>queue_redraw</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Queues up a redraw of an actor and any children. The redraw occurs once
+    the main loop becomes idle (after the current batch of events has been processed,
+    roughly).</para>
+    <para>Applications rarely need to call this, as redraws are handled
+    automatically by modification functions.</para>
+  </refsect2>
+
+  <refsect2 id="method-clutteractor--queue-relayout">
+    <title>clutter.Actor.queue_relayout</title>
+
+    <programlisting><methodsynopsis language="python">
+    <methodname>queue_relayout</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Indicates that the actor's size request or other layout-affecting properties
+    may have changed. This function is used inside <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>
+    subclass implementations, not by applications directly.</para>
+
+    <para>Queueing a new layout automatically queues a redraw as well.</para>
+  </refsect2>
+
+
+  <refsect2 id="method-clutteractor--destroy">
+    <title>clutter.Actor.destroy</title>
+
+    <programlisting><methodsynopsis language="python">
+    <methodname>destroy</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Destroys an actor. When an actor is destroyed, it will break any references
+    it holds to other objects. If the actor is inside a container, the actor will
+    be removed.</para>
+
+    <para>When you destroy a container, its children will be destroyed as well.</para>
+
+    </refsect2>
+
+  <refsect2 id="method-clutteractor--event">
+    <title>clutter.Actor.event</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>event</methodname>
+    <methodparam><parameter>event</parameter></methodparam>
+    <methodparam><parameter>capture</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>event</parameter>&nbsp;:</term>
+      <listitem><simpara>a clutter.Event</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>capture</parameter>&nbsp;:</term>
+      <listitem><simpara>True if event in in capture phase, False otherwise.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>the return value from the signal emission: True if the actor handled the event, or False if the event was not handled </simpara></listitem>
+    </varlistentry>
+  </variablelist>
+
+  <para>
+  This function is used to emit an event on the main stage. You should rarely need to use this function, except for synthetising events.
+  </para>
   </refsect2>
 
 
@@ -1007,25 +992,14 @@
       <listitem><simpara>a clutter.Color</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Renders a silhouette of the actor using the supplied color. Used internally for mapping pointer events to actors.</para>
+  <para>This function should never be called directly by applications. Use <link linkend="method-clutteractor--paint">paint()</link> instead.</para>
+  <para>Subclasses overiding the <link linkend="method-clutteractor--pick"><methodname>pick()</methodname></link> method should call <link
+  linkend="method-clutteractor--should-pick-paint"><methodname>should_pick_paint()</methodname></link> to decide whether to render their silhouette.
+  Containers should always recursively call paint for each child.</para>
   </refsect2>
 
 
-  <refsect2 id="method-clutteractor--queue-redraw">
-    <title>clutter.Actor.queue_redraw</title>
-
-<programlisting><methodsynopsis language="python">
-    <methodname>queue_redraw</methodname>
-    <methodparam></methodparam>  </methodsynopsis></programlisting>
-  </refsect2>
-
-
-  <refsect2 id="method-clutteractor--destroy">
-    <title>clutter.Actor.destroy</title>
-
-<programlisting><methodsynopsis language="python">
-    <methodname>destroy</methodname>
-    <methodparam></methodparam>  </methodsynopsis></programlisting>
-  </refsect2>
 
 
   <refsect2 id="method-clutteractor--set-geometry">
@@ -1038,9 +1012,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>geometry</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Geometry</simpara></listitem>
+      <listitem><simpara>a clutter.Geometry or a 4-tuple of integers</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the actor's fixed position and forces its minimum and natural size,
+  in pixels. This means the untransformed actor will have the given geometry.
+  This is the same as calling
+  <link linkend="method-clutteractor--set-position"><methodname>set_position()</methodname></link> and
+  <link linkend="method-clutteractor--set-size"><methodname>set_size()</methodname></link>.
+  </para>
   </refsect2>
 
 
@@ -1053,10 +1033,17 @@
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>geometry</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterGeometry*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 4-tuple containing the actor's geometry</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Gets the size and position of an actor relative to its parent actor.
+  This is the same as calling
+  <link linkend="method-clutteractor--get-position"><methodname>get_position()</methodname></link> and
+  <link linkend="method-clutteractor--get-size"><methodname>get_size()</methodname></link>.
+  It tries to "do what you mean" and get the requested size and position if the
+  actor's allocation is invalid
+  </para>
   </refsect2>
 
 
@@ -1065,40 +1052,76 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_size</methodname>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter role="keyword">width</parameter></methodparam>
+    <methodparam><parameter role="keyword">height</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the width in pixels</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the height in pixels</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the actor's size request in pixels. This overrides any "normal"
+  size request the actor would have. For example a text actor might normally
+  request the size of the text; this function would force a specific size
+  instead.</para>
+
+  <para>If width and/or height are -1 the actor will use its "normal" size
+  request instead of overriding it, i.e. you can "unset" the size with -1.</para>
+
+  <para>This function sets or unsets both the minimum and natural size</para>
   </refsect2>
 
+  <refsect2 id="method-clutteractor--get-size">
+    <title>clutter.Actor.get_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_size</methodname>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 2-tuple containing the actor's width and height</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  This function tries to "do what you mean" and return the size an actor will
+  have. If the actor has a valid allocation, the allocation will be returned;
+  otherwise, the actors natural size request will be returned.</para>
+
+  <para>If you care whether you get the request vs. the allocation, you should
+  probably call a different function like
+  <link linkend="method-clutteractor--get-allocation-coords"><methodname>get_allocation_coords()</methodname></link> or
+  <link linkend="method-clutteractor--get-preferred-width"><methodname>get_preferred_width()</methodname></link>
+  </para>
+  </refsect2>
 
   <refsect2 id="method-clutteractor--set-position">
     <title>clutter.Actor.set_position</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_position</methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
+    <methodparam><parameter role="keyword">x</parameter></methodparam>
+    <methodparam><parameter role="keyword">y</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the X coordinate</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the Y coordinate</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the actor's fixed position in pixels relative to any parent actor.</para>
+
+  <para>If a layout manager is in use, this position will override the layout
+  manager and force a fixed position.</para>
   </refsect2>
 
 
@@ -1107,19 +1130,19 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_position</methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 2-tuple containing the actor's X and Y position</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>This function tries to "do what you mean" and tell you where the actor
+  is, prior to any transformations. Retrieves the fixed position of an actor in
+  pixels, if one has been set; otherwise, if the allocation is valid, returns
+  the actor's allocated position; otherwise, returns 0,0.</para>
+
+  <para>The returned position is in pixels.</para>
   </refsect2>
 
 
@@ -1133,9 +1156,44 @@
   <variablelist>
     <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the X coordinate</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the actor's X coordinate, relative to its parent, in pixels.</para>
+
+  <para>Overrides any layout manager and forces a fixed position for the actor.</para>
+  </refsect2>
+
+  <refsect2 id="method-clutteractor--get-x">
+    <title>clutter.Actor.get_x</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_x</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>the X coordinate</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Retrieves the X coordinate of a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.
+  </para>
+
+  <para>This function tries to "do what you mean", by returning the correct
+  value depending on the actor's state.</para>
+
+  <para>If the actor has a valid allocation, this function will return the X
+  coordinate of the origin of the allocation box.</para>
+
+  <para>If the actor has any fixed coordinate set using
+  <link linkend="method-clutteractor--set-x"><methodname>set_x()</methodname></link>,
+  <link linkend="method-clutteractor--set-position"><methodname>set_position()</methodname></link>or
+  <link linkend="method-clutteractor--set-geometry"><methodname>set_geometry()</methodname></link>,
+  this function will return that coordinate.</para>
+
+  <para>If both the allocation and a fixed position are missing, this function
+  will return 0.</para>
   </refsect2>
 
 
@@ -1149,41 +1207,46 @@
   <variablelist>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the Y coordinate</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the actor's Y coordinate, relative to its parent, in pixels.</para>
+
+  <para>Overrides any layout manager and forces a fixed position for the actor.</para>
   </refsect2>
 
-
-  <refsect2 id="method-clutteractor--get-width">
-    <title>clutter.Actor.get_width</title>
+  <refsect2 id="method-clutteractor--get-y">
+    <title>clutter.Actor.get_y</title>
 
 <programlisting><methodsynopsis language="python">
-    <methodname>get_width</methodname>
+    <methodname>get_y</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>the Y coordinate</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Retrieves the Y coordinate of a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.
+  </para>
+
+  <para>This function tries to "do what you mean", by returning the correct
+  value depending on the actor's state.</para>
+
+  <para>If the actor has a valid allocation, this function will return the Y
+  coordinate of the origin of the allocation box.</para>
+
+  <para>If the actor has any fixed coordinate set using
+  <link linkend="method-clutteractor--set-y"><methodname>set_y()</methodname></link>,
+  <link linkend="method-clutteractor--set-position"><methodname>set_position()</methodname></link>or
+  <link linkend="method-clutteractor--set-geometry"><methodname>set_geometry()</methodname></link>,
+  this function will return that coordinate.</para>
+
+  <para>If both the allocation and a fixed position are missing, this function
+  will return 0.</para>
+
   </refsect2>
-
-
-  <refsect2 id="method-clutteractor--get-height">
-    <title>clutter.Actor.get_height</title>
-
-<programlisting><methodsynopsis language="python">
-    <methodname>get_height</methodname>
-    <methodparam></methodparam>  </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
-    </varlistentry>
-  </variablelist>
-  </refsect2>
-
 
   <refsect2 id="method-clutteractor--set-width">
     <title>clutter.Actor.set_width</title>
@@ -1195,11 +1258,54 @@
   <variablelist>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>the width of the actor, in pixels</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Forces a width on an actor, causing the actor's preferred width and
+  height (if any) to be ignored.</para>
+
+  <para>This function sets both the minimum and natural size of the actor.</para>
   </refsect2>
 
+  <refsect2 id="method-clutteractor--get-width">
+    <title>clutter.Actor.get_width</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_width</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>the width of the actor, in pixels</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Retrieves the width of a
+  <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.
+  </para>
+
+  <para>If the actor has a valid allocation, this function will return the width
+  of the allocated area given to the actor.</para>
+
+  <para>
+    If the actor does not have a valid allocation, this function will return the
+    actor's natural width, that is the preferred width of the actor.</para>
+
+  <para>If you care whether you get the preferred width or the width that has
+  been assigned to the actor, you should probably call a different function like
+  <link linkend="method-clutteractor--get-allocation-coords"><methodname>get_allocation_coords()</methodname></link>
+  to retrieve the allocated size or
+  <link linkend="method-clutteractor--get-preferred-width"><methodname>get_preferred_width()</methodname></link>
+  to retrieve the preferred width.</para>
+
+
+  <para>If an actor has a fixed width, for instance a width that has been
+  assigned using
+  <link linkend="method-clutteractor--set-width"><methodname>set_width()</methodname></link>,
+  the width returned will be the same value.
+  </para>
+
+  </refsect2>
 
   <refsect2 id="method-clutteractor--set-height">
     <title>clutter.Actor.set_height</title>
@@ -1211,40 +1317,56 @@
   <variablelist>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>the height of the actor, in pixels</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Forces a height on an actor, causing the actor's preferred width and
+  height (if any) to be ignored.</para>
+
+  <para>This function sets both the minimum and natural size of the actor.</para>
   </refsect2>
 
-
-  <refsect2 id="method-clutteractor--get-x">
-    <title>clutter.Actor.get_x</title>
+  <refsect2 id="method-clutteractor--get-height">
+    <title>clutter.Actor.get_height</title>
 
 <programlisting><methodsynopsis language="python">
-    <methodname>get_x</methodname>
+    <methodname>get_height</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the height of the actor, in pixels</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Retrieves the height of a
+  <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.
+  </para>
+
+  <para>If the actor has a valid allocation, this function will return the height
+  of the allocated area given to the actor.</para>
+
+  <para>
+    If the actor does not have a valid allocation, this function will return the
+    actor's natural height, that is the preferred height of the actor.</para>
+
+  <para>If you care whether you get the preferred height or the height that has
+  been assigned to the actor, you should probably call a different function like
+  <link linkend="method-clutteractor--get-allocation-coords"><methodname>get_allocation_coords()</methodname></link>
+  to retrieve the allocated size or
+  <link linkend="method-clutteractor--get-preferred-height"><methodname>get_preferred_height()</methodname></link>
+  to retrieve the preferred height.</para>
+
+
+  <para>If an actor has a fixed height, for instance a height that has been
+  assigned using
+  <link linkend="method-clutteractor--set-height"><methodname>set_height()</methodname></link>,
+  the height returned will be the same value.
+  </para>
+
   </refsect2>
 
-
-  <refsect2 id="method-clutteractor--get-y">
-    <title>clutter.Actor.get_y</title>
-
-<programlisting><methodsynopsis language="python">
-    <methodname>get_y</methodname>
-    <methodparam></methodparam>  </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
-    </varlistentry>
-  </variablelist>
-  </refsect2>
 
 
   <refsect2 id="method-clutteractor--set-rotation">
@@ -1261,25 +1383,46 @@
   <variablelist>
     <varlistentry>
       <term><parameter>axis</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+      <listitem><simpara>a clutter.RotateAxis</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>angle</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>the rotation angle</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>X coordinate of the center of rotation, relative to the anchor point</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>Y coordinate of the center of rotation, relative to the anchor point</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>Z coordinate of the center of rotation, relative to the anchor point</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>Sets the rotation angle of self around the given axis.</para>
+  <para>The rotation center coordinates used depend on the value of axis:
+    <itemizedlist>
+      <listitem>
+        <simpara>clutter.X_AXIS requires y and z</simpara>
+      </listitem>
+      <listitem>
+        <simpara>clutter.Y_AXIS requires x and z</simpara>
+      </listitem>
+      <listitem>
+        <simpara>clutter.Z_AXIS requires x and y</simpara>
+      </listitem>
+    </itemizedlist>
+  </para>
+
+  <para>The rotation coordinates are relative to the anchor point of the actor,
+  set using
+  <link linkend="method-clutteractor--set-anchor-point"><methodname>set_anchor_point()</methodname></link>.
+  If no anchor point is set, the upper left corner is assumed as the origin.
+  </para>
   </refsect2>
 
 
@@ -1289,9 +1432,6 @@
 <programlisting><methodsynopsis language="python">
     <methodname>get_rotation</methodname>
     <methodparam><parameter>axis</parameter></methodparam>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-    <methodparam><parameter>z</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
@@ -1299,22 +1439,14 @@
       <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>z</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a 4-tuple containing the angle and the coordinates of the center of rotation on all three axes</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>Retrieves the angle and center of rotation on the given axis.</para>
+
+  <para>The coordinates of the center returned by this function depend on the axis passed.</para>
   </refsect2>
 
 
@@ -1328,9 +1460,10 @@
   <variablelist>
     <varlistentry>
       <term><parameter>opacity</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint8</simpara></listitem>
+      <listitem><simpara>the new opacity</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the actor's opacity, with zero being completely transparent and 255 (0xff) being fully opaque.</para>
   </refsect2>
 
 
@@ -1343,9 +1476,13 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a guint8</simpara></listitem>
+      <listitem><simpara>the opacity of the actor</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the opacity value of an actor, as set by <link linkend="method-clutteractor--set-opacity"><methodname>set_opacity()</methodname></link>.</para>
+
+
+  <para>For retrieving the absolute opacity of the actor inside a paint virtual function, see <link linkend="method-clutteractor--get-paint-opacity"><methodname>get_paint_opacity()</methodname></link>.</para>
   </refsect2>
 
 
@@ -1362,6 +1499,11 @@
       <listitem><simpara>a string</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the given name to self. The name can be used to identify a
+  <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>.
+  </para>
+
   </refsect2>
 
 
@@ -1377,6 +1519,7 @@
       <listitem><simpara>a string</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the actors name.</para>
   </refsect2>
 
 
@@ -1389,9 +1532,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a guint32</simpara></listitem>
+      <listitem><simpara>an integer identifier</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the actors unique id</para>
   </refsect2>
 
 
@@ -1400,29 +1544,33 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_clip</methodname>
-    <methodparam><parameter>x_offset</parameter></methodparam>
-    <methodparam><parameter>y_offset</parameter></methodparam>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
+    <methodparam><parameter role="keyword">x_offset</parameter></methodparam>
+    <methodparam><parameter role="keyword">y_offset</parameter></methodparam>
+    <methodparam><parameter role="keyword">width</parameter></methodparam>
+    <methodparam><parameter role="keyword">height</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>x_offset</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the X offset of the clip</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y_offset</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the Y offset of the clip</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the width of the clip</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the height of the clip</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets clip area in pixels for self. The clip area is always computed from the
+  upper left corner of the actor, even if the anchor point is set otherwise.
+  </para>
   </refsect2>
 
 
@@ -1432,6 +1580,7 @@
 <programlisting><methodsynopsis language="python">
     <methodname>remove_clip</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>Removes clip area from the actor.</para>
   </refsect2>
 
 
@@ -1444,9 +1593,26 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a boolean value</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Determines whether the actor has a clip area set or not.</para>
+
+  </refsect2>
+
+  <refsect2 id="method-clutteractor--get-clip">
+    <title>clutter.Actor.get_clip</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_clip</methodname>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 4-tuple containing the X and Y offsets, and the width and height of the clip</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>Gets the clip area for the actor, in pixels.</para>
   </refsect2>
 
 
@@ -1460,9 +1626,16 @@
   <variablelist>
     <varlistentry>
       <term><parameter>parent</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a clutter.Actor</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the parent of self to parent. The opposite function is
+  <link linkend="method-clutteractor--unparent"><methodname>unparent()</methodname></link>.
+  </para>
+  <para>
+  This function should not be used by applications, but by custom container
+  actor subclasses.</para>
   </refsect2>
 
 
@@ -1475,9 +1648,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a clutter.Actor</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the parent of the actor.</para>
   </refsect2>
 
 
@@ -1491,9 +1665,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>new_parent</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a clutter.Actor</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  This function resets the parent actor of the actor. It is logically equivalent to
+  calling
+  <link linkend="method-clutteractor--unparent"><methodname>unparent()</methodname></link> and
+  <link linkend="method-clutteractor--set-parent"><methodname>set_parent()</methodname></link>.
+  </para>
   </refsect2>
 
 
@@ -1503,6 +1683,9 @@
 <programlisting><methodsynopsis language="python">
     <methodname>unparent</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+    <para>This function should not be used in applications. It should be called
+    by implementations of container actors, to dissociate a child from the
+    container.</para>
   </refsect2>
 
 
@@ -1511,14 +1694,19 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>raise_actor</methodname>
-    <methodparam><parameter>below</parameter></methodparam>
+    <methodparam><parameter>above</parameter><initializer>None</initializer></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>below</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <term><parameter>above</parameter>&nbsp;:</term>
+      <listitem><simpara>a clutter.Actor, or None</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Raises the actor above a sibling.</para>
+  <para>Both actors must have the same parent.</para>
+  <para>This function is the equivalent of
+  <link linkend="method-cluttercontainer--raise-child"><methodname>clutter.Container.raise_child()</methodname></link>.
+  </para>
   </refsect2>
 
 
@@ -1527,14 +1715,19 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>lower_actor</methodname>
-    <methodparam><parameter>above</parameter></methodparam>
+    <methodparam><parameter>below</parameter><initializer>None</initializer></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>above</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <term><parameter>below</parameter>&nbsp;:</term>
+      <listitem><simpara>a clutter.Actor, or None</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Lowers the actor below a sibling</para>
+  <para>Both actors must have the same parent.</para>
+  <para>This function is the equivalent of
+  <link linkend="method-cluttercontainer--lower-child"><methodname>clutter.Container.lower_child()</methodname></link>.
+  </para>
   </refsect2>
 
 
@@ -1544,6 +1737,12 @@
 <programlisting><methodsynopsis language="python">
     <methodname>raise_top</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <para>Raises an actor to the top.</para>
+
+  <para>This function calls
+  <link linkend="method-clutteractor--raise"><methodname>raise()</methodname></link>
+  internally.
+  </para>
   </refsect2>
 
 
@@ -1553,6 +1752,12 @@
 <programlisting><methodsynopsis language="python">
     <methodname>lower_bottom</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <para>Lowers an actor to the bottom.</para>
+
+  <para>This function calls
+  <link linkend="method-clutteractor--lower_actor"><methodname>lower_actor()</methodname></link>
+  internally.
+  </para>
   </refsect2>
 
 
@@ -1566,9 +1771,12 @@
   <variablelist>
     <varlistentry>
       <term><parameter>depth</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the Z coordinate of the actor</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the Z co-ordinate of self to depth. The Units of which are dependant on
+  the perspective setup.</para>
   </refsect2>
 
 
@@ -1581,9 +1789,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>the Z coordinate of the actor, in pixels</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves the depth of self.</para>
   </refsect2>
 
 
@@ -1598,13 +1807,14 @@
   <variablelist>
     <varlistentry>
       <term><parameter>scale_x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>the scaling factor on the X axis</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>scale_y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>the scaling factor on the Y axis</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Scales an actor with the given factors. The scaling is always relative to the anchor point.</para>
   </refsect2>
 
 
@@ -1613,41 +1823,18 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_scale</methodname>
-    <methodparam><parameter>scale_x</parameter></methodparam>
-    <methodparam><parameter>scale_y</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>scale_x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>scale_y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 2-tuple containing the scaling factors on the X and Y axes</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Retrieves an actors scale factors.</para>
   </refsect2>
 
 
-  <refsect2 id="method-clutteractor--get-size">
-    <title>clutter.Actor.get_size</title>
 
-<programlisting><methodsynopsis language="python">
-    <methodname>get_size</methodname>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
-  </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint*</simpara></listitem>
-    </varlistentry>
-  </variablelist>
-  </refsect2>
 
 
   <refsect2 id="method-clutteractor--move-by">
@@ -1668,6 +1855,13 @@
       <listitem><simpara>a gint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Moves an actor by the specified distance relative to its current position in
+  pixels. This function modifies the fixed position of an actor and thus removes
+  it from any layout management. Another way to move an actor is with an anchor
+  point, see
+  <link linkend="method-clutteractor-set-anchor-point"><methodname>set_anchor_point()</methodname></link>.
+  </para>
   </refsect2>
 
 
@@ -1682,13 +1876,16 @@
   <variablelist>
     <varlistentry>
       <term><parameter>point</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterVertex*</simpara></listitem>
+      <listitem><simpara>a clutter.Vertex</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>vertex</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterVertex*</simpara></listitem>
+      <listitem><simpara>a clutter.Vertex</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Transforms point in coordinates relative to the actor into
+  screen-relative coordinates with the current actor transformation (i.e. scale,
+  rotation, etc)</para>
   </refsect2>
 
 
@@ -1704,6 +1901,7 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Checks whether the actor is scaled in either dimension.</para>
   </refsect2>
 
 
@@ -1719,6 +1917,7 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Checks whether any rotation is applied to the actor.</para>
   </refsect2>
 
 
@@ -1745,38 +1944,21 @@
       <listitem><simpara>a ClutterVertex*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Transforms point in coordinates relative to the actor into ancestor-relative
+  coordinates using the relevant transform stack (i.e. scale, rotation, etc).
+  </para>
+  <para>
+  If ancestor is None the ancestor will be the
+  <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link>.
+  In this case, the coordinates returned will be the coordinates on the stage
+  before the projection is applied. This is different from the behaviour of
+  <link linkend="method-clutteractor--apply-transform-to-point"><methodname>apply_transform_to_point()</methodname></link>.
+  </para>
   </refsect2>
 
 
-  <refsect2 id="method-clutteractor--get-clip">
-    <title>clutter.Actor.get_clip</title>
 
-<programlisting><methodsynopsis language="python">
-    <methodname>get_clip</methodname>
-    <methodparam><parameter>xoff</parameter></methodparam>
-    <methodparam><parameter>yoff</parameter></methodparam>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
-  </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><parameter>xoff</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>yoff</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-  </variablelist>
-  </refsect2>
 
 
   <refsect2 id="method-clutteractor--set-reactive">
@@ -1792,6 +1974,7 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the actor to be reactive. Reactive actors will receive events.</para>
   </refsect2>
 
 
@@ -1807,32 +1990,11 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Checks whether actor is marked as reactive.</para>
   </refsect2>
 
 
-  <refsect2 id="method-clutteractor--event">
-    <title>clutter.Actor.event</title>
 
-<programlisting><methodsynopsis language="python">
-    <methodname>event</methodname>
-    <methodparam><parameter>event</parameter></methodparam>
-    <methodparam><parameter>capture</parameter></methodparam>
-  </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><parameter>event</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterEvent*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>capture</parameter>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
-    </varlistentry>
-  </variablelist>
-  </refsect2>
 
 
   <refsect2 id="method-clutteractor--should-pick-paint">
@@ -1847,6 +2009,9 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Utility call for subclasses overiding the pick method.</para>
+
+  <para>This function should never be called directly by applications.</para>
   </refsect2>
 
 
@@ -1867,6 +2032,11 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets the
+  <link linkend="class-cluttershader"><classname>clutter.Shader</classname></link>
+  to be used when rendering self. If shader is None it will unset any currently
+  set shader for the actor.
+  </para>
   </refsect2>
 
 
@@ -1882,6 +2052,11 @@
       <listitem><simpara>a ClutterShader*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Queries the currently set
+  <link linkend="class-cluttershader"><classname>clutter.Shader</classname></link>
+  on the actor.
+  </para>
   </refsect2>
 
 
@@ -1903,6 +2078,9 @@
       <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the value for a named parameter of the shader applied to actor.
+  </para>
   </refsect2>
 
 
@@ -1924,6 +2102,12 @@
       <listitem><simpara>a gint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets an anchor point for the actor. The anchor point is a point in the
+  coordinate space of an actor to which the actor position within its parent
+  is relative; the default is (0, 0), i.e. the top-left corner of the actor.
+  </para>
+
   </refsect2>
 
 
@@ -1945,6 +2129,10 @@
       <listitem><simpara>a gint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets an anchor point for the actor, and adjusts the actor postion so that the
+  relative position of the actor toward its parent remains the same.
+  </para>
   </refsect2>
 
 
@@ -1966,6 +2154,9 @@
       <listitem><simpara>a gint*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the current anchor point of the actor in pixels.
+  </para>
   </refsect2>
 
 
@@ -1982,6 +2173,10 @@
       <listitem><simpara>a ClutterGravity</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>Sets an anchor point on the actor, based on the given gravity (this is a
+  convenience function wrapping
+  <link linkend="method-clutteractor--set-anchor-point"><methodname>set_anchor_point()</methodname></link>
+  </para>
   </refsect2>
 
 
@@ -1998,6 +2193,11 @@
       <listitem><simpara>a ClutterGravity</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets an anchor point on the actor based on the given gravity, adjusting the
+  actor postion so that its relative position within its parent remains
+  unchanged.
+  </para>
   </refsect2>
 
 
@@ -2033,16 +2233,30 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  This function translates screen coordinates (x, y) to coordinates relative to
+  the actor. For example, it can be used to translate screen events from global
+  screen coordinates into actor-local coordinates.
+  </para>
+
+  <para>
+  The conversion can fail, notably if the transform stack results in the actor
+  being projected on the screen as a mere line.
+  </para>
+
+  <para>The conversion should not be expected to be pixel-perfect due to the
+  nature of the operation. In general the error grows when the skewing of the
+  actor rectangle on screen increases.
+  </para>
+
+  <caution>
+    <para>This function is fairly computationally intensive.</para>
+    <para>This function only works when the allocation is up-to-date, i.e. inside of paint()</para>
+  </caution>
   </refsect2>
 
 
-  <refsect2 id="method-clutteractor--queue-relayout">
-    <title>clutter.Actor.queue_relayout</title>
 
-<programlisting><methodsynopsis language="python">
-    <methodname>queue_relayout</methodname>
-    <methodparam></methodparam>  </methodsynopsis></programlisting>
-  </refsect2>
 
 
   <refsect2 id="method-clutteractor--get-preferred-width">
@@ -2068,6 +2282,19 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Computes the requested minimum and natural widths for an actor, optionally
+  depending on the specified height, or if they are already computed, returns
+  the cached values.
+  </para>
+  <para>
+  An actor may not get its request - depending on the layout manager that's in
+  effect.
+  </para>
+  <para>
+  A request should not incorporate the actor's scale or anchor point; those
+  transformations do not affect layout, only rendering.
+  </para>
   </refsect2>
 
 
@@ -2094,6 +2321,17 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Computes the requested minimum and natural heights for an actor, or if they
+  are already computed, returns the cached values.
+  </para>
+  <para>
+  An actor may not get its request - depending on the layout manager that's in effect.
+  </para>
+  <para>
+  A request should not incorporate the actor's scale or anchor point; those
+  transformations do not affect layout, only rendering.
+  </para>
   </refsect2>
 
 
@@ -2125,7 +2363,27 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Computes the preferred minimum and natural size of an actor, taking into
+  account the actor's geometry management (either height-for-width or
+  width-for-height).
+  </para>
+  <para>
+    The width and height used to compute the preferred height and preferred
+    width are the actor's natural ones.
+  </para>
+  <para>
+  If you need to control the height for the preferred width, or the width for
+  the preferred height, you should use
+  <link linkend="method-clutteractor--get-preferred-width"><methodname>get_preferred_width()</methodname></link> and
+  <link linkend="method-clutteractor--get-preferred-height"><methodname>get_preferred_height()</methodname></link>,
+  and check the actor's preferred geometry management using the "request-mode" property.
+  </para>
+
   </refsect2>
+
+
 
 
   <refsect2 id="method-clutteractor--allocate">
@@ -2146,6 +2404,16 @@
       <listitem><simpara>a boolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Called by the parent of an actor to assign the actor its size. Should never be
+  called by applications (except when implementing a container or layout manager).
+  </para>
+  <para>
+  Actors can know from their allocation box whether they have moved with respect
+  to their parent actor. The absolute_origin_changed parameter additionally
+  indicates whether the parent has moved with respect to the stage, for example
+  because a grandparent's origin has moved.
+  </para>
   </refsect2>
 
 
@@ -2162,6 +2430,22 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Allocates the natural size of the actor.
+  </para>
+  <para>
+  This function is a utility call for ClutterActor implementations that
+  allocates the actor's preferred natural size. It can be used by fixed layout
+  managers (like ClutterGroup or so called 'composite actors') inside the
+  <link linkend="method-clutteractor--allocate"><methodname>allocate()</methodname></link>
+  implementation to give each child exactly how much space it requires.
+  </para>
+  <para>
+  This function is not meant to be used by applications. It is also not meant
+  to be used outside the implementation of the
+  <link linkend="method-clutteractor--allocate"><methodname>allocate()</methodname></link>
+  virtual function.
+  </para>
   </refsect2>
 
 
@@ -2191,6 +2475,19 @@
       <listitem><simpara>a gint*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Gets the layout box an actor has been assigned. The allocation can only be
+  assumed valid inside a paint() method; anywhere else, it may be out-of-date.
+  </para>
+  <para>
+  An allocation does not incorporate the actor's scale or anchor point; those
+  transformations do not affect layout, only rendering.
+  </para>
+  <para>
+  The returned coordinates are in pixels.
+  </para>
+
   </refsect2>
 
 
@@ -2207,6 +2504,23 @@
       <listitem><simpara>a ClutterActorBox*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Gets the layout box an actor has been assigned. The allocation can only be
+  assumed valid inside a paint() method; anywhere else, it may be out-of-date.
+  </para>
+  <para>
+  An allocation does not incorporate the actor's scale or anchor point; those
+  transformations do not affect layout, only rendering.
+  </para>
+
+  <note>
+  Do not call any of the clutter_actor_get_allocation_*() family of functions
+  inside the implementation of the get_preferred_width() or
+  get_preferred_height() virtual functions.
+  </note>
+
+
   </refsect2>
 
 
@@ -2223,6 +2537,17 @@
       <listitem><simpara>a ClutterGeometry*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the layout box an actor has been assigned. The allocation can only be
+  assumed valid inside a paint() method; anywhere else, it may be out-of-date.
+  </para>
+  <para>
+  An allocation does not incorporate the actor's scale or anchor point; those
+  transformations do not affect layout, only rendering.
+  </para>
+  <para>
+  The returned rectangle is in pixels.
+  </para>
   </refsect2>
 
 
@@ -2244,6 +2569,38 @@
       <listitem><simpara>a ClutterVertex</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Calculates the transformed coordinates of the four corners of the actor in the
+  plane of ancestor. The returned vertices relate to the
+  <link linkend="class-clutteractorbox"><classname>clutter.ActorBox</classname></link>
+  coordinates as follows:
+
+    <itemizedlist>
+      <listitem>
+        <simpara>v[0] contains (x1, y1)</simpara>
+      </listitem>
+      <listitem>
+        <simpara>v[1] contains (x2, y1)</simpara>
+      </listitem>
+      <listitem>
+        <simpara>v[2] contains (x1, y2)</simpara>
+      </listitem>
+      <listitem>
+        <simpara>v[3] contains (x2, y2)</simpara>
+      </listitem>
+    </itemizedlist>
+ </para>
+
+  <para>
+    If ancestor is NONE the ancestor will be the
+    <link linkend="class-clutterstage"><classname>ClutterStage</classname></link>.
+    In this case, the coordinates returned will be the coordinates on the stage
+    before the projection is applied. This is different from the behaviour of
+    <link linkend="method-clutteractor--get_abs_allocation_verticies"><methodname>get_abs_allocation_vertices()</methodname></link>
+    .
+  </para>
+
   </refsect2>
 
 
@@ -2265,6 +2622,13 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Overrides the actor's size request in ClutterUnits. If width and/or height are
+  -1 the actor will use its normal size request (the override is removed).
+  </para>
+  <para>
+  This function sets or unsets both the minimum and natural size.
+  </para>
   </refsect2>
 
 
@@ -2286,6 +2650,19 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  This function tries to "do what you mean" and return the size an actor will
+  have. If the actor has a valid allocation, the allocation will be returned;
+  otherwise, the actors natural size request will be returned.
+  </para>
+  <para>
+  If you care whether you get the request vs. the allocation, you should
+  probably call a different function like
+  <link linkend="method-clutteractor--get-allocation-coords"><methodname>get_allocation_coords()</methodname></link> or
+  <link linkend="method-clutteractor--get-preferred-width"><methodname>get_preferred_width()</methodname></link>.
+  </para>
+
   </refsect2>
 
 
@@ -2307,6 +2684,9 @@
       <listitem><simpara>a guint*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the absolute size of an actor taking into account any scaling factors
+  </para>
   </refsect2>
 
 
@@ -2328,6 +2708,35 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Gets the absolute size of an actor in ClutterUnitss, taking into account the
+  scaling factors.
+  </para>
+  <para>
+  If the actor has a valid allocation, the allocated size will be used. If the
+  actor has not a valid allocation then the preferred size will be transformed
+  and returned.
+  </para>
+  <para>
+  If you want the transformed allocation, see
+  <link linkend="method-clutteractor--get-abs-allocation-vertices"><methodname>get_abs_allocation_vertices()</methodname></link>
+  instead.
+  </para>
+
+  <note>
+    When the actor (or one of its ancestors) is rotated around the X or Y axis,
+    it no longer appears as on the stage as a rectangle, but as a generic
+    quadrangle; in that case this function returns the size of the smallest
+    rectangle that encapsulates the entire quad. Please note that in this case
+    no assumptions can be made about the relative position of this envelope to
+    the absolute position of the actor, as returned by
+    <link linkend="method-clutteractor--get-transformed-position"><methodname>get_transformed_position()</methodname></link>;
+    if you need this information, you need to use
+    <link linkend="method-clutteractor--get-abs-allocation-vertices"><methodname>get_abs_allocation_vertices()</methodname></link>;
+    to get the coords of the actual quadrangle.
+  </note>
+
   </refsect2>
 
 
@@ -2349,6 +2758,13 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the actor's position in ClutterUnits relative to any parent actor.
+  </para>
+  <para>
+  If a layout manager is in use, this position will override the layout manager
+  and force a fixed position.
+  </para>
   </refsect2>
 
 
@@ -2370,6 +2786,15 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  This function tries to "do what you mean" and tell you where the actor is,
+  prior to any transformations. Retrieves the fixed position of an actor in
+  pixels, if one has been set; otherwise, if the allocation is valid, returns
+  the actor's allocated position; otherwise, returns 0,0.
+  </para>
+  <para>
+  The returned position is in ClutterUnits.
+  </para>
   </refsect2>
 
 
@@ -2391,6 +2816,9 @@
       <listitem><simpara>a gint*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the absolute position of an actor, in pixels, relative to the stage.
+  </para>
   </refsect2>
 
 
@@ -2412,6 +2840,9 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the absolute position of an actor, in ClutterUnits, relative to the stage.
+  </para>
   </refsect2>
 
 
@@ -2427,6 +2858,10 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Checks whether an actor has a fixed position set (and will thus be unaffected
+  by any layout manager).
+  </para>
   </refsect2>
 
 
@@ -2443,6 +2878,10 @@
       <listitem><simpara>a gboolean</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets whether an actor has a fixed position set (and will thus be unaffected by
+  any layout manager).
+  </para>
   </refsect2>
 
 
@@ -2458,6 +2897,30 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Retrieves the width of a ClutterActor, in ClutterUnits.
+  </para>
+  <para>
+  If the actor has a valid allocation, this function will return the width of
+  the allocated area given to the actor.
+  </para>
+  <para>
+  If the actor does not have a valid allocation, this function will return the
+  actor's natural width, that is the preferred width of the actor.
+  </para>
+  <para>
+  If you care whether you get the preferred width or the width that has been
+  assigned to the actor, you should probably call a different function like
+
+  <link linkend="method-clutteractor--get-allocation-coords"><methodname>get_allocation_coords()</methodname></link>
+  to retrieve the allocated size or
+  <link linkend="method-clutteractor--get-preferred-width"><methodname>get_preferred_width()</methodname></link>
+  to retrieve the preferred width.
+  </para>
+  <para>
+  If an actor has a fixed width, for instance a width that has been assigned using
+  <link linkend="method-clutteractor--set-width"><methodname>clutter_actor_set_width()</methodname></link>,
+  </para>
   </refsect2>
 
 
@@ -2473,6 +2936,32 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Retrieves the height of a ClutterActor, in ClutterUnits.
+  </para>
+  <para>
+  If the actor has a valid allocation, this function will return the height of
+  the allocated area given to the actor.
+  </para>
+  <para>
+  If the actor does not have a valid allocation, this function will return the
+  actor's natural height, that is the preferred height of the actor.
+  </para>
+  <para>
+  If you care whether you get the preferred height or the height that has been
+  assigned to the actor, you should probably call a different function like
+
+  <link linkend="method-clutteractor--get-allocation-coords"><methodname>get_allocation_coords()</methodname></link>
+  to retrieve the allocated size or
+  <link linkend="method-clutteractor--get-preferred-height"><methodname>get_preferred_height()</methodname></link>
+  to retrieve the preferred height.
+  </para>
+  <para>
+  If an actor has a fixed height, for instance a height that has been assigned using
+  <link linkend="method-clutteractor--set-height"><methodname>clutter_actor_set_height()</methodname></link>,
+  </para>
+
   </refsect2>
 
 
@@ -2489,6 +2978,13 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Forces a width on an actor, causing the actor's preferred width and height
+  (if any) to be ignored.
+  </para>
+  <para>
+  This function sets both the minimum and natural size of the actor.
+  </para>
   </refsect2>
 
 
@@ -2505,6 +3001,13 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Forces a height on an actor, causing the actor's preferred width and height
+  (if any) to be ignored.
+  <para>
+  </para>
+  This function sets both the minimum and natural size of the actor.
+  </para>
   </refsect2>
 
 
@@ -2520,6 +3023,30 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Retrieves the X coordinate of a
+  <link linkend="class-clutteractor"><classname>ClutterActor</classname></link>,
+  in ClutterUnits.
+  </para>
+  <para>
+  This function tries to "do what you mean", by returning the correct value
+  depending on the actor's state.
+  </para>
+  <para>
+  If the actor has a valid allocation, this function will return the X
+  coordinate of the origin of the allocation box.
+  </para>
+  <para>
+  If the actor has any fixed coordinate set using
+  <link linkend="method-clutteractor--set-x"><methodname>set_x()</methodname></link>,
+  <link linkend="method-clutteractor--set-position"><methodname>set_position()</methodname></link> or
+  <link linkend="method-clutteractor--set-geometry"><methodname>set_geometry()</methodname></link>,
+  this function will return that coordinate.
+  </para>
+  <para>
+  If both the allocation and a fixed position are missing, this function will
+  return 0.
+  </para>
   </refsect2>
 
 
@@ -2535,6 +3062,32 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Retrieves the Y coordinate of a
+  <link linkend="class-clutteractor"><classname>ClutterActor</classname></link>,
+  in ClutterUnits.
+  </para>
+  <para>
+  This function tries to "do what you mean", by returning the correct value
+  depending on the actor's state.
+  </para>
+  <para>
+  If the actor has a valid allocation, this function will return the Y
+  coordinate of the origin of the allocation box.
+  </para>
+  <para>
+  If the actor has any fixed coordinate set using
+  <link linkend="method-clutteractor--set-y"><methodname>set_y()</methodname></link>,
+  <link linkend="method-clutteractor--set-position"><methodname>set_position()</methodname></link> or
+  <link linkend="method-clutteractor--set-geometry"><methodname>set_geometry()</methodname></link>,
+  this function will return that coordinate.
+  </para>
+  <para>
+  If both the allocation and a fixed position are missing, this function will
+  return 0.
+  </para>
+
   </refsect2>
 
 
@@ -2551,6 +3104,15 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Sets the actor's X coordinate, relative to its parent.
+  </para>
+  <para>
+  Overrides any layout manager and forces a fixed position for the actor.
+  </para>
+
+
   </refsect2>
 
 
@@ -2566,7 +3128,18 @@
       <term><parameter>y</parameter>&nbsp;:</term>
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
+
+  <para>
+  Sets the actor's Y coordinate, relative to its parent.
+  </para>
+  <para>
+  Overrides any layout manager and forces a fixed position for the actor.
+  </para>
+
   </variablelist>
+
+
+
   </refsect2>
 
 
@@ -2603,6 +3176,16 @@
       <listitem><simpara>a gint</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+
+  <para>
+  Sets the rotation angle of self around the given axis.
+  </para>
+  <para>
+  This function is the fixed point variant of
+  <link linkend="method-clutteractor--set-rotation"><methodname>set_rotation()</methodname></link>.
+  </para>
+
   </refsect2>
 
 
@@ -2639,6 +3222,15 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Sets the rotation angle of self around the given axis.
+  </para>
+  <para>
+  This function is the units based variant of
+  <link linkend="method-clutteractor--set-rotation"><methodname>set_rotation()</methodname></link>.
+  </para>
+
   </refsect2>
 
 
@@ -2674,6 +3266,16 @@
       <listitem><simpara>a ClutterFixed</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Retrieves the angle and center of rotation on the given axis, set using
+  <link linkend="method-clutteractor--set-rotation"><methodname>set_rotation()</methodname></link>.
+  </para>
+  <para>
+  This function is the fixed point variant of
+  <link linkend="method-clutteractor--get-rotation"><methodname>et_rotation()</methodname></link>.
+  </para>
+
   </refsect2>
 
 
@@ -2709,6 +3311,16 @@
       <listitem><simpara>a gdouble</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Retrieves the angle and center of rotation on the given axis, set using
+  <link linkend="method-clutteractor--set-rotation"><methodname>set_rotation()</methodname></link>.
+  </para>
+  <para>
+  This function is the units based variant of
+  <link linkend="method-clutteractor--get-rotation"><methodname>et_rotation()</methodname></link>.
+  </para>
+
   </refsect2>
 
 
@@ -2724,6 +3336,19 @@
       <listitem><simpara>a guint8</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Retrieves the absolute opacity of the actor, as it appears on the stage.
+  </para>
+  <para>
+  This function traverses the hierarchy chain and composites the opacity of the
+  actor with that of its parents.
+  </para>
+  <para>
+  This function is intended for subclasses to use in the paint virtual function,
+  to paint themselves with the correct opacity.
+  </para>
+
   </refsect2>
 
 
@@ -2755,6 +3380,17 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Unit-based variant of
+  <link linkend="method-clutteractor--set-clip"><methodname>set_clip()</methodname></link>
+  </para>
+
+  <para>
+  Sets clip area for self. The clip area is always computed from the upper left
+  corner of the actor, even if the anchor point is set otherwise.
+  </para>
+
   </refsect2>
 
 
@@ -2786,6 +3422,14 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Unit-based variant of
+  <link linkend="method-clutteractor--get-clip"><methodname>get_clip()</methodname></link>.
+  </para>
+  <para>
+  Gets the clip area for self, in ClutterUnits.
+  </para>
   </refsect2>
 
 
@@ -2801,6 +3445,13 @@
       <listitem><simpara>a ClutterActor*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Retrieves the
+  <link linkend="class-clutterstage"><classname>ClutterStage</classname></link>
+  where the actor is contained.
+  </para>
+
   </refsect2>
 
 
@@ -2817,6 +3468,11 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>Sets the Z co-ordinate of self to depth in ClutterUnits, the units of
+  which are dependant on the perspective setup.
+  </para>
+
   </refsect2>
 
 
@@ -2832,6 +3488,11 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Retrieves the depth of the actor.
+  </para>
+
   </refsect2>
 
 
@@ -2853,6 +3514,16 @@
       <listitem><simpara>a ClutterFixed</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Fixed point version of
+  <link linkend="method-clutteractor--set-scale"><methodname>set_scale()</methodname></link>.
+  </para>
+  <para>
+  Scales an actor with the given factors. The scaling is always relative to the
+  anchor point.
+  </para>
+
   </refsect2>
 
 
@@ -2874,6 +3545,15 @@
       <listitem><simpara>a ClutterFixed*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Fixed point version of
+  <link linkend="method-clutteractor--get-scale"><methodname>get_scale()</methodname></link>.
+  </para>
+  <para>
+  Retrieves the scale factors of an actor.
+  </para>
+
   </refsect2>
 
 
@@ -2895,6 +3575,16 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Moves an actor by the specified distance relative to its current position.
+  </para>
+  <para>
+  The move is accomplished by setting a fixed position, overriding any layout
+  manager, see
+  <link linkend="method-clutteractor--set-positionu"><methodname>set_positionu()</methodname></link>.
+  </para>
+
   </refsect2>
 
 
@@ -2916,6 +3606,12 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets an anchor point for self. The anchor point is a point in the coordinate
+  space of an actor to which the actor position within its parent is relative;
+  the default is (0, 0), i.e. the top-left corner of the actor.
+  </para>
+
   </refsect2>
 
 
@@ -2937,6 +3633,10 @@
       <listitem><simpara>a gint32</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets an anchor point for the actor, and adjusts the actor postion so that the
+  relative position of the actor toward its parent remains the same.
+  </para>
   </refsect2>
 
 
@@ -2958,6 +3658,10 @@
       <listitem><simpara>a gint32*</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>Gets the current anchor point of the actor in ClutterUnits.
+  </para>
+
   </refsect2>
 
 
@@ -2974,6 +3678,32 @@
       <listitem><simpara>a ClutterVertex</simpara></listitem>
     </varlistentry>
   </variablelist>
+
+  <para>
+  Calculates the transformed screen coordinates of the four corners of the actor;
+  the returned vertices relate to the
+  <link linkend="class-clutteractorbox"><classname>clutter.ActorBox</classname></link>
+  coordinates as follows:
+
+  <itemizedlist>
+    <listitem>
+      <simpara>v[0] contains (x1, y1)</simpara>
+    </listitem>
+    <listitem>
+      <simpara>v[1] contains (x2, y1)</simpara>
+    </listitem>
+    <listitem>
+      <simpara>v[2] contains (x1, y2)</simpara>
+    </listitem>
+    <listitem>
+    <simpara>v[3] contains (x2, y2)</simpara>
+    </listitem>
+   </itemizedlist>
+
+
+
+  </para>
+
   </refsect2>
 <refsect1>
   <title>Signals</title>
@@ -2992,16 +3722,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the object which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-clutterbuttonevent"><classname>clutter.ButtonEvent</classname></link></simpara>
         </listitem>
@@ -3009,17 +3737,14 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3044,16 +3769,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the object which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-clutterbuttonevent"><classname>clutter.ButtonEvent</classname></link></simpara>
         </listitem>
@@ -3061,17 +3784,14 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3096,16 +3816,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the object which received the signal</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-clutterevent"><classname>clutter.Event</classname></link></simpara>
         </listitem>
@@ -3113,31 +3831,21 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>The "captured-event" signal is emitted when an event is captured by Clutter. 
-      This signal will be emitted starting from the top-level container (the 
-      <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link>) 
-      to the actor which received the event going down the hierarchy. This signal 
-      can be used to intercept every event before the specialized events 
-      (like "<link linkend="signal-clutteractor--button-press-event">button-press-event</link>" or
-      "<link linkend="signal-clutteractor--button-released-event">key-released-event</link>") 
-      are emitted.</para>
+    <para>The "captured-event" signal is emitted when an event is captured by Clutter. This signal will be emitted starting from the top-level container (the <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link>) to the actor which received the event going down the hierarchy. This signal can be used to intercept every event before the specialized events (like "<link linkend="signal-clutteractor--button-press-event">button-press-event</link>" or "<link linkend="signal-clutteractor--button-released-event">key-released-event</link>") are emitted.</para>
 
   </refsect2>
   <refsect2 id="signal-clutteractor--destroy">
@@ -3153,35 +3861,28 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the object which received the signal</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>The "destroy" signal is emitted when an actor is destroyed, either by direct invocation of 
-      <link linkend="method-clutteractor--destroy"><methodname>clutter.Actor.destroy</methodname>()</link> 
-      or when the <link linkend="class-cluttergroup"><classname>clutter.Group</classname></link> that 
-      contains the actor is destroyed.</para>
+    <para>The "destroy" signal is emitted when an actor is destroyed, either by direct invocation of <link linkend="method-clutteractor--destroy"><methodname>clutter.Actor.destroy</methodname>()</link> or when the <link linkend="class-cluttergroup"><classname>clutter.Group</classname></link> that contains the actor is destroyed.</para>
 
   </refsect2>
 
@@ -3199,16 +3900,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the object which the pointer has entered</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-cluttercrossingevent"><classname>clutter.CrossingEvent</classname></link></simpara>
         </listitem>
@@ -3216,28 +3915,23 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>Returns</parameter>&nbsp;:
-        </term>
+          <parameter>Returns</parameter>&nbsp;: </term>
         <listitem>
-          <simpara><code>True</code> if the event has been handled by the actor, 
-            or <code>False</code> to continue the emission.</simpara>
+          <simpara><code>True</code> if the event has been handled by the actor, or <code>False</code> to continue the emission.</simpara>
         </listitem>
       </varlistentry>
 
@@ -3261,16 +3955,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the object which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-cluttercrossingevent"><classname>clutter.Event</classname></link></simpara>
         </listitem>
@@ -3278,37 +3970,29 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>Returns</parameter>&nbsp;:
-        </term>
+          <parameter>Returns</parameter>&nbsp;: </term>
         <listitem>
-          <simpara><code>True</code> if the event has been handled by the actor, 
-            or <code>False</code> to continue the emission.</simpara>
+          <simpara><code>True</code> if the event has been handled by the actor, or <code>False</code> to continue the emission.</simpara>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>The "event" signal is emitted each time an event is received by the actor. 
-      This signal will be emitted on every actor, following the hierarchy chain, 
-      until it reaches the top-level container (the 
-      <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link>).</para>
+    <para>The "event" signal is emitted each time an event is received by the actor. This signal will be emitted on every actor, following the hierarchy chain, until it reaches the top-level container (the <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link>).</para>
 
   </refsect2>
 
@@ -3325,25 +4009,21 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which now now has key focus</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3367,25 +4047,21 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which now now has key focus</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3409,25 +4085,21 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the object which received the signal</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3452,16 +4124,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-clutterkeyevent"><classname>clutter.KeyEvent</classname></link></simpara>
         </listitem>
@@ -3469,35 +4139,29 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>Returns</parameter>&nbsp;:
-        </term>
+          <parameter>Returns</parameter>&nbsp;: </term>
         <listitem>
-          <simpara><code>True</code> if the event has been handled by the actor,
-            or <code>False</code> to continue the emission.</simpara>
+          <simpara><code>True</code> if the event has been handled by the actor, or <code>False</code> to continue the emission.</simpara>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>The "key-press-event" signal is emitted each time a keyboard button 
-      is pressed on <parameter>actor</parameter>.</para>
+    <para>The "key-press-event" signal is emitted each time a keyboard button is pressed on <parameter>actor</parameter>.</para>
 
   </refsect2>
 
@@ -3515,16 +4179,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-clutterkeyevent"><classname>clutter.KeyEvent</classname></link></simpara>
         </listitem>
@@ -3532,35 +4194,29 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>Returns</parameter>&nbsp;:
-        </term>
+          <parameter>Returns</parameter>&nbsp;: </term>
         <listitem>
-          <simpara><code>True</code> if the event has been handled by the actor,
-            or <code>False</code> to continue the emission.</simpara>
+          <simpara><code>True</code> if the event has been handled by the actor, or <code>False</code> to continue the emission.</simpara>
         </listitem>
       </varlistentry>
 
     </variablelist>
 
-    <para>The "key-press-event" signal is emitted each time a keyboard button 
-      is released on <parameter>actor</parameter>.</para>
+    <para>The "key-press-event" signal is emitted each time a keyboard button is released on <parameter>actor</parameter>.</para>
 
   </refsect2>
 
@@ -3578,16 +4234,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which the pointer has left</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-cluttercrossingevent"><classname>clutter.CrossingEvent</classname></link></simpara>
         </listitem>
@@ -3595,28 +4249,23 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>Returns</parameter>&nbsp;:
-        </term>
+          <parameter>Returns</parameter>&nbsp;: </term>
         <listitem>
-          <simpara><code>True</code> if the event has been handled by the actor,
-            or <code>False</code> to continue the emission.</simpara>
+          <simpara><code>True</code> if the event has been handled by the actor, or <code>False</code> to continue the emission.</simpara>
         </listitem>
       </varlistentry>
 
@@ -3640,16 +4289,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which the pointer has moved on</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-cluttermotionevent"><classname>clutter.MotionEvent</classname></link></simpara>
         </listitem>
@@ -3657,28 +4304,23 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>Returns</parameter>&nbsp;:
-        </term>
+          <parameter>Returns</parameter>&nbsp;: </term>
         <listitem>
-          <simpara><code>True</code> if the event has been handled by the actor,
-            or <code>False</code> to continue the emission.</simpara>
+          <simpara><code>True</code> if the event has been handled by the actor, or <code>False</code> to continue the emission.</simpara>
         </listitem>
       </varlistentry>
 
@@ -3702,16 +4344,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which received the signal</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>old_parent</parameter>&nbsp;:
-        </term>
+          <parameter>old_parent</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the previous parent of the actor, or <code>None</code></simpara>
         </listitem>
@@ -3719,17 +4359,14 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3754,16 +4391,14 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>event</parameter>&nbsp;:
-        </term>
+          <parameter>event</parameter>&nbsp;: </term>
         <listitem>
           <simpara>a <link linkend="class-clutterscrollevent"><classname>clutter.ScrollEvent</classname></link></simpara>
         </listitem>
@@ -3771,28 +4406,23 @@
 
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>Returns</parameter>&nbsp;:
-        </term>
+          <parameter>Returns</parameter>&nbsp;: </term>
         <listitem>
-          <simpara><code>True</code> if the event has been handled by the actor,
-            or <code>False</code> to continue the emission.</simpara>
+          <simpara><code>True</code> if the event has been handled by the actor, or <code>False</code> to continue the emission.</simpara>
         </listitem>
       </varlistentry>
 
@@ -3815,25 +4445,21 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3857,25 +4483,21 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3899,25 +4521,21 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>
@@ -3941,25 +4559,21 @@
     <variablelist>
       <varlistentry>
         <term>
-          <parameter>actor</parameter>&nbsp;:
-        </term>
+          <parameter>actor</parameter>&nbsp;: </term>
         <listitem>
           <simpara>the actor which received the event</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>user_param1</parameter>&nbsp;:
-        </term>
+          <parameter>user_param1</parameter>&nbsp;: </term>
         <listitem>
-          <simpara>the first user parameter (if any) specified
-            with the <methodname>connect</methodname>() method</simpara>
+          <simpara>the first user parameter (if any) specified with the <methodname>connect</methodname>() method</simpara>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>
-          <parameter>...</parameter>&nbsp;:
-        </term>
+          <parameter>...</parameter>&nbsp;: </term>
         <listitem>
           <simpara>additional user parameters (if any)</simpara>
         </listitem>

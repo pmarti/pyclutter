@@ -1,5 +1,13 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	Bug 1258 - Improvement to pyclutter documentation, added full
+	documentation to clutter-clutteractor.xml
+
+	* docs/reference/clutter-clutteractor.xml: Improve the Actor
+	documentation. (based on a patch by Gordon Allott)
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/clutter-actor.override: Fix names of the arguments in
 	clutter.Actor.transform_stage_point(); fix checks inside
 	clutter.Actor.raise() and .lower().
