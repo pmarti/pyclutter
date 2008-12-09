@@ -308,6 +308,12 @@ _wrap_clutter_actor_box__set_x1 (PyGBoxed *self, PyObject *value, void *closure)
 
 	return 0;
 }
+static PyObject *
+_wrap_clutter_actor_box__get_x1 (PyGBoxed *self, void *closure)
+{
+	double x1 = pyg_boxed_get (self, ClutterActorBox)->x1;
+	return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (x1));
+}
 %%
 override-attr ClutterActorBox.y1
 static int
@@ -323,6 +329,12 @@ _wrap_clutter_actor_box__set_y1 (PyGBoxed *self, PyObject *value, void *closure)
           CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
+}
+static PyObject *
+_wrap_clutter_actor_box__get_y1 (PyGBoxed *self, void *closure)
+{
+	double y1 = pyg_boxed_get (self, ClutterActorBox)->y1;
+	return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (y1));
 }
 %%
 override-attr ClutterActorBox.x2
@@ -340,6 +352,12 @@ _wrap_clutter_actor_box__set_x2 (PyGBoxed *self, PyObject *value, void *closure)
 
 	return 0;
 }
+static PyObject *
+_wrap_clutter_actor_box__get_x2 (PyGBoxed *self, void *closure)
+{
+	double x2 = pyg_boxed_get (self, ClutterActorBox)->x2;
+	return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (x2));
+}
 %%
 override-attr ClutterActorBox.y2
 static int
@@ -355,6 +373,12 @@ _wrap_clutter_actor_box__set_y2 (PyGBoxed *self, PyObject *value, void *closure)
           CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
+}
+static PyObject *
+_wrap_clutter_actor_box__get_y2 (PyGBoxed *self, void *closure)
+{
+	double y2 = pyg_boxed_get (self, ClutterActorBox)->y2;
+	return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (y2));
 }
 %%
 override clutter_knot_new kwargs
