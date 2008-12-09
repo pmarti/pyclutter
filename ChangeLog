@@ -1,5 +1,11 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/clutter-actor.override: Fix names of the arguments in
+	clutter.Actor.transform_stage_point(); fix checks inside
+	clutter.Actor.raise() and .lower().
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/clutter-base.defs: Fix the return value for the
 	get_stage() method of clutter.Event.
 

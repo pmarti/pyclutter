@@ -133,7 +133,7 @@ _wrap_clutter_actor_transform_stage_point (PyGObject *self,
 {
         double x, y;
         ClutterUnit x_out, y_out;
-        static char *kwlist[] = { "geometry", NULL };
+        static char *kwlist[] = { "x", "y", NULL };
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "dd:ClutterActor.transform_stage_point", kwlist,
@@ -1078,12 +1078,12 @@ _wrap_clutter_actor_raise (PyGObject *self,
                            PyObject  *kwargs)
 {
     static char *kwlist[] = { "above", NULL };
-    PyObject *py_above = Py_None;
+    PyObject *py_above = NULL;
 
     if (!PyArg_ParseTupleAndKeywords (args, kwargs, "|O:ClutterActor.raise", kwlist, &py_above))
         return NULL;
 
-    if (py_above == Py_None)
+    if (py_above == NULL || py_above == Py_None)
         clutter_actor_raise (CLUTTER_ACTOR (self->obj), NULL);
     else if (py_above && pygobject_check (py_above, &PyClutterActor_Type)) {
         ClutterActor *actor;
@@ -1107,12 +1107,12 @@ _wrap_clutter_actor_lower (PyGObject *self,
                            PyObject  *kwargs)
 {
     static char *kwlist[] = { "below", NULL };
-    PyObject *py_below = Py_None;
+    PyObject *py_below = NULL;
 
     if (!PyArg_ParseTupleAndKeywords (args, kwargs, "|O:ClutterActor.lower", kwlist, &py_below))
         return NULL;
 
-    if (py_below == Py_None)
+    if (py_below == NULL || py_below == Py_None)
         clutter_actor_lower (CLUTTER_ACTOR (self->obj), NULL);
     else if (py_below && pygobject_check (py_below, &PyClutterActor_Type)) {
         ClutterActor *actor;
