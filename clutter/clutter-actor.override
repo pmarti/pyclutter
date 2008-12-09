@@ -131,9 +131,10 @@ _wrap_clutter_actor_transform_stage_point (PyGObject *self,
                                            PyObject  *args,
                                            PyObject  *kwargs)
 {
-        double x, y;
-        ClutterUnit x_out, y_out;
         static char *kwlist[] = { "x", "y", NULL };
+        ClutterUnit x_out, y_out;
+        gboolean res;
+        double x, y;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "dd:ClutterActor.transform_stage_point", kwlist,
@@ -141,14 +142,20 @@ _wrap_clutter_actor_transform_stage_point (PyGObject *self,
                 return NULL;
         }
 
-        clutter_actor_transform_stage_point (CLUTTER_ACTOR (self->obj),
-                                             CLUTTER_UNITS_FROM_FLOAT (x),
-                                             CLUTTER_UNITS_FROM_FLOAT (y),
-                                             &x_out, &y_out);
+        x_out = y_out = 0;
+        res = clutter_actor_transform_stage_point (CLUTTER_ACTOR (self->obj),
+                                                   CLUTTER_UNITS_FROM_FLOAT (x),
+                                                   CLUTTER_UNITS_FROM_FLOAT (y),
+                                                   &x_out, &y_out);
 
-        return Py_BuildValue ("(dd)",
-                              CLUTTER_UNITS_TO_FLOAT (x_out),
-                              CLUTTER_UNITS_TO_FLOAT (y_out));
+        if (res)
+                return Py_BuildValue ("(dd)",
+                                      CLUTTER_UNITS_TO_FLOAT (x_out),
+                                      CLUTTER_UNITS_TO_FLOAT (y_out));
+        else {
+                PyErr_SetString (PyClutterException, "Transformation failed");
+                return NULL;
+        }
 }
 %%
 override clutter_actor_get_size noargs

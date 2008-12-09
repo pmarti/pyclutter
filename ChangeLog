@@ -1,5 +1,18 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/clutter.override:
+	* clutter/cluttermodule.c:
+	(pyclutter_register_exceptions), (init_clutter): Register
+	clutter.Exception as a base exception class for Clutter-related
+	error handling. Export PyClutterWarning and PyClutterException
+	over the override code as well.
+
+	* clutter/clutter-actor.override: Raise an exception if
+	clutter.Actor.transform_stage_point() cannot transform the
+	passed coordinates.
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	Bug 1341 - [PATCH] Override reading of attributes
 
 	* clutter/clutter-boxed.override: Return floating point values

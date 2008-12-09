@@ -21,6 +21,7 @@ extern PyMethodDef pycogl_functions[];
 
 static PyObject *PyClutterDeprecationWarning;
 PyObject *PyClutterWarning;
+PyObject *PyClutterException;
 
 static void
 sink_clutteractor (GObject *object)
@@ -36,6 +37,28 @@ sink_clutteralpha (GObject *object)
     if (g_object_is_floating (object)) {
         g_object_ref_sink (object);
     }
+}
+
+static void
+pyclutter_register_exceptions (PyObject *dict)
+{
+  PyClutterDeprecationWarning =
+    PyErr_NewException ("clutter.DeprecationWarning",
+                        PyExc_DeprecationWarning,
+                        NULL);
+  PyDict_SetItemString (dict, "DeprecationWarning", PyClutterDeprecationWarning);
+
+  PyClutterWarning =
+    PyErr_NewException ("clutter.Warning",
+                        PyExc_Warning,
+                        NULL);
+  PyDict_SetItemString (dict, "Warning", PyClutterWarning);
+
+  PyClutterException =
+    PyErr_NewException ("clutter.Exception",
+                        PyExc_Exception,
+                        NULL);
+  PyDict_SetItemString (dict, "Exception", PyClutterException);
 }
 
 DL_EXPORT (void)
@@ -80,16 +103,8 @@ init_clutter (void)
                       Py_BuildValue ("i", CLUTTER_ALPHA_MAX_ALPHA));
 
   pyclutter_register_classes (d);
+  pyclutter_register_exceptions (d);
   pyclutter_add_constants (m, "CLUTTER_");
-
-  PyClutterDeprecationWarning =
-    PyErr_NewException ("clutter.DeprecationWarning",
-                        PyExc_DeprecationWarning,
-                        NULL);
-  PyDict_SetItemString (d, "DeprecationWarning", PyClutterDeprecationWarning);
-
-  PyClutterWarning = PyErr_NewException ("clutter.Warning", PyExc_Warning, NULL);
-  PyDict_SetItemString (d, "Warning", PyClutterWarning);
 
   /* namespace cogl under clutter.cogl */
   m = Py_InitModule ("clutter.cogl", pycogl_functions);

@@ -14,6 +14,10 @@ extern Pycairo_CAPI_t *Pycairo_CAPI;
 /* from the cogl portion */
 extern PyTypeObject PyCoglHandle_Type;
 
+/* exceptions */
+extern PyObject *PyClutterException;
+extern PyObject *PyClutterWarning;
+
 %%
 include
   clutter-actor.override
