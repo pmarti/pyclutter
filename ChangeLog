@@ -1,5 +1,11 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/clutter-actor.override: Override clutter.Actor methods
+	apply_transform_to_point() and apply_relative_transform_to_point()
+	to correctly return a clutter.Vertex.
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/clutter.override:
 	* clutter/cluttermodule.c:
 	(pyclutter_register_exceptions), (init_clutter): Register

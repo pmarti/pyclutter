@@ -1135,3 +1135,68 @@ _wrap_clutter_actor_lower (PyGObject *self,
     Py_INCREF (Py_None);
     return Py_None;
 }
+%%
+override clutter_actor_apply_transform_to_point kwargs
+static PyObject *
+_wrap_clutter_actor_apply_transform_to_point (PyGObject *self,
+                                              PyObject  *args,
+                                              PyObject  *kwargs)
+{
+    static char *kwlist[] = { "point", NULL };
+    PyObject *py_point;
+    ClutterVertex *point = NULL;
+    ClutterVertex retval = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,"O:ClutterActor.apply_transform_to_point", kwlist, &py_point))
+        return NULL;
+
+    if (pyg_boxed_check (py_point, CLUTTER_TYPE_VERTEX))
+        point = pyg_boxed_get (py_point, ClutterVertex);
+    else {
+        PyErr_SetString (PyExc_TypeError, "point should be a clutter.Vertex");
+        return NULL;
+    }
+
+    clutter_actor_apply_transform_to_point (CLUTTER_ACTOR (self->obj), point, &retval);
+
+    return pyg_boxed_new (CLUTTER_TYPE_VERTEX, &retval, TRUE, TRUE);
+}
+%%
+override clutter_actor_apply_relative_transform_to_point kwargs
+static PyObject *
+_wrap_clutter_actor_apply_relative_transform_to_point (PyGObject *self,
+                                                       PyObject  *args,
+                                                       PyObject  *kwargs)
+{
+    static char *kwlist[] = { "ancestor", "point", NULL };
+    PyObject *py_ancestor = NULL;
+    PyObject *py_point;
+    ClutterActor *ancestor = NULL;
+    ClutterVertex *point = NULL;
+    ClutterVertex retval = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,"OO:ClutterActor.apply_transform_to_point", kwlist, &py_ancestor, &py_point))
+        return NULL;
+
+    if (py_ancestor == NULL || py_ancestor == Py_None)
+        ancestor = NULL;
+    else if (py_ancestor && pygobject_check (py_ancestor, &PyClutterActor_Type))
+        ancestor = CLUTTER_ACTOR (pygobject_get (py_ancestor));
+    else {
+        PyErr_SetString (PyExc_TypeError, "ancestor should be a clutter.Actor or None");
+        return NULL;
+    }
+
+    if (pyg_boxed_check (py_point, CLUTTER_TYPE_VERTEX))
+        point = pyg_boxed_get (py_point, ClutterVertex);
+    else {
+        PyErr_SetString (PyExc_TypeError, "point should be a clutter.Vertex");
+        return NULL;
+    }
+
+    clutter_actor_apply_relative_transform_to_point (CLUTTER_ACTOR (self->obj),
+                                                     ancestor,
+                                                     point, &retval);
+
+    return pyg_boxed_new (CLUTTER_TYPE_VERTEX, &retval, TRUE, TRUE);
+}
