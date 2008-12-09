@@ -163,7 +163,7 @@ _wrap_clutter_actor_get_size (PyGObject *self)
         return Py_BuildValue ("(ii)", width, height);
 }
 %%
-override clutter_actot_set_sizeu kwargs
+override clutter_actor_set_sizeu kwargs
 static PyObject *
 _wrap_clutter_actor_set_sizeu (PyGObject *self,
                                PyObject  *args,
@@ -213,7 +213,7 @@ _wrap_clutter_actor_get_position (PyGObject *self)
         return Py_BuildValue ("(ii)", x, y);
 }
 %%
-override clutter_actot_set_positionu kwargs
+override clutter_actor_set_positionu kwargs
 static PyObject *
 _wrap_clutter_actor_set_positionu (PyGObject *self,
                                    PyObject  *args,
@@ -389,7 +389,7 @@ _wrap_clutter_actor_get_clip (PyGObject *self)
 	return Py_BuildValue("(iiii)", xoff, yoff, width, height);
 }
 %%
-override clutter_actot_set_clipu kwargs
+override clutter_actor_set_clipu kwargs
 static PyObject *
 _wrap_clutter_actor_set_clipu (PyGObject *self,
                                PyObject  *args,
@@ -591,7 +591,7 @@ _wrap_ClutterActor__do_get_preferred_width (PyObject *cls,
         ClutterUnit min_width = 0, natural_width = 0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "O!d:ClutterActor.query_coords",
+                                          "O!d:ClutterActor.do_get_preferred_width",
                                           kwlist,
                                           &PyClutterActor_Type, &self,
                                           &for_height))
@@ -742,7 +742,7 @@ _wrap_ClutterActor__do_get_preferred_height (PyObject *cls,
         ClutterUnit min_height = 0, natural_height = 0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "O!d:ClutterActor.get_preferred_height",
+                                          "O!d:ClutterActor.do_get_preferred_height",
                                           kwlist,
                                           &PyClutterActor_Type, &self,
                                           &for_width))

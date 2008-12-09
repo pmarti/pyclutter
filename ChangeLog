@@ -1,3 +1,8 @@
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	* clutter/clutter-actor.override: Fix typos in the overrides. (based
+	on a patch by Bastian Winkler)
+
 2008-12-08  Emmanuele Bassi  <ebassi@linux.intel.com>
 
 	Bug 1287 - clutter_event_get_device_id not available in pyclutter
