@@ -1,5 +1,15 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/cogl.override: Increment checking and do a slight
+	clean-up of the cogl override type declarations.
+
+	* clutter/clutter.override: Override clutter.Texture methods
+	get_cogl_texture() and set_cogl_texture(): CoglHandle is already
+	a pointer, and the autogeneration code added double pointer to
+	it making the API fail.
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/clutter-actor.override: Override clutter.Actor methods
 	apply_transform_to_point() and apply_relative_transform_to_point()
 	to correctly return a clutter.Vertex.

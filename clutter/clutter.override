@@ -827,3 +827,46 @@ _wrap_clutter_backend_set_font_options (PyGObject *self,
   Py_INCREF(Py_None);
   return Py_None;
 }
+%%
+override clutter_texture_get_cogl_texture noargs
+static PyObject *
+_wrap_clutter_texture_get_cogl_texture (PyGObject *self)
+{
+  CoglHandle hnd = COGL_INVALID_HANDLE;
+
+  hnd = clutter_texture_get_cogl_texture (CLUTTER_TEXTURE (self->obj));
+  if (hnd == COGL_INVALID_HANDLE)
+    {
+      Py_INCREF (Py_None);
+      return Py_None;
+    }
+  else
+    return pyg_boxed_new (PYCOGL_TYPE_HANDLE, hnd, TRUE, TRUE);
+}
+%%
+override clutter_texture_set_cogl_texture kwargs
+static PyObject *
+_wrap_clutter_texture_set_cogl_texture (PyGObject *self,
+                                        PyObject  *args,
+                                        PyObject  *kwargs)
+{
+  static char *kwlist[] = { "handle", NULL };
+  PyObject *py_handle = NULL;
+  CoglHandle handle = COGL_INVALID_HANDLE;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:ClutterTexture.set_cogl_texture", kwlist, &py_handle))
+    return NULL;
+
+  if (pyg_boxed_check (py_handle, PYCOGL_TYPE_HANDLE))
+    handle = pyg_boxed_get(py_handle, CoglHandle);
+  else
+    {
+      PyErr_SetString (PyExc_TypeError, "handle should be a cogl.Handle");
+      return NULL;
+    }
+    
+  clutter_texture_set_cogl_texture (CLUTTER_TEXTURE(self->obj), handle);
+    
+  Py_INCREF(Py_None);
+  return Py_None;
+}

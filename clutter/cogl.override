@@ -7,7 +7,6 @@ headers
 
 #include <cogl/cogl.h>
 
-#ifndef COGL_TYPE_HANDLE
 static gpointer
 pycogl_handle_ref (gpointer data)
 {
@@ -15,8 +14,17 @@ pycogl_handle_ref (gpointer data)
     {
       CoglHandle hnd = data;
 
+      if (hnd == COGL_INVALID_HANDLE)
+        return NULL;
+
       if (cogl_is_texture (hnd))
         return cogl_texture_ref (hnd);
+      else if (cogl_is_shader (hnd))
+        return cogl_shader_ref (hnd);
+      else if (cogl_is_program (hnd))
+        return cogl_program_ref (hnd);
+      else if (cogl_is_offscreen (hnd))
+        return cogl_offscreen_ref (hnd);
       else
         g_assert_not_reached ();
     }
@@ -31,8 +39,17 @@ pycogl_handle_unref (gpointer data)
     {
       CoglHandle hnd = data;
 
+      if (hnd == COGL_INVALID_HANDLE)
+        return;
+
       if (cogl_is_texture (hnd))
         cogl_texture_unref (hnd);
+      else if (cogl_is_shader (hnd))
+        cogl_shader_unref (hnd);
+      else if (cogl_is_program (hnd))
+        cogl_program_unref (hnd);
+      else if (cogl_is_offscreen (hnd))
+        cogl_offscreen_unref (hnd);
       else
         g_assert_not_reached ();
     }
@@ -50,15 +67,6 @@ pycogl_handle_get_type (void)
 
   return hnd_type;
 }
-#endif /* COGL_TYPE_HANDLE */
-
-#ifndef COGL_TYPE_PIXEL_FORMAT
-#define COGL_TYPE_PIXEL_FORMAT  (pycogl_pixel_format_get_type ())
-#endif
-
-#ifndef COGL_TYPE_FEATURE_FLAGS
-#define COGL_TYPE_FEATURE_FLAGS (pycogl_feature_flags_get_type ())
-#endif
 %%
 include
   cogl-texture.override
