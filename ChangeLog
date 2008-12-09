@@ -1,5 +1,10 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/clutter-base.defs: Fix the return value for the
+	get_stage() method of clutter.Event.
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	Bug 1337 - [PATCH] pyclutter ClutterVertex initialization
 
 	* clutter/clutter-boxed.override: Fix clutter.Vertex

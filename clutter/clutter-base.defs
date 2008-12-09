@@ -2887,7 +2887,7 @@
 (define-method get_stage
   (of-object "ClutterEvent")
   (c-name "clutter_event_get_stage")
-  (return-type "ClutterActor*")
+  (return-type "ClutterStage*")
 )
 
 (define-method get_device_id
