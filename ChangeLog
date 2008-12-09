@@ -3,6 +3,13 @@
 	Bug 1341 - [PATCH] Override reading of attributes
 
 	* clutter/clutter-boxed.override: Return floating point values
+	for Vector accessors. (Bastian Winkler)
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	Bug 1341 - [PATCH] Override reading of attributes
+
+	* clutter/clutter-boxed.override: Return floating point values
 	for ActorBox accessors. (Bastian Winkler)
 
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>

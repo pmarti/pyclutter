@@ -620,6 +620,12 @@ _wrap_clutter_vertex__set_x (PyGBoxed *self, PyObject *value, void *closure)
 
 	return 0;
 }
+static PyObject *
+_wrap_clutter_vertex__get_x (PyGBoxed *self, void *closure)
+{
+	double x = pyg_boxed_get (self, ClutterVertex)->x;
+	return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (x));
+}
 %%
 override-attr ClutterVertex.y
 static int
@@ -636,6 +642,12 @@ _wrap_clutter_vertex__set_y (PyGBoxed *self, PyObject *value, void *closure)
 
 	return 0;
 }
+static PyObject *
+_wrap_clutter_vertex__get_y (PyGBoxed *self, void *closure)
+{
+	double y = pyg_boxed_get (self, ClutterVertex)->y;
+	return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (y));
+}
 %%
 override-attr ClutterVertex.z
 static int
@@ -651,4 +663,10 @@ _wrap_clutter_vertex__set_z (PyGBoxed *self, PyObject *value, void *closure)
           CLUTTER_UNITS_FROM_FLOAT (val);
 
 	return 0;
+}
+static PyObject *
+_wrap_clutter_vertex__get_z (PyGBoxed *self, void *closure)
+{
+	double z = pyg_boxed_get (self, ClutterVertex)->z;
+	return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (z));
 }
