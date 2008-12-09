@@ -485,7 +485,7 @@ _wrap_clutter_vertex_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
         double x, y, z;
 
 	if (!PyArg_ParseTupleAndKeywords(args, kwargs,
-					 "|d:ClutterVertex.__init__",
+					 "|ddd:ClutterVertex.__init__",
 					 kwlist,
 					 &x, &y, &z))
 		return -1;

@@ -1,5 +1,12 @@
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	Bug 1337 - [PATCH] pyclutter ClutterVertex initialization
+
+	* clutter/clutter-boxed.override: Fix clutter.Vertex
+	constructor. (patch by Bastian Winkler)
+
+2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/clutter-actor.override: Fix typos in the overrides. (based
 	on a patch by Bastian Winkler)
 
