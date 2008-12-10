@@ -1,5 +1,11 @@
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/cogl-texture.override: Override the texture handle
+	creation methods, as the codegen script insisted on adding a
+	pointer to CoglHandle when it wasn't needed.
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter-cairo/__init__.py:
 	* clutter-gst/__init__.py:
 	* clutter-gtk/__init__.py:
