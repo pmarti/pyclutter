@@ -1,5 +1,11 @@
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* examples/Makefile.am:
+	* examples/reflection.py: Add a TextureReflection actor
+	example, using the newly added COGL texture API.
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/cogl-base.defs: Add the remaining COGL texture API
 	methods.
 

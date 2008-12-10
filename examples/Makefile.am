@@ -10,6 +10,7 @@ EXTRA_DIST = \
 	gtk-clutter.py \
 	hello.py \
 	rects.py \
+        reflection.py \
 	script.py
 	super-oh.py \
 	test-scale.py \
