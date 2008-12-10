@@ -1,3 +1,30 @@
+Overview of changes between 0.8.0 and 0.8.2
+===========================================
+
+* Require clutter core >= 0.8.4.
+* PyClutter exposes most of the Clutter core API.
+* Use floating point values for the units-based API; this breaks
+  applications written with PyClutter 0.8.0 and using the units
+  variants of the clutter.Actor API.
+* PyClutter now exposes most of the COGL base API, including the generic
+  Handle type, used for GL objects handles.
+* PyClutter now exposes the whole texture COGL API as part of the Handle
+  class methods.
+* Bug 1327 - [PATCH] pyclutter ClutterListModel with multiple
+  columns [Bastian Winkler]
+* Bug 1326 - [PATCH] pyclutter ClutterTimeline list_markers
+  returns <nil> [Bastian Winkler]
+* Bug 1296 - Adding unicode_value attribute to ClutterKeyEvent
+  [Julien Pauty]
+* Bug 1288 - clutter_container_raise_child's second argument should
+  be optional [Thomas Steinacher]
+* Bug 1287 - clutter_event_get_device_id not available in pyclutter
+  [Thomas Steinacher]
+* Bug 1337 - [PATCH] pyclutter ClutterVertex initialization
+  [Bastian Winkler]
+* Bug 1258 - Improvement to pyclutter documentation [Gordon Allott]
+* Bug 1341 - [PATCH] Override reading of attributes [Bastian Winkler]
+
 Overview of changes between 0.6.2 and 0.8.0
 ===========================================
 

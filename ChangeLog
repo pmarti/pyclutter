@@ -1,5 +1,18 @@
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* configure.ac: Post release bump to 0.8.3
+
+======== PyClutter 0.8.2 ======================================================
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	* configure.ac: Bump to 0.8.2
+
+	* README:
+	* NEWS: Update for release.
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/cogl-texture.override: Override the texture handle
 	creation methods, as the codegen script insisted on adding a
 	pointer to CoglHandle when it wasn't needed.

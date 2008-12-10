@@ -47,6 +47,17 @@ prefix at configure time with
 
   ./configure --prefix=/some/other/place
 
+Release notes for PyClutter 0.8.2
+---------------------------------
+
+The units-based API for clutter.Actor now accepts only floating point
+values to express the same sub-pixel precision that the C core library
+implements using the ClutterUnit type.
+
+This change will unfortunately break every Python application using the
+units-based API and currently passing values using the Pytho bindings
+for the conversion to and from units.
+
 Release notes for PyClutter 0.8.0
 ---------------------------------
 
