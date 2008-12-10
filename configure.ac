@@ -8,7 +8,7 @@ m4_define(pyclutter_version_minor, 8)
 m4_define(pyclutter_version_micro, 1)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
-m4_define(clutter_required_version,      0.8.2)
+m4_define(clutter_required_version,      0.8.4)
 m4_define(cluttergtk_required_version,   0.8.2)
 m4_define(cluttergst_required_version,   0.8.0)
 m4_define(cluttercairo_required_version, 0.8.0)

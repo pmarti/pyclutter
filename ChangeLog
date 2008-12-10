@@ -1,5 +1,10 @@
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* configure.ac: Require the latest stable release of Clutter
+	core.
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* examples/Makefile.am:
 	* examples/reflection.py: Add a TextureReflection actor
 	example, using the newly added COGL texture API.
