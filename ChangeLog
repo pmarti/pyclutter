@@ -1,5 +1,15 @@
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/cogl-base.defs:
+	* clutter/cogl.override: Increase coverage of the COGL API by
+	adding the module methods:
+
+		cogl.frustum()
+		cogl.get_viewport()
+		cogl.setup_viewport()
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/cogl-texture.override: Override the cogl.Handle method
 	texture_rectangle(). Also, allow integer values for the texture
 	vertices in the texture_polygon() implementation.

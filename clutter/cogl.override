@@ -73,6 +73,11 @@ include
 %%
 modulename clutter.cogl
 %%
+ignore
+  cogl_get_modelview_matrix
+  cogl_get_projection_matrix
+  cogl_fog_set
+%%
 override cogl_perspective kwargs
 static PyObject *
 _wrap_cogl_perspective (PyObject *self,
@@ -91,6 +96,76 @@ _wrap_cogl_perspective (PyObject *self,
                     CLUTTER_FLOAT_TO_FIXED (aspect),
                     CLUTTER_FLOAT_TO_FIXED (z_near),
                     CLUTTER_FLOAT_TO_FIXED (z_far));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_frustum kwargs
+static PyObject *
+_wrap_cogl_frustum (PyObject *self,
+                    PyObject *args,
+                    PyObject *kwargs)
+{
+  static char *kwlist[] = { "left", "right", "bottom", "top", "z_near", "z_far", NULL };
+  float left, right, bottom, top;
+  float z_near, z_far;
+
+  left = right = bottom = top = 0;
+  z_near = z_far = 0.0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ffffff:perspective", kwlist, &left, &right, &bottom, &top, &z_near, &z_far))
+    return NULL;
+    
+  cogl_frustum (CLUTTER_FLOAT_TO_FIXED (left),
+                CLUTTER_FLOAT_TO_FIXED (right),
+                CLUTTER_FLOAT_TO_FIXED (bottom),
+                CLUTTER_FLOAT_TO_FIXED (top),
+                CLUTTER_FLOAT_TO_FIXED (z_near),
+                CLUTTER_FLOAT_TO_FIXED (z_far));
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_get_viewport noargs
+static PyObject *
+_wrap_cogl_get_viewport (PyObject *self)
+{
+  ClutterFixed viewport[4] = { 0, };
+
+  cogl_get_viewport (viewport);
+
+  return Py_BuildValue ("(ffff)",
+                        CLUTTER_FIXED_TO_FLOAT (viewport[0]),
+                        CLUTTER_FIXED_TO_FLOAT (viewport[1]),
+                        CLUTTER_FIXED_TO_FLOAT (viewport[2]),
+                        CLUTTER_FIXED_TO_FLOAT (viewport[3]));
+}
+%%
+override cogl_setup_viewport kwargs
+static PyObject *
+_wrap_cogl_setup_viewport (PyObject *self,
+                           PyObject *args,
+                           PyObject *kwargs)
+{
+  static char *kwlist[] = { "width", "height", "fovy", "aspect", "z_near", "z_far", NULL };
+  guint width, height;
+  float fovy, aspect;
+  float z_near, z_far;
+
+  width = height = 0;
+  fovy = aspect = 0.0;
+  z_near = z_far = 0.0;
+
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"ddffff:perspective", kwlist, &width, &height, &fovy, &aspect, &z_near, &z_far))
+    return NULL;
+    
+  cogl_setup_viewport (width, height,
+                       CLUTTER_FLOAT_TO_FIXED (fovy),
+                       CLUTTER_FLOAT_TO_FIXED (aspect),
+                       CLUTTER_FLOAT_TO_FIXED (z_near),
+                       CLUTTER_FLOAT_TO_FIXED (z_far));
 
   Py_INCREF (Py_None);
   return Py_None;

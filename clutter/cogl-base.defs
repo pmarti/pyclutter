@@ -86,12 +86,62 @@
   )
 )
 
+(define-function frustum
+  (c-name "cogl_frustum")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "left")
+    '("ClutterFixed" "right")
+    '("ClutterFixed" "bottom")
+    '("ClutterFixed" "top")
+    '("ClutterFixed" "z_near")
+    '("ClutterFixed" "z_far")
+  )
+)
+
 (define-function viewport
   (c-name "cogl_viewport")
   (return-type "none")
   (parameters
     '("guint" "width")
     '("guint" "height")
+  )
+)
+
+(define-function get_viewport
+  (c-name "cogl_get_viewport")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "v")
+  )
+)
+
+(define-function setup_viewport
+  (c-name "cogl_setup_viewport")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
+    '("ClutterFixed" "fovy")
+    '("ClutterFixed" "aspect")
+    '("ClutterFixed" "z_near")
+    '("ClutterFixed" "z_far")
+  )
+)
+
+(define-function get_modelview_matrix
+  (c-name "cogl_get_modelview_matrix")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "m")
+  )
+)
+
+(define-function get_projection_matrix
+  (c-name "cogl_get_projection_matrix")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "m")
   )
 )
 
@@ -116,6 +166,17 @@
   (return-type "none")
   (parameters
     '("gboolean" "enable")
+  )
+)
+
+(define-function fog_set
+  (c-name "cogl_fog_set")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "fog_color")
+    '("ClutterFixed" "density")
+    '("ClutterFixed" "z_near")
+    '("ClutterFixed" "z_far")
   )
 )
 
