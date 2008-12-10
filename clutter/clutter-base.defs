@@ -985,26 +985,6 @@
   (return-type "gint32")
 )
 
-(define-method set_scalex
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_set_scalex")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "scale_x")
-    '("ClutterFixed" "scale_y")
-  )
-)
-
-(define-method get_scalex
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_scalex")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed*" "scale_x")
-    '("ClutterFixed*" "scale_y")
-  )
-)
-
 (define-method move_byu
   (of-object "ClutterActor")
   (c-name "clutter_actor_move_byu")
@@ -1052,6 +1032,12 @@
   (parameters
     '("ClutterVertex" "verts[4]")
   )
+)
+
+(define-method get_paint_visibility
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_paint_visibility")
+  (return-type "gboolean")
 )
 
 
@@ -2102,38 +2088,6 @@
   )
 )
 
-(define-method shadex
-  (of-object "ClutterColor")
-  (c-name "clutter_color_shadex")
-  (return-type "none")
-  (parameters
-    '("ClutterColor*" "dest")
-    '("ClutterFixed" "shade")
-  )
-)
-
-(define-method to_hlsx
-  (of-object "ClutterColor")
-  (c-name "clutter_color_to_hlsx")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed*" "hue")
-    '("ClutterFixed*" "luminance")
-    '("ClutterFixed*" "saturation")
-  )
-)
-
-(define-method from_hlsx
-  (of-object "ClutterColor")
-  (c-name "clutter_color_from_hlsx")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "hue")
-    '("ClutterFixed" "luminance")
-    '("ClutterFixed" "saturation")
-  )
-)
-
 (define-method to_hls
   (of-object "ClutterColor")
   (c-name "clutter_color_to_hls")
@@ -2305,6 +2259,76 @@
   (return-type "none")
 )
 
+(define-function container_class_find_child_property
+  (c-name "clutter_container_class_find_child_property")
+  (return-type "GParamSpec*")
+  (parameters
+    '("GObjectClass*" "klass")
+    '("const-gchar*" "property_name")
+  )
+)
+
+(define-function container_class_list_child_properties
+  (c-name "clutter_container_class_list_child_properties")
+  (return-type "GParamSpec**")
+  (parameters
+    '("GObjectClass*" "klass")
+    '("guint*" "n_properties")
+  )
+)
+
+(define-method get_child_meta
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_get_child_meta")
+  (return-type "ClutterChildMeta*")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method child_set_property
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_child_set_property")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "child")
+    '("const-gchar*" "property")
+    '("const-GValue*" "value")
+  )
+)
+
+(define-method child_get_property
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_child_get_property")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "child")
+    '("const-gchar*" "property")
+    '("GValue*" "value")
+  )
+)
+
+(define-method child_set
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_child_set")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("const-gchar*" "first_prop")
+  )
+  (varargs #t)
+)
+
+(define-method child_get
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_child_get")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("const-gchar*" "first_prop")
+  )
+  (varargs #t)
+)
 
 
 
@@ -4341,6 +4365,12 @@
   )
 )
 
+(define-method list_objects
+  (of-object "ClutterScript")
+  (c-name "clutter_script_list_objects")
+  (return-type "GList*")
+)
+
 
 
 ;; From clutter-shader.h
@@ -4664,6 +4694,18 @@
   (of-object "ClutterStage")
   (c-name "clutter_stage_queue_redraw")
   (return-type "none")
+)
+
+(define-method read_pixels
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_read_pixels")
+  (return-type "gchar*")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+  )
 )
 
 

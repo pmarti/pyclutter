@@ -1,5 +1,13 @@
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/clutter-base.defs: Update the Clutter API description to
+	match the current stable API.
+
+	* clutter/clutter.override: Ignore the Container child properties
+	accessors API.
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* configure.ac: Require the latest stable release of Clutter
 	core.
 

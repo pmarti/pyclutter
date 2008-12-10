@@ -61,6 +61,12 @@ ignore
   clutter_actor_box_get_from_vertices
   clutter_stage_manager_get_default
   clutter_get_input_device_for_id
+  clutter_container_child_set_property
+  clutter_container_child_get_property
+  clutter_container_child_set
+  clutter_container_child_get
+  clutter_container_class_find_child_property
+  clutter_container_class_list_child_properties
 %%
 ignore-glob
   *_quark
