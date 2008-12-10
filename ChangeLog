@@ -1,5 +1,15 @@
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter-cairo/__init__.py:
+	* clutter-gst/__init__.py:
+	* clutter-gtk/__init__.py:
+	* clutter/__init__.py: Try using ctypes to change the dlopen()
+	flags if the dl module is not found; this fixes the infamous
+	linker warning on 64 bit platforms. (Many thanks to Bastian
+	Winkler for the patch)
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/cogl-base.defs:
 	* clutter/cogl.override: Increase coverage of the COGL API by
 	adding the module methods:

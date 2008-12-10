@@ -5,7 +5,11 @@ try:
     import dl
     sys.setdlopenflags(dl.RTLD_LAZY|dl.RTLD_GLOBAL)
 except ImportError:
-    pass
+    try:
+        import ctypes, ctypes.util
+        ctypes.CDLL(ctypes.util.find_library('GL'), mode=ctypes.RTLD_GLOBAL)
+    except ImportError:
+        pass
 
 # For broken embedded programs which forgot to call Sys_SetArgv
 if not hasattr(sys, 'argv'):
