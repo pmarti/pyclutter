@@ -8,7 +8,13 @@ class TextureReflection (clutter.CloneTexture):
     """
     TextureReflection (clutter.CloneTexture)
 
-    An actor that paints a reflection of a texture.
+    An actor that paints a reflection of a texture. The
+    height of the reflection can be set in pixels. If set
+    to a negative value, the same size of the parent texture
+    will be used.
+
+    The size of the TextureReflection actor is by default
+    the same size of the parent texture.
     """
     __gtype_name__ = 'TextureReflection'
 
@@ -28,31 +34,42 @@ class TextureReflection (clutter.CloneTexture):
         if (parent is None):
             return
 
+        # get the cogl handle for the parent texture
         cogl_tex = parent.get_cogl_texture()
         if (cogl_tex is None):
             return
 
         (width, height) = self.get_size()
 
-        # clamp the reflection height to the height of the actor
+        # clamp the reflection height if needed
         r_height = self._reflection_height
         if (r_height < 0 or r_height > height):
             r_height = height
 
         rty = float(r_height / height)
 
-        opacity = self.get_opacity()
+        opacity = self.get_paint_opacity()
 
+        # the vertices are a 6-tuple composed of:
+        #  x, y, z: coordinates inside Clutter modelview
+        #  tx, ty: texture coordinates
+        #  color: a clutter.Color for the vertex
+        #
+        # to paint the reflection of the parent texture we paint
+        # the texture using four vertices in clockwise order, with
+        # the upper left and the upper right at full opacity and
+        # the lower right and lower left and 0 opacity; OpenGL will
+        # do the gradient for us
         vertices = ( \
-            (0.0, 0.0, 0.0, 0.0, rty, (255, 255, 255, opacity)), \
-            (float(width), 0.0, 0.0, 1.0, rty, (255, 255, 255, opacity)), \
-            (float(width), float(r_height), 0.0, 1.0, 0.0, (255, 255, 255, 0)), \
-            (0.0, float(r_height), 0.0, 0.0, 0.0, (255, 255, 255, 0)), \
+            (    0,        0, 0, 0.0, rty,   (255, 255, 255, opacity)), \
+            (width,        0, 0, 1.0, rty,   (255, 255, 255, opacity)), \
+            (width, r_height, 0, 1.0,   0.0, (255, 255, 255,       0)), \
+            (    0, r_height, 0, 0.0,   0.0, (255, 255, 255,       0)), \
         )
 
         cogl.push_matrix()
 
-        cogl_tex.texture_polygon(vertices, True)
+        cogl_tex.texture_polygon(vertices=vertices, use_color=True)
 
         cogl.pop_matrix()
 

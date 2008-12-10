@@ -3,7 +3,7 @@ override cogl_texture_get_gl_texture noargs
 static PyObject *
 _wrap_cogl_texture_get_gl_texture (PyObject *self)
 {
-    CoglHandle hnd = pyg_boxed_get(self, CoglHandle);
+    CoglHandle hnd = pyg_boxed_get (self, CoglHandle);
     GLuint gl_handle = 0;
     GLenum gl_target = 0;
 
@@ -16,26 +16,62 @@ _wrap_cogl_texture_get_gl_texture (PyObject *self)
     return Py_BuildValue ("()");
 }
 %%
+override cogl_texture_rectangle kwargs
+static PyObject *
+_wrap_cogl_texture_rectangle (PyObject *self,
+                              PyObject *args,
+                              PyObject *kwargs)
+{
+    static char *kwlist[] = { "x1", "y1", "x2", "y2", "tx1", "ty1", "tx2", "ty2", NULL };
+    CoglHandle hnd = pyg_boxed_get (self, CoglHandle);
+    double x1, y1, x2, y2;
+    double tx1, ty1, tx2, ty2;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "dddddddd:CoglHandle.texture_rectangle", kwlist,
+                                     &x1, &y1, &x2, &y2,
+                                     &tx1, &ty1, &tx2, &ty2))
+        return NULL;
+
+    cogl_texture_rectangle (hnd,
+                            CLUTTER_FLOAT_TO_FIXED (x1),
+                            CLUTTER_FLOAT_TO_FIXED (y1),
+                            CLUTTER_FLOAT_TO_FIXED (x2),
+                            CLUTTER_FLOAT_TO_FIXED (y2),
+                            CLUTTER_FLOAT_TO_FIXED (tx1),
+                            CLUTTER_FLOAT_TO_FIXED (ty1),
+                            CLUTTER_FLOAT_TO_FIXED (tx2),
+                            CLUTTER_FLOAT_TO_FIXED (ty2));
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
 override cogl_texture_polygon kwargs
 
 static gboolean
 get_double_as_fixed (PyObject *tuple, int index_, ClutterFixed *res)
 {
     PyObject *item = PyTuple_GetItem (tuple, index_);
-    double val;
 
-    if (!PyFloat_Check (item)) {
-        PyErr_SetString (PyExc_TypeError, "expecting a floating point value");
-        return FALSE;
+    if (PyInt_Check (item)) {
+        int val = PyInt_AsLong (item);
+
+        if (res) {
+            *res = CLUTTER_INT_TO_FIXED (val);
+            return TRUE;
+        }
+    }
+        
+    if (PyFloat_Check (item)) {
+        double val = PyFloat_AsDouble (item);
+
+        if (res) {
+            *res = CLUTTER_FLOAT_TO_FIXED (val);
+            return TRUE;
+        }
     }
 
-    val = PyFloat_AsDouble (item);
-
-    if (res) {
-        *res = CLUTTER_FLOAT_TO_FIXED (val);
-        return TRUE;
-    }
-
+    PyErr_SetString (PyExc_TypeError, "expecting a floating point value");
     return FALSE;
 }
 

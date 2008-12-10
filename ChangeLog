@@ -1,5 +1,14 @@
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
+	* clutter/cogl-texture.override: Override the cogl.Handle method
+	texture_rectangle(). Also, allow integer values for the texture
+	vertices in the texture_polygon() implementation.
+
+	* examples/reflection.py: Add comments on how the reflection works;
+	do not use float() when we have an integer value.
+
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
 	* clutter/clutter-base.defs: Update the Clutter API description to
 	match the current stable API.
 
