@@ -1,3 +1,22 @@
+2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
+
+	* clutter/cogl-base.defs: Add the remaining COGL texture API
+	methods.
+
+	* clutter/cogl-texture.override: Override the cogl.Handle
+	texture_polygon() method. Instead of adding yet another boxed
+	type wrapper for CoglTextureVertex we use a 5- or a 6-tuple
+	in the forms:
+
+		(x, y, z, texture_x, texture_y)
+
+		or
+
+		(x, y, z, texture_x, texture_y, color)
+
+	for each vertex. This should keep the API as pythonic as
+	possible.
+
 2008-12-09  Emmanuele Bassi  <ebassi@linux.intel.com>
 
 	* clutter/cogl.override: Increment checking and do a slight

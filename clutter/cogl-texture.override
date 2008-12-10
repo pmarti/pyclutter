@@ -1,3 +1,4 @@
+%%
 override cogl_texture_get_gl_texture noargs
 static PyObject *
 _wrap_cogl_texture_get_gl_texture (PyObject *self)
@@ -13,4 +14,97 @@ _wrap_cogl_texture_get_gl_texture (PyObject *self)
     }
 
     return Py_BuildValue ("()");
+}
+%%
+override cogl_texture_polygon kwargs
+
+static gboolean
+get_double_as_fixed (PyObject *tuple, int index_, ClutterFixed *res)
+{
+    PyObject *item = PyTuple_GetItem (tuple, index_);
+    double val;
+
+    if (!PyFloat_Check (item)) {
+        PyErr_SetString (PyExc_TypeError, "expecting a floating point value");
+        return FALSE;
+    }
+
+    val = PyFloat_AsDouble (item);
+
+    if (res) {
+        *res = CLUTTER_FLOAT_TO_FIXED (val);
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+static PyObject *
+_wrap_cogl_texture_polygon (PyObject *self,
+                            PyObject *args,
+                            PyObject *kwargs)
+{
+    static char *kwlist[] = { "vertices", "use_color", NULL };
+    CoglHandle hnd = COGL_INVALID_HANDLE;
+    CoglTextureVertex *vertices = NULL;
+    PyObject *py_vertices = Py_None;
+    gboolean use_color = FALSE;
+    int i, n_vertices;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs, "Oi:cogl.texture_polygon", kwlist, &py_vertices, &use_color)) {
+        return NULL;
+    }
+
+    hnd = pyg_boxed_get (self, CoglHandle);
+
+    if (!PyTuple_Check (py_vertices)) {
+        PyErr_SetString (PyExc_TypeError, "vertices must be a tuple");
+        return NULL;
+    }
+
+    n_vertices = PyTuple_Size (py_vertices);
+    vertices = g_new (CoglTextureVertex, n_vertices);
+
+    for (i = 0; i < n_vertices; i++) {
+        PyObject *py_vertex = PyTuple_GetItem (py_vertices, i);
+
+        if (!PyTuple_Check (py_vertex) &&
+            (PyTuple_Size (py_vertex) != 5 || PyTuple_Size (py_vertex) != 6)) {
+            PyErr_SetString (PyExc_TypeError, "expecting a 5-tuple (x, y, z, tx, ty) "
+                                              "or a 6-tuple (x, y, z, tx, ty, color)");
+            g_free (vertices);
+            return NULL;
+        }
+
+        if (!get_double_as_fixed (py_vertex, 0, &(vertices[i].x)) ||
+            !get_double_as_fixed (py_vertex, 1, &(vertices[i].y)) ||
+            !get_double_as_fixed (py_vertex, 2, &(vertices[i].z))) {
+            g_free (vertices);
+            return NULL;
+        }
+
+        if (!get_double_as_fixed (py_vertex, 3, &(vertices[i].tx)) ||
+            !get_double_as_fixed (py_vertex, 4, &(vertices[i].ty))) {
+            g_free (vertices);
+            return NULL;
+        }
+
+        if (PyTuple_Size (py_vertex) == 6) {
+            PyObject *py_color = PyTuple_GetItem (py_vertex, 5);
+
+            if (!pyclutter_color_from_pyobject (py_color, &(vertices[i].color))) {
+                PyErr_SetString (PyExc_TypeError, "expecting a clutter.Color as "
+                                                  "the 6th element of the vertex "
+                                                  "tuple");
+                g_free (vertices);
+                return NULL;
+            }
+        }
+    }
+
+    cogl_texture_polygon (hnd, n_vertices, vertices, use_color);
+    g_free (vertices);
+
+    Py_INCREF (Py_None);
+    return Py_None;
 }
