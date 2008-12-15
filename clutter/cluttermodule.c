@@ -59,6 +59,41 @@ pyclutter_register_exceptions (PyObject *dict)
                         PyExc_Exception,
                         NULL);
   PyDict_SetItemString (dict, "Exception", PyClutterException);
+
+  if (PyErr_Occurred ())
+    PyErr_Print ();
+}
+
+static void
+pycogl_add_gl_constants (PyObject *module)
+{
+  /* we add only the values Clutter uses internally or explicitly
+   * names in the documentation; if you need something else you
+   * should also be loading PyOpenGL, which exposes all the
+   * enumeration values
+   */
+  PyModule_AddObject (module, "NEVER", Py_BuildValue ("i", CGL_NEVER));
+  PyModule_AddObject (module, "LESS", Py_BuildValue ("i", CGL_LESS));
+  PyModule_AddObject (module, "LEQUAL", Py_BuildValue ("i", CGL_LEQUAL));
+  PyModule_AddObject (module, "EQUAL", Py_BuildValue ("i", CGL_EQUAL));
+  PyModule_AddObject (module, "NOTEQUAL", Py_BuildValue ("i", CGL_NOTEQUAL));
+  PyModule_AddObject (module, "GEQUAL", Py_BuildValue ("i", CGL_GEQUAL));
+  PyModule_AddObject (module, "GREATER", Py_BuildValue ("i", CGL_GREATER));
+  PyModule_AddObject (module, "ALWAYS", Py_BuildValue ("i", CGL_ALWAYS));
+
+  PyModule_AddObject (module, "SRC_ALPHA", Py_BuildValue ("i", CGL_SRC_ALPHA));
+  PyModule_AddObject (module, "ONE_MINUS_SRC_ALPHA", Py_BuildValue ("i", CGL_ONE_MINUS_SRC_ALPHA));
+
+  PyModule_AddObject (module, "VERTEX_SHADER", Py_BuildValue ("i", CGL_VERTEX_SHADER));
+  PyModule_AddObject (module, "FRAGMENT_SHADER", Py_BuildValue ("i", CGL_FRAGMENT_SHADER));
+  PyModule_AddObject (module, "OBJECT_COMPILE_STATUS", Py_BuildValue ("i", CGL_OBJECT_COMPILE_STATUS));
+
+  PyModule_AddObject (module, "NEAREST", Py_BuildValue ("i", CGL_NEAREST));
+  PyModule_AddObject (module, "LINEAR", Py_BuildValue ("i", CGL_LINEAR));
+  PyModule_AddObject (module, "LINEAR_MIPMAP_LINEAR", Py_BuildValue ("i", CGL_LINEAR_MIPMAP_LINEAR));
+
+  if (PyErr_Occurred ())
+    PyErr_Print ();
 }
 
 DL_EXPORT (void)
@@ -112,6 +147,7 @@ init_clutter (void)
 
   pycogl_register_classes (d);
   pycogl_add_constants (m, "COGL_");
+  pycogl_add_gl_constants (m);
 
   if (PyErr_Occurred ()) 
     Py_FatalError ("can't initialise module clutter");
