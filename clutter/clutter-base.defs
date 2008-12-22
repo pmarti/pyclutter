@@ -4762,7 +4762,9 @@
   (is-constructor-of "ClutterTexture")
   (return-type "ClutterActor*")
   (properties
-    '("filename" (optional))
+    '("filename" (optional) (default NULL))
+    '("disable_slicing" (optional) (default FALSE))
+    '("tile_waste" (optional) (default 64))
   )
 )
 
