@@ -76,6 +76,7 @@ class TextureReflection (clutter.CloneTexture):
 def main (args):
     stage = clutter.Stage()
     stage.set_color(clutter.Color(0, 0, 0, 255))
+    stage.set_title('TextureReflection')
     stage.connect('button-press-event', clutter.main_quit)
     stage.connect('destroy', clutter.main_quit)
 
