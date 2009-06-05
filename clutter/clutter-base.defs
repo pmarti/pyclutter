@@ -2877,7 +2877,7 @@
 
 ;; From clutter-media.h
 
-(define-function media_get_type
+(define-function clutter_media_get_type
   (c-name "clutter_media_get_type")
   (return-type "GType")
 )
@@ -2891,36 +2891,24 @@
   )
 )
 
-(define-virtual set_uri
-  (of-object "ClutterMedia")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "uri")
-  )
-)
-
 (define-method get_uri
   (of-object "ClutterMedia")
   (c-name "clutter_media_get_uri")
-  (return-type "const-gchar*")
+  (return-type "gchar*")
 )
 
-(define-virtual get_uri
+(define-method set_filename
   (of-object "ClutterMedia")
-  (return-type "const-gchar*")
+  (c-name "clutter_media_set_filename")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "filename")
+  )
 )
 
 (define-method set_playing
   (of-object "ClutterMedia")
   (c-name "clutter_media_set_playing")
-  (return-type "none")
-  (parameters
-    '("gboolean" "playing")
-  )
-)
-
-(define-virtual set_playing
-  (of-object "ClutterMedia")
   (return-type "none")
   (parameters
     '("gboolean" "playing")
@@ -2933,64 +2921,33 @@
   (return-type "gboolean")
 )
 
-(define-virtual get_playing
+(define-method set_progress
   (of-object "ClutterMedia")
-  (return-type "gboolean")
-)
-
-(define-method set_position
-  (of-object "ClutterMedia")
-  (c-name "clutter_media_set_position")
+  (c-name "clutter_media_set_progress")
   (return-type "none")
   (parameters
-    '("gint" "position")
+    '("gdouble" "progress")
   )
 )
 
-(define-virtual set_position
+(define-method get_progress
   (of-object "ClutterMedia")
-  (return-type "none")
-  (parameters
-    '("gint" "position")
-  )
-)
-
-(define-method get_position
-  (of-object "ClutterMedia")
-  (c-name "clutter_media_get_position")
-  (return-type "int")
-)
-
-(define-virtual get_position
-  (of-object "ClutterMedia")
-  (return-type "gint")
-)
-
-(define-method set_volume
-  (of-object "ClutterMedia")
-  (c-name "clutter_media_set_volume")
-  (return-type "none")
-  (parameters
-    '("gdouble" "volume")
-  )
-)
-
-(define-virtual set_volume
-  (of-object "ClutterMedia")
-  (return-type "none")
-  (parameters
-    '("gdouble" "volume")
-  )
-)
-
-(define-method get_volume
-  (of-object "ClutterMedia")
-  (c-name "clutter_media_get_volume")
+  (c-name "clutter_media_get_progress")
   (return-type "gdouble")
 )
 
-(define-virtual get_volume
+(define-method set_audio_volume
   (of-object "ClutterMedia")
+  (c-name "clutter_media_set_audio_volume")
+  (return-type "none")
+  (parameters
+    '("gdouble" "volume")
+  )
+)
+
+(define-method get_audio_volume
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_get_audio_volume")
   (return-type "gdouble")
 )
 
@@ -3000,42 +2957,17 @@
   (return-type "gboolean")
 )
 
-(define-virtual can_seek
+(define-method get_buffer_fill
   (of-object "ClutterMedia")
-  (return-type "gboolean")
-)
-
-(define-method get_buffer_percent
-  (of-object "ClutterMedia")
-  (c-name "clutter_media_get_buffer_percent")
-  (return-type "gint")
-)
-
-(define-virtual get_buffer_percent
-  (of-object "ClutterMedia")
-  (return-type "gint")
+  (c-name "clutter_media_get_buffer_fill")
+  (return-type "gdouble")
 )
 
 (define-method get_duration
   (of-object "ClutterMedia")
   (c-name "clutter_media_get_duration")
-  (return-type "gint")
+  (return-type "gdouble")
 )
-
-(define-virtual get_duration
-  (of-object "ClutterMedia")
-  (return-type "gint")
-)
-
-(define-method set_filename
-  (of-object "ClutterMedia")
-  (c-name "clutter_media_set_filename")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "filename")
-  )
-)
-
 
 
 ;; From clutter-model.h
