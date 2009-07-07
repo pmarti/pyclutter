@@ -2,10 +2,6 @@
 ignore
   clutter_actor_get_allocation_vertices
   clutter_actor_get_abs_allocation_vertices
-  clutter_actor_set_scalex
-  clutter_actor_get_scalex
-  clutter_actor_set_rotationx
-  clutter_actor_get_rotationx
 %%
 override clutter_actor_get_allocation_geometry noargs
 static PyObject *
@@ -60,69 +56,28 @@ _wrap_clutter_actor_set_geometry (PyGObject *self,
         return Py_None;
 }
 %%
-override clutter_actor_get_allocation_coords noargs
-static PyObject *
-_wrap_clutter_actor_get_allocation_coords (PyGObject *self)
-{
-	gint x1, y1;
-	gint x2, y2;
-
-	clutter_actor_get_allocation_coords (CLUTTER_ACTOR (self->obj),
-				             &x1, &y1,
-				             &x2, &y2);
-	return Py_BuildValue("(iiii)", x1, y1, x2, y2);
-}
-%%
 override clutter_actor_get_transformed_position noargs
 static PyObject *
 _wrap_clutter_actor_get_transformed_position (PyGObject *self)
 {
-	gint pos_x, pos_y;
+	gfloat pos_x, pos_y;
 
 	clutter_actor_get_transformed_position (CLUTTER_ACTOR (self->obj),
                                                 &pos_x,
                                                 &pos_y);
-	return Py_BuildValue("(ii)", pos_x, pos_y);
-}
-%%
-override clutter_actor_get_transformed_positionu noargs
-static PyObject *
-_wrap_clutter_actor_get_transformed_positionu (PyGObject *self)
-{
-        ClutterUnit pos_x, pos_y;
-
-	clutter_actor_get_transformed_positionu (CLUTTER_ACTOR (self->obj),
-                                                 &pos_x,
-                                                 &pos_y);
-	return Py_BuildValue("(dd)",
-                             CLUTTER_UNITS_TO_FLOAT (pos_x),
-                             CLUTTER_UNITS_TO_FLOAT (pos_y));
+	return Py_BuildValue("(dd)", pos_x, pos_y);
 }
 %%
 override clutter_actor_get_transformed_size noargs
 static PyObject *
 _wrap_clutter_actor_get_transformed_size (PyGObject *self)
 {
-        guint width, height;
+        gfloat width, height;
 
         clutter_actor_get_transformed_size (CLUTTER_ACTOR (self->obj),
                                             &width,
                                             &height);
-        return Py_BuildValue ("(ii)", width, height);
-}
-%%
-override clutter_actor_get_transformed_sizeu noargs
-static PyObject *
-_wrap_clutter_actor_get_transformed_sizeu (PyGObject *self)
-{
-        ClutterUnit width, height;
-
-        clutter_actor_get_transformed_sizeu (CLUTTER_ACTOR (self->obj),
-                                             &width,
-                                             &height);
-        return Py_BuildValue ("(dd)",
-                              CLUTTER_UNITS_TO_FLOAT (width),
-                              CLUTTER_UNITS_TO_FLOAT (height));
+        return Py_BuildValue ("(dd)", width, height);
 }
 %%
 override clutter_actor_transform_stage_point kwargs
@@ -132,7 +87,7 @@ _wrap_clutter_actor_transform_stage_point (PyGObject *self,
                                            PyObject  *kwargs)
 {
         static char *kwlist[] = { "x", "y", NULL };
-        ClutterUnit x_out, y_out;
+        gfloat x_out, y_out;
         gboolean res;
         double x, y;
 
@@ -144,14 +99,10 @@ _wrap_clutter_actor_transform_stage_point (PyGObject *self,
 
         x_out = y_out = 0;
         res = clutter_actor_transform_stage_point (CLUTTER_ACTOR (self->obj),
-                                                   CLUTTER_UNITS_FROM_FLOAT (x),
-                                                   CLUTTER_UNITS_FROM_FLOAT (y),
-                                                   &x_out, &y_out);
+                                                   x, y, &x_out, &y_out);
 
         if (res)
-                return Py_BuildValue ("(dd)",
-                                      CLUTTER_UNITS_TO_FLOAT (x_out),
-                                      CLUTTER_UNITS_TO_FLOAT (y_out));
+                return Py_BuildValue ("(dd)", x_out, y_out);
         else {
                 PyErr_SetString (PyClutterException, "Transformation failed");
                 return NULL;
@@ -162,99 +113,23 @@ override clutter_actor_get_size noargs
 static PyObject *
 _wrap_clutter_actor_get_size (PyGObject *self)
 {
-        guint width, height;
+        gfloat width, height;
 
         clutter_actor_get_size (CLUTTER_ACTOR (self->obj),
                                 &width,
                                 &height);
-        return Py_BuildValue ("(ii)", width, height);
-}
-%%
-override clutter_actor_set_sizeu kwargs
-static PyObject *
-_wrap_clutter_actor_set_sizeu (PyGObject *self,
-                               PyObject  *args,
-                               PyObject  *kwargs)
-{
-        static char *kwlist[] = { "width", "height", NULL };
-        double width, height;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "dd:ClutterActor.set_sizeu",
-                                          kwlist,
-                                          &width,
-                                          &height)) {
-                return NULL;
-        }
-
-        clutter_actor_set_sizeu (CLUTTER_ACTOR (self->obj),
-                                 CLUTTER_UNITS_FROM_FLOAT (width),
-                                 CLUTTER_UNITS_FROM_FLOAT (height));
-
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
-override clutter_actor_get_sizeu noargs
-static PyObject *
-_wrap_clutter_actor_get_sizeu (PyGObject *self)
-{
-        ClutterUnit width, height;
-
-        clutter_actor_get_sizeu (CLUTTER_ACTOR (self->obj),
-                                 &width,
-                                 &height);
-        return Py_BuildValue ("(dd)",
-                              CLUTTER_UNITS_TO_FLOAT (width),
-                              CLUTTER_UNITS_TO_FLOAT (height));
+        return Py_BuildValue ("(dd)", width, height);
 }
 %%
 override clutter_actor_get_position noargs
 static PyObject *
 _wrap_clutter_actor_get_position (PyGObject *self)
 {
-        gint x, y;
+        gfloat x, y;
 
         clutter_actor_get_position (CLUTTER_ACTOR (self->obj), &x, &y);
 
-        return Py_BuildValue ("(ii)", x, y);
-}
-%%
-override clutter_actor_set_positionu kwargs
-static PyObject *
-_wrap_clutter_actor_set_positionu (PyGObject *self,
-                                   PyObject  *args,
-                                   PyObject  *kwargs)
-{
-        static char *kwlist[] = { "x", "y", NULL };
-        double x, y;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "dd:ClutterActor.set_positionu",
-                                          kwlist,
-                                          &x, &y)) {
-                return NULL;
-        }
-
-        clutter_actor_set_positionu (CLUTTER_ACTOR (self->obj),
-                                     CLUTTER_UNITS_FROM_FLOAT (x),
-                                     CLUTTER_UNITS_FROM_FLOAT (y));
-
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
-override clutter_actor_get_positionu noargs
-static PyObject *
-_wrap_clutter_actor_get_positionu (PyGObject *self)
-{
-        ClutterUnit x, y;
-
-        clutter_actor_get_positionu (CLUTTER_ACTOR (self->obj), &x, &y);
-
-        return Py_BuildValue ("(dd)",
-                              CLUTTER_UNITS_TO_FLOAT (x),
-                              CLUTTER_UNITS_TO_FLOAT (y));
+        return Py_BuildValue ("(dd)", x, y);
 }
 %%
 override clutter_actor_get_scale noargs
@@ -278,10 +153,10 @@ _wrap_clutter_actor_set_rotation (PyGObject *self,
         static char *kwlist[] = { "axis", "angle", "x", "y", "z", NULL };
         int axis;
         double angle;
-        int x, y, z;
+        gfloat x, y, z;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "idiii:ClutterActor.set_rotation",
+                                          "idfff:ClutterActor.set_rotation",
                                           kwlist,
                                           &axis,
                                           &angle,
@@ -297,36 +172,6 @@ _wrap_clutter_actor_set_rotation (PyGObject *self,
         return Py_None;
 }
 %%
-override clutter_actor_set_rotationu kwargs
-static PyObject *
-_wrap_clutter_actor_set_rotationu (PyGObject *self,
-                                   PyObject  *args,
-                                   PyObject  *kwargs)
-{
-        static char *kwlist[] = { "axis", "angle", "x", "y", "z", NULL };
-        int axis;
-        double angle;
-        double x, y, z;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "idddd:ClutterActor.set_rotation",
-                                          kwlist,
-                                          &axis,
-                                          &angle,
-                                          &x, &y, &z)) {
-                return NULL;
-        }
-
-        clutter_actor_set_rotationu (CLUTTER_ACTOR (self->obj), axis,
-                                     angle,
-                                     CLUTTER_UNITS_FROM_FLOAT (x),
-                                     CLUTTER_UNITS_FROM_FLOAT (y),
-                                     CLUTTER_UNITS_FROM_FLOAT (z));
-
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
 override clutter_actor_get_rotation kwargs
 static PyObject *
 _wrap_clutter_actor_get_rotation (PyGObject *self,
@@ -335,7 +180,7 @@ _wrap_clutter_actor_get_rotation (PyGObject *self,
 {
         static char *kwlist[] = { "axis", NULL };
         int axis;
-        gint center_x, center_y, center_z;
+        gfloat center_x, center_y, center_z;
         gdouble angle;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
@@ -349,98 +194,22 @@ _wrap_clutter_actor_get_rotation (PyGObject *self,
                                             &center_y,
                                             &center_z);
 
-        return Py_BuildValue ("(diii)",
-                              angle,
-                              center_x, center_y, center_z);
-}
-%%
-override clutter_actor_get_rotationu kwargs
-static PyObject *
-_wrap_clutter_actor_get_rotationu (PyGObject *self,
-                                   PyObject  *args,
-                                   PyObject  *kwargs)
-{
-        static char *kwlist[] = { "axis", NULL };
-        int axis;
-        gint32 center_x, center_y, center_z;
-        gdouble angle;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "i:ClutterActor.get_rotation", kwlist,
-                                          &axis)) {
-                return NULL;
-        }
-
-        angle = clutter_actor_get_rotationu (CLUTTER_ACTOR (self->obj), axis,
-                                             &center_x,
-                                             &center_y,
-                                             &center_z);
-
         return Py_BuildValue ("(dddd)",
                               angle,
-                              CLUTTER_UNITS_TO_FLOAT (center_x),
-                              CLUTTER_UNITS_TO_FLOAT (center_y),
-                              CLUTTER_UNITS_TO_FLOAT (center_z));
+                              center_x, center_y, center_z);
 }
 %%
 override clutter_actor_get_clip noargs
 static PyObject *
 _wrap_clutter_actor_get_clip (PyGObject *self)
 {
-	gint xoff, yoff;
-	gint width, height;
+	gfloat xoff, yoff;
+	gfloat width, height;
 
 	clutter_actor_get_clip (CLUTTER_ACTOR (self->obj),
                                 &xoff, &yoff,
                                 &width, &height);
-	return Py_BuildValue("(iiii)", xoff, yoff, width, height);
-}
-%%
-override clutter_actor_set_clipu kwargs
-static PyObject *
-_wrap_clutter_actor_set_clipu (PyGObject *self,
-                               PyObject  *args,
-                               PyObject  *kwargs)
-{
-        static char *kwlist[] = { "x_offset", "y_offset", "width", "height", NULL };
-        double xoffset, yoffset, width, height;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "dddd:ClutterActor.set_clipu",
-                                          kwlist,
-                                          &xoffset,
-                                          &yoffset,
-                                          &width,
-                                          &height)) {
-                return NULL;
-        }
-
-        clutter_actor_set_clipu (CLUTTER_ACTOR (self->obj),
-                                 CLUTTER_UNITS_FROM_FLOAT (xoffset),
-                                 CLUTTER_UNITS_FROM_FLOAT (yoffset),
-                                 CLUTTER_UNITS_FROM_FLOAT (width),
-                                 CLUTTER_UNITS_FROM_FLOAT (height));
-
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
-override clutter_actor_get_clipu noargs
-static PyObject *
-_wrap_clutter_actor_get_clipu (PyGObject *self)
-{
-	ClutterUnit xoff, yoff;
-	ClutterUnit width, height;
-
-	clutter_actor_get_clipu (CLUTTER_ACTOR (self->obj),
-                                 &xoff, &yoff,
-                                 &width, &height);
-
-	return Py_BuildValue("(dddd)",
-                             CLUTTER_UNITS_TO_FLOAT (xoff),
-                             CLUTTER_UNITS_TO_FLOAT (yoff),
-                             CLUTTER_UNITS_TO_FLOAT (width),
-                             CLUTTER_UNITS_TO_FLOAT (height));
+	return Py_BuildValue("(dddd)", xoff, yoff, width, height);
 }
 %%
 override clutter_actor_get_allocation_box noargs
@@ -451,19 +220,15 @@ _wrap_clutter_actor_get_allocation_box (PyGObject *self)
 
         clutter_actor_get_allocation_box (CLUTTER_ACTOR (self->obj), &box);
 
-        return Py_BuildValue ("(dddd)",
-                              CLUTTER_UNITS_TO_FLOAT (box.x1),
-                              CLUTTER_UNITS_TO_FLOAT (box.y1),
-                              CLUTTER_UNITS_TO_FLOAT (box.x2),
-                              CLUTTER_UNITS_TO_FLOAT (box.y2));
+        return Py_BuildValue ("(dddd)", box.x1, box.y1, box.x2, box.y2);
 }
 %%
 override clutter_actor_get_preferred_size noargs
 static PyObject *
 _wrap_clutter_actor_get_preferred_size (PyGObject *self)
 {
-        ClutterUnit min_width, natural_width;
-        ClutterUnit min_height, natural_height;
+        gfloat min_width, natural_width;
+        gfloat min_height, natural_height;
 
         min_width = natural_width = 0;
         min_height = natural_height = 0;
@@ -471,11 +236,8 @@ _wrap_clutter_actor_get_preferred_size (PyGObject *self)
                                           &min_width, &min_height,
                                           &natural_width, &natural_height);
 
-        return Py_BuildValue ("(dddd)",
-                              CLUTTER_UNITS_TO_FLOAT (min_width),
-                              CLUTTER_UNITS_TO_FLOAT (min_height),
-                              CLUTTER_UNITS_TO_FLOAT (natural_width),
-                              CLUTTER_UNITS_TO_FLOAT (natural_height));
+        return Py_BuildValue ("(dddd)", min_width, min_height,
+                              natural_width, natural_height);
 }
 %%
 override clutter_actor_get_preferred_width kwargs
@@ -486,7 +248,7 @@ _wrap_clutter_actor_get_preferred_width (PyGObject *self,
 {
         static char *kwlist[] = { "for_height", NULL };
         double for_height = 0;
-        ClutterUnit min_width, natural_width;
+        gfloat min_width, natural_width;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "d:ClutterActor.get_preferred_width", kwlist,
@@ -495,22 +257,19 @@ _wrap_clutter_actor_get_preferred_width (PyGObject *self,
         }
 
         min_width = natural_width = 0;
-        clutter_actor_get_preferred_width (CLUTTER_ACTOR (self->obj),
-                                           CLUTTER_UNITS_FROM_FLOAT (for_height),
+        clutter_actor_get_preferred_width (CLUTTER_ACTOR (self->obj), for_height,
                                            &min_width,
                                            &natural_width);
 
-        return Py_BuildValue ("(dd)",
-                              CLUTTER_UNITS_TO_FLOAT (min_width),
-                              CLUTTER_UNITS_TO_FLOAT (natural_width));
+        return Py_BuildValue ("(dd)", min_width, natural_width);
 }
 %%
 override ClutterActor__proxy_do_get_preferred_width
 static void
 _wrap_ClutterActor__proxy_do_get_preferred_width (ClutterActor *self,
-                                                  ClutterUnit   for_height,
-                                                  ClutterUnit  *min_width_p,
-                                                  ClutterUnit  *natural_width_p)
+                                                  gfloat        for_height,
+                                                  gfloat       *min_width_p,
+                                                  gfloat       *natural_width_p)
 {
         PyGILState_STATE state;
         PyObject *py_self, *py_height, *py_args, *py_method, *py_ret;
@@ -528,7 +287,7 @@ _wrap_ClutterActor__proxy_do_get_preferred_width (ClutterActor *self,
                 return;
         }
 
-        py_height = PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (for_height));
+        py_height = PyFloat_FromDouble (for_height);
 
         py_args = PyTuple_New (1);
         PyTuple_SET_ITEM (py_args, 0, py_height);
@@ -571,10 +330,10 @@ _wrap_ClutterActor__proxy_do_get_preferred_width (ClutterActor *self,
         }
         else {
                 if (min_width_p)
-                  *min_width_p = CLUTTER_UNITS_FROM_FLOAT (min_width);
+                  *min_width_p = min_width;
 
                 if (natural_width_p)
-                  *natural_width_p = CLUTTER_UNITS_FROM_FLOAT (natural_width);
+                  *natural_width_p = natural_width;
         }
 
         Py_DECREF (py_self);
@@ -595,7 +354,7 @@ _wrap_ClutterActor__do_get_preferred_width (PyObject *cls,
         static char *kwlist[] = { "self", "for_height", NULL };
         PyGObject *self;
         double for_height = 0;
-        ClutterUnit min_width = 0, natural_width = 0;
+        gfloat min_width = 0, natural_width = 0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "O!d:ClutterActor.do_get_preferred_width",
@@ -607,10 +366,9 @@ _wrap_ClutterActor__do_get_preferred_width (PyObject *cls,
         klass = g_type_class_ref (pyg_type_from_object (cls));
         if (CLUTTER_ACTOR_CLASS (klass)->get_preferred_width) {
                 ClutterActor *actor = CLUTTER_ACTOR (self->obj);
-                ClutterUnit height = CLUTTER_UNITS_FROM_FLOAT (for_height);
 
                 CLUTTER_ACTOR_CLASS (klass)->get_preferred_width (actor,
-                                                                  height,
+                                                                  for_height,
                                                                   &min_width,
                                                                   &natural_width);
         }
@@ -624,9 +382,7 @@ _wrap_ClutterActor__do_get_preferred_width (PyObject *cls,
 
         g_type_class_unref (klass);
 
-        return Py_BuildValue ("(dd)",
-                              CLUTTER_UNITS_TO_FLOAT (min_width),
-                              CLUTTER_UNITS_TO_FLOAT (natural_width));
+        return Py_BuildValue ("(dd)", min_width, natural_width);
 }
 %%
 override clutter_actor_get_preferred_height kwargs
@@ -637,7 +393,7 @@ _wrap_clutter_actor_get_preferred_height (PyGObject *self,
 {
         static char *kwlist[] = { "for_width", NULL };
         double for_width = 0;
-        ClutterUnit min_height, natural_height;
+        gfloat min_height, natural_height;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "d:ClutterActor.get_preferred_height", kwlist,
@@ -647,21 +403,19 @@ _wrap_clutter_actor_get_preferred_height (PyGObject *self,
 
         min_height = natural_height = 0;
         clutter_actor_get_preferred_height (CLUTTER_ACTOR (self->obj),
-                                            CLUTTER_UNITS_FROM_FLOAT (for_width),
+                                            for_width,
                                             &min_height,
                                             &natural_height);
 
-        return Py_BuildValue ("(dd)",
-                              CLUTTER_UNITS_TO_FLOAT (min_height),
-                              CLUTTER_UNITS_TO_FLOAT (natural_height));
+        return Py_BuildValue ("(dd)", min_height, natural_height);
 }
 %%
 override ClutterActor__proxy_do_get_preferred_height
 static void
 _wrap_ClutterActor__proxy_do_get_preferred_height (ClutterActor *self,
-                                                   ClutterUnit   for_width,
-                                                   ClutterUnit  *min_height_p,
-                                                   ClutterUnit  *natural_height_p)
+                                                   gfloat        for_width,
+                                                   gfloat       *min_height_p,
+                                                   gfloat       *natural_height_p)
 {
         PyGILState_STATE state;
         PyObject *py_self, *py_width, *py_args, *py_method, *py_ret;
@@ -679,7 +433,7 @@ _wrap_ClutterActor__proxy_do_get_preferred_height (ClutterActor *self,
                 return;
         }
 
-        py_width = PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (for_width));
+        py_width = PyFloat_FromDouble (for_width);
 
         py_args = PyTuple_New (1);
         PyTuple_SET_ITEM (py_args, 0, py_width);
@@ -722,10 +476,10 @@ _wrap_ClutterActor__proxy_do_get_preferred_height (ClutterActor *self,
         }
         else {
                 if (min_height_p)
-                  *min_height_p = CLUTTER_UNITS_FROM_FLOAT (min_height);
+                  *min_height_p = min_height;
 
                 if (natural_height_p)
-                  *natural_height_p = CLUTTER_UNITS_FROM_FLOAT (natural_height);
+                  *natural_height_p = natural_height;
         }
 
         Py_DECREF (py_self);
@@ -746,7 +500,7 @@ _wrap_ClutterActor__do_get_preferred_height (PyObject *cls,
         static char *kwlist[] = { "self", "for_width", NULL };
         PyGObject *self;
         double for_width = 0;
-        ClutterUnit min_height = 0, natural_height = 0;
+        gfloat min_height = 0, natural_height = 0;
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                           "O!d:ClutterActor.do_get_preferred_height",
@@ -758,10 +512,9 @@ _wrap_ClutterActor__do_get_preferred_height (PyObject *cls,
         klass = g_type_class_ref (pyg_type_from_object (cls));
         if (CLUTTER_ACTOR_CLASS (klass)->get_preferred_height) {
                 ClutterActor *actor = CLUTTER_ACTOR (self->obj);
-                ClutterUnit width = CLUTTER_UNITS_FROM_FLOAT (for_width);
 
                 CLUTTER_ACTOR_CLASS (klass)->get_preferred_height (actor,
-                                                                   width,
+                                                                   for_width,
                                                                    &min_height,
                                                                    &natural_height);
         }
@@ -775,307 +528,20 @@ _wrap_ClutterActor__do_get_preferred_height (PyObject *cls,
 
         g_type_class_unref (klass);
 
-        return Py_BuildValue ("(dd)",
-                              CLUTTER_UNITS_TO_FLOAT (min_height),
-                              CLUTTER_UNITS_TO_FLOAT (natural_height));
+        return Py_BuildValue ("(dd)", min_height, natural_height);
 }
 %%
 override clutter_actor_get_anchor_point noargs
 static PyObject *
 _wrap_clutter_actor_get_anchor_point (PyGObject *self)
 {
-  gint anchor_x, anchor_y;
+  gfloat anchor_x, anchor_y;
 
   anchor_x = anchor_y = 0;
   clutter_actor_get_anchor_point (CLUTTER_ACTOR (self->obj),
                                   &anchor_x, &anchor_y);
 
-  return Py_BuildValue ("(ii)", anchor_x, anchor_y);
-}
-%%
-override clutter_actor_set_anchor_pointu kwargs
-static PyObject *
-_wrap_clutter_actor_set_anchor_pointu (PyGObject *self,
-                                       PyObject  *args,
-                                       PyObject  *kwargs)
-{
-        static char *kwlist[] = { "anchor_x", "anchor_y", NULL };
-        double anchor_x, anchor_y;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "dd:ClutterActor.set_anchor_pointu",
-                                          kwlist,
-                                          &anchor_x,
-                                          &anchor_y)) {
-                return NULL;
-        }
-
-        clutter_actor_set_anchor_pointu (CLUTTER_ACTOR (self->obj),
-                                         CLUTTER_UNITS_FROM_FLOAT (anchor_x),
-                                         CLUTTER_UNITS_FROM_FLOAT (anchor_y));
-
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
-override clutter_actor_move_anchor_pointu kwargs
-static PyObject *
-_wrap_clutter_actor_move_anchor_pointu (PyGObject *self,
-                                        PyObject  *args,
-                                        PyObject  *kwargs)
-{
-        static char *kwlist[] = { "anchor_x", "anchor_y", NULL };
-        double anchor_x, anchor_y;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "dd:ClutterActor.move_anchor_pointu",
-                                          kwlist,
-                                          &anchor_x,
-                                          &anchor_y)) {
-                return NULL;
-        }
-
-        clutter_actor_move_anchor_pointu (CLUTTER_ACTOR (self->obj),
-                                          CLUTTER_UNITS_FROM_FLOAT (anchor_x),
-                                          CLUTTER_UNITS_FROM_FLOAT (anchor_y));
-
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
-override clutter_actor_get_anchor_pointu noargs
-static PyObject *
-_wrap_clutter_actor_get_anchor_pointu (PyGObject *self)
-{
-  ClutterUnit anchor_x, anchor_y;
-
-  anchor_x = anchor_y = 0;
-  clutter_actor_get_anchor_pointu (CLUTTER_ACTOR (self->obj),
-                                   &anchor_x, &anchor_y);
-
-  return Py_BuildValue ("(dd)",
-                        CLUTTER_UNITS_TO_FLOAT (anchor_x),
-                        CLUTTER_UNITS_TO_FLOAT (anchor_y));
-}
-%%
-override clutter_actor_move_byu kwargs
-static PyObject *
-_wrap_clutter_actor_move_byu (PyGObject *self,
-                              PyObject  *args,
-                              PyObject  *kwargs)
-{
-        static char *kwlist[] = { "dx", "dy", NULL };
-        double dx, dy;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "dd:ClutterActor.move_byu",
-                                          kwlist,
-                                          &dx,
-                                          &dy)) {
-                return NULL;
-        }
-
-        clutter_actor_move_byu (CLUTTER_ACTOR (self->obj),
-                                CLUTTER_UNITS_FROM_FLOAT (dx),
-                                CLUTTER_UNITS_FROM_FLOAT (dy));
-
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
-override clutter_actor_set_depthu kwargs
-static PyObject *
-_wrap_clutter_actor_set_depthu (PyGObject *self,
-                                PyObject  *args,
-                                PyObject  *kwargs)
-{
-        static char *kwlist[] = { "depth", NULL };
-        double depth;
-
-        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "d:ClutterActor.move_byu",
-                                          kwlist,
-                                          &depth)) {
-                return NULL;
-        }
-
-        clutter_actor_set_depthu (CLUTTER_ACTOR (self->obj),
-                                  CLUTTER_UNITS_FROM_FLOAT (depth));
-
-        Py_INCREF (Py_None);
-        return Py_None;
-}
-%%
-override clutter_actor_get_depthu noargs
-static PyObject *
-_wrap_clutter_actor_get_depthu (PyGObject *self)
-{
-        ClutterUnit depth;
-
-        depth = clutter_actor_get_depthu (CLUTTER_ACTOR (self->obj));
-
-        return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (depth));
-}
-%%
-override clutter_actor_get_relative_vertices
-static PyObject *
-_wrap_clutter_actor_get_relative_vertices (PyGObject *self, PyObject *args)
-{
-        PyObject *pyvertices, *pyancestor;
-        ClutterActor *ancestor;
-        ClutterVertex vertices[4];
-        int i;
-
-        pyancestor = PyTuple_GetItem (args, 0);
-        if (!pyancestor || pyancestor == Py_None)
-                ancestor = NULL;
-        else if (pygobject_check (pyancestor, &PyClutterActor_Type))
-                ancestor = CLUTTER_ACTOR (pygobject_get (pyancestor));
-        else {
-                PyErr_SetString (PyExc_TypeError,
-                                 "first argument must either be None or"
-                                 "a clutter.Actor");
-                return NULL;
-        }
-
-        ancestor = CLUTTER_ACTOR (pygobject_get (pyancestor));
-
-        clutter_actor_get_relative_vertices (CLUTTER_ACTOR (self->obj),
-                                             ancestor,
-                                             vertices);
-
-        pyvertices = PyTuple_New (4);
-        for (i = 0; i < 4; i++) {
-                PyObject *pyvertex;
-
-                pyvertex = pyg_boxed_new (CLUTTER_TYPE_VERTEX,
-                                          &vertices[i],
-                                          TRUE, TRUE);
-                PyTuple_SetItem (pyvertices, i, pyvertex);
-                Py_XDECREF (pyvertex);
-        }
-
-        return pyvertices;
-}
-%%
-override clutter_actor_get_widthu noargs
-static PyObject *
-_wrap_clutter_actor_get_widthu (PyGObject *self)
-{
-    ClutterUnit ret;
-
-    ret = clutter_actor_get_widthu (CLUTTER_ACTOR (self->obj));
-
-    return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (ret));
-}
-%%
-override clutter_actor_get_heightu noargs
-static PyObject *
-_wrap_clutter_actor_get_heightu (PyGObject *self)
-{
-    ClutterUnit ret;
-
-    ret = clutter_actor_get_heightu (CLUTTER_ACTOR (self->obj));
-
-    return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (ret));
-}
-%%
-override clutter_actor_set_widthu kwargs
-static PyObject *
-_wrap_clutter_actor_set_widthu (PyGObject *self,
-                                PyObject  *args,
-                                PyObject  *kwargs)
-{
-    static char *kwlist[] = { "width", NULL };
-    double width;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"d:ClutterActor.set_widthu", kwlist, &width))
-        return NULL;
-
-    clutter_actor_set_widthu (CLUTTER_ACTOR (self->obj),
-                              CLUTTER_UNITS_FROM_FLOAT (width));
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override clutter_actor_set_heightu kwargs
-static PyObject *
-_wrap_clutter_actor_set_heightu (PyGObject *self,
-                                 PyObject  *args,
-                                 PyObject  *kwargs)
-{
-    static char *kwlist[] = { "height", NULL };
-    double height;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"d:ClutterActor.set_heightu", kwlist, &height))
-        return NULL;
-
-    clutter_actor_set_heightu (CLUTTER_ACTOR(self->obj),
-                               CLUTTER_UNITS_FROM_FLOAT (height));
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override clutter_actor_get_xu noargs
-static PyObject *
-_wrap_clutter_actor_get_xu (PyGObject *self)
-{
-    ClutterUnit ret;
-
-    ret = clutter_actor_get_xu (CLUTTER_ACTOR (self->obj));
-
-    return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (ret));
-}
-%%
-override clutter_actor_get_yu noargs
-static PyObject *
-_wrap_clutter_actor_get_yu (PyGObject *self)
-{
-    ClutterUnit ret;
-
-    ret = clutter_actor_get_yu (CLUTTER_ACTOR (self->obj));
-
-    return PyFloat_FromDouble (CLUTTER_UNITS_TO_FLOAT (ret));
-}
-%%
-override clutter_actor_set_xu kwargs
-static PyObject *
-_wrap_clutter_actor_set_xu (PyGObject *self,
-                            PyObject  *args,
-                            PyObject  *kwargs)
-{
-    static char *kwlist[] = { "x", NULL };
-    double x;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"d:ClutterActor.set_xu", kwlist, &x))
-        return NULL;
-
-    clutter_actor_set_xu (CLUTTER_ACTOR (self->obj),
-                          CLUTTER_UNITS_FROM_FLOAT (x));
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override clutter_actor_set_yu kwargs
-static PyObject *
-_wrap_clutter_actor_set_yu (PyGObject *self,
-                            PyObject  *args,
-                            PyObject  *kwargs)
-{
-    static char *kwlist[] = { "y", NULL };
-    double y;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"y:ClutterActor.set_yu", kwlist, &y))
-        return NULL;
-
-    clutter_actor_set_yu (CLUTTER_ACTOR (self->obj),
-                          CLUTTER_UNITS_FROM_FLOAT (y));
-
-    Py_INCREF (Py_None);
-    return Py_None;
+  return Py_BuildValue ("(dd)", anchor_x, anchor_y);
 }
 %%
 override clutter_actor_raise kwargs
