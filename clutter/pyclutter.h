@@ -8,7 +8,6 @@
 #include <Python.h>
 
 #include <clutter/clutter.h>
-#include <clutter/clutter-feature.h>
 
 #include <cogl/cogl.h>
 
