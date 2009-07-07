@@ -126,13 +126,6 @@
   (gtype-id "CLUTTER_TYPE_BEHAVIOUR")
 )
 
-(define-object BehaviourBspline
-  (in-module "Clutter")
-  (parent "ClutterBehaviour")
-  (c-name "ClutterBehaviourBspline")
-  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_BSPLINE")
-)
-
 (define-object BehaviourDepth
   (in-module "Clutter")
   (parent "ClutterBehaviour")
