@@ -554,3 +554,13 @@
   )
 )
 
+(define-enum PickMode
+  (in-module "Clutter")
+  (c-name "ClutterPickMode")
+  (gtype-id "CLUTTER_TYPE_PICK_MODE")
+  (values
+    '("none" "CLUTTER_PICK_NONE")
+    '("reactive" "CLUTTER_PICK_REACTIVE")
+    '("all" "CLUTTER_PICK_ALL")
+  )
+)
