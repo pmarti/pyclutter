@@ -8,10 +8,6 @@ if BUILD_CLUTTERGTK
 SUBDIRS += clutter-gtk
 endif
 
-if BUILD_CLUTTERCAIRO
-SUBDIRS += clutter-cairo
-endif
-
 if ENABLE_DOCS
 SUBDIRS += docs
 endif
@@ -30,8 +26,7 @@ DIST_SUBDIRS = \
 	clutter \
 	examples \
 	clutter-gst \
-	clutter-gtk \
-	clutter-cairo
+	clutter-gtk
 
 EXTRA_DIST = createdefs.py py-compile Makefile.tmpl
 
