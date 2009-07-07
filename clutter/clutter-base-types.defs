@@ -189,25 +189,11 @@
   (gtype-id "CLUTTER_TYPE_EFFECT_TEMPLATE")
 )
 
-(define-object Entry
-  (in-module "Clutter")
-  (parent "ClutterActor")
-  (c-name "ClutterEntry")
-  (gtype-id "CLUTTER_TYPE_ENTRY")
-)
-
 (define-object Group
   (in-module "Clutter")
   (parent "ClutterActor")
   (c-name "ClutterGroup")
   (gtype-id "CLUTTER_TYPE_GROUP")
-)
-
-(define-object Label
-  (in-module "Clutter")
-  (parent "ClutterActor")
-  (c-name "ClutterLabel")
-  (gtype-id "CLUTTER_TYPE_LABEL")
 )
 
 (define-object Rectangle
