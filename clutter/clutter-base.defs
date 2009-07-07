@@ -4009,19 +4009,14 @@
   (is-constructor-of "ClutterTimeline")
   (return-type "ClutterTimeline*")
   (properties
-    '("num_frames" (optional))
-    '("fps" (optional))
-    '("duration" (optional))
+    '("duration")
   )
 )
 
-(define-function timeline_new_for_duration
-  (c-name "clutter_timeline_new_for_duration")
-  (is-constructor-of "ClutterTimeline")
+(define-method clone
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_clone")
   (return-type "ClutterTimeline*")
-  (properties
-    '("duration")
-  )
 )
 
 (define-method get_duration
@@ -4051,33 +4046,6 @@
   (return-type "none")
   (parameters
     '("ClutterTimelineDirection" "direction")
-  )
-)
-
-(define-method get_progress
-  (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_get_progress")
-  (return-type "gdouble")
-)
-
-(define-method clone
-  (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_clone")
-  (return-type "ClutterTimeline*")
-)
-
-(define-method get_speed
-  (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_get_speed")
-  (return-type "guint")
-)
-
-(define-method set_speed
-  (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_set_speed")
-  (return-type "none")
-  (parameters
-    '("guint" "fps")
   )
 )
 
@@ -4125,7 +4093,7 @@
   (c-name "clutter_timeline_skip")
   (return-type "none")
   (parameters
-    '("guint" "n_frames")
+    '("guint" "msecs")
   )
 )
 
@@ -4134,29 +4102,20 @@
   (c-name "clutter_timeline_advance")
   (return-type "none")
   (parameters
-    '("guint" "frame_num")
+    '("guint" "msecs")
   )
 )
 
-(define-method get_current_frame
+(define-method get_elapsed_time
   (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_get_current_frame")
-  (return-type "gint")
-)
-
-(define-method set_n_frames
-  (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_set_n_frames")
-  (return-type "none")
-  (parameters
-    '("guint" "n_frames")
-  )
-)
-
-(define-method get_n_frames
-  (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_get_n_frames")
+  (c-name "clutter_timeline_get_elapsed_time")
   (return-type "guint")
+)
+
+(define-method get_progress
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_progress")
+  (return-type "gdouble")
 )
 
 (define-method is_playing
@@ -4184,19 +4143,6 @@
   (of-object "ClutterTimeline")
   (c-name "clutter_timeline_get_delta")
   (return-type "guint")
-  (parameters
-    '("guint*" "msecs")
-  )
-)
-
-(define-method add_marker_at_frame
-  (of-object "ClutterTimeline")
-  (c-name "clutter_timeline_add_marker_at_frame")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "marker_name")
-    '("guint" "frame_num")
-  )
 )
 
 (define-method add_marker_at_time
@@ -4223,7 +4169,7 @@
   (c-name "clutter_timeline_list_markers")
   (return-type "gchar**")
   (parameters
-    '("gint" "frame_num")
+    '("gint" "msecs")
     '("gsize*" "n_markers")
   )
 )
@@ -4243,6 +4189,15 @@
   (return-type "none")
   (parameters
     '("const-gchar*" "marker_name")
+  )
+)
+
+(define-method do_tick
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_do_tick")
+  (return-type "none")
+  (parameters
+    '("GTimeVal*" "tick_time")
   )
 )
 

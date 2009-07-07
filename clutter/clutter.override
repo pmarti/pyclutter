@@ -66,6 +66,7 @@ ignore
   clutter_container_child_get
   clutter_container_class_find_child_property
   clutter_container_class_list_child_properties
+  clutter_timeline_do_tick
 %%
 ignore-glob
   *_quark
@@ -503,17 +504,6 @@ _wrap_clutter_threads_enter (PyObject *self)
         return Py_None;
 }
 %%
-override clutter_timeline_get_delta noargs
-static PyObject *
-_wrap_clutter_timeline_get_delta (PyGObject *self)
-{
-  guint frames, msecs;
-
-  frames = clutter_timeline_get_delta (CLUTTER_TIMELINE (self->obj), &msecs);
-
-  return Py_BuildValue ("(ii)", frames, msecs);
-}
-%%
 override clutter_score_list_timelines noargs
 static PyObject *
 _wrap_clutter_score_list_timelines (PyGObject *self)
@@ -554,22 +544,22 @@ _wrap_clutter_timeline_list_markers (PyGObject *self,
                                      PyObject  *args,
                                      PyObject  *kwargs)
 {
-  static char *kwlist[] = { "frame_num", NULL };
+  static char *kwlist[] = { "msecs", NULL };
   gchar **markers;
-  gint frame_num = 0;
+  gint msecs = 0;
   guint i;
   gsize n_markers;
   PyObject *py_ret;
 
   if (!PyArg_ParseTupleAndKeywords (args, kwargs,
                                     "i:ClutterTimeline.list_markers", kwlist,
-                                    &frame_num))
+                                    &msecs))
     {
       return NULL;
     }
 
   markers = clutter_timeline_list_markers (CLUTTER_TIMELINE (self->obj),
-                                           frame_num,
+                                           msecs,
                                            &n_markers);
   if (n_markers == 0)
     {
