@@ -10,6 +10,7 @@ ignore
   clutter_key_event_code
   clutter_key_event_unicode
   clutter_button_event_button
+  clutter_event_get_device
 %%
 override clutter_event_get_coords noargs
 static PyObject *
@@ -251,11 +252,11 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 						      "hardware_keycode",
                                                       "unicode_value");
 			if (!strcmp (attr, "keyval"))
-				return PyInt_FromLong (clutter_key_event_symbol ((ClutterKeyEvent *) event));
+				return PyInt_FromLong (clutter_event_get_key_symbol ((ClutterEvent *) event));
 			if (!strcmp (attr, "hardware_keycode"))
-				return PyInt_FromLong (clutter_key_event_code ((ClutterKeyEvent *) event));
+				return PyInt_FromLong (clutter_event_get_key_code ((ClutterEvent *) event));
                         if (!strcmp (attr, "unicode_value"))
-                                return PyInt_FromLong (clutter_key_event_unicode ((ClutterKeyEvent *) event));
+                                return PyInt_FromLong (clutter_event_get_key_unicode ((ClutterEvent *) event));
 			break;
                 case CLUTTER_ENTER:
                 case CLUTTER_LEAVE:

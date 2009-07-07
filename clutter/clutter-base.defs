@@ -2176,6 +2176,12 @@
   (return-type "ClutterEventType")
 )
 
+(define-method get_flags
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_flags")
+  (return-type "ClutterEventFlags")
+)
+
 (define-method get_time
   (of-object "ClutterEvent")
   (c-name "clutter_event_get_time")
@@ -2186,6 +2192,24 @@
   (of-object "ClutterEvent")
   (c-name "clutter_event_get_state")
   (return-type "ClutterModifierType")
+)
+
+(define-method get_device_id
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_device_id")
+  (return-type "gint")
+)
+
+(define-method get_device_type
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_device_type")
+  (return-type "ClutterInputDeviceType")
+)
+
+(define-method get_device
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_device")
+  (return-type "ClutterInputDevice*")
 )
 
 (define-method get_coords
@@ -2204,28 +2228,52 @@
   (return-type "ClutterActor*")
 )
 
-(define-method symbol
-  (of-object "ClutterKeyEvent")
-  (c-name "clutter_key_event_symbol")
+(define-method get_stage
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_stage")
+  (return-type "ClutterStage*")
+)
+
+(define-method get_key_symbol
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_key_symbol")
   (return-type "guint")
 )
 
-(define-method code
-  (of-object "ClutterKeyEvent")
-  (c-name "clutter_key_event_code")
+(define-method get_key_code
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_key_code")
   (return-type "guint16")
 )
 
-(define-method unicode
-  (of-object "ClutterKeyEvent")
-  (c-name "clutter_key_event_unicode")
+(define-method get_key_unicode
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_key_unicode")
   (return-type "guint32")
 )
 
-(define-method button
-  (of-object "ClutterButtonEvent")
-  (c-name "clutter_button_event_button")
+(define-method get_button
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_button")
   (return-type "guint32")
+)
+
+(define-method get_click_count
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_click_count")
+  (return-type "guint")
+)
+
+(define-method get_related
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_related")
+  (return-type "ClutterActor*")
+)
+
+(define-method get_scroll_direction
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_scroll_direction")
+  (return-type "ClutterScrollDirection")
 )
 
 (define-function keysym_to_unicode
@@ -2236,15 +2284,20 @@
   )
 )
 
-(define-method get_stage
-  (of-object "ClutterEvent")
-  (c-name "clutter_event_get_stage")
-  (return-type "ClutterStage*")
+(define-function get_current_event_time
+  (c-name "clutter_get_current_event_time")
+  (return-type "guint32")
+)
+
+(define-method get_device_type
+  (of-object "ClutterInputDevice")
+  (c-name "clutter_input_device_get_device_type")
+  (return-type "ClutterInputDeviceType")
 )
 
 (define-method get_device_id
-  (of-object "ClutterEvent")
-  (c-name "clutter_event_get_device_id")
+  (of-object "ClutterInputDevice")
+  (c-name "clutter_input_device_get_device_id")
   (return-type "gint")
 )
 
@@ -2492,19 +2545,6 @@
 (define-function get_motion_events_enabled
   (c-name "clutter_get_motion_events_enabled")
   (return-type "gboolean")
-)
-
-(define-function set_motion_events_frequency
-  (c-name "clutter_set_motion_events_frequency")
-  (return-type "none")
-  (parameters
-    '("guint" "frequency")
-  )
-)
-
-(define-function get_motion_events_frequency
-  (c-name "clutter_get_motion_events_frequency")
-  (return-type "guint")
 )
 
 (define-function set_default_frame_rate

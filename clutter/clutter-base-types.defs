@@ -281,7 +281,8 @@
   (c-name "ClutterEventFlags")
   (gtype-id "CLUTTER_TYPE_EVENT_FLAGS")
   (values
-    '("c" "CLUTTER_EVENT_FLAG_SYNTHETIC")
+    '("none" "CLUTTER_EVENT_NONE")
+    '("flag-synthetic" "CLUTTER_EVENT_FLAG_SYNTHETIC")
   )
 )
 
@@ -368,6 +369,11 @@
     '("button3-mask" "CLUTTER_BUTTON3_MASK")
     '("button4-mask" "CLUTTER_BUTTON4_MASK")
     '("button5-mask" "CLUTTER_BUTTON5_MASK")
+    '("super-mask" "CLUTTER_SUPER_MASK")
+    '("hyper-mask" "CLUTTER_HYPER_MASK")
+    '("meta-mask" "CLUTTER_META_MASK")
+    '("release-mask" "CLUTTER_RELEASE_MASK")
+    '("modifier-mask" "CLUTTER_MODIFIER_MASK")
   )
 )
 
@@ -380,9 +386,9 @@
     '("key-press" "CLUTTER_KEY_PRESS")
     '("key-release" "CLUTTER_KEY_RELEASE")
     '("motion" "CLUTTER_MOTION")
+    '("enter" "CLUTTER_ENTER")
+    '("leave" "CLUTTER_LEAVE")
     '("button-press" "CLUTTER_BUTTON_PRESS")
-    '("2button-press" "CLUTTER_2BUTTON_PRESS")
-    '("3button-press" "CLUTTER_3BUTTON_PRESS")
     '("button-release" "CLUTTER_BUTTON_RELEASE")
     '("scroll" "CLUTTER_SCROLL")
     '("stage-state" "CLUTTER_STAGE_STATE")
@@ -562,5 +568,17 @@
     '("none" "CLUTTER_PICK_NONE")
     '("reactive" "CLUTTER_PICK_REACTIVE")
     '("all" "CLUTTER_PICK_ALL")
+  )
+)
+
+(define-enum InputDeviceType
+  (in-module "Clutter")
+  (c-name "ClutterInputDeviceType")
+  (gtype-id "CLUTTER_TYPE_INPUT_DEVICE_TYPE")
+  (values
+    '("pointer-device" "CLUTTER_POINTER_DEVICE")
+    '("keyboard-device" "CLUTTER_KEYBOARD_DEVICE")
+    '("extension-device" "CLUTTER_EXTENSION_DEVICE")
+    '("n-device-types" "CLUTTER_N_DEVICE_TYPES")
   )
 )
