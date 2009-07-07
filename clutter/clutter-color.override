@@ -1,10 +1,6 @@
 ignore
   clutter_color_copy
   clutter_color_free
-  clutter_color_equal
-  clutter_color_shadex
-  clutter_color_to_hlsx
-  clutter_color_from_hlsx
 %%
 override clutter_color_new kwargs
 static int
@@ -77,12 +73,12 @@ static PyObject *
 _wrap_clutter_color_to_hls (PyGBoxed *self)
 {
         ClutterColor *color;
-        guint8 h, l, s;
+        gfloat h, l, s;
 
         color = pyg_boxed_get (self, ClutterColor);
         clutter_color_to_hls (color, &h, &l, &s);
 
-        return Py_BuildValue ("(BBB)", h, l, s);
+        return Py_BuildValue ("(ddd)", h, l, s);
 }
 %%
 override clutter_color_from_hls kwargs
@@ -92,11 +88,11 @@ _wrap_clutter_color_from_hls (PyObject *self,
                               PyObject *kwargs)
 {
         static char *kwlist[] = { "hue", "luminance", "saturation", NULL };
-        unsigned int h, l, s;
+        gfloat h, l, s;
         ClutterColor color = { 0, };
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "|BBB:color_from_hls", kwlist,
+                                          "|fff:color_from_hls", kwlist,
                                           &h, &l, &s))
                 return NULL;
 
@@ -125,22 +121,22 @@ _wrap_clutter_color_from_pixel (PyObject *self,
         return pyg_boxed_new (CLUTTER_TYPE_COLOR, &color, TRUE, TRUE);
 }
 %%
-override clutter_color_parse kwargs
+override clutter_color_from_string kwargs
 static PyObject *
-_wrap_clutter_color_parse (PyObject *self,
-                           PyObject *args,
-                           PyObject *kwargs)
+_wrap_clutter_color_from_string (PyObject *self,
+                                 PyObject *args,
+                                 PyObject *kwargs)
 {
         static char *kwlist[] = { "spec", NULL };
         const char *spec;
         ClutterColor color = { 0, };
 
         if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                          "s:color_parse", kwlist,
+                                          "s:color_from_string", kwlist,
                                           &spec))
                 return NULL;
 
-        if (!clutter_color_parse (spec, &color)) {
+        if (!clutter_color_from_string (&color, spec)) {
                 PyErr_SetString (PyExc_ValueError,
                                  "unable to parse color specification");
                 return NULL;
@@ -242,7 +238,7 @@ _wrap_clutter_color_shade (PyGBoxed *self,
                                           &shade))
                 return NULL;
 
-        clutter_color_shade (pyg_boxed_get (self, ClutterColor), &dest, shade);
+        clutter_color_shade (pyg_boxed_get (self, ClutterColor), shade, &dest);
 
         return pyg_boxed_new (CLUTTER_TYPE_COLOR, &dest, TRUE, TRUE);
 }

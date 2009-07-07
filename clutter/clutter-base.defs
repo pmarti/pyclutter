@@ -1993,10 +1993,21 @@
 
 ;; From clutter-color.h
 
+(define-function color_get_type
+  (c-name "clutter_color_get_type")
+  (return-type "GType")
+)
+
 (define-function color_new
   (c-name "clutter_color_new")
   (is-constructor-of "ClutterColor")
   (return-type "ClutterColor*")
+  (parameters
+    '("guint8" "red")
+    '("guint8" "green")
+    '("guint8" "blue")
+    '("guint8" "alpha")
+  )
 )
 
 (define-method copy
@@ -2011,21 +2022,51 @@
   (return-type "none")
 )
 
-(define-function color_parse
-  (c-name "clutter_color_parse")
-  (return-type "gboolean")
+(define-method add
+  (of-object "ClutterColor")
+  (c-name "clutter_color_add")
+  (return-type "none")
   (parameters
-    '("const-gchar*" "color")
-    '("ClutterColor*" "dest")
+    '("const-ClutterColor*" "b")
+    '("ClutterColor*" "result")
   )
 )
 
-(define-method equal
+(define-method subtract
   (of-object "ClutterColor")
-  (c-name "clutter_color_equal")
-  (return-type "gboolean")
+  (c-name "clutter_color_subtract")
+  (return-type "none")
   (parameters
     '("const-ClutterColor*" "b")
+    '("ClutterColor*" "result")
+  )
+)
+
+(define-method lighten
+  (of-object "ClutterColor")
+  (c-name "clutter_color_lighten")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "result")
+  )
+)
+
+(define-method darken
+  (of-object "ClutterColor")
+  (c-name "clutter_color_darken")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "result")
+  )
+)
+
+(define-method shade
+  (of-object "ClutterColor")
+  (c-name "clutter_color_shade")
+  (return-type "none")
+  (parameters
+    '("gdouble" "factor")
+    '("ClutterColor*" "result")
   )
 )
 
@@ -2035,56 +2076,12 @@
   (return-type "gchar*")
 )
 
-(define-function color_get_type
-  (c-name "clutter_color_get_type")
-  (return-type "GType")
-)
-
-(define-method add
-  (of-object "ClutterColor")
-  (c-name "clutter_color_add")
-  (return-type "none")
-  (parameters
-    '("const-ClutterColor*" "src2")
-    '("ClutterColor*" "dest")
-  )
-)
-
-(define-method subtract
-  (of-object "ClutterColor")
-  (c-name "clutter_color_subtract")
-  (return-type "none")
-  (parameters
-    '("const-ClutterColor*" "src2")
-    '("ClutterColor*" "dest")
-  )
-)
-
-(define-method lighten
-  (of-object "ClutterColor")
-  (c-name "clutter_color_lighten")
-  (return-type "none")
+(define-function color_from_string
+  (c-name "clutter_color_from_string")
+  (return-type "gboolean")
   (parameters
     '("ClutterColor*" "dest")
-  )
-)
-
-(define-method darken
-  (of-object "ClutterColor")
-  (c-name "clutter_color_darken")
-  (return-type "none")
-  (parameters
-    '("ClutterColor*" "dest")
-  )
-)
-
-(define-method shade
-  (of-object "ClutterColor")
-  (c-name "clutter_color_shade")
-  (return-type "none")
-  (parameters
-    '("ClutterColor*" "dest")
-    '("gdouble" "shade")
+    '("const-gchar*" "str")
   )
 )
 
@@ -2093,9 +2090,9 @@
   (c-name "clutter_color_to_hls")
   (return-type "none")
   (parameters
-    '("guint8*" "hue")
-    '("guint8*" "luminance")
-    '("guint8*" "saturation")
+    '("gfloat*" "hue")
+    '("gfloat*" "luminance")
+    '("gfloat*" "saturation")
   )
 )
 
@@ -2104,9 +2101,9 @@
   (c-name "clutter_color_from_hls")
   (return-type "none")
   (parameters
-    '("guint8" "hue")
-    '("guint8" "luminance")
-    '("guint8" "saturation")
+    '("gfloat" "hue")
+    '("gfloat" "luminance")
+    '("gfloat" "saturation")
   )
 )
 
@@ -2124,7 +2121,6 @@
     '("guint32" "pixel")
   )
 )
-
 
 
 ;; From clutter-container.h
