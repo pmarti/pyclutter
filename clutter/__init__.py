@@ -69,7 +69,6 @@ keysyms = LazyModule('keysyms', locals())
 _init()
 
 __version__ = _clutter.__version__
-MAX_ALPHA = _clutter.MAX_ALPHA
 
 from clutter._clutter import *
 

@@ -84,13 +84,7 @@ pycogl_add_gl_constants (PyObject *module)
   PyModule_AddObject (module, "SRC_ALPHA", Py_BuildValue ("i", CGL_SRC_ALPHA));
   PyModule_AddObject (module, "ONE_MINUS_SRC_ALPHA", Py_BuildValue ("i", CGL_ONE_MINUS_SRC_ALPHA));
 
-  PyModule_AddObject (module, "VERTEX_SHADER", Py_BuildValue ("i", CGL_VERTEX_SHADER));
-  PyModule_AddObject (module, "FRAGMENT_SHADER", Py_BuildValue ("i", CGL_FRAGMENT_SHADER));
   PyModule_AddObject (module, "OBJECT_COMPILE_STATUS", Py_BuildValue ("i", CGL_OBJECT_COMPILE_STATUS));
-
-  PyModule_AddObject (module, "NEAREST", Py_BuildValue ("i", CGL_NEAREST));
-  PyModule_AddObject (module, "LINEAR", Py_BuildValue ("i", CGL_LINEAR));
-  PyModule_AddObject (module, "LINEAR_MIPMAP_LINEAR", Py_BuildValue ("i", CGL_LINEAR_MIPMAP_LINEAR));
 
   if (PyErr_Occurred ())
     PyErr_Print ();
@@ -133,9 +127,6 @@ init_clutter (void)
                                      CLUTTER_MAJOR_VERSION,
                                      CLUTTER_MINOR_VERSION,
                                      CLUTTER_MICRO_VERSION));
-
-  PyModule_AddObject (m, "MAX_ALPHA",
-                      Py_BuildValue ("i", CLUTTER_ALPHA_MAX_ALPHA));
 
   pyclutter_register_classes (d);
   pyclutter_register_exceptions (d);
