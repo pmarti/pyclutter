@@ -3541,26 +3541,14 @@
 
 ;; From clutter-stage.h
 
-(define-function fog_get_type
-  (c-name "clutter_fog_get_type")
-  (return-type "GType")
-)
-
 (define-function perspective_get_type
   (c-name "clutter_perspective_get_type")
   (return-type "GType")
 )
 
-(define-method copy
-  (of-object "ClutterPerspective")
-  (c-name "clutter_perspective_copy")
-  (return-type "ClutterPerspective*")
-)
-
-(define-method free
-  (of-object "ClutterPerspective")
-  (c-name "clutter_perspective_free")
-  (return-type "none")
+(define-function fog_get_type
+  (c-name "clutter_fog_get_type")
+  (return-type "GType")
 )
 
 (define-function stage_get_type
@@ -3573,7 +3561,7 @@
   (return-type "ClutterActor*")
 )
 
-(define-function clutter_stage_new
+(define-function stage_new
   (c-name "clutter_stage_new")
   (is-constructor-of "ClutterStage")
   (return-type "ClutterActor*")
@@ -3602,10 +3590,7 @@
   (c-name "clutter_stage_set_perspective")
   (return-type "none")
   (parameters
-    '("gfloat" "fovy")
-    '("gfloat" "aspect")
-    '("gfloat" "z_near")
-    '("gfloat" "z_far")
+    '("ClutterPerspective*" "perspective")
   )
 )
 
@@ -3614,23 +3599,23 @@
   (c-name "clutter_stage_get_perspective")
   (return-type "none")
   (parameters
-    '("gfloat*" "fovy")
-    '("gfloat*" "aspect")
-    '("gfloat*" "z_near")
-    '("gfloat*" "z_far")
+    '("ClutterPerspective*" "perspective")
   )
 )
 
-(define-method fullscreen
+(define-method set_fullscreen
   (of-object "ClutterStage")
-  (c-name "clutter_stage_fullscreen")
+  (c-name "clutter_stage_set_fullscreen")
   (return-type "none")
+  (parameters
+    '("gboolean" "fullscreen")
+  )
 )
 
-(define-method unfullscreen
+(define-method get_fullscreen
   (of-object "ClutterStage")
-  (c-name "clutter_stage_unfullscreen")
-  (return-type "none")
+  (c-name "clutter_stage_get_fullscreen")
+  (return-type "gboolean")
 )
 
 (define-method show_cursor
@@ -3650,8 +3635,21 @@
   (c-name "clutter_stage_get_actor_at_pos")
   (return-type "ClutterActor*")
   (parameters
+    '("ClutterPickMode" "pick_mode")
     '("gint" "x")
     '("gint" "y")
+  )
+)
+
+(define-method read_pixels
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_read_pixels")
+  (return-type "gchar*")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
   )
 )
 
@@ -3684,7 +3682,7 @@
   (c-name "clutter_stage_set_user_resizable")
   (return-type "none")
   (parameters
-    '("gboolean" "value")
+    '("gboolean" "resizable")
   )
 )
 
@@ -3714,9 +3712,7 @@
   (c-name "clutter_stage_set_fog")
   (return-type "none")
   (parameters
-    '("gdouble" "density")
-    '("gdouble" "z_near")
-    '("gdouble" "z_far")
+    '("ClutterFog*" "fog")
   )
 )
 
@@ -3725,9 +3721,7 @@
   (c-name "clutter_stage_get_fog")
   (return-type "none")
   (parameters
-    '("gdouble*" "density")
-    '("gdouble*" "z_near")
-    '("gdouble*" "z_far")
+    '("ClutterFog*" "fog")
   )
 )
 
@@ -3746,16 +3740,10 @@
   (return-type "ClutterActor*")
 )
 
-(define-method get_resolution
+(define-method ensure_current
   (of-object "ClutterStage")
-  (c-name "clutter_stage_get_resolution")
-  (return-type "gdouble")
-)
-
-(define-method is_default
-  (of-object "ClutterStage")
-  (c-name "clutter_stage_is_default")
-  (return-type "gboolean")
+  (c-name "clutter_stage_ensure_current")
+  (return-type "none")
 )
 
 (define-method queue_redraw
@@ -3764,17 +3752,24 @@
   (return-type "none")
 )
 
-(define-method read_pixels
+(define-method is_default
   (of-object "ClutterStage")
-  (c-name "clutter_stage_read_pixels")
-  (return-type "gchar*")
-  (parameters
-    '("gint" "x")
-    '("gint" "y")
-    '("gint" "width")
-    '("gint" "height")
-  )
+  (c-name "clutter_stage_is_default")
+  (return-type "gboolean")
 )
+
+(define-method ensure_viewport
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_ensure_viewport")
+  (return-type "none")
+)
+
+(define-method ensure_redraw
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_ensure_redraw")
+  (return-type "none")
+)
+
 
 
 

@@ -475,32 +475,6 @@ _wrap_clutter_container_get_children (PyGObject *self)
         return py_list;
 }
 %%
-override clutter_stage_get_fog noargs
-static PyObject *
-_wrap_clutter_stage_get_fog (PyGObject *self)
-{
-        gdouble density, z_near, z_far;
-
-        clutter_stage_get_fog (CLUTTER_STAGE (self->obj),
-                               &density,
-                               &z_near,
-                               &z_far);
-
-        return Py_BuildValue ("(ddd)", density, z_near, z_far);
-}
-%%
-override clutter_stage_get_perspective noargs
-static PyObject *
-_wrap_clutter_stage_get_perspective (PyGObject *self)
-{
-        gfloat fovy, aspect, z_near, z_far;
-
-        clutter_stage_get_perspective (CLUTTER_STAGE (self->obj),
-                                       &fovy, &aspect, &z_near, &z_far);
-
-        return Py_BuildValue ("(ffff)", fovy, aspect, z_near, z_far);
-}
-%%
 override clutter_threads_init noargs
 static PyObject *
 _wrap_clutter_threads_init (PyObject *self)
