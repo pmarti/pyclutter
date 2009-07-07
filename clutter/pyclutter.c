@@ -278,28 +278,6 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         return retval;
 }
 
-void
-pyclutter_effect_complete (ClutterActor *actor,
-                           gpointer      data)
-{
-        PyClutterCallback *pycb = data;
-        PyGILState_STATE state;
-        PyObject *py_actor, *retobj;
-
-        state = pyg_gil_state_ensure ();
-
-        py_actor = pygobject_new ((GObject *) actor);
-        retobj = pyclutter_callback_invoke (pycb, py_actor);
-        if (retobj == NULL)
-                PyErr_Print ();
-
-        Py_XDECREF (retobj);
-	Py_XDECREF (py_actor);
-
-        pyg_gil_state_release (state);
-
-        pyclutter_callback_free (pycb);
-}
 
 GType
 pycogl_pixel_format_get_type (void)

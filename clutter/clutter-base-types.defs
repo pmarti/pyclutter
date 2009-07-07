@@ -182,13 +182,6 @@
   (gtype-id "CLUTTER_TYPE_CLONE_TEXTURE")
 )
 
-(define-object EffectTemplate
-  (in-module "Clutter")
-  (parent "GObject")
-  (c-name "ClutterEffectTemplate")
-  (gtype-id "CLUTTER_TYPE_EFFECT_TEMPLATE")
-)
-
 (define-object Group
   (in-module "Clutter")
   (parent "ClutterActor")
