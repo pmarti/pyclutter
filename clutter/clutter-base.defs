@@ -1053,10 +1053,23 @@
   (c-name "clutter_alpha_new")
   (is-constructor-of "ClutterAlpha")
   (return-type "ClutterAlpha*")
+  (properties
+    '("timeline" (optional))
+    '("mode" (optional))
+  )
 )
 
 (define-function alpha_new_full
   (c-name "clutter_alpha_new_full")
+  (return-type "ClutterAlpha*")
+  (parameters
+    '("ClutterTimeline*" "timeline")
+    '("gulong" "mode")
+  )
+)
+
+(define-function alpha_new_with_func
+  (c-name "clutter_alpha_new_with_func")
   (return-type "ClutterAlpha*")
   (parameters
     '("ClutterTimeline*" "timeline")
@@ -1069,7 +1082,7 @@
 (define-method get_alpha
   (of-object "ClutterAlpha")
   (c-name "clutter_alpha_get_alpha")
-  (return-type "guint32")
+  (return-type "gdouble")
 )
 
 (define-method set_func
@@ -1107,111 +1120,35 @@
   (return-type "ClutterTimeline*")
 )
 
-(define-function ramp_inc_func
-  (c-name "clutter_ramp_inc_func")
-  (return-type "guint32")
+(define-method set_mode
+  (of-object "ClutterAlpha")
+  (c-name "clutter_alpha_set_mode")
+  (return-type "none")
   (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
+    '("gulong" "mode")
   )
 )
 
-(define-function ramp_dec_func
-  (c-name "clutter_ramp_dec_func")
-  (return-type "guint32")
+(define-method get_mode
+  (of-object "ClutterAlpha")
+  (c-name "clutter_alpha_get_mode")
+  (return-type "gulong")
+)
+
+(define-function alpha_register_func
+  (c-name "clutter_alpha_register_func")
+  (return-type "gulong")
   (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
+    '("ClutterAlphaFunc" "func")
+    '("gpointer" "data")
   )
 )
 
-(define-function ramp_func
-  (c-name "clutter_ramp_func")
-  (return-type "guint32")
+(define-function alpha_register_closure
+  (c-name "clutter_alpha_register_closure")
+  (return-type "gulong")
   (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function sine_func
-  (c-name "clutter_sine_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function sine_inc_func
-  (c-name "clutter_sine_inc_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function sine_dec_func
-  (c-name "clutter_sine_dec_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function sine_half_func
-  (c-name "clutter_sine_half_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function square_func
-  (c-name "clutter_square_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function smoothstep_inc_func
-  (c-name "clutter_smoothstep_inc_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function smoothstep_dec_func
-  (c-name "clutter_smoothstep_dec_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function exp_inc_func
-  (c-name "clutter_exp_inc_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
-  )
-)
-
-(define-function exp_dec_func
-  (c-name "clutter_exp_dec_func")
-  (return-type "guint32")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-    '("gpointer" "dummy")
+    '("GClosure*" "closure")
   )
 )
 

@@ -243,14 +243,14 @@ out:
         return FALSE;
 }
 
-guint32
+gdouble
 pyclutter_alpha_func (ClutterAlpha *alpha,
                       gpointer      data)
 {
         PyClutterCallback *pycb = data;
         PyGILState_STATE state;
         PyObject *py_alpha, *retobj;
-        guint32 retval = 0;
+        gdouble retval = 0.0;
 
         state = pyg_gil_state_ensure ();
 
@@ -259,13 +259,9 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         if (retobj == NULL)
                 PyErr_Print ();
 
-        if (PyLong_Check (retobj)) {
-                retval = (guint32) PyLong_AsUnsignedLong (retobj);
-        }
-        else if (PyInt_Check (retobj)) {
-                retval = (guint32) PyInt_AsLong (retobj);
-        }
-        else {
+        if (PyFloat_Check (retobj)) {
+                retval = (gdouble) PyFloat_AsDouble (retobj);
+        } else {
                 PyErr_SetString (PyExc_TypeError,
                                  "returned value is not an integer");
         }

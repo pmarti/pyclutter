@@ -23,7 +23,7 @@ void               pyclutter_callback_free   (PyClutterCallback *cb);
 PyObject *         pyclutter_callback_invoke (PyClutterCallback *cb,
                                               ...);
 
-guint32   pyclutter_alpha_func              (ClutterAlpha    *alpha,
+gdouble   pyclutter_alpha_func              (ClutterAlpha    *alpha,
                                              gpointer         data);
 
 gboolean  pyclutter_geometry_from_pyobject  (PyObject        *object,
