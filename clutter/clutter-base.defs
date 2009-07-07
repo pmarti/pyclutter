@@ -2354,32 +2354,6 @@
   (return-type "none")
 )
 
-(define-method raise
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_raise")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-    '("ClutterActor*" "sibling")
-  )
-)
-
-(define-method lower
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_lower")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-    '("ClutterActor*" "sibling")
-  )
-)
-
-(define-method sort_depth_order
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_sort_depth_order")
-  (return-type "none")
-)
-
 
 
 ;; From clutter.h
