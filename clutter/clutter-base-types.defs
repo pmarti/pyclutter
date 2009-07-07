@@ -175,13 +175,6 @@
   (gtype-id "CLUTTER_TYPE_BEHAVIOUR_SCALE")
 )
 
-(define-object CloneTexture
-  (in-module "Clutter")
-  (parent "ClutterActor")
-  (c-name "ClutterCloneTexture")
-  (gtype-id "CLUTTER_TYPE_CLONE_TEXTURE")
-)
-
 (define-object Group
   (in-module "Clutter")
   (parent "ClutterActor")

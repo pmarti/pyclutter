@@ -1895,37 +1895,6 @@
 
 
 
-;; From clutter-clone-texture.h
-
-(define-function clone_texture_get_type
-  (c-name "clutter_clone_texture_get_type")
-  (return-type "GType")
-)
-
-(define-function clone_texture_new
-  (c-name "clutter_clone_texture_new")
-  (is-constructor-of "ClutterCloneTexture")
-  (return-type "ClutterActor*")
-  (properties
-    '("parent-texture" (argname "texture"))
-  )
-)
-
-(define-method get_parent_texture
-  (of-object "ClutterCloneTexture")
-  (c-name "clutter_clone_texture_get_parent_texture")
-  (return-type "ClutterTexture*")
-)
-
-(define-method set_parent_texture
-  (of-object "ClutterCloneTexture")
-  (c-name "clutter_clone_texture_set_parent_texture")
-  (return-type "none")
-  (parameters
-    '("ClutterTexture*" "texture")
-  )
-)
-
 
 
 ;; From clutter-color.h
