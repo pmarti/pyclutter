@@ -313,6 +313,18 @@
   (values
     '("mapped" "CLUTTER_ACTOR_MAPPED")
     '("realized" "CLUTTER_ACTOR_REALIZED")
+    '("reactive" "CLUTTER_ACTOR_REACTIVE")
+    '("visible" "CLUTTER_ACTOR_VISIBLE")
+  )
+)
+
+(define-flags AllocationFlags
+  (in-module "Clutter")
+  (c-name "ClutterAllocationFlags")
+  (gtype-id "CLUTTER_TYPE_ALLOCATION_FLAGS")
+  (values
+    '("allocation-none" "CLUTTER_ALLOCATION_NONE")
+    '("absolute-origin-changed" "CLUTTER_ABSOLUTE_ORIGIN_CHANGED")
   )
 )
 
