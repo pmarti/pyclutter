@@ -3497,16 +3497,16 @@
   )
 )
 
-(define-method is_compiled
-  (of-object "ClutterShader")
-  (c-name "clutter_shader_is_compiled")
-  (return-type "gboolean")
-)
-
 (define-method release
   (of-object "ClutterShader")
   (c-name "clutter_shader_release")
   (return-type "none")
+)
+
+(define-method is_compiled
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_is_compiled")
+  (return-type "gboolean")
 )
 
 (define-method set_vertex_source
@@ -3541,15 +3541,34 @@
   (return-type "const-gchar*")
 )
 
-(define-method set_uniform_1f
+(define-method set_uniform
   (of-object "ClutterShader")
-  (c-name "clutter_shader_set_uniform_1f")
+  (c-name "clutter_shader_set_uniform")
   (return-type "none")
   (parameters
     '("const-gchar*" "name")
-    '("gfloat" "value")
+    '("const-GValue*" "value")
   )
 )
+
+(define-method get_cogl_program
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_get_cogl_program")
+  (return-type "CoglHandle")
+)
+
+(define-method get_cogl_fragment_shader
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_get_cogl_fragment_shader")
+  (return-type "CoglHandle")
+)
+
+(define-method get_cogl_vertex_shader
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_get_cogl_vertex_shader")
+  (return-type "CoglHandle")
+)
+
 
 
 

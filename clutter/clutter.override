@@ -67,6 +67,8 @@ ignore
   clutter_container_class_find_child_property
   clutter_container_class_list_child_properties
   clutter_timeline_do_tick
+  clutter_actor_set_shader_param
+  clutter_shader_set_uniform
 %%
 ignore-glob
   *_quark
