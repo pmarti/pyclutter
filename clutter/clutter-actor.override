@@ -144,6 +144,18 @@ _wrap_clutter_actor_get_scale (PyGObject *self)
         return Py_BuildValue ("(dd)", scale_x, scale_y);
 }
 %%
+override clutter_actor_get_scale_center noargs
+static PyObject *
+_wrap_clutter_actor_get_scale_center (PyGObject *self)
+{
+    gfloat center_x, center_y;
+
+    clutter_actor_get_scale_center (CLUTTER_ACTOR (self->obj),
+                                    &center_x,
+                                    &center_y);
+    return Py_BuildValue ("(dd)", center_x, center_y);
+}
+%%
 override clutter_actor_set_rotation kwargs
 static PyObject *
 _wrap_clutter_actor_set_rotation (PyGObject *self,
