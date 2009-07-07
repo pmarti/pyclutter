@@ -30,6 +30,7 @@ AC_DEFINE(PYCLUTTER_VERSION, [pyclutter_version], [pyclutter version])
 AC_SUBST(PYCLUTTER_VERSION, [pyclutter_version])
 
 AC_CONFIG_SRCDIR([clutter/cluttermodule.c])
+AC_CONFIG_MACRO_DIR([build/autotools])
 AM_CONFIG_HEADER(config.h)
 
 AM_INIT_AUTOMAKE([1.9])
@@ -185,8 +186,14 @@ JH_ADD_CFLAG([-Wall])
 #JH_ADD_CFLAG([-std=c9x])
 JH_ADD_CFLAG([-fno-strict-aliasing])
 
+SHAVE_INIT([build/autotools], [enable])
+
 AC_CONFIG_FILES([
         Makefile
+		build/Makefile
+		build/autotools/Makefile
+		build/autotools/shave-libtool
+		build/autotools/shave
         pyclutter.pc
         docs/Makefile
         docs/reference/entities.docbook
@@ -199,7 +206,7 @@ AC_CONFIG_FILES([
 AC_OUTPUT
 
 echo "* PyClutter:
-        build cluttergst:     $build_cluttergst
-        build cluttergtk:     $build_cluttergtk
-        enable documentation: $enable_docs
+    build cluttergst:     $build_cluttergst
+    build cluttergtk:     $build_cluttergtk
+    enable documentation: $enable_docs
 "
