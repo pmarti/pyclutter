@@ -2605,19 +2605,6 @@
   (return-type "none")
 )
 
-(define-function set_use_mipmapped_text
-  (c-name "clutter_set_use_mipmapped_text")
-  (return-type "none")
-  (parameters
-    '("gboolean" "value")
-  )
-)
-
-(define-function get_use_mipmapped_text
-  (c-name "clutter_get_use_mipmapped_text")
-  (return-type "gboolean")
-)
-
 (define-function get_input_device_for_id
   (c-name "clutter_get_input_device_for_id")
   (return-type "ClutterInputDevice*")
