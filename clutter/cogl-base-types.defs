@@ -129,3 +129,79 @@
   )
 )
 
+(define-enum MaterialFilter
+  (in-module "Cogl")
+  (c-name "CoglMaterialFilter")
+  (gtype-id "COGL_TYPE_MATERIAL_FILTER")
+  (values
+    '("nearest" "COGL_MATERIAL_FILTER_NEAREST")
+    '("linear" "COGL_MATERIAL_FILTER_LINEAR")
+    '("nearest-mipmap-nearest" "COGL_MATERIAL_FILTER_NEAREST_MIPMAP_NEAREST")
+    '("linear-mipmap-nearest" "COGL_MATERIAL_FILTER_LINEAR_MIPMAP_NEAREST")
+    '("nearest-mipmap-linear" "COGL_MATERIAL_FILTER_NEAREST_MIPMAP_LINEAR")
+    '("linear-mipmap-linear" "COGL_MATERIAL_FILTER_LINEAR_MIPMAP_LINEAR")
+  )
+)
+
+(define-enum MaterialAlphaFunc
+  (in-module "Cogl")
+  (c-name "CoglMaterialAlphaFunc")
+  (gtype-id "COGL_TYPE_MATERIAL_ALPHA_FUNC")
+  (values
+    '("never" "COGL_MATERIAL_ALPHA_FUNC_NEVER")
+    '("less" "COGL_MATERIAL_ALPHA_FUNC_LESS")
+    '("equal" "COGL_MATERIAL_ALPHA_FUNC_EQUAL")
+    '("lequal" "COGL_MATERIAL_ALPHA_FUNC_LEQUAL")
+    '("greater" "COGL_MATERIAL_ALPHA_FUNC_GREATER")
+    '("notequal" "COGL_MATERIAL_ALPHA_FUNC_NOTEQUAL")
+    '("gequal" "COGL_MATERIAL_ALPHA_FUNC_GEQUAL")
+    '("always" "COGL_MATERIAL_ALPHA_FUNC_ALWAYS")
+  )
+)
+
+(define-enum MaterialLayerType
+  (in-module "Cogl")
+  (c-name "CoglMaterialLayerType")
+  (gtype-id "COGL_TYPE_MATERIAL_LAYER_TYPE")
+  (values
+    '("texture" "COGL_MATERIAL_LAYER_TYPE_TEXTURE")
+  )
+)
+
+(define-enum AttributeType
+  (in-module "Cogl")
+  (c-name "CoglAttributeType")
+  (gtype-id "COGL_TYPE_ATTRIBUTE_TYPE")
+  (values
+    '("byte" "COGL_ATTRIBUTE_TYPE_BYTE")
+    '("unsigned-byte" "COGL_ATTRIBUTE_TYPE_UNSIGNED_BYTE")
+    '("short" "COGL_ATTRIBUTE_TYPE_SHORT")
+    '("unsigned-short" "COGL_ATTRIBUTE_TYPE_UNSIGNED_SHORT")
+    '("float" "COGL_ATTRIBUTE_TYPE_FLOAT")
+  )
+)
+
+(define-enum VerticesMode
+  (in-module "Cogl")
+  (c-name "CoglVerticesMode")
+  (gtype-id "COGL_TYPE_VERTICES_MODE")
+  (values
+    '("points" "COGL_VERTICES_MODE_POINTS")
+    '("line-strip" "COGL_VERTICES_MODE_LINE_STRIP")
+    '("line-loop" "COGL_VERTICES_MODE_LINE_LOOP")
+    '("lines" "COGL_VERTICES_MODE_LINES")
+    '("triangle-strip" "COGL_VERTICES_MODE_TRIANGLE_STRIP")
+    '("triangle-fan" "COGL_VERTICES_MODE_TRIANGLE_FAN")
+    '("triangles" "COGL_VERTICES_MODE_TRIANGLES")
+  )
+)
+
+(define-enum IndicesType
+  (in-module "Cogl")
+  (c-name "CoglIndicesType")
+  (gtype-id "COGL_TYPE_INDICES_TYPE")
+  (values
+    '("unsigned-byte" "COGL_INDICES_TYPE_UNSIGNED_BYTE")
+    '("unsigned-short" "COGL_INDICES_TYPE_UNSIGNED_SHORT")
+  )
+)
