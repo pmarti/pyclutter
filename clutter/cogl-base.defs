@@ -691,13 +691,13 @@
   (return-type "none")
 )
 
-(define-function flush_gl_state
-  (c-name "cogl_flush_gl_state")
-  (return-type "none")
-  (parameters
-    '("int" "flags")
-  )
-)
+;;(define-function flush_gl_state
+;;  (c-name "cogl_flush_gl_state")
+;;  (return-type "none")
+;;  (parameters
+;;    '("int" "flags")
+;;  )
+;;)
 
 
 
@@ -1999,14 +1999,14 @@
   )
 )
 
-(define-function vertex_buffer_delete_indices
-  (c-name "cogl_vertex_buffer_delete_indices")
-  (return-type "none")
-  (parameters
-    '("CoglHandle" "handle")
-    '("int" "indices_id")
-  )
-)
+;;(define-function vertex_buffer_delete_indices
+;;  (c-name "cogl_vertex_buffer_delete_indices")
+;;  (return-type "none")
+;;  (parameters
+;;    '("CoglHandle" "handle")
+;;    '("int" "indices_id")
+;;  )
+;;)
 
 (define-function vertex_buffer_draw_elements
   (c-name "cogl_vertex_buffer_draw_elements")
