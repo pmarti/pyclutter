@@ -5178,3 +5178,35 @@
 )
 
 
+;; From clutter-clone.h
+
+(define-function clone_get_type
+  (c-name "clutter_clone_get_type")
+  (return-type "GType")
+)
+
+(define-function clone_new
+  (c-name "clutter_clone_new")
+  (is-constructor-of "ClutterClone")
+  (return-type "ClutterActor*")
+  (properties
+    '("source")
+  )
+)
+
+(define-method set_source
+  (of-object "ClutterClone")
+  (c-name "clutter_clone_set_source")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "source")
+  )
+)
+
+(define-method get_source
+  (of-object "ClutterClone")
+  (c-name "clutter_clone_get_source")
+  (return-type "ClutterActor*")
+)
+
+

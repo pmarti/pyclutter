@@ -296,6 +296,13 @@
   (gtype-id "CLUTTER_TYPE_TEXT")
 )
 
+(define-object Clone
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterClone")
+  (gtype-id "CLUTTER_TYPE_CLONE")
+)
+
 ;; Enumerations and flags ...
 
 (define-flags EventFlags
