@@ -1462,6 +1462,24 @@
   (c-name "clutter_behaviour_path_new")
   (is-constructor-of "ClutterBehaviourPath")
   (return-type "ClutterBehaviour*")
+  (properties
+    '("alpha")
+    '("path")
+  )
+)
+
+(define-function behaviour_path_new_with_description
+  (c-name "clutter_behaviour_path_new_with_description")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("const-gchar*" "desc")
+  )
+)
+
+(define-function behaviour_path_new_with_knots
+  (c-name "clutter_behaviour_path_new_with_knots")
+  (return-type "ClutterBehaviour*")
   (parameters
     '("ClutterAlpha*" "alpha")
     '("const-ClutterKnot*" "knots")
@@ -1469,54 +1487,19 @@
   )
 )
 
-(define-method get_knots
+(define-method set_path
   (of-object "ClutterBehaviourPath")
-  (c-name "clutter_behaviour_path_get_knots")
-  (return-type "GSList*")
-)
-
-(define-method append_knot
-  (of-object "ClutterBehaviourPath")
-  (c-name "clutter_behaviour_path_append_knot")
+  (c-name "clutter_behaviour_path_set_path")
   (return-type "none")
   (parameters
-    '("const-ClutterKnot*" "knot")
+    '("ClutterPath*" "path")
   )
 )
 
-(define-method append_knots
+(define-method get_path
   (of-object "ClutterBehaviourPath")
-  (c-name "clutter_behaviour_path_append_knots")
-  (return-type "none")
-  (parameters
-    '("const-ClutterKnot*" "first_knot")
-  )
-  (varargs #t)
-)
-
-(define-method insert_knot
-  (of-object "ClutterBehaviourPath")
-  (c-name "clutter_behaviour_path_insert_knot")
-  (return-type "none")
-  (parameters
-    '("guint" "offset")
-    '("const-ClutterKnot*" "knot")
-  )
-)
-
-(define-method remove_knot
-  (of-object "ClutterBehaviourPath")
-  (c-name "clutter_behaviour_path_remove_knot")
-  (return-type "none")
-  (parameters
-    '("guint" "offset")
-  )
-)
-
-(define-method clear
-  (of-object "ClutterBehaviourPath")
-  (c-name "clutter_behaviour_path_clear")
-  (return-type "none")
+  (c-name "clutter_behaviour_path_get_path")
+  (return-type "ClutterPath*")
 )
 
 
