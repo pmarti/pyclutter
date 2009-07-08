@@ -4461,3 +4461,262 @@
 )
 
 
+;; From clutter-path.h
+
+(define-function path_get_type
+  (c-name "clutter_path_get_type")
+  (return-type "GType")
+)
+
+(define-function path_node_get_type
+  (c-name "clutter_path_node_get_type")
+  (return-type "GType")
+)
+
+(define-function path_new
+  (c-name "clutter_path_new")
+  (is-constructor-of "ClutterPath")
+  (return-type "ClutterPath*")
+  (properties
+    '("description" (optional))
+  )
+)
+
+(define-function path_new_with_description
+  (c-name "clutter_path_new_with_description")
+  (return-type "ClutterPath*")
+  (parameters
+    '("const-gchar*" "desc")
+  )
+)
+
+(define-method add_move_to
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_move_to")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method add_rel_move_to
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_rel_move_to")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method add_line_to
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_line_to")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method add_rel_line_to
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_rel_line_to")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method add_curve_to
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_curve_to")
+  (return-type "none")
+  (parameters
+    '("gint" "x_1")
+    '("gint" "y_1")
+    '("gint" "x_2")
+    '("gint" "y_2")
+    '("gint" "x_3")
+    '("gint" "y_3")
+  )
+)
+
+(define-method add_rel_curve_to
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_rel_curve_to")
+  (return-type "none")
+  (parameters
+    '("gint" "x_1")
+    '("gint" "y_1")
+    '("gint" "x_2")
+    '("gint" "y_2")
+    '("gint" "x_3")
+    '("gint" "y_3")
+  )
+)
+
+(define-method add_close
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_close")
+  (return-type "none")
+)
+
+(define-method add_string
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_string")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "str")
+  )
+)
+
+(define-method add_node
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_node")
+  (return-type "none")
+  (parameters
+    '("const-ClutterPathNode*" "node")
+  )
+)
+
+(define-method add_cairo_path
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_cairo_path")
+  (return-type "none")
+  (parameters
+    '("const-cairo_path_t*" "cpath")
+  )
+)
+
+(define-method get_n_nodes
+  (of-object "ClutterPath")
+  (c-name "clutter_path_get_n_nodes")
+  (return-type "guint")
+)
+
+(define-method get_node
+  (of-object "ClutterPath")
+  (c-name "clutter_path_get_node")
+  (return-type "none")
+  (parameters
+    '("guint" "index_")
+    '("ClutterPathNode*" "node")
+  )
+)
+
+(define-method get_nodes
+  (of-object "ClutterPath")
+  (c-name "clutter_path_get_nodes")
+  (return-type "GSList*")
+)
+
+(define-method foreach
+  (of-object "ClutterPath")
+  (c-name "clutter_path_foreach")
+  (return-type "none")
+  (parameters
+    '("ClutterPathCallback" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method insert_node
+  (of-object "ClutterPath")
+  (c-name "clutter_path_insert_node")
+  (return-type "none")
+  (parameters
+    '("gint" "index_")
+    '("const-ClutterPathNode*" "node")
+  )
+)
+
+(define-method remove_node
+  (of-object "ClutterPath")
+  (c-name "clutter_path_remove_node")
+  (return-type "none")
+  (parameters
+    '("guint" "index_")
+  )
+)
+
+(define-method replace_node
+  (of-object "ClutterPath")
+  (c-name "clutter_path_replace_node")
+  (return-type "none")
+  (parameters
+    '("guint" "index_")
+    '("const-ClutterPathNode*" "node")
+  )
+)
+
+(define-method get_description
+  (of-object "ClutterPath")
+  (c-name "clutter_path_get_description")
+  (return-type "gchar*")
+)
+
+(define-method set_description
+  (of-object "ClutterPath")
+  (c-name "clutter_path_set_description")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "str")
+  )
+)
+
+(define-method clear
+  (of-object "ClutterPath")
+  (c-name "clutter_path_clear")
+  (return-type "none")
+)
+
+(define-method to_cairo_path
+  (of-object "ClutterPath")
+  (c-name "clutter_path_to_cairo_path")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "cr")
+  )
+)
+
+(define-method get_position
+  (of-object "ClutterPath")
+  (c-name "clutter_path_get_position")
+  (return-type "guint")
+  (parameters
+    '("gdouble" "progress")
+    '("ClutterKnot*" "position")
+  )
+)
+
+(define-method get_length
+  (of-object "ClutterPath")
+  (c-name "clutter_path_get_length")
+  (return-type "guint")
+)
+
+(define-method copy
+  (of-object "ClutterPathNode")
+  (c-name "clutter_path_node_copy")
+  (return-type "ClutterPathNode*")
+)
+
+(define-method free
+  (of-object "ClutterPathNode")
+  (c-name "clutter_path_node_free")
+  (return-type "none")
+)
+
+(define-method equal
+  (of-object "ClutterPathNode")
+  (c-name "clutter_path_node_equal")
+  (return-type "gboolean")
+  (parameters
+    '("const-ClutterPathNode*" "node_b")
+  )
+)
+
+

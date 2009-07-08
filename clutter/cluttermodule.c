@@ -40,6 +40,14 @@ sink_clutteralpha (GObject *object)
 }
 
 static void
+sink_clutterpath (GObject *object)
+{
+    if (g_object_is_floating (object)) {
+        g_object_ref_sink (object);
+    }
+}
+
+static void
 pyclutter_register_exceptions (PyObject *dict)
 {
   PyClutterDeprecationWarning =
@@ -110,6 +118,7 @@ init_clutter (void)
 
   pygobject_register_sinkfunc (CLUTTER_TYPE_ACTOR, sink_clutteractor);
   pygobject_register_sinkfunc (CLUTTER_TYPE_ALPHA, sink_clutteralpha);
+  pygobject_register_sinkfunc (CLUTTER_TYPE_PATH, sink_clutterpath);
 
   m = Py_InitModule ("_clutter", pyclutter_functions);
   d = PyModule_GetDict (m);

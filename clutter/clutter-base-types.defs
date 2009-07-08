@@ -118,6 +118,14 @@
   )
 )
 
+(define-boxed PathNode
+  (in-module "Clutter")
+  (c-name "ClutterPathNode")
+  (gtype-id "CLUTTER_TYPE_PATH_NODE")
+  (fields
+    '("gint" "type")
+  )
+)
 ; object definitions ...
 
 (define-object Actor
@@ -272,6 +280,13 @@
   (parent "GObject")
   (c-name "ClutterChildMeta")
   (gtype-id "CLUTTER_TYPE_CHILD_META")
+)
+
+(define-object Path
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterPath")
+  (gtype-id "CLUTTER_TYPE_PATH")
 )
 
 ;; Enumerations and flags ...
@@ -581,5 +596,20 @@
     '("keyboard-device" "CLUTTER_KEYBOARD_DEVICE")
     '("extension-device" "CLUTTER_EXTENSION_DEVICE")
     '("n-device-types" "CLUTTER_N_DEVICE_TYPES")
+  )
+)
+
+(define-enum PathNodeType
+  (in-module "Clutter")
+  (c-name "ClutterPathNodeType")
+  (gtype-id "CLUTTER_TYPE_PATH_NODE_TYPE")
+  (values
+    '("move-to" "CLUTTER_PATH_MOVE_TO")
+    '("line-to" "CLUTTER_PATH_LINE_TO")
+    '("curve-to" "CLUTTER_PATH_CURVE_TO")
+    '("close" "CLUTTER_PATH_CLOSE")
+    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO")
+    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO")
+    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO")
   )
 )
