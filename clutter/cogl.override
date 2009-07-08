@@ -125,4 +125,30 @@ _wrap_cogl_bitmap_get_size_from_file (PyObject *self,
 
     return Py_BuildValue ("(ii)", width, height);
 }
+%%
+override cogl_set_source_color
+PyObject *
+_wrap_cogl_set_source_color (PyObject *self,
+                             PyObject *args,
+                             PyObject *kwargs)
+{
+    static char *kwlist[] = { "color", NULL };
+    PyObject *py_color;
+    CoglColor color;
 
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:set_source_color", kwlist,
+                                     &py_color))
+        return NULL;
+
+    if (!pycogl_color_from_pyobject (py_color, &color))
+    {
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError,
+                         "color must be a ClutterColor or 4-tuple");
+        return NULL;
+    }
+
+    cogl_set_source_color (&color);
+    Py_INCREF (Py_None);
+    return Py_None;
+}
