@@ -150,6 +150,17 @@ _wrap_clutter_texture_get_base_size (PyGObject *self)
 	return Py_BuildValue ("(ii)", width, height);
 }
 %%
+override clutter_texture_get_repeat
+static PyObject *
+_wrap_clutter_texture_get_repeat (PyGObject *self)
+{
+    gboolean repeat_x, repeat_y;
+
+    clutter_texture_get_repeat (CLUTTER_TEXTURE (self->obj),
+                                &repeat_x, &repeat_y);
+    return Py_BuildValue ("(ii)", repeat_x, repeat_y);
+}
+%%
 override clutter_container_add
 static PyObject *
 _wrap_clutter_container_add (PyGObject *self,

@@ -443,6 +443,7 @@
   (c-name "ClutterTextureFlags")
   (gtype-id "CLUTTER_TYPE_TEXTURE_FLAGS")
   (values
+    '("none" "CLUTTER_TEXTURE_NONE")
     '("rgb-flag-bgr" "CLUTTER_TEXTURE_RGB_FLAG_BGR")
     '("rgb-flag-premult" "CLUTTER_TEXTURE_RGB_FLAG_PREMULT")
     '("yuv-flag-yuv2" "CLUTTER_TEXTURE_YUV_FLAG_YUV2")
