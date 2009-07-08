@@ -24,7 +24,7 @@ defs_DATA = $(CLUTTERGST_DEFS)
 # code generator
 .defs.c:
 	@echo "***INFO*** Generating $*.c from $*.defs" \
-	&& ( $(PYGTK_CODEGEN) \
+	&& ( $(PYGOBJECT_CODEGEN) \
 	    -I $(srcdir) \
 	    --py_ssize_t-clean \
 	    --register $(PYGST_DEFSDIR)/gst-types.defs \

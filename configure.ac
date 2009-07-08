@@ -68,12 +68,12 @@ AC_C_CONST
 dnl check for pygtk
 PKG_CHECK_MODULES(PYGTK, pygtk-2.0 >= pygtk_required_version)
 AC_SUBST(PYGTK_CFLAGS)
-AC_PATH_PROG(PYGTK_CODEGEN, pygtk-codegen-2.0, no)
-if test "x$PYGTK_CODEGEN" = "xno"; then
-  AC_MSG_ERROR([could not find pygtk-codegen-2.0 script])
+AC_PATH_PROGS(PYGOBJECT_CODEGEN, pygobject-codegen-2.0 pygtk-codegen-2.0, no)
+if test "x$PYGOBJECT_CODEGEN" = "xno"; then
+  AC_MSG_ERROR([could not find pygobject-codegen-2.0 script])
 fi
 
-PYGTK_CODEGEN_DEFINES=
+PYGOBJECT_CODEGEN_DEFINES=
 
 dnl check for pycairo
 PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
@@ -83,7 +83,7 @@ if test "x$have_pycairo" = "xyes"; then
   AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
   AC_SUBST(PYCAIRO_CFLAGS)
   AC_SUBST(PYCAIRO_LIBS)
-  PYGTK_CODEGEN_DEFINES="$PYGTK_CODEGEN_DEFINES -DHAVE_PYCAIRO"
+  PYGOBJECT_CODEGEN_DEFINES="$PYGOBJECT_CODEGEN_DEFINES -DHAVE_PYCAIRO"
 fi
 
 AC_MSG_CHECKING(for pygtk defs)

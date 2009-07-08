@@ -94,8 +94,8 @@ defs_DATA = \
 	clutter-types.defs
 
 .defs.c:
-	$(QUIET_GEN)( $(PYGTK_CODEGEN) \
-	   $(PYGTK_CODEGEN_DEFINES) \
+	$(QUIET_GEN)( $(PYGOBJECT_CODEGEN) \
+	   $(PYGOBJECT_CODEGEN_DEFINES) \
 	    -I $(srcdir) \
 	    --py_ssize_t-clean \
 	    --register $(PYGTK_DEFSDIR)/gdk-types.defs \
