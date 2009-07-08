@@ -10,6 +10,7 @@
 #include <clutter/clutter.h>
 
 #include <cogl/cogl.h>
+#include <cogl/cogl-pango.h>
 
 G_BEGIN_DECLS
 
