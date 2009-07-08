@@ -1,6 +1,9 @@
 %%
 ignore
   clutter_knot_free
+  clutter_actor_box_from_vertices
+  clutter_actor_box_get_size
+  clutter_actor_box_get_origin
 %%
 override clutter_geometry_new kwargs
 static int

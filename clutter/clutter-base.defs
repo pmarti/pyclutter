@@ -4260,6 +4260,84 @@
   (return-type "ClutterActorBox")
 )
 
+(define-method equal
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_equal")
+  (return-type "gboolean")
+  (parameters
+    '("const-ClutterActorBox*" "box_b")
+  )
+)
+
+(define-method get_x
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_get_x")
+  (return-type "gfloat")
+)
+
+(define-method get_y
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_get_y")
+  (return-type "gfloat")
+)
+
+(define-method get_width
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_get_width")
+  (return-type "gfloat")
+)
+
+(define-method get_height
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_get_height")
+  (return-type "gfloat")
+)
+
+(define-method get_origin
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_get_origin")
+  (return-type "none")
+  (parameters
+    '("gfloat*" "x")
+    '("gfloat*" "y")
+  )
+)
+
+(define-method get_size
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_get_size")
+  (return-type "none")
+  (parameters
+    '("gfloat*" "width")
+    '("gfloat*" "height")
+  )
+)
+
+(define-method get_area
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_get_area")
+  (return-type "gfloat")
+)
+
+(define-method contains
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_contains")
+  (return-type "gboolean")
+  (parameters
+    '("gfloat" "x")
+    '("gfloat" "y")
+  )
+)
+
+(define-method from_vertices
+  (of-object "ClutterActorBox")
+  (c-name "clutter_actor_box_from_vertices")
+  (return-type "none")
+  (parameters
+    '("const-ClutterVertex[]" "verts")
+  )
+)
+
 (define-function geometry_get_type
   (c-name "clutter_geometry_get_type")
   (return-type "GType")

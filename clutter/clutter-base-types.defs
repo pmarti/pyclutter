@@ -43,12 +43,12 @@
   (c-name "ClutterActorBox")
   (gtype-id "CLUTTER_TYPE_ACTOR_BOX")
   (fields
-    '("gint32" "x1")
-    '("gint32" "y1")
-    '("gint32" "x2")
-    '("gint32" "y2")
-    '("gint32" "origin")
-    '("gint32" "size")
+    '("gfloat" "x1")
+    '("gfloat" "y1")
+    '("gfloat" "x2")
+    '("gfloat" "y2")
+    '("gfloat" "origin")
+    '("gfloat" "size")
   )
 )
 
