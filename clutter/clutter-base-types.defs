@@ -613,3 +613,13 @@
     '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO")
   )
 )
+
+(define-flags FontFlags
+  (in-module "Clutter")
+  (c-name "ClutterFontFlags")
+  (gtype-id "CLUTTER_TYPE_FONT_FLAGS")
+  (values
+    '("mipmapping" "CLUTTER_FONT_MIPMAPPING")
+    '("hinting" "CLUTTER_FONT_HINTING")
+  )
+)
