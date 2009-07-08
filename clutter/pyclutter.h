@@ -33,6 +33,9 @@ gboolean  pyclutter_color_from_pyobject     (PyObject        *object,
                                              ClutterColor    *color);
 gboolean  pyclutter_actor_box_from_pyobject (PyObject        *object,
                                              ClutterActorBox *box);
+gboolean  pycogl_color_from_pyobject        (PyObject        *object,
+                                             CoglColor       *color);
+
 
 G_END_DECLS
 
