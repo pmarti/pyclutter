@@ -1,77 +1,30 @@
 %%
-override cogl_texture_new_with_size kwargs
-static PyObject *
-_wrap_cogl_texture_new_with_size (PyObject *self,
-                                  PyObject *args,
-                                  PyObject *kwargs)
-{
-    static char *kwlist[] = { "width", "height", "max_waste", "auto_mipmap", "internal_format", NULL };
-    PyObject *py_width = NULL, *py_height = NULL, *py_internal_format = NULL;
-    int max_waste, auto_mipmap;
-    CoglPixelFormat internal_format;
-    guint width = 0, height = 0;
-    CoglHandle ret = COGL_INVALID_HANDLE;
-
-    if (!PyArg_ParseTupleAndKeywords (args, kwargs, "OOiiO:texture_new_with_size", kwlist, &py_width, &py_height, &max_waste, &auto_mipmap, &py_internal_format))
-        return NULL;
-
-    if (py_width) {
-        if (PyLong_Check (py_width))
-            width = PyLong_AsUnsignedLong (py_width);
-        else if (PyInt_Check (py_width))
-            width = PyInt_AsLong (py_width);
-        else
-            PyErr_SetString (PyExc_TypeError, "Parameter 'width' must be an int or a long");
-        if (PyErr_Occurred ())
-            return NULL;
-    }
-
-    if (py_height) {
-        if (PyLong_Check (py_height))
-            height = PyLong_AsUnsignedLong (py_height);
-        else if (PyInt_Check (py_height))
-            height = PyInt_AsLong (py_height);
-        else
-            PyErr_SetString (PyExc_TypeError, "Parameter 'height' must be an int or a long");
-        if (PyErr_Occurred ())
-            return NULL;
-    }
-
-    if (pyg_enum_get_value (PYCOGL_TYPE_PIXEL_FORMAT, py_internal_format, (gpointer)&internal_format))
-        return NULL;
-
-    ret = cogl_texture_new_with_size (width, height,
-                                      max_waste,
-                                      auto_mipmap,
-                                      internal_format);
-
-    /* pyg_boxed_new handles NULL checking */
-    return pyg_boxed_new (PYCOGL_TYPE_HANDLE, ret, TRUE, TRUE);
-}
-%%
 override cogl_texture_new_from_file kwargs
 static PyObject *
 _wrap_cogl_texture_new_from_file (PyObject *self,
                                   PyObject *args,
                                   PyObject *kwargs)
 {
-    static char *kwlist[] = { "filename", "max_waste", "auto_mipmap", "internal_format", NULL };
-    int max_waste, auto_mipmap;
+    static char *kwlist[] = { "filename", "flags", "internal_format", NULL };
+    CoglTextureFlags flags;
     CoglPixelFormat internal_format;
     GError *error = NULL;
     char *filename;
+    PyObject *py_flags = NULL;
     PyObject *py_internal_format = NULL;
     CoglHandle ret = COGL_INVALID_HANDLE;
 
-    if (!PyArg_ParseTupleAndKeywords (args, kwargs,"siiO:texture_new_from_file", kwlist, &filename, &max_waste, &auto_mipmap, &py_internal_format))
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,"sOO:texture_new_from_file", kwlist, &filename, &py_flags, &py_internal_format))
+        return NULL;
+
+    if (pyg_enum_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags, (gpointer)&flags))
         return NULL;
 
     if (pyg_enum_get_value (PYCOGL_TYPE_PIXEL_FORMAT, py_internal_format, (gpointer)&internal_format))
         return NULL;
 
     ret = cogl_texture_new_from_file (filename,
-                                      max_waste,
-                                      auto_mipmap,
+                                      flags,
                                       internal_format,
                                       &error);
 
@@ -88,16 +41,16 @@ _wrap_cogl_texture_new_from_data (PyObject *self,
                                   PyObject *args,
                                   PyObject *kwargs)
 {
-    static char *kwlist[] = { "width", "height", "max_waste", "auto_mipmap", "format", "internal_format", "rowstride", "data", NULL };
-    PyObject *py_width = NULL, *py_height = NULL, *py_format = NULL, *py_internal_format = NULL, *py_rowstride = NULL;
+    static char *kwlist[] = { "width", "height", "flags", "format", "internal_format", "rowstride", "data", NULL };
+    PyObject *py_width = NULL, *py_height = NULL, *py_flags = NULL, *py_format = NULL, *py_internal_format = NULL, *py_rowstride = NULL;
+    CoglTextureFlags flags;
     CoglPixelFormat format, internal_format;
     guint width = 0, height = 0, rowstride = 0;
-    int max_waste, auto_mipmap;
     guchar *data;
     CoglHandle ret = COGL_INVALID_HANDLE;
     Py_ssize_t data_len;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OOiiOOOs#:texture_new_from_data", kwlist, &py_width, &py_height, &max_waste, &auto_mipmap, &py_format, &py_internal_format, &py_rowstride, &data, &data_len))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OOOOOOs#:texture_new_from_data", kwlist, &py_width, &py_height, &py_flags, &py_format, &py_internal_format, &py_rowstride, &data, &data_len))
         return NULL;
 
     if (py_width) {
@@ -123,6 +76,9 @@ _wrap_cogl_texture_new_from_data (PyObject *self,
         if (PyErr_Occurred ())
             return NULL;
     }
+
+    if (pyg_enum_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags, (gpointer)&flags))
+        return NULL;
 
     if (pyg_enum_get_value (PYCOGL_TYPE_PIXEL_FORMAT, py_format, (gpointer)&format))
         return NULL;
@@ -143,8 +99,7 @@ _wrap_cogl_texture_new_from_data (PyObject *self,
     }
 
     ret = cogl_texture_new_from_data (width, height,
-                                      max_waste,
-                                      auto_mipmap,
+                                      flags,
                                       format, internal_format,
                                       rowstride,
                                       data);
@@ -256,133 +211,4 @@ _wrap_cogl_texture_get_gl_texture (PyObject *self)
     }
 
     return Py_BuildValue ("()");
-}
-%%
-override cogl_texture_rectangle kwargs
-static PyObject *
-_wrap_cogl_texture_rectangle (PyObject *self,
-                              PyObject *args,
-                              PyObject *kwargs)
-{
-    static char *kwlist[] = { "x1", "y1", "x2", "y2", "tx1", "ty1", "tx2", "ty2", NULL };
-    CoglHandle hnd = pyg_boxed_get (self, CoglHandle);
-    double x1, y1, x2, y2;
-    double tx1, ty1, tx2, ty2;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "dddddddd:CoglHandle.texture_rectangle", kwlist,
-                                     &x1, &y1, &x2, &y2,
-                                     &tx1, &ty1, &tx2, &ty2))
-        return NULL;
-
-    cogl_texture_rectangle (hnd,
-                            CLUTTER_FLOAT_TO_FIXED (x1),
-                            CLUTTER_FLOAT_TO_FIXED (y1),
-                            CLUTTER_FLOAT_TO_FIXED (x2),
-                            CLUTTER_FLOAT_TO_FIXED (y2),
-                            CLUTTER_FLOAT_TO_FIXED (tx1),
-                            CLUTTER_FLOAT_TO_FIXED (ty1),
-                            CLUTTER_FLOAT_TO_FIXED (tx2),
-                            CLUTTER_FLOAT_TO_FIXED (ty2));
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_texture_polygon kwargs
-
-static gboolean
-get_double_as_fixed (PyObject *tuple, int index_, ClutterFixed *res)
-{
-    PyObject *item = PyTuple_GetItem (tuple, index_);
-
-    if (PyInt_Check (item)) {
-        int val = PyInt_AsLong (item);
-
-        if (res) {
-            *res = CLUTTER_INT_TO_FIXED (val);
-            return TRUE;
-        }
-    }
-        
-    if (PyFloat_Check (item)) {
-        double val = PyFloat_AsDouble (item);
-
-        if (res) {
-            *res = CLUTTER_FLOAT_TO_FIXED (val);
-            return TRUE;
-        }
-    }
-
-    PyErr_SetString (PyExc_TypeError, "expecting a floating point value");
-    return FALSE;
-}
-
-static PyObject *
-_wrap_cogl_texture_polygon (PyObject *self,
-                            PyObject *args,
-                            PyObject *kwargs)
-{
-    static char *kwlist[] = { "vertices", "use_color", NULL };
-    CoglHandle hnd = COGL_INVALID_HANDLE;
-    CoglTextureVertex *vertices = NULL;
-    PyObject *py_vertices = Py_None;
-    gboolean use_color = FALSE;
-    int i, n_vertices;
-
-    if (!PyArg_ParseTupleAndKeywords (args, kwargs, "Oi:cogl.texture_polygon", kwlist, &py_vertices, &use_color)) {
-        return NULL;
-    }
-
-    hnd = pyg_boxed_get (self, CoglHandle);
-
-    if (!PyTuple_Check (py_vertices)) {
-        PyErr_SetString (PyExc_TypeError, "vertices must be a tuple");
-        return NULL;
-    }
-
-    n_vertices = PyTuple_Size (py_vertices);
-    vertices = g_new (CoglTextureVertex, n_vertices);
-
-    for (i = 0; i < n_vertices; i++) {
-        PyObject *py_vertex = PyTuple_GetItem (py_vertices, i);
-
-        if (!PyTuple_Check (py_vertex) &&
-            (PyTuple_Size (py_vertex) != 5 || PyTuple_Size (py_vertex) != 6)) {
-            PyErr_SetString (PyExc_TypeError, "expecting a 5-tuple (x, y, z, tx, ty) "
-                                              "or a 6-tuple (x, y, z, tx, ty, color)");
-            g_free (vertices);
-            return NULL;
-        }
-
-        if (!get_double_as_fixed (py_vertex, 0, &(vertices[i].x)) ||
-            !get_double_as_fixed (py_vertex, 1, &(vertices[i].y)) ||
-            !get_double_as_fixed (py_vertex, 2, &(vertices[i].z))) {
-            g_free (vertices);
-            return NULL;
-        }
-
-        if (!get_double_as_fixed (py_vertex, 3, &(vertices[i].tx)) ||
-            !get_double_as_fixed (py_vertex, 4, &(vertices[i].ty))) {
-            g_free (vertices);
-            return NULL;
-        }
-
-        if (PyTuple_Size (py_vertex) == 6) {
-            PyObject *py_color = PyTuple_GetItem (py_vertex, 5);
-
-            if (!pyclutter_color_from_pyobject (py_color, &(vertices[i].color))) {
-                PyErr_SetString (PyExc_TypeError, "expecting a clutter.Color as "
-                                                  "the 6th element of the vertex "
-                                                  "tuple");
-                g_free (vertices);
-                return NULL;
-            }
-        }
-    }
-
-    cogl_texture_polygon (hnd, n_vertices, vertices, use_color);
-    g_free (vertices);
-
-    Py_INCREF (Py_None);
-    return Py_None;
 }
