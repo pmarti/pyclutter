@@ -2,13 +2,327 @@
 
 (include "cogl-base-types.defs")
 
-(define-function check_extension
-  (c-name "cogl_check_extension")
+
+;; From cogl-bitmap.h
+
+(define-function bitmap_new_from_file
+  (c-name "cogl_bitmap_new_from_file")
+  (return-type "CoglHandle")
+  (parameters
+    '("const-gchar*" "filename")
+    '("GError**" "error")
+  )
+)
+
+(define-function bitmap_get_size_from_file
+  (c-name "cogl_bitmap_get_size_from_file")
   (return-type "gboolean")
   (parameters
-    '("const-gchar*" "name")
-    '("const-gchar*" "extension")
+    '("const-gchar*" "filename")
+    '("gint*" "width")
+    '("gint*" "height")
   )
+)
+
+
+
+;; From cogl-color.h
+
+(define-function color_new
+  (c-name "cogl_color_new")
+  (is-constructor-of "CoglColor")
+  (return-type "CoglColor*")
+)
+
+(define-method copy
+  (of-object "CoglColor")
+  (c-name "cogl_color_copy")
+  (return-type "CoglColor*")
+)
+
+(define-method free
+  (of-object "CoglColor")
+  (c-name "cogl_color_free")
+  (return-type "none")
+)
+
+(define-method set_from_4ub
+  (of-object "CoglColor")
+  (c-name "cogl_color_set_from_4ub")
+  (return-type "none")
+  (parameters
+    '("guint8" "red")
+    '("guint8" "green")
+    '("guint8" "blue")
+    '("guint8" "alpha")
+  )
+)
+
+(define-method set_from_4f
+  (of-object "CoglColor")
+  (c-name "cogl_color_set_from_4f")
+  (return-type "none")
+  (parameters
+    '("float" "red")
+    '("float" "green")
+    '("float" "blue")
+    '("float" "alpha")
+  )
+)
+
+(define-method get_red_float
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_red_float")
+  (return-type "float")
+)
+
+(define-method get_green_float
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_green_float")
+  (return-type "float")
+)
+
+(define-method get_blue_float
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_blue_float")
+  (return-type "float")
+)
+
+(define-method get_alpha_float
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_alpha_float")
+  (return-type "float")
+)
+
+(define-method get_red
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_red")
+  (return-type "float")
+)
+
+(define-method get_green
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_green")
+  (return-type "float")
+)
+
+(define-method get_blue
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_blue")
+  (return-type "float")
+)
+
+(define-method get_alpha
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_alpha")
+  (return-type "float")
+)
+
+(define-method premultiply
+  (of-object "CoglColor")
+  (c-name "cogl_color_premultiply")
+  (return-type "none")
+)
+
+(define-function color_equal
+  (c-name "cogl_color_equal")
+  (return-type "gboolean")
+  (parameters
+    '("gconstpointer" "v1")
+    '("gconstpointer" "v2")
+  )
+)
+
+
+
+;; From cogl-debug.h
+
+
+
+;; From cogl-defines-gl.h
+
+
+
+;; From cogl-deprecated.h
+
+
+
+;; From cogl-enum-types.h
+
+(define-function debug_flags_get_type
+  (c-name "cogl_debug_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function material_filter_get_type
+  (c-name "cogl_material_filter_get_type")
+  (return-type "GType")
+)
+
+(define-function material_alpha_func_get_type
+  (c-name "cogl_material_alpha_func_get_type")
+  (return-type "GType")
+)
+
+(define-function material_layer_type_get_type
+  (c-name "cogl_material_layer_type_get_type")
+  (return-type "GType")
+)
+
+(define-function shader_type_get_type
+  (c-name "cogl_shader_type_get_type")
+  (return-type "GType")
+)
+
+(define-function pixel_format_get_type
+  (c-name "cogl_pixel_format_get_type")
+  (return-type "GType")
+)
+
+(define-function feature_flags_get_type
+  (c-name "cogl_feature_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function buffer_target_get_type
+  (c-name "cogl_buffer_target_get_type")
+  (return-type "GType")
+)
+
+(define-function texture_flags_get_type
+  (c-name "cogl_texture_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function fog_mode_get_type
+  (c-name "cogl_fog_mode_get_type")
+  (return-type "GType")
+)
+
+(define-function attribute_type_get_type
+  (c-name "cogl_attribute_type_get_type")
+  (return-type "GType")
+)
+
+(define-function vertices_mode_get_type
+  (c-name "cogl_vertices_mode_get_type")
+  (return-type "GType")
+)
+
+(define-function indices_type_get_type
+  (c-name "cogl_indices_type_get_type")
+  (return-type "GType")
+)
+
+(define-function buffer_bit_get_type
+  (c-name "cogl_buffer_bit_get_type")
+  (return-type "GType")
+)
+
+(define-function read_pixels_flags_get_type
+  (c-name "cogl_read_pixels_flags_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From cogl-fixed.h
+
+(define-method sin
+  (of-object "CoglFixed")
+  (c-name "cogl_fixed_sin")
+  (return-type "CoglFixed")
+)
+
+(define-method tan
+  (of-object "CoglFixed")
+  (c-name "cogl_fixed_tan")
+  (return-type "CoglFixed")
+)
+
+(define-method cos
+  (of-object "CoglFixed")
+  (c-name "cogl_fixed_cos")
+  (return-type "CoglFixed")
+)
+
+(define-method atani
+  (of-object "CoglFixed")
+  (c-name "cogl_fixed_atani")
+  (return-type "CoglFixed")
+)
+
+(define-method atan2
+  (of-object "CoglFixed")
+  (c-name "cogl_fixed_atan2")
+  (return-type "CoglFixed")
+  (parameters
+    '("CoglFixed" "b")
+  )
+)
+
+(define-method sqrt
+  (of-object "CoglFixed")
+  (c-name "cogl_fixed_sqrt")
+  (return-type "CoglFixed")
+)
+
+(define-function fixed_log2
+  (c-name "cogl_fixed_log2")
+  (return-type "CoglFixed")
+  (parameters
+    '("guint" "x")
+  )
+)
+
+(define-method pow2
+  (of-object "CoglFixed")
+  (c-name "cogl_fixed_pow2")
+  (return-type "guint")
+)
+
+(define-function fixed_pow
+  (c-name "cogl_fixed_pow")
+  (return-type "guint")
+  (parameters
+    '("guint" "x")
+    '("CoglFixed" "y")
+  )
+)
+
+(define-function sqrti
+  (c-name "cogl_sqrti")
+  (return-type "gint")
+  (parameters
+    '("gint" "x")
+  )
+)
+
+(define-method sin
+  (of-object "CoglAngle")
+  (c-name "cogl_angle_sin")
+  (return-type "CoglFixed")
+)
+
+(define-method tan
+  (of-object "CoglAngle")
+  (c-name "cogl_angle_tan")
+  (return-type "CoglFixed")
+)
+
+(define-method cos
+  (of-object "CoglAngle")
+  (c-name "cogl_angle_cos")
+  (return-type "CoglFixed")
+)
+
+
+
+;; From cogl.h
+
+(define-function get_option_group
+  (c-name "cogl_get_option_group")
+  (return-type "GOptionGroup*")
 )
 
 (define-function get_features
@@ -24,6 +338,23 @@
   )
 )
 
+(define-function get_proc_address
+  (c-name "cogl_get_proc_address")
+  (return-type "CoglFuncPtr")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-function check_extension
+  (c-name "cogl_check_extension")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "ext")
+  )
+)
+
 (define-function get_bitmasks
   (c-name "cogl_get_bitmasks")
   (return-type "none")
@@ -32,6 +363,52 @@
     '("gint*" "green")
     '("gint*" "blue")
     '("gint*" "alpha")
+  )
+)
+
+(define-function perspective
+  (c-name "cogl_perspective")
+  (return-type "none")
+  (parameters
+    '("float" "fovy")
+    '("float" "aspect")
+    '("float" "z_near")
+    '("float" "z_far")
+  )
+)
+
+(define-function frustum
+  (c-name "cogl_frustum")
+  (return-type "none")
+  (parameters
+    '("float" "left")
+    '("float" "right")
+    '("float" "bottom")
+    '("float" "top")
+    '("float" "z_near")
+    '("float" "z_far")
+  )
+)
+
+(define-function ortho
+  (c-name "cogl_ortho")
+  (return-type "none")
+  (parameters
+    '("float" "left")
+    '("float" "right")
+    '("float" "bottom")
+    '("float" "top")
+    '("float" "near")
+    '("float" "far")
+  )
+)
+
+(define-function viewport
+  (c-name "cogl_viewport")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
   )
 )
 
@@ -49,8 +426,9 @@
   (c-name "cogl_scale")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
+    '("float" "x")
+    '("float" "y")
+    '("float" "z")
   )
 )
 
@@ -58,74 +436,20 @@
   (c-name "cogl_translate")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
-    '("ClutterFixed" "z")
+    '("float" "x")
+    '("float" "y")
+    '("float" "z")
   )
 )
 
-(define-function rotate 
+(define-function rotate
   (c-name "cogl_rotate")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "angle")
-    '("gint" "x")
-    '("gint" "y")
-    '("gint" "z")
-  )
-)
-
-(define-function perspective
-  (c-name "cogl_perspective")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "fovy")
-    '("ClutterFixed" "aspect")
-    '("ClutterFixed" "z_near")
-    '("ClutterFixed" "z_far")
-  )
-)
-
-(define-function frustum
-  (c-name "cogl_frustum")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "left")
-    '("ClutterFixed" "right")
-    '("ClutterFixed" "bottom")
-    '("ClutterFixed" "top")
-    '("ClutterFixed" "z_near")
-    '("ClutterFixed" "z_far")
-  )
-)
-
-(define-function viewport
-  (c-name "cogl_viewport")
-  (return-type "none")
-  (parameters
-    '("guint" "width")
-    '("guint" "height")
-  )
-)
-
-(define-function get_viewport
-  (c-name "cogl_get_viewport")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed*" "v")
-  )
-)
-
-(define-function setup_viewport
-  (c-name "cogl_setup_viewport")
-  (return-type "none")
-  (parameters
-    '("guint" "width")
-    '("guint" "height")
-    '("ClutterFixed" "fovy")
-    '("ClutterFixed" "aspect")
-    '("ClutterFixed" "z_near")
-    '("ClutterFixed" "z_far")
+    '("float" "angle")
+    '("float" "x")
+    '("float" "y")
+    '("float" "z")
   )
 )
 
@@ -133,7 +457,15 @@
   (c-name "cogl_get_modelview_matrix")
   (return-type "none")
   (parameters
-    '("ClutterFixed*" "m")
+    '("CoglMatrix*" "matrix")
+  )
+)
+
+(define-function set_modelview_matrix
+  (c-name "cogl_set_modelview_matrix")
+  (return-type "none")
+  (parameters
+    '("CoglMatrix*" "matrix")
   )
 )
 
@@ -141,69 +473,812 @@
   (c-name "cogl_get_projection_matrix")
   (return-type "none")
   (parameters
-    '("ClutterFixed*" "m")
+    '("CoglMatrix*" "matrix")
   )
 )
 
-(define-function clip_set 
-  (c-name "cogl_clip_set")
+(define-function set_projection_matrix
+  (c-name "cogl_set_projection_matrix")
   (return-type "none")
   (parameters
-    '("gint" "x_offset")
-    '("gint" "y_offset")
-    '("gint" "width")
-    '("gint" "height")
+    '("CoglMatrix*" "matrix")
   )
 )
 
-(define-function clip_unset
-  (c-name "cogl_clip_unset")
-  (return-type "none")
-)
-
-(define-function enable_depth_test
-  (c-name "cogl_enable_depth_test")
+(define-function get_viewport
+  (c-name "cogl_get_viewport")
   (return-type "none")
   (parameters
-    '("gboolean" "enable")
+    '("float" "v[4]")
   )
 )
 
-(define-function fog_set
-  (c-name "cogl_fog_set")
+(define-function set_depth_test_enabled
+  (c-name "cogl_set_depth_test_enabled")
   (return-type "none")
   (parameters
-    '("const-ClutterColor*" "fog_color")
-    '("ClutterFixed" "density")
-    '("ClutterFixed" "z_near")
-    '("ClutterFixed" "z_far")
+    '("gboolean" "setting")
   )
 )
 
-(define-function paint_init
-  (c-name "cogl_paint_init")
+(define-function get_depth_test_enabled
+  (c-name "cogl_get_depth_test_enabled")
+  (return-type "gboolean")
+)
+
+(define-function set_backface_culling_enabled
+  (c-name "cogl_set_backface_culling_enabled")
   (return-type "none")
   (parameters
-    '("const-ClutterColor*" "color")
+    '("gboolean" "setting")
   )
 )
 
-(define-function color
-  (c-name "cogl_color")
+(define-function get_backface_culling_enabled
+  (c-name "cogl_get_backface_culling_enabled")
+  (return-type "gboolean")
+)
+
+(define-function set_fog
+  (c-name "cogl_set_fog")
   (return-type "none")
   (parameters
-    '("const-ClutterColor*" "color")
+    '("const-CoglColor*" "fog_color")
+    '("CoglFogMode" "mode")
+    '("float" "density")
+    '("float" "z_near")
+    '("float" "z_far")
   )
 )
+
+(define-function disable_fog
+  (c-name "cogl_disable_fog")
+  (return-type "none")
+)
+
+(define-function clear
+  (c-name "cogl_clear")
+  (return-type "none")
+  (parameters
+    '("const-CoglColor*" "color")
+    '("gulong" "buffers")
+  )
+)
+
+(define-function set_source
+  (c-name "cogl_set_source")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+  )
+)
+
+(define-function set_source_color
+  (c-name "cogl_set_source_color")
+  (return-type "none")
+  (parameters
+    '("const-CoglColor*" "color")
+  )
+)
+
+(define-function set_source_color4ub
+  (c-name "cogl_set_source_color4ub")
+  (return-type "none")
+  (parameters
+    '("guint8" "red")
+    '("guint8" "green")
+    '("guint8" "blue")
+    '("guint8" "alpha")
+  )
+)
+
+(define-function set_source_color4f
+  (c-name "cogl_set_source_color4f")
+  (return-type "none")
+  (parameters
+    '("float" "red")
+    '("float" "green")
+    '("float" "blue")
+    '("float" "alpha")
+  )
+)
+
+(define-function set_source_texture
+  (c-name "cogl_set_source_texture")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "texture_handle")
+  )
+)
+
+(define-function clip_push_window_rect
+  (c-name "cogl_clip_push_window_rect")
+  (return-type "none")
+  (parameters
+    '("float" "x_offset")
+    '("float" "y_offset")
+    '("float" "width")
+    '("float" "height")
+  )
+)
+
+(define-function clip_push
+  (c-name "cogl_clip_push")
+  (return-type "none")
+  (parameters
+    '("float" "x_offset")
+    '("float" "y_offset")
+    '("float" "width")
+    '("float" "height")
+  )
+)
+
+(define-function clip_push_from_path
+  (c-name "cogl_clip_push_from_path")
+  (return-type "none")
+)
+
+(define-function clip_push_from_path_preserve
+  (c-name "cogl_clip_push_from_path_preserve")
+  (return-type "none")
+)
+
+(define-function clip_pop
+  (c-name "cogl_clip_pop")
+  (return-type "none")
+)
+
+(define-function clip_ensure
+  (c-name "cogl_clip_ensure")
+  (return-type "none")
+)
+
+(define-function clip_stack_save
+  (c-name "cogl_clip_stack_save")
+  (return-type "none")
+)
+
+(define-function clip_stack_restore
+  (c-name "cogl_clip_stack_restore")
+  (return-type "none")
+)
+
+(define-function set_draw_buffer
+  (c-name "cogl_set_draw_buffer")
+  (return-type "none")
+  (parameters
+    '("CoglBufferTarget" "target")
+    '("CoglHandle" "offscreen")
+  )
+)
+
+(define-function push_draw_buffer
+  (c-name "cogl_push_draw_buffer")
+  (return-type "none")
+)
+
+(define-function pop_draw_buffer
+  (c-name "cogl_pop_draw_buffer")
+  (return-type "none")
+)
+
+(define-function read_pixels
+  (c-name "cogl_read_pixels")
+  (return-type "none")
+  (parameters
+    '("int" "x")
+    '("int" "y")
+    '("int" "width")
+    '("int" "height")
+    '("CoglReadPixelsFlags" "source")
+    '("CoglPixelFormat" "format")
+    '("guint8*" "pixels")
+  )
+)
+
+(define-function flush
+  (c-name "cogl_flush")
+  (return-type "none")
+)
+
+(define-function begin_gl
+  (c-name "cogl_begin_gl")
+  (return-type "none")
+)
+
+(define-function end_gl
+  (c-name "cogl_end_gl")
+  (return-type "none")
+)
+
+(define-function flush_gl_state
+  (c-name "cogl_flush_gl_state")
+  (return-type "none")
+  (parameters
+    '("int" "flags")
+  )
+)
+
+
+
+;; From cogl-material.h
+
+(define-function material_new
+  (c-name "cogl_material_new")
+  (return-type "CoglHandle")
+)
+
+(define-function material_ref
+  (c-name "cogl_material_ref")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function material_unref
+  (c-name "cogl_material_unref")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function is_material
+  (c-name "cogl_is_material")
+  (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function material_set_color
+  (c-name "cogl_material_set_color")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("const-CoglColor*" "color")
+  )
+)
+
+(define-function material_set_color4ub
+  (c-name "cogl_material_set_color4ub")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("guint8" "red")
+    '("guint8" "green")
+    '("guint8" "blue")
+    '("guint8" "alpha")
+  )
+)
+
+(define-function material_set_color4f
+  (c-name "cogl_material_set_color4f")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("float" "red")
+    '("float" "green")
+    '("float" "blue")
+    '("float" "alpha")
+  )
+)
+
+(define-function material_get_color
+  (c-name "cogl_material_get_color")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("CoglColor*" "color")
+  )
+)
+
+(define-function material_set_ambient
+  (c-name "cogl_material_set_ambient")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("const-CoglColor*" "ambient")
+  )
+)
+
+(define-function material_get_ambient
+  (c-name "cogl_material_get_ambient")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("CoglColor*" "ambient")
+  )
+)
+
+(define-function material_set_diffuse
+  (c-name "cogl_material_set_diffuse")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("const-CoglColor*" "diffuse")
+  )
+)
+
+(define-function material_get_diffuse
+  (c-name "cogl_material_get_diffuse")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("CoglColor*" "diffuse")
+  )
+)
+
+(define-function material_set_ambient_and_diffuse
+  (c-name "cogl_material_set_ambient_and_diffuse")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("const-CoglColor*" "color")
+  )
+)
+
+(define-function material_set_specular
+  (c-name "cogl_material_set_specular")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("const-CoglColor*" "specular")
+  )
+)
+
+(define-function material_get_specular
+  (c-name "cogl_material_get_specular")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("CoglColor*" "specular")
+  )
+)
+
+(define-function material_set_shininess
+  (c-name "cogl_material_set_shininess")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("float" "shininess")
+  )
+)
+
+(define-function material_get_shininess
+  (c-name "cogl_material_get_shininess")
+  (return-type "float")
+  (parameters
+    '("CoglHandle" "material")
+  )
+)
+
+(define-function material_set_emission
+  (c-name "cogl_material_set_emission")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("const-CoglColor*" "emission")
+  )
+)
+
+(define-function material_get_emission
+  (c-name "cogl_material_get_emission")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("CoglColor*" "emission")
+  )
+)
+
+(define-function material_set_alpha_test_function
+  (c-name "cogl_material_set_alpha_test_function")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("CoglMaterialAlphaFunc" "alpha_func")
+    '("float" "alpha_reference")
+  )
+)
+
+(define-function material_set_blend
+  (c-name "cogl_material_set_blend")
+  (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "material")
+    '("const-char*" "blend_string")
+    '("GError**" "error")
+  )
+)
+
+(define-function material_set_blend_constant
+  (c-name "cogl_material_set_blend_constant")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("CoglColor*" "constant_color")
+  )
+)
+
+(define-function material_set_layer
+  (c-name "cogl_material_set_layer")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("int" "layer_index")
+    '("CoglHandle" "texture")
+  )
+)
+
+(define-function material_remove_layer
+  (c-name "cogl_material_remove_layer")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("gint" "layer_index")
+  )
+)
+
+(define-function material_set_layer_combine
+  (c-name "cogl_material_set_layer_combine")
+  (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "material")
+    '("gint" "layer_index")
+    '("const-char*" "blend_string")
+    '("GError**" "error")
+  )
+)
+
+(define-function material_set_layer_combine_constant
+  (c-name "cogl_material_set_layer_combine_constant")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("int" "layer_index")
+    '("CoglColor*" "constant")
+  )
+)
+
+(define-function material_set_layer_matrix
+  (c-name "cogl_material_set_layer_matrix")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "material")
+    '("int" "layer_index")
+    '("CoglMatrix*" "matrix")
+  )
+)
+
+(define-function material_get_layers
+  (c-name "cogl_material_get_layers")
+  (return-type "const-GList*")
+  (parameters
+    '("CoglHandle" "material")
+  )
+)
+
+(define-function material_get_n_layers
+  (c-name "cogl_material_get_n_layers")
+  (return-type "int")
+  (parameters
+    '("CoglHandle" "material")
+  )
+)
+
+(define-function material_layer_get_type
+  (c-name "cogl_material_layer_get_type")
+  (return-type "CoglMaterialLayerType")
+  (parameters
+    '("CoglHandle" "layer_handle")
+  )
+)
+
+(define-function material_layer_get_texture
+  (c-name "cogl_material_layer_get_texture")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "layer_handle")
+  )
+)
+
+(define-function material_layer_get_min_filter
+  (c-name "cogl_material_layer_get_min_filter")
+  (return-type "CoglMaterialFilter")
+  (parameters
+    '("CoglHandle" "layer_handle")
+  )
+)
+
+(define-function material_layer_get_mag_filter
+  (c-name "cogl_material_layer_get_mag_filter")
+  (return-type "CoglMaterialFilter")
+  (parameters
+    '("CoglHandle" "layer_handle")
+  )
+)
+
+(define-function material_set_layer_filters
+  (c-name "cogl_material_set_layer_filters")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+    '("gint" "layer_index")
+    '("CoglMaterialFilter" "min_filter")
+    '("CoglMaterialFilter" "mag_filter")
+  )
+)
+
+
+
+;; From cogl-matrix.h
+
+(define-method init_identity
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_init_identity")
+  (return-type "none")
+)
+
+(define-method multiply
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_multiply")
+  (return-type "none")
+  (parameters
+    '("const-CoglMatrix*" "a")
+    '("const-CoglMatrix*" "b")
+  )
+)
+
+(define-method rotate
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_rotate")
+  (return-type "none")
+  (parameters
+    '("float" "angle")
+    '("float" "x")
+    '("float" "y")
+    '("float" "z")
+  )
+)
+
+(define-method translate
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_translate")
+  (return-type "none")
+  (parameters
+    '("float" "x")
+    '("float" "y")
+    '("float" "z")
+  )
+)
+
+(define-method scale
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_scale")
+  (return-type "none")
+  (parameters
+    '("float" "sx")
+    '("float" "sy")
+    '("float" "sz")
+  )
+)
+
+(define-method frustum
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_frustum")
+  (return-type "none")
+  (parameters
+    '("float" "left")
+    '("float" "right")
+    '("float" "bottom")
+    '("float" "top")
+    '("float" "z_near")
+    '("float" "z_far")
+  )
+)
+
+(define-method perspective
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_perspective")
+  (return-type "none")
+  (parameters
+    '("float" "fov_y")
+    '("float" "aspect")
+    '("float" "z_near")
+    '("float" "z_far")
+  )
+)
+
+(define-method ortho
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_ortho")
+  (return-type "none")
+  (parameters
+    '("float" "left")
+    '("float" "right")
+    '("float" "bottom")
+    '("float" "top")
+    '("float" "z_near")
+    '("float" "z_far")
+  )
+)
+
+(define-method init_from_array
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_init_from_array")
+  (return-type "none")
+  (parameters
+    '("const-float*" "array")
+  )
+)
+
+(define-method get_array
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_get_array")
+  (return-type "const-float*")
+)
+
+(define-method transform_point
+  (of-object "CoglMatrix")
+  (c-name "cogl_matrix_transform_point")
+  (return-type "none")
+  (parameters
+    '("float*" "x")
+    '("float*" "y")
+    '("float*" "z")
+    '("float*" "w")
+  )
+)
+
+
+
+;; From cogl-offscreen.h
+
+(define-function offscreen_new_to_texture
+  (c-name "cogl_offscreen_new_to_texture")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function offscreen_ref
+  (c-name "cogl_offscreen_ref")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function is_offscreen
+  (c-name "cogl_is_offscreen")
+  (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function offscreen_unref
+  (c-name "cogl_offscreen_unref")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+
+
+;; From cogl-pango.h
+
+(define-function pango_font_map_new
+  (c-name "cogl_pango_font_map_new")
+  (is-constructor-of "CoglPangoFontMap")
+  (return-type "PangoFontMap*")
+)
+
+(define-method create_context
+  (of-object "CoglPangoFontMap")
+  (c-name "cogl_pango_font_map_create_context")
+  (return-type "PangoContext*")
+)
+
+(define-method set_resolution
+  (of-object "CoglPangoFontMap")
+  (c-name "cogl_pango_font_map_set_resolution")
+  (return-type "none")
+  (parameters
+    '("double" "dpi")
+  )
+)
+
+(define-method clear_glyph_cache
+  (of-object "CoglPangoFontMap")
+  (c-name "cogl_pango_font_map_clear_glyph_cache")
+  (return-type "none")
+)
+
+(define-function pango_ensure_glyph_cache_for_layout
+  (c-name "cogl_pango_ensure_glyph_cache_for_layout")
+  (return-type "none")
+  (parameters
+    '("PangoLayout*" "layout")
+  )
+)
+
+(define-method set_use_mipmapping
+  (of-object "CoglPangoFontMap")
+  (c-name "cogl_pango_font_map_set_use_mipmapping")
+  (return-type "none")
+  (parameters
+    '("gboolean" "value")
+  )
+)
+
+(define-method get_use_mipmapping
+  (of-object "CoglPangoFontMap")
+  (c-name "cogl_pango_font_map_get_use_mipmapping")
+  (return-type "gboolean")
+)
+
+(define-method get_renderer
+  (of-object "CoglPangoFontMap")
+  (c-name "cogl_pango_font_map_get_renderer")
+  (return-type "PangoRenderer*")
+)
+
+(define-function pango_renderer_get_type
+  (c-name "cogl_pango_renderer_get_type")
+  (return-type "GType")
+)
+
+(define-function pango_render_layout_subpixel
+  (c-name "cogl_pango_render_layout_subpixel")
+  (return-type "none")
+  (parameters
+    '("PangoLayout*" "layout")
+    '("int" "x")
+    '("int" "y")
+    '("const-CoglColor*" "color")
+    '("int" "flags")
+  )
+)
+
+(define-function pango_render_layout
+  (c-name "cogl_pango_render_layout")
+  (return-type "none")
+  (parameters
+    '("PangoLayout*" "layout")
+    '("int" "x")
+    '("int" "y")
+    '("const-CoglColor*" "color")
+    '("int" "flags")
+  )
+)
+
+(define-function pango_render_layout_line
+  (c-name "cogl_pango_render_layout_line")
+  (return-type "none")
+  (parameters
+    '("PangoLayoutLine*" "line")
+    '("int" "x")
+    '("int" "y")
+    '("const-CoglColor*" "color")
+  )
+)
+
+
+
+;; From cogl-path.h
 
 (define-function rectangle
   (c-name "cogl_rectangle")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
-    '("ClutterFixed" "width")
-    '("ClutterFixed" "height")
+    '("float" "x_1")
+    '("float" "y_1")
+    '("float" "x_2")
+    '("float" "y_2")
   )
 )
 
@@ -212,8 +1287,23 @@
   (return-type "none")
 )
 
+(define-function path_fill_preserve
+  (c-name "cogl_path_fill_preserve")
+  (return-type "none")
+)
+
 (define-function path_stroke
   (c-name "cogl_path_stroke")
+  (return-type "none")
+)
+
+(define-function path_stroke_preserve
+  (c-name "cogl_path_stroke_preserve")
+  (return-type "none")
+)
+
+(define-function path_new
+  (c-name "cogl_path_new")
   (return-type "none")
 )
 
@@ -221,8 +1311,8 @@
   (c-name "cogl_path_move_to")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
+    '("float" "x")
+    '("float" "y")
   )
 )
 
@@ -230,8 +1320,8 @@
   (c-name "cogl_path_rel_move_to")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
+    '("float" "x")
+    '("float" "y")
   )
 )
 
@@ -239,8 +1329,8 @@
   (c-name "cogl_path_line_to")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
+    '("float" "x")
+    '("float" "y")
   )
 )
 
@@ -248,8 +1338,47 @@
   (c-name "cogl_path_rel_line_to")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
+    '("float" "x")
+    '("float" "y")
+  )
+)
+
+(define-function path_arc
+  (c-name "cogl_path_arc")
+  (return-type "none")
+  (parameters
+    '("float" "center_x")
+    '("float" "center_y")
+    '("float" "radius_x")
+    '("float" "radius_y")
+    '("float" "angle_1")
+    '("float" "angle_2")
+  )
+)
+
+(define-function path_curve_to
+  (c-name "cogl_path_curve_to")
+  (return-type "none")
+  (parameters
+    '("float" "x_1")
+    '("float" "y_1")
+    '("float" "x_2")
+    '("float" "y_2")
+    '("float" "x_3")
+    '("float" "y_3")
+  )
+)
+
+(define-function path_rel_curve_to
+  (c-name "cogl_path_rel_curve_to")
+  (return-type "none")
+  (parameters
+    '("float" "x_1")
+    '("float" "y_1")
+    '("float" "x_2")
+    '("float" "y_2")
+    '("float" "x_3")
+    '("float" "y_3")
   )
 )
 
@@ -258,53 +1387,32 @@
   (return-type "none")
 )
 
-(define-function path_arc
-  (c-name "cogl_path_arc")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "center_x")
-    '("ClutterFixed" "center_y")
-    '("ClutterFixed" "radius_x")
-    '("ClutterFixed" "radius_y")
-    '("ClutterAngle" "angle_start")
-    '("ClutterAngle" "angle_end")
-  )
-)
-
-(define-function path_curve_to
-  (c-name "cogl_path_curve_to")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "x1")
-    '("ClutterFixed" "y1")
-    '("ClutterFixed" "x2")
-    '("ClutterFixed" "y2")
-    '("ClutterFixed" "x3")
-    '("ClutterFixed" "y3")
-  )
-)
-
-(define-function path_rel_curve_to
-  (c-name "cogl_path_rel_curve_to")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "x1")
-    '("ClutterFixed" "y1")
-    '("ClutterFixed" "x2")
-    '("ClutterFixed" "y2")
-    '("ClutterFixed" "x3")
-    '("ClutterFixed" "y3")
-  )
-)
-
 (define-function path_line
   (c-name "cogl_path_line")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x1")
-    '("ClutterFixed" "y1")
-    '("ClutterFixed" "x2")
-    '("ClutterFixed" "y2")
+    '("float" "x_1")
+    '("float" "y_1")
+    '("float" "x_2")
+    '("float" "y_2")
+  )
+)
+
+(define-function path_polyline
+  (c-name "cogl_path_polyline")
+  (return-type "none")
+  (parameters
+    '("float*" "coords")
+    '("gint" "num_points")
+  )
+)
+
+(define-function path_polygon
+  (c-name "cogl_path_polygon")
+  (return-type "none")
+  (parameters
+    '("float*" "coords")
+    '("gint" "num_points")
   )
 )
 
@@ -312,10 +1420,10 @@
   (c-name "cogl_path_rectangle")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
-    '("ClutterFixed" "width")
-    '("ClutterFixed" "height")
+    '("float" "x_1")
+    '("float" "y_1")
+    '("float" "x_2")
+    '("float" "y_2")
   )
 )
 
@@ -323,10 +1431,10 @@
   (c-name "cogl_path_ellipse")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "center_x")
-    '("ClutterFixed" "center_y")
-    '("ClutterFixed" "radius_x")
-    '("ClutterFixed" "radius_y")
+    '("float" "center_x")
+    '("float" "center_y")
+    '("float" "radius_x")
+    '("float" "radius_y")
   )
 )
 
@@ -334,14 +1442,210 @@
   (c-name "cogl_path_round_rectangle")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x")
-    '("ClutterFixed" "y")
-    '("ClutterFixed" "width")
-    '("ClutterFixed" "height")
-    '("ClutterFixed" "radius")
-    '("ClutterAngle" "arc_step")
+    '("float" "x_1")
+    '("float" "y_1")
+    '("float" "x_2")
+    '("float" "y_2")
+    '("float" "radius")
+    '("float" "arc_step")
   )
 )
+
+
+
+;; From cogl-shader.h
+
+(define-function create_shader
+  (c-name "cogl_create_shader")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglShaderType" "shader_type")
+  )
+)
+
+(define-function shader_ref
+  (c-name "cogl_shader_ref")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function shader_unref
+  (c-name "cogl_shader_unref")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function is_shader
+  (c-name "cogl_is_shader")
+  (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function shader_source
+  (c-name "cogl_shader_source")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "shader")
+    '("const-gchar*" "source")
+  )
+)
+
+(define-function shader_compile
+  (c-name "cogl_shader_compile")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function shader_get_info_log
+  (c-name "cogl_shader_get_info_log")
+  (return-type "gchar*")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function shader_get_type
+  (c-name "cogl_shader_get_type")
+  (return-type "CoglShaderType")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function shader_is_compiled
+  (c-name "cogl_shader_is_compiled")
+  (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function create_program
+  (c-name "cogl_create_program")
+  (return-type "CoglHandle")
+)
+
+(define-function program_ref
+  (c-name "cogl_program_ref")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function program_unref
+  (c-name "cogl_program_unref")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function is_program
+  (c-name "cogl_is_program")
+  (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function program_attach_shader
+  (c-name "cogl_program_attach_shader")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "program_handle")
+    '("CoglHandle" "shader_handle")
+  )
+)
+
+(define-function program_link
+  (c-name "cogl_program_link")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function program_use
+  (c-name "cogl_program_use")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function program_get_uniform_location
+  (c-name "cogl_program_get_uniform_location")
+  (return-type "int")
+  (parameters
+    '("CoglHandle" "handle")
+    '("const-char*" "uniform_name")
+  )
+)
+
+(define-function program_uniform_1f
+  (c-name "cogl_program_uniform_1f")
+  (return-type "none")
+  (parameters
+    '("int" "uniform_no")
+    '("float" "value")
+  )
+)
+
+(define-function program_uniform_1i
+  (c-name "cogl_program_uniform_1i")
+  (return-type "none")
+  (parameters
+    '("int" "uniform_no")
+    '("int" "value")
+  )
+)
+
+(define-function program_uniform_float
+  (c-name "cogl_program_uniform_float")
+  (return-type "none")
+  (parameters
+    '("int" "uniform_no")
+    '("int" "size")
+    '("int" "count")
+    '("const-GLfloat*" "value")
+  )
+)
+
+(define-function program_uniform_int
+  (c-name "cogl_program_uniform_int")
+  (return-type "none")
+  (parameters
+    '("int" "uniform_no")
+    '("int" "size")
+    '("int" "count")
+    '("const-int*" "value")
+  )
+)
+
+(define-function program_uniform_matrix
+  (c-name "cogl_program_uniform_matrix")
+  (return-type "none")
+  (parameters
+    '("int" "uniform_no")
+    '("int" "size")
+    '("int" "count")
+    '("gboolean" "transpose")
+    '("const-float*" "value")
+  )
+)
+
+
+
+;; From cogl-texture.h
 
 (define-function texture_new_with_size
   (c-name "cogl_texture_new_with_size")
@@ -349,8 +1653,7 @@
   (parameters
     '("guint" "width")
     '("guint" "height")
-    '("gint" "max_waste")
-    '("gboolean" "auto_mipmap")
+    '("CoglTextureFlags" "flags")
     '("CoglPixelFormat" "internal_format")
   )
 )
@@ -360,8 +1663,7 @@
   (return-type "CoglHandle")
   (parameters
     '("const-gchar*" "filename")
-    '("gint" "max_waste")
-    '("gboolean" "auto_mipmap")
+    '("CoglTextureFlags" "flags")
     '("CoglPixelFormat" "internal_format")
     '("GError**" "error")
   )
@@ -373,8 +1675,7 @@
   (parameters
     '("guint" "width")
     '("guint" "height")
-    '("gint" "max_waste")
-    '("gboolean" "auto_mipmap")
+    '("CoglTextureFlags" "flags")
     '("CoglPixelFormat" "format")
     '("CoglPixelFormat" "internal_format")
     '("guint" "rowstride")
@@ -386,113 +1687,363 @@
   (c-name "cogl_texture_new_from_foreign")
   (return-type "CoglHandle")
   (parameters
-    '("guint" "gl_handle")
-    '("gint" "gl_target")
-    '("guint" "width")
-    '("guint" "height")
-    '("guint" "x_pot_waste")
-    '("guint" "y_pot_waste")
+    '("GLuint" "gl_handle")
+    '("GLenum" "gl_target")
+    '("GLuint" "width")
+    '("GLuint" "height")
+    '("GLuint" "x_pot_waste")
+    '("GLuint" "y_pot_waste")
     '("CoglPixelFormat" "format")
   )
 )
 
-(define-method is_texture
-  (of-object "CoglHandle")
+(define-function texture_new_from_bitmap
+  (c-name "cogl_texture_new_from_bitmap")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "bmp_handle")
+    '("CoglTextureFlags" "flags")
+    '("CoglPixelFormat" "internal_format")
+  )
+)
+
+(define-function is_texture
   (c-name "cogl_is_texture")
   (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "handle")
+  )
 )
 
-(define-method get_width
-  (of-object "CoglHandle")
+(define-function texture_get_width
   (c-name "cogl_texture_get_width")
   (return-type "guint")
+  (parameters
+    '("CoglHandle" "handle")
+  )
 )
 
-(define-method get_height
-  (of-object "CoglHandle")
+(define-function texture_get_height
   (c-name "cogl_texture_get_height")
   (return-type "guint")
+  (parameters
+    '("CoglHandle" "handle")
+  )
 )
 
-(define-method get_format
-  (of-object "CoglHandle")
+(define-function texture_get_format
   (c-name "cogl_texture_get_format")
   (return-type "CoglPixelFormat")
+  (parameters
+    '("CoglHandle" "handle")
+  )
 )
 
-(define-method get_rowstride
-  (of-object "CoglHandle")
+(define-function texture_get_rowstride
   (c-name "cogl_texture_get_rowstride")
   (return-type "guint")
+  (parameters
+    '("CoglHandle" "handle")
+  )
 )
 
-(define-method get_rowstride
-  (of-object "CoglHandle")
+(define-function texture_get_max_waste
   (c-name "cogl_texture_get_max_waste")
   (return-type "gint")
+  (parameters
+    '("CoglHandle" "handle")
+  )
 )
 
-(define-method get_min_filter
-  (of-object "CoglHandle")
-  (c-name "cogl_texture_get_min_filter")
-  (return-type "int")
-)
-
-(define-method get_mag_filter
-  (of-object "CoglHandle")
-  (c-name "cogl_texture_get_mag_filter")
-  (return-type "int")
-)
-
-(define-method is_sliced
-  (of-object "CoglHandle")
+(define-function texture_is_sliced
   (c-name "cogl_texture_is_sliced")
   (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "handle")
+  )
 )
 
-(define-method get_gl_texture
-  (of-object "CoglHandle")
+(define-function texture_get_gl_texture
   (c-name "cogl_texture_get_gl_texture")
   (return-type "gboolean")
   (parameters
-    '("guint" "out_gl_handle")
-    '("gint" "out_gl_target")
+    '("CoglHandle" "handle")
+    '("GLuint*" "out_gl_handle")
+    '("GLenum*" "out_gl_target")
   )
 )
 
-(define-method set_filters
-  (of-object "CoglHandle")
-  (c-name "cogl_texture_set_filters")
+(define-function texture_get_data
+  (c-name "cogl_texture_get_data")
+  (return-type "gint")
+  (parameters
+    '("CoglHandle" "handle")
+    '("CoglPixelFormat" "format")
+    '("guint" "rowstride")
+    '("guchar*" "data")
+  )
+)
+
+(define-function texture_set_region
+  (c-name "cogl_texture_set_region")
+  (return-type "gboolean")
+  (parameters
+    '("CoglHandle" "handle")
+    '("gint" "src_x")
+    '("gint" "src_y")
+    '("gint" "dst_x")
+    '("gint" "dst_y")
+    '("guint" "dst_width")
+    '("guint" "dst_height")
+    '("gint" "width")
+    '("gint" "height")
+    '("CoglPixelFormat" "format")
+    '("guint" "rowstride")
+    '("const-guchar*" "data")
+  )
+)
+
+(define-function texture_ref
+  (c-name "cogl_texture_ref")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function texture_unref
+  (c-name "cogl_texture_unref")
   (return-type "none")
   (parameters
-    '("gint" "min_filter")
-    '("gint" "max_filter")
+    '("CoglHandle" "handle")
   )
 )
 
-(define-method texture_rectangle
-  (of-object "CoglHandle")
-  (c-name "cogl_texture_rectangle")
+(define-function rectangle_with_texture_coords
+  (c-name "cogl_rectangle_with_texture_coords")
   (return-type "none")
   (parameters
-    '("ClutterFixed" "x1")
-    '("ClutterFixed" "y1")
-    '("ClutterFixed" "x2")
-    '("ClutterFixed" "y2")
-    '("ClutterFixed" "tx1")
-    '("ClutterFixed" "ty1")
-    '("ClutterFixed" "tx2")
-    '("ClutterFixed" "ty2")
+    '("float" "x1")
+    '("float" "y1")
+    '("float" "x2")
+    '("float" "y2")
+    '("float" "tx1")
+    '("float" "ty1")
+    '("float" "tx2")
+    '("float" "ty2")
   )
 )
 
-(define-method texture_polygon
-  (of-object "CoglHandle")
-  (c-name "cogl_texture_polygon")
+(define-function rectangle_with_multitexture_coords
+  (c-name "cogl_rectangle_with_multitexture_coords")
   (return-type "none")
+  (parameters
+    '("float" "x1")
+    '("float" "y1")
+    '("float" "x2")
+    '("float" "y2")
+    '("const-float*" "tex_coords")
+    '("gint" "tex_coords_len")
+  )
+)
+
+(define-function rectangles_with_texture_coords
+  (c-name "cogl_rectangles_with_texture_coords")
+  (return-type "none")
+  (parameters
+    '("const-float*" "verts")
+    '("guint" "n_rects")
+  )
+)
+
+(define-function rectangles
+  (c-name "cogl_rectangles")
+  (return-type "none")
+  (parameters
+    '("const-float*" "verts")
+    '("guint" "n_rects")
+  )
+)
+
+(define-function polygon
+  (c-name "cogl_polygon")
+  (return-type "none")
+  (parameters
+    '("CoglTextureVertex*" "vertices")
+    '("guint" "n_vertices")
+    '("gboolean" "use_color")
+  )
+)
+
+
+
+;; From cogl-types.h
+
+(define-function handle_get_type
+  (c-name "cogl_handle_get_type")
+  (return-type "GType")
+)
+
+(define-method ref
+  (of-object "CoglHandle")
+  (c-name "cogl_handle_ref")
+  (return-type "CoglHandle")
+)
+
+(define-method unref
+  (of-object "CoglHandle")
+  (c-name "cogl_handle_unref")
+  (return-type "none")
+)
+
+(define-function fixed_get_type
+  (c-name "cogl_fixed_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From cogl-vertex-buffer.h
+
+(define-function vertex_buffer_new
+  (c-name "cogl_vertex_buffer_new")
+  (return-type "CoglHandle")
   (parameters
     '("guint" "n_vertices")
-    '("CoglTextureVertex" "vertices")
-    '("gboolean" "use_colors")
   )
 )
+
+(define-function vertex_buffer_get_n_vertices
+  (c-name "cogl_vertex_buffer_get_n_vertices")
+  (return-type "guint")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function vertex_buffer_add
+  (c-name "cogl_vertex_buffer_add")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+    '("const-char*" "attribute_name")
+    '("guint8" "n_components")
+    '("CoglAttributeType" "type")
+    '("gboolean" "normalized")
+    '("guint16" "stride")
+    '("const-void*" "pointer")
+  )
+)
+
+(define-function vertex_buffer_delete
+  (c-name "cogl_vertex_buffer_delete")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+    '("const-char*" "attribute_name")
+  )
+)
+
+(define-function vertex_buffer_submit
+  (c-name "cogl_vertex_buffer_submit")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function vertex_buffer_disable
+  (c-name "cogl_vertex_buffer_disable")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+    '("const-char*" "attribute_name")
+  )
+)
+
+(define-function vertex_buffer_enable
+  (c-name "cogl_vertex_buffer_enable")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+    '("const-char*" "attribute_name")
+  )
+)
+
+(define-function vertex_buffer_draw
+  (c-name "cogl_vertex_buffer_draw")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+    '("CoglVerticesMode" "mode")
+    '("int" "first")
+    '("int" "count")
+  )
+)
+
+(define-function vertex_buffer_indices_new
+  (c-name "cogl_vertex_buffer_indices_new")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglIndicesType" "indices_type")
+    '("const-void*" "indices_array")
+    '("int" "indices_len")
+  )
+)
+
+(define-function vertex_buffer_indices_get_type
+  (c-name "cogl_vertex_buffer_indices_get_type")
+  (return-type "CoglIndicesType")
+  (parameters
+    '("CoglHandle" "indices")
+  )
+)
+
+(define-function vertex_buffer_delete_indices
+  (c-name "cogl_vertex_buffer_delete_indices")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+    '("int" "indices_id")
+  )
+)
+
+(define-function vertex_buffer_draw_elements
+  (c-name "cogl_vertex_buffer_draw_elements")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+    '("CoglVerticesMode" "mode")
+    '("CoglHandle" "indices")
+    '("int" "min_index")
+    '("int" "max_index")
+    '("int" "indices_offset")
+    '("int" "count")
+  )
+)
+
+(define-function vertex_buffer_ref
+  (c-name "cogl_vertex_buffer_ref")
+  (return-type "CoglHandle")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function vertex_buffer_unref
+  (c-name "cogl_vertex_buffer_unref")
+  (return-type "none")
+  (parameters
+    '("CoglHandle" "handle")
+  )
+)
+
+(define-function vertex_buffer_indices_get_for_quads
+  (c-name "cogl_vertex_buffer_indices_get_for_quads")
+  (return-type "CoglHandle")
+  (parameters
+    '("guint" "n_indices")
+  )
+)
+
+

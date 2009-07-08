@@ -6,10 +6,55 @@
   (gtype-id "PYCOGL_TYPE_HANDLE")
 )
 
+(define-flags DebugFlags
+  (in-module "Cogl")
+  (c-name "CoglDebugFlags")
+  (gtype-id "COGL_TYPE_DEBUG_FLAGS")
+  (values
+    '("misc" "COGL_DEBUG_MISC")
+    '("texture" "COGL_DEBUG_TEXTURE")
+    '("material" "COGL_DEBUG_MATERIAL")
+    '("shader" "COGL_DEBUG_SHADER")
+    '("offscreen" "COGL_DEBUG_OFFSCREEN")
+    '("draw" "COGL_DEBUG_DRAW")
+    '("pango" "COGL_DEBUG_PANGO")
+    '("rectangles" "COGL_DEBUG_RECTANGLES")
+    '("handle" "COGL_DEBUG_HANDLE")
+    '("blend-strings" "COGL_DEBUG_BLEND_STRINGS")
+    '("disable-batching" "COGL_DEBUG_DISABLE_BATCHING")
+    '("force-client-side-matrices" "COGL_DEBUG_FORCE_CLIENT_SIDE_MATRICES")
+    '("disable-vbos" "COGL_DEBUG_DISABLE_VBOS")
+    '("journal" "COGL_DEBUG_JOURNAL")
+    '("batching" "COGL_DEBUG_BATCHING")
+    '("disable-software-transform" "COGL_DEBUG_DISABLE_SOFTWARE_TRANSFORM")
+  )
+)
+
+(define-flags BufferBit
+  (in-module "Cogl")
+  (c-name "CoglBufferBit")
+  (gtype-id "COGL_TYPE_BUFFER_BIT")
+  (values
+    '("color" "COGL_BUFFER_BIT_COLOR")
+    '("depth" "COGL_BUFFER_BIT_DEPTH")
+    '("stencil" "COGL_BUFFER_BIT_STENCIL")
+  )
+)
+
+(define-enum ShaderType
+  (in-module "Cogl")
+  (c-name "CoglShaderType")
+  (gtype-id "COGL_TYPE_SHADER_TYPE")
+  (values
+    '("vertex" "COGL_SHADER_TYPE_VERTEX")
+    '("fragment" "COGL_SHADER_TYPE_FRAGMENT")
+  )
+)
+
 (define-enum PixelFormat
   (in-module "Cogl")
   (c-name "CoglPixelFormat")
-  (gtype-id "PYCOGL_TYPE_PIXEL_FORMAT")
+  (gtype-id "COGL_TYPE_PIXEL_FORMAT")
   (values
     '("any" "COGL_PIXEL_FORMAT_ANY")
     '("a-8" "COGL_PIXEL_FORMAT_A_8")
@@ -36,17 +81,51 @@
 (define-flags FeatureFlags
   (in-module "Cogl")
   (c-name "CoglFeatureFlags")
-  (gtype-id "PYCOGL_TYPE_FEATURE_FLAGS")
+  (gtype-id "COGL_TYPE_FEATURE_FLAGS")
   (values
     '("texture-rectangle" "COGL_FEATURE_TEXTURE_RECTANGLE")
     '("texture-npot" "COGL_FEATURE_TEXTURE_NPOT")
     '("texture-yuv" "COGL_FEATURE_TEXTURE_YUV")
     '("texture-read-pixels" "COGL_FEATURE_TEXTURE_READ_PIXELS")
     '("shaders-glsl" "COGL_FEATURE_SHADERS_GLSL")
-    '("offscree" "COGL_FEATURE_OFFSCREEN")
+    '("offscreen" "COGL_FEATURE_OFFSCREEN")
     '("offscreen-multisample" "COGL_FEATURE_OFFSCREEN_MULTISAMPLE")
     '("offscreen-blit" "COGL_FEATURE_OFFSCREEN_BLIT")
     '("four-clip-planes" "COGL_FEATURE_FOUR_CLIP_PLANES")
     '("stencil-buffer" "COGL_FEATURE_STENCIL_BUFFER")
+    '("vbos" "COGL_FEATURE_VBOS")
   )
 )
+
+(define-flags BufferTarget
+  (in-module "Cogl")
+  (c-name "CoglBufferTarget")
+  (gtype-id "COGL_TYPE_BUFFER_TARGET")
+  (values
+    '("window-buffer" "COGL_WINDOW_BUFFER")
+    '("offscreen-buffer" "COGL_OFFSCREEN_BUFFER")
+  )
+)
+
+(define-flags TextureFlags
+  (in-module "Cogl")
+  (c-name "CoglTextureFlags")
+  (gtype-id "COGL_TYPE_TEXTURE_FLAGS")
+  (values
+    '("none" "COGL_TEXTURE_NONE")
+    '("no-auto-mipmap" "COGL_TEXTURE_NO_AUTO_MIPMAP")
+    '("no-slicing" "COGL_TEXTURE_NO_SLICING")
+  )
+)
+
+(define-enum FogMode
+  (in-module "Cogl")
+  (c-name "CoglFogMode")
+  (gtype-id "COGL_TYPE_FOG_MODE")
+  (values
+    '("linear" "COGL_FOG_MODE_LINEAR")
+    '("exponential" "COGL_FOG_MODE_EXPONENTIAL")
+    '("exponential-squared" "COGL_FOG_MODE_EXPONENTIAL_SQUARED")
+  )
+)
+
