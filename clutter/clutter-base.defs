@@ -4703,3 +4703,478 @@
 )
 
 
+;; From clutter-text.h
+
+(define-function text_get_type
+  (c-name "clutter_text_get_type")
+  (return-type "GType")
+)
+
+(define-function text_new
+  (c-name "clutter_text_new")
+  (is-constructor-of "ClutterText")
+  (return-type "ClutterActor*")
+)
+
+(define-function text_new_full
+  (c-name "clutter_text_new_full")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-function text_new_with_text
+  (c-name "clutter_text_new_with_text")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method get_text
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_text")
+  (return-type "const-gchar*")
+)
+
+(define-method set_text
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method set_markup
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_markup")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "markup")
+  )
+)
+
+(define-method set_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_font_name
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_font_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "font_name")
+  )
+)
+
+(define-method get_font_name
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_font_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_ellipsize
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_ellipsize")
+  (return-type "none")
+  (parameters
+    '("PangoEllipsizeMode" "mode")
+  )
+)
+
+(define-method get_ellipsize
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_ellipsize")
+  (return-type "PangoEllipsizeMode")
+)
+
+(define-method set_line_wrap
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_line_wrap")
+  (return-type "none")
+  (parameters
+    '("gboolean" "line_wrap")
+  )
+)
+
+(define-method get_line_wrap
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_line_wrap")
+  (return-type "gboolean")
+)
+
+(define-method set_line_wrap_mode
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_line_wrap_mode")
+  (return-type "none")
+  (parameters
+    '("PangoWrapMode" "wrap_mode")
+  )
+)
+
+(define-method get_line_wrap_mode
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_line_wrap_mode")
+  (return-type "PangoWrapMode")
+)
+
+(define-method get_layout
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_layout")
+  (return-type "PangoLayout*")
+)
+
+(define-method set_attributes
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_attributes")
+  (return-type "none")
+  (parameters
+    '("PangoAttrList*" "attrs")
+  )
+)
+
+(define-method get_attributes
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_attributes")
+  (return-type "PangoAttrList*")
+)
+
+(define-method set_use_markup
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_use_markup")
+  (return-type "none")
+  (parameters
+    '("gboolean" "setting")
+  )
+)
+
+(define-method get_use_markup
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_use_markup")
+  (return-type "gboolean")
+)
+
+(define-method set_line_alignment
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_line_alignment")
+  (return-type "none")
+  (parameters
+    '("PangoAlignment" "alignment")
+  )
+)
+
+(define-method get_line_alignment
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_line_alignment")
+  (return-type "PangoAlignment")
+)
+
+(define-method set_justify
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_justify")
+  (return-type "none")
+  (parameters
+    '("gboolean" "justify")
+  )
+)
+
+(define-method get_justify
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_justify")
+  (return-type "gboolean")
+)
+
+(define-method insert_unichar
+  (of-object "ClutterText")
+  (c-name "clutter_text_insert_unichar")
+  (return-type "none")
+  (parameters
+    '("gunichar" "wc")
+  )
+)
+
+(define-method delete_chars
+  (of-object "ClutterText")
+  (c-name "clutter_text_delete_chars")
+  (return-type "none")
+  (parameters
+    '("guint" "n_chars")
+  )
+)
+
+(define-method insert_text
+  (of-object "ClutterText")
+  (c-name "clutter_text_insert_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+    '("gssize" "position")
+  )
+)
+
+(define-method delete_text
+  (of-object "ClutterText")
+  (c-name "clutter_text_delete_text")
+  (return-type "none")
+  (parameters
+    '("gssize" "start_pos")
+    '("gssize" "end_pos")
+  )
+)
+
+(define-method get_chars
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_chars")
+  (return-type "gchar*")
+  (parameters
+    '("gssize" "start_pos")
+    '("gssize" "end_pos")
+  )
+)
+
+(define-method set_editable
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_editable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "editable")
+  )
+)
+
+(define-method get_editable
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_editable")
+  (return-type "gboolean")
+)
+
+(define-method set_activatable
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_activatable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "activatable")
+  )
+)
+
+(define-method get_activatable
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_activatable")
+  (return-type "gboolean")
+)
+
+(define-method get_cursor_position
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_cursor_position")
+  (return-type "gint")
+)
+
+(define-method set_cursor_position
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_cursor_position")
+  (return-type "none")
+  (parameters
+    '("gint" "position")
+  )
+)
+
+(define-method set_cursor_visible
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_cursor_visible")
+  (return-type "none")
+  (parameters
+    '("gboolean" "cursor_visible")
+  )
+)
+
+(define-method get_cursor_visible
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_cursor_visible")
+  (return-type "gboolean")
+)
+
+(define-method set_cursor_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_cursor_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_cursor_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_cursor_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_cursor_size
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_cursor_size")
+  (return-type "none")
+  (parameters
+    '("gint" "size")
+  )
+)
+
+(define-method get_cursor_size
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_cursor_size")
+  (return-type "guint")
+)
+
+(define-method set_selectable
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_selectable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "selectable")
+  )
+)
+
+(define-method get_selectable
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_selectable")
+  (return-type "gboolean")
+)
+
+(define-method set_selection_bound
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_selection_bound")
+  (return-type "none")
+  (parameters
+    '("gint" "selection_bound")
+  )
+)
+
+(define-method get_selection_bound
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_selection_bound")
+  (return-type "gint")
+)
+
+(define-method set_selection
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_selection")
+  (return-type "none")
+  (parameters
+    '("gssize" "start_pos")
+    '("gssize" "end_pos")
+  )
+)
+
+(define-method get_selection
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_selection")
+  (return-type "gchar*")
+)
+
+(define-method set_selection_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_selection_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_selection_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_selection_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method delete_selection
+  (of-object "ClutterText")
+  (c-name "clutter_text_delete_selection")
+  (return-type "gboolean")
+)
+
+(define-method set_password_char
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_password_char")
+  (return-type "none")
+  (parameters
+    '("gunichar" "wc")
+  )
+)
+
+(define-method get_password_char
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_password_char")
+  (return-type "gunichar")
+)
+
+(define-method set_max_length
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_max_length")
+  (return-type "none")
+  (parameters
+    '("gint" "max")
+  )
+)
+
+(define-method get_max_length
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_max_length")
+  (return-type "gint")
+)
+
+(define-method set_single_line_mode
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_single_line_mode")
+  (return-type "none")
+  (parameters
+    '("gboolean" "single_line")
+  )
+)
+
+(define-method get_single_line_mode
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_single_line_mode")
+  (return-type "gboolean")
+)
+
+(define-method activate
+  (of-object "ClutterText")
+  (c-name "clutter_text_activate")
+  (return-type "gboolean")
+)
+
+(define-method position_to_coords
+  (of-object "ClutterText")
+  (c-name "clutter_text_position_to_coords")
+  (return-type "gboolean")
+  (parameters
+    '("gint" "position")
+    '("gfloat*" "x")
+    '("gfloat*" "y")
+    '("gfloat*" "line_height")
+  )
+)
+
+

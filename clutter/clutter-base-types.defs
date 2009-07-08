@@ -289,6 +289,13 @@
   (gtype-id "CLUTTER_TYPE_PATH")
 )
 
+(define-object Text
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterText")
+  (gtype-id "CLUTTER_TYPE_TEXT")
+)
+
 ;; Enumerations and flags ...
 
 (define-flags EventFlags

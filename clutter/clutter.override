@@ -807,3 +807,20 @@ _wrap_clutter_texture_set_cogl_texture (PyGObject *self,
   Py_INCREF(Py_None);
   return Py_None;
 }
+%%
+override clutter_text_position_to_coords kwargs
+static PyObject *
+_wrap_clutter_text_position_to_coords (PyGObject *self,
+                                       PyObject  *args,
+                                       PyObject  *kwargs)
+{
+    static char *kwlist[] = { "position", NULL };
+    gint position;
+    gfloat x, y, line_height;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "i:ClutterText.position_to_coords", kwlist, &position))
+        return NULL;
+
+    clutter_text_position_to_coords (CLUTTER_TEXT (self->obj), position, &x, &y, &line_height);
+    return Py_BuildValue ("(ddd)", x, y, line_height);
+}
