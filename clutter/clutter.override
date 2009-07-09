@@ -824,3 +824,27 @@ _wrap_clutter_text_position_to_coords (PyGObject *self,
     clutter_text_position_to_coords (CLUTTER_TEXT (self->obj), position, &x, &y, &line_height);
     return Py_BuildValue ("(ddd)", x, y, line_height);
 }
+%%
+override clutter_stage_read_pixels
+static PyObject *
+_wrap_clutter_stage_read_pixels(PyGObject *self,
+                                PyObject  *args,
+                                PyObject  *kwargs)
+{
+    static char *kwlist[] = { "x", "y", "width", "height", NULL };
+    int x, y, width, height;
+    guchar *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"iiii:ClutterStage.read_pixels", kwlist, &x, &y, &width, &height))
+        return NULL;
+
+    ret = clutter_stage_read_pixels(CLUTTER_STAGE(self->obj), x, y, width, height);
+
+    if (ret) {
+        PyObject *py_ret = Py_BuildValue("s", ret);
+        g_free(ret);
+        return py_ret;
+    }
+    Py_INCREF(Py_None);
+    return Py_None;
+}
