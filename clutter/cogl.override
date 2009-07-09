@@ -107,6 +107,11 @@ ignore
   cogl_get_modelview_matrix
   cogl_get_projection_matrix
   cogl_get_option_group
+  cogl_get_proc_address
+  cogl_color_equal
+%%
+ignore-glob
+  cogl_fixed_*
 %%
 override cogl_get_viewport noargs
 static PyObject *
@@ -202,4 +207,68 @@ _wrap_cogl_matrix_new (PyGBoxed *self)
     self->free_on_dealloc = TRUE;
     self->gtype = PYCOGL_TYPE_MATRIX;
     return 0;
+}
+%%
+override cogl_matrix_init_from_array
+static PyObject *
+_wrap_cogl_matrix_init_from_array (PyGBoxed *self, PyObject *args)
+{
+    PyObject *py_array;
+    float array[16];
+    int i;
+
+    if (!PyArg_ParseTuple (args, "O:cogl.matrix_init_from_array", &py_array))
+        return NULL;
+
+    if (!PyTuple_Check (py_array) || PyTuple_Size (py_array) != 16)
+    {
+        PyErr_SetString (PyExc_TypeError,
+                         "matrix_init_from_array needs a tuple of 16 floats");
+        return NULL;
+    }
+
+    for (i = 0; i < 16; i++)
+        array[i] = PyFloat_AsDouble (PyTuple_GetItem (py_array, i));
+
+    cogl_matrix_init_from_array (self->boxed, array);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override cogl_matrix_get_array noargs
+static PyObject *
+_wrap_cogl_matrix_get_array (PyGBoxed *self)
+{
+    const float *array;
+    PyObject *py_array;
+    int i;
+
+    array = cogl_matrix_get_array (self->boxed);
+    py_array = PyTuple_New (16);
+
+    for (i = 0; i < 16; i++)
+    {
+        PyTuple_SetItem (py_array, i, PyFloat_FromDouble (array[i]));
+    }
+
+    return py_array;
+}
+%%
+override cogl_matrix_transform_point
+static PyObject *
+_wrap_cogl_matrix_transform_point (PyGBoxed *self,
+                                   PyObject *args,
+                                   PyObject *kwargs)
+{
+    static char *kwlist[] = { "x", "y", "z", "w", NULL };
+    float x, y, z, w;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ffff:Matrix.transform_point",
+                                     kwlist, &x, &y, &z, &w))
+        return NULL;
+
+    cogl_matrix_transform_point (self->boxed, &x, &y, &z, &w);
+
+    return Py_BuildValue ("(ffff)", x, y, z, w);
 }
