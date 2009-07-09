@@ -1,5 +1,12 @@
 ;; -*- scheme -*-
 
+(define-object PangoFontMap
+  (in-module "Cogl")
+  (c-name "CoglPangoFontMap")
+  (parent "PangoCairoFontMap")
+  (gtype-id "COGL_PANGO_TYPE_FONT_MAP")
+)
+
 (define-boxed Handle
   (in-module "Cogl")
   (c-name "CoglHandle")

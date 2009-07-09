@@ -102,6 +102,8 @@ include
 modulename clutter.cogl
 %%
 import pango.Layout as PyPangoLayout_Type
+import pango.LayoutLine as PyPangoLayoutLine_Type
+import pangocairo.CairoFontMap as PyPangoCairoFontMap_Type
 %%
 ignore
   cogl_get_modelview_matrix
@@ -273,4 +275,127 @@ _wrap_cogl_matrix_transform_point (PyGBoxed *self,
     cogl_matrix_transform_point (self->boxed, &x, &y, &z, &w);
 
     return Py_BuildValue ("(ffff)", x, y, z, w);
+}
+%%
+new-constructor COGL_PANGO_TYPE_FONT_MAP
+%%
+override cogl_pango_font_map_new noargs
+static int
+_wrap_cogl_pango_font_map_new (PyGObject *self)
+{
+  self->obj = (GObject *) cogl_pango_font_map_new ();
+  if (!self->obj)
+    {
+      PyErr_SetString (PyExc_RuntimeError, "could not create PangoFontMap");
+      return -1;
+    }
+
+  g_object_ref (self->obj);
+  pygobject_register_wrapper ((PyObject *) self);
+
+  return 0;
+}
+%%
+override cogl_pango_render_layout kwargs
+static PyObject *
+_wrap_cogl_pango_render_layout(PyObject *self,
+                               PyObject *args,
+                               PyObject *kwargs)
+{
+    static char *kwlist[] = { "layout", "x", "y", "color", "flags", NULL };
+    PyGObject *layout;
+    int x, y, flags;
+    CoglColor *color = NULL;
+    PyObject *py_color;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!iiOi:pango_render_layout",
+                                     kwlist,
+                                     &PyPangoLayout_Type,
+                                     &layout,
+                                     &x, &y, &py_color, &flags))
+        return NULL;
+
+    if (!pycogl_color_from_pyobject (py_color, color))
+    {
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError,
+                         "color must be a ClutterColor or 4-tuple");
+        return NULL;
+    }
+
+    
+    cogl_pango_render_layout(PANGO_LAYOUT(layout->obj), x, y, color, flags);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override cogl_pango_render_layout_subpixel
+static PyObject *
+_wrap_cogl_pango_render_layout_subpixel(PyObject *self,
+                                        PyObject *args,
+                                        PyObject *kwargs)
+{
+    static char *kwlist[] = { "layout", "x", "y", "color", "flags", NULL };
+    PyGObject *layout;
+    int x, y, flags;
+    CoglColor *color = NULL;
+    PyObject *py_color;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!iiOi:pango_render_layout_subpixel",
+                                     kwlist,
+                                     &PyPangoLayout_Type,
+                                     &layout,
+                                     &x, &y, &py_color, &flags))
+        return NULL;
+
+    if (!pycogl_color_from_pyobject (py_color, color))
+    {
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError,
+                         "color must be a ClutterColor or 4-tuple");
+        return NULL;
+    }
+
+    
+    cogl_pango_render_layout_subpixel(PANGO_LAYOUT(layout->obj), x, y, color, flags);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override cogl_pango_render_layout_line kwargs
+static PyObject *
+_wrap_cogl_pango_render_layout_line(PyObject *self,
+                                    PyObject *args,
+                                    PyObject *kwargs)
+{
+    static char *kwlist[] = { "line", "x", "y", "color", NULL };
+    PangoLayoutLine *line = NULL;
+    PyObject *py_line, *py_color;
+    int x, y;
+    CoglColor *color = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OiiO:pango_render_layout_line",
+                                     kwlist, &py_line, &x, &y, &py_color))
+        return NULL;
+    if (pyg_boxed_check(py_line, PANGO_TYPE_LAYOUT_LINE))
+        line = pyg_boxed_get(py_line, PangoLayoutLine);
+    else {
+        PyErr_SetString(PyExc_TypeError, "line should be a PangoLayoutLine");
+        return NULL;
+    }
+    
+    if (!pycogl_color_from_pyobject (py_color, color))
+    {
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError,
+                         "color must be a ClutterColor or 4-tuple");
+        return NULL;
+    }
+
+    cogl_pango_render_layout_line(line, x, y, color);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
 }
