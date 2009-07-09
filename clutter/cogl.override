@@ -97,6 +97,7 @@ pycogl_matrix_get_type (void)
 %%
 include
   cogl-texture.override
+  cogl-material.override
 %%
 modulename clutter.cogl
 %%
