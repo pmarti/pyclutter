@@ -112,6 +112,7 @@ ignore
   cogl_get_proc_address
   cogl_color_equal
   cogl_create_program
+  cogl_read_pixels
 %%
 ignore-glob
   cogl_fixed_*
@@ -455,4 +456,3 @@ _wrap_cogl_clear(PyObject *self, PyObject *args, PyObject *kwargs)
     Py_INCREF(Py_None);
     return Py_None;
 }
-

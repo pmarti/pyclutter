@@ -236,3 +236,13 @@
     '("unsigned-short" "COGL_INDICES_TYPE_UNSIGNED_SHORT")
   )
 )
+
+(define-flags ReadPixelsFlags
+  (in-module "Cogl")
+  (c-name "CoglReadPixelsFlags")
+  (gtype-id "COGL_TYPE_READ_PIXELS_FLAGS")
+  (values
+    '("color-buffer" "COGL_READ_PIXELS_COLOR_BUFFER")
+  )
+)
+
