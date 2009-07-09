@@ -1040,6 +1040,78 @@
 
 
 
+;; From clutter-cairo-texture.h
+
+(define-function cairo_texture_get_type
+  (c-name "clutter_cairo_texture_get_type")
+  (return-type "GType")
+)
+
+(define-function cairo_texture_new
+  (c-name "clutter_cairo_texture_new")
+  (is-constructor-of "ClutterCairoTexture")
+  (return-type "ClutterActor*")
+  (properties
+    '("surface-width" (argname "width"))
+    '("surface-height" (argname "height"))
+  )
+)
+
+(define-method cairo_create_region
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_create_region")
+  (return-type "cairo_t*")
+  (parameters
+    '("gint" "x_offset")
+    '("gint" "y_offset")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method cairo_create
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_create")
+  (return-type "cairo_t*")
+)
+
+(define-method set_surface_size
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_set_surface_size")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
+  )
+)
+
+(define-method get_surface_size
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_get_surface_size")
+  (return-type "none")
+  (parameters
+    '("guint*" "width")
+    '("guint*" "height")
+  )
+)
+
+(define-method clear
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_clear")
+  (return-type "none")
+)
+
+(define-function cairo_set_source_color
+  (c-name "clutter_cairo_set_source_color")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "cr")
+    '("const-ClutterColor*" "color")
+  )
+)
+
+
+
 ;; From clutter-backend.h
 
 (define-function backend_get_type

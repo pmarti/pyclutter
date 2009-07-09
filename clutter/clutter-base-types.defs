@@ -240,6 +240,13 @@
   (gtype-id "CLUTTER_TYPE_MODEL")
 )
 
+(define-object CairoTexture
+  (in-module "Clutter")
+  (parent "ClutterTexture")
+  (c-name "ClutterCairoTexture")
+  (gtype-id "CLUTTER_TYPE_CAIRO_TEXTURE")
+)
+
 (define-object ModelIter
   (in-module "Clutter")
   (parent "GObject")

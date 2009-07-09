@@ -36,7 +36,8 @@ CLUTTER_OVERRIDES = 			\
 	clutter-color.override		\
 	clutter-event.override		\
 	clutter-model.override		\
-	clutter-script.override
+	clutter-script.override     \
+	clutter-cairotexture.override
 
 CLEANFILES += 			\
 	cogl.c 			\
