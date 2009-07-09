@@ -1014,6 +1014,12 @@
 
 ;; From cogl-matrix.h
 
+(define-function matrix_new
+  (c-name "cogl_matrix_new")
+  (is-constructor-of "CoglMatrix")
+  (return-type "CoglMatrix")
+)
+
 (define-method init_identity
   (of-object "CoglMatrix")
   (c-name "cogl_matrix_init_identity")

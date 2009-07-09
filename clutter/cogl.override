@@ -67,6 +67,33 @@ pycogl_handle_get_type (void)
 
   return hnd_type;
 }
+
+CoglMatrix *
+pycogl_matrix_copy (const CoglMatrix *matrix)
+{
+    return g_slice_dup (CoglMatrix, matrix);
+}
+
+void
+pycogl_matrix_free (CoglMatrix *matrix)
+{
+    if (G_LIKELY (matrix))
+        g_slice_free (CoglMatrix, matrix);
+}
+
+GType
+pycogl_matrix_get_type (void)
+{
+  static GType matrix_type = 0;
+
+  if (G_UNLIKELY (matrix_type == 0))
+    matrix_type = g_boxed_type_register_static (g_intern_static_string ("CoglMatrix"),
+                                                (GBoxedCopyFunc) pycogl_matrix_copy,
+                                                (GBoxedFreeFunc) pycogl_matrix_free);
+
+  return matrix_type;
+}
+
 %%
 include
   cogl-texture.override
@@ -151,4 +178,27 @@ _wrap_cogl_set_source_color (PyObject *self,
     cogl_set_source_color (&color);
     Py_INCREF (Py_None);
     return Py_None;
+}
+%%
+override cogl_material_new
+static PyObject *
+_wrap_cogl_material_new(PyObject *self)
+{
+    CoglHandle ret = COGL_INVALID_HANDLE;
+    
+    ret = cogl_material_new();
+    
+    /* pyg_boxed_new handles NULL checking */
+    return pyg_boxed_new(PYCOGL_TYPE_HANDLE, ret, TRUE, TRUE);
+}
+%%
+override cogl_matrix_new noargs
+static int
+_wrap_cogl_matrix_new (PyGBoxed *self)
+{
+    CoglMatrix matrix;
+    self->boxed = g_boxed_copy (PYCOGL_TYPE_MATRIX, &matrix);
+    self->free_on_dealloc = TRUE;
+    self->gtype = PYCOGL_TYPE_MATRIX;
+    return 0;
 }
