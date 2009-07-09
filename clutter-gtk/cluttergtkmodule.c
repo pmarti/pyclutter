@@ -5,7 +5,7 @@
 #include <pygobject.h>
 #include <gtk/gtk.h>
 #include <clutter/clutter.h>
-#include <clutter-gtk/gtk-clutter-embed.h>
+#include <clutter-gtk/clutter-gtk.h>
 
 void pycluttergtk_register_classes (PyObject *d);
 extern PyMethodDef pycluttergtk_functions[];

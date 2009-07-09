@@ -1,10 +1,26 @@
 ;; -*- scheme -*-
 
+; object definitions ...
+
 (define-object Embed
   (in-module "GtkClutter")
-  (parent "GtkWidget")
+  (parent "GtkContainer")
   (c-name "GtkClutterEmbed")
-  (gtype-id "GTK_TYPE_CLUTTER_EMBED")
+  (gtype-id "GTK_CLUTTER_TYPE_EMBED")
+)
+
+(define-interface ClutterScrollable
+  (in-module "Gtk")
+  (c-name "GtkClutterScrollable")
+  (gtype-id "GTK_CLUTTER_TYPE_SCROLLABLE")
+  (vtable "GtkClutterScrollableIface")
+)
+
+(define-object ClutterViewport
+  (in-module "Gtk")
+  (parent "ClutterActor")
+  (c-name "GtkClutterViewport")
+  (gtype-id "GTK_CLUTTER_TYPE_VIEWPORT")
 )
 
 (define-function clutter_embed_get_type
@@ -25,6 +41,36 @@
   (parameters
   )
 )
+
+;; From gtk-clutter-scrollable.h
+
+(define-function gtk_clutter_scrollable_get_type
+  (c-name "gtk_clutter_scrollable_get_type")
+  (return-type "GType")
+)
+
+(define-method set_adjustments
+  (of-object "GtkClutterScrollable")
+  (c-name "gtk_clutter_scrollable_set_adjustments")
+  (return-type "none")
+  (parameters
+    '("GtkAdjustment*" "h_adjust")
+    '("GtkAdjustment*" "v_adjust")
+  )
+)
+
+(define-method get_adjustments
+  (of-object "GtkClutterScrollable")
+  (c-name "gtk_clutter_scrollable_get_adjustments")
+  (return-type "none")
+  (parameters
+    '("GtkAdjustment**" "h_adjust")
+    '("GtkAdjustment**" "v_adjust")
+  )
+)
+
+;; From gtk-clutter-util.h
+
 
 (define-function get_fg_color
   (c-name "gtk_clutter_get_fg_color")
@@ -56,6 +102,16 @@
   )
 )
 
+(define-function gtk_clutter_get_text_aa_color
+  (c-name "gtk_clutter_get_text_aa_color")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkStateType" "state")
+    '("ClutterColor*" "color")
+  )
+)
+
 (define-function get_base_color
   (c-name "gtk_clutter_get_base_color")
   (return-type "none")
@@ -66,18 +122,48 @@
   )
 )
 
-(define-method set_from_pixbuf
+(define-function gtk_clutter_get_light_color
+  (c-name "gtk_clutter_get_light_color")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkStateType" "state")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-function gtk_clutter_get_dark_color
+  (c-name "gtk_clutter_get_dark_color")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkStateType" "state")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-function gtk_clutter_get_mid_color
+  (c-name "gtk_clutter_get_mid_color")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "widget")
+    '("GtkStateType" "state")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method new_from_pixbuf
   (of-object "ClutterTexture")
-  (c-name "gtk_clutter_texture_set_from_pixbuf")
+  (c-name "gtk_clutter_texture_new_from_pixbuf")
   (return-type "none")
   (parameters
     '("GdkPixbuf*" "pixbuf")
   )
 )
 
-(define-method set_from_stock
+(define-method new_from_stock
   (of-object "ClutterTexture")
-  (c-name "gtk_clutter_texture_set_from_stock")
+  (c-name "gtk_clutter_texture_new_from_stock")
   (return-type "none")
   (parameters
     '("GtkWidget*" "widget")
@@ -86,14 +172,73 @@
   )
 )
 
-(define-method set_from_icon_name
+(define-method new_from_icon_name
   (of-object "ClutterTexture")
-  (c-name "gtk_clutter_texture_set_from_icon_name")
+  (c-name "gtk_clutter_texture_new_from_icon_name")
   (return-type "none")
   (parameters
     '("GtkWidget*" "widget")
     '("const-gchar*" "icon_name")
     '("GtkIconSize" "icon_size")
+  )
+)
+
+;;(define-function texture_set_from_pixbuf
+;;  (c-name "gtk_clutter_texture_set_from_pixbuf")
+;;  (return-type "none")
+;;  (parameters
+;;    '("ClutterTexture*" "texture")
+;;    '("GdkPixbuf*" "pixbuf")
+;;  )
+;;)
+;;
+;;(define-function texture_set_from_stock
+;;  (c-name "gtk_clutter_texture_set_from_stock")
+;;  (return-type "none")
+;;  (parameters
+;;    '("ClutterTexture*" "texture")
+;;    '("GtkWidget*" "widget")
+;;    '("const-gchar*" "stock_id")
+;;    '("GtkIconSize" "size")
+;;  )
+;;)
+;;
+;;(define-function texture_set_from_icon_name
+;;  (c-name "gtk_clutter_texture_set_from_icon_name")
+;;  (return-type "none")
+;;  (parameters
+;;    '("ClutterTexture*" "texture")
+;;    '("GtkWidget*" "widget")
+;;    '("const-gchar*" "icon_name")
+;;    '("GtkIconSize" "size")
+;;  )
+;;)
+
+;; From gtk-clutter-viewport.h
+
+(define-function gtk_clutter_viewport_get_type
+  (c-name "gtk_clutter_viewport_get_type")
+  (return-type "GType")
+)
+
+(define-function gtk_clutter_viewport_new
+  (c-name "gtk_clutter_viewport_new")
+  (is-constructor-of "GtkClutterViewport")
+  (return-type "ClutterActor*")
+  (parameters
+    '("GtkAdjustment*" "h_adjust")
+    '("GtkAdjustment*" "v_adjust")
+  )
+)
+
+(define-method get_origin
+  (of-object "GtkClutterViewport")
+  (c-name "gtk_clutter_viewport_get_origin")
+  (return-type "none")
+  (parameters
+    '("gfloat*" "x")
+    '("gfloat*" "y")
+    '("gfloat*" "z")
   )
 )
 
