@@ -212,3 +212,39 @@ _wrap_cogl_texture_get_gl_texture (PyObject *self)
 
     return Py_BuildValue ("()");
 }
+%%
+override cogl_rectangle_with_multitexture_coords kwargs
+static PyObject *
+_wrap_cogl_rectangle_with_multitexture_coords (PyObject *self,
+                                               PyObject *args,
+                                               PyObject *kwargs)
+{
+    static char *kwlist[] = { "x1", "y1", "x2", "y2", "tex_coords", NULL };
+    float x1, y1, x2, y2;
+    gint tex_coords_len;
+    PyObject *py_coords;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs, "ffffO:rectangle_with_multitexture_coords",
+                                      kwlist, &x1, &y1, &x2, &y2, &py_coords))
+        return NULL;
+
+    if (!PyTuple_Check (py_coords)) {
+        PyErr_SetString (PyExc_TypeError, "tex_coords must be a tuple");
+        return NULL;
+    }
+
+    tex_coords_len = PyTuple_Size (py_coords);
+    gfloat tex_coords[tex_coords_len];
+    gint i;
+
+    for (i = 0; i < tex_coords_len; i++) {
+        tex_coords[i] = PyFloat_AsDouble (PyTuple_GetItem (py_coords, i));
+    }
+
+    cogl_rectangle_with_multitexture_coords (x1, y1, x2, y2, tex_coords,
+                                             tex_coords_len);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+
