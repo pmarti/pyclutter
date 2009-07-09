@@ -109,9 +109,11 @@ ignore
   cogl_get_option_group
   cogl_get_proc_address
   cogl_color_equal
+  cogl_create_program
 %%
 ignore-glob
   cogl_fixed_*
+  cogl_program_*
 %%
 override cogl_get_viewport noargs
 static PyObject *
