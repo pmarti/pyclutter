@@ -1,0 +1,473 @@
+%%
+ignore
+ clutter_interval_new_with_values
+ clutter_interval_peek_initial_value
+ clutter_interval_peek_final_value
+ clutter_interval_register_progress_func
+%%
+new-constructor CLUTTER_TYPE_INTERVAL
+%%
+override clutter_interval_new
+static int
+_wrap_clutter_interval_new (PyGObject *self, PyObject  *args)
+{
+    PyObject *py_type, *py_initial, *py_final = Py_None;
+    GType gtype;
+    GValue initial = { 0, };
+    GValue final = { 0, };
+    ClutterInterval *interval;
+
+    if (PyTuple_Size (args) != 3) {
+        PyErr_SetString (PyExc_TypeError,
+                         "clutter.Interval.__init__ requires a type and two "
+                         "values of this type");
+        return -1;
+    }
+
+    py_type = PyTuple_GetItem (args, 0);
+    py_initial = PyTuple_GetItem (args, 1);
+    py_final = PyTuple_GetItem (args, 2);
+
+    gtype = pyg_type_from_object (py_type);
+    g_value_init (&initial, gtype);
+    g_value_init (&final, gtype);
+
+    if (pyg_value_from_pyobject (&initial, py_initial) ||
+       (pyg_value_from_pyobject (&final, py_final))) {
+            PyErr_SetString (PyExc_TypeError, "Wrong values given");
+            return -1;
+    }
+
+    interval = clutter_interval_new_with_values (gtype, &initial, &final);
+    self->obj = (GObject *) interval;
+    pygobject_register_wrapper ((PyObject *) self);
+    return 0;
+}
+%%
+override clutter_interval_set_initial_value kwargs
+static PyObject *
+_wrap_clutter_interval_set_initial_value (PyGObject *self,
+                                          PyObject  *args,
+                                          PyObject  *kwargs)
+{
+    static char *kwlist[] = { "value", NULL };
+    PyObject *py_value = NULL;
+    GType value_type;
+    GValue value = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O:clutter.Interval.set_initial_value",
+                                     kwlist, &py_value))
+        return NULL;
+
+    value_type = clutter_interval_get_value_type (CLUTTER_INTERVAL (self->obj));
+    g_value_init (&value, value_type);
+    
+    if (pyg_value_from_pyobject (&value, py_value)) {
+        PyErr_Format (PyExc_TypeError, "Can't set value for type %s",
+                      g_type_name (value_type));
+        return NULL;
+    }
+
+    clutter_interval_set_initial_value (CLUTTER_INTERVAL (self->obj), &value);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override clutter_interval_get_initial_value noargs
+static PyObject *
+_wrap_clutter_interval_get_initial_value (PyGObject *self)
+{
+    GType value_type;
+    GValue value = { 0, };
+
+    value_type = clutter_interval_get_value_type (CLUTTER_INTERVAL (self->obj));
+    g_value_init (&value, value_type);
+
+    clutter_interval_get_initial_value (CLUTTER_INTERVAL (self->obj), &value);
+    return pyg_value_as_pyobject (&value, FALSE);
+}
+%%
+override clutter_interval_set_final_value kwargs
+static PyObject *
+_wrap_clutter_interval_set_final_value (PyGObject *self,
+                                          PyObject  *args,
+                                          PyObject  *kwargs)
+{
+    static char *kwlist[] = { "value", NULL };
+    PyObject *py_value = NULL;
+    GType value_type;
+    GValue value = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O:clutter.Interval.set_final_value",
+                                     kwlist, &py_value))
+        return NULL;
+
+    value_type = clutter_interval_get_value_type (CLUTTER_INTERVAL (self->obj));
+    g_value_init (&value, value_type);
+    
+    if (pyg_value_from_pyobject (&value, py_value)) {
+        PyErr_Format (PyExc_TypeError, "Can't set value for type %s",
+                      g_type_name (value_type));
+        return NULL;
+    }
+
+    clutter_interval_set_final_value (CLUTTER_INTERVAL (self->obj), &value);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override clutter_interval_get_final_value noargs
+static PyObject *
+_wrap_clutter_interval_get_final_value (PyGObject *self)
+{
+    GType value_type;
+    GValue value = { 0, };
+
+    value_type = clutter_interval_get_value_type (CLUTTER_INTERVAL (self->obj));
+    g_value_init (&value, value_type);
+
+    clutter_interval_get_final_value (CLUTTER_INTERVAL (self->obj), &value);
+    return pyg_value_as_pyobject (&value, FALSE);
+}
+%%
+override clutter_interval_set_interval kwargs
+static PyObject *
+_wrap_clutter_interval_set_interval (PyGObject *self,
+                                     PyObject  *args,
+                                     PyObject  *kwargs)
+{
+    static char *kwlist[] = { "initial", "final", NULL };
+    PyObject *py_initial = NULL;
+    PyObject *py_final = NULL;
+    GType value_type;
+    GValue initial = { 0, };
+    GValue final = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "OO:clutter.Interval.set_final_value",
+                                     kwlist, &py_initial, &py_final))
+        return NULL;
+
+    value_type = clutter_interval_get_value_type (CLUTTER_INTERVAL (self->obj));
+    g_value_init (&initial, value_type);
+    g_value_init (&final, value_type);
+    
+    if (pyg_value_from_pyobject (&initial, py_initial)) {
+        PyErr_Format (PyExc_TypeError, "Can't set value for type %s",
+                      g_type_name (value_type));
+        return NULL;
+    }
+
+    if (pyg_value_from_pyobject (&final, py_final)) {
+        PyErr_Format (PyExc_TypeError, "Can't set value for type %s",
+                      g_type_name (value_type));
+        return NULL;
+    }
+
+    clutter_interval_set_initial_value (CLUTTER_INTERVAL (self->obj), &initial);
+    clutter_interval_set_final_value (CLUTTER_INTERVAL (self->obj), &final);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override clutter_interval_get_interval noargs
+static PyObject *
+_wrap_clutter_interval_get_interval (PyGObject *self)
+{
+    GType value_type;
+    GValue initial = { 0, };
+    GValue final = { 0, };
+    PyObject *py_ret;
+
+    value_type = clutter_interval_get_value_type (CLUTTER_INTERVAL (self->obj));
+    g_value_init (&initial, value_type);
+    g_value_init (&final, value_type);
+
+    clutter_interval_get_initial_value (CLUTTER_INTERVAL (self->obj), &initial);
+    clutter_interval_get_final_value (CLUTTER_INTERVAL (self->obj), &final);
+
+    py_ret = PyTuple_New (2);
+    PyTuple_SetItem (py_ret, 0,  pyg_value_as_pyobject (&initial, FALSE));
+    PyTuple_SetItem (py_ret, 1,  pyg_value_as_pyobject (&final, FALSE));
+
+    return py_ret;
+}
+%%
+override clutter_interval_compute_value kwargs
+static PyObject *
+_wrap_clutter_interval_compute_value(PyGObject *self,
+                                     PyObject *args,
+                                     PyObject *kwargs)
+{
+    static char *kwlist[] = { "factor", "value", NULL };
+    PyObject *py_value;
+    double factor;
+    gint ret;
+    GValue value = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "dO:ClutterInterval.compute_value",
+                                     kwlist, &factor, &py_value))
+        return NULL;
+    
+    ret = clutter_interval_compute_value(CLUTTER_INTERVAL(self->obj), factor, &value);
+    
+    return PyBool_FromLong(ret);
+
+}
+%%
+override ClutterInterval__do_compute_value kwargs
+static PyObject *
+_wrap_ClutterInterval__do_compute_value(PyObject *cls,
+                                        PyObject *args,
+                                        PyObject *kwargs)
+{
+    gpointer klass;
+    static char *kwlist[] = { "self", "factor", NULL };
+    PyGObject *self;
+    PyObject *py_value = NULL;;
+    double factor;
+    GValue value = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!dO:ClutterInterval.compute_value",
+                                     kwlist,
+                                     &PyClutterInterval_Type, &self,
+                                     &factor))
+        return NULL;
+    klass = g_type_class_ref(pyg_type_from_object(cls));
+
+    if (CLUTTER_INTERVAL_CLASS(klass)->compute_value) {
+        GType gtype = clutter_interval_get_value_type (CLUTTER_INTERVAL (self->obj));
+        g_value_init (&value, gtype);
+        if (!CLUTTER_INTERVAL_CLASS(klass)->compute_value(CLUTTER_INTERVAL(self->obj), factor, &value))
+          {
+            PyErr_SetString (PyExc_RuntimeError, "Can't compute value");
+            return NULL;
+          }
+        else
+          {
+            pyg_value_from_pyobject (&value, py_value);
+          }
+    } else {
+        PyErr_SetString(PyExc_NotImplementedError, "virtual method ClutterInterval.compute_value not implemented");
+        g_type_class_unref(klass);
+        return NULL;
+    }
+
+    g_type_class_unref(klass);
+    return py_value;
+
+}
+%%
+override ClutterInterval__proxy_do_compute_value kwargs
+static gboolean
+_wrap_ClutterInterval__proxy_do_compute_value(ClutterInterval *self,
+                                              gdouble          factor,
+                                              GValue           *value)
+{
+    PyGILState_STATE __py_state;
+    PyObject *py_self;
+    PyObject *py_factor;
+    PyObject *py_value;
+    gboolean retval;
+    PyObject *py_main_retval;
+    PyObject *py_retval;
+    PyObject *py_args;
+    PyObject *py_method;
+    
+    __py_state = pyg_gil_state_ensure();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    py_factor = PyFloat_FromDouble(factor);
+    py_value = pyg_value_as_pyobject (value, TRUE);
+    if (!py_value) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_factor);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    
+    py_args = PyTuple_New(2);
+    PyTuple_SET_ITEM(py_args, 0, py_factor);
+    PyTuple_SET_ITEM(py_args, 1, py_value);
+    
+    py_method = PyObject_GetAttrString(py_self, "do_compute_value");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    py_retval = PyObject_CallObject(py_method, py_args);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    py_retval = Py_BuildValue("(N)", py_retval);
+    if (!PyArg_ParseTuple(py_retval, "O", &py_main_retval)) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    
+    retval = PyObject_IsTrue(py_main_retval)? TRUE : FALSE;
+    
+    Py_XDECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_args);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(__py_state);
+    
+    return retval;
+}
+%%
+override clutter_interval_validate kwargs
+static PyObject *
+_wrap_clutter_interval_validate(PyGObject *self,
+                                PyObject *args,
+                                PyObject *kwargs)
+{
+    static char *kwlist[] = { "pspec", NULL };
+    PyGObject *pspec;
+    int ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!:ClutterInterval.validate", kwlist,
+                                     &PyGParamSpec_Type, &pspec))
+        return NULL;
+    
+    ret = clutter_interval_validate(CLUTTER_INTERVAL(self->obj), G_PARAM_SPEC(pspec->obj));
+    
+    return PyBool_FromLong(ret);
+
+}
+%%
+override ClutterInterval__do_validate kwargs
+static PyObject *
+_wrap_ClutterInterval__do_validate(PyObject *cls,
+                                   PyObject *args,
+                                   PyObject *kwargs)
+{
+    gpointer klass;
+    static char *kwlist[] = { "self", "pspec", NULL };
+    PyGObject *self, *pspec;
+    int ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!O!:ClutterInterval.validate", kwlist,
+                                     &PyClutterInterval_Type, &self,
+                                     &PyGParamSpec_Type, &pspec))
+        return NULL;
+    klass = g_type_class_ref(pyg_type_from_object(cls));
+    if (CLUTTER_INTERVAL_CLASS(klass)->validate)
+        ret = CLUTTER_INTERVAL_CLASS(klass)->validate(CLUTTER_INTERVAL(self->obj), G_PARAM_SPEC(pspec->obj));
+    else {
+        PyErr_SetString(PyExc_NotImplementedError, "virtual method ClutterInterval.validate not implemented");
+        g_type_class_unref(klass);
+        return NULL;
+    }
+    g_type_class_unref(klass);
+    return PyBool_FromLong(ret);
+
+}
+%%
+override ClutterInterval__proxy_do_validate kwargs
+static gboolean
+_wrap_ClutterInterval__proxy_do_validate(ClutterInterval *self,
+                                         GParamSpec      *pspec)
+{
+    PyGILState_STATE __py_state;
+    PyObject *py_self;
+    PyObject *py_pspec = NULL;
+    gboolean retval;
+    PyObject *py_main_retval;
+    PyObject *py_retval;
+    PyObject *py_args;
+    PyObject *py_method;
+    
+    __py_state = pyg_gil_state_ensure();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    if (pspec)
+        py_pspec = pyg_boxed_new(G_TYPE_PARAM, pspec, TRUE, TRUE);
+    else {
+        Py_INCREF(Py_None);
+        py_pspec = Py_None;
+    }
+    
+    py_args = PyTuple_New(1);
+    PyTuple_SET_ITEM(py_args, 0, py_pspec);
+    
+    py_method = PyObject_GetAttrString(py_self, "do_validate");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    py_retval = PyObject_CallObject(py_method, py_args);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    py_retval = Py_BuildValue("(N)", py_retval);
+    if (!PyArg_ParseTuple(py_retval, "O", &py_main_retval)) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    
+    retval = PyObject_IsTrue(py_main_retval)? TRUE : FALSE;
+    
+    Py_XDECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_args);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(__py_state);
+    
+    return retval;
+}

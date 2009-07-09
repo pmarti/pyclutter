@@ -28,6 +28,7 @@ include
   clutter-model.override
   clutter-script.override
   clutter-cairotexture.override
+  clutter-interval.override
 
 %%
 modulename clutter

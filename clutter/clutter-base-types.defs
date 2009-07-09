@@ -310,6 +310,13 @@
   (gtype-id "CLUTTER_TYPE_CLONE")
 )
 
+(define-object Interval
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterInterval")
+  (gtype-id "CLUTTER_TYPE_INTERVAL")
+)
+
 ;; Enumerations and flags ...
 
 (define-flags EventFlags
