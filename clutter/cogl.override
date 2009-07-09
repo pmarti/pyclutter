@@ -399,3 +399,60 @@ _wrap_cogl_pango_render_layout_line(PyObject *self,
     Py_INCREF(Py_None);
     return Py_None;
 }
+%%
+override cogl_set_fog kwargs
+static PyObject *
+_wrap_cogl_set_fog(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "fog_color", "mode", "density", "z_near", "z_far", NULL };
+    CoglColor *fog_color = NULL;
+    PyObject *py_fog_color, *py_mode = NULL;
+    double density, z_near, z_far;
+    CoglFogMode mode;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OOddd:set_fog", kwlist, &py_fog_color, &py_mode, &density, &z_near, &z_far))
+        return NULL;
+
+    if (!pycogl_color_from_pyobject (py_fog_color, fog_color))
+    {
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError,
+                         "color must be a ClutterColor or 4-tuple");
+        return NULL;
+    }
+
+    if (pyg_enum_get_value(COGL_TYPE_FOG_MODE, py_mode, (gpointer)&mode))
+        return NULL;
+    
+    cogl_set_fog(fog_color, mode, density, z_near, z_far);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override cogl_clear kwargs
+static PyObject *
+_wrap_cogl_clear(PyObject *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "color", "buffers", NULL };
+    CoglColor *color = NULL;
+    PyObject *py_color;
+    unsigned long buffers;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"Ok:clear", kwlist, &py_color, &buffers))
+        return NULL;
+
+    if (!pycogl_color_from_pyobject (py_color, color))
+    {
+        PyErr_Clear ();
+        PyErr_SetString (PyExc_TypeError,
+                         "color must be a ClutterColor or 4-tuple");
+        return NULL;
+    }
+
+    cogl_clear(color, buffers);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
