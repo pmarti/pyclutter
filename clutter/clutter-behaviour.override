@@ -556,7 +556,7 @@ _wrap_clutter_actor_animate (PyGObject *self,
         py_value = PyTuple_GetItem (args, i + 1);
         if (pyg_value_from_pyobject (&value, py_value)) {
             PyErr_Format (PyExc_TypeError,
-                          "Wrong type for property %s (required %s)",
+                          "Wrong value type for property %s (required %s)",
                           properties[p],
                           g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
             g_value_unset (&value);
@@ -647,7 +647,7 @@ _wrap_clutter_actor_animate_with_timeline (PyGObject *self,
         py_value = PyTuple_GetItem (args, i + 1);
         if (pyg_value_from_pyobject (&value, py_value)) {
             PyErr_Format (PyExc_TypeError,
-                          "Wrong type for property %s (required %s)",
+                          "Wrong value type for property %s (required %s)",
                           properties[p],
                           g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
             g_free (properties);
@@ -734,7 +734,7 @@ _wrap_clutter_actor_animate_with_alpha (PyGObject *self,
         py_value = PyTuple_GetItem (args, i + 1);
         if (pyg_value_from_pyobject (&value, py_value)) {
             PyErr_Format (PyExc_TypeError,
-                          "Wrong type for property %s (required %s)",
+                          "Wrong value type for property %s (required %s)",
                           properties[p],
                           g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
             g_free (properties);
@@ -762,4 +762,53 @@ out:
                      "AnimationMode, a ClutterAlpha and at least one "
                      "pair of property/value.");
     return NULL;
+}
+%%
+override clutter_animation_bind kwargs
+static PyObject *
+_wrap_clutter_animation_bind (PyGObject *self,
+                              PyObject  *args,
+                              PyObject  *kwargs)
+{
+
+    static char *kwlist[] = { "property_name", "value", NULL };
+    gchar *property_name;
+    PyObject *py_value;
+    ClutterAnimation *anim;
+    GObjectClass *klass;
+    GParamSpec *pspec;
+    GValue value = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "sO:clutter.Animation.bind",
+                                      kwlist,
+                                      &property_name, &py_value))
+        return NULL;
+
+    anim = CLUTTER_ANIMATION (self->obj);
+    klass = G_OBJECT_GET_CLASS (clutter_animation_get_object (anim));
+    pspec = g_object_class_find_property (klass, property_name);
+
+    if (!pspec) {
+        PyErr_Format (PyExc_TypeError,
+                      "Controlled object %s has no property %s",
+                      G_OBJECT_CLASS_NAME (klass), property_name);
+        return NULL;
+    }
+
+    g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+
+    if (pyg_value_from_pyobject (&value, py_value)) {
+        PyErr_Format (PyExc_TypeError,
+                      "Wrong value type for property %s (required %s)",
+                      property_name,
+                      g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
+        g_value_unset (&value);
+        return NULL;
+    }
+    
+    clutter_animation_bind (anim, property_name, &value);
+
+    Py_INCREF (Py_None);
+    return Py_None;
 }
