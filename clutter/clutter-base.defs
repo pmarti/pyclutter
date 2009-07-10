@@ -3064,6 +3064,12 @@
   )
 )
 
+(define-method get_filter_set
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_filter_set")
+  (return-type "gboolean")
+)
+
 (define-function model_iter_get_type
   (c-name "clutter_model_iter_get_type")
   (return-type "GType")
