@@ -5284,6 +5284,252 @@
 )
 
 
+;; From clutter-animation.h
+
+(define-function animation_get_type
+  (c-name "clutter_animation_get_type")
+  (return-type "GType")
+)
+
+(define-function animation_new
+  (c-name "clutter_animation_new")
+  (is-constructor-of "ClutterAnimation")
+  (return-type "ClutterAnimation*")
+)
+
+(define-method set_object
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_set_object")
+  (return-type "none")
+  (parameters
+    '("GObject*" "object")
+  )
+)
+
+(define-method get_object
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_get_object")
+  (return-type "GObject*")
+)
+
+(define-method set_mode
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_set_mode")
+  (return-type "none")
+  (parameters
+    '("gulong" "mode")
+  )
+)
+
+(define-method get_mode
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_get_mode")
+  (return-type "gulong")
+)
+
+(define-method set_duration
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_set_duration")
+  (return-type "none")
+  (parameters
+    '("gint" "msecs")
+  )
+)
+
+(define-method get_duration
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_get_duration")
+  (return-type "guint")
+)
+
+(define-method set_loop
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_set_loop")
+  (return-type "none")
+  (parameters
+    '("gboolean" "loop")
+  )
+)
+
+(define-method get_loop
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_get_loop")
+  (return-type "gboolean")
+)
+
+(define-method set_timeline
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_set_timeline")
+  (return-type "none")
+  (parameters
+    '("ClutterTimeline*" "timeline")
+  )
+)
+
+(define-method get_timeline
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_get_timeline")
+  (return-type "ClutterTimeline*")
+)
+
+(define-method set_alpha
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_set_alpha")
+  (return-type "none")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+  )
+)
+
+(define-method get_alpha
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_get_alpha")
+  (return-type "ClutterAlpha*")
+)
+
+(define-method bind
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_bind")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("const-GValue*" "final")
+  )
+)
+
+(define-method bind_interval
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_bind_interval")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("ClutterInterval*" "interval")
+  )
+)
+
+(define-method has_property
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_has_property")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "property_name")
+  )
+)
+
+(define-method update_interval
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_update_interval")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("ClutterInterval*" "interval")
+  )
+)
+
+(define-method unbind_property
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_unbind_property")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "property_name")
+  )
+)
+
+(define-method get_interval
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_get_interval")
+  (return-type "ClutterInterval*")
+  (parameters
+    '("const-gchar*" "property_name")
+  )
+)
+
+(define-method completed
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_completed")
+  (return-type "none")
+)
+
+(define-method animate
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_animate")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("gulong" "mode")
+    '("guint" "duration")
+    '("const-gchar*" "first_property_name")
+  )
+  (varargs #t)
+)
+
+(define-method animate_with_timeline
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_animate_with_timeline")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("gulong" "mode")
+    '("ClutterTimeline*" "timeline")
+    '("const-gchar*" "first_property_name")
+  )
+  (varargs #t)
+)
+
+(define-method animate_with_alpha
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_animate_with_alpha")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("const-gchar*" "first_property_name")
+  )
+  (varargs #t)
+)
+
+(define-method animatev
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_animatev")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("gulong" "mode")
+    '("guint" "duration")
+    '("gint" "n_properties")
+    '("const-gchar*-const[]" "properties")
+    '("const-GValue*" "values")
+  )
+)
+
+(define-method animate_with_timelinev
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_animate_with_timelinev")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("gulong" "mode")
+    '("ClutterTimeline*" "timeline")
+    '("gint" "n_properties")
+    '("const-gchar*-const[]" "properties")
+    '("const-GValue*" "values")
+  )
+)
+
+(define-method animate_with_alphav
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_animate_with_alphav")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gint" "n_properties")
+    '("const-gchar*-const[]" "properties")
+    '("const-GValue*" "values")
+  )
+)
+
+(define-method get_animation
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_animation")
+  (return-type "ClutterAnimation*")
+)
+
+
 ;; From clutter-interval.h
 
 (define-function interval_get_type

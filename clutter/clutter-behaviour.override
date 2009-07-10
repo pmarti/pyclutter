@@ -6,6 +6,9 @@ ignore
   clutter_path_foreach
   clutter_path_add_cairo_path
   clutter_behaviour_path_new_with_knots
+  clutter_actor_animatev
+  clutter_actor_animate_with_timelinev
+  clutter_actor_animate_with_alphav
 %%
 override clutter_alpha_set_func kwargs
 static PyObject *
@@ -490,4 +493,273 @@ _wrap_clutter_path_get_nodes (PyGObject *self)
         g_slist_free (nodes);
 
         return py_list;
+}
+%%
+override clutter_actor_animate
+static PyObject *
+_wrap_clutter_actor_animate (PyGObject *self,
+                             PyObject  *args)
+{
+    ClutterActor *actor;
+    GObjectClass *klass;
+    gulong mode;
+    guint n, p, i, len, duration;
+    gchar **properties;
+    GValueArray *values;
+    ClutterAnimation *animation;
+
+    len = PyTuple_Size (args);
+    if (len < 4 || (len % 2) != 0)
+        goto out;
+
+    if (!PyInt_Check (PyTuple_GetItem (args, 0)))
+        goto out;
+
+    if (!PyInt_Check (PyTuple_GetItem (args, 1)))
+        goto out;
+
+    mode = PyInt_AsLong (PyTuple_GetItem (args, 0));
+    duration = PyInt_AsLong (PyTuple_GetItem (args, 1));
+
+    actor = CLUTTER_ACTOR (self->obj);
+    klass = G_OBJECT_GET_CLASS (self->obj);
+
+    n = (len - 2) / 2;
+
+    properties = g_new0 (gchar*, n);
+    values = g_value_array_new (n);
+
+    for (i = 2, p = 0; i < len; i += 2, p++) {
+        PyObject *py_value = NULL;
+        GParamSpec *pspec;
+        GValue value = { 0, };
+
+        if (!PyString_Check (PyTuple_GetItem (args, i))) {
+            PyErr_SetString (PyExc_TypeError, "propertyname is not a string");
+            g_free (properties);
+            return NULL;
+        }
+
+        properties[p] = PyString_AsString (PyTuple_GetItem (args, i));
+        pspec = g_object_class_find_property (klass, properties[p]);
+        if (!pspec) {
+            PyErr_Format (PyExc_TypeError,
+                          "Class %s has no property %s",
+                          G_OBJECT_CLASS_NAME (klass),
+                          properties[p]);
+            g_free (properties);
+            return NULL;
+        }
+
+        g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+
+        py_value = PyTuple_GetItem (args, i + 1);
+        if (pyg_value_from_pyobject (&value, py_value)) {
+            PyErr_Format (PyExc_TypeError,
+                          "Wrong type for property %s (required %s)",
+                          properties[p],
+                          g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
+            g_value_unset (&value);
+            g_free (properties);
+            return NULL;
+        }
+
+        g_value_array_append (values, &value);
+        g_value_unset (&value);
+    }
+
+    animation = clutter_actor_animatev (actor, mode, duration, n,
+                                        (const gchar**) properties,
+                                        values->values);
+
+    g_free (properties);
+    g_value_array_free (values);
+
+    return pygobject_new ((GObject *)animation);
+
+out:
+    PyErr_Clear ();
+    PyErr_SetString (PyExc_TypeError,
+                     "clutter.Actor.animate requires an AnimationMode, "
+                     "duration and at least one pair of property/value.");
+    return NULL;
+}
+%%
+override clutter_actor_animate_with_timeline
+static PyObject *
+_wrap_clutter_actor_animate_with_timeline (PyGObject *self,
+                                           PyObject  *args)
+{
+    ClutterActor *actor;
+    GObjectClass *klass;
+    gulong mode;
+    guint n, p, i, len;
+    gchar **properties;
+    GValueArray *values;
+    ClutterTimeline *timeline;
+    ClutterAnimation *animation;
+
+    len = PyTuple_Size (args);
+    if (len < 4 || (len % 2) != 0)
+        goto out;
+
+    if (!PyInt_Check (PyTuple_GetItem (args, 0)))
+        goto out;
+
+    if (!pygobject_check (PyTuple_GetItem (args, 1), &PyClutterTimeline_Type))
+        goto out;
+
+    mode = PyInt_AsLong (PyTuple_GetItem (args, 0));
+    timeline = CLUTTER_TIMELINE (pygobject_get (PyTuple_GetItem (args, 1)));
+
+    actor = CLUTTER_ACTOR (self->obj);
+    klass = G_OBJECT_GET_CLASS (self->obj);
+
+    n = (len - 2) / 2;
+
+    properties = g_new0 (gchar*, n);
+    values = g_value_array_new (n);
+
+    for (i = 2, p = 0; i < len; i += 2, p++) {
+        PyObject *py_value = NULL;
+        GParamSpec *pspec;
+        GValue value = { 0, };
+
+        if (!PyString_Check (PyTuple_GetItem (args, i))) {
+            PyErr_SetString (PyExc_TypeError, "propertyname is not a string");
+            g_free (properties);
+            return NULL;
+        }
+
+        properties[p] = PyString_AsString (PyTuple_GetItem (args, i));
+        pspec = g_object_class_find_property (klass, properties[p]);
+        if (!pspec) {
+            PyErr_Format (PyExc_TypeError,
+                          "Class %s has no property %s",
+                          G_OBJECT_CLASS_NAME (klass),
+                          properties[p]);
+            g_free (properties);
+            return NULL;
+        }
+
+        g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+
+        py_value = PyTuple_GetItem (args, i + 1);
+        if (pyg_value_from_pyobject (&value, py_value)) {
+            PyErr_Format (PyExc_TypeError,
+                          "Wrong type for property %s (required %s)",
+                          properties[p],
+                          g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
+            g_free (properties);
+            g_value_unset (&value);
+            return NULL;
+        }
+
+        g_value_array_append (values, &value);
+        g_value_unset (&value);
+    }
+
+    animation = clutter_actor_animate_with_timelinev (actor, mode, timeline, n,
+                                                     (const gchar**) properties,
+                                                      values->values);
+
+    g_free (properties);
+    g_value_array_free (values);
+
+    return pygobject_new ((GObject *)animation);
+
+out:
+    PyErr_Clear ();
+    PyErr_SetString (PyExc_TypeError,
+                     "clutter.Actor.animate_with_timeline requires an "
+                     "AnimationMode, a ClutterTimeline and at least one "
+                     "pair of property/value.");
+    return NULL;
+}
+%%
+override clutter_actor_animate_with_alpha
+static PyObject *
+_wrap_clutter_actor_animate_with_alpha (PyGObject *self,
+                                        PyObject  *args)
+{
+    ClutterActor *actor;
+    GObjectClass *klass;
+    guint n, p, i, len;
+    gchar **properties;
+    GValueArray *values;
+    ClutterAlpha *alpha;
+    ClutterAnimation *animation;
+
+    len = PyTuple_Size (args);
+    if (len < 3 || (len % 2) == 0)
+        goto out;
+
+    if (!pygobject_check (PyTuple_GetItem (args, 0), &PyClutterAlpha_Type))
+        goto out;
+
+    alpha = CLUTTER_ALPHA (pygobject_get (PyTuple_GetItem (args, 0)));
+
+    actor = CLUTTER_ACTOR (self->obj);
+    klass = G_OBJECT_GET_CLASS (self->obj);
+
+    n = (len - 1) / 2;
+
+    properties = g_new0 (gchar*, n);
+    values = g_value_array_new (n);
+
+    for (i = 1, p = 0; i < len; i += 2, p++) {
+        PyObject *py_value = NULL;
+        GParamSpec *pspec;
+        GValue value = { 0, };
+
+        if (!PyString_Check (PyTuple_GetItem (args, i))) {
+            PyErr_SetString (PyExc_TypeError, "propertyname is not a string");
+            g_free (properties);
+            return NULL;
+        }
+
+        properties[p] = PyString_AsString (PyTuple_GetItem (args, i));
+        pspec = g_object_class_find_property (klass, properties[p]);
+        if (!pspec) {
+            PyErr_Format (PyExc_TypeError,
+                          "Class %s has no property %s",
+                          G_OBJECT_CLASS_NAME (klass),
+                          properties[p]);
+            g_free (properties);
+            return NULL;
+        }
+
+        g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+
+        py_value = PyTuple_GetItem (args, i + 1);
+        if (pyg_value_from_pyobject (&value, py_value)) {
+            PyErr_Format (PyExc_TypeError,
+                          "Wrong type for property %s (required %s)",
+                          properties[p],
+                          g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
+            g_free (properties);
+            g_value_unset (&value);
+            return NULL;
+        }
+
+        g_value_array_append (values, &value);
+        g_value_unset (&value);
+    }
+
+    animation = clutter_actor_animate_with_alphav (actor, alpha, n,
+                                                  (const gchar**) properties,
+                                                  values->values);
+
+    g_free (properties);
+    g_value_array_free (values);
+
+    return pygobject_new ((GObject *)animation);
+
+out:
+    PyErr_Clear ();
+    PyErr_SetString (PyExc_TypeError,
+                     "clutter.Actor.animate_with_alpha requires an "
+                     "AnimationMode, a ClutterAlpha and at least one "
+                     "pair of property/value.");
+    return NULL;
 }

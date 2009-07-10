@@ -303,6 +303,13 @@
   (gtype-id "CLUTTER_TYPE_TEXT")
 )
 
+(define-object Animation
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterAnimation")
+  (gtype-id "CLUTTER_TYPE_ANIMATION")
+)
+
 (define-object Clone
   (in-module "Clutter")
   (parent "ClutterActor")
