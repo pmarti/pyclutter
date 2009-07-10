@@ -71,6 +71,9 @@ ignore
   clutter_timeline_do_tick
   clutter_actor_set_shader_param
   clutter_shader_set_uniform
+  clutter_get_option_group_without_init
+  clutter_threads_add_repaint_func
+  clutter_threads_remove_repaint_func
 %%
 ignore-glob
   *_quark

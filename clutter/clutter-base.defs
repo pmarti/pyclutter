@@ -2709,6 +2709,46 @@
   )
 )
 
+(define-function get_option_group_without_init
+  (c-name "clutter_get_option_group_without_init")
+  (return-type "GOptionGroup*")
+)
+
+(define-function threads_add_repaint_func
+  (c-name "clutter_threads_add_repaint_func")
+  (return-type "guint")
+  (parameters
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-function threads_remove_repaint_func
+  (c-name "clutter_threads_remove_repaint_func")
+  (return-type "none")
+  (parameters
+    '("guint" "handle_id")
+  )
+)
+
+(define-function set_font_flags
+  (c-name "clutter_set_font_flags")
+  (return-type "none")
+  (parameters
+    '("ClutterFontFlags" "flags")
+  )
+)
+
+(define-function get_font_flags
+  (c-name "clutter_get_font_flags")
+  (return-type "ClutterFontFlags")
+)
+
+(define-function get_font_map
+  (c-name "clutter_get_font_map")
+  (return-type "PangoFontMap*")
+)
 
 
 ;; From clutter-media.h
