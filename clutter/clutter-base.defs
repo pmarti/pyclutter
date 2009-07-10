@@ -1129,7 +1129,7 @@
   (c-name "clutter_backend_set_resolution")
   (return-type "none")
   (parameters
-    '("guint" "dpi")
+    '("gdouble" "dpi")
   )
 )
 
@@ -1184,6 +1184,20 @@
   (return-type "cairo_font_options_t*")
 )
 
+(define-method set_font_name
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_set_font_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "font_name")
+  )
+)
+
+(define-method get_font_name
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_get_font_name")
+  (return-type "const-gchar*")
+)
 
 
 
