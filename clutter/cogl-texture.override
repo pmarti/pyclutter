@@ -20,7 +20,7 @@ _wrap_cogl_texture_new_from_file (PyObject *self,
     if (pyg_enum_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags, (gpointer)&flags))
         return NULL;
 
-    if (pyg_enum_get_value (PYCOGL_TYPE_PIXEL_FORMAT, py_internal_format, (gpointer)&internal_format))
+    if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_internal_format, (gpointer)&internal_format))
         return NULL;
 
     ret = cogl_texture_new_from_file (filename,
@@ -32,7 +32,7 @@ _wrap_cogl_texture_new_from_file (PyObject *self,
         return NULL;
 
     /* pyg_boxed_new handles NULL checking */
-    return pyg_boxed_new (PYCOGL_TYPE_HANDLE, ret, TRUE, TRUE);
+    return pyg_boxed_new (COGL_TYPE_HANDLE, ret, TRUE, TRUE);
 }
 %%
 override cogl_texture_new_from_data kwargs
@@ -80,10 +80,10 @@ _wrap_cogl_texture_new_from_data (PyObject *self,
     if (pyg_enum_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags, (gpointer)&flags))
         return NULL;
 
-    if (pyg_enum_get_value (PYCOGL_TYPE_PIXEL_FORMAT, py_format, (gpointer)&format))
+    if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format, (gpointer)&format))
         return NULL;
 
-    if (pyg_enum_get_value (PYCOGL_TYPE_PIXEL_FORMAT, py_internal_format, (gpointer)&internal_format))
+    if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_internal_format, (gpointer)&internal_format))
         return NULL;
 
     if (py_rowstride) {
@@ -105,7 +105,7 @@ _wrap_cogl_texture_new_from_data (PyObject *self,
                                       data);
 
     /* pyg_boxed_new handles NULL checking */
-    return pyg_boxed_new (PYCOGL_TYPE_HANDLE, ret, TRUE, TRUE);
+    return pyg_boxed_new (COGL_TYPE_HANDLE, ret, TRUE, TRUE);
 }
 %%
 override cogl_texture_new_from_foreign kwargs
@@ -184,7 +184,7 @@ _wrap_cogl_texture_new_from_foreign (PyObject *self,
             return NULL;
     }
 
-    if (pyg_enum_get_value (PYCOGL_TYPE_PIXEL_FORMAT, py_format, (gpointer)&format))
+    if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format, (gpointer)&format))
         return NULL;
 
     ret = cogl_texture_new_from_foreign (gl_handle, gl_target,
@@ -193,7 +193,7 @@ _wrap_cogl_texture_new_from_foreign (PyObject *self,
                                          format);
 
     /* pyg_boxed_new handles NULL checking */
-    return pyg_boxed_new (PYCOGL_TYPE_HANDLE, ret, TRUE, TRUE);
+    return pyg_boxed_new (COGL_TYPE_HANDLE, ret, TRUE, TRUE);
 }
 %%
 override cogl_texture_get_gl_texture noargs

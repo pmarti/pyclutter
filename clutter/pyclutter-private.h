@@ -12,27 +12,6 @@
 #define __PYCLUTTER_H_INSIDE__
 #include "pyclutter.h"
 
-#ifdef COGL_TYPE_HANDLE
-#define PYCOGL_TYPE_HANDLE      COGL_TYPE_HANDLE
-#else
-#define PYCOGL_TYPE_HANDLE      (pycogl_handle_get_type ())
-GType pycogl_handle_get_type (void) G_GNUC_CONST;
-#endif
-
-#ifdef COGL_TYPE_PIXEL_FORMAT
-#define PYCOGL_TYPE_PIXEL_FORMAT        COGL_TYPE_PIXEL_FORMAT
-#else
-#define PYCOGL_TYPE_PIXEL_FORMAT        (pycogl_pixel_format_get_type ())
-GType pycogl_pixel_format_get_type (void) G_GNUC_CONST;
-#endif
-
-#ifdef COGL_TYPE_FEATURE_FLAGS
-#define PYCOGL_TYPE_FEATURE_FLAGS       COGL_TYPE_FEATURE_FLAGS
-#else
-#define PYCOGL_TYPE_FEATURE_FLAGS       (pycogl_feature_flags_get_type ())
-GType pycogl_feature_flags_get_type (void) G_GNUC_CONST;
-#endif
-
 #ifdef COGL_TYPE_MATRIX
 #define PYCOGL_TYPE_MATRIX              COGL_TYPE_MATRIX
 #else

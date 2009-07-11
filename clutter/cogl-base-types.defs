@@ -10,7 +10,7 @@
 (define-boxed Handle
   (in-module "Cogl")
   (c-name "CoglHandle")
-  (gtype-id "PYCOGL_TYPE_HANDLE")
+  (gtype-id "COGL_TYPE_HANDLE")
 )
 
 (define-boxed Matrix

@@ -7,66 +7,6 @@ headers
 
 #include <cogl/cogl.h>
 
-static gpointer
-pycogl_handle_ref (gpointer data)
-{
-  if (G_LIKELY (data))
-    {
-      CoglHandle hnd = data;
-
-      if (hnd == COGL_INVALID_HANDLE)
-        return NULL;
-
-      if (cogl_is_texture (hnd))
-        return cogl_texture_ref (hnd);
-      else if (cogl_is_shader (hnd))
-        return cogl_shader_ref (hnd);
-      else if (cogl_is_program (hnd))
-        return cogl_program_ref (hnd);
-      else if (cogl_is_offscreen (hnd))
-        return cogl_offscreen_ref (hnd);
-      else
-        g_assert_not_reached ();
-    }
-
-  return NULL;
-}
-
-static void
-pycogl_handle_unref (gpointer data)
-{
-  if (G_LIKELY (data))
-    {
-      CoglHandle hnd = data;
-
-      if (hnd == COGL_INVALID_HANDLE)
-        return;
-
-      if (cogl_is_texture (hnd))
-        cogl_texture_unref (hnd);
-      else if (cogl_is_shader (hnd))
-        cogl_shader_unref (hnd);
-      else if (cogl_is_program (hnd))
-        cogl_program_unref (hnd);
-      else if (cogl_is_offscreen (hnd))
-        cogl_offscreen_unref (hnd);
-      else
-        g_assert_not_reached ();
-    }
-}
-
-GType
-pycogl_handle_get_type (void)
-{
-  static GType hnd_type = 0;
-
-  if (G_UNLIKELY (hnd_type == 0))
-    hnd_type = g_boxed_type_register_static (g_intern_static_string ("CoglHandle"),
-                                             pycogl_handle_ref,
-                                             pycogl_handle_unref);
-
-  return hnd_type;
-}
 
 CoglMatrix *
 pycogl_matrix_copy (const CoglMatrix *matrix)
@@ -201,7 +141,7 @@ _wrap_cogl_material_new(PyObject *self)
     ret = cogl_material_new();
     
     /* pyg_boxed_new handles NULL checking */
-    return pyg_boxed_new(PYCOGL_TYPE_HANDLE, ret, TRUE, TRUE);
+    return pyg_boxed_new(COGL_TYPE_HANDLE, ret, TRUE, TRUE);
 }
 %%
 override cogl_matrix_new noargs

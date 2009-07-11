@@ -16,7 +16,7 @@ _wrap_cogl_material_set_color (PyObject *self,
                                      &py_color))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -54,7 +54,7 @@ _wrap_cogl_material_get_color (PyObject *self,
                                      &py_material))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -88,7 +88,7 @@ _wrap_cogl_material_set_ambient (PyObject *self,
                                      &py_color))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -126,7 +126,7 @@ _wrap_cogl_material_get_ambient (PyObject *self,
                                      &py_material))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -160,7 +160,7 @@ _wrap_cogl_material_set_diffuse (PyObject *self,
                                      &py_color))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -198,7 +198,7 @@ _wrap_cogl_material_get_diffuse (PyObject *self,
                                      &py_material))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -232,7 +232,7 @@ _wrap_cogl_material_set_specular (PyObject *self,
                                      &py_color))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -270,7 +270,7 @@ _wrap_cogl_material_get_specular (PyObject *self,
                                      &py_material))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -304,7 +304,7 @@ _wrap_cogl_material_set_emission (PyObject *self,
                                      &py_color))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -342,7 +342,7 @@ _wrap_cogl_material_get_emission (PyObject *self,
                                      &py_material))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -376,7 +376,7 @@ _wrap_cogl_material_set_ambient_and_diffuse (PyObject *self,
                                      &py_color))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -415,7 +415,7 @@ _wrap_cogl_material_set_blend_constant (PyObject *self,
                                      &py_color))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -456,7 +456,7 @@ _wrap_cogl_material_set_layer_combine_constant (PyObject *self,
                                      &py_color))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -495,7 +495,7 @@ _wrap_cogl_material_get_layers (PyObject *self,
                                      &py_material))
         return NULL;
 
-    if (pyg_boxed_check(py_material, PYCOGL_TYPE_HANDLE))
+    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
         material = pyg_boxed_get(py_material, CoglHandle);
     else {
         PyErr_Clear ();
@@ -512,7 +512,7 @@ _wrap_cogl_material_get_layers (PyObject *self,
     for (l = layers; l != NULL; l = l->next) {
         CoglHandle layer = l->data;
         PyObject *py_layer;
-        py_layer = pyg_boxed_new(PYCOGL_TYPE_HANDLE, layer, TRUE, TRUE);
+        py_layer = pyg_boxed_new(COGL_TYPE_HANDLE, layer, TRUE, TRUE);
 
         if (!py_layer) {
             Py_DECREF (py_list);

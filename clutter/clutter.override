@@ -820,7 +820,7 @@ _wrap_clutter_texture_get_cogl_texture (PyGObject *self)
       return Py_None;
     }
   else
-    return pyg_boxed_new (PYCOGL_TYPE_HANDLE, hnd, TRUE, TRUE);
+    return pyg_boxed_new (COGL_TYPE_HANDLE, hnd, TRUE, TRUE);
 }
 %%
 override clutter_texture_set_cogl_texture kwargs
@@ -836,7 +836,7 @@ _wrap_clutter_texture_set_cogl_texture (PyGObject *self,
   if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:ClutterTexture.set_cogl_texture", kwlist, &py_handle))
     return NULL;
 
-  if (pyg_boxed_check (py_handle, PYCOGL_TYPE_HANDLE))
+  if (pyg_boxed_check (py_handle, COGL_TYPE_HANDLE))
     handle = pyg_boxed_get(py_handle, CoglHandle);
   else
     {
