@@ -324,6 +324,13 @@
   (gtype-id "CLUTTER_TYPE_INTERVAL")
 )
 
+(define-object BindingPool
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterBindingPool")
+  (gtype-id "CLUTTER_TYPE_BINDING_POOL")
+)
+
 ;; Enumerations and flags ...
 
 (define-flags EventFlags

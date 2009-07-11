@@ -74,6 +74,7 @@ ignore
   clutter_get_option_group_without_init
   clutter_threads_add_repaint_func
   clutter_threads_remove_repaint_func
+  clutter_binding_pool_install_closure
 %%
 ignore-glob
   *_quark
@@ -887,5 +888,108 @@ _wrap_clutter_stage_read_pixels(PyGObject *self,
         return py_ret;
     }
     Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override clutter_binding_pool_get_for_class kwargs
+static PyObject *
+_wrap_clutter_binding_pool_get_for_class(PyObject *self,
+                                         PyObject *args,
+                                         PyObject *kwargs)
+{
+    static char *kwlist[] = { "klass", NULL };
+    PyObject *py_klass;
+	gpointer klass;
+    ClutterBindingPool *ret;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O:binding_pool_get_for_class",
+                                     kwlist, &py_klass))
+        return NULL;
+
+	klass = g_type_class_ref (pyg_type_from_object (py_klass));
+    ret = clutter_binding_pool_get_for_class (klass);
+
+    /* pygobject_new handles NULL checking */
+    return pygobject_new((GObject *)ret);
+}
+%%
+override clutter_binding_pool_install_action kwargs
+static PyObject *
+_wrap_clutter_binding_pool_install_action (PyGObject *self,
+                                           PyObject  *args,
+                                           PyObject  *kwargs)
+{
+    static char *kwlist[] = { "action_name", "key_val", "modifiers", "callback", "data", NULL };
+    gchar *action_name;
+    guint key_val;
+    ClutterModifierType modifiers;
+    GClosure *closure;
+    PyObject *py_modifiers = NULL, *py_callback;
+    PyObject *py_data = Py_None;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs, "siOO|O:clutter.BindingPool.install_action", kwlist,
+                                      &action_name, &key_val, &py_modifiers,
+                                      &py_callback, &py_data))
+            return NULL;
+
+
+    if (!PyCallable_Check(py_callback)) {
+        PyErr_SetString(PyExc_TypeError, "callback argument is not callable");
+        return NULL;
+    }
+
+    if (py_modifiers == Py_None)
+        modifiers = 0;
+    else if (pyg_flags_get_value(CLUTTER_TYPE_MODIFIER_TYPE, py_modifiers, (gint *)&modifiers))
+        return NULL;
+
+    closure = pyg_closure_new (py_callback, py_data, NULL);
+    pygobject_watch_closure((PyObject *)self, closure);
+
+    clutter_binding_pool_install_closure (CLUTTER_BINDING_POOL (self->obj),
+                                         action_name, key_val,
+                                         modifiers, closure);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override clutter_binding_pool_override_action kwargs
+static PyObject *
+_wrap_clutter_binding_pool_override_action (PyGObject *self,
+                                            PyObject  *args,
+                                            PyObject  *kwargs)
+{
+    static char *kwlist[] = { "key_val", "modifiers", "callback", "data", NULL };
+    guint key_val;
+    ClutterModifierType modifiers;
+    GClosure *closure;
+    PyObject *py_modifiers = NULL, *py_callback;
+    PyObject *py_data = Py_None;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs, "iOO|O:clutter.BindingPool.install_action", kwlist,
+                                      &key_val, &py_modifiers,
+                                      &py_callback, &py_data))
+            return NULL;
+
+
+    if (!PyCallable_Check(py_callback)) {
+        PyErr_SetString(PyExc_TypeError, "callback argument is not callable");
+        return NULL;
+    }
+
+    if (py_modifiers == Py_None)
+        modifiers = 0;
+    else if (pyg_flags_get_value(CLUTTER_TYPE_MODIFIER_TYPE, py_modifiers, (gint *)&modifiers))
+        return NULL;
+
+    closure = pyg_closure_new (py_callback, py_data, NULL);
+    pygobject_watch_closure((PyObject *)self, closure);
+
+    clutter_binding_pool_override_closure (CLUTTER_BINDING_POOL (self->obj),
+                                           key_val, modifiers, closure);
+
+    Py_INCREF (Py_None);
     return Py_None;
 }

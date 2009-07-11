@@ -5753,3 +5753,135 @@
 )
 
 
+;; From clutter-binding-pool.h
+
+(define-function binding_pool_get_type
+  (c-name "clutter_binding_pool_get_type")
+  (return-type "GType")
+)
+
+(define-function binding_pool_new
+  (c-name "clutter_binding_pool_new")
+  (is-constructor-of "ClutterBindingPool")
+  (return-type "ClutterBindingPool*")
+  (properties
+    '("name")
+  )
+)
+
+(define-function binding_pool_get_for_class
+  (c-name "clutter_binding_pool_get_for_class")
+  (return-type "ClutterBindingPool*")
+  (parameters
+    '("gpointer" "klass")
+  )
+)
+
+(define-function binding_pool_find
+  (c-name "clutter_binding_pool_find")
+  (return-type "ClutterBindingPool*")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method install_action
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_install_action")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "action_name")
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+    '("GCallback" "callback")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method install_closure
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_install_closure")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "action_name")
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+    '("GClosure*" "closure")
+  )
+)
+
+(define-method override_action
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_override_action")
+  (return-type "none")
+  (parameters
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+    '("GCallback" "callback")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method override_closure
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_override_closure")
+  (return-type "none")
+  (parameters
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+    '("GClosure*" "closure")
+  )
+)
+
+(define-method find_action
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_find_action")
+  (return-type "const-gchar*")
+  (parameters
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+  )
+)
+
+(define-method remove_action
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_remove_action")
+  (return-type "none")
+  (parameters
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+  )
+)
+
+(define-method activate
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_activate")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+    '("GObject*" "gobject")
+  )
+)
+
+(define-method block_action
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_block_action")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "action_name")
+  )
+)
+
+(define-method unblock_action
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_unblock_action")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "action_name")
+  )
+)
+
+
