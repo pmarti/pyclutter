@@ -59,8 +59,6 @@ import pango.LayoutLine as PyPangoLayoutLine_Type
 import pangocairo.CairoFontMap as PyPangoCairoFontMap_Type
 %%
 ignore
-  cogl_get_modelview_matrix
-  cogl_get_projection_matrix
   cogl_get_option_group
   cogl_get_proc_address
   cogl_color_equal
@@ -409,4 +407,26 @@ _wrap_cogl_clear(PyObject *self, PyObject *args, PyObject *kwargs)
     
     Py_INCREF(Py_None);
     return Py_None;
+}
+%%
+override cogl_get_modelview_matrix noargs
+static PyObject *
+_wrap_cogl_get_modelview_matrix (PyObject *self)
+{
+    CoglMatrix matrix;
+
+    cogl_get_modelview_matrix (&matrix);
+
+    return pyg_boxed_new (PYCOGL_TYPE_MATRIX, &matrix, TRUE, TRUE);
+}
+%%
+override cogl_get_projection_matrix noargs
+static PyObject *
+_wrap_cogl_get_projection_matrix (PyObject *self)
+{
+    CoglMatrix matrix;
+
+    cogl_get_projection_matrix (&matrix);
+
+    return pyg_boxed_new (PYCOGL_TYPE_MATRIX, &matrix, TRUE, TRUE);
 }
