@@ -15,6 +15,9 @@ import gtk.Widget as PyGtkWidget_Type
 import gtk.Adjustment as PyGtkAdjustment_Type
 import gtk.Container as PyGtkContainer_Type
 %%
+ignore
+  gtk_clutter_scrollable_get_adjustments noargs
+%%
 ignore-glob
   *_get_type
 %%
@@ -258,3 +261,4 @@ _wrap_gtk_clutter_viewport_get_origin (PyGObject *object)
                                     &x, &y, &z);
     return Py_BuildValue ("(fff)", x, y, z);
 }
+

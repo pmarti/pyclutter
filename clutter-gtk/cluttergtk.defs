@@ -9,15 +9,15 @@
   (gtype-id "GTK_CLUTTER_TYPE_EMBED")
 )
 
-(define-interface ClutterScrollable
-  (in-module "Gtk")
+(define-interface Scrollable
+  (in-module "GtkClutter")
   (c-name "GtkClutterScrollable")
   (gtype-id "GTK_CLUTTER_TYPE_SCROLLABLE")
   (vtable "GtkClutterScrollableIface")
 )
 
-(define-object ClutterViewport
-  (in-module "Gtk")
+(define-object Viewport
+  (in-module "GtkClutter")
   (parent "ClutterActor")
   (c-name "GtkClutterViewport")
   (gtype-id "GTK_CLUTTER_TYPE_VIEWPORT")
@@ -225,9 +225,9 @@
   (c-name "gtk_clutter_viewport_new")
   (is-constructor-of "GtkClutterViewport")
   (return-type "ClutterActor*")
-  (parameters
-    '("GtkAdjustment*" "h_adjust")
-    '("GtkAdjustment*" "v_adjust")
+  (properties
+    '("hadjustment" (optional))
+    '("vadjustment" (optional))
   )
 )
 
