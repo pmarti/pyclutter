@@ -117,6 +117,7 @@ ignore
 ignore-glob
   cogl_fixed_*
   cogl_program_*
+  cogl_vertex_*
 %%
 override cogl_get_viewport noargs
 static PyObject *
