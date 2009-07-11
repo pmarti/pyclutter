@@ -5885,3 +5885,23 @@
 )
 
 
+;; From clutter-animatable.h
+
+(define-function animatable_get_type
+  (c-name "clutter_animatable_get_type")
+  (return-type "GType")
+)
+
+(define-virtual animate_property
+  (of-object "ClutterAnimatable")
+  (c-name "clutter_animatable_animate_property")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterAnimation*" "animation")
+    '("const-gchar*" "property_name")
+    '("const-GValue*" "initial_value")
+    '("const-GValue*" "final_value")
+    '("gdouble" "progress")
+    '("GValue*" "value")
+  )
+)

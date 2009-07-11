@@ -22,6 +22,13 @@
   (gtype-id "CLUTTER_TYPE_SCRIPTABLE")
 )
 
+(define-interface Animatable
+  (in-module "Clutter")
+  (c-name "ClutterAnimatable")
+  (gtype-id "CLUTTER_TYPE_ANIMATABLE")
+  (vtable "ClutterAnimatableIface")
+)
+
 ; boxed types...
 
 (define-boxed Color

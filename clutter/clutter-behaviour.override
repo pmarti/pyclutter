@@ -812,3 +812,171 @@ _wrap_clutter_animation_bind (PyGObject *self,
     Py_INCREF (Py_None);
     return Py_None;
 }
+%%
+override ClutterAnimatable__proxy_do_animate_property kwargs
+static gboolean
+_wrap_ClutterAnimatable__proxy_do_animate_property(ClutterAnimatable *self,
+                                                   ClutterAnimation *animation,
+                                                   const gchar *property_name,
+                                                   const GValue *initial_value,
+                                                   const GValue *final_value,
+                                                   gdouble progress,
+                                                   GValue* value)
+{
+    PyGILState_STATE __py_state;
+    PyObject *py_self;
+    PyObject *py_animation = NULL;
+    PyObject *py_property_name;
+    PyObject *py_initial_value = NULL;
+    PyObject *py_final_value = NULL;
+    PyObject *py_progress;
+    gboolean retval;
+    PyObject *py_main_retval;
+    PyObject *py_retval;
+    PyObject *py_args;
+    PyObject *py_method;
+
+    __py_state = pyg_gil_state_ensure();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    if (animation)
+        py_animation = pygobject_new((GObject *) animation);
+    else {
+        Py_INCREF(Py_None);
+        py_animation = Py_None;
+    }
+    py_property_name = PyString_FromString(property_name);
+    if (!py_property_name) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_animation);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    if (initial_value)
+        py_initial_value = pyg_value_as_pyobject (initial_value, TRUE);
+    else {
+        Py_INCREF(Py_None);
+        py_initial_value = Py_None;
+    }
+    if (final_value)
+        py_final_value = pyg_value_as_pyobject (final_value, TRUE);
+    else {
+        Py_INCREF(Py_None);
+        py_final_value = Py_None;
+    }
+    py_progress = PyFloat_FromDouble(progress);
+
+    py_args = PyTuple_New(5);
+    PyTuple_SET_ITEM(py_args, 0, py_animation);
+    PyTuple_SET_ITEM(py_args, 1, py_property_name);
+    PyTuple_SET_ITEM(py_args, 2, py_initial_value);
+    PyTuple_SET_ITEM(py_args, 3, py_final_value);
+    PyTuple_SET_ITEM(py_args, 4, py_progress);
+
+    py_method = PyObject_GetAttrString(py_self, "do_animate_property");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    py_retval = PyObject_CallObject(py_method, py_args);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+    py_retval = Py_BuildValue("(N)", py_retval);
+    if (!PyArg_ParseTuple(py_retval, "O", &py_main_retval)) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return FALSE;
+    }
+
+    pyg_value_from_pyobject (value, py_main_retval);
+    if (py_main_retval == Py_None)
+        retval = FALSE;
+    else
+        retval = TRUE;
+
+    Py_XDECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_args);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(__py_state);
+
+    return retval;
+}
+%%
+override ClutterAnimatable__do_animate_property kwargs
+static PyObject *
+_wrap_ClutterAnimatable__do_animate_property(PyObject *cls,
+                                             PyObject *args,
+                                             PyObject *kwargs)
+{
+    ClutterAnimatableIface *iface;
+    static char *kwlist[] = { "self", "animation", "property_name", "initial_value", "final_value", "progress", NULL };
+    PyGObject *self, *animation;
+    char *property_name;
+    PyObject *py_initial_value, *py_final_value;
+    int ret;
+    double progress;
+    GValue initial = { 0, };
+    GValue final = { 0, };
+    GValue value = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!O!sOOd:ClutterAnimatable.animate_property",
+                                     kwlist,
+                                     &PyClutterAnimatable_Type, &self,
+                                     &PyClutterAnimation_Type, &animation,
+                                     &property_name,
+                                     &py_initial_value, &py_final_value,
+                                     &progress))
+        return NULL;
+
+    iface = g_type_interface_peek(g_type_class_peek(pyg_type_from_object(cls)),
+                                  CLUTTER_TYPE_ANIMATABLE);
+
+    if (iface->animate_property) {
+        GParamSpec *pspec;
+        pspec = g_object_class_find_property (G_OBJECT_GET_CLASS (self->obj),
+                                              property_name);
+        g_value_init (&initial, G_PARAM_SPEC_VALUE_TYPE (pspec));
+        g_value_init (&final, G_PARAM_SPEC_VALUE_TYPE (pspec));
+        g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+        pyg_value_from_pyobject (&initial, py_initial_value);
+        pyg_value_from_pyobject (&final, py_final_value);
+        ret = iface->animate_property (CLUTTER_ANIMATABLE (self->obj),
+                                       CLUTTER_ANIMATION (animation->obj),
+                                       property_name,
+                                       &initial,
+                                       &final,
+                                       progress,
+                                       &value);
+    } else {
+        PyErr_SetString(PyExc_NotImplementedError, "interface method ClutterAnimatable.animate_property not implemented");
+        return NULL;
+    }
+    return PyBool_FromLong(ret);
+
+}
