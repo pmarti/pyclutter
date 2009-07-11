@@ -38,7 +38,8 @@ CLUTTER_OVERRIDES = 			\
 	clutter-model.override		\
 	clutter-script.override     \
 	clutter-cairotexture.override \
-	clutter-interval.override
+	clutter-interval.override \
+	clutter-animation.override
 
 CLEANFILES += 			\
 	cogl.c 			\
