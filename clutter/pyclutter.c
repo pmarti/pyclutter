@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include "pyclutter.h"
+#include "pyclutter-private.h"
 
 struct _PyClutterCallback
 {
@@ -207,6 +208,12 @@ pycogl_color_from_pyobject (PyObject  *object,
                             CoglColor *color)
 {
         g_return_val_if_fail (color != NULL, FALSE);
+
+        if (pyg_boxed_check (object, PYCOGL_TYPE_COLOR))
+          {
+            *color = *pyg_boxed_get (object, CoglColor);
+            return TRUE;
+          }
 
         if (pyg_boxed_check (object, CLUTTER_TYPE_COLOR))
           {

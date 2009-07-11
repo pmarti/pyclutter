@@ -37,6 +37,12 @@
   )
 )
 
+(define-boxed Color
+  (in-module "Cogl")
+  (c-name "CoglColor")
+  (gtype-id "PYCOGL_TYPE_COLOR")
+)
+
 (define-flags DebugFlags
   (in-module "Cogl")
   (c-name "CoglDebugFlags")

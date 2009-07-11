@@ -19,4 +19,11 @@
 GType pycogl_matrix_get_type (void) G_GNUC_CONST;
 #endif
 
+#ifdef COGL_TYPE_COLOR
+#define PYCOGL_TYPE_COLOR      COGL_TYPE_COLOR
+#else
+#define PYCOGL_TYPE_COLOR      (pycogl_color_get_type ())
+GType pycogl_color_get_type (void) G_GNUC_CONST;
+#endif
+
 #endif /* __PYCLUTTER_PRIVATE_H__ */

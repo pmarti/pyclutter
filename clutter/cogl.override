@@ -34,6 +34,19 @@ pycogl_matrix_get_type (void)
   return matrix_type;
 }
 
+GType
+pycogl_color_get_type (void)
+{
+  static GType color_type = 0;
+
+  if (G_UNLIKELY (color_type == 0))
+    color_type = g_boxed_type_register_static (g_intern_static_string ("CoglColor"),
+                                              (GBoxedCopyFunc) cogl_color_copy,
+                                              (GBoxedFreeFunc) cogl_color_free);
+
+  return color_type;
+}
+
 %%
 include
   cogl-texture.override
