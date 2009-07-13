@@ -432,3 +432,29 @@ _wrap_cogl_get_projection_matrix (PyObject *self)
 
     return pyg_boxed_new (PYCOGL_TYPE_MATRIX, &matrix, TRUE, TRUE);
 }
+%%
+override cogl_color_new kwargs
+static int
+_wrap_cogl_color_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
+{
+    static char *kwlist[] = { "red", "green", "blue", "alpha", NULL };
+    float red, green, blue, alpha;
+    CoglColor *color;
+
+    red = green = blue = 0.0;
+    alpha = 1.0;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "|ffff:cogl.Color", kwlist,
+                                      &red, &green, &blue, &alpha))
+        return -1;
+
+    color = cogl_color_new ();
+    cogl_color_set_from_4f (color, red, green, blue, alpha);
+
+    self->boxed = g_boxed_copy (PYCOGL_TYPE_COLOR, color);
+    self->free_on_dealloc = TRUE;
+    self->gtype = PYCOGL_TYPE_COLOR;
+
+    return 0;
+}
