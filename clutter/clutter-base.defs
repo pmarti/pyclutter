@@ -1884,6 +1884,11 @@
   )
 )
 
+(define-method to_cogl_color
+  (of-object "ClutterColor")
+  (c-name "clutter_color_to_cogl_color")
+  (return-type "CoglColor*")
+)
 
 ;; From clutter-container.h
 

@@ -458,3 +458,17 @@ _wrap_cogl_color_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
 
     return 0;
 }
+%%
+override cogl_color_to_clutter_color noargs
+static PyObject *
+_wrap_cogl_color_to_clutter_color (PyObject *self)
+{
+    CoglColor *source = pyg_boxed_get (self, CoglColor);
+    ClutterColor *dest = clutter_color_new (
+                            (gint)(cogl_color_get_red (source) * 255),
+                            (gint)(cogl_color_get_green (source) * 255),
+                            (gint)(cogl_color_get_blue (source) * 255),
+                            (gint)(cogl_color_get_alpha (source) * 255));
+
+    return pyg_boxed_new (CLUTTER_TYPE_COLOR, dest, TRUE, TRUE);
+}

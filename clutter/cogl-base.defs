@@ -133,6 +133,11 @@
   )
 )
 
+(define-method to_clutter_color
+  (of-object "CoglColor")
+  (c-name "cogl_color_to_clutter_color")
+  (return-type "ClutterColor*")
+)
 
 
 ;; From cogl-debug.h
