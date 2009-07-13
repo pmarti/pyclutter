@@ -165,6 +165,9 @@ _wrap_cogl_matrix_new (PyGBoxed *self)
     self->boxed = g_boxed_copy (PYCOGL_TYPE_MATRIX, &matrix);
     self->free_on_dealloc = TRUE;
     self->gtype = PYCOGL_TYPE_MATRIX;
+
+    cogl_matrix_init_identity (self->boxed);
+
     return 0;
 }
 %%
