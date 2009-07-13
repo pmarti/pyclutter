@@ -118,6 +118,30 @@
   (return-type "float")
 )
 
+(define-method get_red_byte
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_red_byte")
+  (return-type "int")
+)
+
+(define-method get_green_byte
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_green_byte")
+  (return-type "int")
+)
+
+(define-method get_blue_byte
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_blue_byte")
+  (return-type "int")
+)
+
+(define-method get_alpha_byte
+  (of-object "CoglColor")
+  (c-name "cogl_color_get_alpha_byte")
+  (return-type "int")
+)
+
 (define-method premultiply
   (of-object "CoglColor")
   (c-name "cogl_color_premultiply")
