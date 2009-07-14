@@ -436,3 +436,67 @@ _wrap_cogl_polygon (PyObject *self, PyObject *args, PyObject *kwargs)
     Py_INCREF (Py_None);
     return Py_None;
 }
+%%
+override cogl_texture_new_with_size kwargs
+static PyObject *
+_wrap_cogl_texture_new_with_size (PyObject *self,
+                                  PyObject *args,
+                                  PyObject *kwargs)
+{
+    static char *kwlist[] = { "width", "height", "flags", "internal_format", NULL };
+    guint width, height;
+    PyObject *py_flags, *py_internal_format;
+    CoglTextureFlags flags;
+    CoglPixelFormat internal_format;
+    CoglHandle ret = COGL_INVALID_HANDLE;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "IIOO:offscreen_new_to_texture",
+                                     kwlist, &width, &height,
+                                     &py_flags, &py_internal_format))
+      return NULL;
+
+    if (pyg_enum_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags, (gpointer)&flags))
+      return NULL;
+
+    if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_internal_format, (gpointer)&internal_format))
+      return NULL;
+
+    ret = cogl_texture_new_with_size (width, height, flags, internal_format);
+
+    return pyg_boxed_new (COGL_TYPE_HANDLE, ret, TRUE, TRUE);
+}
+%%
+override cogl_offscreen_new_to_texture kwargs
+static PyObject *
+_wrap_cogl_offscreen_new_to_texture (PyObject *self,
+                                     PyObject *args,
+                                     PyObject *kwargs)
+{
+    static char *kwlist[] = { "handle", NULL };
+    PyObject *py_handle;
+    CoglHandle handle = COGL_INVALID_HANDLE;
+    CoglHandle offscreen = COGL_INVALID_HANDLE;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O:offscreen_new_to_texture",
+                                     kwlist, &py_handle))
+      return NULL;
+
+    if (pyg_boxed_check(py_handle, COGL_TYPE_HANDLE))
+      handle = pyg_boxed_get(py_handle, CoglHandle);
+    else
+      {
+        PyErr_SetString (PyExc_TypeError, "handle should be a cogl.Handle");
+        return NULL;
+      }
+
+    if (!cogl_is_texture (handle)) {
+        PyErr_SetString (PyExc_TypeError, "handle is not texture handle");
+        return NULL;
+    }
+
+    offscreen = cogl_offscreen_new_to_texture (handle);
+
+    return pyg_boxed_new (COGL_TYPE_HANDLE, offscreen, TRUE, TRUE);
+}
