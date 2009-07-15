@@ -926,6 +926,12 @@
   )
 )
 
+(define-method is_in_clone_paint
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_is_in_clone_paint")
+  (return-type "gboolean")
+)
+
 
 
 ;; From clutter-alpha.h
