@@ -14,8 +14,15 @@ try:
     sys.setdlopenflags(dl.RTLD_LAZY|dl.RTLD_GLOBAL)
 except ImportError:
     try:
-        import ctypes, ctypes.util
-        ctypes.CDLL(ctypes.util.find_library('GL'), mode=ctypes.RTLD_GLOBAL)
+        import platform
+        if platform.system() == 'Linux' and platform.machine() in \
+                ['x86_64', 'amd64']:
+            try:
+                import ctypes, ctypes.util
+                ctypes.CDLL(ctypes.util.find_library('GL'),
+                        mode=ctypes.RTLD_GLOBAL)
+            except:
+                pass
     except ImportError:
         pass
 
