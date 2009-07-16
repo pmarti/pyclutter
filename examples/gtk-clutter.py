@@ -27,7 +27,7 @@ def main ():
     embed.realize()
 
     stage = embed.get_stage()
-    stage.set_color(clutter.color_parse('DarkBlue'))
+    stage.set_color(clutter.color_from_string('DarkBlue'))
 
     rect = clutter.Rectangle()
     rect.set_color(cluttergtk.get_base_color(window, gtk.STATE_SELECTED))

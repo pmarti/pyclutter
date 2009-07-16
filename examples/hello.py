@@ -4,7 +4,7 @@ import clutter
 class HelloClutter:
     def __init__ (self, message):
         self.stage = clutter.Stage()
-        self.stage.set_color(clutter.color_parse('DarkSlateGrey'))
+        self.stage.set_color(clutter.color_from_string('DarkSlateGrey'))
         self.stage.set_size(800, 600)
         self.stage.set_title('My First Clutter Application')
         self.stage.connect('key-press-event', clutter.main_quit)
@@ -13,7 +13,7 @@ class HelloClutter:
 
         color = clutter.Color(0xff, 0xcc, 0xcc, 0xdd)
 
-        self.label = clutter.Label()
+        self.label = clutter.Text()
         self.label.set_font_name('Mono 32')
         self.label.set_text(message)
         self.label.set_color(color)
@@ -31,9 +31,9 @@ class HelloClutter:
         self.cursor.set_position(cursor_x, cursor_y)
         self.stage.add(self.cursor)
 
-        self.timeline = clutter.Timeline(30, 25)
+        self.timeline = clutter.Timeline(500)
         self.timeline.set_loop(True)
-        alpha = clutter.Alpha(self.timeline, clutter.ramp_func)
+        alpha = clutter.Alpha(self.timeline, clutter.LINEAR)
         self.behaviour = clutter.BehaviourOpacity(0xdd, 0, alpha)
         self.behaviour.apply(self.cursor)
 

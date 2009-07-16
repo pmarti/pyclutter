@@ -12,7 +12,7 @@ import clutter, gst
 def main (args):
     stage = clutter.Stage()
     stage.set_size(320,240)
-    stage.set_color(clutter.color_parse('DarkSlateGrey'))
+    stage.set_color(clutter.color_from_string('DarkSlateGrey'))
     stage.connect('destroy', clutter.main_quit)
     stage.connect('key-press-event', clutter.main_quit)
 

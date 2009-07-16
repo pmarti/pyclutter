@@ -3,7 +3,7 @@
 
 import clutter
 import math
-from cluttercairo import CairoTexture
+from clutter import CairoTexture
 from datetime import datetime
 import gobject
 import cairo

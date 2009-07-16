@@ -5,7 +5,7 @@ import clutter
 import math
 import random
 import time
-from cluttercairo import CairoTexture
+from clutter import CairoTexture
 import gobject
 import cairo
 
@@ -136,7 +136,7 @@ if __name__ == '__main__':
     
     stage = clutter.stage_get_default()
     stage.set_color(stage_color)
-    stage.fullscreen()
+    stage.set_fullscreen(True)
     
     flowers = list()
     for flower_i in range(N_FLOWERS):

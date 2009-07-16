@@ -27,7 +27,7 @@ class TestScale:
         self._timeline.set_loop(True)
         self._timeline.connect('completed', self.on_timeline_completed, self)
 
-        alpha = clutter.Alpha(self._timeline, clutter.ramp_func)
+        alpha = clutter.Alpha(self._timeline, clutter.LINEAR)
 
         self._behave = clutter.BehaviourScale(0.0, 0.0,
                                               1.0, 1.0,

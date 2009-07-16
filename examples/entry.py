@@ -11,14 +11,14 @@
 
 import clutter
 
-class EntryWidget (clutter.Entry):
+class EntryWidget (clutter.Text):
     def __init__(self, stage):
-        clutter.Entry.__init__(self)
-        self.set_color(clutter.color_parse('Black'))
+        clutter.Text.__init__(self)
+        self.set_color(clutter.color_from_string('Black'))
         self.set_text("Test entry (modify me)")
         self.set_position(10,10)
-        self.set_visibility(True)
         self.set_reactive(True)
+        self.set_editable(True)
         self.connect("button-press-event", self.on_press_cb)
         self.connect("key-press-event", self.key_cb)
         self.connect("activate", self.activated_cb)

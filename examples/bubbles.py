@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import clutter
+from clutter import CairoTexture
 import math
 import time
 import random
-from cluttercairo import CairoTexture
 
 import cairo
 
@@ -53,13 +53,13 @@ def create_bubble():
     
     return bubble
 
-class BubbleClone(clutter.CloneTexture):
+class BubbleClone(clutter.Clone):
     
     linear = 0
     angular = 0
     
     def __init__(self, texture, x, y):
-        clutter.CloneTexture.__init__(self, texture)
+        clutter.Clone.__init__(self, texture)
         self.x, self.y = x, y
         self.set_position(self.x, self.y)
         self.linear = 0
@@ -83,7 +83,7 @@ class BubbleClone(clutter.CloneTexture):
         self.angular = random.uniform(-0.5, 0.5)
     
     def new_frame(self, timeline, frame_num):
-        delta = timeline.get_delta()[0]
+        delta = timeline.get_delta()
         linear = self.linear
         angular = self.angular
 
@@ -117,6 +117,8 @@ if __name__ == '__main__':
     timeline.set_loop(True)
     
     bubble = create_bubble()
+    stage.add(bubble)
+    bubble.set_opacity(0x0)
     for bubble_i in range(N_BUBBLES):
         clone = BubbleClone(bubble, bubble_i * BUBBLE_R*2, -BUBBLE_R*2)
         

@@ -24,18 +24,18 @@ class Triangle (clutter.Actor):
 
     def __init__ (self):
         clutter.Actor.__init__(self)
-        self._color = clutter.color_parse('White')
+        self._color = clutter.color_from_string('White')
         self._is_pressed = False
         self.connect('button-press-event', self.do_button_press_event)
         self.connect('button-release-event', self.do_button_release_event)
         self.connect('leave-event', self.do_leave_event)
 
     def set_color (self, color):
-        self._color = clutter.color_parse(color)
+        self._color = clutter.color_from_string(color)
 
     def do_set_property (self, pspec, value):
         if pspec.name == 'color':
-            self._color = clutter.color_parse(value)
+            self._color = clutter.color_from_string(value)
         else:
             raise TypeError('Unknown property ' + pspec.name)
 
@@ -77,7 +77,7 @@ class Triangle (clutter.Actor):
         cogl.path_line_to(width / 2, 0)
         cogl.path_close()
 
-        cogl.color(color)
+        cogl.set_source_color(color)
         cogl.path_fill()
 
     def do_paint (self):
@@ -105,7 +105,7 @@ gobject.type_register(Triangle)
 if __name__ == '__main__':
     stage = clutter.Stage()
     stage.set_size(640, 480)
-    stage.set_color(clutter.color_parse('Black'))
+    stage.set_color(clutter.color_from_string('Black'))
     stage.connect('destroy', clutter.main_quit)
 
     triangle = Triangle()
@@ -117,10 +117,10 @@ if __name__ == '__main__':
     stage.add(triangle)
     triangle.connect('clicked', clutter.main_quit)
 
-    label = clutter.Label()
+    label = clutter.Text()
     label.set_font_name('Sans 36px')
     label.set_text('Click me!')
-    label.set_color(clutter.color_parse('Red'))
+    label.set_color(clutter.color_from_string('Red'))
     label.set_position((640 - label.get_width()) / 2, triangle.get_y() + triangle.get_height())
     stage.add(label)
 

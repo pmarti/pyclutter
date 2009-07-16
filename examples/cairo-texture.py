@@ -3,7 +3,6 @@ from math import pi
 
 import cairo
 import clutter
-import cluttercairo
 
 def on_button_press_event (stage, event):
     clutter.main_quit()
@@ -15,11 +14,11 @@ def main ():
     stage.connect('button-press-event', on_button_press_event)
     stage.connect('destroy', clutter.main_quit)
 
-    cairo_tex = cluttercairo.CairoTexture(width=200, height=200)
+    cairo_tex = clutter.CairoTexture(width=200, height=200)
     cairo_tex.set_position(x=(stage.get_width() - 200) / 2,
                            y=(stage.get_height() - 200) / 2)
 
-    # we obtain a cairo context from the cluttercairo.Texture
+    # we obtain a cairo context from the clutter.CairoTexture
     # and then we can use it with the cairo primitives to draw
     # on it.
     context = cairo_tex.cairo_create()
@@ -39,7 +38,7 @@ def main ():
                  # let the context go out of scope or you can
                  # explicitly destroy it
 
-    # cluttercairo.Texture is a clutter.Actor, so we can
+    # clutter.CairoTexture is a clutter.Actor, so we can
     # manipulate it as any other actor
     center_x = cairo_tex.get_width() / 2
     center_z = cairo_tex.get_height() / 2
@@ -47,10 +46,10 @@ def main ():
     stage.add(cairo_tex)
     cairo_tex.show()
     
-    # cluttercairo.Texture is also a clutter.Texture, so we can save
+    # clutter.CairoTexture is also a clutter.Texture, so we can save
     # memory when dealing with multiple copies by simply cloning it
     # and manipulating the clones
-    clone_tex = clutter.CloneTexture(cairo_tex)
+    clone_tex = clutter.Clone(cairo_tex)
     clone_tex.set_position((stage.get_width() - 200) / 2,
                            (stage.get_height() - 200) / 2)
     clone_tex.set_rotation(clutter.Y_AXIS, -45.0, center_x, 0, center_z)

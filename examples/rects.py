@@ -19,8 +19,8 @@ def on_button_press_event (stage, event):
 def main (args):
     stage = clutter.Stage()
     stage.set_size(800,600)
-    stage.set_color(clutter.color_parse('DarkSlateGray'))
-    stage.connect('add', on_stage_add)
+    stage.set_color(clutter.color_from_string('DarkSlateGray'))
+    stage.connect('actor-added', on_stage_add)
     stage.connect('button-press-event', on_button_press_event)
     
     print "stage color: %s" % (stage.get_color())
