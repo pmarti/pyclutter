@@ -4225,7 +4225,7 @@
   (is-constructor-of "ClutterTimeline")
   (return-type "ClutterTimeline*")
   (properties
-    '("duration")
+    '("duration" (optional))
   )
 )
 
