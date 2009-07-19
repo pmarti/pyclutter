@@ -76,7 +76,7 @@ _wrap_gtk_clutter_texture_set_from_icon_name (PyGObject *self,
   if (!PyArg_ParseTupleAndKeywords (args, kwargs, "Os|i:cluttergtk.Texture.set_from_icon_name", kwlist, &py_widget, &icon_name, &icon_size))
     return NULL;
 
-  if (py_widget == NULL && py_widget == Py_None)
+  if (py_widget == NULL || py_widget == Py_None)
     gtk_clutter_texture_set_from_icon_name (CLUTTER_TEXTURE (self->obj),
                                             NULL,
                                             icon_name,
