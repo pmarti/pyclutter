@@ -278,14 +278,14 @@ pyclutter_actor_box_from_pyobject (PyObject        *object,
                 for (i = 0; i < 4; i++) {
                         PyObject *comp = PyTuple_GetItem (object, i);
 
-                        if (!PyInt_Check (comp))
+                        if (!PyFloat_Check (comp))
                                 goto out;
 
                         switch (i) {
-                        case 0: box->x1 = PyInt_AsLong (comp); break;
-                        case 1: box->y1 = PyInt_AsLong (comp); break;
-                        case 2: box->x2 = PyInt_AsLong (comp); break;
-                        case 3: box->y2 = PyInt_AsLong (comp); break;
+                        case 0: box->x1 = PyFloat_AsDouble (comp); break;
+                        case 1: box->y1 = PyFloat_AsDouble (comp); break;
+                        case 2: box->x2 = PyFloat_AsDouble (comp); break;
+                        case 3: box->y2 = PyFloat_AsDouble (comp); break;
                         default:
                                 g_assert_not_reached ();
                                 break;
