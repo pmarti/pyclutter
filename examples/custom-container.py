@@ -1,7 +1,6 @@
 import gobject
 import clutter
 
-#class SimpleBox(clutter.Group):
 class SimpleBox(clutter.Actor, clutter.Container):
     __gtype_name__ = 'SimpleBox'
     __gproperties__ = {
@@ -12,13 +11,13 @@ class SimpleBox(clutter.Actor, clutter.Container):
     VERTICAL = 1
     def __init__(self, orientation=0):
         clutter.Actor.__init__(self)
-        #clutter.Group.__init__(self)
         self._orientation = orientation
         self._children = []
 
     def set_orientation(self, orientation):
         self._orientation = orientation
         self.notify("orientation")
+        self.queue_relayout()
 
     def get_orientation(self):
         return self._orientation
@@ -40,10 +39,52 @@ class SimpleBox(clutter.Actor, clutter.Container):
             child.set_parent(self)
             self.queue_relayout()
     
+    def do_remove(self, *children):
+        for child in children:
+            if child in self._children:
+                self._children.remove(child)
+                child.unparent()
+                self.queue_relayout()
+            else:
+                raise Exception("Actor %s is not a child of %s" % (
+                    child, self))
+
+    def do_get_preferred_width(self, for_height):
+        min_width = 0
+        natural_width = 0
+        for child in self._children:
+            if not child.props.visible:
+                continue
+            child_min_width, child_natural_width = child.get_preferred_width(
+                    for_height)
+            if self._orientation == self.HORIZONTAL:
+                min_width += child_min_width
+                natural_width += child_natural_width
+            else:
+                min_width = max(min_width, child_min_width)
+                natural_width = max(natural_width, child_natural_width)
+        return (min_width, natural_width)
+
+    def do_get_preferred_height(self, for_width):
+        min_height = 0
+        natural_height = 0
+        for child in self._children:
+            if not child.props.visible:
+                continue
+            child_min_height, child_natural_width = child.get_preferred_height(
+                    for_width)
+            if self._orientation == self.HORIZONTAL:
+                min_height = max(min_height, child_min_height)
+                natural_height = max(natural_height, child_natural_width)
+            else:
+                min_height += child_min_height
+                natural_height += child_natural_width
+        return (min_height, natural_height)
+
+
     def do_allocate(self, box, flags):
         child_x = child_y = 0
-        #for actor in self._children:
-        for actor in self.get_children():
+        for actor in self._children:
             w, h = actor.get_preferred_size()[2:]
             child_box = clutter.ActorBox()
             child_box.x1 = child_x
@@ -58,26 +99,24 @@ class SimpleBox(clutter.Actor, clutter.Container):
         clutter.Actor.do_allocate(self, box, flags)
 
     def do_foreach(self, func, data=None):
-        print 'foreach', func, data
-        func(self, data)
+        for child in self._children:
+            func(child, data)
         
-
     def do_paint(self):
         for actor in self._children:
-            print 'paint', actor
             actor.paint()
-        #clutter.Group.paint(self)
 
-def funny_func(*args):
-    print 'funny_func', args
 
 if __name__ == '__main__':
+    def on_button_press(box, event):
+        box.props.orientation = not box.props.orientation
+        return True
+
     import random
     stage = clutter.Stage()
     stage.connect('destroy', clutter.main_quit)
 
     box = SimpleBox()
-    #box = clutter.Group()
     for i in range(5):
         rect = clutter.Rectangle()
         color = clutter.Color(random.randint(0, 255), random.randint(0, 255),
@@ -86,10 +125,9 @@ if __name__ == '__main__':
         rect.set_size(50, 50)
         box.add(rect)
 
-    box.set_size(300, 300)
     stage.add(box)
-    box.foreach(funny_func, 'baum')
-    #print box.get_children()
+    box.set_reactive(True)
+    box.connect('button-press-event', on_button_press)
 
     stage.show()
     clutter.main()
