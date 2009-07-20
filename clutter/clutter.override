@@ -19,6 +19,50 @@ extern PyObject *PyClutterException;
 extern PyObject *PyClutterWarning;
 
 %%
+body
+
+typedef struct {
+    ClutterCallback func;
+    gpointer        func_data;
+} PyClutterContainerDataFuncData;
+
+static PyObject *
+_wrap_ClutterContainerDataFunc(PyObject *self, PyObject *args)
+{
+    PyObject *py_actor;
+    PyObject *py_data;
+    PyClutterContainerDataFuncData *data;
+
+    if (!PyArg_ParseTuple(args, "O!O!",
+			  &PyClutterActor_Type, &py_actor,
+                          &PyCObject_Type, &py_data))
+        return NULL;
+    
+    data = PyCObject_AsVoidPtr(py_data);
+    data->func(CLUTTER_ACTOR (pygobject_get(py_actor)), data->func_data);
+    
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+
+typedef struct {
+    PyObject *callback;
+    PyObject *user_data;
+} PyClutterContainerPyCallbackData;
+
+static void
+_wrap_ClutterContainer__do_foreach_callback(ClutterActor *child,
+                                            PyClutterContainerPyCallbackData *data)
+{
+    PyObject *pychild = pygobject_new((GObject *) child);
+    PyObject *result;
+
+    result = PyObject_CallFunctionObjArgs(data->callback, pychild, data->user_data, NULL);
+    /* Just discard it. */
+    Py_DECREF(result);
+}
+
+%%
 include
   clutter-actor.override
   clutter-behaviour.override
@@ -1035,4 +1079,145 @@ _wrap_clutter_binding_pool_override_action (PyGObject *self,
 
     Py_INCREF (Py_None);
     return Py_None;
+}
+
+%%
+override ClutterContainer__proxy_do_foreach
+static void
+_wrap_ClutterContainer__proxy_do_foreach (ClutterContainer *container,
+				          ClutterCallback   callback,
+				          gpointer          user_data)
+{
+    PyGILState_STATE state;
+    PyObject *self, *py_func, *py_func_data;
+    PyMethodDef pyfunc_def = { "ClutterContainer.do_foreach callback",
+			       (PyCFunction)_wrap_ClutterContainerDataFunc,
+                               METH_VARARGS|METH_KEYWORDS };
+    PyClutterContainerDataFuncData *data;
+
+    state = pyg_gil_state_ensure();
+    
+    self = pygobject_new((GObject *)container);
+    py_func = PyCFunction_NewEx(&pyfunc_def, NULL, NULL);
+    
+    data = g_new(PyClutterContainerDataFuncData, 1);
+    data->func = callback;
+    data->func_data = user_data;
+    PyObject_Repr(self);
+    PyObject_Repr(py_func);
+    py_func_data = PyCObject_FromVoidPtr(data, g_free);
+    if (!PyObject_CallMethod(self, "do_foreach", "NN", 
+			     py_func, py_func_data))
+	PyErr_Print();
+    
+    pyg_gil_state_release(state);
+}
+
+%%
+override ClutterContainer__do_foreach kwargs
+static PyObject *
+_wrap_ClutterContainer__do_foreach(PyObject *cls, PyObject *args, PyObject *kwargs)
+{
+    ClutterContainerIface *iface;
+    static char *kwlist[] = { "self", "callback", "user_data", NULL };
+    PyGObject *self;
+    PyObject *callback;
+    PyObject *user_data = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!O|O:ClutterContainer.foreach", kwlist,
+                                     &PyClutterContainer_Type, &self,
+                                     &callback, &user_data))
+        return NULL;
+
+    iface = g_type_interface_peek(g_type_class_peek(pyg_type_from_object (cls)),
+                                  CLUTTER_TYPE_CONTAINER);
+    if (iface->foreach) {
+	PyClutterContainerPyCallbackData *data = g_new(PyClutterContainerPyCallbackData, 1);
+	data->callback = callback;
+	data->user_data = user_data;
+
+	iface->foreach(CLUTTER_CONTAINER (self->obj),
+                 (ClutterCallback)_wrap_ClutterContainer__do_foreach_callback,
+                 data);
+	g_free(data);
+	Py_INCREF(Py_None);
+	return Py_None;
+    }
+    else {
+        PyErr_SetString(PyExc_NotImplementedError,
+                        "interface method ClutterContainer.foreach "
+                        "not implemented");
+        return NULL;
+    }
+}
+%%
+override ClutterContainer__proxy_do_foreach_with_internals
+static void
+_wrap_ClutterContainer__proxy_do_foreach_with_internals (ClutterContainer *container,
+                                                         ClutterCallback   callback,
+				                         gpointer          user_data)
+{
+    PyGILState_STATE state;
+    PyObject *self, *py_func, *py_func_data;
+    PyMethodDef pyfunc_def = { "ClutterContainer.do_foreach_with_internals callback",
+			       (PyCFunction)_wrap_ClutterContainerDataFunc,
+                               METH_VARARGS|METH_KEYWORDS };
+    PyClutterContainerDataFuncData *data;
+
+    state = pyg_gil_state_ensure();
+    
+    self = pygobject_new((GObject *)container);
+    py_func = PyCFunction_NewEx(&pyfunc_def, NULL, NULL);
+    
+    data = g_new(PyClutterContainerDataFuncData, 1);
+    data->func = callback;
+    data->func_data = user_data;
+    PyObject_Repr(self);
+    PyObject_Repr(py_func);
+    py_func_data = PyCObject_FromVoidPtr(data, g_free);
+    if (!PyObject_CallMethod(self, "do_foreach_with_internals", "NN", 
+			     py_func, py_func_data))
+	PyErr_Print();
+    
+    pyg_gil_state_release(state);
+}
+
+%%
+override ClutterContainer__do_foreach_with_internals kwargs
+static PyObject *
+_wrap_ClutterContainer__do_foreach_with_internals(PyObject *cls, PyObject *args, PyObject *kwargs)
+{
+    ClutterContainerIface *iface;
+    static char *kwlist[] = { "self", "callback", "user_data", NULL };
+    PyGObject *self;
+    PyObject *callback;
+    PyObject *user_data = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!O|O:ClutterContainer.foreach_with_internals", kwlist,
+                                     &PyClutterContainer_Type, &self,
+                                     &callback, &user_data))
+        return NULL;
+
+    iface = g_type_interface_peek(g_type_class_peek(pyg_type_from_object (cls)),
+                                  CLUTTER_TYPE_CONTAINER);
+    if (iface->foreach_with_internals) {
+	PyClutterContainerPyCallbackData *data = g_new(PyClutterContainerPyCallbackData, 1);
+	data->callback = callback;
+	data->user_data = user_data;
+
+	iface->foreach_with_internals(CLUTTER_CONTAINER (self->obj),
+                 (ClutterCallback)_wrap_ClutterContainer__do_foreach_callback,
+                 data);
+	g_free(data);
+	Py_INCREF(Py_None);
+	return Py_None;
+    }
+    else {
+        PyErr_SetString(PyExc_NotImplementedError,
+                        "interface method ClutterContainer."
+                        "foreach_with_internals not implemented");
+        return NULL;
+    }
 }

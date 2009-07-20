@@ -1993,9 +1993,27 @@
   )
 )
 
+(define-virtual foreach
+  (of-object "ClutterContainer")
+  (return-type "none")
+  (parameters
+    '("ClutterCallback" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
 (define-method foreach_with_internals
   (of-object "ClutterContainer")
   (c-name "clutter_container_foreach_with_internals")
+  (return-type "none")
+  (parameters
+    '("ClutterCallback" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-virtual foreach_with_internals
+  (of-object "ClutterContainer")
   (return-type "none")
   (parameters
     '("ClutterCallback" "callback")
