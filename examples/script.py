@@ -10,12 +10,9 @@ BUFFER = '''
     "id" : "move-behaviour", "type" : "ClutterBehaviourPath",
     "alpha" : {
       "timeline" : "move-timeline",
-      "function" : "clutter_sine_inc_func"
+      "mode" : "ease-out-sine"
     },
-    "knots" : [
-      [ 100, 100 ],
-      [ 200, 150 ]
-    ]
+    "path" : "M 100 100 L 200 150"
   },
   {
     "id" : "scale-behaviour", "type" : "ClutterBehaviourScale",
@@ -23,7 +20,7 @@ BUFFER = '''
     "y-scale-start" : 1.0, "y-scale-end" : 0.7,
     "alpha" : {
       "timeline" : "scale-timeline",
-      "function" : "sine-inc"
+      "mode" : "ease-out-sine"
     }
   },
   {
@@ -31,7 +28,7 @@ BUFFER = '''
     "opacity-start" : 255, "opacity-end" : 0,
     "alpha" : {
       "timeline" : "fade-timeline",
-      "function" : "sine-inc"
+      "mode" : "ease-out-sine"
     }
   },
   {
