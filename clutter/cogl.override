@@ -10,6 +10,7 @@ headers
 
 PyTypeObject PyCoglTexture_Type;
 PyTypeObject PyCoglMatrix_Type;
+PyTypeObject PyCoglMaterial_Type;
 
 
 %%
@@ -28,6 +29,8 @@ pycogl_handle_from_handle (CoglHandle handle)
 
   if (cogl_is_texture (handle))
     type = &PyCoglTexture_Type;
+  else if (cogl_is_material (handle))
+    type = &PyCoglMaterial_Type;
   else {
       PyErr_SetString (PyExc_TypeError, "Unknown handle type");
       return NULL;

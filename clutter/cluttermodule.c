@@ -20,6 +20,7 @@ extern PyMethodDef pyclutter_functions[];
 extern PyMethodDef pycogl_functions[];
 extern PyTypeObject PyCoglHandle_Type;
 extern PyTypeObject PyCoglTexture_Type;
+extern PyTypeObject PyCoglMaterial_Type;
 extern PyTypeObject PyCoglMatrix_Type;
 
 static PyObject *PyClutterDeprecationWarning;
@@ -170,6 +171,13 @@ init_clutter (void)
     return;
   Py_INCREF (&PyCoglTexture_Type);
   PyModule_AddObject (m, "Texture", (PyObject *)&PyCoglTexture_Type);
+  
+  /* cogl.Material */
+  PyCoglMaterial_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglMaterial_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglMaterial_Type);
+  PyModule_AddObject (m, "Material", (PyObject *)&PyCoglMaterial_Type);
   
   /* cogl.Matrix */
   PyCoglMatrix_Type.tp_base = &PyBaseObject_Type;

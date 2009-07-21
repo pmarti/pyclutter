@@ -1,527 +1,526 @@
 %%
-override cogl_material_set_color
+ignore-glob
+  cogl_material_*
+%%
+body
+/* COGL Material handle */
+
 static PyObject *
-_wrap_cogl_material_set_color (PyObject *self,
-                               PyObject *args,
-                               PyObject *kwargs)
+pycogl_material_new (PyTypeObject *type, PyObject *args, PyObject *kwargs)
 {
-    static char *kwlist[] = { "material", "color", NULL };
-    PyObject *py_material, *py_color;
-    CoglHandle *material = NULL;
-    CoglColor color;
+  return pycogl_handle_from_handle (cogl_material_new ());
+}
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OO:material_set_color",
-                                     kwlist,
-                                     &py_material,
-                                     &py_color))
-        return NULL;
+static PyObject *
+pycogl_material_set_color (PyCoglMaterial *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
 
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
+  if (!PyArg_ParseTuple (args, "O:cogl.Material.set_color",
+                         &py_color))
+    return NULL;
 
-    if (!pycogl_color_from_pyobject (py_color, &color))
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  cogl_material_set_color (self->handle, &color);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_get_color (PyCoglMaterial *self)
+{
+  CoglColor color;
+  PyObject *py_ret;
+
+  cogl_material_get_color (self->handle, &color);
+  py_ret = pyobject_from_cogl_color (&color);
+
+  return py_ret;
+}
+
+static PyObject *
+pycogl_material_set_color4ub (PyCoglMaterial *self,
+                              PyObject *args,
+                              PyObject *kwargs)
+{
+  static char *kwlist[] = { "red", "green", "blue", "alpha", NULL };
+  guint8 red, green, blue, alpha;
+  red = green = blue = 0x0;
+  alpha = 0xff;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "|HHHH:cogl.Material.set_color4ub",
+                                    kwlist,
+                                    &red, &green, &blue, &alpha))
+    return NULL;
+
+  cogl_material_set_color4ub (self->handle, red, green, blue, alpha);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_set_color4f (PyCoglMaterial *self,
+                             PyObject *args,
+                             PyObject *kwargs)
+{
+  static char *kwlist[] = { "red", "green", "blue", "alpha", NULL };
+  float red, green, blue, alpha;
+  red = green = blue = 0.0;
+  alpha = 1.0;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "|ffff:cogl.Material.set_color4ub",
+                                    kwlist,
+                                    &red, &green, &blue, &alpha))
+    return NULL;
+
+  cogl_material_set_color4f (self->handle, red, green, blue, alpha);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_set_ambient (PyCoglMaterial *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.Material.set_ambient",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  cogl_material_set_ambient (self->handle, &color);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_get_ambient (PyCoglMaterial *self)
+{
+  CoglColor color;
+  PyObject *py_ret;
+
+  cogl_material_get_ambient (self->handle, &color);
+  py_ret = pyobject_from_cogl_color (&color);
+
+  return py_ret;
+}
+
+static PyObject *
+pycogl_material_set_diffuse (PyCoglMaterial *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.Material.set_diffuse",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  cogl_material_set_diffuse (self->handle, &color);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_get_diffuse (PyCoglMaterial *self)
+{
+  CoglColor color;
+  PyObject *py_ret;
+
+  cogl_material_get_diffuse (self->handle, &color);
+  py_ret = pyobject_from_cogl_color (&color);
+
+  return py_ret;
+}
+
+static PyObject *
+pycogl_material_set_ambient_and_diffuse (PyCoglMaterial *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.Material.set_ambient",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  cogl_material_set_ambient_and_diffuse (self->handle, &color);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_set_emission (PyCoglMaterial *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.Material.set_emission",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  cogl_material_set_emission (self->handle, &color);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_get_emission (PyCoglMaterial *self)
+{
+  CoglColor color;
+  PyObject *py_ret;
+
+  cogl_material_get_emission (self->handle, &color);
+  py_ret = pyobject_from_cogl_color (&color);
+
+  return py_ret;
+}
+
+static PyObject *
+pycogl_material_set_specular (PyCoglMaterial *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.Material.set_specular",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  cogl_material_set_specular (self->handle, &color);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_get_specular (PyCoglMaterial *self)
+{
+  CoglColor color;
+  PyObject *py_ret;
+
+  cogl_material_get_specular (self->handle, &color);
+  py_ret = pyobject_from_cogl_color (&color);
+
+  return py_ret;
+}
+
+static PyObject *
+pycogl_material_set_shininess (PyCoglMaterial *self, PyObject *args)
+{
+  float shininess;
+  if (!PyArg_ParseTuple (args, "f:cogl.Material.set_shininess",
+                         &shininess))
+    return NULL;
+
+  cogl_material_set_shininess (self->handle, shininess);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_get_shininess (PyCoglMaterial *self)
+{
+  return Py_BuildValue ("f", cogl_material_get_shininess (self->handle));
+}
+
+static PyObject *
+pycogl_material_set_alpha_test_function (PyCoglMaterial *self,
+                                         PyObject       *args)
+{
+  PyObject *py_alpha_func;
+  CoglMaterialAlphaFunc alpha_func;
+  float alpha_reference;
+
+  if (!PyArg_ParseTuple (args, "Of:cogl.Material.set_alpha_test_function",
+                         &py_alpha_func, &alpha_reference))
+    return NULL;
+
+  if (pyg_enum_get_value (COGL_TYPE_MATERIAL_ALPHA_FUNC, py_alpha_func,
+                          (gpointer)&alpha_func))
+    return NULL;
+
+  cogl_material_set_alpha_test_function (self->handle, alpha_func,
+                                         alpha_reference);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_set_blend (PyCoglMaterial *self, PyObject *args)
+{
+  const char *blend_string;
+  GError *error = NULL;
+  gboolean ret;
+
+  if (!PyArg_ParseTuple (args, "s:cogl.Material.set_blend",
+                         &blend_string))
+    return NULL;
+
+  ret = cogl_material_set_blend (self->handle, blend_string, &error);
+
+  if (!ret && error != NULL)
     {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
+      PyErr_Format (PyExc_RuntimeError, " %s", error->message);
+      g_error_free (error);
+      return NULL;
     }
 
-    cogl_material_set_color (material, &color);
-
-    Py_INCREF (Py_None);
-    return Py_None;
+  return PyBool_FromLong (ret);
 }
-%%
-override cogl_material_get_color
+
 static PyObject *
-_wrap_cogl_material_get_color (PyObject *self,
-                               PyObject *args,
-                               PyObject *kwargs)
+pycogl_material_set_blend_constant (PyCoglMaterial *self, PyObject *args)
 {
-    static char *kwlist[] = { "material", NULL };
-    PyObject *py_material;
-    CoglHandle *material = NULL;
-    CoglColor color;
+  PyObject *py_color;
+  CoglColor color;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:material_get_color",
-                                     kwlist,
-                                     &py_material))
-        return NULL;
+  if (!PyArg_ParseTuple (args, "O:cogl.Material.set_blend_constant",
+                         &py_color))
+    return NULL;
 
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
 
-    cogl_material_get_color (material, &color);
+  cogl_material_set_blend_constant (self->handle, &color);
 
-    return Py_BuildValue ("(iiii)",
-                          cogl_color_get_red_byte (&color),
-                          cogl_color_get_green_byte (&color),
-                          cogl_color_get_blue_byte (&color),
-                          cogl_color_get_alpha_byte (&color));
+  Py_INCREF (Py_None);
+  return Py_None;
 }
-%%
-override cogl_material_set_ambient
+
 static PyObject *
-_wrap_cogl_material_set_ambient (PyObject *self,
-                                 PyObject *args,
-                                 PyObject *kwargs)
+pycogl_material_set_layer (PyCoglMaterial *self, PyObject *args)
 {
-    static char *kwlist[] = { "material", "color", NULL };
-    PyObject *py_material, *py_color;
-    CoglHandle *material = NULL;
-    CoglColor color;
+  int index;
+  PyCoglTexture *texture;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OO:material_set_ambient",
-                                     kwlist,
-                                     &py_material,
-                                     &py_color))
-        return NULL;
+  if (!PyArg_ParseTuple (args, "iO!:cogl.Material.set_layer",
+                         &index, &PyCoglTexture_Type, &texture))
+    return NULL;
 
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
+  cogl_material_set_layer (self->handle, index, texture->handle);
 
-    if (!pycogl_color_from_pyobject (py_color, &color))
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_remove_layer (PyCoglMaterial *self, PyObject *args)
+{
+  int index;
+
+  if (!PyArg_ParseTuple (args, "i:cogl.Material.remove_layer",
+                         &index))
+    return NULL;
+
+  cogl_material_remove_layer (self->handle, index);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_material_set_layer_combine (PyCoglMaterial *self, PyObject *args)
+{
+  int index;
+  const char *blend_string;
+  GError *error = NULL;
+  gboolean ret;
+
+  if (!PyArg_ParseTuple (args, "is:cogl.Material.set_layer_combine",
+                         &index, &blend_string))
+    return NULL;
+
+  ret = cogl_material_set_layer_combine (self->handle, index, blend_string,
+                                         &error);
+
+  if (!ret && error != NULL)
     {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
+      PyErr_Format (PyExc_RuntimeError, " %s", error->message);
+      g_error_free (error);
+      return NULL;
     }
 
-    cogl_material_set_ambient (material, &color);
-
-    Py_INCREF (Py_None);
-    return Py_None;
+  return PyBool_FromLong (ret);
 }
-%%
-override cogl_material_get_ambient
+
 static PyObject *
-_wrap_cogl_material_get_ambient (PyObject *self,
-                                 PyObject *args,
-                                 PyObject *kwargs)
+pycogl_material_set_layer_matrix (PyCoglMaterial *self, PyObject *args)
 {
-    static char *kwlist[] = { "material", NULL };
-    PyObject *py_material;
-    CoglHandle *material = NULL;
-    CoglColor color;
+  int index;
+  PyCoglMatrix *py_matrix;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:material_get_ambient",
-                                     kwlist,
-                                     &py_material))
-        return NULL;
+  if (!PyArg_ParseTuple (args, "iO!:cogl.Material.set_layer_matrix",
+                         &index, &PyCoglMatrix_Type, &py_matrix))
+    return NULL;
 
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
+  cogl_material_set_layer_matrix (self->handle, index, &py_matrix->matrix);
 
-    cogl_material_get_ambient (material, &color);
-
-    return Py_BuildValue ("(iiii)",
-                          cogl_color_get_red_byte (&color),
-                          cogl_color_get_green_byte (&color),
-                          cogl_color_get_blue_byte (&color),
-                          cogl_color_get_alpha_byte (&color));
+  Py_INCREF (Py_None);
+  return Py_None;
 }
-%%
-override cogl_material_set_diffuse
+
 static PyObject *
-_wrap_cogl_material_set_diffuse (PyObject *self,
-                                 PyObject *args,
-                                 PyObject *kwargs)
+pycogl_material_get_layers (PyCoglMaterial *self)
 {
-    static char *kwlist[] = { "material", "color", NULL };
-    PyObject *py_material, *py_color;
-    CoglHandle *material = NULL;
-    CoglColor color;
+  const GList *layers;
+  GList *l;
+  PyObject *py_list;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OO:material_set_diffuse",
-                                     kwlist,
-                                     &py_material,
-                                     &py_color))
-        return NULL;
+  layers = cogl_material_get_layers (self->handle);
 
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
+  py_list = PyList_New (0);
 
-    if (!pycogl_color_from_pyobject (py_color, &color))
+  for (l = (GList *)layers; l != NULL; l = l->next)
     {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
-    }
+      PyObject *py_layer;
+      CoglHandle handle = l->data;
 
-    cogl_material_set_diffuse (material, &color);
+      py_layer = pycogl_handle_from_handle (handle);
 
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_material_get_diffuse
-static PyObject *
-_wrap_cogl_material_get_diffuse (PyObject *self,
-                                 PyObject *args,
-                                 PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", NULL };
-    PyObject *py_material;
-    CoglHandle *material = NULL;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:material_get_diffuse",
-                                     kwlist,
-                                     &py_material))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    cogl_material_get_diffuse (material, &color);
-
-    return Py_BuildValue ("(iiii)",
-                          cogl_color_get_red_byte (&color),
-                          cogl_color_get_green_byte (&color),
-                          cogl_color_get_blue_byte (&color),
-                          cogl_color_get_alpha_byte (&color));
-}
-%%
-override cogl_material_set_specular
-static PyObject *
-_wrap_cogl_material_set_specular (PyObject *self,
-                                 PyObject *args,
-                                 PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", "color", NULL };
-    PyObject *py_material, *py_color;
-    CoglHandle *material = NULL;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OO:material_set_specular",
-                                     kwlist,
-                                     &py_material,
-                                     &py_color))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    if (!pycogl_color_from_pyobject (py_color, &color))
-    {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
-    }
-
-    cogl_material_set_specular (material, &color);
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_material_get_specular
-static PyObject *
-_wrap_cogl_material_get_specular (PyObject *self,
-                                 PyObject *args,
-                                 PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", NULL };
-    PyObject *py_material;
-    CoglHandle *material = NULL;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:material_get_specular",
-                                     kwlist,
-                                     &py_material))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    cogl_material_get_specular (material, &color);
-
-    return Py_BuildValue ("(iiii)",
-                          cogl_color_get_red_byte (&color),
-                          cogl_color_get_green_byte (&color),
-                          cogl_color_get_blue_byte (&color),
-                          cogl_color_get_alpha_byte (&color));
-}
-%%
-override cogl_material_set_emission
-static PyObject *
-_wrap_cogl_material_set_emission (PyObject *self,
-                                 PyObject *args,
-                                 PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", "color", NULL };
-    PyObject *py_material, *py_color;
-    CoglHandle *material = NULL;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OO:material_set_emission",
-                                     kwlist,
-                                     &py_material,
-                                     &py_color))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    if (!pycogl_color_from_pyobject (py_color, &color))
-    {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
-    }
-
-    cogl_material_set_emission (material, &color);
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_material_get_emission
-static PyObject *
-_wrap_cogl_material_get_emission (PyObject *self,
-                                 PyObject *args,
-                                 PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", NULL };
-    PyObject *py_material;
-    CoglHandle *material = NULL;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:material_get_emission",
-                                     kwlist,
-                                     &py_material))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    cogl_material_get_emission (material, &color);
-
-    return Py_BuildValue ("(iiii)",
-                          cogl_color_get_red_byte (&color),
-                          cogl_color_get_green_byte (&color),
-                          cogl_color_get_blue_byte (&color),
-                          cogl_color_get_alpha_byte (&color));
-}
-%%
-override cogl_material_set_ambient_and_diffuse
-static PyObject *
-_wrap_cogl_material_set_ambient_and_diffuse (PyObject *self,
-                                             PyObject *args,
-                                             PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", "color", NULL };
-    PyObject *py_material, *py_color;
-    CoglHandle *material = NULL;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OO:material_set_ambient_and_diffuse",
-                                     kwlist,
-                                     &py_material,
-                                     &py_color))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    if (!pycogl_color_from_pyobject (py_color, &color))
-    {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
-    }
-
-    cogl_material_set_ambient_and_diffuse (material, &color);
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_material_set_blend_constant
-static PyObject *
-_wrap_cogl_material_set_blend_constant (PyObject *self,
-                                        PyObject *args,
-                                        PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", "color", NULL };
-    PyObject *py_material, *py_color;
-    CoglHandle *material = NULL;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OO:material_set_blend_constant",
-                                     kwlist,
-                                     &py_material,
-                                     &py_color))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    if (!pycogl_color_from_pyobject (py_color, &color))
-    {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
-    }
-
-    cogl_material_set_blend_constant (material, &color);
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_material_set_layer_combine_constant
-static PyObject *
-_wrap_cogl_material_set_layer_combine_constant (PyObject *self,
-                                                PyObject *args,
-                                                PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", "layer_index", "color", NULL };
-    PyObject *py_material, *py_color;
-    int layer_index;
-    CoglHandle *material = NULL;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OiO:material_set_layer_combine_constant",
-                                     kwlist,
-                                     &py_material,
-                                     &layer_index,
-                                     &py_color))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    if (!pycogl_color_from_pyobject (py_color, &color))
-    {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
-    }
-
-    cogl_material_set_layer_combine_constant (material, layer_index, &color);
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_material_get_layers
-static PyObject *
-_wrap_cogl_material_get_layers (PyObject *self,
-                                PyObject *args,
-                                PyObject *kwargs)
-{
-    static char *kwlist[] = { "material", NULL };
-    PyObject *py_material;
-    CoglHandle *material = NULL;
-    const GList *layers, *l;
-    PyObject *py_list;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:material_get_layers",
-                                     kwlist,
-                                     &py_material))
-        return NULL;
-
-    if (pyg_boxed_check(py_material, COGL_TYPE_HANDLE))
-        material = pyg_boxed_get(py_material, CoglHandle);
-    else {
-        PyErr_Clear ();
-        PyErr_SetString(PyExc_TypeError, "material should be a CoglHandle");
-        return NULL;
-    }
-
-    layers = cogl_material_get_layers (material);
-
-    if ((py_list = PyList_New (0)) == NULL) {
-        return NULL;
-    }
-
-    for (l = layers; l != NULL; l = l->next) {
-        CoglHandle layer = l->data;
-        PyObject *py_layer;
-        py_layer = pyg_boxed_new(COGL_TYPE_HANDLE, layer, TRUE, TRUE);
-
-        if (!py_layer) {
-            Py_DECREF (py_list);
-            return NULL;
+      if (!py_layer)
+        {
+          Py_DECREF (py_list);
+          return NULL;
         }
 
-        PyList_Append (py_list, py_layer);
-        Py_DECREF (py_layer);
+      PyList_Append (py_list, py_layer);
     }
 
-    return py_list;
+  return py_list;
 }
+
+static PyObject *
+pycogl_material_get_n_layers (PyCoglMaterial *self)
+{
+  return Py_BuildValue ("i", cogl_material_get_n_layers (self->handle));
+}
+
+static PyObject *
+pycogl_material_set_layer_filters (PyCoglMaterial *self, PyObject *args)
+{
+  gint layer_index;
+  PyObject *py_min_filter, *py_mag_filter;
+  CoglMaterialFilter min_filter, mag_filter;
+
+  if (!PyArg_ParseTuple (args, "iOO:cogl.Material.set_layer_filters",
+                         &layer_index, &py_min_filter, &py_mag_filter))
+    return NULL;
+
+  if (pyg_enum_get_value (COGL_TYPE_MATERIAL_FILTER, py_min_filter,
+                          (gpointer)&min_filter))
+    return NULL;
+
+  if (pyg_enum_get_value (COGL_TYPE_MATERIAL_FILTER, py_mag_filter,
+                          (gpointer)&mag_filter))
+    return NULL;
+
+  cogl_material_set_layer_filters (self->handle, layer_index,
+                                   min_filter, mag_filter);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+
+static PyMethodDef pycogl_material_methods[] = {
+    { "set_color", (PyCFunction)pycogl_material_set_color, METH_VARARGS },
+    { "get_color", (PyCFunction)pycogl_material_get_color, METH_NOARGS },
+    { "set_color4ub", (PyCFunction)pycogl_material_set_color4ub, METH_VARARGS|METH_KEYWORDS },
+    { "set_color4f", (PyCFunction)pycogl_material_set_color4f, METH_VARARGS|METH_KEYWORDS },
+    { "set_ambient", (PyCFunction)pycogl_material_set_ambient, METH_VARARGS },
+    { "get_ambient", (PyCFunction)pycogl_material_get_ambient, METH_NOARGS },
+    { "set_diffuse", (PyCFunction)pycogl_material_set_diffuse, METH_VARARGS },
+    { "get_diffuse", (PyCFunction)pycogl_material_get_diffuse, METH_NOARGS },
+    { "set_ambient_and_diffuse", (PyCFunction)pycogl_material_set_ambient_and_diffuse, METH_VARARGS },
+    { "set_emission", (PyCFunction)pycogl_material_set_emission, METH_VARARGS },
+    { "get_emission", (PyCFunction)pycogl_material_get_emission, METH_NOARGS },
+    { "set_specular", (PyCFunction)pycogl_material_set_specular, METH_VARARGS },
+    { "get_specular", (PyCFunction)pycogl_material_get_specular, METH_NOARGS },
+    { "set_shininess", (PyCFunction)pycogl_material_set_shininess, METH_VARARGS },
+    { "get_shininess", (PyCFunction)pycogl_material_get_shininess, METH_NOARGS },
+    { "set_alpha_test_function", (PyCFunction)pycogl_material_set_alpha_test_function, METH_VARARGS },
+    { "set_blend", (PyCFunction)pycogl_material_set_blend, METH_VARARGS },
+    { "set_blend_constant", (PyCFunction)pycogl_material_set_blend_constant, METH_VARARGS },
+    { "set_layer", (PyCFunction)pycogl_material_set_layer, METH_VARARGS },
+    { "remove_layer", (PyCFunction)pycogl_material_remove_layer, METH_VARARGS },
+    { "set_layer_combine", (PyCFunction)pycogl_material_set_layer_combine, METH_VARARGS },
+    { "set_layer_matrix", (PyCFunction)pycogl_material_set_layer_matrix, METH_VARARGS },
+    { "get_layers", (PyCFunction)pycogl_material_get_layers, METH_NOARGS },
+    { "get_n_layers", (PyCFunction)pycogl_material_get_n_layers, METH_NOARGS },
+    { "set_layer_filters", (PyCFunction)pycogl_material_set_layer_filters, METH_VARARGS },
+    { NULL, NULL, 0, NULL },
+};
+
+PyTypeObject PyCoglMaterial_Type = {
+    PyObject_HEAD_INIT(NULL)
+    0,                                  /* ob_size */
+    "cogl.Material",                    /* tp_name */
+    sizeof(PyCoglMaterial),             /* tp_basicsize */
+    0,                                  /* tp_itemsize */
+    (destructor)pycogl_handle_dealloc,  /* tp_dealloc */
+    0,                                  /* tp_print */
+    0,                                  /* tp_getattr */
+    0,                                  /* tp_setattr */
+    0,                                  /* tp_compare */
+    0,                                  /* tp_repr */
+    0,                                  /* tp_as_number */
+    0,                                  /* tp_as_sequence */
+    0,                                  /* tp_as_mapping */
+    0,                                  /* tp_hash */
+    0,                                  /* tp_call */
+    0,                                  /* tp_str */
+    0,                                  /* tp_getattro */
+    0,                                  /* tp_setattro */
+    0,                                  /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT,                 /* tp_flags */
+    0,                                  /* tp_doc */
+    0,                                  /* tp_traverse */
+    0,                                  /* tp_clear */
+    0,                                  /* tp_richcompare */
+    0,                                  /* tp_weaklistoffset */
+    0,                                  /* tp_iter */
+    0,                                  /* tp_iternext */
+    pycogl_material_methods,            /* tp_methods */
+    0,                                  /* tp_members */
+    0,                                  /* tp_getset */
+    0, /* &PyCoglHandle_Type, */        /* tp_base */
+    0,                                  /* tp_dict */
+    0,                                  /* tp_descr_get */
+    0,                                  /* tp_descr_set */
+    0,                                  /* tp_dictoffset */
+    0,                                  /* tp_init */
+    0,                                  /* tp_alloc */
+    (newfunc)pycogl_material_new,       /* tp_new */
+    0,                                  /* tp_free */
+    0,                                  /* tp_is_gc */
+    0,                                  /* tp_bases */
+};
+
+

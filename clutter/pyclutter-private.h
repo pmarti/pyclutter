@@ -31,7 +31,7 @@ typedef struct {
     CoglMatrix matrix;
 } PyCoglMatrix;
 
-
 #define PyCoglTexture      PyCoglHandle
+#define PyCoglMaterial     PyCoglHandle
 
 #endif /* __PYCLUTTER_PRIVATE_H__ */

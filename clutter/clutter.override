@@ -893,13 +893,8 @@ _wrap_clutter_texture_get_cogl_material (PyGObject *self)
   CoglHandle hnd = COGL_INVALID_HANDLE;
 
   hnd = clutter_texture_get_cogl_material (CLUTTER_TEXTURE (self->obj));
-  if (hnd == COGL_INVALID_HANDLE)
-    {
-      Py_INCREF (Py_None);
-      return Py_None;
-    }
-  else
-    return pyg_boxed_new (COGL_TYPE_HANDLE, hnd, TRUE, TRUE);
+
+  return pycogl_handle_from_handle (hnd);
 }
 %%
 override clutter_texture_set_cogl_material kwargs
@@ -909,21 +904,16 @@ _wrap_clutter_texture_set_cogl_material (PyGObject *self,
                                          PyObject  *kwargs)
 {
   static char *kwlist[] = { "handle", NULL };
-  PyObject *py_handle = NULL;
-  CoglHandle handle = COGL_INVALID_HANDLE;
+  PyCoglMaterial *py_handle = NULL;
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:ClutterTexture.set_cogl_material", kwlist, &py_handle))
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                   "O!:ClutterTexture.set_cogl_material",
+                                   kwlist,
+                                   &PyCoglMatrix_Type, &py_handle))
     return NULL;
 
-  if (pyg_boxed_check (py_handle, COGL_TYPE_HANDLE))
-    handle = pyg_boxed_get(py_handle, CoglHandle);
-  else
-    {
-      PyErr_SetString (PyExc_TypeError, "handle should be a cogl.Handle");
-      return NULL;
-    }
-    
-  clutter_texture_set_cogl_material (CLUTTER_TEXTURE(self->obj), handle);
+  clutter_texture_set_cogl_material (CLUTTER_TEXTURE(self->obj),
+                                     py_handle->handle);
     
   Py_INCREF(Py_None);
   return Py_None;
