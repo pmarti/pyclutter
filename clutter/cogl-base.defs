@@ -142,8 +142,7 @@
   (return-type "int")
 )
 
-(define-method premultiply
-  (of-object "CoglColor")
+(define-function color_premultiply
   (c-name "cogl_color_premultiply")
   (return-type "none")
 )
@@ -157,8 +156,7 @@
   )
 )
 
-(define-method to_clutter_color
-  (of-object "CoglColor")
+(define-function color_to_clutter_color
   (c-name "cogl_color_to_clutter_color")
   (return-type "ClutterColor*")
 )

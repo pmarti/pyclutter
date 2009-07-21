@@ -176,6 +176,9 @@ ignore
   cogl_color_equal
   cogl_create_program
   cogl_read_pixels
+  cogl_color_new
+  cogl_color_copy
+  cogl_color_free
 %%
 ignore-glob
   cogl_fixed_*
@@ -183,6 +186,8 @@ ignore-glob
   cogl_vertex_*
   cogl_*_ref
   cogl_*_unref
+  cogl_color_set_*
+  cogl_color_get_*
 %%
 override cogl_get_viewport noargs
 static PyObject *
@@ -548,42 +553,45 @@ _wrap_cogl_get_projection_matrix (PyObject *self)
     return pyg_boxed_new (PYCOGL_TYPE_MATRIX, &matrix, TRUE, TRUE);
 }
 %%
-override cogl_color_new kwargs
-static int
-_wrap_cogl_color_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
+override cogl_color_to_clutter_color
+static PyObject *
+_wrap_cogl_color_to_clutter_color (PyObject *self, PyObject *args)
 {
-    static char *kwlist[] = { "red", "green", "blue", "alpha", NULL };
-    float red, green, blue, alpha;
-    CoglColor *color;
+  PyObject *py_color;
+  CoglColor color;
 
-    red = green = blue = 0.0;
-    alpha = 1.0;
+  if (!PyArg_ParseTuple (args, "O:cogl.color_to_clutter_color",
+                         &py_color))
+    return NULL;
 
-    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                      "|ffff:cogl.Color", kwlist,
-                                      &red, &green, &blue, &alpha))
-        return -1;
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
 
-    color = cogl_color_new ();
-    cogl_color_set_from_4f (color, red, green, blue, alpha);
+  ClutterColor *dest = clutter_color_new (
+                          (gint)(cogl_color_get_red (&color) * 255),
+                          (gint)(cogl_color_get_green (&color) * 255),
+                          (gint)(cogl_color_get_blue (&color) * 255),
+                          (gint)(cogl_color_get_alpha (&color) * 255));
 
-    self->boxed = g_boxed_copy (PYCOGL_TYPE_COLOR, color);
-    self->free_on_dealloc = TRUE;
-    self->gtype = PYCOGL_TYPE_COLOR;
-
-    return 0;
+  return pyg_boxed_new (CLUTTER_TYPE_COLOR, dest, TRUE, TRUE);
 }
 %%
-override cogl_color_to_clutter_color noargs
+override cogl_color_premultiply
 static PyObject *
-_wrap_cogl_color_to_clutter_color (PyObject *self)
+_wrap_cogl_color_premultiply (PyObject *self, PyObject *args)
 {
-    CoglColor *source = pyg_boxed_get (self, CoglColor);
-    ClutterColor *dest = clutter_color_new (
-                            (gint)(cogl_color_get_red (source) * 255),
-                            (gint)(cogl_color_get_green (source) * 255),
-                            (gint)(cogl_color_get_blue (source) * 255),
-                            (gint)(cogl_color_get_alpha (source) * 255));
+  PyObject *py_color;
+  CoglColor color;
 
-    return pyg_boxed_new (CLUTTER_TYPE_COLOR, dest, TRUE, TRUE);
+  if (!PyArg_ParseTuple (args, "O:cogl.color_premultiply",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    {
+      return NULL;
+    }
+
+  cogl_color_premultiply (&color);
+  return pyobject_from_cogl_color (&color);
 }
