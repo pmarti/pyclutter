@@ -8,6 +8,8 @@ headers
 #include <cogl/cogl.h>
 
 
+PyTypeObject PyCoglTexture_Type;
+
 CoglMatrix *
 pycogl_matrix_copy (const CoglMatrix *matrix)
 {
@@ -46,6 +48,116 @@ pycogl_color_get_type (void)
 
   return color_type;
 }
+
+%%
+body
+
+PyObject *
+pycogl_handle_from_handle (CoglHandle handle)
+{
+  PyTypeObject *type = NULL;
+  PyObject *o;
+
+  if (handle == COGL_INVALID_HANDLE) {
+      PyErr_SetString (PyExc_TypeError, "Invalid Handle");
+      return NULL;
+  }
+
+  if (cogl_is_texture (handle))
+    type = &PyCoglTexture_Type;
+  else {
+      PyErr_SetString (PyExc_TypeError, "Unknown handle type");
+      return NULL;
+  }
+
+  o = type->tp_alloc (type, 0);
+  if (o == NULL) {
+      /* blubb */
+      return NULL;
+  } else {
+      ((PyCoglHandle *)o)->handle = handle;
+      cogl_handle_ref (handle);
+  }
+  return o;
+}
+
+static PyObject *
+pycogl_handle_new (PyTypeObject *type, PyObject *args, PyObject *kwargs)
+{
+  PyErr_SetString (PyExc_TypeError,
+                   "cogl.Handle type cannot be instantiated");
+  return NULL;
+}
+
+void
+pycogl_handle_dealloc (PyCoglHandle *self)
+{
+  if (self->handle) 
+    {
+      cogl_handle_unref (self->handle);
+      self->handle = NULL;
+    }
+  self->ob_type->tp_free((PyObject *)self);
+}
+
+PyTypeObject PyCoglHandle_Type = {
+    PyObject_HEAD_INIT(NULL)
+    0,                                  /* ob_size */
+    "cogl.Handle",                      /* tp_name */
+    sizeof(PyCoglHandle),               /* tp_basicsize */
+    0,                                  /* tp_itemsize */
+    (destructor)pycogl_handle_dealloc,  /* tp_dealloc */
+    0,                                  /* tp_print */
+    0,                                  /* tp_getattr */
+    0,                                  /* tp_setattr */
+    0,                                  /* tp_compare */
+    0,                                  /* tp_repr */
+    0,                                  /* tp_as_number */
+    0,                                  /* tp_as_sequence */
+    0,                                  /* tp_as_mapping */
+    0,                                  /* tp_hash */
+    0,                                  /* tp_call */
+    0,                                  /* tp_str */
+    0,                                  /* tp_getattro */
+    0,                                  /* tp_setattro */
+    0,                                  /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,/* tp_flags */
+    0,                                  /* tp_doc */
+    0,                                  /* tp_traverse */
+    0,                                  /* tp_clear */
+    0,                                  /* tp_richcompare */
+    0,                                  /* tp_weaklistoffset */
+    0,                                  /* tp_iter */
+    0,                                  /* tp_iternext */
+    0,                                  /* tp_methods */
+    0,                                  /* tp_members */
+    0,                                  /* tp_getset */
+    0, /* &PyBaseObject_Type, */        /* tp_base */
+    0,                                  /* tp_dict */
+    0,                                  /* tp_descr_get */
+    0,                                  /* tp_descr_set */
+    0,                                  /* tp_dictoffset */
+    0,                                  /* tp_init */
+    0,                                  /* tp_alloc */
+    (newfunc)pycogl_handle_new,         /* tp_new */
+    0,                                  /* tp_free */
+    0,                                  /* tp_is_gc */
+    0,                                  /* tp_bases */
+};
+
+
+static PyObject *
+pyobject_from_cogl_color (CoglColor *color)
+{
+  PyObject *pyret;
+  pyret = Py_BuildValue ("(ffff)",
+                         cogl_color_get_red_float (color),
+                         cogl_color_get_green_float (color),
+                         cogl_color_get_blue_float (color),
+                         cogl_color_get_alpha_float (color));
+  return pyret;
+}
+
 
 %%
 include

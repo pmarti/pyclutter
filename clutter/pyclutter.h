@@ -35,6 +35,7 @@ gboolean  pyclutter_actor_box_from_pyobject (PyObject        *object,
                                              ClutterActorBox *box);
 gboolean  pycogl_color_from_pyobject        (PyObject        *object,
                                              CoglColor       *color);
+PyObject * pycogl_handle_from_handle        (CoglHandle       handle); 
 
 
 G_END_DECLS

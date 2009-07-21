@@ -7,12 +7,6 @@
   (gtype-id "COGL_PANGO_TYPE_FONT_MAP")
 )
 
-(define-boxed Handle
-  (in-module "Cogl")
-  (c-name "CoglHandle")
-  (gtype-id "COGL_TYPE_HANDLE")
-)
-
 (define-boxed Matrix
   (in-module "Cogl")
   (c-name "CoglMatrix")

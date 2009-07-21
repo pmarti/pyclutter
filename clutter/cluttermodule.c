@@ -18,6 +18,8 @@ void pycogl_add_constants (PyObject *module, const gchar *prefix);
 
 extern PyMethodDef pyclutter_functions[];
 extern PyMethodDef pycogl_functions[];
+extern PyTypeObject PyCoglHandle_Type;
+extern PyTypeObject PyCoglTexture_Type;
 
 static PyObject *PyClutterDeprecationWarning;
 PyObject *PyClutterWarning;
@@ -153,6 +155,22 @@ init_clutter (void)
   /* namespace cogl under clutter.cogl */
   m = Py_InitModule ("clutter.cogl", pycogl_functions);
   d = PyModule_GetDict (m);
+
+  /* cogl.Handle */
+  PyCoglHandle_Type.tp_base = &PyBaseObject_Type;
+  if (PyType_Ready (&PyCoglHandle_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglHandle_Type);
+  PyModule_AddObject (m, "Handle", (PyObject *)&PyCoglHandle_Type);
+
+  /* cogl.Texture */
+  PyCoglTexture_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglTexture_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglTexture_Type);
+  PyModule_AddObject (m, "Texture", (PyObject *)&PyCoglTexture_Type);
+  
+
 
   pycogl_register_classes (d);
   pycogl_add_constants (m, "COGL_");
