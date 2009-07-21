@@ -3944,7 +3944,20 @@
   (return-type "none")
 )
 
+(define-method set_throttle_motion_events
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_throttle_motion_events")
+  (return-type "none")
+  (parameters
+    '("gboolean" "throttle")
+  )
+)
 
+(define-method get_throttle_motion_events
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_throttle_motion_events")
+  (return-type "gboolean")
+)
 
 
 ;; From clutter-stage-manager.h
