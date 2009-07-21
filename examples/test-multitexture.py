@@ -11,10 +11,10 @@ class MultiTexture(clutter.Actor):
         self.redhand_tex = self._load_texture('redhand.png')
         self.light_tex = self._load_texture('light0.png')
 
-        self.material = cogl.material_new()
-        cogl.material_set_layer(self.material, 0, self.alpha_tex)
-        cogl.material_set_layer(self.material, 1, self.redhand_tex)
-        cogl.material_set_layer(self.material, 2, self.light_tex)
+        self.material = cogl.Material()
+        self.material.set_layer(0, self.alpha_tex)
+        self.material.set_layer(1, self.redhand_tex)
+        self.material.set_layer(2, self.light_tex)
 
         self.tex_matrix = cogl.Matrix()
         self.rot_matrix = cogl.Matrix()
@@ -23,8 +23,8 @@ class MultiTexture(clutter.Actor):
         self.rot_matrix.rotate(10.0, 0, 0, 1.0)
         self.rot_matrix.translate(-0.5, -0.5, 0)
 
-        width = cogl.texture_get_width(self.redhand_tex)
-        height = cogl.texture_get_height(self.redhand_tex)
+        width = self.redhand_tex.get_width()
+        height = self.redhand_tex.get_height()
         self.set_size(width, height)
         self.connect('notify::rotation-angle-y', self.on_rotation_notify)
 
@@ -44,7 +44,7 @@ class MultiTexture(clutter.Actor):
     def on_rotation_notify(self, actor, pspec):
         angle = self.get_property('rotation-angle-y')
         self.tex_matrix.multiply(self.tex_matrix, self.rot_matrix)
-        cogl.material_set_layer_matrix(self.material, 2, self.tex_matrix)
+        self.material.set_layer_matrix(2, self.tex_matrix)
 
 
 

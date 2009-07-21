@@ -60,10 +60,8 @@ class TextureReflection (clutter.Clone):
         # the upper left and the upper right at full opacity and
         # the lower right and lower left and 0 opacity; OpenGL will
         # do the gradient for us
-        color1 = cogl.Color(1, 1, 1, opacity/255.)
-        color1.premultiply()
-        color2 = cogl.Color(1, 1, 1, 0)
-        color2.premultiply()
+        color1 = cogl.color_premultiply((1, 1, 1, opacity/255.))
+        color2 = cogl.color_premultiply((1, 1, 1, 0))
         vertices = ( \
             (    0,        0, 0, 0.0, 1.0,   color1), \
             (width,        0, 0, 1.0, 1.0,   color1), \
