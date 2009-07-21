@@ -22,6 +22,8 @@ extern PyTypeObject PyCoglHandle_Type;
 extern PyTypeObject PyCoglTexture_Type;
 extern PyTypeObject PyCoglMaterial_Type;
 extern PyTypeObject PyCoglMatrix_Type;
+extern PyTypeObject PyCoglShader_Type;
+extern PyTypeObject PyCoglProgram_Type;
 
 static PyObject *PyClutterDeprecationWarning;
 PyObject *PyClutterWarning;
@@ -178,6 +180,20 @@ init_clutter (void)
     return;
   Py_INCREF (&PyCoglMaterial_Type);
   PyModule_AddObject (m, "Material", (PyObject *)&PyCoglMaterial_Type);
+  
+  /* cogl.Shader */
+  PyCoglShader_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglShader_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglShader_Type);
+  PyModule_AddObject (m, "Shader", (PyObject *)&PyCoglShader_Type);
+  
+  /* cogl.Program */
+  PyCoglProgram_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglProgram_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglProgram_Type);
+  PyModule_AddObject (m, "Program", (PyObject *)&PyCoglProgram_Type);
   
   /* cogl.Matrix */
   PyCoglMatrix_Type.tp_base = &PyBaseObject_Type;

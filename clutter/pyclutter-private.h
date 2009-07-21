@@ -33,5 +33,7 @@ typedef struct {
 
 #define PyCoglTexture      PyCoglHandle
 #define PyCoglMaterial     PyCoglHandle
+#define PyCoglShader       PyCoglHandle
+#define PyCoglProgram      PyCoglHandle
 
 #endif /* __PYCLUTTER_PRIVATE_H__ */

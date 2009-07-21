@@ -1,0 +1,230 @@
+%%
+ignore
+  cogl_is_shader
+  cogl_create_shader
+  cogl_shader_source
+  cogl_shader_compile
+  cogl_shader_get_info_log
+  cogl_shader_get_type
+  cogl_shader_is_compiled
+  cogl_is_program
+%%
+body
+
+/* COGL Shader */
+
+static PyObject *
+pycogl_shader_new (PyTypeObject *type, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "shader_type", NULL };
+  PyObject *py_type;
+  CoglShaderType shader_type;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs, "O", kwlist, &py_type))
+    return NULL;
+
+  if (pyg_enum_get_value (COGL_TYPE_SHADER_TYPE, py_type,
+                          (gpointer)&shader_type))
+    return NULL;
+
+  return pycogl_handle_from_handle (cogl_create_shader (shader_type));
+}
+
+static PyObject *
+pycogl_shader_source (PyCoglShader *self, PyObject *args)
+{
+  const gchar *source;
+
+  if (!PyArg_ParseTuple (args, "s:cogl.Shader.source",
+                         &source))
+    return NULL;
+
+  cogl_shader_source (self->handle, source);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_shader_compile (PyCoglShader *self)
+{
+  cogl_shader_compile (self->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_shader_get_info_log (PyCoglShader *self)
+{
+  return Py_BuildValue ("s", cogl_shader_get_info_log (self->handle));
+}
+
+static PyObject *
+pycogl_shader_is_compiled (PyCoglShader *self)
+{
+  return PyBool_FromLong (cogl_shader_is_compiled (self->handle));
+}
+
+
+static PyMethodDef pycogl_shader_methods[] = {
+    { "source", (PyCFunction)pycogl_shader_source, METH_VARARGS },
+    { "compile", (PyCFunction)pycogl_shader_compile, METH_NOARGS },
+    { "get_info_log", (PyCFunction)pycogl_shader_get_info_log, METH_NOARGS },
+    { "is_compiled", (PyCFunction)pycogl_shader_is_compiled, METH_NOARGS },
+    { NULL, NULL, 0, NULL },
+};
+
+PyTypeObject PyCoglShader_Type = {
+    PyObject_HEAD_INIT(NULL)
+    0,                                  /* ob_size */
+    "cogl.Shader",                      /* tp_name */
+    sizeof(PyCoglShader),               /* tp_basicsize */
+    0,                                  /* tp_itemsize */
+    (destructor)pycogl_handle_dealloc,  /* tp_dealloc */
+    0,                                  /* tp_print */
+    0,                                  /* tp_getattr */
+    0,                                  /* tp_setattr */
+    0,                                  /* tp_compare */
+    0,                                  /* tp_repr */
+    0,                                  /* tp_as_number */
+    0,                                  /* tp_as_sequence */
+    0,                                  /* tp_as_mapping */
+    0,                                  /* tp_hash */
+    0,                                  /* tp_call */
+    0,                                  /* tp_str */
+    0,                                  /* tp_getattro */
+    0,                                  /* tp_setattro */
+    0,                                  /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT,                 /* tp_flags */
+    0,                                  /* tp_doc */
+    0,                                  /* tp_traverse */
+    0,                                  /* tp_clear */
+    0,                                  /* tp_richcompare */
+    0,                                  /* tp_weaklistoffset */
+    0,                                  /* tp_iter */
+    0,                                  /* tp_iternext */
+    pycogl_shader_methods,              /* tp_methods */
+    0,                                  /* tp_members */
+    0,                                  /* tp_getset */
+    0, /* &PyCoglHandle_Type, */        /* tp_base */
+    0,                                  /* tp_dict */
+    0,                                  /* tp_descr_get */
+    0,                                  /* tp_descr_set */
+    0,                                  /* tp_dictoffset */
+    0,                                  /* tp_init */
+    0,                                  /* tp_alloc */
+    (newfunc)pycogl_shader_new,         /* tp_new */
+    0,                                  /* tp_free */
+    0,                                  /* tp_is_gc */
+    0,                                  /* tp_bases */
+};
+
+
+static PyObject *
+pycogl_program_new (PyTypeObject *type, PyObject *args, PyObject *kwargs)
+{
+  return pycogl_handle_from_handle (cogl_create_program ());
+}
+
+static PyObject *
+pycogl_program_attach_shader (PyCoglProgram *self, PyObject *args)
+{
+  PyCoglShader *py_shader;
+  
+  if (!PyArg_ParseTuple (args, "O!:cogl.Program.attach_shader",
+                         &PyCoglShader_Type, &py_shader))
+    return NULL;
+
+  cogl_program_attach_shader (self->handle, py_shader->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_program_link (PyCoglProgram *self)
+{
+  cogl_program_link (self->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_program_use (PyCoglProgram *self)
+{
+  cogl_program_use (self->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_program_get_uniform_location (PyCoglProgram *self, PyObject *args)
+{
+  const char *uniform_name;
+  int ret;
+
+  if (!PyArg_ParseTuple (args, "s:cogl.Program.get_uniform_location",
+                         &uniform_name))
+    return NULL;
+
+  ret = cogl_program_get_uniform_location (self->handle, uniform_name);
+
+  return Py_BuildValue ("i", ret);
+}
+
+
+static PyMethodDef pycogl_program_methods[] = {
+    { "attach_shader", (PyCFunction)pycogl_program_attach_shader, METH_VARARGS },
+    { "link", (PyCFunction)pycogl_program_link, METH_NOARGS },
+    { "use", (PyCFunction)pycogl_program_use, METH_NOARGS },
+    { "get_uniform_location", (PyCFunction)pycogl_program_get_uniform_location, METH_VARARGS },
+    { NULL, NULL, 0, NULL },
+};
+
+PyTypeObject PyCoglProgram_Type = {
+    PyObject_HEAD_INIT(NULL)
+    0,                                  /* ob_size */
+    "cogl.Program",                     /* tp_name */
+    sizeof(PyCoglProgram),              /* tp_basicsize */
+    0,                                  /* tp_itemsize */
+    (destructor)pycogl_handle_dealloc,  /* tp_dealloc */
+    0,                                  /* tp_print */
+    0,                                  /* tp_getattr */
+    0,                                  /* tp_setattr */
+    0,                                  /* tp_compare */
+    0,                                  /* tp_repr */
+    0,                                  /* tp_as_number */
+    0,                                  /* tp_as_sequence */
+    0,                                  /* tp_as_mapping */
+    0,                                  /* tp_hash */
+    0,                                  /* tp_call */
+    0,                                  /* tp_str */
+    0,                                  /* tp_getattro */
+    0,                                  /* tp_setattro */
+    0,                                  /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT,                 /* tp_flags */
+    0,                                  /* tp_doc */
+    0,                                  /* tp_traverse */
+    0,                                  /* tp_clear */
+    0,                                  /* tp_richcompare */
+    0,                                  /* tp_weaklistoffset */
+    0,                                  /* tp_iter */
+    0,                                  /* tp_iternext */
+    pycogl_program_methods,             /* tp_methods */
+    0,                                  /* tp_members */
+    0,                                  /* tp_getset */
+    0, /* &PyCoglHandle_Type, */        /* tp_base */
+    0,                                  /* tp_dict */
+    0,                                  /* tp_descr_get */
+    0,                                  /* tp_descr_set */
+    0,                                  /* tp_dictoffset */
+    0,                                  /* tp_init */
+    0,                                  /* tp_alloc */
+    (newfunc)pycogl_program_new,        /* tp_new */
+    0,                                  /* tp_free */
+    0,                                  /* tp_is_gc */
+    0,                                  /* tp_bases */
+};

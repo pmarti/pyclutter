@@ -15,6 +15,8 @@ extern Pycairo_CAPI_t *Pycairo_CAPI;
 extern PyTypeObject PyCoglHandle_Type;
 extern PyTypeObject PyCoglTexture_Type;
 extern PyTypeObject PyCoglMatrix_Type;
+extern PyTypeObject PyCoglShader_Type;
+extern PyTypeObject PyCoglProgram_type;
 
 /* exceptions */
 extern PyObject *PyClutterException;
@@ -1202,4 +1204,37 @@ _wrap_ClutterContainer__do_foreach_with_internals(PyObject *cls, PyObject *args,
                         "foreach_with_internals not implemented");
         return NULL;
     }
+}
+%%
+override clutter_shader_get_cogl_program noargs
+static PyObject *
+_wrap_clutter_shader_get_cogl_program (PyGObject *self)
+{
+  CoglHandle program = COGL_INVALID_HANDLE;
+
+  program = clutter_shader_get_cogl_program (CLUTTER_SHADER (self->obj));
+
+  return pycogl_handle_from_handle (program);
+}
+%%
+override clutter_shader_get_cogl_fragment_shader noargs
+static PyObject *
+_wrap_clutter_shader_get_cogl_fragment_shader (PyGObject *self)
+{
+  CoglHandle handle = COGL_INVALID_HANDLE;
+
+  handle = clutter_shader_get_cogl_fragment_shader (CLUTTER_SHADER (self->obj));
+
+  return pycogl_handle_from_handle (handle);
+}
+%%
+override clutter_shader_get_cogl_vertex_shader noargs
+static PyObject *
+_wrap_clutter_shader_get_cogl_vertex_shader (PyGObject *self)
+{
+  CoglHandle handle = COGL_INVALID_HANDLE;
+
+  handle = clutter_shader_get_cogl_vertex_shader (CLUTTER_SHADER (self->obj));
+
+  return pycogl_handle_from_handle (handle);
 }

@@ -11,6 +11,8 @@ headers
 PyTypeObject PyCoglTexture_Type;
 PyTypeObject PyCoglMatrix_Type;
 PyTypeObject PyCoglMaterial_Type;
+PyTypeObject PyCoglShader_Type;
+PyTypeObject PyCoglProgram_Type;
 
 
 %%
@@ -31,6 +33,10 @@ pycogl_handle_from_handle (CoglHandle handle)
     type = &PyCoglTexture_Type;
   else if (cogl_is_material (handle))
     type = &PyCoglMaterial_Type;
+  else if (cogl_is_shader (handle))
+    type = &PyCoglShader_Type;
+  else if (cogl_is_program (handle))
+    type = &PyCoglProgram_Type;
   else {
       PyErr_SetString (PyExc_TypeError, "Unknown handle type");
       return NULL;
@@ -129,6 +135,7 @@ pyobject_from_cogl_color (CoglColor *color)
 include
   cogl-texture.override
   cogl-material.override
+  cogl-shader.override
   cogl-matrix.override
 %%
 modulename clutter.cogl

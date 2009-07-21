@@ -27,6 +27,7 @@ COGL_OVERRIDES =			\
 	cogl.override			\
 	cogl-texture.override   \
 	cogl-material.override  \
+	cogl-shader.override    \
 	cogl-matrix.override
 
 CLUTTER_OVERRIDES = 			\
