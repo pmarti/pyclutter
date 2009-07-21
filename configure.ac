@@ -8,7 +8,7 @@ m4_define(pyclutter_version_minor, 9)
 m4_define(pyclutter_version_micro, 1)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
-m4_define(clutter_required_version,      0.9.6)
+m4_define(clutter_required_version,      0.9.9)
 m4_define(cluttergtk_required_version,   0.9.2)
 m4_define(cluttergst_required_version,   0.9.0)
 m4_define(pycairo_required_version,      1.0.2) dnl or 1.1.7
