@@ -18,6 +18,13 @@ void pycogl_add_constants (PyObject *module, const gchar *prefix);
 
 extern PyMethodDef pyclutter_functions[];
 extern PyMethodDef pycogl_functions[];
+extern PyTypeObject PyCoglHandle_Type;
+extern PyTypeObject PyCoglTexture_Type;
+extern PyTypeObject PyCoglMaterial_Type;
+extern PyTypeObject PyCoglMatrix_Type;
+extern PyTypeObject PyCoglShader_Type;
+extern PyTypeObject PyCoglProgram_Type;
+extern PyTypeObject PyCoglOffscreen_Type;
 
 static PyObject *PyClutterDeprecationWarning;
 PyObject *PyClutterWarning;
@@ -153,6 +160,56 @@ init_clutter (void)
   /* namespace cogl under clutter.cogl */
   m = Py_InitModule ("clutter.cogl", pycogl_functions);
   d = PyModule_GetDict (m);
+
+  /* cogl.Handle */
+  PyCoglHandle_Type.tp_base = &PyBaseObject_Type;
+  if (PyType_Ready (&PyCoglHandle_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglHandle_Type);
+  PyModule_AddObject (m, "Handle", (PyObject *)&PyCoglHandle_Type);
+
+  /* cogl.Texture */
+  PyCoglTexture_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglTexture_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglTexture_Type);
+  PyModule_AddObject (m, "Texture", (PyObject *)&PyCoglTexture_Type);
+  
+  /* cogl.Material */
+  PyCoglMaterial_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglMaterial_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglMaterial_Type);
+  PyModule_AddObject (m, "Material", (PyObject *)&PyCoglMaterial_Type);
+  
+  /* cogl.Shader */
+  PyCoglShader_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglShader_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglShader_Type);
+  PyModule_AddObject (m, "Shader", (PyObject *)&PyCoglShader_Type);
+  
+  /* cogl.Program */
+  PyCoglProgram_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglProgram_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglProgram_Type);
+  PyModule_AddObject (m, "Program", (PyObject *)&PyCoglProgram_Type);
+  
+  /* cogl.Offscreen */
+  PyCoglOffscreen_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglOffscreen_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglOffscreen_Type);
+  PyModule_AddObject (m, "Offscreen", (PyObject *)&PyCoglOffscreen_Type);
+  
+  /* cogl.Matrix */
+  PyCoglMatrix_Type.tp_base = &PyBaseObject_Type;
+  if (PyType_Ready (&PyCoglMatrix_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglMatrix_Type);
+  PyModule_AddObject (m, "Matrix", (PyObject *)&PyCoglMatrix_Type);
+
 
   pycogl_register_classes (d);
   pycogl_add_constants (m, "COGL_");

@@ -678,3 +678,21 @@ _wrap_clutter_actor_apply_relative_transform_to_point (PyGObject *self,
 
     return pyg_boxed_new (CLUTTER_TYPE_VERTEX, &retval, TRUE, TRUE);
 }
+%%
+override clutter_actor_get_transformation_matrix noargs
+static PyObject *
+_wrap_clutter_actor_get_transformation_matrix (PyGObject *self)
+{
+  CoglMatrix matrix;
+  PyObject *py_matrix;
+  PyTypeObject *type;
+
+  cogl_matrix_init_identity (&matrix);
+  clutter_actor_get_transformation_matrix (CLUTTER_ACTOR (self->obj), &matrix);
+
+  type = &PyCoglMatrix_Type;
+  py_matrix = type->tp_alloc (type, 0);
+  ((PyCoglMatrix *)py_matrix)->matrix = matrix;
+
+  return py_matrix;
+}

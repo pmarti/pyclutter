@@ -8,49 +8,139 @@ headers
 #include <cogl/cogl.h>
 
 
-CoglMatrix *
-pycogl_matrix_copy (const CoglMatrix *matrix)
+PyTypeObject PyCoglTexture_Type;
+PyTypeObject PyCoglMatrix_Type;
+PyTypeObject PyCoglMaterial_Type;
+PyTypeObject PyCoglShader_Type;
+PyTypeObject PyCoglProgram_Type;
+PyTypeObject PyCoglOffscreen_Type;
+
+
+%%
+body
+
+PyObject *
+pycogl_handle_from_handle (CoglHandle handle)
 {
-    return g_slice_dup (CoglMatrix, matrix);
+  PyTypeObject *type = NULL;
+  PyObject *o;
+
+  if (handle == COGL_INVALID_HANDLE) {
+      PyErr_SetString (PyExc_TypeError, "Invalid Handle");
+      return NULL;
+  }
+
+  if (cogl_is_texture (handle))
+    type = &PyCoglTexture_Type;
+  else if (cogl_is_material (handle))
+    type = &PyCoglMaterial_Type;
+  else if (cogl_is_shader (handle))
+    type = &PyCoglShader_Type;
+  else if (cogl_is_program (handle))
+    type = &PyCoglProgram_Type;
+  else if (cogl_is_offscreen (handle))
+    type = &PyCoglOffscreen_Type;
+  else {
+      PyErr_SetString (PyExc_TypeError, "Unknown handle type");
+      return NULL;
+  }
+
+  o = type->tp_alloc (type, 0);
+  if (o == NULL) {
+      /* blubb */
+      return NULL;
+  } else {
+      ((PyCoglHandle *)o)->handle = handle;
+      cogl_handle_ref (handle);
+  }
+  return o;
+}
+
+static PyObject *
+pycogl_handle_new (PyTypeObject *type, PyObject *args, PyObject *kwargs)
+{
+  PyErr_SetString (PyExc_TypeError,
+                   "cogl.Handle type cannot be instantiated");
+  return NULL;
 }
 
 void
-pycogl_matrix_free (CoglMatrix *matrix)
+pycogl_handle_dealloc (PyCoglHandle *self)
 {
-    if (G_LIKELY (matrix))
-        g_slice_free (CoglMatrix, matrix);
+  if (self->handle) 
+    {
+      cogl_handle_unref (self->handle);
+      self->handle = NULL;
+    }
+  self->ob_type->tp_free((PyObject *)self);
 }
 
-GType
-pycogl_matrix_get_type (void)
+PyTypeObject PyCoglHandle_Type = {
+    PyObject_HEAD_INIT(NULL)
+    0,                                  /* ob_size */
+    "cogl.Handle",                      /* tp_name */
+    sizeof(PyCoglHandle),               /* tp_basicsize */
+    0,                                  /* tp_itemsize */
+    (destructor)pycogl_handle_dealloc,  /* tp_dealloc */
+    0,                                  /* tp_print */
+    0,                                  /* tp_getattr */
+    0,                                  /* tp_setattr */
+    0,                                  /* tp_compare */
+    0,                                  /* tp_repr */
+    0,                                  /* tp_as_number */
+    0,                                  /* tp_as_sequence */
+    0,                                  /* tp_as_mapping */
+    0,                                  /* tp_hash */
+    0,                                  /* tp_call */
+    0,                                  /* tp_str */
+    0,                                  /* tp_getattro */
+    0,                                  /* tp_setattro */
+    0,                                  /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT|Py_TPFLAGS_BASETYPE,/* tp_flags */
+    0,                                  /* tp_doc */
+    0,                                  /* tp_traverse */
+    0,                                  /* tp_clear */
+    0,                                  /* tp_richcompare */
+    0,                                  /* tp_weaklistoffset */
+    0,                                  /* tp_iter */
+    0,                                  /* tp_iternext */
+    0,                                  /* tp_methods */
+    0,                                  /* tp_members */
+    0,                                  /* tp_getset */
+    0, /* &PyBaseObject_Type, */        /* tp_base */
+    0,                                  /* tp_dict */
+    0,                                  /* tp_descr_get */
+    0,                                  /* tp_descr_set */
+    0,                                  /* tp_dictoffset */
+    0,                                  /* tp_init */
+    0,                                  /* tp_alloc */
+    (newfunc)pycogl_handle_new,         /* tp_new */
+    0,                                  /* tp_free */
+    0,                                  /* tp_is_gc */
+    0,                                  /* tp_bases */
+};
+
+
+static PyObject *
+pyobject_from_cogl_color (CoglColor *color)
 {
-  static GType matrix_type = 0;
-
-  if (G_UNLIKELY (matrix_type == 0))
-    matrix_type = g_boxed_type_register_static (g_intern_static_string ("CoglMatrix"),
-                                                (GBoxedCopyFunc) pycogl_matrix_copy,
-                                                (GBoxedFreeFunc) pycogl_matrix_free);
-
-  return matrix_type;
+  PyObject *pyret;
+  pyret = Py_BuildValue ("(ffff)",
+                         cogl_color_get_red_float (color),
+                         cogl_color_get_green_float (color),
+                         cogl_color_get_blue_float (color),
+                         cogl_color_get_alpha_float (color));
+  return pyret;
 }
 
-GType
-pycogl_color_get_type (void)
-{
-  static GType color_type = 0;
-
-  if (G_UNLIKELY (color_type == 0))
-    color_type = g_boxed_type_register_static (g_intern_static_string ("CoglColor"),
-                                              (GBoxedCopyFunc) cogl_color_copy,
-                                              (GBoxedFreeFunc) cogl_color_free);
-
-  return color_type;
-}
 
 %%
 include
   cogl-texture.override
   cogl-material.override
+  cogl-shader.override
+  cogl-matrix.override
+  cogl-offscreen.override
 %%
 modulename clutter.cogl
 %%
@@ -64,6 +154,10 @@ ignore
   cogl_color_equal
   cogl_create_program
   cogl_read_pixels
+  cogl_color_new
+  cogl_color_copy
+  cogl_color_free
+  cogl_bitmap_new_from_file
 %%
 ignore-glob
   cogl_fixed_*
@@ -71,6 +165,8 @@ ignore-glob
   cogl_vertex_*
   cogl_*_ref
   cogl_*_unref
+  cogl_color_set_*
+  cogl_color_get_*
 %%
 override cogl_get_viewport noargs
 static PyObject *
@@ -98,7 +194,7 @@ _wrap_cogl_get_bitmasks (PyObject *self)
   return Py_BuildValue ("(iiii)", red, green, blue, alpha);
 }
 %%
-override cogl_bitmap_get_size_from_file
+override cogl_bitmap_get_size_from_file kwargs
 static PyObject *
 _wrap_cogl_bitmap_get_size_from_file (PyObject *self,
                                       PyObject *args,
@@ -116,123 +212,6 @@ _wrap_cogl_bitmap_get_size_from_file (PyObject *self,
     cogl_bitmap_get_size_from_file (filename, &width, &height);
 
     return Py_BuildValue ("(ii)", width, height);
-}
-%%
-override cogl_set_source_color
-PyObject *
-_wrap_cogl_set_source_color (PyObject *self,
-                             PyObject *args,
-                             PyObject *kwargs)
-{
-    static char *kwlist[] = { "color", NULL };
-    PyObject *py_color;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:set_source_color", kwlist,
-                                     &py_color))
-        return NULL;
-
-    if (!pycogl_color_from_pyobject (py_color, &color))
-    {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
-    }
-
-    cogl_set_source_color (&color);
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_material_new
-static PyObject *
-_wrap_cogl_material_new(PyObject *self)
-{
-    CoglHandle ret = COGL_INVALID_HANDLE;
-    
-    ret = cogl_material_new();
-    
-    /* pyg_boxed_new handles NULL checking */
-    return pyg_boxed_new(COGL_TYPE_HANDLE, ret, TRUE, TRUE);
-}
-%%
-override cogl_matrix_new noargs
-static int
-_wrap_cogl_matrix_new (PyGBoxed *self)
-{
-    CoglMatrix matrix;
-    self->boxed = g_boxed_copy (PYCOGL_TYPE_MATRIX, &matrix);
-    self->free_on_dealloc = TRUE;
-    self->gtype = PYCOGL_TYPE_MATRIX;
-
-    cogl_matrix_init_identity (self->boxed);
-
-    return 0;
-}
-%%
-override cogl_matrix_init_from_array
-static PyObject *
-_wrap_cogl_matrix_init_from_array (PyGBoxed *self, PyObject *args)
-{
-    PyObject *py_array;
-    float array[16];
-    int i;
-
-    if (!PyArg_ParseTuple (args, "O:cogl.matrix_init_from_array", &py_array))
-        return NULL;
-
-    if (!PyTuple_Check (py_array) || PyTuple_Size (py_array) != 16)
-    {
-        PyErr_SetString (PyExc_TypeError,
-                         "matrix_init_from_array needs a tuple of 16 floats");
-        return NULL;
-    }
-
-    for (i = 0; i < 16; i++)
-        array[i] = PyFloat_AsDouble (PyTuple_GetItem (py_array, i));
-
-    cogl_matrix_init_from_array (self->boxed, array);
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_matrix_get_array noargs
-static PyObject *
-_wrap_cogl_matrix_get_array (PyGBoxed *self)
-{
-    const float *array;
-    PyObject *py_array;
-    int i;
-
-    array = cogl_matrix_get_array (self->boxed);
-    py_array = PyTuple_New (16);
-
-    for (i = 0; i < 16; i++)
-    {
-        PyTuple_SetItem (py_array, i, PyFloat_FromDouble (array[i]));
-    }
-
-    return py_array;
-}
-%%
-override cogl_matrix_transform_point
-static PyObject *
-_wrap_cogl_matrix_transform_point (PyGBoxed *self,
-                                   PyObject *args,
-                                   PyObject *kwargs)
-{
-    static char *kwlist[] = { "x", "y", "z", "w", NULL };
-    float x, y, z, w;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ffff:Matrix.transform_point",
-                                     kwlist, &x, &y, &z, &w))
-        return NULL;
-
-    cogl_matrix_transform_point (self->boxed, &x, &y, &z, &w);
-
-    return Py_BuildValue ("(ffff)", x, y, z, w);
 }
 %%
 new-constructor COGL_PANGO_TYPE_FONT_MAP
@@ -266,7 +245,8 @@ _wrap_cogl_pango_render_layout(PyObject *self,
     CoglColor *color = NULL;
     PyObject *py_color;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!iiOi:pango_render_layout",
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!iiOi:pango_render_layout",
                                      kwlist,
                                      &PyPangoLayout_Type,
                                      &layout,
@@ -288,7 +268,7 @@ _wrap_cogl_pango_render_layout(PyObject *self,
     return Py_None;
 }
 %%
-override cogl_pango_render_layout_subpixel
+override cogl_pango_render_layout_subpixel kwargs
 static PyObject *
 _wrap_cogl_pango_render_layout_subpixel(PyObject *self,
                                         PyObject *args,
@@ -300,7 +280,8 @@ _wrap_cogl_pango_render_layout_subpixel(PyObject *self,
     CoglColor *color = NULL;
     PyObject *py_color;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!iiOi:pango_render_layout_subpixel",
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!iiOi:pango_render_layout_subpixel",
                                      kwlist,
                                      &PyPangoLayout_Type,
                                      &layout,
@@ -334,7 +315,8 @@ _wrap_cogl_pango_render_layout_line(PyObject *self,
     int x, y;
     CoglColor *color = NULL;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OiiO:pango_render_layout_line",
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "OiiO:pango_render_layout_line",
                                      kwlist, &py_line, &x, &y, &py_color))
         return NULL;
     if (pyg_boxed_check(py_line, PANGO_TYPE_LAYOUT_LINE))
@@ -368,7 +350,11 @@ _wrap_cogl_set_fog(PyObject *self, PyObject *args, PyObject *kwargs)
     double density, z_near, z_far;
     CoglFogMode mode;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OOddd:set_fog", kwlist, &py_fog_color, &py_mode, &density, &z_near, &z_far))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "OOddd:set_fog",
+                                     kwlist,
+                                     &py_fog_color, &py_mode,
+                                     &density, &z_near, &z_far))
         return NULL;
 
     if (!pycogl_color_from_pyobject (py_fog_color, fog_color))
@@ -422,7 +408,23 @@ _wrap_cogl_get_modelview_matrix (PyObject *self)
 
     cogl_get_modelview_matrix (&matrix);
 
-    return pyg_boxed_new (PYCOGL_TYPE_MATRIX, &matrix, TRUE, TRUE);
+    return pycogl_matrix_from_matrix (&matrix);
+}
+%%
+override cogl_set_modelview_matrix
+static PyObject *
+_wrap_cogl_set_modelview_matrix (PyObject *self, PyObject *args)
+{
+  PyCoglMatrix *py_matrix;
+
+  if (!PyArg_ParseTuple (args, "O!:cogl.set_modelview_matrix",
+                         &PyCoglMatrix_Type, &py_matrix))
+    return NULL;
+
+  cogl_set_modelview_matrix (&py_matrix->matrix);
+
+  Py_INCREF (Py_None);
+  return Py_None;
 }
 %%
 override cogl_get_projection_matrix noargs
@@ -433,45 +435,187 @@ _wrap_cogl_get_projection_matrix (PyObject *self)
 
     cogl_get_projection_matrix (&matrix);
 
-    return pyg_boxed_new (PYCOGL_TYPE_MATRIX, &matrix, TRUE, TRUE);
+    return pycogl_matrix_from_matrix (&matrix);
 }
 %%
-override cogl_color_new kwargs
-static int
-_wrap_cogl_color_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
-{
-    static char *kwlist[] = { "red", "green", "blue", "alpha", NULL };
-    float red, green, blue, alpha;
-    CoglColor *color;
-
-    red = green = blue = 0.0;
-    alpha = 1.0;
-
-    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
-                                      "|ffff:cogl.Color", kwlist,
-                                      &red, &green, &blue, &alpha))
-        return -1;
-
-    color = cogl_color_new ();
-    cogl_color_set_from_4f (color, red, green, blue, alpha);
-
-    self->boxed = g_boxed_copy (PYCOGL_TYPE_COLOR, color);
-    self->free_on_dealloc = TRUE;
-    self->gtype = PYCOGL_TYPE_COLOR;
-
-    return 0;
-}
-%%
-override cogl_color_to_clutter_color noargs
+override cogl_set_projection_matrix
 static PyObject *
-_wrap_cogl_color_to_clutter_color (PyObject *self)
+_wrap_cogl_set_projection_matrix (PyObject *self, PyObject *args)
 {
-    CoglColor *source = pyg_boxed_get (self, CoglColor);
-    ClutterColor *dest = clutter_color_new (
-                            (gint)(cogl_color_get_red (source) * 255),
-                            (gint)(cogl_color_get_green (source) * 255),
-                            (gint)(cogl_color_get_blue (source) * 255),
-                            (gint)(cogl_color_get_alpha (source) * 255));
+  PyCoglMatrix *py_matrix;
 
-    return pyg_boxed_new (CLUTTER_TYPE_COLOR, dest, TRUE, TRUE);
+  if (!PyArg_ParseTuple (args, "O!:cogl.set_projection_matrix",
+                         &PyCoglMatrix_Type, &py_matrix))
+    return NULL;
+
+  cogl_set_projection_matrix (&py_matrix->matrix);
+
+  Py_INCREF (Py_None);
+  return Py_None;
 }
+%%
+override cogl_color_to_clutter_color
+static PyObject *
+_wrap_cogl_color_to_clutter_color (PyObject *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.color_to_clutter_color",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  ClutterColor *dest = clutter_color_new (
+                          (gint)(cogl_color_get_red (&color) * 255),
+                          (gint)(cogl_color_get_green (&color) * 255),
+                          (gint)(cogl_color_get_blue (&color) * 255),
+                          (gint)(cogl_color_get_alpha (&color) * 255));
+
+  return pyg_boxed_new (CLUTTER_TYPE_COLOR, dest, TRUE, TRUE);
+}
+%%
+override cogl_color_premultiply
+static PyObject *
+_wrap_cogl_color_premultiply (PyObject *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.color_premultiply",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    {
+      return NULL;
+    }
+
+  cogl_color_premultiply (&color);
+  return pyobject_from_cogl_color (&color);
+}
+%%
+override cogl_set_source
+static PyObject *
+_wrap_cogl_set_source (PyObject *self, PyObject *args)
+{
+  PyCoglMaterial *material;
+
+  if (!PyArg_ParseTuple (args, "O!:cogl.set_source",
+                         &PyCoglMaterial_Type, &material))
+    return NULL;
+
+  cogl_set_source (material->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_set_source_color
+static PyObject *
+_wrap_cogl_set_source_color (PyObject *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.set_source_color",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  cogl_set_source_color (&color);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_set_source_texture
+static PyObject *
+_wrap_cogl_set_source_texture (PyObject *self, PyObject *args)
+{
+  PyCoglTexture *texture;
+
+  if (!PyArg_ParseTuple (args, "O!:cogl.set_source_texture",
+                         &PyCoglTexture_Type, &texture))
+    return NULL;
+
+  cogl_set_source_texture (texture->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_polyline
+static PyObject *
+_wrap_cogl_path_polyline (PyObject *self, PyObject *args)
+{
+  gint len = PyTuple_Size (args);
+  gfloat coords[len];
+  gint i;
+
+  if (len < 2 || (len % 2 != 0))
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "cogl.path_polyline requires at least two values");
+      return NULL;
+    }
+
+  for (i = 0; i < len; i++)
+    coords[i] = PyFloat_AsDouble (PyTuple_GetItem (args, i));
+
+  cogl_path_polyline (coords, len);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_polygon
+static PyObject *
+_wrap_cogl_path_polygon (PyObject *self, PyObject *args)
+{
+  gint len = PyTuple_Size (args);
+  gfloat coords[len];
+  gint i;
+
+  if (len < 2 || (len % 2 != 0))
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "cogl.path_polygon requires at least two values");
+      return NULL;
+    }
+
+  for (i = 0; i < len; i++)
+    coords[i] = PyFloat_AsDouble (PyTuple_GetItem (args, i));
+
+  cogl_path_polygon (coords, len);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_set_draw_buffer
+static PyObject *
+_wrap_cogl_set_draw_buffer (PyObject *self, PyObject *args)
+{
+  PyObject *py_target;
+  PyCoglOffscreen *py_handle;
+  CoglBufferTarget target;
+
+  if (!PyArg_ParseTuple (args, "OO!:cogl.set_draw_buffer",
+                         &py_target, &PyCoglOffscreen_Type, &py_handle))
+    return NULL;
+
+  if (pyg_enum_get_value (COGL_TYPE_BUFFER_TARGET, py_target,
+                          (gpointer)&target))
+    return NULL;
+
+  cogl_set_draw_buffer (target, py_handle->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+

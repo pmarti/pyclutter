@@ -26,7 +26,10 @@ CLUTTER_TYPES_DEFS = clutter-base-types.defs
 COGL_OVERRIDES =			\
 	cogl.override			\
 	cogl-texture.override   \
-	cogl-material.override
+	cogl-material.override  \
+	cogl-shader.override    \
+	cogl-matrix.override    \
+	cogl-offscreen.override
 
 CLUTTER_OVERRIDES = 			\
 	clutter.override		\

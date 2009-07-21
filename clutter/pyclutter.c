@@ -204,61 +204,31 @@ out:
 }
 
 gboolean
-pycogl_color_from_pyobject (PyObject  *object,
-                            CoglColor *color)
+pycogl_color_from_pyobject (PyObject *object, CoglColor *color)
 {
-        g_return_val_if_fail (color != NULL, FALSE);
+  g_return_val_if_fail (color != NULL, FALSE);
+  float red, green, blue, alpha = 1.0;
 
-        if (pyg_boxed_check (object, PYCOGL_TYPE_COLOR))
-          {
-            *color = *pyg_boxed_get (object, CoglColor);
-            return TRUE;
-          }
+  /* XXX: I might remove this in future */
+  if (pyg_boxed_check (object, CLUTTER_TYPE_COLOR))
+    {
+      ClutterColor *c = pyg_boxed_get (object, ClutterColor);
+      cogl_color_set_from_4ub (color, c->red, c->green, c->blue, c->alpha);
+      return TRUE;
+    }
 
-        if (pyg_boxed_check (object, CLUTTER_TYPE_COLOR))
-          {
-            ClutterColor *c = pyg_boxed_get (object, ClutterColor);
-            cogl_color_set_from_4ub (color, c->red, c->green, c->blue, c->alpha);
-            return TRUE;
-          }
+  if (!PyTuple_Check (object) || !PyArg_ParseTuple (object, "fff|f",
+                                                    &red, &green, &blue,
+                                                    &alpha))
+    {
+      PyErr_Clear ();
+      PyErr_SetString (PyExc_ValueError,
+                       "color must be a 3 or 4-tuple of float from 0.0-1.0");
+      return FALSE;
+    }
 
-        if (PyTuple_Check (object) && (PyTuple_Size (object) == 4))
-          {
-            int i;
-            float red, green, blue, alpha;
-            red = green = blue = alpha = 0;
-
-            for (i = 0; i < 4; i++)
-              {
-                float value;
-                PyObject *comp = PyTuple_GetItem (object, i);
-
-                if (PyInt_Check (comp))
-                  value = (float) (255.0 / PyInt_AsLong (comp));
-                else
-                  value = PyFloat_AsDouble (comp);
-
-                switch (i)
-                  {
-                  case 0: red = value; break;
-                  case 1: green = value; break;
-                  case 2: blue = value; break;
-                  case 3: alpha = value; break;
-                  default:
-                          g_assert_not_reached ();
-                          break;
-                  }
-              }
-
-            cogl_color_set_from_4f (color, red, green, blue, alpha);
-
-            return TRUE;
-          }
-
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError, "could not convert to CoglColor");
-
-        return FALSE;
+  cogl_color_set_from_4f (color, red, green, blue, alpha);
+  return TRUE;
 }
 
 gboolean

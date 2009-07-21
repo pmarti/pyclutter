@@ -19,11 +19,22 @@
 GType pycogl_matrix_get_type (void) G_GNUC_CONST;
 #endif
 
-#ifdef COGL_TYPE_COLOR
-#define PYCOGL_TYPE_COLOR      COGL_TYPE_COLOR
-#else
-#define PYCOGL_TYPE_COLOR      (pycogl_color_get_type ())
-GType pycogl_color_get_type (void) G_GNUC_CONST;
-#endif
+
+typedef struct {
+    PyObject_HEAD
+    CoglHandle handle;
+    PyObject *base;
+} PyCoglHandle;
+
+typedef struct {
+    PyObject_HEAD
+    CoglMatrix matrix;
+} PyCoglMatrix;
+
+#define PyCoglTexture      PyCoglHandle
+#define PyCoglMaterial     PyCoglHandle
+#define PyCoglShader       PyCoglHandle
+#define PyCoglProgram      PyCoglHandle
+#define PyCoglOffscreen    PyCoglHandle
 
 #endif /* __PYCLUTTER_PRIVATE_H__ */

@@ -7,42 +7,6 @@
   (gtype-id "COGL_PANGO_TYPE_FONT_MAP")
 )
 
-(define-boxed Handle
-  (in-module "Cogl")
-  (c-name "CoglHandle")
-  (gtype-id "COGL_TYPE_HANDLE")
-)
-
-(define-boxed Matrix
-  (in-module "Cogl")
-  (c-name "CoglMatrix")
-  (gtype-id "PYCOGL_TYPE_MATRIX")
-  (fields
-    '("float" "xx")
-    '("float" "yx")
-    '("float" "zx")
-    '("float" "wx")
-    '("float" "xy")
-    '("float" "yy")
-    '("float" "zy")
-    '("float" "xz")
-    '("float" "yz")
-    '("float" "zz")
-    '("float" "wz")
-    '("float" "wy")
-    '("float" "xw")
-    '("float" "yw")
-    '("float" "zw")
-    '("float" "ww")
-  )
-)
-
-(define-boxed Color
-  (in-module "Cogl")
-  (c-name "CoglColor")
-  (gtype-id "PYCOGL_TYPE_COLOR")
-)
-
 (define-flags DebugFlags
   (in-module "Cogl")
   (c-name "CoglDebugFlags")
