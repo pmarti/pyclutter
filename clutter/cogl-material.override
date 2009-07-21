@@ -1,4 +1,7 @@
 %%
+ignore
+  cogl_is_material
+%%
 ignore-glob
   cogl_material_*
 %%

@@ -9,6 +9,7 @@ ignore
   cogl_texture_get_gl_texture
   cogl_texture_get_data
   cogl_texture_set_region
+  cogl_is_texture
 %%
 body
 
