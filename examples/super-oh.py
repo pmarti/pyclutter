@@ -8,7 +8,7 @@ class SuperOh (clutter.Group) :
         clutter.Group.__init__(self)
 
         self.n_hands = nhands
-        self.timeline = clutter.Timeline(360, 60)
+        self.timeline = clutter.Timeline(5000)
 
         self.timeline.set_loop(True)
         self.timeline.connect('new-frame', self.on_new_frame)
@@ -29,7 +29,7 @@ class SuperOh (clutter.Group) :
         (w, h) = redhand.get_size()
 
         for i in range(self.n_hands):
-            hand = clutter.CloneTexture(redhand);
+            hand = clutter.Clone(redhand);
             radius = self.get_radius()
             x = self.stage.get_width() / 2 + radius * math.cos(i * math.pi / (self.n_hands / 2)) - w / 2
 
@@ -39,26 +39,29 @@ class SuperOh (clutter.Group) :
       
             hand.show()
             self.add(hand);
+        self.add(redhand)
+        redhand.hide()
 
-    def spin (self): 
+    def spin (self):
         self.timeline.start()
 
     def get_radius (self):
         return (self.stage.get_width () + self.stage.get_height ()) / self.n_hands
 
-    def on_new_frame (self, tl, frame_num):
+    def on_new_frame (self, tl, msecs):
+        progress = tl.get_progress()
         self.set_rotation (clutter.Z_AXIS,
-                           frame_num,
+                           progress * 360,
                            self.stage.get_width() / 2,
                            self.stage.get_height () / 2,
                            0)
       
-        angle = frame_num * -2
+        angle = progress * -360
 
         for i in range(self.n_hands):
             hand = self.get_nth_child(i)
             hand.set_rotation(clutter.Z_AXIS,
-                              angle, 
+                              angle,
                               hand.get_width() / 2,
                               hand.get_height() / 2,
                               0)
@@ -67,7 +70,7 @@ class SuperOh (clutter.Group) :
         if (event.button != 1):
             return
 
-        hand = stage.get_actor_at_pos(event.x, event.y)
+        hand = stage.get_actor_at_pos(clutter.PICK_ALL, event.x, event.y)
         if (hand):
             hand.hide()
 
