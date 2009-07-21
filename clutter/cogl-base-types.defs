@@ -254,8 +254,8 @@
 
 (define-enum BlendStringError
   (in-module "Cogl")
-  (c-name "CoglCoglBlendStringError")
-  (gtype-id "COGL_BLEND_STRING_ERROR")
+  (c-name "CoglBlendStringError")
+  (gtype-id "COGL_TYPE_BLEND_STRING_ERROR")
   (values
     '("parse-error" "COGL_BLEND_STRING_ERROR_PARSE_ERROR")
     '("argument-parse-error" "COGL_BLEND_STRING_ERROR_ARGUMENT_PARSE_ERROR")
