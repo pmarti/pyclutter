@@ -459,7 +459,7 @@ _wrap_cogl_rectangles (PyObject *self, PyObject *args)
 }
 
 %%
-override cogl_polygon
+override cogl_polygon kwargs
 static PyObject *
 _wrap_cogl_polygon (PyObject *self, PyObject *args, PyObject *kwargs)
 {

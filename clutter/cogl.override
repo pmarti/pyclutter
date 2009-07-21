@@ -146,6 +146,8 @@ ignore
   cogl_color_new
   cogl_color_copy
   cogl_color_free
+  cogl_set_draw_buffer
+  cogl_bitmap_new_from_file
 %%
 ignore-glob
   cogl_fixed_*
@@ -182,7 +184,7 @@ _wrap_cogl_get_bitmasks (PyObject *self)
   return Py_BuildValue ("(iiii)", red, green, blue, alpha);
 }
 %%
-override cogl_bitmap_get_size_from_file
+override cogl_bitmap_get_size_from_file kwargs
 static PyObject *
 _wrap_cogl_bitmap_get_size_from_file (PyObject *self,
                                       PyObject *args,
@@ -200,45 +202,6 @@ _wrap_cogl_bitmap_get_size_from_file (PyObject *self,
     cogl_bitmap_get_size_from_file (filename, &width, &height);
 
     return Py_BuildValue ("(ii)", width, height);
-}
-%%
-override cogl_set_source_color
-PyObject *
-_wrap_cogl_set_source_color (PyObject *self,
-                             PyObject *args,
-                             PyObject *kwargs)
-{
-    static char *kwlist[] = { "color", NULL };
-    PyObject *py_color;
-    CoglColor color;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O:set_source_color", kwlist,
-                                     &py_color))
-        return NULL;
-
-    if (!pycogl_color_from_pyobject (py_color, &color))
-    {
-        PyErr_Clear ();
-        PyErr_SetString (PyExc_TypeError,
-                         "color must be a ClutterColor or 4-tuple");
-        return NULL;
-    }
-
-    cogl_set_source_color (&color);
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_material_new
-static PyObject *
-_wrap_cogl_material_new(PyObject *self)
-{
-    CoglHandle ret = COGL_INVALID_HANDLE;
-    
-    ret = cogl_material_new();
-    
-    /* pyg_boxed_new handles NULL checking */
-    return pyg_boxed_new(COGL_TYPE_HANDLE, ret, TRUE, TRUE);
 }
 %%
 new-constructor COGL_PANGO_TYPE_FONT_MAP
@@ -272,7 +235,8 @@ _wrap_cogl_pango_render_layout(PyObject *self,
     CoglColor *color = NULL;
     PyObject *py_color;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!iiOi:pango_render_layout",
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!iiOi:pango_render_layout",
                                      kwlist,
                                      &PyPangoLayout_Type,
                                      &layout,
@@ -294,7 +258,7 @@ _wrap_cogl_pango_render_layout(PyObject *self,
     return Py_None;
 }
 %%
-override cogl_pango_render_layout_subpixel
+override cogl_pango_render_layout_subpixel kwargs
 static PyObject *
 _wrap_cogl_pango_render_layout_subpixel(PyObject *self,
                                         PyObject *args,
@@ -306,7 +270,8 @@ _wrap_cogl_pango_render_layout_subpixel(PyObject *self,
     CoglColor *color = NULL;
     PyObject *py_color;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"O!iiOi:pango_render_layout_subpixel",
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!iiOi:pango_render_layout_subpixel",
                                      kwlist,
                                      &PyPangoLayout_Type,
                                      &layout,
@@ -340,7 +305,8 @@ _wrap_cogl_pango_render_layout_line(PyObject *self,
     int x, y;
     CoglColor *color = NULL;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OiiO:pango_render_layout_line",
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "OiiO:pango_render_layout_line",
                                      kwlist, &py_line, &x, &y, &py_color))
         return NULL;
     if (pyg_boxed_check(py_line, PANGO_TYPE_LAYOUT_LINE))
@@ -374,7 +340,11 @@ _wrap_cogl_set_fog(PyObject *self, PyObject *args, PyObject *kwargs)
     double density, z_near, z_far;
     CoglFogMode mode;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs,"OOddd:set_fog", kwlist, &py_fog_color, &py_mode, &density, &z_near, &z_far))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "OOddd:set_fog",
+                                     kwlist,
+                                     &py_fog_color, &py_mode,
+                                     &density, &z_near, &z_far))
         return NULL;
 
     if (!pycogl_color_from_pyobject (py_fog_color, fog_color))
@@ -515,4 +485,104 @@ _wrap_cogl_color_premultiply (PyObject *self, PyObject *args)
 
   cogl_color_premultiply (&color);
   return pyobject_from_cogl_color (&color);
+}
+%%
+override cogl_set_source
+static PyObject *
+_wrap_cogl_set_source (PyObject *self, PyObject *args)
+{
+  PyCoglMaterial *material;
+
+  if (!PyArg_ParseTuple (args, "O!:cogl.set_source",
+                         &PyCoglMaterial_Type, &material))
+    return NULL;
+
+  cogl_set_source (material->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_set_source_color
+static PyObject *
+_wrap_cogl_set_source_color (PyObject *self, PyObject *args)
+{
+  PyObject *py_color;
+  CoglColor color;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.set_source_color",
+                         &py_color))
+    return NULL;
+
+  if (!pycogl_color_from_pyobject (py_color, &color))
+    return NULL;
+
+  cogl_set_source_color (&color);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_set_source_texture
+static PyObject *
+_wrap_cogl_set_source_texture (PyObject *self, PyObject *args)
+{
+  PyCoglTexture *texture;
+
+  if (!PyArg_ParseTuple (args, "O!:cogl.set_source_texture",
+                         &PyCoglTexture_Type, &texture))
+    return NULL;
+
+  cogl_set_source_texture (texture->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_polyline
+static PyObject *
+_wrap_cogl_path_polyline (PyObject *self, PyObject *args)
+{
+  gint len = PyTuple_Size (args);
+  gfloat coords[len];
+  gint i;
+
+  if (len < 2 || (len % 2 != 0))
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "cogl.path_polyline requires at least two values");
+      return NULL;
+    }
+
+  for (i = 0; i < len; i++)
+    coords[i] = PyFloat_AsDouble (PyTuple_GetItem (args, i));
+
+  cogl_path_polyline (coords, len);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override cogl_path_polygon
+static PyObject *
+_wrap_cogl_path_polygon (PyObject *self, PyObject *args)
+{
+  gint len = PyTuple_Size (args);
+  gfloat coords[len];
+  gint i;
+
+  if (len < 2 || (len % 2 != 0))
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "cogl.path_polygon requires at least two values");
+      return NULL;
+    }
+
+  for (i = 0; i < len; i++)
+    coords[i] = PyFloat_AsDouble (PyTuple_GetItem (args, i));
+
+  cogl_path_polygon (coords, len);
+
+  Py_INCREF (Py_None);
+  return Py_None;
 }
