@@ -26,6 +26,12 @@ typedef struct {
     PyObject *base;
 } PyCoglHandle;
 
+typedef struct {
+    PyObject_HEAD
+    CoglMatrix matrix;
+} PyCoglMatrix;
+
+
 #define PyCoglTexture      PyCoglHandle
 
 #endif /* __PYCLUTTER_PRIVATE_H__ */

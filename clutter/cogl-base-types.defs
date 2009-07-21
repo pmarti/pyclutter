@@ -7,30 +7,6 @@
   (gtype-id "COGL_PANGO_TYPE_FONT_MAP")
 )
 
-(define-boxed Matrix
-  (in-module "Cogl")
-  (c-name "CoglMatrix")
-  (gtype-id "PYCOGL_TYPE_MATRIX")
-  (fields
-    '("float" "xx")
-    '("float" "yx")
-    '("float" "zx")
-    '("float" "wx")
-    '("float" "xy")
-    '("float" "yy")
-    '("float" "zy")
-    '("float" "xz")
-    '("float" "yz")
-    '("float" "zz")
-    '("float" "wz")
-    '("float" "wy")
-    '("float" "xw")
-    '("float" "yw")
-    '("float" "zw")
-    '("float" "ww")
-  )
-)
-
 (define-flags DebugFlags
   (in-module "Cogl")
   (c-name "CoglDebugFlags")

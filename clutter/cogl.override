@@ -9,45 +9,8 @@ headers
 
 
 PyTypeObject PyCoglTexture_Type;
+PyTypeObject PyCoglMatrix_Type;
 
-CoglMatrix *
-pycogl_matrix_copy (const CoglMatrix *matrix)
-{
-    return g_slice_dup (CoglMatrix, matrix);
-}
-
-void
-pycogl_matrix_free (CoglMatrix *matrix)
-{
-    if (G_LIKELY (matrix))
-        g_slice_free (CoglMatrix, matrix);
-}
-
-GType
-pycogl_matrix_get_type (void)
-{
-  static GType matrix_type = 0;
-
-  if (G_UNLIKELY (matrix_type == 0))
-    matrix_type = g_boxed_type_register_static (g_intern_static_string ("CoglMatrix"),
-                                                (GBoxedCopyFunc) pycogl_matrix_copy,
-                                                (GBoxedFreeFunc) pycogl_matrix_free);
-
-  return matrix_type;
-}
-
-GType
-pycogl_color_get_type (void)
-{
-  static GType color_type = 0;
-
-  if (G_UNLIKELY (color_type == 0))
-    color_type = g_boxed_type_register_static (g_intern_static_string ("CoglColor"),
-                                              (GBoxedCopyFunc) cogl_color_copy,
-                                              (GBoxedFreeFunc) cogl_color_free);
-
-  return color_type;
-}
 
 %%
 body
@@ -163,6 +126,7 @@ pyobject_from_cogl_color (CoglColor *color)
 include
   cogl-texture.override
   cogl-material.override
+  cogl-matrix.override
 %%
 modulename clutter.cogl
 %%
@@ -272,84 +236,6 @@ _wrap_cogl_material_new(PyObject *self)
     
     /* pyg_boxed_new handles NULL checking */
     return pyg_boxed_new(COGL_TYPE_HANDLE, ret, TRUE, TRUE);
-}
-%%
-override cogl_matrix_new noargs
-static int
-_wrap_cogl_matrix_new (PyGBoxed *self)
-{
-    CoglMatrix matrix;
-    self->boxed = g_boxed_copy (PYCOGL_TYPE_MATRIX, &matrix);
-    self->free_on_dealloc = TRUE;
-    self->gtype = PYCOGL_TYPE_MATRIX;
-
-    cogl_matrix_init_identity (self->boxed);
-
-    return 0;
-}
-%%
-override cogl_matrix_init_from_array
-static PyObject *
-_wrap_cogl_matrix_init_from_array (PyGBoxed *self, PyObject *args)
-{
-    PyObject *py_array;
-    float array[16];
-    int i;
-
-    if (!PyArg_ParseTuple (args, "O:cogl.matrix_init_from_array", &py_array))
-        return NULL;
-
-    if (!PyTuple_Check (py_array) || PyTuple_Size (py_array) != 16)
-    {
-        PyErr_SetString (PyExc_TypeError,
-                         "matrix_init_from_array needs a tuple of 16 floats");
-        return NULL;
-    }
-
-    for (i = 0; i < 16; i++)
-        array[i] = PyFloat_AsDouble (PyTuple_GetItem (py_array, i));
-
-    cogl_matrix_init_from_array (self->boxed, array);
-
-    Py_INCREF (Py_None);
-    return Py_None;
-}
-%%
-override cogl_matrix_get_array noargs
-static PyObject *
-_wrap_cogl_matrix_get_array (PyGBoxed *self)
-{
-    const float *array;
-    PyObject *py_array;
-    int i;
-
-    array = cogl_matrix_get_array (self->boxed);
-    py_array = PyTuple_New (16);
-
-    for (i = 0; i < 16; i++)
-    {
-        PyTuple_SetItem (py_array, i, PyFloat_FromDouble (array[i]));
-    }
-
-    return py_array;
-}
-%%
-override cogl_matrix_transform_point
-static PyObject *
-_wrap_cogl_matrix_transform_point (PyGBoxed *self,
-                                   PyObject *args,
-                                   PyObject *kwargs)
-{
-    static char *kwlist[] = { "x", "y", "z", "w", NULL };
-    float x, y, z, w;
-
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "ffff:Matrix.transform_point",
-                                     kwlist, &x, &y, &z, &w))
-        return NULL;
-
-    cogl_matrix_transform_point (self->boxed, &x, &y, &z, &w);
-
-    return Py_BuildValue ("(ffff)", x, y, z, w);
 }
 %%
 new-constructor COGL_PANGO_TYPE_FONT_MAP
@@ -539,7 +425,23 @@ _wrap_cogl_get_modelview_matrix (PyObject *self)
 
     cogl_get_modelview_matrix (&matrix);
 
-    return pyg_boxed_new (PYCOGL_TYPE_MATRIX, &matrix, TRUE, TRUE);
+    return pycogl_matrix_from_matrix (&matrix);
+}
+%%
+override cogl_set_modelview_matrix
+static PyObject *
+_wrap_cogl_set_modelview_matrix (PyObject *self, PyObject *args)
+{
+  PyCoglMatrix *py_matrix;
+
+  if (!PyArg_ParseTuple (args, "O!:cogl.set_modelview_matrix",
+                         &PyCoglMatrix_Type, &py_matrix))
+    return NULL;
+
+  cogl_set_modelview_matrix (&py_matrix->matrix);
+
+  Py_INCREF (Py_None);
+  return Py_None;
 }
 %%
 override cogl_get_projection_matrix noargs
@@ -550,7 +452,23 @@ _wrap_cogl_get_projection_matrix (PyObject *self)
 
     cogl_get_projection_matrix (&matrix);
 
-    return pyg_boxed_new (PYCOGL_TYPE_MATRIX, &matrix, TRUE, TRUE);
+    return pycogl_matrix_from_matrix (&matrix);
+}
+%%
+override cogl_set_projection_matrix
+static PyObject *
+_wrap_cogl_set_projection_matrix (PyObject *self, PyObject *args)
+{
+  PyCoglMatrix *py_matrix;
+
+  if (!PyArg_ParseTuple (args, "O!:cogl.set_projection_matrix",
+                         &PyCoglMatrix_Type, &py_matrix))
+    return NULL;
+
+  cogl_set_projection_matrix (&py_matrix->matrix);
+
+  Py_INCREF (Py_None);
+  return Py_None;
 }
 %%
 override cogl_color_to_clutter_color

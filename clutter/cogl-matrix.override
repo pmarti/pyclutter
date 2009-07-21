@@ -1,0 +1,289 @@
+%%
+ignore
+  cogl_matrix_init_identity
+  cogl_matrix_multiply
+  cogl_matrix_rotate
+  cogl_matrix_translate
+  cogl_matrix_scale
+  cogl_matrix_frustum
+  cogl_matrix_perspective
+  cogl_matrix_ortho
+  cogl_matrix_init_from_array
+  cogl_matrix_get_array
+%%
+body
+
+/* COGL Matrix */
+static PyObject *
+pycogl_matrix_new (PyTypeObject *type, PyObject *args, PyObject *kwargs)
+{
+  PyCoglMatrix *self;
+
+  self = (PyCoglMatrix *)type->tp_alloc(type, 0);
+  return (PyObject *)self;
+}
+
+static int
+pycogl_matrix_init (PyCoglMatrix *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "array", NULL };
+  PyObject *py_array = NULL;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs, "|O:cogl.Matrix",
+                                    kwlist, &py_array))
+    return -1;
+
+  if (py_array == NULL)
+    cogl_matrix_init_identity (&self->matrix);
+  else if (!PyTuple_Check (py_array) || PyTuple_Size (py_array) != 16)
+    {
+      PyErr_SetString (PyExc_ValueError,
+                       "array must be a tuple of 16 floats");
+      return -1;
+    }
+  else
+    {
+      float array[16];
+      int i;
+
+      for (i = 0; i < 16; i++)
+        array[i] = PyFloat_AsDouble (PyTuple_GetItem (py_array, i));
+
+      cogl_matrix_init_from_array (&self->matrix, array);
+    }
+
+  return 0;
+}
+
+static PyObject *
+pycogl_matrix_from_matrix (CoglMatrix *matrix)
+{
+  PyCoglMatrix *self;
+  PyTypeObject *type = &PyCoglMatrix_Type;
+
+  self = (PyCoglMatrix *)type->tp_alloc(type, 0);
+  self->matrix = *matrix;
+
+  return (PyObject *)self;
+}
+
+static PyObject *
+pycogl_matrix_init_identity (PyCoglMatrix *self)
+{
+  cogl_matrix_init_identity (&self->matrix);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_matrix_init_from_array (PyCoglMatrix *self, PyObject *args)
+{
+  PyObject *py_array;
+  float array[16];
+  int i;
+
+  if (!PyArg_ParseTuple (args, "O:cogl.Matrix.init_from_array",
+                         &py_array))
+    return NULL;
+
+  if (!PyTuple_Check (py_array) || PyTuple_Size (py_array) != 16)
+    {
+      PyErr_SetString (PyExc_ValueError,
+                       "array must be a tuple of 16 floats");
+      return NULL;
+    }
+
+  for (i = 0; i < 16; i++)
+    array[i] = PyFloat_AsDouble (PyTuple_GetItem (py_array, i));
+
+  cogl_matrix_init_from_array (&self->matrix, array);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_matrix_frustum (PyCoglMatrix *self, PyObject *args)
+{
+  float left, right, bottom, top, z_near, z_far;
+
+  if (!PyArg_ParseTuple (args, "ffffff:cogl.Matrix.frustum",
+                         &left, &right, &bottom, &top, &z_near, &z_far))
+    return NULL;
+
+  cogl_matrix_frustum (&self->matrix, left, right, bottom, top, z_near, z_far);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_matrix_ortho (PyCoglMatrix *self, PyObject *args)
+{
+  float left, right, bottom, top, z_near, z_far;
+
+  if (!PyArg_ParseTuple (args, "ffffff:cogl.Matrix.ortho",
+                         &left, &right, &bottom, &top, &z_near, &z_far))
+    return NULL;
+
+  cogl_matrix_ortho (&self->matrix, left, right, bottom, top, z_near, z_far);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_matrix_perspective (PyCoglMatrix *self, PyObject *args)
+{
+  float fov_y, aspect, z_near, z_far;
+
+  if (!PyArg_ParseTuple (args, "ffff:cogl.Matrix.perspective",
+                         &fov_y, &aspect, &z_near, &z_far))
+    return NULL;
+
+  cogl_matrix_perspective (&self->matrix, fov_y, aspect, z_near, z_far);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+/* FIXME: pycogl_matrix_transform_point */
+
+static PyObject *
+pycogl_matrix_multiply (PyCoglMatrix *self, PyObject *args)
+{
+  PyCoglMatrix *a, *b;
+
+  if (!PyArg_ParseTuple (args, "O!O!:cogl.Matrix.multiply",
+                         &PyCoglMatrix_Type, &a,
+                         &PyCoglMatrix_Type, &b))
+    return NULL;
+
+  cogl_matrix_multiply (&self->matrix, &a->matrix, &b->matrix);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_matrix_rotate (PyCoglMatrix *self, PyObject *args)
+{
+  float angle, x, y, z;
+
+  if (!PyArg_ParseTuple (args, "ffff:cogl.Matrix.rotate",
+                         &angle, &x, &y, &z))
+    return NULL;
+
+  cogl_matrix_rotate (&self->matrix, angle, x, y, z);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_matrix_translate (PyCoglMatrix *self, PyObject *args)
+{
+  float x, y, z;
+
+  if (!PyArg_ParseTuple (args, "fff:cogl.Matrix.translate",
+                         &x, &y, &z))
+    return NULL;
+
+  cogl_matrix_translate (&self->matrix, x, y, z);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+static PyObject *
+pycogl_matrix_scale (PyCoglMatrix *self, PyObject *args)
+{
+  float sx, sy, sz;
+
+  if (!PyArg_ParseTuple (args, "fff:cogl.Matrix.scale",
+                         &sx, &sy, &sz))
+    return NULL;
+
+  cogl_matrix_scale (&self->matrix, sx, sy, sz);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+
+/* TODO: This should be done a more pythonic way :) */
+static PyObject *
+pycogl_matrix_get_array (PyCoglMatrix *self)
+{
+  const float *array;
+  PyObject *py_array;
+  int i;
+
+  array = cogl_matrix_get_array (&self->matrix);
+  py_array = PyTuple_New (16);
+
+  for (i = 0; i < 16; i++)
+    PyTuple_SetItem (py_array, i, PyFloat_FromDouble (array[i]));
+
+  return py_array;
+}
+
+
+static PyMethodDef pycogl_matrix_methods[] = {
+    { "init_identity", (PyCFunction)pycogl_matrix_init_identity, METH_NOARGS },
+    { "init_from_array", (PyCFunction)pycogl_matrix_init_from_array, METH_VARARGS },
+    { "frustum", (PyCFunction)pycogl_matrix_frustum, METH_VARARGS },
+    { "ortho", (PyCFunction)pycogl_matrix_ortho, METH_VARARGS },
+    { "perspective", (PyCFunction)pycogl_matrix_perspective, METH_VARARGS },
+    { "multiply", (PyCFunction)pycogl_matrix_multiply, METH_VARARGS },
+    { "rotate", (PyCFunction)pycogl_matrix_rotate, METH_VARARGS },
+    { "translate", (PyCFunction)pycogl_matrix_translate, METH_VARARGS },
+    { "scale", (PyCFunction)pycogl_matrix_scale, METH_VARARGS },
+    { "get_array", (PyCFunction)pycogl_matrix_get_array, METH_NOARGS },
+    { NULL, NULL, 0, NULL },
+};
+
+PyTypeObject PyCoglMatrix_Type = {
+    PyObject_HEAD_INIT(NULL)
+    0,                                  /* ob_size */
+    "cogl.Matrix",                      /* tp_name */
+    sizeof(PyCoglMatrix),               /* tp_basicsize */
+    0,                                  /* tp_itemsize */
+    0,                                  /* tp_dealloc */
+    0,                                  /* tp_print */
+    0,                                  /* tp_getattr */
+    0,                                  /* tp_setattr */
+    0,                                  /* tp_compare */
+    0,                                  /* tp_repr */
+    0,                                  /* tp_as_number */
+    0,                                  /* tp_as_sequence */
+    0,                                  /* tp_as_mapping */
+    0,                                  /* tp_hash */
+    0,                                  /* tp_call */
+    0,                                  /* tp_str */
+    0,                                  /* tp_getattro */
+    0,                                  /* tp_setattro */
+    0,                                  /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE, /* tp_flags */
+    0,                                  /* tp_doc */
+    0,                                  /* tp_traverse */
+    0,                                  /* tp_clear */
+    0,                                  /* tp_richcompare */
+    0,                                  /* tp_weaklistoffset */
+    0,                                  /* tp_iter */
+    0,                                  /* tp_iternext */
+    pycogl_matrix_methods,              /* tp_methods */
+    0,                                  /* tp_members */
+    0,                                  /* tp_getset */
+    0, /* &PyCoglHandle_Type, */        /* tp_base */
+    0,                                  /* tp_dict */
+    0,                                  /* tp_descr_get */
+    0,                                  /* tp_descr_set */
+    0,                                  /* tp_dictoffset */
+    (initproc)pycogl_matrix_init,       /* tp_init */
+    0,                                  /* tp_alloc */
+    (newfunc)pycogl_matrix_new,         /* tp_new */
+    0,                                  /* tp_free */
+    0,                                  /* tp_is_gc */
+    0,                                  /* tp_bases */
+};
