@@ -13,6 +13,7 @@ PyTypeObject PyCoglMatrix_Type;
 PyTypeObject PyCoglMaterial_Type;
 PyTypeObject PyCoglShader_Type;
 PyTypeObject PyCoglProgram_Type;
+PyTypeObject PyCoglOffscreen_Type;
 
 
 %%
@@ -37,6 +38,8 @@ pycogl_handle_from_handle (CoglHandle handle)
     type = &PyCoglShader_Type;
   else if (cogl_is_program (handle))
     type = &PyCoglProgram_Type;
+  else if (cogl_is_offscreen (handle))
+    type = &PyCoglOffscreen_Type;
   else {
       PyErr_SetString (PyExc_TypeError, "Unknown handle type");
       return NULL;
@@ -137,6 +140,7 @@ include
   cogl-material.override
   cogl-shader.override
   cogl-matrix.override
+  cogl-offscreen.override
 %%
 modulename clutter.cogl
 %%
@@ -153,7 +157,6 @@ ignore
   cogl_color_new
   cogl_color_copy
   cogl_color_free
-  cogl_set_draw_buffer
   cogl_bitmap_new_from_file
 %%
 ignore-glob
@@ -593,3 +596,26 @@ _wrap_cogl_path_polygon (PyObject *self, PyObject *args)
   Py_INCREF (Py_None);
   return Py_None;
 }
+%%
+override cogl_set_draw_buffer
+static PyObject *
+_wrap_cogl_set_draw_buffer (PyObject *self, PyObject *args)
+{
+  PyObject *py_target;
+  PyCoglOffscreen *py_handle;
+  CoglBufferTarget target;
+
+  if (!PyArg_ParseTuple (args, "OO!:cogl.set_draw_buffer",
+                         &py_target, &PyCoglOffscreen_Type, &py_handle))
+    return NULL;
+
+  if (pyg_enum_get_value (COGL_TYPE_BUFFER_TARGET, py_target,
+                          (gpointer)&target))
+    return NULL;
+
+  cogl_set_draw_buffer (target, py_handle->handle);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+

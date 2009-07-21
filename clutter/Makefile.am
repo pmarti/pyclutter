@@ -28,7 +28,8 @@ COGL_OVERRIDES =			\
 	cogl-texture.override   \
 	cogl-material.override  \
 	cogl-shader.override    \
-	cogl-matrix.override
+	cogl-matrix.override    \
+	cogl-offscreen.override
 
 CLUTTER_OVERRIDES = 			\
 	clutter.override		\

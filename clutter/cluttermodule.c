@@ -24,6 +24,7 @@ extern PyTypeObject PyCoglMaterial_Type;
 extern PyTypeObject PyCoglMatrix_Type;
 extern PyTypeObject PyCoglShader_Type;
 extern PyTypeObject PyCoglProgram_Type;
+extern PyTypeObject PyCoglOffscreen_Type;
 
 static PyObject *PyClutterDeprecationWarning;
 PyObject *PyClutterWarning;
@@ -194,6 +195,13 @@ init_clutter (void)
     return;
   Py_INCREF (&PyCoglProgram_Type);
   PyModule_AddObject (m, "Program", (PyObject *)&PyCoglProgram_Type);
+  
+  /* cogl.Offscreen */
+  PyCoglOffscreen_Type.tp_base = &PyCoglHandle_Type;
+  if (PyType_Ready (&PyCoglOffscreen_Type) < 0)
+    return;
+  Py_INCREF (&PyCoglOffscreen_Type);
+  PyModule_AddObject (m, "Offscreen", (PyObject *)&PyCoglOffscreen_Type);
   
   /* cogl.Matrix */
   PyCoglMatrix_Type.tp_base = &PyBaseObject_Type;
