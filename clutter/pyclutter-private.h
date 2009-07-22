@@ -12,14 +12,6 @@
 #define __PYCLUTTER_H_INSIDE__
 #include "pyclutter.h"
 
-#ifdef COGL_TYPE_MATRIX
-#define PYCOGL_TYPE_MATRIX              COGL_TYPE_MATRIX
-#else
-#define PYCOGL_TYPE_MATRIX              (pycogl_matrix_get_type ())
-GType pycogl_matrix_get_type (void) G_GNUC_CONST;
-#endif
-
-
 typedef struct {
     PyObject_HEAD
     CoglHandle handle;
