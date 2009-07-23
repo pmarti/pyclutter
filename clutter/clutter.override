@@ -452,6 +452,143 @@ _wrap_clutter_rectangle_get_border_color (PyGObject *self)
         return pyg_boxed_new (CLUTTER_TYPE_COLOR, &color, TRUE, TRUE);
 }
 %%
+override clutter_text_set_color kwargs
+static PyObject *
+_wrap_clutter_text_set_color (PyGObject *self,
+                              PyObject  *args,
+                              PyObject  *kwargs)
+{
+        static char *kwlist[] = { "color", NULL };
+        PyObject *py_color;
+        ClutterColor color = { 0, };
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O:ClutterText.set_color", kwlist,
+                                          &py_color)) {
+                return NULL;
+        }
+
+        if (!pyg_boxed_check (py_color, CLUTTER_TYPE_COLOR)) {
+                if (!pyclutter_color_from_pyobject (py_color, &color)) {
+                        PyErr_Clear ();
+                        PyErr_SetString (PyExc_TypeError,
+                                         "color must be a ClutterColor or 4-tuple");
+                        return NULL;
+                }
+        }
+        else {
+                color = *pyg_boxed_get (py_color, ClutterColor);
+        }
+
+        clutter_text_set_color (CLUTTER_TEXT (self->obj), &color);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override clutter_text_get_color noargs
+static PyObject *
+_wrap_clutter_text_get_color (PyGObject *self)
+{
+	ClutterColor color = { 0, };
+
+	clutter_text_get_color (CLUTTER_TEXT (self->obj), &color);
+
+        return pyg_boxed_new (CLUTTER_TYPE_COLOR, &color, TRUE, TRUE);
+}
+%%
+override clutter_text_set_cursor_color kwargs
+static PyObject *
+_wrap_clutter_text_set_cursor_color (PyGObject *self,
+                                     PyObject  *args,
+                                     PyObject  *kwargs)
+{
+        static char *kwlist[] = { "color", NULL };
+        PyObject *py_color;
+        ClutterColor color = { 0, };
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O:ClutterText.set_cursor_color",
+                                          kwlist,
+                                          &py_color)) {
+                return NULL;
+        }
+
+        if (!pyg_boxed_check (py_color, CLUTTER_TYPE_COLOR)) {
+                if (!pyclutter_color_from_pyobject (py_color, &color)) {
+                        PyErr_Clear ();
+                        PyErr_SetString (PyExc_TypeError,
+                                         "color must be a ClutterColor or 4-tuple");
+                        return NULL;
+                }
+        }
+        else {
+                color = *pyg_boxed_get (py_color, ClutterColor);
+        }
+
+        clutter_text_set_cursor_color (CLUTTER_TEXT (self->obj), &color);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override clutter_text_get_cursor_color noargs
+static PyObject *
+_wrap_clutter_text_get_cursor_color (PyGObject *self)
+{
+	ClutterColor color = { 0, };
+
+	clutter_text_get_cursor_color (CLUTTER_TEXT (self->obj), &color);
+
+        return pyg_boxed_new (CLUTTER_TYPE_COLOR, &color, TRUE, TRUE);
+}
+%%
+override clutter_text_set_selection_color kwargs
+static PyObject *
+_wrap_clutter_text_set_selection_color (PyGObject *self,
+                                        PyObject  *args,
+                                        PyObject  *kwargs)
+{
+        static char *kwlist[] = { "color", NULL };
+        PyObject *py_color;
+        ClutterColor color = { 0, };
+
+        if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                          "O:ClutterText.set_selection_color",
+                                          kwlist,
+                                          &py_color)) {
+                return NULL;
+        }
+
+        if (!pyg_boxed_check (py_color, CLUTTER_TYPE_COLOR)) {
+                if (!pyclutter_color_from_pyobject (py_color, &color)) {
+                        PyErr_Clear ();
+                        PyErr_SetString (PyExc_TypeError,
+                                         "color must be a ClutterColor or 4-tuple");
+                        return NULL;
+                }
+        }
+        else {
+                color = *pyg_boxed_get (py_color, ClutterColor);
+        }
+
+        clutter_text_set_selection_color (CLUTTER_TEXT (self->obj), &color);
+
+        Py_INCREF (Py_None);
+        return Py_None;
+}
+%%
+override clutter_text_get_selection_color noargs
+static PyObject *
+_wrap_clutter_text_get_selection_color (PyGObject *self)
+{
+	ClutterColor color = { 0, };
+
+	clutter_text_get_selection_color (CLUTTER_TEXT (self->obj), &color);
+
+        return pyg_boxed_new (CLUTTER_TYPE_COLOR, &color, TRUE, TRUE);
+}
+%%
 override clutter_container_foreach kwargs
 static void
 pyclutter_container_foreach (ClutterActor *actor,
