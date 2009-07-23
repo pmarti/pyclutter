@@ -122,6 +122,8 @@ ignore
   clutter_threads_add_repaint_func
   clutter_threads_remove_repaint_func
   clutter_binding_pool_install_closure
+  clutter_text_new_full
+  clutter_text_new_with_text
 %%
 ignore-glob
   *_quark

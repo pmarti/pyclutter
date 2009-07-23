@@ -4900,6 +4900,11 @@
   (c-name "clutter_text_new")
   (is-constructor-of "ClutterText")
   (return-type "ClutterActor*")
+  (properties
+    '("font_name" (optional))
+    '("text" (optional))
+    '("color" (optional))
+  )
 )
 
 (define-function text_new_full
