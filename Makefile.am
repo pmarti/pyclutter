@@ -1,4 +1,4 @@
-SUBDIRS = clutter examples
+SUBDIRS = build clutter examples
 
 if BUILD_CLUTTERGST
 SUBDIRS += clutter-gst
@@ -22,11 +22,12 @@ pkgconfig_DATA = $(pkgfiles)
 DISTCHECK_CONFIGURE_FLAGS = --enable-docs
 
 DIST_SUBDIRS = \
+	build \
 	docs \
 	clutter \
-	examples \
 	clutter-gst \
-	clutter-gtk
+	clutter-gtk \
+	examples
 
 EXTRA_DIST = createdefs.py py-compile Makefile.tmpl
 
@@ -45,4 +46,3 @@ MAINTAINERCLEANFILES = \
 	Makefile.in \
 	missing \
 	config.h.in
-
