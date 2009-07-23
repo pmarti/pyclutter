@@ -82,7 +82,6 @@ include
 modulename clutter
 %%
 import gobject.GObject as PyGObject_Type
-import gtk.gdk.Pixbuf as PyGdkPixbuf_Type
 import pango.Context as PyPangoContext_Type
 import pango.Font as PyPangoFont_Type
 import pango.Layout as PyPangoLayout_Type
