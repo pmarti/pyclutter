@@ -584,7 +584,7 @@
   (return-type "ClutterActor*")
 )
 
-(define-method raise
+(define-method raise_actor
   (of-object "ClutterActor")
   (c-name "clutter_actor_raise")
   (return-type "none")
@@ -593,7 +593,7 @@
   )
 )
 
-(define-method lower
+(define-method lower_actor
   (of-object "ClutterActor")
   (c-name "clutter_actor_lower")
   (return-type "none")
