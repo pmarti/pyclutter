@@ -103,16 +103,6 @@
   )
 )
 
-(define-boxed Fog
-  (in-module "Clutter")
-  (c-name "ClutterFog")
-  (gtype-id "CLUTTER_TYPE_FOG")
-  (fields
-    '("gfloat" "z_near")
-    '("gfloat" "z_far")
-  )
-)
-
 (define-boxed PathNode
   (in-module "Clutter")
   (c-name "ClutterPathNode")

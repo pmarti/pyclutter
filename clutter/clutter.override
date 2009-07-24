@@ -1437,3 +1437,49 @@ _wrap_clutter_stage_get_perspective (PyGObject *self)
   return Py_BuildValue ("(ffff)", perspective.fovy, perspective.aspect,
                         perspective.z_near, perspective.z_far);
 }
+%%
+override clutter_stage_set_fog
+static PyObject *
+_wrap_clutter_stage_set_fog (PyGObject *self, PyObject *args)
+{
+  PyObject *py_fog;
+  ClutterFog fog;
+
+  if (!PyArg_ParseTuple (args, "O:clutter.Stage.set_fog",
+                         &py_fog))
+    return NULL;
+
+  if (!PyTuple_Check (py_fog) || (PyTuple_Size (py_fog) != 2))
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "fog must be a 2-tuple of floats");
+      return NULL;
+    }
+
+  fog.z_near = PyFloat_AsDouble (PyTuple_GetItem (py_fog, 0));
+  fog.z_far = PyFloat_AsDouble (PyTuple_GetItem (py_fog, 1));
+
+  if (PyErr_Occurred ())
+    {
+      PyErr_Clear ();
+      PyErr_SetString (PyExc_TypeError,
+                       "fog must be a 2-tuple of floats");
+      return NULL;
+    }
+
+  clutter_stage_set_fog (CLUTTER_STAGE (self->obj), &fog);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override clutter_stage_get_fog noargs
+static PyObject *
+_wrap_clutter_stage_get_fog (PyGObject *self)
+{
+  ClutterFog fog;
+
+  clutter_stage_get_fog (CLUTTER_STAGE (self->obj), &fog);
+
+  return Py_BuildValue ("(ff)", fog.z_near, fog.z_far);
+}
