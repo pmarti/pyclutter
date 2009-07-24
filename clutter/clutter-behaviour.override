@@ -142,6 +142,12 @@ _wrap_clutter_behaviour_actors_foreach (PyGObject *self,
                 return NULL;
         }
 
+        if (py_data == NULL)
+          {
+            Py_INCREF (Py_None);
+            py_data = Py_None;
+          }
+
         pycb = pyclutter_callback_new (py_func, py_data,
                                        n_params, param_types);
         behaviour = CLUTTER_BEHAVIOUR (self->obj);

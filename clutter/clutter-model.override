@@ -660,6 +660,12 @@ _wrap_clutter_model_foreach (PyGObject *self,
         return NULL;
     }
 
+    if (py_data == NULL)
+      {
+        Py_INCREF (Py_None);
+        py_data = Py_None;
+      }
+
     pycb = pyclutter_callback_new (py_func, py_data, 2, param_types);
 
     clutter_model_foreach (model, pyclutter_model_foreach, pycb);
