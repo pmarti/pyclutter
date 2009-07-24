@@ -209,10 +209,10 @@ _wrap_clutter_actor_box_getitem(PyGBoxed *self, int pos)
 
 	box = pyg_boxed_get (self, ClutterActorBox);
 	switch (pos) {
-		case 0: res = box->x1;
-		case 1: res = box->y1;
-		case 2: res = box->x2;
-		case 3: res = box->y2;
+		case 0: res = box->x1; break;
+		case 1: res = box->y1; break;
+		case 2: res = box->x2; break;
+		case 3: res = box->y2; break;
 		default:
 			g_assert_not_reached();
 			return NULL;
@@ -544,9 +544,9 @@ _wrap_clutter_vertex_getitem (PyGBoxed *self, Py_ssize_t pos)
 
 	vertex = pyg_boxed_get (self, ClutterVertex);
 	switch (pos) {
-		case 0: res = vertex->x;
-		case 1: res = vertex->y;
-		case 2: res = vertex->z;
+		case 0: res = vertex->x; break;
+		case 1: res = vertex->y; break;
+		case 2: res = vertex->z; break;
 		default:
 			g_assert_not_reached();
 			return NULL;
