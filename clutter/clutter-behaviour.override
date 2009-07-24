@@ -3,6 +3,7 @@ ignore
   clutter_alpha_new_full
   clutter_alpha_new_with_func
   clutter_alpha_set_closure
+  clutter_alpha_register_closure
   clutter_path_add_cairo_path
   clutter_behaviour_path_new_with_knots
 %%
