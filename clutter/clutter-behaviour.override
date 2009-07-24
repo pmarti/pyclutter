@@ -491,7 +491,6 @@ _wrap_clutter_path_get_nodes (PyGObject *self)
                 ClutterPathNode *node = l->data;
                 PyObject *py_node;
 
-                //py_node = pygobject_new ((GObject *) actor);
                 py_node = pyg_boxed_new (CLUTTER_TYPE_PATH_NODE, node, TRUE, TRUE);
                 if (!py_node) {
                         g_slist_free (nodes);
@@ -506,6 +505,22 @@ _wrap_clutter_path_get_nodes (PyGObject *self)
         g_slist_free (nodes);
 
         return py_list;
+}
+%%
+override clutter_path_get_node
+static PyObject *
+_wrap_clutter_path_get_node (PyGObject *self, PyObject *args)
+{
+  guint index;
+  ClutterPathNode node;
+
+  if (!PyArg_ParseTuple (args, "i:clutter.Path.get_node",
+                         &index))
+    return NULL;
+
+  clutter_path_get_node (CLUTTER_PATH (self->obj), index, &node);
+
+  return pyg_boxed_new (CLUTTER_TYPE_PATH_NODE, &node, TRUE, TRUE);
 }
 %%
 override-slot ClutterPathNode.tp_init
