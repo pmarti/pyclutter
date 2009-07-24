@@ -366,6 +366,17 @@ _wrap_clutter_animation_bind (PyGObject *self,
     return Py_None;
 }
 %%
+override clutter_animation_get_mode noargs
+static PyObject *
+_wrap_clutter_animation_get_mode(PyGObject *self)
+{
+	gulong mode = clutter_animation_get_mode(CLUTTER_ANIMATION(self->obj));
+    if (mode < CLUTTER_ANIMATION_LAST) {
+        return pyg_enum_from_gtype(CLUTTER_TYPE_ANIMATION_MODE, mode);
+    }
+    return PyLong_FromUnsignedLong(mode);
+}
+%%
 override ClutterAnimatable__proxy_do_animate_property kwargs
 static gboolean
 _wrap_ClutterAnimatable__proxy_do_animate_property(ClutterAnimatable *self,

@@ -82,6 +82,17 @@ _wrap_clutter_alpha_register_func (PyObject *self,
         return Py_BuildValue("K", id);
 }
 %%
+override clutter_alpha_get_mode noargs
+static PyObject *
+_wrap_clutter_alpha_get_mode (PyGObject *self)
+{
+        gulong mode = clutter_alpha_get_mode(CLUTTER_ALPHA(self->obj));
+        if (mode < CLUTTER_ANIMATION_LAST) {
+                return pyg_enum_from_gtype(CLUTTER_TYPE_ANIMATION_MODE, mode);
+        }
+        return PyLong_FromUnsignedLong(mode);
+}
+%%
 override clutter_behaviour_actors_foreach kwargs
 static void
 pyclutter_behaviour_foreach (ClutterBehaviour *behaviour,
