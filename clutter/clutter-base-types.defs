@@ -103,18 +103,6 @@
   )
 )
 
-(define-boxed Perspective
-  (in-module "Clutter")
-  (c-name "ClutterPerspective")
-  (gtype-id "CLUTTER_TYPE_PERSPECTIVE")
-  (fields
-    '("gfloat" "fovy")
-    '("gfloat" "aspect")
-    '("gfloat" "z_near")
-    '("gfloat" "z_far")
-  )
-)
-
 (define-boxed Fog
   (in-module "Clutter")
   (c-name "ClutterFog")

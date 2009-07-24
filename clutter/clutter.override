@@ -1388,3 +1388,52 @@ _wrap_clutter_shader_get_cogl_vertex_shader (PyGObject *self)
 
   return pycogl_handle_from_handle (handle);
 }
+%%
+override clutter_stage_set_perspective
+static PyObject *
+_wrap_clutter_stage_set_perspective (PyGObject *self, PyObject *args)
+{
+  PyObject *py_perspective;
+  ClutterPerspective perspective;
+
+  if (!PyArg_ParseTuple (args, "O:clutter.Stage.set_perspective",
+                         &py_perspective))
+    return NULL;
+
+  if (!PyTuple_Check (py_perspective) || (PyTuple_Size (py_perspective) != 4))
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "perspective must be a 4-tuple of floats");
+      return NULL;
+    }
+
+  perspective.fovy = PyFloat_AsDouble (PyTuple_GetItem (py_perspective, 0));
+  perspective.aspect = PyFloat_AsDouble (PyTuple_GetItem (py_perspective, 1));
+  perspective.z_near = PyFloat_AsDouble (PyTuple_GetItem (py_perspective, 2));
+  perspective.z_far = PyFloat_AsDouble (PyTuple_GetItem (py_perspective, 3));
+
+  if (PyErr_Occurred ())
+    {
+      PyErr_Clear ();
+      PyErr_SetString (PyExc_TypeError,
+                       "perspective must be a 4-tuple of floats");
+      return NULL;
+    }
+
+  clutter_stage_set_perspective (CLUTTER_STAGE (self->obj), &perspective);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override clutter_stage_get_perspective noargs
+static PyObject *
+_wrap_clutter_stage_get_perspective (PyGObject *self)
+{
+  ClutterPerspective perspective;
+
+  clutter_stage_get_perspective (CLUTTER_STAGE (self->obj), &perspective);
+
+  return Py_BuildValue ("(ffff)", perspective.fovy, perspective.aspect,
+                        perspective.z_near, perspective.z_far);
+}
