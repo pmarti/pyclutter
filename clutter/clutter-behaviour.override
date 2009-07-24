@@ -496,3 +496,192 @@ _wrap_clutter_path_get_nodes (PyGObject *self)
 
         return py_list;
 }
+%%
+override-slot ClutterPathNode.tp_init
+static int
+_wrap_clutter_path_node_tp_init (PyGBoxed *self, 
+                                 PyObject *args,
+                                 PyObject *kwargs)
+{
+  static char *kwlist[] = { "type", "points", NULL };
+  PyObject *py_type, *py_points = NULL;
+  ClutterPathNodeType type;
+  ClutterPathNode node;
+  gint n_points, i, p;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs, "O|O:clutter.PathNode",
+                                   kwlist, &py_type, &py_points))
+    return -1;
+
+  if (pyg_enum_get_value (CLUTTER_TYPE_PATH_NODE_TYPE, py_type,
+                          (gpointer)&type))
+    return -1;
+
+  node.type = type;
+
+  switch (type)
+    {
+    case CLUTTER_PATH_MOVE_TO:
+    case CLUTTER_PATH_REL_MOVE_TO:
+    case CLUTTER_PATH_LINE_TO:
+    case CLUTTER_PATH_REL_LINE_TO:
+      n_points = 1;
+      break;
+    case CLUTTER_PATH_CURVE_TO:
+    case CLUTTER_PATH_REL_CURVE_TO:
+      n_points = 3;
+      break;
+    case CLUTTER_PATH_CLOSE:
+      n_points = 0;
+      break;
+    default:
+      PyErr_SetString (PyExc_TypeError, "Not a valid PathNode type");
+      return -1;
+    }
+
+  if (n_points != 0)
+    {
+      if (py_points == NULL || !PyTuple_Check (py_points) ||
+          PyTuple_Size (py_points) != n_points*2)
+        {
+          PyErr_Format (PyExc_TypeError,
+                        "Node of type %i needs a tuple of %i integers",
+                        type, n_points*2);
+          return -1;
+        }
+
+      for (i = 0, p = 0; i < n_points; i++, p+=2)
+        {
+          node.points[i].x = PyInt_AsLong (PyTuple_GetItem (py_points, p));
+          node.points[i].y = PyInt_AsLong (PyTuple_GetItem (py_points, p+1));
+          if (PyErr_Occurred ())
+            return -1;
+        }
+    }
+
+
+  self->boxed = g_boxed_copy (CLUTTER_TYPE_PATH_NODE, &node);
+  self->free_on_dealloc = TRUE;
+  self->gtype = CLUTTER_TYPE_PATH_NODE;
+
+  return 0;
+}
+%%
+override-attr ClutterPathNode.type
+static int
+_wrap_clutter_path_node__set_type (PyGBoxed *self,
+                                   PyObject *value,
+                                   void *closure)
+{
+  ClutterPathNodeType type;
+
+  if (pyg_enum_get_value (CLUTTER_TYPE_PATH_NODE_TYPE, value,
+                          (gpointer)&type))
+    return -1;
+
+  pyg_boxed_get (self, ClutterPathNode)->type = type;
+
+  return 0;
+}
+static PyObject *
+_wrap_clutter_path_node__get_type (PyGBoxed *self, void *closure)
+{
+  return pyg_enum_from_gtype(CLUTTER_TYPE_PATH_NODE_TYPE,
+                             pyg_boxed_get (self, ClutterPathNode)->type);
+}
+%%
+override-slot ClutterPathNode.tp_as_sequence
+static int
+_wrap_clutter_path_node_length (PyGBoxed *self)
+{
+  switch (pyg_boxed_get (self, ClutterPathNode)->type)
+    {
+    case CLUTTER_PATH_MOVE_TO:
+    case CLUTTER_PATH_REL_MOVE_TO:
+    case CLUTTER_PATH_LINE_TO:
+    case CLUTTER_PATH_REL_LINE_TO:
+      return 1;
+    case CLUTTER_PATH_CURVE_TO:
+    case CLUTTER_PATH_REL_CURVE_TO:
+      return 3;
+    case CLUTTER_PATH_CLOSE:
+      return 0;
+    default:
+      g_assert_not_reached();
+      return -1;
+    }
+}
+
+static PyObject *
+_wrap_clutter_path_node_getitem (PyGBoxed *self, int pos)
+{
+  ClutterPathNode *node;
+  int len;
+
+  len = _wrap_clutter_path_node_length (self);
+
+  node = pyg_boxed_get (self, ClutterPathNode);
+
+  if (pos < 0)
+    pos += 3;
+
+  if (pos < 0 || pos >= len)
+    {
+      PyErr_SetString (PyExc_IndexError, "index out of range");
+      return NULL;
+    }
+
+  return Py_BuildValue("(ii)", node->points[pos].x, node->points[pos].y);
+}
+
+static int
+_wrap_clutter_path_node_setitem (PyGBoxed *self, int pos, PyObject *value)
+{
+  ClutterPathNode *node;
+  int x, y, len;
+
+  len = _wrap_clutter_path_node_length (self);
+
+  if (pos < 0)
+    pos += 3;
+
+  if (pos < 0 || pos >= len)
+    {
+      PyErr_SetString (PyExc_IndexError, "index out of range");
+      return -1;
+    }
+
+  if (!PyTuple_Check (value) || PyTuple_Size (value) != 2)
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "a point must be a tuple of two integers");
+      return -1;
+    }
+
+  node = pyg_boxed_get (self, ClutterPathNode);
+
+  x = PyInt_AsLong (PyTuple_GetItem (value, 0));
+  y = PyInt_AsLong (PyTuple_GetItem (value, 1));
+
+  if (PyErr_Occurred ())
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "a point must be a tuple of 2 integers");
+      return -1;
+    }
+
+  node->points[pos].x = x;
+  node->points[pos].y = y;
+
+  return 0;
+}
+
+static PySequenceMethods _wrap_clutter_path_node_tp_as_sequence = {
+    (lenfunc)_wrap_clutter_path_node_length,
+    0,
+    0,
+    (ssizeargfunc)_wrap_clutter_path_node_getitem,
+    0,
+    (ssizeobjargproc)_wrap_clutter_path_node_setitem,
+    0,
+};
