@@ -215,8 +215,8 @@ override clutter_actor_get_clip noargs
 static PyObject *
 _wrap_clutter_actor_get_clip (PyGObject *self)
 {
-	gfloat xoff, yoff;
-	gfloat width, height;
+        gfloat xoff, yoff, width, height;
+        xoff = yoff = width = height = 0;
 
 	clutter_actor_get_clip (CLUTTER_ACTOR (self->obj),
                                 &xoff, &yoff,
