@@ -531,10 +531,23 @@ _wrap_clutter_model_set_sort (PyGObject *self,
         return NULL;
     }
 
+    if (py_func == Py_None)
+      {
+        clutter_model_set_sort (model, column, NULL, NULL, NULL);
+        Py_INCREF (Py_None);
+        return Py_None;
+      }
+
     if (!PyCallable_Check (py_func)) {
         PyErr_SetString (PyExc_TypeError, "func must be callable");
         return NULL;
     }
+
+    if (py_data == NULL)
+      {
+        Py_INCREF (Py_None);
+        py_data = Py_None;
+      }
 
     pycb = pyclutter_callback_new (py_func, py_data, 3, param_types);
 
@@ -593,10 +606,23 @@ _wrap_clutter_model_set_filter (PyGObject *self,
         return NULL;
     }
 
+    if (py_func == Py_None)
+      {
+        clutter_model_set_filter (model, NULL, NULL, NULL);
+        Py_INCREF (Py_None);
+        return Py_None;
+      }
+
     if (!PyCallable_Check (py_func)) {
         PyErr_SetString (PyExc_TypeError, "func must be callable");
         return NULL;
     }
+
+    if (py_data == NULL)
+      {
+        Py_INCREF (Py_None);
+        py_data = Py_None;
+      }
 
     pycb = pyclutter_callback_new (py_func, py_data, 2, param_types);
 
