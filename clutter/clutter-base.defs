@@ -1864,8 +1864,7 @@
   )
 )
 
-(define-method from_hls
-  (of-object "ClutterColor")
+(define-function color_from_hls
   (c-name "clutter_color_from_hls")
   (return-type "none")
   (parameters
@@ -1881,8 +1880,7 @@
   (return-type "guint32")
 )
 
-(define-method from_pixel
-  (of-object "ClutterColor")
+(define-function color_from_pixel
   (c-name "clutter_color_from_pixel")
   (return-type "none")
   (parameters
