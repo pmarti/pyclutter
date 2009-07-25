@@ -15,7 +15,6 @@ _wrap_clutter_interval_new (PyGObject *self, PyObject  *args)
     GType gtype;
     GValue initial = { 0, };
     GValue final = { 0, };
-    ClutterInterval *interval;
 
     if (PyTuple_Size (args) != 3) {
         PyErr_SetString (PyExc_TypeError,
@@ -38,9 +37,12 @@ _wrap_clutter_interval_new (PyGObject *self, PyObject  *args)
             return -1;
     }
 
-    interval = clutter_interval_new_with_values (gtype, &initial, &final);
-    self->obj = (GObject *) interval;
-    pygobject_register_wrapper ((PyObject *) self);
+    if (pygobject_construct(self, "value-type", gtype, NULL))
+      return -1;
+
+    clutter_interval_set_initial_value (CLUTTER_INTERVAL (self->obj), &initial);
+    clutter_interval_set_final_value (CLUTTER_INTERVAL (self->obj), &final);
+
     return 0;
 }
 %%
@@ -204,21 +206,29 @@ _wrap_clutter_interval_compute_value(PyGObject *self,
                                      PyObject *args,
                                      PyObject *kwargs)
 {
-    static char *kwlist[] = { "factor", "value", NULL };
-    PyObject *py_value;
+    static char *kwlist[] = { "factor", NULL };
     double factor;
-    gint ret;
+    gboolean ret;
+    GType gtype;
     GValue value = { 0, };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs,
-                                     "dO:ClutterInterval.compute_value",
-                                     kwlist, &factor, &py_value))
+                                     "d:ClutterInterval.compute_value",
+                                     kwlist, &factor))
         return NULL;
     
-    ret = clutter_interval_compute_value(CLUTTER_INTERVAL(self->obj), factor, &value);
-    
-    return PyBool_FromLong(ret);
+    gtype = clutter_interval_get_value_type (CLUTTER_INTERVAL (self->obj));
+    g_value_init (&value, gtype);
 
+    ret = clutter_interval_compute_value(CLUTTER_INTERVAL(self->obj),
+                                         factor, &value);
+    if (!ret)
+      {
+        PyErr_SetString (PyExc_ValueError, "Can't compute value");
+        return NULL;
+      }
+
+    return pyg_value_as_pyobject (&value, TRUE);
 }
 %%
 override ClutterInterval__do_compute_value kwargs
@@ -247,7 +257,7 @@ _wrap_ClutterInterval__do_compute_value(PyObject *cls,
         g_value_init (&value, gtype);
         if (!CLUTTER_INTERVAL_CLASS(klass)->compute_value(CLUTTER_INTERVAL(self->obj), factor, &value))
           {
-            PyErr_SetString (PyExc_RuntimeError, "Can't compute value");
+            PyErr_SetString (PyExc_ValueError, "Can't compute value");
             return NULL;
           }
         else
@@ -274,7 +284,6 @@ _wrap_ClutterInterval__proxy_do_compute_value(ClutterInterval *self,
     PyGILState_STATE __py_state;
     PyObject *py_self;
     PyObject *py_factor;
-    PyObject *py_value;
     gboolean retval;
     PyObject *py_main_retval;
     PyObject *py_retval;
@@ -290,24 +299,15 @@ _wrap_ClutterInterval__proxy_do_compute_value(ClutterInterval *self,
         return FALSE;
     }
     py_factor = PyFloat_FromDouble(factor);
-    py_value = pyg_value_as_pyobject (value, TRUE);
-    if (!py_value) {
-        if (PyErr_Occurred())
-            PyErr_Print();
-        Py_DECREF(py_factor);
-        Py_DECREF(py_self);
-        pyg_gil_state_release(__py_state);
-        return FALSE;
-    }
     
-    py_args = PyTuple_New(2);
+    py_args = PyTuple_New(1);
     PyTuple_SET_ITEM(py_args, 0, py_factor);
-    PyTuple_SET_ITEM(py_args, 1, py_value);
     
     py_method = PyObject_GetAttrString(py_self, "do_compute_value");
     if (!py_method) {
         if (PyErr_Occurred())
             PyErr_Print();
+        Py_DECREF(py_factor);
         Py_DECREF(py_args);
         Py_DECREF(py_self);
         pyg_gil_state_release(__py_state);
@@ -318,6 +318,7 @@ _wrap_ClutterInterval__proxy_do_compute_value(ClutterInterval *self,
         if (PyErr_Occurred())
             PyErr_Print();
         Py_XDECREF(py_retval);
+        Py_DECREF(py_factor);
         Py_DECREF(py_method);
         Py_DECREF(py_args);
         Py_DECREF(py_self);
@@ -329,6 +330,7 @@ _wrap_ClutterInterval__proxy_do_compute_value(ClutterInterval *self,
         if (PyErr_Occurred())
             PyErr_Print();
         Py_XDECREF(py_retval);
+        Py_DECREF(py_factor);
         Py_DECREF(py_method);
         Py_DECREF(py_args);
         Py_DECREF(py_self);
@@ -336,9 +338,16 @@ _wrap_ClutterInterval__proxy_do_compute_value(ClutterInterval *self,
         return FALSE;
     }
     
-    retval = PyObject_IsTrue(py_main_retval)? TRUE : FALSE;
+    if (pyg_value_from_pyobject (value, py_main_retval))
+      {
+        PyErr_Print ();
+        retval = FALSE;
+      }
+    else
+      retval = TRUE;
     
     Py_XDECREF(py_retval);
+    Py_DECREF(py_factor);
     Py_DECREF(py_method);
     Py_DECREF(py_args);
     Py_DECREF(py_self);
@@ -419,12 +428,8 @@ _wrap_ClutterInterval__proxy_do_validate(ClutterInterval *self,
         pyg_gil_state_release(__py_state);
         return FALSE;
     }
-    if (pspec)
-        py_pspec = pyg_boxed_new(G_TYPE_PARAM, pspec, TRUE, TRUE);
-    else {
-        Py_INCREF(Py_None);
-        py_pspec = Py_None;
-    }
+
+    py_pspec = pyg_param_spec_new (pspec);
     
     py_args = PyTuple_New(1);
     PyTuple_SET_ITEM(py_args, 0, py_pspec);
@@ -433,6 +438,7 @@ _wrap_ClutterInterval__proxy_do_validate(ClutterInterval *self,
     if (!py_method) {
         if (PyErr_Occurred())
             PyErr_Print();
+        Py_DECREF(py_pspec);
         Py_DECREF(py_args);
         Py_DECREF(py_self);
         pyg_gil_state_release(__py_state);
@@ -443,6 +449,7 @@ _wrap_ClutterInterval__proxy_do_validate(ClutterInterval *self,
         if (PyErr_Occurred())
             PyErr_Print();
         Py_XDECREF(py_retval);
+        Py_DECREF(py_pspec);
         Py_DECREF(py_method);
         Py_DECREF(py_args);
         Py_DECREF(py_self);
@@ -454,6 +461,7 @@ _wrap_ClutterInterval__proxy_do_validate(ClutterInterval *self,
         if (PyErr_Occurred())
             PyErr_Print();
         Py_XDECREF(py_retval);
+        Py_DECREF(py_pspec);
         Py_DECREF(py_method);
         Py_DECREF(py_args);
         Py_DECREF(py_self);
@@ -464,6 +472,7 @@ _wrap_ClutterInterval__proxy_do_validate(ClutterInterval *self,
     retval = PyObject_IsTrue(py_main_retval)? TRUE : FALSE;
     
     Py_XDECREF(py_retval);
+    Py_DECREF(py_pspec);
     Py_DECREF(py_method);
     Py_DECREF(py_args);
     Py_DECREF(py_self);
