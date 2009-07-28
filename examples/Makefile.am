@@ -1,17 +1,24 @@
 EXTRA_DIST = \
-	redhand.png \
 	behave.py \
 	bubbles.py \
 	cairo-texture.py \
 	clock.py \
 	custom-actor.py \
+	custom-container.py \
 	entry.py \
 	flowers.py \
 	gtk-clutter.py \
 	hello.py \
+	light0.png \
 	rects.py \
-        reflection.py \
-	script.py
+	redhand_alpha.png \
+	redhand.png \
+	reflection.py \
+	script.py \
 	super-oh.py \
+	test-animation.py \
+	test-binding-pool.py \
+	test-easing.py \
+	test-multitexture.py \
 	test-scale.py \
 	videosink.py
