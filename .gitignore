@@ -30,6 +30,7 @@ depcomp
 docs/html
 docs/reference/builddate.xml
 docs/reference/entities.docbook
+docs/style.css
 install-sh
 libtool
 ltmain.sh
