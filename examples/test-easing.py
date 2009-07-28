@@ -22,6 +22,7 @@ EASING_MODES = [
         ("easeInOutExpo", clutter.EASE_IN_OUT_EXPO),
         ("easeInCirc", clutter.EASE_IN_CIRC),
         ("easeOutCirt", clutter.EASE_OUT_CIRC),
+        ("easeInOutCirt", clutter.EASE_IN_OUT_CIRC),
         ("easeInElastic", clutter.EASE_IN_ELASTIC),
         ("easeOutElasic", clutter.EASE_OUT_ELASTIC),
         ("easeInOutElastic", clutter.EASE_IN_OUT_ELASTIC),
@@ -33,14 +34,13 @@ EASING_MODES = [
         ("easeInOutBunce", clutter.EASE_IN_OUT_BOUNCE),
 ]
 
-def custom_alpha_func(*args):
-    # Simply return the final value
-    return 1.0
+def custom_alpha_func(alpha, data):
+    import math
+    tl = alpha.get_timeline()
+    return math.sin(tl.get_progress() * math.pi)
 
 CUSTOM_ALPHA = clutter.alpha_register_func(custom_alpha_func)
-EASING_MODES.append(("custom rand", CUSTOM_ALPHA))
-
-current_mode = 1
+EASING_MODES.append(("custom sine", CUSTOM_ALPHA))
 
 
 class EasingDemo(object):
