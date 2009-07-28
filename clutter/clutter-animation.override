@@ -21,13 +21,16 @@ _wrap_clutter_actor_animate (PyGObject *self,
     if (len < 4 || (len % 2) != 0)
         goto out;
 
-    if (!PyInt_Check (PyTuple_GetItem (args, 0)))
-        goto out;
+    if (PyInt_Check (PyTuple_GetItem (args, 0)))
+      mode = PyInt_AsLong (PyTuple_GetItem (args, 0));
+    else if (PyLong_Check (PyTuple_GetItem (args, 0)))
+      mode = PyLong_AsUnsignedLong (PyTuple_GetItem (args, 0));
+    else
+      goto out;
 
     if (!PyInt_Check (PyTuple_GetItem (args, 1)))
         goto out;
 
-    mode = PyInt_AsLong (PyTuple_GetItem (args, 0));
     duration = PyInt_AsLong (PyTuple_GetItem (args, 1));
 
     actor = CLUTTER_ACTOR (self->obj);
@@ -60,7 +63,8 @@ _wrap_clutter_actor_animate (PyGObject *self,
                  g_str_has_prefix (property_name, "signal-after::")||
                  g_str_has_prefix (property_name, "signal-swapped::")) {
             PyErr_SetString (PyExc_TypeError,
-                             "Connecting to signals isn't supported yet");
+                             "Use Actor.animate(...).connect('signal-name', "
+                             "my_signal_handler) to connect to signals");
             g_free (properties);
             return NULL;
         }
@@ -126,13 +130,16 @@ _wrap_clutter_actor_animate_with_timeline (PyGObject *self,
     if (len < 4 || (len % 2) != 0)
         goto out;
 
-    if (!PyInt_Check (PyTuple_GetItem (args, 0)))
-        goto out;
+    if (PyInt_Check (PyTuple_GetItem (args, 0)))
+      mode = PyInt_AsLong (PyTuple_GetItem (args, 0));
+    else if (PyLong_Check (PyTuple_GetItem (args, 0)))
+      mode = PyLong_AsUnsignedLong (PyTuple_GetItem (args, 0));
+    else
+      goto out;
 
     if (!pygobject_check (PyTuple_GetItem (args, 1), &PyClutterTimeline_Type))
         goto out;
 
-    mode = PyInt_AsLong (PyTuple_GetItem (args, 0));
     timeline = CLUTTER_TIMELINE (pygobject_get (PyTuple_GetItem (args, 1)));
 
     actor = CLUTTER_ACTOR (self->obj);
@@ -165,7 +172,8 @@ _wrap_clutter_actor_animate_with_timeline (PyGObject *self,
                  g_str_has_prefix (property_name, "signal-after::")||
                  g_str_has_prefix (property_name, "signal-swapped::")) {
             PyErr_SetString (PyExc_TypeError,
-                             "Connecting to signals isn't supported yet");
+                             "Use Actor.animate(...).connect('signal-name', "
+                             "my_signal_handler) to connect to signals");
             g_free (properties);
             return NULL;
         }
@@ -267,7 +275,8 @@ _wrap_clutter_actor_animate_with_alpha (PyGObject *self,
                  g_str_has_prefix (property_name, "signal-after::")||
                  g_str_has_prefix (property_name, "signal-swapped::")) {
             PyErr_SetString (PyExc_TypeError,
-                             "Connecting to signals isn't supported yet");
+                             "Use Actor.animate(...).connect('signal-name', "
+                             "my_signal_handler) to connect to signals");
             g_free (properties);
             return NULL;
         }
