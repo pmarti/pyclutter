@@ -8,9 +8,9 @@ m4_define(pyclutter_version_minor, 9)
 m4_define(pyclutter_version_micro, 1)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
-m4_define(clutter_required_version,      0.9.9)
-m4_define(cluttergtk_required_version,   0.9.2)
-m4_define(cluttergst_required_version,   0.9.0)
+m4_define(clutter_required_version,      1.0.0)
+m4_define(cluttergtk_required_version,   0.10.2)
+m4_define(cluttergst_required_version,   0.10.0)
 m4_define(pycairo_required_version,      1.0.2) dnl or 1.1.7
 m4_define(pygtk_required_version,        2.8.0)
 
@@ -98,7 +98,7 @@ AC_SUBST(PYGST_DEFSDIR)
 AC_MSG_RESULT($PYGST_DEFSDIR)
 
 dnl check for clutter
-PKG_CHECK_MODULES(CLUTTER, clutter-0.9 >= clutter_required_version)
+PKG_CHECK_MODULES(CLUTTER, clutter-1.0 >= clutter_required_version)
 AC_SUBST(CLUTTER_CFLAGS)
 AC_SUBST(CLUTTER_LIBS)
 if test -n "$export_dynamic"; then
@@ -121,7 +121,7 @@ AC_ARG_WITH(cluttergst,
 
 if test "x$build_cluttergst" = "xyes"; then
   PKG_CHECK_MODULES(CLUTTERGST,
-                    clutter-gst-0.9 >= cluttergst_required_version,
+                    clutter-gst-0.10 >= cluttergst_required_version,
                     build_cluttergst=yes,
                     build_cluttergst=no)
   AC_SUBST(CLUTTERGST_CFLAGS)
@@ -141,7 +141,7 @@ AC_ARG_WITH(cluttergtk,
 
 if test "x$build_cluttergtk" = "xyes"; then
   PKG_CHECK_MODULES(CLUTTERGTK,
-                    clutter-gtk-0.9 >= cluttergtk_required_version,
+                    clutter-gtk-0.10 >= cluttergtk_required_version,
                     build_cluttergtk=yes,
                     build_cluttergtk=no)
   AC_SUBST(CLUTTERGTK_CFLAGS)
