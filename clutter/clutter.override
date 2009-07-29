@@ -14,6 +14,7 @@ extern Pycairo_CAPI_t *Pycairo_CAPI;
 /* from the cogl portion */
 extern PyTypeObject PyCoglHandle_Type;
 extern PyTypeObject PyCoglTexture_Type;
+extern PyTypeObject PyCoglMaterial_Type;
 extern PyTypeObject PyCoglMatrix_Type;
 extern PyTypeObject PyCoglShader_Type;
 extern PyTypeObject PyCoglProgram_type;
@@ -1061,7 +1062,7 @@ _wrap_clutter_texture_set_cogl_material (PyGObject *self,
   if (!PyArg_ParseTupleAndKeywords(args, kwargs,
                                    "O!:ClutterTexture.set_cogl_material",
                                    kwlist,
-                                   &PyCoglMatrix_Type, &py_handle))
+                                   &PyCoglMaterial_Type, &py_handle))
     return NULL;
 
   clutter_texture_set_cogl_material (CLUTTER_TEXTURE(self->obj),
