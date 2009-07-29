@@ -129,6 +129,14 @@
   )
 )
 
+(define-virtual pick
+  (of-object "ClutterActor")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
 (define-method queue_redraw
   (of-object "ClutterActor")
   (c-name "clutter_actor_queue_redraw")
