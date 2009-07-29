@@ -40,6 +40,11 @@
   (return-type "none")
 )
 
+(define-virtual show
+  (of-object "ClutterActor")
+  (return-type "none")
+)
+
 (define-method show_all
   (of-object "ClutterActor")
   (c-name "clutter_actor_show_all")
@@ -143,6 +148,14 @@
   (return-type "none")
 )
 
+(define-virtual queue_redraw
+  (of-object "ClutterActor")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "leaf_that_queued")
+  )
+)
+
 (define-method queue_relayout
   (of-object "ClutterActor")
   (c-name "clutter_actor_queue_relayout")
@@ -152,6 +165,11 @@
 (define-method destroy
   (of-object "ClutterActor")
   (c-name "clutter_actor_destroy")
+  (return-type "none")
+)
+
+(define-virtual destroy
+  (of-object "ClutterActor")
   (return-type "none")
 )
 
@@ -940,6 +958,21 @@
   (return-type "gboolean")
 )
 
+(define-virtual parent_set
+  (of-object "ClutterActor")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "old_parent")
+  )
+)
+
+(define-virtual apply_transform
+  (of-object "ClutterActor")
+  (return-type "none")
+  (parameters
+    '("CoglMatrix*" "matrix")
+  )
+)
 
 
 ;; From clutter-alpha.h

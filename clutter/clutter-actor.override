@@ -696,3 +696,109 @@ _wrap_clutter_actor_get_transformation_matrix (PyGObject *self)
 
   return py_matrix;
 }
+%%
+override ClutterActor__do_apply_transform kwargs
+static PyObject *
+_wrap_ClutterActor__do_apply_transform (PyObject *cls,
+                                        PyObject *args,
+                                        PyObject *kwargs)
+{
+    gpointer klass;
+    static char *kwlist[] = { "self", "matrix", NULL };
+    PyGObject *self;
+    PyCoglMatrix *matrix;
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!O!:ClutterActor.apply_transform",
+                                     kwlist, 
+                                     &PyClutterActor_Type, &self,
+                                     &PyCoglMatrix_Type, &matrix))
+        return NULL;
+
+    klass = g_type_class_ref(pyg_type_from_object(cls));
+
+    if (CLUTTER_ACTOR_CLASS(klass)->apply_transform)
+        CLUTTER_ACTOR_CLASS(klass)->apply_transform(CLUTTER_ACTOR(self->obj),
+                                                    &matrix->matrix);
+    else {
+        PyErr_SetString(PyExc_NotImplementedError, "virtual method ClutterActor.apply_transform not implemented");
+        g_type_class_unref(klass);
+        return NULL;
+    }
+
+    g_type_class_unref(klass);
+    Py_INCREF(Py_None);
+    return Py_None;
+}
+%%
+override ClutterActor__proxy_do_apply_transform 
+static void
+_wrap_ClutterActor__proxy_do_apply_transform (ClutterActor *self,
+                                              CoglMatrix   *matrix)
+{
+    PyGILState_STATE __py_state;
+    PyObject *py_self;
+    PyObject *py_matrix = NULL;
+    PyObject *py_retval;
+    PyObject *py_args;
+    PyObject *py_method;
+    PyTypeObject *type;
+    
+    __py_state = pyg_gil_state_ensure();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    if (matrix) {
+        type = &PyCoglMatrix_Type;
+        py_matrix = type->tp_alloc (type, 0);
+        ((PyCoglMatrix *)py_matrix)->matrix = *matrix;
+    }
+    else {
+        Py_INCREF(Py_None);
+        py_matrix = Py_None;
+    }
+    
+    py_args = PyTuple_New(1);
+    PyTuple_SET_ITEM(py_args, 0, py_matrix);
+    
+    py_method = PyObject_GetAttrString(py_self, "do_apply_transform");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    py_retval = PyObject_CallObject(py_method, py_args);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    if (py_retval != Py_None) {
+        PyErr_SetString(PyExc_TypeError, "virtual method should return None");
+        PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(__py_state);
+        return;
+    }
+    
+    Py_XDECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_args);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(__py_state);
+}
