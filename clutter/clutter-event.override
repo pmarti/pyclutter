@@ -6,10 +6,6 @@ ignore
   clutter_event_get_source
   clutter_event_free
   clutter_event_copy
-  clutter_key_event_symbol
-  clutter_key_event_code
-  clutter_key_event_unicode
-  clutter_button_event_button
   clutter_event_get_device
 %%
 override clutter_event_get_coords noargs
@@ -25,11 +21,18 @@ _wrap_clutter_event_get_coords (PyObject *self)
 }
 %%
 override-slot ClutterEvent.tp_setattr
+
 #define CHECK_VALUE_IS_INT(a,v) \
 	G_STMT_START{ if (!PyInt_Check ((v))) { \
 		PyErr_Format (PyExc_TypeError, "%s must be an int", (a)); \
 		return -1; \
 	} }G_STMT_END
+#define CHECK_VALUE_IS_FLOAT(a,v) \
+        G_STMT_START{ if (!PyFloat_Check ((v))) { \
+                PyErr_Format (PyExc_TypeError, "%s must be a float", (a)); \
+                return -1; \
+        } }G_STMT_END
+
 static int
 _wrap_clutter_event_tp_setattr (PyObject *self,
 				char     *attr,
@@ -60,13 +63,13 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 				return 0;
 			}
 			else if (attr[0] == 'x' && attr[1] == '\0') {
-				CHECK_VALUE_IS_INT (attr, value);
-				event->motion.x = PyInt_AsLong (value);
+				CHECK_VALUE_IS_FLOAT (attr, value);
+				event->motion.x = PyFloat_AsDouble (value);
 				return 0;
 			}
 			else if (attr[0] == 'y' && attr[1] == '\0') {
-				CHECK_VALUE_IS_INT (attr, value);
-				event->motion.y = PyInt_AsLong (value);
+				CHECK_VALUE_IS_FLOAT (attr, value);
+				event->motion.y = PyFloat_AsDouble (value);
 				return 0;
 			}
 			else if (!strcmp (attr, "modifier_state")) {
@@ -83,13 +86,13 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 				return 0;
 			}
 			else if (attr[0] == 'x' && attr[1] == '\0') {
-				CHECK_VALUE_IS_INT (attr, value);
-				event->button.x = PyInt_AsLong (value);
+				CHECK_VALUE_IS_FLOAT (attr, value);
+				event->button.x = PyFloat_AsDouble (value);
 				return 0;
 			}
 			else if (attr[0] == 'y' && attr[1] == '\0') {
-				CHECK_VALUE_IS_INT (attr, value);
-				event->button.y = PyInt_AsLong (value);
+				CHECK_VALUE_IS_FLOAT (attr, value);
+				event->button.y = PyFloat_AsDouble (value);
 				return 0;
 			}
 			else if (!strcmp (attr, "modifier_state")) {
@@ -115,13 +118,13 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 				return 0;
 			}
 			else if (attr[0] == 'x' && attr[1] == '\0') {
-				CHECK_VALUE_IS_INT (attr, value);
-				event->scroll.x = PyInt_AsLong (value);
+				CHECK_VALUE_IS_FLOAT (attr, value);
+				event->scroll.x = PyFloat_AsDouble (value);
 				return 0;
 			}
 			else if (attr[0] == 'y' && attr[1] == '\0') {
-				CHECK_VALUE_IS_INT (attr, value);
-				event->scroll.y = PyInt_AsLong (value);
+				CHECK_VALUE_IS_FLOAT (attr, value);
+				event->scroll.y = PyFloat_AsDouble (value);
 				return 0;
 			}
 			else if (!strcmp (attr, "modifier_state")) {
@@ -129,7 +132,7 @@ _wrap_clutter_event_tp_setattr (PyObject *self,
 				event->scroll.modifier_state = PyInt_AsLong (value);
 				return 0;
 			}
-			else if (!strcmp (attr, "button")) {
+			else if (!strcmp (attr, "direction")) {
 				CHECK_VALUE_IS_INT (attr, value);
 				event->scroll.direction = PyInt_AsLong (value);
 				return 0;
@@ -183,6 +186,7 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 	switch (event->type) {
 		case CLUTTER_NOTHING:
 			break;
+
 		case CLUTTER_MOTION: /* ClutterMotionEvent	motion */
 			if (!strcmp (attr, "__members__"))
 				return Py_BuildValue ("[ssssssss]",
@@ -194,10 +198,11 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 						      "modifier_state",
 						      "x", "y");
 			if (!strcmp (attr, "x"))
-				return PyInt_FromLong (event->motion.x);
+				return PyFloat_FromDouble (event->motion.x);
 			if (!strcmp (attr, "y"))
-				return PyInt_FromLong (event->motion.y);
+				return PyFloat_FromDouble (event->motion.y);
 			break;
+
 		case CLUTTER_BUTTON_PRESS:
 		case CLUTTER_BUTTON_RELEASE:
 			if (!strcmp (attr, "__members__"))
@@ -212,14 +217,15 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 						      "button",
                                                       "click_count");
 			if (!strcmp (attr, "x"))
-				return PyInt_FromLong (event->button.x);
+				return PyFloat_FromDouble (event->button.x);
 			if (!strcmp (attr, "y"))
-				return PyInt_FromLong (event->button.y);
+				return PyFloat_FromDouble (event->button.y);
 			if (!strcmp (attr, "button"))
 				return PyInt_FromLong (event->button.button);
                         if (!strcmp (attr, "click_count"))
                                 return PyInt_FromLong (event->button.click_count);
 			break;
+
                 case CLUTTER_SCROLL:
                         if (!strcmp (attr, "__members__"))
 				return Py_BuildValue ("[sssssssss]",
@@ -232,12 +238,13 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 						      "x", "y",
 						      "direction");
 			if (!strcmp (attr, "x"))
-				return PyInt_FromLong (event->scroll.x);
+				return PyFloat_FromDouble (event->scroll.x);
 			if (!strcmp (attr, "y"))
-				return PyInt_FromLong (event->scroll.y);
+				return PyFloat_FromDouble (event->scroll.y);
 			if (!strcmp (attr, "direction"))
 				return pyg_enum_from_gtype (CLUTTER_TYPE_SCROLL_DIRECTION, event->scroll.direction);
                         break;
+
 		case CLUTTER_KEY_PRESS:
 		case CLUTTER_KEY_RELEASE:
 			if (!strcmp (attr, "__members__"))
@@ -258,6 +265,7 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
                         if (!strcmp (attr, "unicode_value"))
                                 return PyInt_FromLong (clutter_event_get_key_unicode ((ClutterEvent *) event));
 			break;
+
                 case CLUTTER_ENTER:
                 case CLUTTER_LEAVE:
                         if (!strcmp (attr, "__members__"))
@@ -270,12 +278,13 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
                                                       "x", "y",
                                                       "related");
 			if (!strcmp (attr, "x"))
-				return PyInt_FromLong (event->crossing.x);
+				return PyFloat_FromDouble (event->crossing.x);
 			if (!strcmp (attr, "y"))
-				return PyInt_FromLong (event->crossing.y);
+				return PyFloat_FromDouble (event->crossing.y);
                         if (!strcmp (attr, "related"))
                                 return pygobject_new ((GObject *) event->crossing.related);
                         break;
+
 		default:
 			break;
 	}
@@ -289,7 +298,8 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
                 return PyInt_FromLong (clutter_event_get_time (event));
 
         if (!strcmp (attr, "flags"))
-                return pyg_flags_from_gtype (CLUTTER_TYPE_EVENT_FLAGS, event->any.flags);
+                return pyg_flags_from_gtype (CLUTTER_TYPE_EVENT_FLAGS,
+                                             clutter_event_get_flags (event));
 
         if (!strcmp (attr, "modifier_state"))
                 return pyg_flags_from_gtype (CLUTTER_TYPE_MODIFIER_TYPE,
