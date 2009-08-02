@@ -106,7 +106,6 @@ ignore
   clutter_threads_add_frame_source
   clutter_threads_add_frame_source_full
   clutter_threads_set_lock_functions
-  clutter_timeline_new_for_duration
   clutter_actor_box_get_from_vertices
   clutter_stage_manager_get_default
   clutter_get_input_device_for_id
