@@ -1,3 +1,7 @@
+# This file is no longer updated. The history of the project is maintained
+# inside the repository commit messages. This file is retained in the same
+# repository just for historical reasons.
+
 2008-12-10  Emmanuele Bassi  <ebassi@linux.intel.com>
 
 	* configure.ac: Post release bump to 0.8.3
