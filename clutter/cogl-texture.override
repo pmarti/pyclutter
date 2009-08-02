@@ -186,20 +186,20 @@ static PyObject *
 _wrap_cogl_texture_new_with_size (PyObject *self, PyObject *args)
 {
   guint width, height;
-  PyObject *py_flags, *py_format;
-  CoglTextureFlags flags;
-  CoglPixelFormat format;
+  PyObject *py_flags = NULL, *py_format = NULL;
+  CoglTextureFlags flags = COGL_TEXTURE_NONE;
+  CoglPixelFormat format = COGL_PIXEL_FORMAT_ANY;
   CoglHandle handle = COGL_INVALID_HANDLE;
 
-  if (!PyArg_ParseTuple (args, "iiOO:cogl.texture_new_with_size",
+  if (!PyArg_ParseTuple (args, "ii|OO:cogl.texture_new_with_size",
                          &width, &height, &py_flags, &py_format))
     return NULL;
 
-  if (pyg_flags_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags,
+  if (py_flags && pyg_flags_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags,
                            (gpointer)&flags))
     return NULL;
 
-  if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format,
+  if (py_format && pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format,
                           (gpointer)&format))
     return NULL;
 
@@ -214,21 +214,21 @@ static PyObject *
 _wrap_cogl_texture_new_from_file (PyObject *self, PyObject *args)
 {
   const gchar *filename;
-  PyObject *py_flags, *py_format;
-  CoglTextureFlags flags;
-  CoglPixelFormat format;
+  PyObject *py_flags = NULL, *py_format = NULL;
+  CoglTextureFlags flags = COGL_TEXTURE_NONE;
+  CoglPixelFormat format = COGL_PIXEL_FORMAT_ANY;
   GError *error = NULL;
   CoglHandle handle = COGL_INVALID_HANDLE;
 
-  if (!PyArg_ParseTuple (args, "sOO:cogl.texture_new_from_file",
+  if (!PyArg_ParseTuple (args, "s|OO:cogl.texture_new_from_file",
                          &filename, &py_flags, &py_format))
     return NULL;
 
-  if (pyg_flags_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags,
+  if (py_flags && pyg_flags_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags,
                            (gpointer)&flags))
     return NULL;
 
-  if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format,
+  if (py_format && pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format,
                           (gpointer)&format))
     return NULL;
 
@@ -250,22 +250,23 @@ static PyObject *
 _wrap_cogl_texture_new_from_data (PyObject *self, PyObject *args)
 {
   guint width, height, rowstride;
-  PyObject *py_flags, *py_format, *py_internal_format;
-  CoglTextureFlags flags;
-  CoglPixelFormat format, internal_format;
+  PyObject *py_flags = NULL, *py_format = NULL, *py_internal_format;
+  CoglTextureFlags flags = COGL_TEXTURE_NONE;
+  CoglPixelFormat format = COGL_PIXEL_FORMAT_ANY, internal_format;
   const guchar *data;
   CoglHandle handle = COGL_INVALID_HANDLE;
 
-  if (!PyArg_ParseTuple (args, "iiOOOis:cogl.texture_new_from_data",
-                         &width, &height, &py_flags, &py_format,
-                         &py_internal_format, &rowstride, &data))
+  if (!PyArg_ParseTuple (args, "iiOis|OO:cogl.texture_new_from_data",
+                         &width, &height,
+                         &py_internal_format, &rowstride, &data,
+                         &py_flags, &py_format))
     return NULL;
 
-  if (pyg_flags_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags,
+  if (py_flags && pyg_flags_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags,
                            (gpointer)&flags))
     return NULL;
 
-  if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format,
+  if (py_format && pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format,
                           (gpointer)&format))
     return NULL;
 
@@ -311,21 +312,21 @@ static PyObject *
 _wrap_cogl_texture_new_from_bitmap (PyObject *self, PyObject *args)
 {
   PyCoglHandle *bmp_handle;
-  PyObject *py_flags, *py_format;
-  CoglTextureFlags flags;
-  CoglPixelFormat format;
+  PyObject *py_flags = NULL, *py_format = NULL;
+  CoglTextureFlags flags = COGL_TEXTURE_NONE;
+  CoglPixelFormat format = COGL_PIXEL_FORMAT_ANY;
   CoglHandle handle = COGL_INVALID_HANDLE;
 
-  if (!PyArg_ParseTuple (args, "O!OO:cogl.texture_new_from_file",
+  if (!PyArg_ParseTuple (args, "O!|OO:cogl.texture_new_from_file",
                          &PyCoglHandle_Type, &bmp_handle,
                          &py_flags, &py_format))
     return NULL;
 
-  if (pyg_flags_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags,
+  if (py_flags && pyg_flags_get_value (COGL_TYPE_TEXTURE_FLAGS, py_flags,
                            (gpointer)&flags))
     return NULL;
 
-  if (pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format,
+  if (py_format && pyg_enum_get_value (COGL_TYPE_PIXEL_FORMAT, py_format,
                           (gpointer)&format))
     return NULL;
 
