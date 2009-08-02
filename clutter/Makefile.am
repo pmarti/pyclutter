@@ -115,7 +115,8 @@ defs_DATA = \
 
 # delete the old submodules, if any, to avoid collisions
 install-data-local:
-	(cd $(DESTDIR)$(pyclutterexecdir) && \
+	(test -d $(DESTDIR)$(pyclutterexecdir) && \
+	 cd $(DESTDIR)$(pyclutterexecdir) && \
 	 rm -f cluttercairo.so && \
 	 rm -f cluttergst.so && \
 	 rm -f cluttergtk.so)
