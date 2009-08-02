@@ -77,7 +77,8 @@ class EasingDemo(object):
             self.update_label()
         elif event.button == 1:
             self.rect.animate(EASING_MODES[self.current_mode][1], 500,
-                    "x", event.x, "y", event.y)
+                              "x", event.x,
+                              "y", event.y)
 
 
 if __name__ == '__main__':
