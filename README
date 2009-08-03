@@ -14,9 +14,9 @@ Requirements
   * GLib 2.14.0 or higher
   * GTK+ 2.10.0 or higher
   * Clutter 0.8.2 or higher
-  * PyCairo
+  * PyCairo 1.0.2 or higher
   * PyGObject 2.12.1 or higher
-  * Python 2.4.0 or higher
+  * Python 2.5.0 or higher
 
 In order to build the bindings for clutter-gst you will also need:
   * GStreamer >= 0.10
@@ -28,10 +28,9 @@ In order to build the bindings for clutter-gtk you will also need:
 
 This release is supporting the following Clutter releases:
 
-        clutter-core    0.8.2
-        clutter-gst     0.8.0
-        clutter-gtk     0.8.2
-        clutter-cairo   0.8.0
+        clutter-core    1.0.0
+        clutter-gst     0.10.0
+        clutter-gtk     0.10.2
 
 Installation
 ------------
@@ -46,6 +45,12 @@ To avoid installing to a system directory you can change the installation
 prefix at configure time with
 
   ./configure --prefix=/some/other/place
+
+Release notes for PyClutter 1.0.0
+---------------------------------
+
+The cluttercairo submodule has been removed, since all of its functionaly
+is now available inside the core clutter module.
 
 Release notes for PyClutter 0.8.2
 ---------------------------------
