@@ -25,9 +25,10 @@ pycogl_handle_from_handle (CoglHandle handle)
   PyTypeObject *type = NULL;
   PyObject *o;
 
+  /* if the handle is invalid we just return Py_None */
   if (handle == COGL_INVALID_HANDLE) {
-      PyErr_SetString (PyExc_TypeError, "Invalid Handle");
-      return NULL;
+      Py_INCREF (Py_None);
+      return Py_None;
   }
 
   if (cogl_is_texture (handle))
