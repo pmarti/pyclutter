@@ -36,7 +36,7 @@ class TextureReflection (clutter.Clone):
 
         # get the cogl handle for the parent texture
         cogl_tex = parent.get_cogl_texture()
-        if (cogl_tex is None):
+        if not cogl_tex:
             return
 
         (width, height) = self.get_size()
@@ -87,7 +87,7 @@ def main (args):
     stage.add(group)
 
     try:
-        tex = clutter.Texture(args[0])
+        tex = clutter.Texture(filename=args[0])
     except Exception:
         print "Unable to load the texture file"
         return 1
@@ -105,7 +105,7 @@ def main (args):
     timeline.set_loop(True)
     alpha = clutter.Alpha(timeline, clutter.LINEAR)
     behaviour = clutter.BehaviourRotate(clutter.Y_AXIS, 0.0, 360.0, alpha, clutter.ROTATE_CW)
-    behaviour.set_center(group.get_width()/2, 0, 0)
+    behaviour.set_center(int(group.get_width()/2), 0, 0)
     behaviour.apply(group)
 
     stage.show()
