@@ -4053,7 +4053,6 @@
   (properties
     '("filename" (optional) (default NULL))
     '("disable_slicing" (optional) (default FALSE))
-    '("tile_waste" (optional) (default 64))
     '("load_async" (optional) (default FALSE))
     '("load_data_async" (optional) (default FALSE))
   )
