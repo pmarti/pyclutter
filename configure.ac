@@ -46,8 +46,8 @@ AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
 # uncomment in 0.7
-#AM_PATH_PYTHON(2.5.0,,[AC_MSG_ERROR([could not find Python 2.5.0])])
-AM_PATH_PYTHON(2.4.0,,[AC_MSG_ERROR([could not find Python 2.4.0])])
+AM_PATH_PYTHON(2.5.0,,[AC_MSG_ERROR([could not find Python 2.5.0])])
+#AM_PATH_PYTHON(2.4.0,,[AC_MSG_ERROR([could not find Python 2.4.0])])
 AM_CHECK_PYTHON_HEADERS(,[AC_MSG_ERROR([could not find Python headers])])
 
 PLATFORM=`$PYTHON -c "from distutils import util; print util.get_platform()"`
@@ -67,12 +67,14 @@ AC_CHECK_HEADERS([fcntl.h stdlib.h string.h unistd.h])
 AC_C_CONST
 
 dnl check for pygtk
-PKG_CHECK_MODULES(PYGTK, pygtk-2.0 >= pygtk_required_version)
+PKG_CHECK_MODULES(PYGTK, [pygtk-2.0 >= pygtk_required_version])
 AC_SUBST(PYGTK_CFLAGS)
-AC_PATH_PROGS(PYGOBJECT_CODEGEN, pygobject-codegen-2.0 pygtk-codegen-2.0, no)
-if test "x$PYGOBJECT_CODEGEN" = "xno"; then
-  AC_MSG_ERROR([could not find pygobject-codegen-2.0 script])
-fi
+AC_PATH_PROGS(PYGOBJECT_CODEGEN, [pygobject-codegen-2.0 pygtk-codegen-2.0], [no])
+AS_IF([test "x$PYGOBJECT_CODEGEN" = "xno"],
+      [
+        AC_MSG_ERROR([could not find pygobject-codegen-2.0 script])
+      ]
+)
 
 PYGOBJECT_CODEGEN_DEFINES=
 
@@ -80,19 +82,22 @@ dnl check for pycairo
 PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
                            [have_pycairo=yes],
                            [have_pycairo=no])
-if test "x$have_pycairo" = "xyes"; then
-  AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
-  AC_SUBST(PYCAIRO_CFLAGS)
-  AC_SUBST(PYCAIRO_LIBS)
-  PYGOBJECT_CODEGEN_DEFINES="$PYGOBJECT_CODEGEN_DEFINES -DHAVE_PYCAIRO"
-fi
+AS_IF([test "x$have_pycairo" = "xyes"],
+      [
+        AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
+        AC_SUBST(PYCAIRO_CFLAGS)
+        AC_SUBST(PYCAIRO_LIBS)
 
-AC_MSG_CHECKING(for pygtk defs)
+        PYGOBJECT_CODEGEN_DEFINES="$PYGOBJECT_CODEGEN_DEFINES -DHAVE_PYCAIRO"
+      ]
+)
+
+AC_MSG_CHECKING([for pygtk defs])
 PYGTK_DEFSDIR=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
 AC_SUBST(PYGTK_DEFSDIR)
 AC_MSG_RESULT($PYGTK_DEFSDIR)
 
-AC_MSG_CHECKING(for gst-python defs)
+AC_MSG_CHECKING([for gst-python defs])
 PYGST_DEFSDIR=`$PKG_CONFIG --variable=defsdir gst-python-0.10`
 AC_SUBST(PYGST_DEFSDIR)
 AC_MSG_RESULT($PYGST_DEFSDIR)
@@ -101,83 +106,93 @@ dnl check for clutter
 PKG_CHECK_MODULES(CLUTTER, clutter-1.0 >= clutter_required_version)
 AC_SUBST(CLUTTER_CFLAGS)
 AC_SUBST(CLUTTER_LIBS)
-if test -n "$export_dynamic"; then
-  CLUTTER_LIBS=`echo $CLUTTER_LIBS | sed -e "s/$export_dynamic//"`
-fi
+AS_IF([test -n "$export_dynamic"],
+      [
+        CLUTTER_LIBS=`echo $CLUTTER_LIBS | sed -e "s/$export_dynamic//"`
+      ]
+)
 
 dnl check for sub modules
+AS_IF([test "x$PYGST_DEFSDIR" = "x"],
+      [
+        AC_MSG_WARN([No PyGStreamer definitions found, disabling clutter-gst])
+        build_cluttergst=no
+      ],
+      [
+        build_cluttergst=yes
+      ]
+)
 
-if test "x$PYGST_DEFSDIR" = "x"; then
-  AC_MSG_WARN([No PyGStreamer definitions found, disabling clutter-gst])
-  build_cluttergst=no
-else
-  build_cluttergst=yes
-fi
+AC_ARG_WITH([cluttergst],
+            [AC_HELP_STRING([--with-cluttergst=@<:@yes/no@:>@], [Build clutter.cluttergst submodule])],
+            [build_cluttergst=$with_cluttergst])
 
-AC_ARG_WITH(cluttergst,
-            AC_HELP_STRING([--with-cluttergst=@<:@yes/no@:>@],
-                           [Build clutter.cluttergst submodule]),
-            build_cluttergst=$with_cluttergst)
+AS_IF([test "x$build_cluttergst" = "xyes"],
+      [
+        PKG_CHECK_MODULES([CLUTTERGST],
+                          [clutter-gst-0.10 >= cluttergst_required_version],
+                          [build_cluttergst=yes],
+                          [build_cluttergst=no])
+        AC_SUBST(CLUTTERGST_CFLAGS)
+        AC_SUBST(CLUTTERGST_LIBS)
 
-if test "x$build_cluttergst" = "xyes"; then
-  PKG_CHECK_MODULES(CLUTTERGST,
-                    clutter-gst-0.10 >= cluttergst_required_version,
-                    build_cluttergst=yes,
-                    build_cluttergst=no)
-  AC_SUBST(CLUTTERGST_CFLAGS)
-  AC_SUBST(CLUTTERGST_LIBS)
-  if test -n "$export_dynamic"; then
-    CLUTTERGST_LIBS=`echo $CLUTTERGST_LIBS | sed -e "s/$export_dynamic//"`
-  fi
-fi
+        AS_IF([test -n "$export_dynamic"],
+              [
+                CLUTTERGST_LIBS=`echo $CLUTTERGST_LIBS | sed -e "s/$export_dynamic//"`
+              ]
+        )
+      ]
+)
 
-AM_CONDITIONAL(BUILD_CLUTTERGST, [test "x$build_cluttergst" = "xyes"])
+AM_CONDITIONAL([BUILD_CLUTTERGST], [test "x$build_cluttergst" = "xyes"])
 
 build_cluttergtk=yes
-AC_ARG_WITH(cluttergtk,
-            AC_HELP_STRING([--with-cluttergtk=@<:@yes/no@:>@],
-                           [Build clutter.cluttergtk submodule]),
-            build_cluttergtk=$with_cluttergtk)
+AC_ARG_WITH([cluttergtk],
+            [AC_HELP_STRING([--with-cluttergtk=@<:@yes/no@:>@], [Build clutter.cluttergtk submodule])],
+            [build_cluttergtk=$with_cluttergtk])
 
-if test "x$build_cluttergtk" = "xyes"; then
-  PKG_CHECK_MODULES(CLUTTERGTK,
-                    clutter-gtk-0.10 >= cluttergtk_required_version,
-                    build_cluttergtk=yes,
-                    build_cluttergtk=no)
-  AC_SUBST(CLUTTERGTK_CFLAGS)
-  AC_SUBST(CLUTTERGTK_LIBS)
-  if test -n "$export_dynamic"; then
-    CLUTTERGTK_LIBS=`echo $CLUTTERGTK_LIBS | sed -e "s/$export_dynamic//"`
-  fi
-fi
+AS_IF([test "x$build_cluttergtk" = "xyes"],
+      [
+        PKG_CHECK_MODULES([CLUTTERGTK],
+                          [clutter-gtk-0.10 >= cluttergtk_required_version],
+                          [build_cluttergtk=yes],
+                          [build_cluttergtk=no])
+        AC_SUBST(CLUTTERGTK_CFLAGS)
+        AC_SUBST(CLUTTERGTK_LIBS)
 
-AM_CONDITIONAL(BUILD_CLUTTERGTK, [test "x$build_cluttergtk" = "xyes"])
+        AS_IF([test -n "$export_dynamic"],
+              [
+                CLUTTERGTK_LIBS=`echo $CLUTTERGTK_LIBS | sed -e "s/$export_dynamic//"`
+              ]
+        )
+      ]
+)
+
+AM_CONDITIONAL([BUILD_CLUTTERGTK], [test "x$build_cluttergtk" = "xyes"])
 
 
 dnl Building documentation
-m4_define([docs_default],
-          m4_if(m4_eval(pyclutter_version_minor % 2), [0], [yes], [no]))
+m4_define([docs_default], [m4_if(m4_eval(pyclutter_version_minor % 2), [0], [yes], [no])])
 
-AC_ARG_ENABLE(docs,
-              AC_HELP_STRING([--enable-docs], [Enable documentation building]),
-              enable_docs=docs_default,
-              enable_docs="no")
+AC_ARG_ENABLE([docs],
+              [AC_HELP_STRING([--enable-docs], [Enable documentation building])],
+              [],
+              [enable_docs=docs_default])
 
-if test "x$enable_docs" = "xyes"; then
-  dnl Check for xsltproc
-  AC_PATH_PROG([XSLTPROC], [xsltproc])
-  if test -z "$XSLTPROC"; then
-    enable_docs=no
-  else
-    PYGOBJECT_DATADIR=`$PKG_CONFIG --variable=datadir pygobject-2.0`
-    PYGOBJECT_PYGDOCS=`$PKG_CONFIG --variable=pygdocs pygobject-2.0`
-    PYGOBJECT_FIXXREF=`$PKG_CONFIG --variable=fixxref pygobject-2.0`
+AS_IF([test "x$enable_docs" = "xyes"],
+      [
+        dnl Check for xsltproc
+        AC_PATH_PROG([XSLTPROC], [xsltproc], [], [enable_docs=no])
 
-    AC_SUBST(PYGOBJECT_DATADIR)
-    AC_SUBST(PYGOBJECT_PYGDOCS)
-    AC_SUBST(PYGOBJECT_FIXXREF)
-  fi
-fi
+        PYGOBJECT_DATADIR=`$PKG_CONFIG --variable=datadir pygobject-2.0`
+        PYGOBJECT_PYGDOCS=`$PKG_CONFIG --variable=pygdocs pygobject-2.0`
+        PYGOBJECT_FIXXREF=`$PKG_CONFIG --variable=fixxref pygobject-2.0`
+
+        AC_SUBST(PYGOBJECT_DATADIR)
+        AC_SUBST(PYGOBJECT_PYGDOCS)
+        AC_SUBST(PYGOBJECT_FIXXREF)
+      ]
+)
 
 AM_CONDITIONAL(ENABLE_DOCS, [test "x$enable_docs" = "xyes"])
 
@@ -190,10 +205,10 @@ SHAVE_INIT([build/autotools], [enable])
 
 AC_CONFIG_FILES([
         Makefile
-		build/Makefile
-		build/autotools/Makefile
-		build/autotools/shave-libtool
-		build/autotools/shave
+	build/Makefile
+	build/autotools/Makefile
+	build/autotools/shave-libtool
+	build/autotools/shave
         pyclutter.pc
         docs/Makefile
         docs/reference/entities.docbook
