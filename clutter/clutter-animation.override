@@ -43,14 +43,13 @@ _wrap_clutter_actor_animate (PyGObject *self,
 
     for (i = 2, p = 0; i < len; i += 2, p++) {
         gchar *property_name;
-        PyObject *py_value = NULL;
+        PyObject *py_value;
         GParamSpec *pspec;
         GValue value = { 0, };
 
         if (!PyString_Check (PyTuple_GetItem (args, i))) {
             PyErr_SetString (PyExc_TypeError, "propertyname is not a string");
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         property_name = PyString_AsString (PyTuple_GetItem (args, i));
@@ -65,8 +64,7 @@ _wrap_clutter_actor_animate (PyGObject *self,
             PyErr_SetString (PyExc_TypeError,
                              "Use Actor.animate(...).connect('signal-name', "
                              "my_signal_handler) to connect to signals");
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         pspec = g_object_class_find_property (klass, property_name);
@@ -75,7 +73,7 @@ _wrap_clutter_actor_animate (PyGObject *self,
                           "Class %s has no property %s",
                           G_OBJECT_CLASS_NAME (klass),
                           properties[p]);
-            g_free (properties);
+            goto parse_error;
         }
 
         g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
@@ -87,8 +85,7 @@ _wrap_clutter_actor_animate (PyGObject *self,
                           properties[p],
                           g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
             g_value_unset (&value);
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         g_value_array_append (values, &value);
@@ -103,6 +100,11 @@ _wrap_clutter_actor_animate (PyGObject *self,
     g_value_array_free (values);
 
     return pygobject_new ((GObject *)animation);
+
+parse_error:
+    g_value_array_free (values);
+    g_free (properties);
+    return NULL;
 
 out:
     PyErr_Clear ();
@@ -158,8 +160,7 @@ _wrap_clutter_actor_animate_with_timeline (PyGObject *self,
 
         if (!PyString_Check (PyTuple_GetItem (args, i))) {
             PyErr_SetString (PyExc_TypeError, "propertyname is not a string");
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         property_name = PyString_AsString (PyTuple_GetItem (args, i));
@@ -174,8 +175,7 @@ _wrap_clutter_actor_animate_with_timeline (PyGObject *self,
             PyErr_SetString (PyExc_TypeError,
                              "Use Actor.animate(...).connect('signal-name', "
                              "my_signal_handler) to connect to signals");
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         pspec = g_object_class_find_property (klass, property_name);
@@ -184,8 +184,7 @@ _wrap_clutter_actor_animate_with_timeline (PyGObject *self,
                           "Class %s has no property %s",
                           G_OBJECT_CLASS_NAME (klass),
                           properties[p]);
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
@@ -196,9 +195,8 @@ _wrap_clutter_actor_animate_with_timeline (PyGObject *self,
                           "Wrong value type for property %s (required %s)",
                           properties[p],
                           g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
-            g_free (properties);
             g_value_unset (&value);
-            return NULL;
+            goto parse_error;
         }
 
         g_value_array_append (values, &value);
@@ -213,6 +211,11 @@ _wrap_clutter_actor_animate_with_timeline (PyGObject *self,
     g_value_array_free (values);
 
     return pygobject_new ((GObject *)animation);
+
+parse_error:
+    g_value_array_free (values);
+    g_free (properties);
+    return NULL;
 
 out:
     PyErr_Clear ();
@@ -255,14 +258,13 @@ _wrap_clutter_actor_animate_with_alpha (PyGObject *self,
 
     for (i = 1, p = 0; i < len; i += 2, p++) {
         gchar *property_name;
-        PyObject *py_value = NULL;
+        PyObject *py_value;
         GParamSpec *pspec;
         GValue value = { 0, };
 
         if (!PyString_Check (PyTuple_GetItem (args, i))) {
             PyErr_SetString (PyExc_TypeError, "propertyname is not a string");
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         property_name = PyString_AsString (PyTuple_GetItem (args, i));
@@ -277,8 +279,7 @@ _wrap_clutter_actor_animate_with_alpha (PyGObject *self,
             PyErr_SetString (PyExc_TypeError,
                              "Use Actor.animate(...).connect('signal-name', "
                              "my_signal_handler) to connect to signals");
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         pspec = g_object_class_find_property (klass, property_name);
@@ -287,8 +288,7 @@ _wrap_clutter_actor_animate_with_alpha (PyGObject *self,
                           "Class %s has no property %s",
                           G_OBJECT_CLASS_NAME (klass),
                           properties[p]);
-            g_free (properties);
-            return NULL;
+            goto parse_error;
         }
 
         g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
@@ -299,9 +299,8 @@ _wrap_clutter_actor_animate_with_alpha (PyGObject *self,
                           "Wrong value type for property %s (required %s)",
                           properties[p],
                           g_type_name (G_PARAM_SPEC_VALUE_TYPE (pspec)));
-            g_free (properties);
             g_value_unset (&value);
-            return NULL;
+            goto parse_error;
         }
 
         g_value_array_append (values, &value);
@@ -316,6 +315,11 @@ _wrap_clutter_actor_animate_with_alpha (PyGObject *self,
     g_value_array_free (values);
 
     return pygobject_new ((GObject *)animation);
+
+parse_error:
+    g_value_array_free (values);
+    g_free (properties);
+    return NULL;
 
 out:
     PyErr_Clear ();
