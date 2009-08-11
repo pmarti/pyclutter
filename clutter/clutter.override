@@ -109,10 +109,6 @@ ignore
   clutter_actor_box_get_from_vertices
   clutter_stage_manager_get_default
   clutter_get_input_device_for_id
-  clutter_container_child_set_property
-  clutter_container_child_get_property
-  clutter_container_child_set
-  clutter_container_child_get
   clutter_container_class_find_child_property
   clutter_container_class_list_child_properties
   clutter_timeline_do_tick
@@ -1482,4 +1478,207 @@ _wrap_clutter_stage_get_fog (PyGObject *self)
   clutter_stage_get_fog (CLUTTER_STAGE (self->obj), &fog);
 
   return Py_BuildValue ("(ff)", fog.z_near, fog.z_far);
+}
+%%
+override clutter_container_child_set
+static PyObject *
+_wrap_clutter_container_child_set (PyGObject *self, PyObject *args)
+{
+  PyGObject *py_child;
+  GObjectClass *klass;
+  gint len, i;
+
+  if ((len = PyTuple_Size (args)) < 3) {
+      PyErr_SetString (PyExc_TypeError, "requires at least three arguments");
+      return NULL;
+  }
+
+  py_child = (PyGObject *)PyTuple_GetItem (args, 0);
+  if (!pygobject_check (py_child, &PyClutterActor_Type)) {
+      PyErr_SetString (PyExc_TypeError,
+                       "first argument must be a clutter.Actor");
+      return NULL;
+  }
+
+  if ((len -1) % 2) {
+      PyErr_SetString (PyExc_TypeError,
+                       "Argument list must be property, value pairs");
+      return NULL;
+  }
+
+  klass = G_OBJECT_GET_CLASS (self->obj);
+
+  for (i = 1; i < len; i += 2) {
+      PyObject *py_property = PyTuple_GetItem (args, i);
+      PyObject *py_value = PyTuple_GetItem (args, i + 1);
+      gchar *property_name;
+      GParamSpec *pspec;
+      GValue value = { 0, };
+
+      if (!PyString_Check (py_property)) {
+          PyErr_SetString (PyExc_TypeError,
+                           "Expected string argument for property");
+          return NULL;
+      }
+
+      property_name = PyString_AsString (py_property);
+      pspec = clutter_container_class_find_child_property (klass,
+                                                           property_name);
+
+      if (!pspec) {
+          PyErr_Format (PyExc_TypeError, 
+                        "Container does not have property '%s'", property_name);
+          g_free (property_name);
+          return NULL;
+      }
+
+      g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+
+      pyg_value_from_pyobject (&value, py_value);
+
+      clutter_container_child_set_property (CLUTTER_CONTAINER (self->obj),
+                                            CLUTTER_ACTOR (py_child->obj),
+                                            property_name, &value);
+      g_value_unset (&value);
+  }
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override clutter_container_child_get
+static PyObject *
+_wrap_clutter_container_child_get (PyGObject *self, PyObject *args)
+{
+  PyGObject *py_child;
+  gint len, i;
+  PyObject *py_ret;
+  GObjectClass *klass;
+
+  if ((len = PyTuple_Size (args)) < 2) {
+      PyErr_SetString (PyExc_TypeError, "requires at least two arguments");
+      return NULL;
+  }
+
+  py_child = (PyGObject *) PyTuple_GetItem (args, 0);
+  if (!pygobject_check (py_child, &PyClutterActor_Type)) {
+      PyErr_SetString (PyExc_TypeError,
+                       "first argument must be a clutter.Actor");
+      return NULL;
+  }
+
+  klass = G_OBJECT_GET_CLASS (self->obj);
+
+  py_ret = PyTuple_New (len - 1);
+
+  for (i = 1; i < len; i ++) {
+      PyObject *py_property = PyTuple_GetItem (args, i);
+      gchar *property_name;
+      GParamSpec *pspec;
+      GValue value = { 0, };
+
+      if (!PyString_Check (py_property)) {
+          PyErr_SetString (PyExc_TypeError,
+                           "Expected string argument for property");
+          return NULL;
+      }
+
+      property_name = PyString_AsString (py_property);
+      pspec = clutter_container_class_find_child_property (klass,
+                                                           property_name);
+
+      if (!pspec) {
+          PyErr_Format (PyExc_TypeError,
+                        "Container does not have property '%s'", property_name);
+          return NULL;
+      }
+
+      g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+
+      clutter_container_child_get_property (CLUTTER_CONTAINER (self->obj),
+                                            CLUTTER_ACTOR (py_child->obj),
+                                            property_name, &value);
+
+      PyTuple_SetItem (py_ret, i -1, pyg_value_as_pyobject (&value, TRUE));
+
+      g_value_unset (&value);
+  }
+
+  return py_ret;
+}
+%%
+override clutter_container_child_set_property
+static PyObject *
+_wrap_clutter_container_child_set_property (PyGObject *self, PyObject *args)
+{
+  PyGObject *py_child;
+  const gchar *property_name;
+  PyObject *py_value;
+  GObjectClass *klass;
+  GParamSpec *pspec;
+  GValue value = { 0, };
+
+  if (!PyArg_ParseTuple (args, "O!sO:clutter.Container.child_set_property",
+                         &PyClutterActor_Type, &py_child, 
+                         &property_name, &py_value))
+    return NULL;
+
+  klass = G_OBJECT_GET_CLASS (self->obj);
+  pspec = clutter_container_class_find_child_property (klass, property_name);
+
+  if (!pspec) {
+      PyErr_Format (PyExc_TypeError,
+                    "Container does not have property '%s'", property_name);
+      return NULL;
+  }
+
+  g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+
+  pyg_value_from_pyobject (&value, py_value);
+
+  clutter_container_child_set_property (CLUTTER_CONTAINER (self->obj),
+                                        CLUTTER_ACTOR (py_child->obj),
+                                        property_name, &value);
+
+  g_value_unset (&value);
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override clutter_container_child_get_property
+static PyObject *
+_wrap_clutter_container_child_get_property (PyGObject *self, PyObject *args)
+{
+  PyGObject *py_child;
+  const gchar *property_name;
+  GObjectClass *klass;
+  GParamSpec *pspec;
+  GValue value = { 0, };
+  PyObject *py_ret;
+
+  if (!PyArg_ParseTuple (args, "O!s:clutter.Container.child_get_property",
+                         &PyClutterActor_Type, &py_child, &property_name))
+    return NULL;
+
+  klass = G_OBJECT_GET_CLASS (self->obj);
+
+  pspec = clutter_container_class_find_child_property (klass,
+                                                       property_name);
+  if (!pspec) {
+      PyErr_Format (PyExc_TypeError,
+                    "Container does not have property '%s'", property_name);
+      return NULL;
+  }
+
+  g_value_init (&value, G_PARAM_SPEC_VALUE_TYPE (pspec));
+
+  clutter_container_child_get_property (CLUTTER_CONTAINER (self->obj),
+                                        CLUTTER_ACTOR (py_child->obj),
+                                        property_name, &value);
+
+  py_ret = pyg_value_as_pyobject (&value, TRUE);
+  g_value_unset (&value);
+
+  return py_ret;
 }
