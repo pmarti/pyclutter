@@ -1682,3 +1682,79 @@ _wrap_clutter_container_child_get_property (PyGObject *self, PyObject *args)
 
   return py_ret;
 }
+%%
+override-slot ClutterContainer.tp_iter
+
+/*
+ * The code for iterating is shamelessly taken from pygtk, so credits go to
+ * Johan Dahlin :)
+ */
+
+typedef struct
+{
+  PyObject_HEAD
+  GList *list;
+} PyClutterContainerIter;
+
+static void
+pyclutter_container_iter_dealloc (PyClutterContainerIter *self)
+{
+  g_list_free (self->list);
+  PyObject_Del ((PyObject *)self);
+}
+
+static PyObject *
+pyclutter_container_iter_next (PyClutterContainerIter *iter)
+{
+  PyObject *child;
+
+  if (!iter->list) {
+      PyErr_SetNone (PyExc_StopIteration);
+      return NULL;
+  }
+
+  child = pygobject_new ((GObject *)iter->list->data);
+  iter->list = g_list_next (iter->list);
+  return child;
+}
+
+static PyTypeObject PyClutterContainerIter_Type = {
+    PyObject_HEAD_INIT (NULL)
+    0,                                      /* ob_size */
+    "clutter.ClutterContainerIter",         /* tp_name */
+    sizeof(PyClutterContainerIter),         /* tp_basicsize */
+    0,                                      /* tp_itemsize */
+    (destructor)pyclutter_container_iter_dealloc, /* tp_dealloc */
+    0,                                      /* tp_print */
+    0,                                      /* tp_getattr */
+    0,                                      /* tp_setattr */
+    0,                                      /* tp_compare */
+    0,                                      /* tp_repr */
+    0,                                      /* tp_as_number */
+    0,                                      /* tp_as_sequence */
+    0,                                      /* tp_as_mapping */
+    0,                                      /* tp_hash */
+    0,                                      /* tp_call */
+    0,                                      /* tp_str */
+    0,                                      /* tp_getattro */
+    0,                                      /* tp_setattro */
+    0,                                      /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT,                     /* tp_flags */
+    "ClutterContainer child iterator",      /* tp_doc */
+    0,                                      /* tp_traverse */
+    0,                                      /* tp_clear */
+    0,                                      /* tp_richcompare */
+    0,                                      /* tp_weaklistoffset */
+    0,                                      /* tp_iter */
+    (iternextfunc)pyclutter_container_iter_next, /* tp_iternext */
+};
+
+static PyObject *
+_wrap_clutter_container_tp_iter (PyGObject *self)
+{
+  PyClutterContainerIter *iter;
+  
+  iter = PyObject_NEW (PyClutterContainerIter, &PyClutterContainerIter_Type);
+  iter->list = clutter_container_get_children (CLUTTER_CONTAINER (self->obj));
+  return (PyObject *)iter;
+}
