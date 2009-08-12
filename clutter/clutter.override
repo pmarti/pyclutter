@@ -1758,3 +1758,27 @@ _wrap_clutter_container_tp_iter (PyGObject *self)
   iter->list = clutter_container_get_children (CLUTTER_CONTAINER (self->obj));
   return (PyObject *)iter;
 }
+%%
+define ClutterContainer.install_child_meta onearg classmethod
+static PyObject *
+_wrap_clutter_container_install_child_meta (PyObject *self, PyObject *meta)
+{
+  GType type, meta_type;
+  gpointer klass;
+  ClutterContainerIface *iface;
+
+  if ((type = pyg_type_from_object (self)) == 0)
+      return NULL;
+
+  klass = g_type_class_peek (type);
+  iface = (ClutterContainerIface *)
+    g_type_interface_peek(klass, CLUTTER_TYPE_CONTAINER);
+
+  if ((meta_type = pyg_type_from_object (meta)) == 0)
+    return NULL;
+
+  iface->child_meta_type = meta_type;
+
+  Py_INCREF (Py_None);
+  return Py_None;
+}
