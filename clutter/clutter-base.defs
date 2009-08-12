@@ -1596,7 +1596,7 @@
   (is-constructor-of "ClutterBehaviourPath")
   (return-type "ClutterBehaviour*")
   (properties
-    '("alpha")
+    '("alpha" (optional))
     '("path")
   )
 )
