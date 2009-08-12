@@ -6,6 +6,7 @@ ignore
   clutter_alpha_register_closure
   clutter_path_add_cairo_path
   clutter_behaviour_path_new_with_knots
+  clutter_behaviour_path_new_with_description
 %%
 override clutter_alpha_set_func kwargs
 static PyObject *
@@ -778,3 +779,78 @@ static PySequenceMethods _wrap_clutter_path_node_tp_as_sequence = {
     (ssizeobjargproc)_wrap_clutter_path_node_setitem,
     0,
 };
+%%
+new-constructor CLUTTER_TYPE_BEHAVIOUR_PATH
+%%
+override clutter_behaviour_path_new kwargs
+static int
+_wrap_clutter_behaviour_path_new (PyGObject *self,
+                                  PyObject  *args,
+                                  PyObject  *kwargs)
+{
+  static char *kwlist[] = { "alpha", "path", "description", "knots", NULL };
+  PyGObject *py_path = NULL, *py_alpha = NULL;
+  PyObject *py_knots;
+  const gchar *description = NULL;
+  ClutterAlpha *alpha = NULL;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "|O!O!sO:clutter.BehaviourPath", kwlist,
+                                    &PyClutterAlpha_Type, &py_alpha,
+                                    &PyClutterPath_Type, &py_path,
+                                    &description, &py_knots))
+    return -1;
+
+
+  if (py_alpha)
+    alpha = CLUTTER_ALPHA (py_alpha->obj);
+
+  if (py_path)
+    self->obj = (GObject *)clutter_behaviour_path_new (alpha,
+                                              CLUTTER_PATH (py_path->obj));
+  else if (description)
+    self->obj = (GObject *)clutter_behaviour_path_new_with_description (alpha,
+                                                               description);
+  else if (py_knots) {
+      guint n_knots, i;
+      ClutterKnot *knots;
+
+      if (!PyTuple_Check (py_knots)) {
+          PyErr_SetString (PyExc_TypeError,
+                           "knots must be a tuple containing tuples of "
+                           "coordinates");
+          return -1;
+      }
+
+      n_knots = PyTuple_Size (py_knots);
+      knots = g_new0 (ClutterKnot, n_knots);
+
+      for (i = 0; i < n_knots; i++) {
+          PyObject *py_knot = PyTuple_GetItem (py_knots, i);
+
+          if (PyTuple_Check (py_knot) &&
+              PyTuple_Size (py_knot) == 2 &&
+              PyInt_Check (PyTuple_GetItem (py_knot, 0)) &&
+              PyInt_Check (PyTuple_GetItem (py_knot, 1))) {
+              knots[i].x = PyInt_AsLong (PyTuple_GetItem (py_knot, 0));
+              knots[i].y = PyInt_AsLong (PyTuple_GetItem (py_knot, 1));
+          }
+          else {
+              PyErr_SetString (PyExc_TypeError,
+                               "expecting a tuple of two integers");
+              g_free (knots);
+              return -1;
+          }
+      }
+      self->obj = (GObject *)clutter_behaviour_path_new_with_knots (alpha,
+                                                                    knots,
+                                                                    n_knots);
+      g_free (knots);
+  }
+  else
+    self->obj = (GObject *)clutter_behaviour_path_new (alpha, NULL);
+
+  pygobject_register_wrapper ((PyObject *)self);
+
+  return 0;
+}
