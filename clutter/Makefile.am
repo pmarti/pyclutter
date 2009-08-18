@@ -77,7 +77,7 @@ clutter.c: cogl-types.defs clutter-types.defs clutter.defs cogl.defs $(CLUTTER_O
 
 _clutter_la_CFLAGS  = $(PYCAIRO_CFLAGS) $(CLUTTER_CFLAGS)
 _clutter_la_LDFLAGS = $(pyclutter_common_ldflags) -export-symbols-regex init_clutter
-_clutter_la_LIBADD  = $(PYCAIRO_LIBS) $(PYGTK_LIBS) $(CLUTTER_LIBS)
+_clutter_la_LIBADD  = $(PYCAIRO_LIBS) $(PYGOBJECT_LIBS) $(CLUTTER_LIBS)
 _clutter_la_SOURCES = 		\
 	cluttermodule.c		\
         pyclutter-private.h     \
@@ -104,7 +104,6 @@ defs_DATA = \
 	   $(PYGOBJECT_CODEGEN_DEFINES) \
 	    -I $(srcdir) \
 	    --py_ssize_t-clean \
-	    --register $(PYGTK_DEFSDIR)/gdk-types.defs \
 	    --register $(PYGTK_DEFSDIR)/pango-types.defs \
 	    --register cogl-types.defs \
 	    --register clutter-types.defs \

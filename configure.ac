@@ -9,8 +9,6 @@ m4_define(pyclutter_version_micro, 3)
 m4_define(pyclutter_version, pyclutter_version_major.pyclutter_version_minor.pyclutter_version_micro)
 
 m4_define(clutter_required_version,      1.0.0)
-m4_define(cluttergtk_required_version,   0.10.2)
-m4_define(cluttergst_required_version,   0.10.0)
 m4_define(pycairo_required_version,      1.0.2) dnl or 1.1.7
 m4_define(pygtk_required_version,        2.8.0)
 
@@ -97,11 +95,6 @@ PYGTK_DEFSDIR=`$PKG_CONFIG --variable=defsdir pygtk-2.0`
 AC_SUBST(PYGTK_DEFSDIR)
 AC_MSG_RESULT($PYGTK_DEFSDIR)
 
-AC_MSG_CHECKING([for gst-python defs])
-PYGST_DEFSDIR=`$PKG_CONFIG --variable=defsdir gst-python-0.10`
-AC_SUBST(PYGST_DEFSDIR)
-AC_MSG_RESULT($PYGST_DEFSDIR)
-
 dnl check for clutter
 PKG_CHECK_MODULES(CLUTTER, clutter-1.0 >= clutter_required_version)
 AC_SUBST(CLUTTER_CFLAGS)
@@ -111,64 +104,6 @@ AS_IF([test -n "$export_dynamic"],
         CLUTTER_LIBS=`echo $CLUTTER_LIBS | sed -e "s/$export_dynamic//"`
       ]
 )
-
-dnl check for sub modules
-AS_IF([test "x$PYGST_DEFSDIR" = "x"],
-      [
-        AC_MSG_WARN([No PyGStreamer definitions found, disabling clutter-gst])
-        build_cluttergst=no
-      ],
-      [
-        build_cluttergst=yes
-      ]
-)
-
-AC_ARG_WITH([cluttergst],
-            [AC_HELP_STRING([--with-cluttergst=@<:@yes/no@:>@], [Build clutter.cluttergst submodule])],
-            [build_cluttergst=$with_cluttergst])
-
-AS_IF([test "x$build_cluttergst" = "xyes"],
-      [
-        PKG_CHECK_MODULES([CLUTTERGST],
-                          [clutter-gst-0.10 >= cluttergst_required_version],
-                          [build_cluttergst=yes],
-                          [build_cluttergst=no])
-        AC_SUBST(CLUTTERGST_CFLAGS)
-        AC_SUBST(CLUTTERGST_LIBS)
-
-        AS_IF([test -n "$export_dynamic"],
-              [
-                CLUTTERGST_LIBS=`echo $CLUTTERGST_LIBS | sed -e "s/$export_dynamic//"`
-              ]
-        )
-      ]
-)
-
-AM_CONDITIONAL([BUILD_CLUTTERGST], [test "x$build_cluttergst" = "xyes"])
-
-build_cluttergtk=yes
-AC_ARG_WITH([cluttergtk],
-            [AC_HELP_STRING([--with-cluttergtk=@<:@yes/no@:>@], [Build clutter.cluttergtk submodule])],
-            [build_cluttergtk=$with_cluttergtk])
-
-AS_IF([test "x$build_cluttergtk" = "xyes"],
-      [
-        PKG_CHECK_MODULES([CLUTTERGTK],
-                          [clutter-gtk-0.10 >= cluttergtk_required_version],
-                          [build_cluttergtk=yes],
-                          [build_cluttergtk=no])
-        AC_SUBST(CLUTTERGTK_CFLAGS)
-        AC_SUBST(CLUTTERGTK_LIBS)
-
-        AS_IF([test -n "$export_dynamic"],
-              [
-                CLUTTERGTK_LIBS=`echo $CLUTTERGTK_LIBS | sed -e "s/$export_dynamic//"`
-              ]
-        )
-      ]
-)
-
-AM_CONDITIONAL([BUILD_CLUTTERGTK], [test "x$build_cluttergtk" = "xyes"])
 
 
 dnl Building documentation
@@ -214,14 +149,10 @@ AC_CONFIG_FILES([
         docs/reference/entities.docbook
         examples/Makefile
         clutter/Makefile
-        clutter-gst/Makefile
-        clutter-gtk/Makefile
 ])
 
 AC_OUTPUT
 
 echo "* PyClutter:
-    build cluttergst:     $build_cluttergst
-    build cluttergtk:     $build_cluttergtk
     enable documentation: $enable_docs
 "
