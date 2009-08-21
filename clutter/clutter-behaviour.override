@@ -477,7 +477,7 @@ _wrap_clutter_behaviour_opacity_get_bounds (PyGObject *self)
         opacity = CLUTTER_BEHAVIOUR_OPACITY (self->obj);
         clutter_behaviour_opacity_get_bounds (opacity, &start, &end);
 
-        return Py_BuildValue ("(KK)", start, end);
+        return Py_BuildValue ("(HH)", start, end);
 }
 %%
 override clutter_path_get_nodes noargs
