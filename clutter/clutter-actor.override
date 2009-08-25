@@ -3,18 +3,6 @@ ignore
   clutter_actor_get_allocation_vertices
   clutter_actor_get_abs_allocation_vertices
 %%
-override clutter_actor_get_allocation_geometry noargs
-static PyObject *
-_wrap_clutter_actor_get_allocation_geometry (PyGObject *self)
-{
-        ClutterGeometry geom = { 0, };
-
-        clutter_actor_get_allocation_geometry (CLUTTER_ACTOR (self->obj), &geom);
-
-        return Py_BuildValue ("(iiii)",
-                              geom.x, geom.y, geom.width, geom.height);
-}
-%%
 override clutter_actor_get_geometry noargs
 static PyObject *
 _wrap_clutter_actor_get_geometry (PyGObject *self)

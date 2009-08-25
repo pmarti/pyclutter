@@ -277,15 +277,6 @@
   )
 )
 
-(define-method get_allocation_geometry
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_allocation_geometry")
-  (return-type "none")
-  (parameters
-    '("ClutterGeometry*" "geom")
-  )
-)
-
 (define-method get_allocation_vertices
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_allocation_vertices")
