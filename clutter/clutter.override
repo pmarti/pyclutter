@@ -1385,6 +1385,42 @@ _wrap_clutter_shader_get_cogl_vertex_shader (PyGObject *self)
   return pycogl_handle_from_handle (handle);
 }
 %%
+override clutter_shader_set_fragment_source onearg
+static PyObject *
+_wrap_clutter_shader_set_fragment_source (PyGObject *self, PyObject *args)
+{
+  const gchar *source;
+  gssize length;
+  if (!PyString_Check (args)) {
+    PyErr_SetString(PyExc_TypeError,
+                   "Expected string for fragment source");
+    return NULL;
+  }
+
+  source = PyString_AsString(args);
+  length = PyString_Size(args);
+  clutter_shader_set_fragment_source (CLUTTER_SHADER(self->obj), source, length);
+  Py_RETURN_NONE;
+}
+%%
+override clutter_shader_set_vertex_source onearg
+static PyObject *
+_wrap_clutter_shader_set_vertex_source (PyGObject *self, PyObject *args)
+{
+  const gchar *source;
+  gssize length;
+  if (!PyString_Check (args)) {
+    PyErr_SetString(PyExc_TypeError,
+                   "Expected string for vertex source");
+    return NULL;
+  }
+
+  source = PyString_AsString(args);
+  length = PyString_Size(args);
+  clutter_shader_set_vertex_source (CLUTTER_SHADER(self->obj), source, length);
+  Py_RETURN_NONE;
+}
+%%
 override clutter_stage_set_perspective
 static PyObject *
 _wrap_clutter_stage_set_perspective (PyGObject *self, PyObject *args)
