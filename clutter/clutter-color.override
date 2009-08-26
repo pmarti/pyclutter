@@ -32,6 +32,47 @@ _wrap_clutter_color_new (PyGBoxed *self,
         return 0;
 }
 %%
+override-slot ClutterColor.tp_str
+static PyObject *
+_wrap_clutter_color_tp_str (PyObject *self)
+{
+        PyObject *py_repr;
+        gchar *repr;
+
+        repr = clutter_color_to_string (pyg_boxed_get (self, ClutterColor));
+        py_repr = PyString_FromString (repr);
+
+        g_free (repr);
+
+        return py_repr;
+}
+%%
+override-slot ClutterColor.tp_repr
+static PyObject *
+_wrap_clutter_color_tp_repr (PyObject *self)
+{
+        ClutterColor *color = pyg_boxed_get (self, ClutterColor);
+        PyObject *py_repr;
+        gchar *repr;
+
+        if (color == NULL) {
+                Py_INCREF (Py_None);
+                return Py_None;
+        }
+
+        repr = g_strdup_printf("clutter.Color(red=%u,green=%u,blue=%u,alpha=%u)",
+                               color->red,
+                               color->green,
+                               color->blue,
+                               color->alpha);
+
+        py_repr = PyString_FromString (repr);
+
+        g_free (repr);
+
+        return py_repr;
+}
+%%
 override-slot ClutterColor.tp_setattr
 static int
 _wrap_clutter_color_tp_setattr (PyGBoxed *self,
