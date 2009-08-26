@@ -90,5 +90,6 @@ effect_move = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_move')
 effect_path = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_path')
 effect_scale = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_scale')
 effect_rotate = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_rotate')
+stage_get_default = _DeprecatedMethod(_clutter, 'Stage', 'stage_get_default')
 
 del _DeprecatedClass, _DeprecatedMethod, _DeprecatedConstant

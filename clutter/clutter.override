@@ -120,6 +120,7 @@ ignore
   clutter_binding_pool_install_closure
   clutter_text_new_full
   clutter_text_new_with_text
+  clutter_stage_get_default
 %%
 ignore-glob
   *_quark
@@ -855,11 +856,24 @@ _wrap_clutter_stage_manager_new (PyGObject *self)
 %%
 new-constructor CLUTTER_TYPE_STAGE
 %%
-override clutter_stage_new noargs
+override clutter_stage_new kwargs
 static int
-_wrap_clutter_stage_new (PyGObject *self)
+_wrap_clutter_stage_new (PyGObject *self,
+                         PyObject  *args,
+                         PyObject  *kwargs)
 {
-  self->obj = (GObject *) clutter_stage_new ();
+  static char *kwlist[] = { "default", NULL };
+  gboolean use_default = TRUE;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs, "|i:clutter.Stage",
+                                    kwlist, &use_default))
+    return -1;
+
+  if (use_default)
+    self->obj = (GObject *) clutter_stage_get_default ();
+  else
+    self->obj = (GObject *) clutter_stage_new ();
+
   if (!self->obj)
     {
       PyErr_SetString (PyExc_RuntimeError, "could not create a clutter.Stage");

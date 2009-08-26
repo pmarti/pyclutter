@@ -134,7 +134,7 @@ if __name__ == '__main__':
     stage_color = clutter.Color(0x0, 0x0, 0x0, 0xff)
     random.seed(time.time())
     
-    stage = clutter.stage_get_default()
+    stage = clutter.Stage()
     stage.set_color(stage_color)
     stage.set_fullscreen(True)
     
