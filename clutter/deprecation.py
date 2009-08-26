@@ -34,7 +34,7 @@ def _is_pydoc():
 
     return False
 
-class _Deprecated:
+class _DeprecatedMethod:
     def __init__(self, module, funcname, oldname, modulename=''):
         self.module = module
         self.funcname = funcname
@@ -56,7 +56,7 @@ class _Deprecated:
         if not _is_pydoc():
             message = 'clutter.%s is deprecated, use %s.%s instead' % (
                 self.oldname, self.modulename, func.__name__)
-            # DeprecationWarning is imported from _gtk, so it's not the same
+            # DeprecationWarning is imported from _clutter, so it's not the same
             # as the one found in exceptions.
             warnings.warn(message, DeprecationWarning, 2)
         try:
