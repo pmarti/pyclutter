@@ -82,6 +82,7 @@ from clutter._clutter import *
 Label = _DeprecatedClass(_clutter, 'Text', 'Label')
 Entry = _DeprecatedClass(_clutter, 'Text', 'Entry')
 EffectTemplate = _DeprecatedClass(_clutter, 'Animation', 'EffectTemplate')
+CloneTexture = _DeprecatedClass(_clutter, 'Clone', 'CloneTexture')
 
 timeline_new_for_duration = _DeprecatedMethod(_clutter, 'Timeline', 'timeline_new_for_duration')
 rectangle_new_with_color =  _DeprecatedMethod(_clutter, 'Rectangle', 'rectangle_new_with_color')
