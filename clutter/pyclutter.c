@@ -173,6 +173,15 @@ pyclutter_color_from_pyobject (PyObject     *object,
                 return TRUE;
         }
 
+        if (PyString_Check (object)) {
+                const char *str = PyString_AsString (object);
+
+                if (!clutter_color_from_string (color, str))
+                        goto out;
+
+                return TRUE;
+        }
+
         if (PyTuple_Check (object) && (PyTuple_Size (object) == 4)) {
                 int i;
 
