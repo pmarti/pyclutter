@@ -54,7 +54,7 @@ if ltihooks:
 # use the pygtk module lazy loading stuff
 from gtk._lazyutils import LazyNamespace, LazyModule
 # and our own for the deprecation warnings
-from clutter.deprecation import _DeprecatedMethod, _DeprecatedConstant
+from clutter.deprecation import _DeprecatedClass, _DeprecatedMethod, _DeprecatedConstant
 
 def _init ():
     import sys
@@ -79,7 +79,16 @@ __version__ = _clutter.__version__
 
 from clutter._clutter import *
 
-timeline_new_for_duration = _DeprecatedMethod(_clutter, 'Timeline', 'timeline_new_for_duration', 'clutter')
-rectangle_new_with_color =  _DeprecatedMethod(_clutter, 'Rectangle', 'rectangle_new_with_color', 'clutter')
+Label = _DeprecatedClass(_clutter, 'Text', 'Label')
+Entry = _DeprecatedClass(_clutter, 'Text', 'Entry')
+EffectTemplate = _DeprecatedClass(_clutter, 'Animation', 'EffectTemplate')
 
-del _DeprecatedMethod, _DeprecatedConstant
+timeline_new_for_duration = _DeprecatedMethod(_clutter, 'Timeline', 'timeline_new_for_duration')
+rectangle_new_with_color =  _DeprecatedMethod(_clutter, 'Rectangle', 'rectangle_new_with_color')
+effect_fade = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_fade')
+effect_move = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_move')
+effect_path = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_path')
+effect_scale = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_scale')
+effect_rotate = _DeprecatedMethod(_clutter, 'Actor.animate', 'effect_rotate')
+
+del _DeprecatedClass, _DeprecatedMethod, _DeprecatedConstant
