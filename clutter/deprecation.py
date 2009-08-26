@@ -34,6 +34,34 @@ def _is_pydoc():
 
     return False
 
+class _DeprecatedClass:
+    def __init__(self, module, classname, oldclassname, modulename=''):
+        self.module = module
+        self.classname = classname
+        self.oldclassname = oldclassname
+        if modulename:
+            self.modulename = modulename
+        else:
+            self.modulename = 'clutter'
+
+    def __repr__(self):
+        return '<deprecated class %s>' % (self.oldclassname)
+
+    def __call__(self, *args, **kwargs):
+        if type(self.module) == str:
+            module = __import__(self.module, {}, {}, ' ')
+        else:
+            module = self.module
+        ctor = getattr(module, self.classname)
+        if not _is_pydoc():
+            message = 'clutter.%s is deprecated, use %s.%s instead' % (
+                self.oldclassname, self.modulename, self.classname)
+            warnings.warn(message, DeprecationWarning, 2)
+        try:
+            return ctor(*args, **kwargs)
+        except TypeError, e:
+            raise TypeError(str(e).replace(ctor.__name__, self.oldclassname))
+
 class _DeprecatedMethod:
     def __init__(self, module, funcname, oldname, modulename=''):
         self.module = module
