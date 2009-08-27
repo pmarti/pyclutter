@@ -6,10 +6,8 @@ headers
 
 #include "pyclutter-private.h"
 
-#ifdef HAVE_PYCAIRO
-# include <pycairo.h>
+#include <pycairo.h>
 extern Pycairo_CAPI_t *Pycairo_CAPI;
-#endif
 
 /* from the cogl portion */
 extern PyTypeObject PyCoglHandle_Type;
@@ -964,7 +962,6 @@ override clutter_backend_get_font_options noargs
 static PyObject *
 _wrap_clutter_backend_get_font_options (PyGObject *self)
 {
-#ifdef HAVE_PYCAIRO
   const cairo_font_options_t *options;
 
   options = clutter_backend_get_font_options (CLUTTER_BACKEND (self->obj));
@@ -975,10 +972,6 @@ _wrap_clutter_backend_get_font_options (PyGObject *self)
     }
 
   return PycairoFontOptions_FromFontOptions (cairo_font_options_copy (options));
-#else
-  Py_INCREF (Py_None);
-  return Py_None;
-#endif
 }
 %%
 override clutter_backend_set_font_options kwargs
@@ -987,7 +980,6 @@ _wrap_clutter_backend_set_font_options (PyGObject *self,
                                         PyObject  *args,
                                         PyObject  *kwargs)
 {
-#ifdef HAVE_PYCAIRO
   static char *kwlist[] = { "options", NULL };
   PyGObject *py_options;
   cairo_font_options_t *options;
@@ -1009,7 +1001,6 @@ _wrap_clutter_backend_set_font_options (PyGObject *self,
     }
 
   clutter_backend_set_font_options (CLUTTER_BACKEND (self->obj), options);
-#endif
 
   Py_INCREF(Py_None);
   return Py_None;

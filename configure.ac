@@ -77,18 +77,9 @@ AS_IF([test "x$PYGOBJECT_CODEGEN" = "xno"],
 PYGOBJECT_CODEGEN_DEFINES=
 
 dnl check for pycairo
-PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version],
-                           [have_pycairo=yes],
-                           [have_pycairo=no])
-AS_IF([test "x$have_pycairo" = "xyes"],
-      [
-        AC_DEFINE([HAVE_PYCAIRO], [1], [Define to 1 if pycairo is available])
-        AC_SUBST(PYCAIRO_CFLAGS)
-        AC_SUBST(PYCAIRO_LIBS)
-
-        PYGOBJECT_CODEGEN_DEFINES="$PYGOBJECT_CODEGEN_DEFINES -DHAVE_PYCAIRO"
-      ]
-)
+PKG_CHECK_MODULES(PYCAIRO, [pycairo >= pycairo_required_version])
+AC_SUBST(PYCAIRO_CFLAGS)
+AC_SUBST(PYCAIRO_LIBS)
 
 AC_MSG_CHECKING([for pygtk defs])
 PYGTK_DEFSDIR=`$PKG_CONFIG --variable=defsdir pygtk-2.0`

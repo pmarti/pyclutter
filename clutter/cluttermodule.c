@@ -6,10 +6,8 @@
 #include <clutter/clutter.h>
 #include "pyclutter.h"
 
-#ifdef HAVE_PYCAIRO
-# include <pycairo.h>
+#include <pycairo.h>
 Pycairo_CAPI_t *Pycairo_CAPI;
-#endif
 
 void pyclutter_register_classes (PyObject *dict);
 void pyclutter_add_constants (PyObject *module, const gchar *prefix);
