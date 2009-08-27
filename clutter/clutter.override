@@ -863,7 +863,7 @@ _wrap_clutter_stage_new (PyGObject *self,
                          PyObject  *kwargs)
 {
   static char *kwlist[] = { "default", NULL };
-  gboolean use_default = TRUE;
+  gboolean use_default = FALSE;
 
   if (!PyArg_ParseTupleAndKeywords (args, kwargs, "|i:clutter.Stage",
                                     kwlist, &use_default))
