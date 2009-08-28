@@ -29,12 +29,10 @@ XMLFILES = 						\
     reference/clutter-cluttercontainer.xml		\
     reference/clutter-cluttergroup.xml			\
     reference/clutter-cluttereffecttemplate.xml		\
-    reference/clutter-clutterentry.xml			\
     reference/clutter-clutterevent.xml			\
     reference/clutter-cluttergeometry.xml		\
     reference/clutter-cluttergroup.xml			\
     reference/clutter-clutterknot.xml			\
-    reference/clutter-clutterlabel.xml			\
     reference/clutter-clutterlistmodel.xml		\
     reference/clutter-cluttermedia.xml			\
     reference/clutter-cluttermodeliter.xml		\
@@ -46,6 +44,7 @@ XMLFILES = 						\
     reference/clutter-cluttershader.xml			\
     reference/clutter-clutterstage.xml			\
     reference/clutter-cluttertexture.xml		\
+    reference/clutter-cluttertext.xml			\
     reference/clutter-cluttertimeline.xml		\
     reference/clutter-cluttervertex.xml 		\
     $(NULL)

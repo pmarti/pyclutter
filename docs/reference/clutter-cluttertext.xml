@@ -1,99 +1,99 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-<refentry id="class-clutterlabel">
+<refentry id="class-cluttertext">
   <refmeta>
-    <refentrytitle>clutter.Label</refentrytitle>
+    <refentrytitle>clutter.Text</refentrytitle>
     <manvolnum>3</manvolnum>
     <refmiscinfo>PyGTK Docs</refmiscinfo>
   </refmeta>
 
   <refnamediv>
-    <refname>clutter.Label</refname><refpurpose></refpurpose>
+    <refname>clutter.Text</refname><refpurpose></refpurpose>
   </refnamediv>
 
   <refsect1>
     <title>Synopsis</title>
 
 <classsynopsis language="python">
-  <ooclass><classname>clutter.Label</classname></ooclass>
+  <ooclass><classname>clutter.Text</classname></ooclass>
   <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
     <methodparam></methodparam>  </constructorsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-text">set_text</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-text">set_text</link></methodname>
     <methodparam><parameter>text</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-text">get_text</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-text">get_text</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-font-name">set_font_name</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-font-name">set_font_name</link></methodname>
     <methodparam><parameter>font_name</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-font-name">get_font_name</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-font-name">get_font_name</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-color">set_color</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-color">set_color</link></methodname>
     <methodparam><parameter>color</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-color">get_color</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-color">get_color</link></methodname>
     <methodparam><parameter>color</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-ellipsize">set_ellipsize</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-ellipsize">set_ellipsize</link></methodname>
     <methodparam><parameter>mode</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-ellipsize">get_ellipsize</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-ellipsize">get_ellipsize</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-line-wrap">set_line_wrap</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-line-wrap">set_line_wrap</link></methodname>
     <methodparam><parameter>wrap</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-line-wrap">get_line_wrap</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-line-wrap">get_line_wrap</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-line-wrap-mode">set_line_wrap_mode</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-line-wrap-mode">set_line_wrap_mode</link></methodname>
     <methodparam><parameter>wrap_mode</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-line-wrap-mode">get_line_wrap_mode</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-line-wrap-mode">get_line_wrap_mode</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-layout">get_layout</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-layout">get_layout</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-attributes">set_attributes</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-attributes">set_attributes</link></methodname>
     <methodparam><parameter>attrs</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-attributes">get_attributes</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-attributes">get_attributes</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-use-markup">set_use_markup</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-use-markup">set_use_markup</link></methodname>
     <methodparam><parameter>setting</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-use-markup">get_use_markup</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-use-markup">get_use_markup</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-alignment">set_alignment</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-line-alignment">set_line_alignment</link></methodname>
     <methodparam><parameter>alignment</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-alignment">get_alignment</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-line-alignment">get_line_alignment</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--set-justify">set_justify</link></methodname>
+    <methodname><link linkend="method-cluttertext--set-justify">set_justify</link></methodname>
     <methodparam><parameter>justify</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterlabel--get-justify">get_justify</link></methodname>
+    <methodname><link linkend="method-cluttertext--get-justify">get_justify</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 </classsynopsis>
 
@@ -103,7 +103,7 @@
 
 <synopsis>+-- <link linkend="class-gobject">GObject</link>
   +-- <link linkend="class-clutteractor">clutter.Actor</link>
-    +-- <link linkend="class-clutterlabel">clutter.Label</link>
+    +-- <link linkend="class-cluttertext">clutter.Text</link>
 </synopsis>
 
   </refsect1>
@@ -126,8 +126,8 @@
   <refsect1>
     <title>Methods</title>
 
-  <refsect2 id="method-clutterlabel--set-text">
-    <title>clutter.Label.set_text</title>
+  <refsect2 id="method-cluttertext--set-text">
+    <title>clutter.Text.set_text</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_text</methodname>
@@ -142,8 +142,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-text">
-    <title>clutter.Label.get_text</title>
+  <refsect2 id="method-cluttertext--get-text">
+    <title>clutter.Text.get_text</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_text</methodname>
@@ -157,8 +157,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-font-name">
-    <title>clutter.Label.set_font_name</title>
+  <refsect2 id="method-cluttertext--set-font-name">
+    <title>clutter.Text.set_font_name</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_font_name</methodname>
@@ -173,8 +173,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-font-name">
-    <title>clutter.Label.get_font_name</title>
+  <refsect2 id="method-cluttertext--get-font-name">
+    <title>clutter.Text.get_font_name</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_font_name</methodname>
@@ -188,8 +188,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-color">
-    <title>clutter.Label.set_color</title>
+  <refsect2 id="method-cluttertext--set-color">
+    <title>clutter.Text.set_color</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_color</methodname>
@@ -204,8 +204,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-color">
-    <title>clutter.Label.get_color</title>
+  <refsect2 id="method-cluttertext--get-color">
+    <title>clutter.Text.get_color</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_color</methodname>
@@ -220,8 +220,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-ellipsize">
-    <title>clutter.Label.set_ellipsize</title>
+  <refsect2 id="method-cluttertext--set-ellipsize">
+    <title>clutter.Text.set_ellipsize</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_ellipsize</methodname>
@@ -236,8 +236,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-ellipsize">
-    <title>clutter.Label.get_ellipsize</title>
+  <refsect2 id="method-cluttertext--get-ellipsize">
+    <title>clutter.Text.get_ellipsize</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_ellipsize</methodname>
@@ -251,8 +251,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-line-wrap">
-    <title>clutter.Label.set_line_wrap</title>
+  <refsect2 id="method-cluttertext--set-line-wrap">
+    <title>clutter.Text.set_line_wrap</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_line_wrap</methodname>
@@ -267,8 +267,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-line-wrap">
-    <title>clutter.Label.get_line_wrap</title>
+  <refsect2 id="method-cluttertext--get-line-wrap">
+    <title>clutter.Text.get_line_wrap</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_line_wrap</methodname>
@@ -282,8 +282,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-line-wrap-mode">
-    <title>clutter.Label.set_line_wrap_mode</title>
+  <refsect2 id="method-cluttertext--set-line-wrap-mode">
+    <title>clutter.Text.set_line_wrap_mode</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_line_wrap_mode</methodname>
@@ -298,8 +298,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-line-wrap-mode">
-    <title>clutter.Label.get_line_wrap_mode</title>
+  <refsect2 id="method-cluttertext--get-line-wrap-mode">
+    <title>clutter.Text.get_line_wrap_mode</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_line_wrap_mode</methodname>
@@ -313,8 +313,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-layout">
-    <title>clutter.Label.get_layout</title>
+  <refsect2 id="method-cluttertext--get-layout">
+    <title>clutter.Text.get_layout</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_layout</methodname>
@@ -328,8 +328,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-attributes">
-    <title>clutter.Label.set_attributes</title>
+  <refsect2 id="method-cluttertext--set-attributes">
+    <title>clutter.Text.set_attributes</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_attributes</methodname>
@@ -344,8 +344,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-attributes">
-    <title>clutter.Label.get_attributes</title>
+  <refsect2 id="method-cluttertext--get-attributes">
+    <title>clutter.Text.get_attributes</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_attributes</methodname>
@@ -359,8 +359,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-use-markup">
-    <title>clutter.Label.set_use_markup</title>
+  <refsect2 id="method-cluttertext--set-use-markup">
+    <title>clutter.Text.set_use_markup</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_use_markup</methodname>
@@ -375,8 +375,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-use-markup">
-    <title>clutter.Label.get_use_markup</title>
+  <refsect2 id="method-cluttertext--get-use-markup">
+    <title>clutter.Text.get_use_markup</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_use_markup</methodname>
@@ -390,11 +390,11 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-alignment">
-    <title>clutter.Label.set_alignment</title>
+  <refsect2 id="method-cluttertext--set-line-alignment">
+    <title>clutter.Text.set_line_alignment</title>
 
 <programlisting><methodsynopsis language="python">
-    <methodname>set_alignment</methodname>
+    <methodname>set_line_alignment</methodname>
     <methodparam><parameter>alignment</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
@@ -406,11 +406,11 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-alignment">
-    <title>clutter.Label.get_alignment</title>
+  <refsect2 id="method-cluttertext--get-line-alignment">
+    <title>clutter.Text.get_line_alignment</title>
 
 <programlisting><methodsynopsis language="python">
-    <methodname>get_alignment</methodname>
+    <methodname>get_line_alignment</methodname>
     <methodparam></methodparam>  </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
@@ -421,8 +421,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--set-justify">
-    <title>clutter.Label.set_justify</title>
+  <refsect2 id="method-cluttertext--set-justify">
+    <title>clutter.Text.set_justify</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>set_justify</methodname>
@@ -437,8 +437,8 @@
   </refsect2>
 
 
-  <refsect2 id="method-clutterlabel--get-justify">
-    <title>clutter.Label.get_justify</title>
+  <refsect2 id="method-cluttertext--get-justify">
+    <title>clutter.Text.get_justify</title>
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_justify</methodname>

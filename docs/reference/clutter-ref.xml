@@ -43,10 +43,9 @@
     <chapter>
       <title>Base Actors</title>
       <xi:include href="clutter-clutterclonetexture.xml"/>
-      <xi:include href="clutter-clutterlabel.xml"/>
-      <xi:include href="clutter-clutterentry.xml"/>
       <xi:include href="clutter-clutterrectangle.xml"/>
       <xi:include href="clutter-cluttertexture.xml"/>
+      <xi:include href="clutter-cluttertext.xml"/>
     </chapter>
     <chapter>
       <title>Container Actors</title>

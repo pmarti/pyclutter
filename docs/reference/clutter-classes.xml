@@ -20,12 +20,10 @@
   <xi:include href="clutter-cluttercolor.xml"/>
   <xi:include href="clutter-cluttercontainer.xml"/>
   <xi:include href="clutter-cluttereffecttemplate.xml"/>
-  <xi:include href="clutter-clutterentry.xml"/>
   <xi:include href="clutter-clutterevent.xml"/>
   <xi:include href="clutter-cluttergeometry.xml"/>
   <xi:include href="clutter-cluttergroup.xml"/>
   <xi:include href="clutter-clutterknot.xml"/>
-  <xi:include href="clutter-clutterlabel.xml"/>
   <xi:include href="clutter-clutterlistmodel.xml"/>
   <xi:include href="clutter-cluttermedia.xml"/>
   <xi:include href="clutter-cluttermodel.xml"/>
@@ -37,6 +35,7 @@
   <xi:include href="clutter-cluttershader.xml"/>
   <xi:include href="clutter-clutterstage.xml"/>
   <xi:include href="clutter-cluttertexture.xml"/>
+  <xi:include href="clutter-cluttertext.xml"/>
   <xi:include href="clutter-cluttertimeline.xml"/>
   <xi:include href="clutter-cluttervertex.xml"/>
 </reference>
