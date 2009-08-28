@@ -7,6 +7,9 @@ ignore
   clutter_event_free
   clutter_event_copy
   clutter_event_get_device
+  clutter_event_get_input_device
+  clutter_input_device_get_device_id
+  clutter_input_device_get_device_type
 %%
 override clutter_event_get_coords noargs
 static PyObject *
