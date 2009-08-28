@@ -8,7 +8,6 @@
   <xi:include href="clutter-clutteralpha.xml"/>
   <xi:include href="clutter-clutterbackend.xml"/>
   <xi:include href="clutter-clutterbehaviour.xml"/>
-  <xi:include href="clutter-clutterbehaviourbspline.xml"/>
   <xi:include href="clutter-clutterbehaviourdepth.xml"/>
   <xi:include href="clutter-clutterbehaviourellipse.xml"/>
   <xi:include href="clutter-clutterbehaviouropacity.xml"/>

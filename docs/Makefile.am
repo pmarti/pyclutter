@@ -15,7 +15,6 @@ XMLFILES = 						\
     reference/clutter-clutteractor.xml			\
     reference/clutter-clutteralpha.xml			\
     reference/clutter-clutterbackend.xml		\
-    reference/clutter-clutterbehaviourbspline.xml	\
     reference/clutter-clutterbehaviourdepth.xml		\
     reference/clutter-clutterbehaviourellipse.xml	\
     reference/clutter-clutterbehaviouropacity.xml	\

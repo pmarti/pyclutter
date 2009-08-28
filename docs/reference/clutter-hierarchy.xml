@@ -12,7 +12,6 @@
 <link linkend="class-clutteralpha">clutter.Alpha</link>
 <link linkend="class-clutterbackend">clutter.Backend</link>
 <link linkend="class-clutterbehaviour">clutter.Behaviour</link>
-  <link linkend="class-clutterbehaviourbspline">clutter.BehaviourBspline</link>
   <link linkend="class-clutterbehaviourdepth">clutter.BehaviourDepth</link>
   <link linkend="class-clutterbehaviourellipse">clutter.BehaviourEllipse</link>
   <link linkend="class-clutterbehaviouropacity">clutter.BehaviourOpacity</link>
