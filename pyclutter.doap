@@ -6,10 +6,9 @@
   <created>2006-11-18</created>
   <shortdesc xml:lang="en">PyClutter is a Python module binding Clutter</shortdesc>
   <description xml:lang="en">
-    PyClutter is the collective name of the Python bindings for the
-    Clutter OpenGL canvas library.  It includes the bindings for the
-    core library, the bindings for the Clutter GTK+ widget and the
-    bindings for the Clutter GStreamer integration library.
+	Clutter is an open source software library for creating fast, visually
+	rich and animated graphical user interfaces. PyClutter provides Python
+	bindings for this library.
   </description>
 
   <homepage rdf:resource="http://labs.o-hand.com/clutter" />
@@ -31,11 +30,17 @@
     </foaf:Person>
   </maintainer>
 
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Bastian Winkler</foaf:name>
+    </foaf:Person>
+  </maintainer>
+
   <repository>
-    <SVNRepository>
-      <browse rdf:resource="http://svn.o-hand.com/view/clutter/trunk/bindings/pyclutter/"/>
-      <location rdf:resource="https://svn.o-hand.com/repos/clutter/trunk/bindings/pyclutter"/>
-    </SVNRepository>
+	<GitRepository>
+	  <browse rdf:resource="http://git.clutter-project.org/?r=bindings/pyclutter"/>
+	  <location rdf:resource="git://git.clutter-project.org/bindings/pyclutter"/>
+	</GitRepository>
   </repository>
 
   <release>
@@ -59,6 +64,22 @@
       <created>2008-02-19</created>
       <revision>0.6.0</revision>
       <file-release rdf:resource="http://www.clutter-project.org/sources/pyclutter/0.6/pyclutter-0.6.0.tar.gz"/>
+    </Version>
+  </release>
+
+  <release>
+    <Version>
+      <created>2008-08-15</created>
+      <revision>0.8.0</revision>
+      <file-release rdf:resource="http://www.clutter-project.org/sources/pyclutter/0.8/pyclutter-0.8.0.tar.gz"/>
+    </Version>
+  </release>
+
+  <release>
+    <Version>
+      <created>2009-08-28</created>
+      <revision>1.0.0</revision>
+      <file-release rdf:resource="http://www.clutter-project.org/sources/pyclutter/1.0/pyclutter-1.0.0.tar.gz"/>
     </Version>
   </release>
 
