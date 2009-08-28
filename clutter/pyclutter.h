@@ -37,6 +37,7 @@ gboolean  pycogl_color_from_pyobject        (PyObject        *object,
                                              CoglColor       *color);
 PyObject * pycogl_handle_from_handle        (CoglHandle       handle); 
 
+const char * pyclutter_event_get_name       (const ClutterEvent *event);
 
 G_END_DECLS
 

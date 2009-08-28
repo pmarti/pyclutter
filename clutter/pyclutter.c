@@ -312,4 +312,37 @@ pyclutter_alpha_func (ClutterAlpha *alpha,
         return retval;
 }
 
+const char *
+pyclutter_event_get_name (const ClutterEvent *event)
+{
+        if (event == NULL)
+                return "ClutterEvent";
 
+        switch (event->type) {
+                case CLUTTER_BUTTON_PRESS:
+                case CLUTTER_BUTTON_RELEASE:
+                        return "ClutterButtonEvent";
+
+                case CLUTTER_KEY_PRESS:
+                case CLUTTER_KEY_RELEASE:
+                        return "ClutterKeyEvent";
+
+                case CLUTTER_ENTER:
+                case CLUTTER_LEAVE:
+                        return "ClutterCrossingEvent";
+
+                case CLUTTER_MOTION:
+                        return "ClutterMotionEvent";
+
+                case CLUTTER_STAGE_STATE:
+                        return "ClutterStageStateEvent";
+
+                case CLUTTER_SCROLL:
+                        return "ClutterScrollEvent";
+
+                default:
+                        return "ClutterEvent";
+        }
+
+        return NULL;
+}
