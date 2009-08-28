@@ -1,3 +1,37 @@
+Overview of changes between 0.9.2 and 1.0.0
+===========================================
+
+* Dropped the in-tree bindings of clutter-gtk and clutter-gst: you will
+  have to install pyclutter-gtk and pyclutter-gst respectively to be able
+  to import cluttergtk and cluttergst.
+* Fixed memory leaks in clutter.Actor.animate [Chideok Hwang]
+* Allow accessing child properties for clutter.Container
+* Allow iterating over the children of a clutter.Container using the
+  native Python iterator support
+* Allow creating custom ChildMeta classes from Python
+* Mark the classes removed from upstream Clutter as "deprecated"; trying
+  to instantiate one of the deprecated classes will result in the equivalent
+  class in Clutter 1.0 to be created and a warning printed out on the console
+* Override the __repr__ and __str__ methods for clutter.Color: the former
+  will print out a string that can be used through eval() to create a copy
+  of the color; the latter will print out the hexadecimal representation of
+  the color.
+* Override the __str__ method of clutter.Event: it will now print more
+  information on the event (type, time, source actor) and per-event type
+  fields (button, key, related actor, etc.).
+* Deprecated clutter.stage_get_default() in favour of an optional argument
+  to clutter.Stage(); calling:
+
+        clutter.Stage(default=True)
+
+  will return the default Stage singleton; the default argument is optional
+  and it defaults to False.
+* Allow passing the following values to methods accepting a clutter.Color:
+
+        - a clutter.Color (e.g.: clutter.Color(255, 0, 0, 255))
+        - a 4-tuple of RGBA values (e.g.: (255, 0, 0, 255))
+        - a hexadecimal representation of the color (e.g.: '#ff0000ff')
+
 Overview of changes between 0.8.2 and 0.9.2
 ===========================================
 

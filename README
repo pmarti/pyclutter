@@ -11,26 +11,12 @@ OpenedHand Bugzilla at:
 
 Requirements
 ------------
-  * GLib 2.14.0 or higher
+  * GLib 2.16.0 or higher
   * GTK+ 2.10.0 or higher
-  * Clutter 0.8.2 or higher
+  * Clutter 1.0.0 or higher
   * PyCairo 1.0.2 or higher
   * PyGObject 2.12.1 or higher
   * Python 2.5.0 or higher
-
-In order to build the bindings for clutter-gst you will also need:
-  * GStreamer >= 0.10
-  * PyGStreamer
-
-In order to build the bindings for clutter-gtk you will also need:
-  * GTK+ >= 2.10
-  * PyGTK
-
-This release is supporting the following Clutter releases:
-
-        clutter-core    1.0.0
-        clutter-gst     0.10.0
-        clutter-gtk     0.10.2
 
 Installation
 ------------
@@ -51,6 +37,12 @@ Release notes for PyClutter 1.0.0
 
 The cluttercairo submodule has been removed, since all of its functionaly
 is now available inside the core clutter module.
+
+The cluttergst and cluttergtk submodules have been moved out of the
+pyclutter tree and they now have their own repositories:
+
+  git://git.clutter-project.org/bindings/pyclutter-gst
+  git://git.clutter-project.org/bindings/pyclutter-gtk
 
 Release notes for PyClutter 0.8.2
 ---------------------------------
