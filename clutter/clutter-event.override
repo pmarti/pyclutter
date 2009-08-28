@@ -317,3 +317,117 @@ _wrap_clutter_event_tp_getattr (PyObject *self,
 	return Py_FindMethod ((PyMethodDef *) _PyClutterEvent_methods, self, attr);
 }
 %%
+override-slot ClutterEvent.tp_str
+static PyObject *
+_wrap_clutter_event_tp_str (PyObject *self)
+{
+        ClutterEvent *event;
+        PyObject *py_str;
+        gchar *str = NULL;
+
+#define ACTOR_NAME(a)   \
+        clutter_actor_get_name((a)) ? clutter_actor_get_name((a)) \
+                                    : G_OBJECT_TYPE_NAME ((a))
+
+        event = pyg_boxed_get (self, ClutterEvent);
+        if (event == NULL) {
+                Py_RETURN_NONE;
+        }
+
+        switch (event->type) {
+                case CLUTTER_BUTTON_PRESS:
+                        str = g_strdup_printf ("<Button Press at %d, %d; "
+                                               "button: %d; "
+                                               "time: %u; "
+                                               "source actor: %s at 0x%p>",
+                                               (int) event->button.x,
+                                               (int) event->button.y,
+                                               clutter_event_get_button (event),
+                                               clutter_event_get_time (event),
+                                               ACTOR_NAME (clutter_event_get_source (event)),
+                                               clutter_event_get_source (event));
+                        break;
+
+                case CLUTTER_BUTTON_RELEASE:
+                        str = g_strdup_printf ("<Button Release at %d, %d; "
+                                               "button: %d; "
+                                               "time: %u; "
+                                               "source actor: %s at 0x%p>",
+                                               (int) event->button.x,
+                                               (int) event->button.y,
+                                               clutter_event_get_button (event),
+                                               clutter_event_get_time (event),
+                                               ACTOR_NAME (clutter_event_get_source (event)),
+                                               clutter_event_get_source (event));
+                        break;
+
+                case CLUTTER_KEY_PRESS:
+                {
+                        gchar buf[8];
+                        gint len;
+
+                        len = g_unichar_to_utf8 (clutter_event_get_key_unicode (event), buf);
+                        buf[len] = '\0';
+                        str = g_strdup_printf ("<Key Press '%s'; "
+                                               "time: %u; "
+                                               "source actor: %s at 0x%p>",
+                                               buf,
+                                               clutter_event_get_time (event),
+                                               ACTOR_NAME (clutter_event_get_source (event)),
+                                               clutter_event_get_source (event));
+                }
+                        break;
+
+                case CLUTTER_KEY_RELEASE:
+                {
+                        gchar buf[8];
+                        gint len;
+
+                        len = g_unichar_to_utf8 (clutter_event_get_key_unicode (event), buf);
+                        buf[len] = '\0';
+                        str = g_strdup_printf ("<Key Release '%s'; "
+                                               "time: %u; "
+                                               "source actor: %s at 0x%p>",
+                                               buf,
+                                               clutter_event_get_time (event),
+                                               ACTOR_NAME (clutter_event_get_source (event)),
+                                               clutter_event_get_source (event));
+                }
+                        break;
+
+                case CLUTTER_ENTER:
+                        str = g_strdup_printf ("<Entering actor %s at 0x%p, "
+                                               "related to actor %s at 0%p>",
+                                               ACTOR_NAME (clutter_event_get_source (event)),
+                                               clutter_event_get_source (event),
+                                               ACTOR_NAME (clutter_event_get_related (event)),
+                                               clutter_event_get_related (event));
+                        break;
+
+                case CLUTTER_LEAVE:
+                        str = g_strdup_printf ("<Leaving actor %s at 0x%p, "
+                                               "related to actor %s at 0%p>",
+                                               ACTOR_NAME (clutter_event_get_source (event)),
+                                               clutter_event_get_source (event),
+                                               ACTOR_NAME (clutter_event_get_related (event)),
+                                               clutter_event_get_related (event));
+                        break;
+
+                default:
+                        str = g_strdup_printf ("<%s at 0x%p; source actor: %s at 0x%p>",
+                                               pyclutter_event_get_name (event),
+                                               event,
+                                               ACTOR_NAME (clutter_event_get_source (event)),
+                                               clutter_event_get_source (event));
+                        break;
+        }
+
+        if (str == NULL) {
+                Py_RETURN_NONE;
+        }
+
+        py_str = PyString_FromString (str);
+        g_free (str);
+
+        return py_str;
+}

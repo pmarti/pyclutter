@@ -12,7 +12,7 @@ def on_stage_add (group, element):
     print 'Adding element: ', element
 
 def on_button_press_event (stage, event):
-    print 'Button press at (x:%d, y:%d): %d' % (event.x, event.y, event.button)
+    print str(event)
     stage.foreach(actor_foreach, 'hello')
     clutter.main_quit()
 

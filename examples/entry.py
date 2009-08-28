@@ -25,7 +25,7 @@ class EntryWidget (clutter.Text):
         self.stage = stage
 
     def key_cb(self, stage, event):
-        print "key_cb called"
+        print "key_cb called: %s" % (str(event))
         return False
 
     def activated_cb(self, stage):
