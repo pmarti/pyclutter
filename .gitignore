@@ -36,7 +36,6 @@ libtool
 ltmain.sh
 missing
 py-compile
-pyclutter-0.8.pc
-pyclutter-0.9.pc
+pyclutter-[0-9]\.[0-9].pc
 pyclutter.pc
 stamp-h1
