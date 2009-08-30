@@ -1,5 +1,7 @@
 include $(top_srcdir)/Makefile.tmpl
 
+NULL =
+
 CLEANFILES =
 EXTRA_DIST = 
 INCLUDES = $(pyclutter_common_includes)
@@ -23,28 +25,31 @@ CLUTTER_DEFS = clutter-base.defs
 COGL_TYPES_DEFS = cogl-base-types.defs
 CLUTTER_TYPES_DEFS = clutter-base-types.defs
 
-COGL_OVERRIDES =			\
-	cogl.override			\
-	cogl-texture.override   \
+COGL_OVERRIDES =		\
+	cogl.override		\
 	cogl-material.override  \
-	cogl-shader.override    \
 	cogl-matrix.override    \
-	cogl-offscreen.override
+	cogl-offscreen.override	\
+	cogl-shader.override    \
+	cogl-texture.override   \
+	$(NULL)
 
 CLUTTER_OVERRIDES = 			\
 	clutter.override		\
 	clutter-actor.override 		\
 	clutter-alpha.override		\
+	clutter-animation.override	\
 	clutter-behaviour.override	\
 	clutter-boxed.override 		\
+	clutter-cairotexture.override 	\
 	clutter-color.override		\
 	clutter-container.override	\
 	clutter-event.override		\
+	clutter-interval.override 	\
 	clutter-model.override		\
-	clutter-script.override     \
-	clutter-cairotexture.override \
-	clutter-interval.override \
-	clutter-animation.override
+	clutter-path.override		\
+	clutter-script.override     	\
+	$(NULL)
 
 CLEANFILES += 			\
 	cogl.c 			\

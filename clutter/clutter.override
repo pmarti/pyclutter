@@ -69,16 +69,17 @@ _wrap_ClutterContainer__do_foreach_callback(ClutterActor *child,
 include
   clutter-actor.override
   clutter-alpha.override
+  clutter-animation.override
   clutter-behaviour.override
   clutter-boxed.override
+  clutter-cairotexture.override
   clutter-color.override
   clutter-container.override
   clutter-event.override
-  clutter-model.override
-  clutter-script.override
-  clutter-cairotexture.override
   clutter-interval.override
-  clutter-animation.override
+  clutter-model.override
+  clutter-path.override
+  clutter-script.override
 %%
 modulename clutter
 %%
