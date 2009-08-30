@@ -849,3 +849,76 @@ _wrap_clutter_behaviour_path_new (PyGObject *self,
 
   return 0;
 }
+%%
+override-slot ClutterBehaviour.tp_iter
+
+typedef struct
+{
+        PyObject_HEAD
+        GSList *list;
+} PyClutterBehaviourIter;
+
+static void
+pyclutter_behaviour_iter_dealloc (PyClutterBehaviourIter *self)
+{
+        g_slist_free (self->list);
+
+        PyObject_Del ((PyObject *) self);
+}
+
+static PyObject *
+pyclutter_behaviour_iter_next (PyClutterBehaviourIter *self)
+{
+        PyObject *actor;
+
+        if (!self->list) {
+                PyErr_SetNone (PyExc_StopIteration);
+                return NULL;
+        }
+
+        actor = pygobject_new ((GObject *) self->list->data);
+        self->list = g_slist_next (self->list);
+
+        return actor;
+}
+
+static PyTypeObject PyClutterBehaviourIter_Type = {
+    PyObject_HEAD_INIT (NULL)
+    0,                                      /* ob_size */
+    "clutter.BehaviourIter",                /* tp_name */
+    sizeof(PyClutterBehaviourIter),         /* tp_basicsize */
+    0,                                      /* tp_itemsize */
+    (destructor)pyclutter_behaviour_iter_dealloc, /* tp_dealloc */
+    0,                                      /* tp_print */
+    0,                                      /* tp_getattr */
+    0,                                      /* tp_setattr */
+    0,                                      /* tp_compare */
+    0,                                      /* tp_repr */
+    0,                                      /* tp_as_number */
+    0,                                      /* tp_as_sequence */
+    0,                                      /* tp_as_mapping */
+    0,                                      /* tp_hash */
+    0,                                      /* tp_call */
+    0,                                      /* tp_str */
+    0,                                      /* tp_getattro */
+    0,                                      /* tp_setattro */
+    0,                                      /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT,                     /* tp_flags */
+    "ClutterBehaviour child iterator",      /* tp_doc */
+    0,                                      /* tp_traverse */
+    0,                                      /* tp_clear */
+    0,                                      /* tp_richcompare */
+    0,                                      /* tp_weaklistoffset */
+    0,                                      /* tp_iter */
+    (iternextfunc)pyclutter_behaviour_iter_next, /* tp_iternext */
+};
+
+static PyObject *
+_wrap_clutter_behaviour_tp_iter (PyGObject *self)
+{
+        PyClutterBehaviourIter *iter;
+
+        iter = PyObject_NEW (PyClutterBehaviourIter, &PyClutterBehaviourIter_Type);
+        iter->list = clutter_behaviour_get_actors (CLUTTER_BEHAVIOUR (self->obj));
+        return (PyObject *)iter;
+}
