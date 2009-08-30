@@ -17,9 +17,7 @@ _wrap_clutter_alpha_set_func (PyGObject *self,
         static char *kwlist[] = { "func", "data", NULL };
         PyObject *py_func, *py_data = NULL;
         ClutterAlpha *alpha;
-        PyClutterCallback *pycb;
-        GType param_types[] = { CLUTTER_TYPE_ALPHA };
-        gint n_params = G_N_ELEMENTS (param_types);
+        GClosure *clos;
 
         if (!PyArg_ParseTupleAndKeywords(args, kwargs,
                                          "O|O:clutter.Alpha.set_func",
@@ -33,13 +31,14 @@ _wrap_clutter_alpha_set_func (PyGObject *self,
                 return NULL;
         }
 
-        pycb = pyclutter_callback_new (py_func, py_data,
-                                       n_params, param_types);
+        clos = pyg_closure_new (py_func, py_data, NULL);
+        if (clos == NULL) {
+                PyErr_Print ();
+                return NULL;
+        }
 
         alpha = CLUTTER_ALPHA (self->obj);
-        clutter_alpha_set_func (alpha,
-                                pyclutter_alpha_func, pycb,
-                                (GDestroyNotify) pyclutter_callback_free);
+        clutter_alpha_set_closure (alpha, clos);
 
         Py_INCREF (Py_None);
         return Py_None;
@@ -48,15 +47,13 @@ _wrap_clutter_alpha_set_func (PyGObject *self,
 override clutter_alpha_register_func kwargs
 static PyObject *
 _wrap_clutter_alpha_register_func (PyObject *self,
-                              PyObject  *args,
-                              PyObject  *kwargs)
+                                   PyObject  *args,
+                                   PyObject  *kwargs)
 {
         static char *kwlist[] = { "func", "data", NULL };
         PyObject *py_func, *py_data = NULL;
-        PyClutterCallback *pycb;
+        GClosure *clos;
         gulong id;
-        GType param_types[] = { CLUTTER_TYPE_ALPHA };
-        gint n_params = G_N_ELEMENTS (param_types);
 
         if (!PyArg_ParseTupleAndKeywords(args, kwargs,
                                          "O|O:clutter.alpha_register_func",
@@ -69,16 +66,14 @@ _wrap_clutter_alpha_register_func (PyObject *self,
                 PyErr_SetString (PyExc_TypeError, "func must be callable");
                 return NULL;
         }
-        
-        if (py_data == NULL) {
-            Py_INCREF (Py_None);
-            py_data = Py_None;
+
+        clos = pyg_closure_new (py_func, py_data, NULL);
+        if (clos == NULL) {
+                PyErr_Print ();
+                return NULL;
         }
 
-        pycb = pyclutter_callback_new (py_func, py_data,
-                                       n_params, param_types);
-
-        id = clutter_alpha_register_func (pyclutter_alpha_func, pycb);
+        id = clutter_alpha_register_closure (clos);
 
         return Py_BuildValue("K", id);
 }
