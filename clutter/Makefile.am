@@ -34,6 +34,7 @@ COGL_OVERRIDES =			\
 CLUTTER_OVERRIDES = 			\
 	clutter.override		\
 	clutter-actor.override 		\
+	clutter-alpha.override		\
 	clutter-behaviour.override	\
 	clutter-boxed.override 		\
 	clutter-color.override		\
