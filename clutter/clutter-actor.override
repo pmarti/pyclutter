@@ -223,6 +223,17 @@ _wrap_clutter_actor_get_allocation_box (PyGObject *self)
         return Py_BuildValue ("(dddd)", box.x1, box.y1, box.x2, box.y2);
 }
 %%
+override clutter_actor_get_allocation_geometry noargs
+static PyObject *
+_wrap_clutter_actor_get_allocation_geometry (PyGObject *self)
+{
+        ClutterGeometry geom = { 0, };
+
+        clutter_actor_get_allocation_geometry (CLUTTER_ACTOR (self->obj), &geom);
+
+        return Py_BuildValue ("(iiii)", geom.x, geom.y, geom.width, geom.height);
+}
+%%
 override clutter_actor_get_preferred_size noargs
 static PyObject *
 _wrap_clutter_actor_get_preferred_size (PyGObject *self)

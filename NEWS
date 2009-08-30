@@ -7,6 +7,8 @@ Overview of changes between 1.0.0 and 1.0.2
 * Allow iterating over the actors references by clutter.Behaviour instances
   using the Python iteration syntax
 * Override __str__ and __repr__ slots for clutter.Path
+* Add back clutter.Actor.get_allocation_geometry() which was erroneously
+  removed from the bindings
 
 Overview of changes between 0.9.2 and 1.0.0
 ===========================================
