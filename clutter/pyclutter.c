@@ -281,37 +281,6 @@ out:
         return FALSE;
 }
 
-gdouble
-pyclutter_alpha_func (ClutterAlpha *alpha,
-                      gpointer      data)
-{
-        PyClutterCallback *pycb = data;
-        PyGILState_STATE state;
-        PyObject *py_alpha, *retobj;
-        gdouble retval = 0.0;
-
-        state = pyg_gil_state_ensure ();
-
-        py_alpha = pygobject_new ((GObject *) alpha);
-        retobj = pyclutter_callback_invoke (pycb, py_alpha);
-        if (retobj == NULL)
-                PyErr_Print ();
-
-        if (PyFloat_Check (retobj)) {
-                retval = (gdouble) PyFloat_AsDouble (retobj);
-        } else {
-                PyErr_SetString (PyExc_TypeError,
-                                 "returned value is not an integer");
-        }
-
-        Py_XDECREF (retobj);
-	Py_XDECREF (py_alpha);
-
-        pyg_gil_state_release (state);
-        
-        return retval;
-}
-
 const char *
 pyclutter_event_get_name (const ClutterEvent *event)
 {
