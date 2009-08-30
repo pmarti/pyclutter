@@ -172,13 +172,9 @@ init_clutter (void)
   init_pygobject_check (2, 12, 0);
   g_assert (pygobject_register_class != NULL);
 
-#ifdef HAVE_PYCAIRO
-  {
-    Pycairo_IMPORT;
-    if (Pycairo_CAPI == NULL)
-      return;
-  }
-#endif
+  Pycairo_IMPORT;
+  if (Pycairo_CAPI == NULL)
+    return;
 
   clutter_base_init ();
 
