@@ -99,7 +99,8 @@ AS_IF([test -n "$export_dynamic"],
 dnl Building X11 extension
 build_clutterx11=yes
 AC_ARG_WITH([clutterx11],
-            [AC_HELP_STRING([--with-clutterx11=@<:@yes/no@:>@], [Build clutter.x11 submodule])],
+            [AC_HELP_STRING([--with-clutterx11=@<:@yes/no@:>@],
+                            [Build clutter.x11 submodule])],
             [build_clutterx11=$with_clutterx11])
 
 AS_IF([test "x$build_clutterx11" = "xyes"],
@@ -110,7 +111,7 @@ AS_IF([test "x$build_clutterx11" = "xyes"],
                           [build_clutterx11=no])
         AC_SUBST(CLUTTERX11_CFLAGS)
         AC_SUBST(CLUTTERX11_LIBS)
-		AC_DEFINE([HAVE_CLUTTERX11], [1], [Define to 1 if clutter-x11 is available])
+        AC_DEFINE([HAVE_CLUTTERX11], [1], [Define to 1 if clutter-x11 is available])
 
         AS_IF([test -n "$export_dynamic"],
               [
@@ -126,17 +127,16 @@ AM_CONDITIONAL([BUILD_CLUTTERX11], [test "x$build_clutterx11" = "xyes"])
 dnl Building GLX extension
 build_clutterglx=yes
 AC_ARG_WITH([clutterglx],
-            [AC_HELP_STRING([--with-clutterglx=@<:@yes/no@:>@], [Build clutter.glx submodule])],
+            [AC_HELP_STRING([--with-clutterglx=@<:@yes/no@:>@],
+                            [Build clutter.glx submodule])],
             [build_clutterglx=$with_clutterglx])
 
 AS_IF([test "x$build_clutterglx" = "xyes"],
       [
-        AC_MSG_CHECKING(for CLUTTERGLX)
+        AC_MSG_CHECKING([for Clutter GLX support])
 		clutter_backend=`$PKG_CONFIG --variable=backend clutter-x11-1.0`
-		AS_IF([test "x$clutter_backend" != "xglx"],
-			  build_clutterglx=no
-			  )
-		AC_MSG_RESULT($build_clutterglx)
+		AS_IF([test "x$clutter_backend" != "xglx"], [build_clutterglx=no])
+		AC_MSG_RESULT([$build_clutterglx])
       ]
 )
 
