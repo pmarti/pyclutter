@@ -19,4 +19,5 @@ EXTRA_DIST = \
 	test-binding-pool.py \
 	test-easing.py \
 	test-multitexture.py \
-	test-scale.py
+	test-scale.py \
+	test-texture-pixmap.py
