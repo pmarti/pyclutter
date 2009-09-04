@@ -17,6 +17,12 @@ clutter/clutter.defs
 clutter/cogl-types.defs
 clutter/cogl.c
 clutter/cogl.defs
+clutter/clutterglx.c
+clutter/clutterglx.defs
+clutter/clutterglx-types.defs
+clutter/clutterx11.c
+clutter/clutterx11.defs
+clutter/clutterx11-types.defs
 compile
 config.guess
 config.h
