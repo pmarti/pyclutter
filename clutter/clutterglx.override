@@ -1,0 +1,19 @@
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#include "pygobject.h"
+
+#include "pyclutter-private.h"
+
+#include <clutter/glx/clutter-glx.h>
+%%
+modulename clutter.glx
+%%
+ignore-glob
+  *_get_type
+%%
+ignore
+  clutter_glx_texture_pixmap_new_with_pixmap
+  clutter_glx_texture_pixmap_new_with_window
+%%
+import clutter.x11.TexturePixmap as PyClutterX11TexturePixmap_Type

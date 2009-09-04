@@ -1,0 +1,11 @@
+;; -*- scheme -*-
+; object definitions ...
+(define-object TexturePixmap
+  (in-module "Clutter")
+  (parent "ClutterX11TexturePixmap")
+  (c-name "ClutterGLXTexturePixmap")
+  (gtype-id "CLUTTER_GLX_TYPE_TEXTURE_PIXMAP")
+)
+
+;; Enumerations and flags ...
+

@@ -1,0 +1,227 @@
+(include "clutterx11-base-types.defs")
+
+;; From clutter-x11-enum-types.h
+
+(define-function filter_return_get_type
+  (c-name "clutter_x11_filter_return_get_type")
+  (return-type "GType")
+)
+
+(define-function xinput_event_types_get_type
+  (c-name "clutter_x11_xinput_event_types_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From clutter-x11.h
+
+(define-function trap_x_errors
+  (c-name "clutter_x11_trap_x_errors")
+  (return-type "none")
+)
+
+(define-function untrap_x_errors
+  (c-name "clutter_x11_untrap_x_errors")
+  (return-type "gint")
+)
+
+(define-function get_default_display
+  (c-name "clutter_x11_get_default_display")
+  (return-type "Display*")
+)
+
+(define-function get_default_screen
+  (c-name "clutter_x11_get_default_screen")
+  (return-type "int")
+)
+
+(define-function get_root_window
+  (c-name "clutter_x11_get_root_window")
+  (return-type "gulong")
+)
+
+(define-function set_display
+  (c-name "clutter_x11_set_display")
+  (return-type "none")
+  (parameters
+    '("Display*" "xdpy")
+  )
+)
+
+(define-function get_stage_window
+  (c-name "clutter_x11_get_stage_window")
+  (return-type "gulong")
+  (parameters
+    '("ClutterStage*" "stage")
+  )
+)
+
+(define-function get_stage_visual
+  (c-name "clutter_x11_get_stage_visual")
+  (return-type "XVisualInfo*")
+  (parameters
+    '("ClutterStage*" "stage")
+  )
+)
+
+(define-function set_stage_foreign
+  (c-name "clutter_x11_set_stage_foreign")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterStage*" "stage")
+    '("gulong" "xwindow")
+  )
+)
+
+(define-function add_filter
+  (c-name "clutter_x11_add_filter")
+  (return-type "none")
+  (parameters
+    '("ClutterX11FilterFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-function remove_filter
+  (c-name "clutter_x11_remove_filter")
+  (return-type "none")
+  (parameters
+    '("ClutterX11FilterFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-function handle_event
+  (c-name "clutter_x11_handle_event")
+  (return-type "ClutterX11FilterReturn")
+  (parameters
+    '("XEvent*" "xevent")
+  )
+)
+
+(define-function disable_event_retrieval
+  (c-name "clutter_x11_disable_event_retrieval")
+  (return-type "none")
+)
+
+(define-function has_event_retrieval
+  (c-name "clutter_x11_has_event_retrieval")
+  (return-type "gboolean")
+)
+
+(define-function get_stage_from_window
+  (c-name "clutter_x11_get_stage_from_window")
+  (return-type "ClutterStage*")
+  (parameters
+    '("gulong" "win")
+  )
+)
+
+(define-function get_input_devices
+  (c-name "clutter_x11_get_input_devices")
+  (return-type "const-GSList*")
+)
+
+(define-function enable_xinput
+  (c-name "clutter_x11_enable_xinput")
+  (return-type "none")
+)
+
+(define-function has_xinput
+  (c-name "clutter_x11_has_xinput")
+  (return-type "gboolean")
+)
+
+(define-function has_composite_extension
+  (c-name "clutter_x11_has_composite_extension")
+  (return-type "gboolean")
+)
+
+(define-function get_current_event_time
+  (c-name "clutter_x11_get_current_event_time")
+  (return-type "Time")
+)
+
+
+
+;; From clutter-x11-texture-pixmap.h
+
+(define-function texture_pixmap_get_type
+  (c-name "clutter_x11_texture_pixmap_get_type")
+  (return-type "GType")
+)
+
+(define-function texture_pixmap_new
+  (c-name "clutter_x11_texture_pixmap_new")
+  (is-constructor-of "ClutterX11TexturePixmap")
+  (return-type "ClutterActor*")
+  (properties
+    '("window" (optional))
+    '("pixmap" (optional))
+  )
+)
+
+(define-function texture_pixmap_new_with_pixmap
+  (c-name "clutter_x11_texture_pixmap_new_with_pixmap")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gulong" "pixmap")
+  )
+)
+
+(define-function texture_pixmap_new_with_window
+  (c-name "clutter_x11_texture_pixmap_new_with_window")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gulong" "window")
+  )
+)
+
+(define-method set_pixmap
+  (of-object "ClutterX11TexturePixmap")
+  (c-name "clutter_x11_texture_pixmap_set_pixmap")
+  (return-type "none")
+  (parameters
+    '("gulong" "pixmap")
+  )
+)
+
+(define-method set_window
+  (of-object "ClutterX11TexturePixmap")
+  (c-name "clutter_x11_texture_pixmap_set_window")
+  (return-type "none")
+  (parameters
+    '("gulong" "window")
+    '("gboolean" "automatic")
+  )
+)
+
+(define-method sync_window
+  (of-object "ClutterX11TexturePixmap")
+  (c-name "clutter_x11_texture_pixmap_sync_window")
+  (return-type "none")
+)
+
+(define-method update_area
+  (of-object "ClutterX11TexturePixmap")
+  (c-name "clutter_x11_texture_pixmap_update_area")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method set_automatic
+  (of-object "ClutterX11TexturePixmap")
+  (c-name "clutter_x11_texture_pixmap_set_automatic")
+  (return-type "none")
+  (parameters
+    '("gboolean" "setting")
+  )
+)
+
+

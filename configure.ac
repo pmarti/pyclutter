@@ -96,6 +96,52 @@ AS_IF([test -n "$export_dynamic"],
       ]
 )
 
+dnl Building X11 extension
+build_clutterx11=yes
+AC_ARG_WITH([clutterx11],
+            [AC_HELP_STRING([--with-clutterx11=@<:@yes/no@:>@], [Build clutter.x11 submodule])],
+            [build_clutterx11=$with_clutterx11])
+
+AS_IF([test "x$build_clutterx11" = "xyes"],
+      [
+        PKG_CHECK_MODULES([CLUTTERX11],
+                          [clutter-x11-1.0 >= clutter_required_version],
+                          [build_clutterx11=yes],
+                          [build_clutterx11=no])
+        AC_SUBST(CLUTTERX11_CFLAGS)
+        AC_SUBST(CLUTTERX11_LIBS)
+		AC_DEFINE([HAVE_CLUTTERX11], [1], [Define to 1 if clutter-x11 is available])
+
+        AS_IF([test -n "$export_dynamic"],
+              [
+                CLUTTERX11_LIBS=`echo $CLUTTERX11_LIBS | sed -e "s/$export_dynamic//"`
+              ]
+        )
+      ]
+)
+
+AM_CONDITIONAL([BUILD_CLUTTERX11], [test "x$build_clutterx11" = "xyes"])
+
+
+dnl Building GLX extension
+build_clutterglx=yes
+AC_ARG_WITH([clutterglx],
+            [AC_HELP_STRING([--with-clutterglx=@<:@yes/no@:>@], [Build clutter.glx submodule])],
+            [build_clutterglx=$with_clutterglx])
+
+AS_IF([test "x$build_clutterglx" = "xyes"],
+      [
+        AC_MSG_CHECKING(for CLUTTERGLX)
+		clutter_backend=`$PKG_CONFIG --variable=backend clutter-x11-1.0`
+		AS_IF([test "x$clutter_backend" != "xglx"],
+			  build_clutterglx=no
+			  )
+		AC_MSG_RESULT($build_clutterglx)
+      ]
+)
+
+AM_CONDITIONAL([BUILD_CLUTTERGLX], [test "x$build_clutterglx" = "xyes"])
+
 
 dnl Building documentation
 m4_define([docs_default], [m4_if(m4_eval(pyclutter_version_minor % 2), [0], [yes], [no])])
@@ -146,4 +192,6 @@ AC_OUTPUT
 
 echo "* PyClutter:
     enable documentation: $enable_docs
+    build x11 submodule:  $build_clutterx11
+    build glx submodule:  $build_clutterglx
 "

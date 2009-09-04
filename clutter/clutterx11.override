@@ -1,0 +1,33 @@
+%%
+headers
+#define NO_IMPORT_PYGOBJECT
+#include "pygobject.h"
+
+#include "pyclutter-private.h"
+
+#include <clutter/clutter.h>
+#include <clutter/x11/clutter-x11.h>
+%%
+modulename clutter.x11
+%%
+ignore-glob
+  *_get_type
+%%
+ignore
+  clutter_x11_get_default_display
+  clutter_x11_set_display
+  clutter_x11_get_stage_visual
+  clutter_x11_add_filter
+  clutter_x11_remove_filter
+  clutter_x11_disable_event_retrieval
+  clutter_x11_get_current_event_time
+  clutter_x11_handle_event
+  clutter_x11_has_event_retrieval
+  clutter_x11_enable_xinput
+  clutter_x11_get_input_devices
+  clutter_x11_has_xinput
+  clutter_x11_trap_x_errors
+  clutter_x11_untrap_x_errors
+%%
+import clutter.Texture as PyClutterTexture_Type
+import clutter.Stage as PyClutterStage_Type

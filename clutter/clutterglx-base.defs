@@ -1,0 +1,46 @@
+(include "clutterglx-base-types.defs")
+
+;; From clutter-glx.h
+
+
+
+;; From clutter-glx-texture-pixmap.h
+
+(define-function texture_pixmap_get_type
+  (c-name "clutter_glx_texture_pixmap_get_type")
+  (return-type "GType")
+)
+
+(define-function texture_pixmap_new
+  (c-name "clutter_glx_texture_pixmap_new")
+  (is-constructor-of "ClutterGLXTexturePixmap")
+  (return-type "ClutterActor*")
+  (properties
+    '("window" (optional))
+    '("pixmap" (optional))
+  )
+)
+
+(define-function texture_pixmap_new_with_pixmap
+  (c-name "clutter_glx_texture_pixmap_new_with_pixmap")
+  (return-type "ClutterActor*")
+  (parameters
+    '("Pixmap" "pixmap")
+  )
+)
+
+(define-function texture_pixmap_new_with_window
+  (c-name "clutter_glx_texture_pixmap_new_with_window")
+  (return-type "ClutterActor*")
+  (parameters
+    '("Window" "window")
+  )
+)
+
+(define-method using_extension
+  (of-object "ClutterGLXTexturePixmap")
+  (c-name "clutter_glx_texture_pixmap_using_extension")
+  (return-type "gboolean")
+)
+
+
