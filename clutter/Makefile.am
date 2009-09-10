@@ -67,11 +67,11 @@ CLEANFILES += 			\
 	cogl-types.defs 	\
 	clutter-types.defs 	\
 	cogl.defs 		\
-	clutter.defs 	\
-	clutterx11.c 			\
+	clutter.defs 		\
+	clutterx11.c 		\
 	clutterx11.defs 	\
 	clutterx11-types.defs 	\
-	clutterglx.c 			\
+	clutterglx.c 		\
 	clutterglx.defs 	\
 	clutterglx-types.defs
 
@@ -149,34 +149,29 @@ defs_DATA = \
 	$(CLUTTER_DEFS) 	\
 	$(COGL_TYPES_DEFS)	\
 	$(CLUTTER_TYPES_DEFS) 	\
-	$(CLUTTERX11_DEFS) 	\
-	$(CLUTTERX11_TYPES_DEFS) 	\
 	cogl.defs		\
 	clutter.defs		\
 	cogl-types.defs		\
-	clutter-types.defs 	\
-	clutterx11.defs 	\
-	clutterx11-types.defs
-
+	clutter-types.defs
 
 if BUILD_CLUTTERX11
- defs_DATA += \
-	$(CLUTTERX11_DEFS) 	\
+defs_DATA += \
+	$(CLUTTERX11_DEFS) 		\
 	$(CLUTTERX11_TYPES_DEFS) 	\
-	clutterx11.defs 	\
+	clutterx11.defs 		\
 	clutterx11-types.defs
 
- pyclutterexec_LTLIBRARIES += x11.la
+pyclutterexec_LTLIBRARIES += x11.la
 endif
 
 if BUILD_CLUTTERGLX
- defs_DATA += \
-	$(CLUTTERGLX_DEFS) 	\
+defs_DATA += \
+	$(CLUTTERGLX_DEFS) 		\
 	$(CLUTTERGLX_TYPES_DEFS) 	\
-	clutterglx.defs 	\
+	clutterglx.defs 		\
 	clutterglx-types.defs
 
- pyclutterexec_LTLIBRARIES += glx.la
+pyclutterexec_LTLIBRARIES += glx.la
 endif
 
 .defs.c:
@@ -205,4 +200,4 @@ install-data-local:
 # we have clutter-types.defs
 #clutter-types.c:
 #	@:
-
+#
