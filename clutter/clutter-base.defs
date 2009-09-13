@@ -5450,6 +5450,14 @@
   (c-name "clutter_animation_new")
   (is-constructor-of "ClutterAnimation")
   (return-type "ClutterAnimation*")
+  (properties
+    '("object" (optional))
+    '("mode" (optional))
+    '("duration" (optional))
+    '("loop" (optional))
+    '("timeline" (optional))
+    '("alpha" (optional))
+  )
 )
 
 (define-method set_object
