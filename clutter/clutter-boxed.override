@@ -159,6 +159,44 @@ _wrap_clutter_geometry__set_height (PyGBoxed *self, PyObject *value, void *closu
 	return 0;
 }
 %%
+override-slot ClutterGeometry.tp_str
+static PyObject *
+_wrap_clutter_geometry_tp_str (PyObject *self)
+{
+  ClutterGeometry *geometry;
+  gchar *str = NULL;
+  PyObject *py_str;
+
+  geometry = pyg_boxed_get (self, ClutterGeometry);
+
+  str = g_strdup_printf ("<ClutterGeometry: x=%i, y=%i, width=%i, height=%i>",
+                         geometry->x, geometry->y,
+                         geometry->width, geometry->height);
+
+  py_str = PyString_FromString (str);
+  g_free (str);
+  return py_str;
+}
+%%
+override-slot ClutterGeometry.tp_repr
+static PyObject *
+_wrap_clutter_geometry_tp_repr (PyObject *self)
+{
+  ClutterGeometry *geometry;
+  gchar *str = NULL;
+  PyObject *py_str;
+
+  geometry = pyg_boxed_get (self, ClutterGeometry);
+
+  str = g_strdup_printf ("clutter.Geometry(%i, %i, %i, %i)",
+                         geometry->x, geometry->y,
+                         geometry->width, geometry->height);
+
+  py_str = PyString_FromString (str);
+  g_free (str);
+  return py_str;
+}
+%%
 override clutter_actor_box_new kwargs
 static int
 _wrap_clutter_actor_box_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
@@ -266,6 +304,42 @@ static PySequenceMethods _wrap_clutter_actor_box_tp_as_sequence = {
 	(ssizeobjargproc) _wrap_clutter_actor_box_setitem,
 	0
 };
+%%
+override-slot ClutterActorBox.tp_str
+static PyObject *
+_wrap_clutter_actor_box_tp_str (PyObject *self)
+{
+  ClutterActorBox *box;
+  gchar *str = NULL;
+  PyObject *py_str;
+
+  box = pyg_boxed_get (self, ClutterActorBox);
+
+  str = g_strdup_printf ("<ClutterActorBox: x1=%0.2f, y1=%0.2f, x2=%0.2f, "
+                         "y2=%0.2f>", box->x1, box->y1, box->x2, box->y2);
+
+  py_str = PyString_FromString (str);
+  g_free (str);
+  return py_str;
+}
+%%
+override-slot ClutterActorBox.tp_repr
+static PyObject *
+_wrap_clutter_actor_box_tp_repr (PyObject *self)
+{
+  ClutterActorBox *box;
+  gchar *str = NULL;
+  PyObject *py_str;
+
+  box = pyg_boxed_get (self, ClutterActorBox);
+
+  str = g_strdup_printf ("clutter.ActorBox(%f, %f, %f, %f)",
+                         box->x1, box->y1, box->x2, box->y2);
+
+  py_str = PyString_FromString (str);
+  g_free (str);
+  return py_str;
+}
 %%
 override-attr ClutterActorBox.origin
 static PyObject *
@@ -662,4 +736,40 @@ _wrap_clutter_vertex__get_z (PyGBoxed *self, void *closure)
 {
 	double z = pyg_boxed_get (self, ClutterVertex)->z;
 	return PyFloat_FromDouble (z);
+}
+%%
+override-slot ClutterVertex.tp_str
+static PyObject *
+_wrap_clutter_vertex_tp_str (PyObject *self)
+{
+  ClutterVertex *v;
+  gchar *str = NULL;
+  PyObject *py_str;
+
+  v = pyg_boxed_get (self, ClutterVertex);
+
+  str = g_strdup_printf ("<ClutterVertex: x=%0.2f, y=%0.2f, z=%0.2f>",
+                         v->x, v->y, v->z);
+  py_str = PyString_FromString (str);
+  g_free (str);
+
+  return py_str;
+}
+%%
+override-slot ClutterVertex.tp_repr
+static PyObject *
+_wrap_clutter_vertex_tp_repr (PyObject *self)
+{
+  ClutterVertex *v;
+  gchar *str = NULL;
+  PyObject *py_str;
+
+  v = pyg_boxed_get (self, ClutterVertex);
+
+  str = g_strdup_printf ("clutter.Vertex(%f, %f, %f)",
+                         v->x, v->y, v->z);
+  py_str = PyString_FromString (str);
+  g_free (str);
+
+  return py_str;
 }
