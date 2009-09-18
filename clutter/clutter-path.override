@@ -345,3 +345,55 @@ static PySequenceMethods _wrap_clutter_path_node_tp_as_sequence = {
     0,
 };
 %%
+override-slot ClutterPath.tp_richcompare
+static PyObject *
+_wrap_clutter_path_tp_richcompare (PyObject *a, PyObject *b, int op)
+{
+  ClutterPath *path_a, *path_b;
+  gboolean ret = TRUE;
+
+  if (!pygobject_check (b, &PyClutterPath_Type)) {
+      if (op == Py_NE) {
+          Py_RETURN_TRUE;
+      } else {
+          Py_RETURN_FALSE;
+      }
+  }
+
+  path_a = CLUTTER_PATH (pygobject_get (a));
+  path_b = CLUTTER_PATH (pygobject_get (b));
+
+  if (clutter_path_get_n_nodes (path_a) == clutter_path_get_n_nodes (path_b))
+    {
+      ClutterPathNode node_a, node_b;
+      guint i, n_nodes;
+
+      n_nodes = clutter_path_get_n_nodes (path_a);
+
+      for (i = 0; i < n_nodes; i++)
+        {
+          clutter_path_get_node (path_a, i, &node_a);
+          clutter_path_get_node (path_b, i, &node_b);
+
+          if (!clutter_path_node_equal (&node_a, &node_b))
+            {
+              ret = FALSE;
+              break;
+            }
+        }
+    }
+  else
+    ret = FALSE;
+
+  switch (op)
+    {
+    case Py_EQ:
+      return PyBool_FromLong (ret);
+    case Py_NE:
+      return PyBool_FromLong (!ret);
+    default:
+      PyErr_SetString (PyExc_TypeError,
+                       "only '==' and '!=' comparisons are allowed");
+      return NULL;
+    }
+}

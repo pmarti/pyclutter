@@ -295,3 +295,45 @@ _wrap_clutter_color_to_cogl_color (PyObject *self)
                           (float)source->blue/255.0,
                           (float)source->alpha/255.0);
 }
+%%
+override-slot ClutterColor.tp_richcompare
+static PyObject *
+_wrap_clutter_color_tp_richcompare (PyObject *a, PyObject *b, int op)
+{
+  ClutterColor *color_a, *color_b;
+
+  if (!pyg_boxed_check (b, CLUTTER_TYPE_COLOR)) {
+      if (op == Py_NE) {
+          Py_RETURN_TRUE;
+      } else {
+          Py_RETURN_FALSE;
+      }
+  }
+
+  color_a = pyg_boxed_get (a, ClutterColor);
+  color_b = pyg_boxed_get (b, ClutterColor);
+
+  switch (op)
+    {
+    case Py_EQ:
+      if ((color_a->red == color_b->red) &&
+          (color_a->green == color_b->green) &&
+          (color_a->blue == color_b->blue) &&
+          (color_a->alpha == color_b->alpha))
+        Py_RETURN_TRUE;
+      else
+        Py_RETURN_FALSE;
+    case Py_NE:
+      if ((color_a->red == color_b->red) &&
+          (color_a->green == color_b->green) &&
+          (color_a->blue == color_b->blue) &&
+          (color_a->alpha == color_b->alpha))
+        Py_RETURN_FALSE;
+      else
+        Py_RETURN_TRUE;
+    default:
+      PyErr_SetString (PyExc_TypeError,
+                       "only '==' and '!=' comparisons are allowed");
+      return NULL;
+    }
+}

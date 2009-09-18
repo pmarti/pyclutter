@@ -99,6 +99,44 @@ static PySequenceMethods _wrap_clutter_geometry_tp_as_sequence = {
         0
 };
 %%
+override-slot ClutterGeometry.tp_richcompare
+static PyObject *
+_wrap_clutter_geometry_tp_richcompare (PyObject *a, PyObject *b, int op)
+{
+  ClutterGeometry *g_a, *g_b;
+
+  if (!pyg_boxed_check (b, CLUTTER_TYPE_GEOMETRY)) {
+      if (op == Py_NE) {
+          Py_RETURN_TRUE;
+      } else {
+          Py_RETURN_FALSE;
+      }
+  }
+
+  g_a = pyg_boxed_get (a, ClutterGeometry);
+  g_b = pyg_boxed_get (b, ClutterGeometry);
+
+  switch (op)
+    {
+    case Py_EQ:
+      if ((g_a->x == g_b->x) && (g_a->y == g_b->y) &&
+          (g_a->width == g_b->width) && (g_a->height == g_b->height))
+        Py_RETURN_TRUE;
+      else
+        Py_RETURN_FALSE;
+    case Py_NE:
+      if ((g_a->x == g_b->x) && (g_a->y == g_b->y) &&
+          (g_a->width == g_b->width) && (g_a->height == g_b->height))
+        Py_RETURN_FALSE;
+      else
+        Py_RETURN_TRUE;
+    default:
+      PyErr_SetString (PyExc_TypeError,
+                       "only '==' and '!=' comparisons are allowed");
+      return NULL;
+    }
+}
+%%
 override-attr ClutterGeometry.x
 static int
 _wrap_clutter_geometry__set_x (PyGBoxed *self, PyObject *value, void *closure)
@@ -304,6 +342,42 @@ static PySequenceMethods _wrap_clutter_actor_box_tp_as_sequence = {
 	(ssizeobjargproc) _wrap_clutter_actor_box_setitem,
 	0
 };
+%%
+override-slot ClutterActorBox.tp_richcompare
+static PyObject *
+_wrap_clutter_actor_box_tp_richcompare (PyObject *a, PyObject *b, int op)
+{
+  ClutterActorBox *box_a, *box_b;
+
+  if (!pyg_boxed_check (b, CLUTTER_TYPE_ACTOR_BOX)) {
+      if (op == Py_NE) {
+          Py_RETURN_TRUE;
+      } else {
+          Py_RETURN_FALSE;
+      }
+  }
+
+  box_a = pyg_boxed_get (a, ClutterActorBox);
+  box_b = pyg_boxed_get (b, ClutterActorBox);
+
+  switch (op)
+    {
+    case Py_EQ:
+      if (clutter_actor_box_equal (box_a, box_b))
+        Py_RETURN_TRUE;
+      else
+        Py_RETURN_FALSE;
+    case Py_NE:
+      if (!clutter_actor_box_equal (box_a, box_b))
+        Py_RETURN_TRUE;
+      else
+        Py_RETURN_FALSE;
+    default:
+      PyErr_SetString (PyExc_TypeError,
+                       "only '==' and '!=' comparisons are allowed");
+      return NULL;
+    }
+}
 %%
 override-slot ClutterActorBox.tp_str
 static PyObject *
@@ -674,6 +748,42 @@ static PySequenceMethods _wrap_clutter_vertex_tp_as_sequence = {
 	(ssizeobjargproc) _wrap_clutter_vertex_setitem,
 	0
 };
+%%
+override-slot ClutterVertex.tp_richcompare
+static PyObject *
+_wrap_clutter_vertex_tp_richcompare (PyObject *a, PyObject *b, int op)
+{
+  ClutterVertex *v_a, *v_b;
+
+  if (!pyg_boxed_check (b, CLUTTER_TYPE_VERTEX)) {
+      if (op == Py_NE) {
+          Py_RETURN_TRUE;
+      } else {
+          Py_RETURN_FALSE;
+      }
+  }
+
+  v_a = pyg_boxed_get (a, ClutterVertex);
+  v_b = pyg_boxed_get (b, ClutterVertex);
+
+  switch (op)
+    {
+    case Py_EQ:
+      if ((v_a->x == v_b->x) && (v_a->y == v_b->y) && (v_a->z == v_b->z))
+        Py_RETURN_TRUE;
+      else
+        Py_RETURN_FALSE;
+    case Py_NE:
+      if ((v_a->x == v_b->x) && (v_a->y == v_b->y) && (v_a->z == v_b->z))
+        Py_RETURN_FALSE;
+      else
+        Py_RETURN_TRUE;
+    default:
+      PyErr_SetString (PyExc_TypeError,
+                       "only '==' and '!=' comparisons are allowed");
+      return NULL;
+    }
+}
 %%
 override-attr ClutterVertex.x
 static int
