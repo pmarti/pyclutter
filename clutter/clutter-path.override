@@ -397,3 +397,77 @@ _wrap_clutter_path_tp_richcompare (PyObject *a, PyObject *b, int op)
       return NULL;
     }
 }
+%%
+override-slot ClutterPath.tp_iter
+
+typedef struct
+{
+        PyObject_HEAD
+        GSList *list;
+} PyClutterPathIter;
+
+static void
+pyclutter_path_iter_dealloc (PyClutterPathIter *self)
+{
+        g_slist_free (self->list);
+
+        PyObject_Del ((PyObject *) self);
+}
+
+static PyObject *
+pyclutter_path_iter_next (PyClutterPathIter *self)
+{
+        PyObject *node;
+
+        if (!self->list) {
+                PyErr_SetNone (PyExc_StopIteration);
+                return NULL;
+        }
+
+        node = pyg_boxed_new (CLUTTER_TYPE_PATH_NODE, self->list->data,
+                              TRUE, TRUE);
+        self->list = g_slist_next (self->list);
+
+        return node;
+}
+
+static PyTypeObject PyClutterPathIter_Type = {
+    PyObject_HEAD_INIT (NULL)
+    0,                                      /* ob_size */
+    "clutter.PathIter",                     /* tp_name */
+    sizeof(PyClutterPathIter),              /* tp_basicsize */
+    0,                                      /* tp_itemsize */
+    (destructor)pyclutter_path_iter_dealloc, /* tp_dealloc */
+    0,                                      /* tp_print */
+    0,                                      /* tp_getattr */
+    0,                                      /* tp_setattr */
+    0,                                      /* tp_compare */
+    0,                                      /* tp_repr */
+    0,                                      /* tp_as_number */
+    0,                                      /* tp_as_sequence */
+    0,                                      /* tp_as_mapping */
+    0,                                      /* tp_hash */
+    0,                                      /* tp_call */
+    0,                                      /* tp_str */
+    0,                                      /* tp_getattro */
+    0,                                      /* tp_setattro */
+    0,                                      /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT,                     /* tp_flags */
+    "ClutterPath child iterator",           /* tp_doc */
+    0,                                      /* tp_traverse */
+    0,                                      /* tp_clear */
+    0,                                      /* tp_richcompare */
+    0,                                      /* tp_weaklistoffset */
+    0,                                      /* tp_iter */
+    (iternextfunc)pyclutter_path_iter_next, /* tp_iternext */
+};
+
+static PyObject *
+_wrap_clutter_path_tp_iter (PyGObject *self)
+{
+        PyClutterPathIter *iter;
+
+        iter = PyObject_NEW (PyClutterPathIter, &PyClutterPathIter_Type);
+        iter->list = clutter_path_get_nodes (CLUTTER_PATH (self->obj));
+        return (PyObject *)iter;
+}
