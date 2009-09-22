@@ -261,9 +261,11 @@ _wrap_clutter_model_insert (PyGObject *self,
 {
     ClutterModel *model = CLUTTER_MODEL (self->obj);
     PyObject *py_row;
-    int len, i;
+    int len, i, pos;
     int n_columns;
     int row;
+    guint *columns;
+    GValueArray *values;
 
     len = PyTuple_Size (args);
     if (len == 0) {
@@ -291,7 +293,10 @@ _wrap_clutter_model_insert (PyGObject *self,
 
     n_columns = clutter_model_get_n_columns (model);
 
-    for (i = 1; i < len; i += 2) {
+    columns = g_new (guint, (len - 1) / 2);
+    values = g_value_array_new ((len -1) / 2);
+
+    for (i = 1, pos = 0; i < len; i += 2, pos++) {
         guint column;
         GValue value = { 0, };
         PyObject *py_column = PyTuple_GetItem (args, i);
@@ -319,9 +324,16 @@ _wrap_clutter_model_insert (PyGObject *self,
             return NULL;
         }
 
-        clutter_model_insert (model, row, column, &value);
+        columns[pos] = column;
+
+        g_value_array_append (values, &value);
         g_value_unset (&value);
     }
+
+    clutter_model_insertv (model, row, (len - 1) / 2, columns, values->values);
+
+    g_free (columns);
+    g_value_array_free (values);
 
     Py_INCREF (Py_None);
     return Py_None;
