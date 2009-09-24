@@ -2122,6 +2122,14 @@
   )
 )
 
+(define-virtual get_child_meta
+  (of-object "ClutterContainer")
+  (return-type "ClutterChildMeta*")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
 (define-method child_set_property
   (of-object "ClutterContainer")
   (c-name "clutter_container_child_set_property")
@@ -2166,7 +2174,21 @@
   (varargs #t)
 )
 
+(define-virtual create_child_meta
+  (of-object "ClutterContainer")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
 
+(define-virtual destroy_child_meta
+  (of-object "ClutterContainer")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
 
 
 ;; From clutter-enum-types.h
