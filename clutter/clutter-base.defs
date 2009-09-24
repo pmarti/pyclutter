@@ -2095,6 +2095,11 @@
   (return-type "none")
 )
 
+(define-virtual sort_depth_order
+  (of-object "ClutterContainer")
+  (return-type "none")
+)
+
 (define-function container_class_find_child_property
   (c-name "clutter_container_class_find_child_property")
   (return-type "GParamSpec*")
