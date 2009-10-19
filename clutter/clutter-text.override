@@ -153,3 +153,54 @@ _wrap_clutter_text_position_to_coords (PyGObject *self,
     return Py_BuildValue ("(ddd)", x, y, line_height);
 }
 %%
+override clutter_text_set_preedit_string kwargs
+static PyObject *
+_wrap_clutter_text_set_preedit_string (PyGObject *self,
+                                       PyObject  *args,
+                                       PyObject *kwargs)
+{
+#if CLUTTER_CHECK_VERSION(1, 0, 8)
+    static char *kwlist[] = 
+      { "preedit_str", "preedit_attr", "cursor_position", NULL };
+    gchar *preedit_str;
+    PyObject *py_preedit_attr, *py_cursor_position = NULL;
+    guint cursor_position = 0;
+    PangoAttrList *preedit_attr = NULL;
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "sOO:Clutter.Text.set_preedit_string",
+                                      kwlist, &preedit_str, &py_preedit_attr,
+                                      &py_cursor_position))
+        return NULL;
+    if (pyg_boxed_check (py_preedit_attr, PANGO_TYPE_ATTR_LIST))
+        preedit_attr = pyg_boxed_get (py_preedit_attr, PangoAttrList);
+    else {
+        PyErr_SetString(PyExc_TypeError,
+                        "preedit_attr should be a PangoAttrList");
+        return NULL;
+    }
+    if (py_cursor_position) {
+        if (PyLong_Check (py_cursor_position))
+            cursor_position = PyLong_AsUnsignedLong (py_cursor_position);
+        else if (PyInt_Check (py_cursor_position))
+            cursor_position = PyInt_AsLong (py_cursor_position);
+        else
+            PyErr_SetString (PyExc_TypeError,
+                             "Parameter 'cursor_position' must be an int or a "
+                             "long");
+        if (PyErr_Occurred ())
+            return NULL;
+    }
+    
+    clutter_text_set_preedit_string (CLUTTER_TEXT (self->obj), preedit_str,
+                                     preedit_attr, cursor_position);
+    
+    Py_INCREF (Py_None);
+    return Py_None;
+#else
+    PyErr_SetString (PyExc_Exception,
+                     "You have to use pyclutter with at least clutter-1.0.8 "
+                     "to use clutter.Text.set_preedit_string");
+    return NULL;
+#endif
+}

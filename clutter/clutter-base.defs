@@ -5433,6 +5433,17 @@
   )
 )
 
+(define-method set_preedit_string
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_preedit_string")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "preedit_str")
+    '("PangoAttrList*" "preedit_attr")
+    '("guint" "cursor_position")
+  )
+)
+
 
 ;; From clutter-clone.h
 
