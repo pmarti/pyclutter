@@ -188,7 +188,7 @@ _wrap_clutter_text_set_preedit_string (PyGObject *self,
     Py_INCREF (Py_None);
     return Py_None;
 #else
-    PyErr_SetString (PyExc_Exception,
+    PyErr_SetString (PyExc_NotImplementedError,
                      "You have to use pyclutter with at least clutter-1.0.8 "
                      "to use clutter.Text.set_preedit_string");
     return NULL;
