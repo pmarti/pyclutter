@@ -53,6 +53,7 @@ CLUTTER_OVERRIDES = 			\
 	clutter-model.override		\
 	clutter-path.override		\
 	clutter-script.override     	\
+	clutter-text.override 		\
 	$(NULL)
 
 CLUTTERX11_OVERRIDES = \
