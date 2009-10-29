@@ -111,6 +111,17 @@
     '("gint" "type")
   )
 )
+
+(define-boxed Units
+  (in-module "Clutter")
+  (c-name "ClutterUnits")
+  (gtype-id "CLUTTER_TYPE_UNITS")
+  (fields
+    '("gint" "type")
+    '("gfloat" "value")
+  )
+)
+
 ; object definitions ...
 
 (define-object Actor
@@ -648,5 +659,17 @@
   (values
     '("mipmapping" "CLUTTER_FONT_MIPMAPPING")
     '("hinting" "CLUTTER_FONT_HINTING")
+  )
+)
+
+(define-enum UnitType
+  (in-module "Clutter")
+  (c-name "ClutterUnitType")
+  (gtype-id "CLUTTER_TYPE_UNIT_TYPE")
+  (values
+    '("pixel" "CLUTTER_UNIT_PIXEL")
+    '("em" "CLUTTER_UNIT_EM")
+    '("mm" "CLUTTER_UNIT_MM")
+    '("point" "CLUTTER_UNIT_POINT")
   )
 )

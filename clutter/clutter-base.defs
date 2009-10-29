@@ -6036,3 +6036,146 @@
     '("GValue*" "value")
   )
 )
+
+
+;; From clutter-units.h
+
+(define-function units_get_type
+  (c-name "clutter_units_get_type")
+  (return-type "GType")
+)
+
+; This is a fake function to create a constructor
+(define-function units_new
+  (c-name "clutter_units_new")
+  (is-constructor-of "ClutterUnits")
+  (return-type "ClutterUnits*")
+)
+
+(define-method get_unit_type
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_get_unit_type")
+  (return-type "ClutterUnitType")
+)
+
+(define-method get_unit_value
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_get_unit_value")
+  (return-type "gfloat")
+)
+
+(define-method copy
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_copy")
+  (return-type "ClutterUnits*")
+)
+
+(define-method free
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_free")
+  (return-type "none")
+)
+
+(define-method from_pixels
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_from_pixels")
+  (return-type "none")
+  (parameters
+    '("gint" "px")
+  )
+)
+
+(define-method from_em
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_from_em")
+  (return-type "none")
+  (parameters
+    '("gfloat" "em")
+  )
+)
+
+(define-method from_em_for_font
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_from_em_for_font")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("gfloat" "em")
+  )
+)
+
+(define-method from_mm
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_from_mm")
+  (return-type "none")
+  (parameters
+    '("gfloat" "mm")
+  )
+)
+
+(define-method from_pt
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_from_pt")
+  (return-type "none")
+  (parameters
+    '("gfloat" "pt")
+  )
+)
+
+(define-method to_pixels
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_to_pixels")
+  (return-type "gfloat")
+)
+
+(define-method from_string
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_from_string")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "str")
+  )
+)
+
+(define-method to_string
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_to_string")
+  (return-type "gchar*")
+)
+
+(define-function param_units_get_type
+  (c-name "clutter_param_units_get_type")
+  (return-type "GType")
+)
+
+(define-function param_spec_units
+  (c-name "clutter_param_spec_units")
+  (return-type "GParamSpec*")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "nick")
+    '("const-gchar*" "blurb")
+    '("ClutterUnitType" "default_type")
+    '("gfloat" "minimum")
+    '("gfloat" "maximum")
+    '("gfloat" "default_value")
+    '("GParamFlags" "flags")
+  )
+)
+
+(define-function value_set_units
+  (c-name "clutter_value_set_units")
+  (return-type "none")
+  (parameters
+    '("GValue*" "value")
+    '("const-ClutterUnits*" "units")
+  )
+)
+
+(define-function value_get_units
+  (c-name "clutter_value_get_units")
+  (return-type "const-ClutterUnits*")
+  (parameters
+    '("const-GValue*" "value")
+  )
+)

@@ -117,6 +117,9 @@ ignore
   clutter_text_new_full
   clutter_text_new_with_text
   clutter_stage_get_default
+  clutter_param_spec_units
+  clutter_value_set_units
+  clutter_value_get_units
 %%
 ignore-glob
   *_quark
@@ -1013,4 +1016,114 @@ _wrap_clutter_stage_get_fog (PyGObject *self)
   clutter_stage_get_fog (CLUTTER_STAGE (self->obj), &fog);
 
   return Py_BuildValue ("(ff)", fog.z_near, fog.z_far);
+}
+%%
+override clutter_units_new kwargs
+static int
+_wrap_clutter_units_new (PyGBoxed *self, PyObject *args, PyObject *kwargs)
+{
+  static char *kwlist[] = { "type", "value", "string", NULL };
+  PyObject *py_type = NULL;
+  gdouble value = 0;
+  ClutterUnits units;
+  ClutterUnitType type;
+  gchar *string = NULL;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "|Ods:clutter.Units.__init__", kwlist,
+                                    &py_type, &value, &string))
+    return -1;
+
+  if (!py_type && !string)
+    {
+      PyErr_SetString (PyExc_TypeError,
+                       "clutter.Units.__init__ argument must either be a "
+                       "clutter.UnitType and it's corresponding value or "
+                       "'string' keyword argument with a unit string");
+      return -1;
+    }
+
+  if (string)
+    clutter_units_from_string (&units, string);
+  else 
+    {
+      if (pyg_enum_get_value (CLUTTER_TYPE_UNIT_TYPE, py_type,
+                              (gpointer)&type))
+        {
+          PyErr_SetString (PyExc_TypeError,
+                           "first argument is not a clutter.UnitType");
+          return -1;
+        }
+
+      switch (type)
+        {
+        case CLUTTER_UNIT_PIXEL:
+          clutter_units_from_pixels (&units, (gint)value);
+          break;
+
+        case CLUTTER_UNIT_EM:
+          clutter_units_from_em (&units, value);
+          break;
+
+        case CLUTTER_UNIT_MM:
+          clutter_units_from_mm (&units, value);
+          break;
+
+        case CLUTTER_UNIT_POINT:
+          clutter_units_from_pt (&units, value);
+          break;
+
+        default:
+          PyErr_SetString (PyExc_TypeError,
+                           "first argument is not a clutter.UnitType");
+          return -1;
+        }
+    }
+
+  self->boxed = g_boxed_copy (CLUTTER_TYPE_UNITS, &units);
+  self->free_on_dealloc = TRUE;
+  self->gtype = CLUTTER_TYPE_UNITS;
+
+  return 0;
+}
+%%
+override-attr ClutterUnits.type
+static PyObject *
+_wrap_clutter_units__get_type (PyObject *self, void *closure)
+{
+  ClutterUnits *units;
+  ClutterUnitType type;
+
+  units = pyg_boxed_get (self, ClutterUnits);
+  type = clutter_units_get_unit_type (units);
+
+  return pyg_enum_from_gtype (CLUTTER_TYPE_UNIT_TYPE, type);
+}
+%%
+override-attr ClutterUnits.value
+static PyObject *
+_wrap_clutter_units__get_value (PyObject *self, void *closure)
+{
+  ClutterUnits *units;
+  
+  units = pyg_boxed_get (self, ClutterUnits);
+
+  return PyFloat_FromDouble (clutter_units_get_unit_value (units));
+}
+%%
+override-slot ClutterUnits.tp_str
+static PyObject *
+_wrap_clutter_units_tp_str (PyObject *self)
+{
+  ClutterUnits *units;
+  PyObject *py_str;
+  gchar *str;
+
+  units = pyg_boxed_get (self, ClutterUnits);
+  str = g_strdup_printf ("<Units: %s>", clutter_units_to_string (units));
+
+  py_str = PyString_FromString (str);
+  g_free (str);
+
+  return py_str;
 }
