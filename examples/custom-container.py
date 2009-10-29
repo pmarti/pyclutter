@@ -142,6 +142,11 @@ class SampleBox(clutter.Actor, clutter.Container):
         for actor in self._children:
             actor.paint()
 
+    def do_pick(self, color):
+        clutter.Actor.do_pick(self, color)
+        for actor in self._children:
+            actor.paint()
+
 SampleBox.install_child_meta(SampleChildMeta)
 
 
@@ -149,6 +154,10 @@ if __name__ == '__main__':
     def on_button_press(box, event):
         box.props.orientation = not box.props.orientation
         return True
+
+    def on_child_button_pressed(actor, event):
+        print 'Rectangle with color %s pressed' % actor.get_color()
+
     def on_key_press(stage, event, box):
         from clutter import keysyms
         if event.keyval == keysyms.h:
@@ -170,6 +179,8 @@ if __name__ == '__main__':
                 random.randint(0, 255), 255)
         rect.set_color(color)
         rect.set_size(50, 50)
+        rect.set_reactive(True)
+        rect.connect('button-press-event', on_child_button_pressed)
         box.add(rect)
         box.child_set_property(rect, 'allocate-hidden', False)
         if i % 2:
