@@ -3495,9 +3495,22 @@
   )
 )
 
+(define-virtual set_id
+  (of-object "ClutterScriptable")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "id")
+  )
+)
+
 (define-method get_id
   (of-object "ClutterScriptable")
   (c-name "clutter_scriptable_get_id")
+  (return-type "const-gchar*")
+)
+
+(define-virtual get_id
+  (of-object "ClutterScriptable")
   (return-type "const-gchar*")
 )
 
@@ -3513,9 +3526,30 @@
   )
 )
 
+(define-virtual parse_custom_node
+  (of-object "ClutterScriptable")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterScript*" "script")
+    '("GValue*" "value")
+    '("const-gchar*" "name")
+    '("JsonNode*" "node")
+  )
+)
+
 (define-method set_custom_property
   (of-object "ClutterScriptable")
   (c-name "clutter_scriptable_set_custom_property")
+  (return-type "none")
+  (parameters
+    '("ClutterScript*" "script")
+    '("const-gchar*" "name")
+    '("const-GValue*" "value")
+  )
+)
+
+(define-virtual set_custom_property
+  (of-object "ClutterScriptable")
   (return-type "none")
   (parameters
     '("ClutterScript*" "script")
