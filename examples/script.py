@@ -1,5 +1,6 @@
 import sys
 import clutter
+from clutter import cogl
 
 BUFFER = '''
 [
@@ -61,11 +62,97 @@ BUFFER = '''
           "scale-behaviour",
           "fade-behaviour"
         ]
+      },
+      {
+        "id" : "custom-scriptable",
+        "type" : "CustomScriptable",
+        "visible" : true,
+        "filename" : "redhand.png",
+        "x" : 100,
+        "y" : 100,
+        "gravity" : "center",
+        "clip-path" : "M 0 0 L 200 100 L 0 200 C 0 200 100 100 0 0 z",
       }
     ]
   }
 ]
 '''
+
+
+class CustomScriptable(clutter.Texture, clutter.Scriptable):
+    __gtype_name__ = 'CustomScriptable'
+    def __init__(self):
+        clutter.Texture.__init__(self)
+        self._path = None
+
+    def do_parse_custom_node(self, script, name, node):
+        print 'do_parse_custom_node', name, node
+        # This method expects exactly one return value. The value must be
+        # a simple type (int, float, string) or a gobject.GObject derived
+        # type (or friends like GBoxed, GEnum, GFlags)
+        # Return "None" to indicate that the node can't be handled
+        if name == 'gravity':
+            # Translate the gravity string into an enum. 
+            if node == 'north-west':
+                gravity = clutter.GRAVITY_NORTH_WEST
+            elif node == 'north':
+                gravity = clutter.GRAVITY_NORTH
+            elif node == 'north-east':
+                gravity = clutter.GRAVITY_NORTH_EAST
+            elif node == 'west':
+                gravity = clutter.GRAVITY_WEST
+            elif node == 'center':
+                gravity = clutter.GRAVITY_CENTER
+            elif node == 'east':
+                gravity = clutter.GRAVITY_EAST
+            elif node == 'south-west':
+                gravity = clutter.GRAVITY_SOUTH_WEST
+            elif node == 'south':
+                gravity = clutter.GRAVITY_SOUTH
+            elif node == 'south-east':
+                gravity = clutter.GRAVITY_SOUTH_EAST
+            else:
+                gravity = clutter.GRAVITY_NONE
+            return gravity
+
+        elif name == 'clip_path':
+            path = clutter.Path(description=node)
+            return path
+
+        # Chain up
+        return clutter.Texture.do_parse_custom_node(self, script, name, node)
+
+    def do_set_custom_property(self, script, name, value):
+        print 'do_set_custom_property', name, value
+        # NOTE: This method does not expect a return value
+        if name == 'gravity':
+            # Set our custom property 'gravity'.
+            self.set_anchor_point_from_gravity(value)
+        elif name == 'clip_path':
+            self._path = value
+        else:
+            # Chain up
+            clutter.Texture.do_set_custom_property(self, script, name, value)
+
+    def do_paint(self):
+        if type(self._path) == clutter.Path:
+            cogl.path_new()
+            for node in self._path:
+                if node.type == clutter.PATH_MOVE_TO:
+                    cogl.path_move_to(*node[0])
+                elif node.type == clutter.PATH_LINE_TO:
+                    cogl.path_line_to(*node[0])
+                elif node.type == clutter.PATH_CURVE_TO:
+                    cogl.path_curve_to(node[0][0], node[0][1],
+                                       node[1][0], node[1][1],
+                                       node[2][0], node[2][1])
+                elif node.type == clutter.PATH_CLOSE:
+                    cogl.path_close()
+            cogl.clip_push_from_path()
+            clutter.Texture.do_paint(self)
+            cogl.clip_pop()
+        else:
+            clutter.Texture.do_paint(self)
 
 class TestScript:
     def __init__ (self, *args, **kwargs):
