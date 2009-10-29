@@ -1,5 +1,6 @@
 %%
 headers
+#include <clutter/clutter-json.h>
 
 typedef struct {
     PyObject    *obj;
@@ -7,13 +8,190 @@ typedef struct {
 } PyGCustomSignalNotify;
 
 %%
-ignore
-  clutter_scriptable_set_id
-  clutter_scriptable_get_id
-  clutter_scriptable_parse_custom_node
-  clutter_scriptable_set_custom_property
-%%
 ignore clutter_script_connect_signals_full
+%%
+body
+
+/* Create a PyObject from a JsonNode */
+static PyObject *
+pyobject_from_json (JsonNode *node)
+{
+  PyObject *ret;
+
+  switch (JSON_NODE_TYPE (node))
+    {
+    case JSON_NODE_OBJECT:
+        {
+          JsonObject *object = json_node_get_object (node);
+          GList *members, *l;
+
+          ret = PyDict_New ();
+          members = json_object_get_members (object);
+
+          for (l = members; l != NULL; l = l->next)
+            {
+              PyObject *py_obj;
+              JsonNode *member;
+              
+              member = json_object_get_member (object, l->data);
+              py_obj = pyobject_from_json (member);
+              if (!py_obj)
+                {
+                  g_list_free (members);
+                  Py_DECREF (ret);
+                  return NULL;
+                }
+
+              PyDict_SetItemString (ret, l->data, py_obj);
+              Py_DECREF (py_obj);
+            }
+
+          g_list_free (members);
+        }
+        break;
+
+    case JSON_NODE_ARRAY:
+          {
+            JsonArray *array = json_node_get_array (node);
+            GList *elements, *l;
+
+            ret = PyList_New (0);
+            elements = json_array_get_elements (array);
+
+            for (l = elements; l != NULL; l = l->next)
+              {
+                PyObject *py_obj;
+                
+                py_obj = pyobject_from_json (l->data);
+                if (!py_obj)
+                  {
+                    g_list_free (elements);
+                    Py_DECREF (ret);
+                    return NULL;
+                  }
+
+                PyList_Append (ret, py_obj);
+                Py_DECREF (py_obj);
+              }
+
+            g_list_free (elements);
+          }
+        break;
+
+    case JSON_NODE_VALUE:
+          {
+            GValue value = { 0, };
+
+            json_node_get_value (node, &value);
+            ret = pyg_value_as_pyobject (&value, TRUE);
+            g_value_unset (&value);
+          }
+        break;
+
+    case JSON_NODE_NULL:
+        Py_INCREF (Py_None);
+        ret = Py_None;
+        break;
+
+    default:
+        /* FIXME: ☠☢☣, this code is reached sometimes! */
+        g_warning ("Unknown node type %i", JSON_NODE_TYPE (node));
+        return NULL;
+    }
+  return ret;
+}
+
+/* Create a JsonNode from a PyObject */
+static gboolean
+pyobject_to_json (PyObject *py_object, JsonNode **node)
+{
+  if (PyDict_Check (py_object))
+    {
+      PyObject *key, *value;
+      Py_ssize_t pos = 0;
+      *node = json_node_new (JSON_NODE_OBJECT);
+      JsonObject *obj = json_object_new ();
+
+      while (PyDict_Next (py_object, &pos, &key, &value))
+        {
+          JsonNode *subnode;
+          gchar *k = PyString_AsString (key);
+          if (!pyobject_to_json (value, &subnode))
+            {
+              g_free (k);
+              json_object_unref (obj);
+              json_node_free (*node);
+              return FALSE;
+            }
+          json_object_set_member (obj, k, subnode);
+        }
+
+      json_node_take_object (*node, obj);
+      return TRUE;
+    }
+  else if (PyList_Check (py_object) || PyTuple_Check (py_object))
+    {
+      /*
+       * We use lists instead of tuples as they share the syntax with
+       * Json arrays.
+       */
+      *node = json_node_new (JSON_NODE_ARRAY);
+      JsonArray *array = json_array_new ();
+      gint i;
+
+      for (i = 0; i < PySequence_Size (py_object); i++)
+        {
+          PyObject *py_item;
+          JsonNode *subnode;
+          py_item = PySequence_GetItem (py_object, i);
+          if (!pyobject_to_json (py_item, &subnode))
+            {
+              json_node_free (*node);
+              Py_DECREF (py_item);
+              return FALSE;
+            }
+          Py_DECREF (py_item);
+          json_array_add_element (array, subnode);
+        }
+
+      json_node_take_array (*node, array);
+      return TRUE;
+    }
+  else if (py_object == Py_None)
+    {
+      /*
+       * Let's use None as the Python equivalent of 'null'
+       */
+      *node = json_node_new (JSON_NODE_NULL);
+
+      return TRUE;
+    }
+  else
+    {
+      /*
+       * Everything else is treated as a value. I hope it's enough to check
+       * for the GType via pyg_type_from_object
+       */
+      GType type;
+      GValue value = { 0, };
+      *node = json_node_new (JSON_NODE_VALUE);
+
+      type = pyg_type_from_object ((PyObject *)py_object->ob_type);
+
+      if (type == G_TYPE_INVALID)
+        return FALSE;
+
+      g_value_init (&value, type);
+      if (pyg_value_from_pyobject (&value, py_object)) {
+          return FALSE;
+      }
+      json_node_set_value (*node, &value);
+      g_value_unset (&value);
+
+      return TRUE;
+    }
+}
+
 %%
 override clutter_script_connect_signals kwargs
 static void
@@ -39,7 +217,7 @@ connect_many (ClutterScript *script,
             return;
         }
     }
-    
+
     if (PyTuple_Check (tuple)) {
         PyObject *callback = PyTuple_GetItem (tuple, 0);
         PyObject *extra = PySequence_GetSlice (tuple, 1, PyTuple_Size (tuple));
@@ -68,7 +246,7 @@ connect_many (ClutterScript *script,
     self = pygobject_new (obj);
     g_signal_connect_closure (obj, signal_name, closure, flags);
     pygobject_watch_closure (self, closure);
-    
+
     Py_DECREF (self);
 }
 static PyObject *
@@ -216,3 +394,410 @@ _wrap_clutter_script_list_objects (PyGObject *self)
 #endif /* CLUTTER_CHECK_VERSION(0, 8, 2) */
 }
 %%
+override clutter_scriptable_set_custom_property kwargs
+static PyObject *
+_wrap_clutter_scriptable_set_custom_property (PyGObject *self,
+                                              PyObject  *args,
+                                              PyObject  *kwargs)
+{
+    static char *kwlist[] = { "script", "name", "value", NULL };
+    PyGObject *py_script;
+    PyObject *py_value;
+    const gchar *name;
+    GType type;
+    GValue value = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                      "O!sO:clutter.Scriptable.set_custom_property",
+                                      kwlist,
+                                      &PyClutterScript_Type, &py_script,
+                                      &name, &py_value))
+      return NULL;
+
+    type = pyg_type_from_object ((PyObject*)py_value->ob_type);
+    if (!type) {
+        PyErr_SetString (PyExc_TypeError, "Can't get GType from PyObject");
+        return NULL;
+    }
+
+    g_value_init (&value, type);
+    if (pyg_value_from_pyobject (&value, py_value))
+      return NULL;
+
+    clutter_scriptable_set_custom_property (CLUTTER_SCRIPTABLE (self->obj),
+                                            CLUTTER_SCRIPT (py_script->obj),
+                                            name, &value);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override ClutterScriptable__do_set_custom_property kwargs
+static PyObject *
+_wrap_ClutterScriptable__do_set_custom_property(PyObject *cls,
+                                                PyObject *args,
+                                                PyObject *kwargs)
+{
+    ClutterScriptableIface *iface;
+    static char *kwlist[] = { "self", "script", "name", "value", NULL };
+    PyGObject *self, *script;
+    PyObject *py_value;
+    const gchar *name;
+    GType type;
+    GValue value = { 0, };
+
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs,
+                                     "O!O!sO:ClutterScriptable.set_custom_property",
+                                     kwlist,
+                                     &PyClutterScriptable_Type, &self,
+                                     &PyClutterScript_Type, &script,
+                                     &name, &py_value))
+        return NULL;
+
+    type = pyg_type_from_object ((PyObject*)py_value->ob_type);
+    if (!type) {
+        PyErr_SetString (PyExc_TypeError, "Can't get GType from PyObject");
+        return NULL;
+    }
+
+    g_value_init (&value, type);
+    if (pyg_value_from_pyobject (&value, py_value))
+      return NULL;
+
+    iface = g_type_interface_peek (g_type_class_peek(pyg_type_from_object(cls)),
+                                   CLUTTER_TYPE_SCRIPTABLE);
+    if (iface->set_custom_property) {
+        iface->set_custom_property (CLUTTER_SCRIPTABLE(self->obj),
+                                    CLUTTER_SCRIPT(script->obj), name, &value);
+    }
+    else {
+        PyErr_SetString (PyExc_NotImplementedError,
+                         "interface method ClutterScriptable."
+                         "set_custom_property not implemented");
+        g_value_unset (&value);
+        return NULL;
+    }
+
+    g_value_unset (&value);
+
+    Py_INCREF (Py_None);
+    return Py_None;
+}
+%%
+override ClutterScriptable__proxy_do_set_custom_property
+static void
+_wrap_ClutterScriptable__proxy_do_set_custom_property(ClutterScriptable *self,
+                                                      ClutterScript     *script,
+                                                      const gchar       *name,
+                                                      const GValue      *value)
+{
+    PyGILState_STATE state;
+    PyObject *py_self;
+    PyObject *py_script = NULL;
+    PyObject *py_name;
+    PyObject *py_value;
+    PyObject *py_retval;
+    PyObject *py_args;
+    PyObject *py_method;
+
+    state = pyg_gil_state_ensure();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred ())
+            PyErr_Print ();
+        pyg_gil_state_release (state);
+        return;
+    }
+    if (script)
+        py_script = pygobject_new ((GObject *) script);
+    else {
+        Py_INCREF(Py_None);
+        py_script = Py_None;
+    }
+    py_name = PyString_FromString(name);
+    if (!py_name) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_script);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return;
+    }
+    py_value = pyg_value_as_pyobject(value, TRUE);
+    if (!py_value) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_name);
+        Py_DECREF(py_script);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return;
+    }
+
+    py_args = PyTuple_New(3);
+    PyTuple_SET_ITEM (py_args, 0, py_script);
+    PyTuple_SET_ITEM (py_args, 1, py_name);
+    PyTuple_SET_ITEM (py_args, 2, py_value);
+
+    py_method = PyObject_GetAttrString(py_self, "do_set_custom_property");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return;
+    }
+    py_retval = PyObject_CallObject(py_method, py_args);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return;
+    }
+    if (py_retval != Py_None) {
+        PyErr_SetString(PyExc_TypeError, "virtual method should return None");
+        PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return;
+    }
+
+    Py_XDECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_args);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(state);
+}
+%%
+override clutter_scriptable_parse_custom_node kwargs
+static PyObject *
+_wrap_clutter_scriptable_parse_custom_node (PyGObject *self,
+                                            PyObject  *args,
+                                            PyObject  *kwargs)
+{
+  static char *kwlist[] = { "script", "name", "node", NULL };
+  PyGObject *py_script;
+  PyObject *py_node;
+  const gchar *name;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "OOsO:clutter.Scriptable.parse_custom_node",
+                                    kwlist,
+                                    &PyClutterScript_Type, &py_script,
+                                    &name, &py_node))
+    return NULL;
+
+
+  /*
+   * FIXME: Implement me!
+   *
+   * However, nobody is supposed to call this method from Python anyway
+   */
+  PyErr_SetString (PyExc_NotImplementedError,
+                   "clutter.Scriptable.parse_custom_node is not implemented");
+  return NULL;
+}
+%%
+override ClutterScriptable__do_parse_custom_node kwargs
+static PyObject *
+_wrap_ClutterScriptable__do_parse_custom_node (PyObject *cls,
+                                               PyObject *args,
+                                               PyObject *kwargs)
+{
+  ClutterScriptableIface *iface;
+  static char *kwlist[] = { "self", "script", "name", "node", NULL };
+  PyGObject *self, *script;
+  gchar *name;
+  PyObject *py_node;
+  JsonNode *node;
+  GValue value = { 0, };
+  gboolean ret = FALSE;
+
+  if (!PyArg_ParseTupleAndKeywords (args, kwargs,
+                                    "O!O!sO:ClutterScriptable.parse_custom_node",
+                                    kwlist,
+                                    &PyClutterScriptable_Type, &self,
+                                    &PyClutterScript_Type, &script,
+                                    &name, &py_node))
+    return NULL;
+
+  if (!pyobject_to_json (py_node, &node)) {
+      PyErr_Format (PyExc_TypeError,
+                    "Can't convert node '%s' to JsonNode", name);
+      return NULL;
+  }
+
+  iface = g_type_interface_peek (g_type_class_peek (pyg_type_from_object (cls)),
+                                 CLUTTER_TYPE_SCRIPTABLE);
+
+  if (iface->parse_custom_node)
+    ret = iface->parse_custom_node (CLUTTER_SCRIPTABLE (self->obj),
+                              CLUTTER_SCRIPT (script->obj),
+                              &value, name, node);
+  else {
+      PyErr_SetString (PyExc_NotImplementedError,
+                       "interface method ClutterScriptable."
+                       "parse_custom_node not implemented");
+      return NULL;
+  }
+
+  if (ret)
+    return pyg_value_as_pyobject (&value, TRUE);
+
+  /*
+   * Returning Py_None means we're not able to handle this node
+   */
+  Py_INCREF (Py_None);
+  return Py_None;
+}
+%%
+override ClutterScriptable__proxy_do_parse_custom_node
+static gboolean
+_wrap_ClutterScriptable__proxy_do_parse_custom_node(ClutterScriptable *self,
+                                                    ClutterScript     *script,
+                                                    GValue            *value,
+                                                    const gchar       *name,
+                                                    JsonNode          *node)
+{
+    PyGILState_STATE state;
+    PyObject *py_self;
+    PyObject *py_script = NULL;
+    PyObject *py_name;
+    PyObject *py_node;
+    PyObject *py_main_retval;
+    PyObject *py_retval;
+    PyObject *py_args;
+    PyObject *py_method;
+    GType type;
+
+    state = pyg_gil_state_ensure ();
+    py_self = pygobject_new((GObject *) self);
+    if (!py_self) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        pyg_gil_state_release(state);
+        return FALSE;
+    }
+    if (script)
+        py_script = pygobject_new((GObject *) script);
+    else {
+        Py_INCREF(Py_None);
+        py_script = Py_None;
+    }
+
+    py_name = PyString_FromString(name);
+    if (!py_name) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_script);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return FALSE;
+    }
+
+    py_node = pyobject_from_json (node);
+    if (!py_node) {
+        PyErr_Format (PyExc_TypeError,
+                      "Can't convert JsonNode '%s' to PyObject", name);
+        PyErr_Print ();
+        Py_DECREF(py_name);
+        Py_DECREF(py_script);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return FALSE;
+    }
+
+    py_args = PyTuple_New(3);
+    PyTuple_SET_ITEM(py_args, 0, py_script);
+    PyTuple_SET_ITEM(py_args, 1, py_name);
+    PyTuple_SET_ITEM(py_args, 2, py_node);
+
+    py_method = PyObject_GetAttrString(py_self, "do_parse_custom_node");
+    if (!py_method) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return FALSE;
+    }
+
+    py_retval = PyObject_CallObject(py_method, py_args);
+    if (!py_retval) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return FALSE;
+    }
+
+    py_retval = Py_BuildValue("(N)", py_retval);
+    if (!PyArg_ParseTuple(py_retval, "O", &py_main_retval)) {
+        if (PyErr_Occurred())
+            PyErr_Print();
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return FALSE;
+    }
+
+    /* 
+     * I think we can use Py_None as return value for a python vfunc that
+     * doesn't handle this node, as clutter_script_parse_node returns
+     * FALSE for a node of type JSON_NODE_NULL.
+     */
+    if (py_main_retval == Py_None)
+      {
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return FALSE;
+      }
+
+    type = pyg_type_from_object ((PyObject*)py_main_retval->ob_type);
+    if (!type)
+      {
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        pyg_gil_state_release(state);
+        return FALSE;
+      }
+
+    g_value_init (value, type);
+    if (pyg_value_from_pyobject (value, py_main_retval))
+      {
+        Py_XDECREF(py_retval);
+        Py_DECREF(py_method);
+        Py_DECREF(py_args);
+        Py_DECREF(py_self);
+        g_value_unset (value);
+        pyg_gil_state_release(state);
+        return FALSE;
+      }
+
+
+    Py_XDECREF(py_retval);
+    Py_DECREF(py_method);
+    Py_DECREF(py_args);
+    Py_DECREF(py_self);
+    pyg_gil_state_release(state);
+
+    return TRUE;
+}
