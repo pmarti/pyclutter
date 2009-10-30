@@ -2079,6 +2079,16 @@
   )
 )
 
+(define-virtual raise_child
+  (of-object "ClutterContainer")
+  (return-type "none")
+  (c-name "raise")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActor*" "silbing")
+  )
+)
+
 (define-method lower_child
   (of-object "ClutterContainer")
   (c-name "clutter_container_lower_child")
@@ -2086,6 +2096,16 @@
   (parameters
     '("ClutterActor*" "actor")
     '("ClutterActor*" "sibling" (null-ok) (default NULL))
+  )
+)
+
+(define-virtual lower_child
+  (of-object "ClutterContainer")
+  (c-name "lower")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActor*" "silbing")
   )
 )
 
@@ -2194,7 +2214,6 @@
     '("ClutterActor*" "actor")
   )
 )
-
 
 ;; From clutter-enum-types.h
 
