@@ -5881,7 +5881,6 @@
 
 (define-virtual validate
   (of-object "ClutterInterval")
-  (c-name "clutter_interval_validate")
   (return-type "gboolean")
   (parameters
     '("GParamSpec*" "pspec")
@@ -5900,7 +5899,6 @@
 
 (define-virtual compute_value
   (of-object "ClutterInterval")
-  (c-name "clutter_interval_compute_value")
   (return-type "gboolean")
   (parameters
     '("gdouble" "factor")
@@ -6059,7 +6057,6 @@
 
 (define-virtual animate_property
   (of-object "ClutterAnimatable")
-  (c-name "clutter_animatable_animate_property")
   (return-type "gboolean")
   (parameters
     '("ClutterAnimation*" "animation")
