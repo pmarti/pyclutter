@@ -20,7 +20,7 @@ DIST_SUBDIRS = \
 	clutter \
 	examples
 
-EXTRA_DIST = createdefs.py py-compile Makefile.tmpl
+EXTRA_DIST = py-compile Makefile.tmpl
 
 CLEANFILES = $(pkgfiles)
 

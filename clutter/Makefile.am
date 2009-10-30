@@ -6,7 +6,7 @@ CLEANFILES =
 EXTRA_DIST = 
 INCLUDES = $(pyclutter_common_includes)
 
-CREATEDEFS = $(PYTHON) $(top_srcdir)/createdefs.py
+CREATEDEFS = $(PYTHON) $(top_srcdir)/codegen/createdefs.py
 PYGOBJECT_CODEGEN = $(PYTHON) $(top_srcdir)/codegen/codegen.py
 
 # clutter python extension modules
