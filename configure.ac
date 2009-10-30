@@ -67,12 +67,6 @@ AC_C_CONST
 dnl check for pygtk
 PKG_CHECK_MODULES(PYGTK, [pygtk-2.0 >= pygtk_required_version])
 AC_SUBST(PYGTK_CFLAGS)
-AC_PATH_PROGS(PYGOBJECT_CODEGEN, [pygobject-codegen-2.0 pygtk-codegen-2.0], [no])
-AS_IF([test "x$PYGOBJECT_CODEGEN" = "xno"],
-      [
-        AC_MSG_ERROR([could not find pygobject-codegen-2.0 script])
-      ]
-)
 
 PYGOBJECT_CODEGEN_DEFINES=
 
@@ -177,10 +171,11 @@ SHAVE_INIT([build/autotools], [enable])
 
 AC_CONFIG_FILES([
         Makefile
-	build/Makefile
-	build/autotools/Makefile
-	build/autotools/shave-libtool
-	build/autotools/shave
+        build/Makefile
+        build/autotools/Makefile
+        build/autotools/shave-libtool
+        build/autotools/shave
+        codegen/Makefile
         pyclutter.pc
         docs/Makefile
         docs/reference/entities.docbook

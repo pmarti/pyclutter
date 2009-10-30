@@ -1,4 +1,4 @@
-SUBDIRS = build clutter examples
+SUBDIRS = build codegen clutter examples
 
 if ENABLE_DOCS
 SUBDIRS += docs
@@ -15,6 +15,7 @@ DISTCHECK_CONFIGURE_FLAGS = --enable-docs
 
 DIST_SUBDIRS = \
 	build \
+	codegen \
 	docs \
 	clutter \
 	examples
