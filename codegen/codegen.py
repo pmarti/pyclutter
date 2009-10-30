@@ -468,7 +468,10 @@ class Wrapper:
 
     def _get_class_virtual_substdict(self, meth, cname, parent):
         substdict = self.get_initial_method_substdict(meth)
-        substdict['virtual'] = meth.name
+        if meth.c_name:
+            substdict['virtual'] = meth.c_name
+        else:
+            substdict['virtual'] = meth.name
         substdict['cname'] = cname
         substdict['class_cast_macro'] = parent.typecode.replace(
             '_TYPE_', '_', 1) + "_CLASS"
@@ -550,6 +553,7 @@ class Wrapper:
         methods = []
         for meth in self.parser.find_virtuals(self.objinfo):
             method_name = self.objinfo.c_name + "__do_" + meth.name
+            member_name = meth.c_name
             if self.overrides.is_ignored(method_name):
                 continue
             try:
@@ -576,6 +580,7 @@ class Wrapper:
                 methods.append(self.methdef_tmpl %
                                { 'name':  "do_" + fixname(meth.name),
                                  'cname': '_wrap_' + method_name,
+                                 'member_name': member_name,
                                  'flags': methflags + '|METH_CLASS',
                                  'docstring': 'NULL'})
                 vaccessors_coverage.declare_wrapped()
@@ -595,6 +600,7 @@ class Wrapper:
         virtuals = []
         for meth in self.parser.find_virtuals(self.objinfo):
             method_name = self.objinfo.c_name + "__proxy_do_" + meth.name
+            member_name = meth.c_name
             if self.overrides.is_ignored(method_name):
                 continue
             try:
@@ -620,11 +626,12 @@ class Wrapper:
                     buf = reversewrapper.MemoryCodeSink()
                     wrapper.generate(buf)
                     self.fp.write(buf.flush())
-                virtuals.append((fixname(meth.name), '_wrap_' + method_name))
+                virtuals.append((fixname(meth.name), '_wrap_' + method_name,
+                                member_name))
                 vproxies_coverage.declare_wrapped()
             except argtypes.ArgTypeError, ex:
                 vproxies_coverage.declare_not_wrapped()
-                virtuals.append((fixname(meth.name), None))
+                virtuals.append((fixname(meth.name), None, None))
                 sys.stderr.write('Could not write virtual proxy %s.%s: %s\n'
                                 % (klass, meth.name, str(ex)))
         if virtuals:
@@ -639,7 +646,8 @@ class Wrapper:
             funcname = "__%s_class_init" % klass
             self.objinfo.class_init_func = funcname
             have_implemented_virtuals = not not [True
-                                                 for name, cname in virtuals
+                                                 for name, cname, \
+                                                 member_name in virtuals
                                                      if cname is not None]
             self.fp.write(
             ('\nstatic int\n'
@@ -655,8 +663,12 @@ class Wrapper:
                     'PyDict_GetItemString(pyclass->tp_dict, "__gsignals__");\n'
                     % vars())
 
-            for name, cname in virtuals:
+            for name, cname, member_name in virtuals:
                 do_name = 'do_' + name
+
+                if member_name is None:
+                    member_name = name
+
                 if cname is None:
                     self.fp.write('\n    /* overriding %(do_name)s '
                                   'is currently not supported */\n' % vars())
@@ -667,8 +679,8 @@ class Wrapper:
         PyErr_Clear();
     else {
         if (!PyObject_TypeCheck(o, &PyCFunction_Type)
-            && !(gsignals && PyDict_GetItemString(gsignals, "%(name)s")))
-            klass->%(name)s = %(cname)s;
+            && !(gsignals && PyDict_GetItemString(gsignals, "%(member_name)s")))
+            klass->%(member_name)s = %(cname)s;
         Py_DECREF(o);
     }
 ''' % vars())
@@ -1134,7 +1146,10 @@ class GInterfaceWrapper(GObjectWrapper):
 
     def _get_class_virtual_substdict(self, meth, cname, parent):
         substdict = self.get_initial_method_substdict(meth)
-        substdict['virtual'] = meth.name
+        if meth.c_name:
+            substdict['virtual'] = meth.c_name
+        else:
+            substdict['virtual'] = meth.name
         substdict['cname'] = cname
         substdict['typecode'] = self.objinfo.typecode
         substdict['vtable'] = self.objinfo.vtable
@@ -1148,6 +1163,7 @@ class GInterfaceWrapper(GObjectWrapper):
         proxies = []
         for meth in self.parser.find_virtuals(self.objinfo):
             method_name = self.objinfo.c_name + "__proxy_do_" + meth.name
+            member_name = meth.c_name
             if self.overrides.is_ignored(method_name):
                 continue
             try:
@@ -1173,15 +1189,16 @@ class GInterfaceWrapper(GObjectWrapper):
                     buf = reversewrapper.MemoryCodeSink()
                     wrapper.generate(buf)
                     self.fp.write(buf.flush())
-                proxies.append((fixname(meth.name), '_wrap_' + method_name))
+                proxies.append((fixname(meth.name), '_wrap_' + method_name,
+                               member_name))
                 iproxies_coverage.declare_wrapped()
             except argtypes.ArgTypeError, ex:
                 iproxies_coverage.declare_not_wrapped()
-                proxies.append((fixname(meth.name), None))
+                proxies.append((fixname(meth.name), None, None))
                 sys.stderr.write('Could not write interface proxy %s.%s: %s\n'
                                 % (klass, meth.name, str(ex)))
 
-        if not proxies or not [cname for name, cname in proxies if cname]:
+        if not proxies or not [cname for name, cname, member, in proxies if cname]:
             return
 
         ## Write an interface init function for this object
@@ -1197,21 +1214,24 @@ class GInterfaceWrapper(GObjectWrapper):
             '\n'
             % vars())
 
-        for name, cname in proxies:
+        for name, cname, member_name in proxies:
             do_name = 'do_' + name
             if cname is None:
                 continue
+
+            if member_name is None:
+                member_name = name
 
             self.fp.write((
                 '    py_method = pytype? PyObject_GetAttrString('
                 '(PyObject *) pytype, "%(do_name)s") : NULL;\n'
                 '    if (py_method && !PyObject_TypeCheck(py_method, '
                 '&PyCFunction_Type)) {\n'
-                '        iface->%(name)s = %(cname)s;\n'
+                '        iface->%(member_name)s = %(cname)s;\n'
                 '    } else {\n'
                 '        PyErr_Clear();\n'
                 '        if (parent_iface) {\n'
-                '            iface->%(name)s = parent_iface->%(name)s;\n'
+                '            iface->%(member_name)s = parent_iface->%(member_name)s;\n'
                 '        }\n'
                 '    Py_XDECREF(py_method);\n'
                 '    }\n'
