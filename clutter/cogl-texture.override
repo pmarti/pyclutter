@@ -267,11 +267,12 @@ _wrap_cogl_texture_new_from_data (PyObject *self, PyObject *args)
   CoglTextureFlags flags = COGL_TEXTURE_NONE;
   CoglPixelFormat format = COGL_PIXEL_FORMAT_ANY, internal_format;
   const guchar *data;
+  gint size;
   CoglHandle handle = COGL_INVALID_HANDLE;
 
-  if (!PyArg_ParseTuple (args, "iiOis|OO:cogl.texture_new_from_data",
+  if (!PyArg_ParseTuple (args, "iiOis#|OO:cogl.texture_new_from_data",
                          &width, &height,
-                         &py_internal_format, &rowstride, &data,
+                         &py_internal_format, &rowstride, &data, &size,
                          &py_flags, &py_format))
     return NULL;
 
