@@ -80,18 +80,31 @@ pycogl_texture_get_gl_texture (PyCoglTexture *self)
 static PyObject *
 pycogl_texture_get_data (PyCoglTexture *self, PyObject *args)
 {
-  /* FIXME */
   CoglPixelFormat format;
   guint rowstride = 0;
   guchar *data = NULL;
+  gint size = 0;
 
   if (!PyArg_ParseTuple (args, "i|I:cogl.Texture.get_data",
                          &format, &rowstride))
     return NULL;
 
-  cogl_texture_get_data (self->handle, format, rowstride, data);
+  size = cogl_texture_get_data (self->handle, format, rowstride, data);
 
-  return Py_BuildValue ("s", data);
+  if (size != 0)
+  {
+      PyObject *py_data;
+
+      data = (guchar*) g_malloc (sizeof (guchar) * size);
+      cogl_texture_get_data (self->handle, format, rowstride, data);
+      py_data = Py_BuildValue ("s#", data, size);
+      g_free (data);
+
+      return py_data;
+  }
+
+  Py_INCREF (Py_None);
+  return Py_None;
 }
 
 static PyObject *
