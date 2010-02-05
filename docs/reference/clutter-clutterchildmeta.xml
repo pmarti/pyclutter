@@ -47,7 +47,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterContainer*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercontainer"><classname>clutter.Container</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -62,7 +62,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

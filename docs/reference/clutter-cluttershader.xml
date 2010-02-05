@@ -79,7 +79,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterShader*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttershader">clutter.Shader</link></simpara></listitem>
     </varlistentry>
   </variablelist>
 

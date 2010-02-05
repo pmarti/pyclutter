@@ -42,7 +42,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterModel*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttermodel"><classname>clutter.Model</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 

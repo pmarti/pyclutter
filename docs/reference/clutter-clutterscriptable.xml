@@ -88,7 +88,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>script</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterScript*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterscript"><classname>clutter.Script</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>value</parameter>&nbsp;:</term>
@@ -122,7 +122,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>script</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterScript*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterscript"><classname>clutter.Script</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>name</parameter>&nbsp;:</term>

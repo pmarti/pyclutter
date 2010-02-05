@@ -70,7 +70,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterBehaviour*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterbehaviour"><classname>clutter.Behaviour</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 

@@ -88,7 +88,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterScore*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterscore"><classname>clutter.Score</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -191,11 +191,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>parent</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>timeline</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
@@ -217,7 +217,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>parent</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>marker_name</parameter>&nbsp;:</term>
@@ -225,7 +225,7 @@
     </varlistentry>
     <varlistentry>
       <term><parameter>timeline</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
@@ -274,7 +274,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

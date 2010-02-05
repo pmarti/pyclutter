@@ -86,7 +86,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.Alpha</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteralpha"><classname>clutter.Alpha</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -154,10 +154,10 @@
   <variablelist>
     <varlistentry>
       <term><parameter>timeline</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Timeline</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>Binds a clutter.Alpha to a clutter.Timeline.</para>
+  <para>Binds a clutter.Alpha to a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link>.</para>
   </refsect2>
 
 
@@ -173,10 +173,10 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.Timeline</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
-  <para>Retrieves the clutter.Timeline bound to the alpha instance.</para>
+  <para>Retrieves the <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link> bound to the alpha instance.</para>
   </refsect2>
 
   </refsect1>
@@ -196,7 +196,7 @@
             <row valign="top">
               <entry>"timeline"</entry>
               <entry>Read-Write</entry>
-              <entry>a <link linkend="class-cluttertimeline">clutter.Timeline</link> instance
+              <entry>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link> instance
               used as the time source for the alpha function.</entry>
             </row>
 

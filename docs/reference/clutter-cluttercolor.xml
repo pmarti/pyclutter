@@ -105,7 +105,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -124,7 +124,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -149,7 +149,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>b</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
@@ -185,11 +185,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>src2</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>dest</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -206,11 +206,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>src2</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>dest</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -226,7 +226,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>dest</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -242,7 +242,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>dest</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -259,7 +259,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>dest</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>shade</parameter>&nbsp;:</term>
@@ -280,7 +280,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>dest</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>shade</parameter>&nbsp;:</term>

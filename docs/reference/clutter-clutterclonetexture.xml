@@ -51,11 +51,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>parent_texture</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Texture* instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertexture"><classname>clutter.Texture</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.CloneTexture instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterclonetexture"><classname>clutter.CloneTexture</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -74,7 +74,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.Texture instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertexture"><classname>clutter.Texture</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -90,7 +90,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>texture</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Texture instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertexture"><classname>clutter.Texture</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

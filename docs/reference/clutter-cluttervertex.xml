@@ -33,7 +33,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterVertex</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttervertex"><classname>clutter.Vertex</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 

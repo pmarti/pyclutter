@@ -881,7 +881,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>color</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Color</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>Renders a silhouette of the actor using the supplied color. Used internally for mapping pointer events to actors.</para>
@@ -904,7 +904,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>geometry</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Geometry or a 4-tuple of integers</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttergeometry"><classname>clutter.Geometry</classname></link> or a 4-tuple of integers</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>Sets the actor's fixed position and forces its minimum and natural size,
@@ -1518,7 +1518,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>parent</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Actor</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
@@ -1540,7 +1540,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.Actor</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>Retrieves the parent of the actor.</para>
@@ -1557,7 +1557,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>new_parent</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Actor</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
@@ -1591,7 +1591,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>above</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Actor, or None</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>, or None</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>Raises the actor above a sibling.</para>
@@ -1612,7 +1612,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>below</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Actor, or None</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>, or None</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>Lowers the actor below a sibling</para>
@@ -1768,11 +1768,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>point</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Vertex</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttervertex"><classname>clutter.Vertex</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>vertex</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Vertex</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttervertex"><classname>clutter.Vertex</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>Transforms point in coordinates relative to the actor into
@@ -1825,15 +1825,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>ancestor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>point</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterVertex*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttervertex"><classname>clutter.Vertex</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>vertex</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterVertex*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttervertex"><classname>clutter.Vertex</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
@@ -1917,7 +1917,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>shader</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterShader*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttershader"><classname>clutter.Shader</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
@@ -1941,7 +1941,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterShader*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttershader"><classname>clutter.Shader</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
@@ -2289,7 +2289,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>box</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.ActorBox</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractorbox"><classname>clutter.ActorBox</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>absolute_origin_changed</parameter>&nbsp;:</term>
@@ -2326,9 +2326,10 @@
   Allocates the natural size of the actor.
   </para>
   <para>
-  This function is a utility call for ClutterActor implementations that
-  allocates the actor's preferred natural size. It can be used by fixed layout
-  managers (like ClutterGroup or so called 'composite actors') inside the
+  This function is a utility call for
+  <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link>
+  implementations that allocates the actor's preferred natural size. It can be used by
+  fixed layout managers (like ClutterGroup or so called 'composite actors') inside the
   <link linkend="method-clutteractor--allocate"><methodname>allocate()</methodname></link>
   implementation to give each child exactly how much space it requires.
   </para>
@@ -2393,7 +2394,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>box</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActorBox*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractorbox"><classname>clutter.ActorBox</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -2426,7 +2427,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>geom</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterGeometry*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttergeometry"><classname>clutter.Geometry</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
@@ -2454,11 +2455,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>ancestor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>verts[4]</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterVertex</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttervertex"><classname>clutter.Vertex</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -2625,7 +2626,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -2649,7 +2650,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>verts[4]</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterVertex</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttervertex"><classname>clutter.Vertex</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 

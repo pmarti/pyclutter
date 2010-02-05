@@ -85,7 +85,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>first_actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -101,7 +101,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -118,7 +118,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>first_actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>var_args</parameter>&nbsp;:</term>
@@ -138,7 +138,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>first_actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -154,7 +154,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -171,7 +171,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>first_actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>var_args</parameter>&nbsp;:</term>
@@ -231,7 +231,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -248,11 +248,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>sibling</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -269,11 +269,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>sibling</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

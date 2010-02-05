@@ -59,7 +59,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>timeline</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>alpha_func</parameter>&nbsp;:</term>
@@ -67,7 +67,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterEffectTemplate*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttereffecttemplate"><classname>clutter.EffectTemplate</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -90,7 +90,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>timeline</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterTimeline*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttertimeline"><classname>clutter.Timeline</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>alpha_func</parameter>&nbsp;:</term>

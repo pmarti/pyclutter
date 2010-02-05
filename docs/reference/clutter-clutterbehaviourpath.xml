@@ -69,15 +69,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Alpha instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteralpha"><classname>clutter.Alpha</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>knots</parameter>&nbsp;:</term>
-      <listitem><simpara>a tuple of tuples</simpara></listitem>
+      <listitem><simpara>a tuple of tuples with the X and Y coordinates</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.BehaviourPath</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterbehaviourpath"><classname>clutter.BehaviourPath</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -112,7 +112,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>knot</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Knot instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterknot"><classname>clutter.Knot</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -128,7 +128,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>knots</parameter>&nbsp;:</term>
-      <listitem><simpara>a tuple of tuples</simpara></listitem>
+      <listitem><simpara>a tuple of tuples with the X and Y coordinates</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -149,7 +149,7 @@
     </varlistentry>
     <varlistentry>
       <term><parameter>knot</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Knot instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterknot"><classname>clutter.Knot</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

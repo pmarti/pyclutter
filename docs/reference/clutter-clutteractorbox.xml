@@ -68,7 +68,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.ActorBox</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractorbox"><classname>clutter.ActorBox</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 

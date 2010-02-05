@@ -136,7 +136,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.Stage instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterstage"><classname>clutter.Stage</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -156,7 +156,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>color</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Color instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -172,7 +172,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>color</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Color instance</simpara></listitem>
+      <listitem><simpara><link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -300,7 +300,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.Actor instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -316,7 +316,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>event</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Event instance</simpara></listitem>
+      <listitem><simpara><link linkend="class-clutterevent"><classname>clutter.Event</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
@@ -481,7 +481,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Actor instance</simpara></listitem>
+      <listitem><simpara><link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -496,7 +496,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.Actor instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

@@ -116,7 +116,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -198,7 +198,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>color</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -214,7 +214,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>color</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>

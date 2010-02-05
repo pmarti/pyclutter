@@ -119,7 +119,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter role="keyword">alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.Alpha instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteralpha"><classname>clutter.Alpha</classname></link></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter role="keyword">x</parameter>&nbsp;:</term>
@@ -147,7 +147,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.BehaviourEllipse instance</simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterbehaviourellipse"><classname>clutter.BehaviourEllipse</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
