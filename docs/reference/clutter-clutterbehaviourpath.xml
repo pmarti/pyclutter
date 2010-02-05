@@ -22,7 +22,6 @@
     <methodname>__init__</methodname>
     <methodparam><parameter>alpha</parameter></methodparam>
     <methodparam><parameter>knots</parameter></methodparam>
-    <methodparam><parameter>n_knots</parameter></methodparam>
   </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterbehaviourpath--get-knots">get_knots</link></methodname>
@@ -33,7 +32,7 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterbehaviourpath--append-knots">append_knots</link></methodname>
-    <methodparam><parameter>first_knot</parameter></methodparam>
+    <methodparam><parameter>knots</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterbehaviourpath--insert-knot">insert_knot</link></methodname>
@@ -64,26 +63,21 @@
 
 <programlisting><constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>alpha</parameter></methodparam>
-    <methodparam><parameter>knots</parameter></methodparam>
-    <methodparam><parameter>n_knots</parameter></methodparam>
+    <methodparam><parameter role="keyword">alpha</parameter></methodparam>
+    <methodparam><parameter role="keyword">knots</parameter></methodparam>
   </constructorsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterAlpha*</simpara></listitem>
+      <listitem><simpara>a clutter.Alpha instance</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>knots</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterKnot*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>n_knots</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>a tuple of tuples</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterBehaviour*</simpara></listitem>
+      <listitem><simpara>a clutter.BehaviourPath</simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -102,7 +96,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a GSList*</simpara></listitem>
+      <listitem><simpara>a list</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -118,7 +112,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>knot</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterKnot*</simpara></listitem>
+      <listitem><simpara>a clutter.Knot instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -129,12 +123,12 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>append_knots</methodname>
-    <methodparam><parameter>first_knot</parameter></methodparam>
+    <methodparam><parameter>knots</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>first_knot</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterKnot*</simpara></listitem>
+      <term><parameter>knots</parameter>&nbsp;:</term>
+      <listitem><simpara>a tuple of tuples</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -151,11 +145,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>offset</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>knot</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterKnot*</simpara></listitem>
+      <listitem><simpara>a clutter.Knot instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -171,7 +165,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>offset</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
