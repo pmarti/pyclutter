@@ -20,13 +20,13 @@
   <ooclass><classname><link linkend="class-clutterbehaviour">clutter.Behaviour</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>alpha</parameter></methodparam>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
-    <methodparam><parameter>start</parameter></methodparam>
-    <methodparam><parameter>end</parameter></methodparam>
+    <methodparam><parameter role="keyword">alpha</parameter></methodparam>
+    <methodparam><parameter role="keyword">x</parameter></methodparam>
+    <methodparam><parameter role="keyword">y</parameter></methodparam>
+    <methodparam><parameter role="keyword">width</parameter></methodparam>
+    <methodparam><parameter role="keyword">height</parameter></methodparam>
+    <methodparam><parameter role="keyword">start</parameter></methodparam>
+    <methodparam><parameter role="keyword">end</parameter></methodparam>
   </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterbehaviourellipse--set-center">set_center</link></methodname>
@@ -83,10 +83,7 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterbehaviourellipse--get-tilt">get_tilt</link></methodname>
-    <methodparam><parameter>angle_tilt_x</parameter></methodparam>
-    <methodparam><parameter>angle_tilt_y</parameter></methodparam>
-    <methodparam><parameter>angle_tilt_z</parameter></methodparam>
-  </methodsynopsis>
+    <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterbehaviourellipse--get-direction">get_direction</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
@@ -111,46 +108,46 @@
 
 <programlisting><constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>alpha</parameter></methodparam>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
-    <methodparam><parameter>start</parameter></methodparam>
-    <methodparam><parameter>end</parameter></methodparam>
+    <methodparam><parameter role="keyword">alpha</parameter></methodparam>
+    <methodparam><parameter role="keyword">x</parameter></methodparam>
+    <methodparam><parameter role="keyword">y</parameter></methodparam>
+    <methodparam><parameter role="keyword">width</parameter></methodparam>
+    <methodparam><parameter role="keyword">height</parameter></methodparam>
+    <methodparam><parameter role="keyword">start</parameter></methodparam>
+    <methodparam><parameter role="keyword">end</parameter></methodparam>
   </constructorsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterAlpha*</simpara></listitem>
+      <term><parameter role="keyword">alpha</parameter>&nbsp;:</term>
+      <listitem><simpara>a clutter.Alpha instance</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <term><parameter role="keyword">x</parameter>&nbsp;:</term>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <term><parameter role="keyword">y</parameter>&nbsp;:</term>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <term><parameter role="keyword">width</parameter>&nbsp;:</term>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <term><parameter role="keyword">height</parameter>&nbsp;:</term>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>start</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <term><parameter role="keyword">start</parameter>&nbsp;:</term>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>end</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <term><parameter role="keyword">end</parameter>&nbsp;:</term>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterBehaviour*</simpara></listitem>
+      <listitem><simpara>a clutter.BehaviourEllipse instance</simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -171,11 +168,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -192,11 +189,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -212,7 +209,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -227,7 +224,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -243,7 +240,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -258,7 +255,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -274,7 +271,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>angle_start</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -289,7 +286,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -305,7 +302,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>angle_end</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -320,7 +317,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -337,11 +334,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>axis</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+      <listitem><simpara>a clutter.RotateAxis instance</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>angle_tilt</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -357,11 +354,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>axis</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterRotateAxis</simpara></listitem>
+      <listitem><simpara>a clutter.RotateAxis instance</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -379,15 +376,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>angle_tilt_x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>angle_tilt_y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>angle_tilt_z</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -398,22 +395,12 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_tilt</methodname>
-    <methodparam><parameter>angle_tilt_x</parameter></methodparam>
-    <methodparam><parameter>angle_tilt_y</parameter></methodparam>
-    <methodparam><parameter>angle_tilt_z</parameter></methodparam>
+    <methodparam></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>angle_tilt_x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>angle_tilt_y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>angle_tilt_z</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble*</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 3-tuple containing angle_tilt_x, angle_tilt_y and angle_tilt_z</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -428,7 +415,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterRotateDirection</simpara></listitem>
+      <listitem><simpara>a clutter.RotateDirection instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -444,11 +431,10 @@
   <variablelist>
     <varlistentry>
       <term><parameter>direction</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterRotateDirection</simpara></listitem>
+      <listitem><simpara>a clutter.RotateDirection instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
-
 
   </refsect1>
 </refentry>
