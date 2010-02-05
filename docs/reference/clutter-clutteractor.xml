@@ -307,9 +307,6 @@
     <methodname><link linkend="method-clutteractor--get-transformed-position">get_transformed_position</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutteractor--get-transformed-positionu">get_transformed_positionu</link></methodname>
-    <methodparam></methodparam>  </methodsynopsis>
-<methodsynopsis language="python">
     <methodname><link linkend="method-clutteractor--get-fixed-position-set">get_fixed_position_set</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
@@ -2033,21 +2030,9 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_anchor_point</methodname>
-    <methodparam><parameter>anchor_x</parameter></methodparam>
-    <methodparam><parameter>anchor_y</parameter></methodparam>
   </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><parameter>anchor_x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>anchor_y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-  </variablelist>
   <para>
-  Gets the current anchor point of the actor in pixels.
+  Returns the current anchor point of the actor in pixels.
   </para>
   </refsect2>
 
@@ -2503,21 +2488,9 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_transformed_size</methodname>
-    <methodparam><parameter>width</parameter></methodparam>
-    <methodparam><parameter>height</parameter></methodparam>
   </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint*</simpara></listitem>
-    </varlistentry>
-  </variablelist>
   <para>
-  Gets the absolute size of an actor taking into account any scaling factors
+  Returns the absolute size of an actor taking into account any scaling factors
   </para>
   </refsect2>
 
@@ -2528,21 +2501,9 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_transformed_position</methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
   </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint*</simpara></listitem>
-    </varlistentry>
-  </variablelist>
   <para>
-  Gets the absolute position of an actor, in pixels, relative to the stage.
+  Returns the absolute position of an actor, in pixels, relative to the stage.
   </para>
   </refsect2>
 

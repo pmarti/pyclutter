@@ -24,7 +24,6 @@
   </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterrectangle--get-color">get_color</link></methodname>
-    <methodparam><parameter>color</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterrectangle--set-color">set_color</link></methodname>
@@ -39,7 +38,6 @@
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterrectangle--get-border-color">get_border_color</link></methodname>
-    <methodparam><parameter>color</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterrectangle--set-border-color">set_border_color</link></methodname>
@@ -62,16 +60,16 @@
 
 <programlisting><constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>color</parameter><initializer>True</initializer></methodparam>
+    <methodparam><parameter>color</parameter><initializer>None</initializer></methodparam>
   </constructorsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>color</parameter>&nbsp;:</term>
-      <listitem><simpara>a </simpara></listitem>
+      <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link> or None</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutterrectangle"><classname>clutter.Rectangle</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -86,11 +84,10 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_color</methodname>
-    <methodparam><parameter>color</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>color</parameter>&nbsp;:</term>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
       <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
@@ -149,11 +146,10 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_border_color</methodname>
-    <methodparam><parameter>color</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>color</parameter>&nbsp;:</term>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
       <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
