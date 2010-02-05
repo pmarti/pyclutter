@@ -20,7 +20,9 @@
   <ooclass><classname><link linkend="class-cluttergroup">clutter.Group</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam></methodparam>  </constructorsynopsis>
+    <methodparam><parameter role="keyword">default</parameter>
+       <initializer>False</initializer></methodparam>
+    </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterstage--set-color">set_color</link></methodname>
     <methodparam><parameter>color</parameter></methodparam>
@@ -105,9 +107,6 @@
     <methodname><link linkend="method-clutterstage--get-key-focus">get_key_focus</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
-    <methodname><link linkend="method-clutterstage--get-resolution">get_resolution</link></methodname>
-    <methodparam></methodparam>  </methodsynopsis>
-<methodsynopsis language="python">
     <methodname><link linkend="method-clutterstage--is-default">is_default</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
@@ -131,11 +130,13 @@
 
 <programlisting><constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam></methodparam>  </constructorsynopsis></programlisting>
+    <methodparam><parameter role="keyword">default</parameter>
+      <initializer>False</initializer></methodparam>
+    </constructorsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a clutter.Stage instance</simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -155,7 +156,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>color</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-ClutterColor*</simpara></listitem>
+      <listitem><simpara>a clutter.Color instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -171,7 +172,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>color</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterColor*</simpara></listitem>
+      <listitem><simpara>a clutter.Color instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -190,19 +191,19 @@
   <variablelist>
     <varlistentry>
       <term><parameter>fovy</parameter>&nbsp;:</term>
-      <listitem><simpara>a gfloat</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>aspect</parameter>&nbsp;:</term>
-      <listitem><simpara>a gfloat</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z_near</parameter>&nbsp;:</term>
-      <listitem><simpara>a gfloat</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z_far</parameter>&nbsp;:</term>
-      <listitem><simpara>a gfloat</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -221,19 +222,19 @@
   <variablelist>
     <varlistentry>
       <term><parameter>fovy</parameter>&nbsp;:</term>
-      <listitem><simpara>a gfloat*</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>aspect</parameter>&nbsp;:</term>
-      <listitem><simpara>a gfloat*</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z_near</parameter>&nbsp;:</term>
-      <listitem><simpara>a gfloat*</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z_far</parameter>&nbsp;:</term>
-      <listitem><simpara>a gfloat*</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -280,21 +281,26 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_actor_at_pos</methodname>
+    <methodparam><parameter>pick_mode</parameter></methodparam>
     <methodparam><parameter>x</parameter></methodparam>
     <methodparam><parameter>y</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
+      <term><parameter>pick_mode</parameter>&nbsp;:</term>
+      <listitem><simpara>one of PICK_NONE, PICK_REACTIVE or PICK_ALL</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a clutter.Actor instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -310,11 +316,11 @@
   <variablelist>
     <varlistentry>
       <term><parameter>event</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterEvent*</simpara></listitem>
+      <listitem><simpara>a clutter.Event instance</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -330,7 +336,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>title</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <listitem><simpara>a str</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -345,7 +351,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
+      <listitem><simpara>a str</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -361,7 +367,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>value</parameter>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -376,7 +382,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -392,7 +398,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>fog</parameter>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -407,7 +413,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -425,15 +431,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>density</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z_near</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z_far</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -451,15 +457,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>density</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble*</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z_near</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble*</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>z_far</parameter>&nbsp;:</term>
-      <listitem><simpara>a gdouble*</simpara></listitem>
+      <listitem><simpara>a float</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -475,7 +481,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>actor</parameter>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
+      <listitem><simpara>a clutter.Actor instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -490,22 +496,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a ClutterActor*</simpara></listitem>
-    </varlistentry>
-  </variablelist>
-  </refsect2>
-
-
-  <refsect2 id="method-clutterstage--get-resolution">
-    <title>clutter.Stage.get_resolution</title>
-
-<programlisting><methodsynopsis language="python">
-    <methodname>get_resolution</methodname>
-    <methodparam></methodparam>  </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gdouble</simpara></listitem>
+      <listitem><simpara>a clutter.Actor instance</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
@@ -520,7 +511,7 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
   </refsect2>
