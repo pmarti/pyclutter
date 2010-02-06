@@ -92,7 +92,7 @@
     </varlistentry>
   </variablelist>
   <para>
-  Retrieves the color of the rectangle.
+  Returns the color of the rectangle.
   </para>
   </refsect2>
 
@@ -125,11 +125,11 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>the width of the border</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
-  Gets the width (in pixels) of the border.
+  Returns the width (in pixels) of the border.
   </para>
   </refsect2>
 
@@ -144,7 +144,7 @@
   <variablelist>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a guint</simpara></listitem>
+      <listitem><simpara>the width of the border</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
