@@ -100,19 +100,19 @@
   <variablelist>
     <varlistentry>
       <term><parameter>filename</parameter>&nbsp;:</term>
-      <listitem><simpara>a filename or None</simpara></listitem>
+      <listitem><simpara>a filename or <parameter>None</parameter></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>disable_slicing</parameter>&nbsp;:</term>
-      <listitem><simpara>if True slicing is disabled</simpara></listitem>
+      <listitem><simpara>if <parameter>True</parameter> slicing is disabled</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>load_async</parameter>&nbsp;:</term>
-      <listitem><simpara>if True a worker thread is used to load the data from disk async, returning inmediately.</simpara></listitem>
+      <listitem><simpara>if <parameter>True</parameter> a worker thread is used to load the data from disk async, returning inmediately.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>load_data_async</parameter>&nbsp;:</term>
-      <listitem><simpara>if True a worker thread is used to load the data from disk async, blocking until the widht and height of the data are determined.</simpara></listitem>
+      <listitem><simpara>if <parameter>True</parameter> a worker thread is used to load the data from disk async, blocking until the widht and height of the data are determined.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
@@ -142,27 +142,27 @@
   <variablelist>
     <varlistentry>
       <term><parameter>data</parameter>&nbsp;:</term>
-      <listitem><simpara>a string</simpara></listitem>
+      <listitem><simpara>Image data in RGB colorspace.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>has_alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a bool</simpara></listitem>
+      <listitem><simpara>Set to <parameter>True</parameter> if image data has alpha channel</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Width in pixels of image data</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Height in pixels of image data</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>rowstride</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Distance in bytes between row starts</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>bpp</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>bytes per pixel (Currently only 3 or 4 are supported, depending on <parameter>has_alpha</parameter>)</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>flags</parameter>&nbsp;:</term>
@@ -170,7 +170,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a bool</simpara></listitem>
+      <listitem><simpara><parameter>True</parameter> on success, <parameter>False</parameter> on failure.</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
@@ -192,15 +192,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>data</parameter>&nbsp;:</term>
-      <listitem><simpara>a string</simpara></listitem>
+      <listitem><simpara>Image data in YUV type colorspace.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Width in pixels of image data</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Height in pixels of image data</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>flags</parameter>&nbsp;:</term>
@@ -208,7 +208,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a bool</simpara></listitem>
+      <listitem><simpara><parameter>True</parameter> on success, <parameter>False</parameter> on failure.</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
@@ -235,35 +235,35 @@
   <variablelist>
     <varlistentry>
       <term><parameter>data</parameter>&nbsp;:</term>
-      <listitem><simpara>a string</simpara></listitem>
+      <listitem><simpara>Image data in RGB type colorspace.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>has_alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a bool</simpara></listitem>
+      <listitem><simpara>Set to <parameter>True</parameter> if image data has an alpha channel.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>X coordinate of upper left corner of region to update.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Y coordinate of upper left corner of region to update.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Width in pixels of region to update.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Height in pixels of region to update.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>rowstride</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>Distance in bytes between row starts.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>bpp</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>bytes per pixel (Currently only 3 and 4 supported, depending on <parameter>has_alpha</parameter>)</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>flags</parameter>&nbsp;:</term>
@@ -271,7 +271,7 @@
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a bool</simpara></listitem>
+      <listitem><simpara><parameter>True</parameter> on success, <parameter>False</parameter> on failure.</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
@@ -290,15 +290,15 @@
   <variablelist>
     <varlistentry>
       <term><parameter>filename</parameter>&nbsp;:</term>
-      <listitem><simpara>a string</simpara></listitem>
+      <listitem><simpara>The filename of the image.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a bool</simpara></listitem>
+      <listitem><simpara><parameter>True</parameter> if the image was successfully loaded and set.</simpara></listitem>
     </varlistentry>
   </variablelist>
   <para>
-  Sets the image data from a file. In case of failure False is returned.
+      Sets the image data from a file. In case of failure <parameter>False</parameter> is returned.
   </para>
   </refsect2>
 
