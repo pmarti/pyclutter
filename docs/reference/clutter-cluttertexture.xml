@@ -20,10 +20,10 @@
   <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>filename</parameter><initializer>None</initializer></methodparam>
-    <methodparam><parameter>disable_slicing</parameter><initializer>False</initializer></methodparam>
-    <methodparam><parameter>load_async</parameter><initializer>False</initializer></methodparam>
-    <methodparam><parameter>load_data_async</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter role="keyword">filename</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter role="keyword">disable_slicing</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter role="keyword">load_async</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter role="keyword">load_data_async</parameter><initializer>False</initializer></methodparam>
   </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--set-from-rgb-data">set_from_rgb_data</link></methodname>
@@ -59,6 +59,9 @@
     <methodparam><parameter>filename</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-base-size">get_base_size</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--set-filter-quality">set_filter_quality</link></methodname>
     <methodparam><parameter>filter_quality</parameter></methodparam>
   </methodsynopsis>
@@ -69,11 +72,43 @@
     <methodname><link linkend="method-cluttertexture--get-max-tile-waste">get_max_tile_waste</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-pixel-format">get_pixel_format</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-cogl-material">get_cogl_material</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-cogl-material">set_cogl_material</link></methodname>
+    <methodparam><parameter>cogl_material</parameter></methodparam>
+ </methodsynopsis>
+<methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--get-cogl-texture">get_cogl_texture</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--set-cogl-texture">set_cogl_texture</link></methodname>
     <methodparam><parameter>cogl_tex</parameter></methodparam>
+ </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-sync-size">get_sync_size</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-sync-size">set_sync_size</link></methodname>
+    <methodparam><parameter>sync_size</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-repeat">get_repeat</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-repeat">set_repeat</link></methodname>
+    <methodparam><parameter>repeat_x</parameter></methodparam>
+    <methodparam><parameter>repeat_y</parameter></methodparam>
+  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--get-keep-aspect-ratio">get_keep_aspect_ratio</link></methodname>
+    <methodparam></methodparam>  </methodsynopsis>
+<methodsynopsis language="python">
+    <methodname><link linkend="method-cluttertexture--set-keep-aspect-ratio">set_keep_aspect_ratio</link></methodname>
+    <methodparam><parameter>keep_aspect</parameter></methodparam>
   </methodsynopsis>
 </classsynopsis>
 
@@ -92,26 +127,26 @@
 
 <programlisting><constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>filename</parameter><initializer>None</initializer></methodparam>
-    <methodparam><parameter>disable_slicing</parameter><initializer>False</initializer></methodparam>
-    <methodparam><parameter>load_async</parameter><initializer>False</initializer></methodparam>
-    <methodparam><parameter>load_data_async</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter role="keyword">filename</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter role="keyword">disable_slicing</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter role="keyword">load_async</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter role="keyword">load_data_async</parameter><initializer>False</initializer></methodparam>
   </constructorsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>filename</parameter>&nbsp;:</term>
+      <term><parameter role="keyword">filename</parameter>&nbsp;:</term>
       <listitem><simpara>a filename or <parameter>None</parameter></simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>disable_slicing</parameter>&nbsp;:</term>
+      <term><parameter role="keyword">disable_slicing</parameter>&nbsp;:</term>
       <listitem><simpara>if <parameter>True</parameter> slicing is disabled</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>load_async</parameter>&nbsp;:</term>
+      <term><parameter role="keyword">load_async</parameter>&nbsp;:</term>
       <listitem><simpara>if <parameter>True</parameter> a worker thread is used to load the data from disk async, returning inmediately.</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>load_data_async</parameter>&nbsp;:</term>
+      <term><parameter role="keyword">load_data_async</parameter>&nbsp;:</term>
       <listitem><simpara>if <parameter>True</parameter> a worker thread is used to load the data from disk async, blocking until the widht and height of the data are determined.</simpara></listitem>
     </varlistentry>
     <varlistentry>
@@ -119,7 +154,6 @@
       <listitem><simpara>a <link linkend="class-clutteractor"><classname>clutter.Actor</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
-
 
 
   </refsect1>
@@ -146,23 +180,23 @@
     </varlistentry>
     <varlistentry>
       <term><parameter>has_alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>Set to <parameter>True</parameter> if image data has alpha channel</simpara></listitem>
+      <listitem><simpara>Set to <parameter>True</parameter> if image data has alpha channel.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>Width in pixels of image data</simpara></listitem>
+      <listitem><simpara>Width in pixels of image data.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>Height in pixels of image data</simpara></listitem>
+      <listitem><simpara>Height in pixels of image data.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>rowstride</parameter>&nbsp;:</term>
-      <listitem><simpara>Distance in bytes between row starts</simpara></listitem>
+      <listitem><simpara>Distance in bytes between row starts.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>bpp</parameter>&nbsp;:</term>
-      <listitem><simpara>bytes per pixel (Currently only 3 or 4 are supported, depending on <parameter>has_alpha</parameter>)</simpara></listitem>
+      <listitem><simpara>bytes per pixel (Currently only 3 or 4 are supported, depending on <parameter>has_alpha.</parameter>)</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>flags</parameter>&nbsp;:</term>
@@ -196,11 +230,11 @@
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>Width in pixels of image data</simpara></listitem>
+      <listitem><simpara>Width in pixels of image data.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>Height in pixels of image data</simpara></listitem>
+      <listitem><simpara>Height in pixels of image data.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>flags</parameter>&nbsp;:</term>
@@ -303,6 +337,24 @@
   </refsect2>
 
 
+   <refsect2 id="method-cluttertexture--get-base-size">
+    <title>clutter.Texture.get_base_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_base_size</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 2-tuple with the width and height</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Gets the size in pixels of the untransformed underlying image.
+  </para>
+  </refsect2>
+
+
   <refsect2 id="method-cluttertexture--set-filter-quality">
     <title>clutter.Texture.set_filter_quality</title>
 
@@ -359,6 +411,61 @@
   </refsect2>
 
 
+<refsect2 id="method-cluttertexture--get-pixel-format">
+    <title>clutter.Texture.get_pixel_format</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_pixel_format</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a CoglPixelFormat value</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Retrieves the pixel format used by texture.
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--get-cogl-material">
+    <title>clutter.Texture.get_cogl_material</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_cogl_material</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a CoglHandle</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Returns the handle to the underlying COGL material used for drawing the actor.
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--set-cogl-material">
+    <title>clutter.Texture.set_cogl_material</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_cogl_material</methodname>
+    <methodparam><parameter>cogl_material</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>cogl_material</parameter>&nbsp;:</term>
+      <listitem><simpara>a CoglHandle for material</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Replaces the underlying COGL material drawn by this actor with cogl_material.
+  </para>
+  </refsect2>
+
+
   <refsect2 id="method-cluttertexture--get-cogl-texture">
     <title>clutter.Texture.get_cogl_texture</title>
 
@@ -394,6 +501,123 @@
   Replaces the underlying COGL texture drawn by this actor with cogl_tex.
   </para>
   </refsect2>
+
+
+   <refsect2 id="method-cluttertexture--get-sync-size">
+    <title>clutter.Texture.get_sync_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_sync_size</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara><parameter>True</parameter> if the texture should have the same preference size of the underlying image.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Retrieves the value set using <link linkend="method-cluttertexture--set-sync-size"><function>set_sync_size</function></link>
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--set-sync-size">
+    <title>clutter.Texture.set_sync_size</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_sync_size</methodname>
+    <methodparam><parameter>sync_size</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>sync_size</parameter>&nbsp;:</term>
+      <listitem><simpara><parameter>True</parameter> to maintain the aspect ratio.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Sets whether the texture should have the same preferred size as the underlying image.
+  </para>
+  </refsect2>
+
+
+   <refsect2 id="method-cluttertexture--get-repeat">
+    <title>clutter.Texture.get_repeat</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_repeat</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 2-tuple with the horizontal and vertical repeat limits.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Retrieves the value set using <link linkend="method-cluttertexture--set-repeat"><function>set_repeat</function></link>
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--set-repeat">
+    <title>clutter.Texture.set_repeat</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_repeat</methodname>
+    <methodparam><parameter>repeat_x</parameter></methodparam>
+    <methodparam><parameter>repeat_y</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>repeat_x</parameter>&nbsp;:</term>
+      <listitem><simpara><parameter>True</parameter> to maintain the aspect ratio.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>repeat_y</parameter>&nbsp;:</term>
+      <listitem><simpara><parameter>True</parameter> to maintain the aspect ratio.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Sets whether the texture should repeat horizontally or vertically when the actor size is bigger than the image size.
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--get-keep-aspect-ratio">
+    <title>clutter.Texture.get_keep_aspect_ratio</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>get_keep_aspect_ratio</methodname>
+    <methodparam></methodparam>  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara><parameter>True</parameter> if the texture should maintain the aspect ratio of the underlying image.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Retrieves the value set using <link linkend="method-cluttertexture--set-keep-aspect-ratio"><function>set_keep_aspect_ratio</function></link>
+  </para>
+  </refsect2>
+
+
+  <refsect2 id="method-cluttertexture--set-keep-aspect-ratio">
+    <title>clutter.Texture.set_keep_aspect_ratio</title>
+
+<programlisting><methodsynopsis language="python">
+    <methodname>set_keep_aspect_ratio</methodname>
+    <methodparam><parameter>keep_aspect</parameter></methodparam>
+  </methodsynopsis></programlisting>
+  <variablelist>
+    <varlistentry>
+      <term><parameter>keep_aspect</parameter>&nbsp;:</term>
+      <listitem><simpara><parameter>True</parameter> to maintain the aspect ratio.</simpara></listitem>
+    </varlistentry>
+  </variablelist>
+  <para>
+  Sets whether the texture should have a preferred size maintaining the aspect ratio of the underlying image.
+  </para>
+  </refsect2>
+
 
 
   </refsect1>
