@@ -20,13 +20,13 @@
   <ooclass><classname><link linkend="class-clutterbehaviour">clutter.Behaviour</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter role="keyword">alpha</parameter></methodparam>
-    <methodparam><parameter role="keyword">x</parameter></methodparam>
-    <methodparam><parameter role="keyword">y</parameter></methodparam>
-    <methodparam><parameter role="keyword">width</parameter></methodparam>
-    <methodparam><parameter role="keyword">height</parameter></methodparam>
-    <methodparam><parameter role="keyword">start</parameter></methodparam>
-    <methodparam><parameter role="keyword">end</parameter></methodparam>
+    <methodparam><parameter role="keyword">alpha</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter role="keyword">x</parameter><initializer>0</initializer></methodparam>
+    <methodparam><parameter role="keyword">y</parameter><initializer>0</initializer></methodparam>
+    <methodparam><parameter role="keyword">width</parameter><initializer>0</initializer></methodparam>
+    <methodparam><parameter role="keyword">height</parameter><initializer>0</initializer></methodparam>
+    <methodparam><parameter role="keyword">start</parameter><initializer>0.0</initializer></methodparam>
+    <methodparam><parameter role="keyword">end</parameter><initializer>0.0</initializer></methodparam>
   </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterbehaviourellipse--set-center">set_center</link></methodname>
@@ -119,35 +119,35 @@
   <variablelist>
     <varlistentry>
       <term><parameter role="keyword">alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a <link linkend="class-clutteralpha"><classname>clutter.Alpha</classname></link></simpara></listitem>
+      <listitem><simpara>a <link linkend="class-clutteralpha"><classname>clutter.Alpha</classname></link> or <parameter>None</parameter></simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter role="keyword">x</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>x coordinace of the center</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter role="keyword">y</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>y coordinace of the center</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter role="keyword">width</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>width of the ellipse</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter role="keyword">height</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>height of the ellipse</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter role="keyword">start</parameter>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>angle in degrees at which movement starts, between 0 and 360</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter role="keyword">end</parameter>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>angle in degrees at which movement ends, between 0 and 360</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a <link linkend="class-clutterbehaviourellipse"><classname>clutter.BehaviourEllipse</classname></link></simpara></listitem>
+      <listitem><simpara>the newly created <link linkend="class-clutterbehaviourellipse"><classname>clutter.BehaviourEllipse</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
 
@@ -168,13 +168,16 @@
   <variablelist>
     <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>x coordinace of centre</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>y coordinace of centre</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the center of the elliptical path to the point represented by knot.
+  </para>
   </refsect2>
 
 
@@ -183,19 +186,16 @@
 
 <programlisting><methodsynopsis language="python">
     <methodname>get_center</methodname>
-    <methodparam><parameter>x</parameter></methodparam>
-    <methodparam><parameter>y</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
-      <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <term><emphasis>Returns</emphasis>&nbsp;:</term>
+      <listitem><simpara>a 2-tuple with the X and Y coordinates of the center</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Returns the center of the elliptical path path.
+  </para>
   </refsect2>
 
 
@@ -209,9 +209,12 @@
   <variablelist>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>width of the ellipse</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the width of the elliptical path.
+  </para>
   </refsect2>
 
 
@@ -224,9 +227,12 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>the width of the path</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Returns the width of the elliptical path.
+  </para>
   </refsect2>
 
 
@@ -240,9 +246,12 @@
   <variablelist>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>height of the ellipse</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the height of the elliptical path.
+  </para>
   </refsect2>
 
 
@@ -255,9 +264,12 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>an int</simpara></listitem>
+      <listitem><simpara>the height of the path</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Returns the height of the elliptical path.
+  </para>
   </refsect2>
 
 
@@ -271,9 +283,12 @@
   <variablelist>
     <varlistentry>
       <term><parameter>angle_start</parameter>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>angle at which movement starts in degrees, between 0 and 360.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the angle at which movement starts; angles >= 360 degress get clamped to the canonical interval (0, 360).
+  </para>
   </refsect2>
 
 
@@ -286,9 +301,12 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>angle in degrees</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the angle at which movements starts.
+  </para>
   </refsect2>
 
 
@@ -302,9 +320,12 @@
   <variablelist>
     <varlistentry>
       <term><parameter>angle_end</parameter>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>angle at which movement ends in degrees, between 0 and 360.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the angle at which movement ends; angles >= 360 degress get clamped to the canonical interval (0, 360).
+  </para>
   </refsect2>
 
 
@@ -317,9 +338,12 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>angle in degrees</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the angle at which movements ends.
+  </para>
   </refsect2>
 
 
@@ -334,13 +358,16 @@
   <variablelist>
     <varlistentry>
       <term><parameter>axis</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.RotateAxis instance</simpara></listitem>
+      <listitem><simpara>a clutter.RotateAxis enum</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>angle_tilt</parameter>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>tilt of the elipse around the center in the given axis in degrees.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the angle at which the ellipse should be tilted around its center.
+  </para>
   </refsect2>
 
 
@@ -354,13 +381,16 @@
   <variablelist>
     <varlistentry>
       <term><parameter>axis</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.RotateAxis instance</simpara></listitem>
+      <listitem><simpara>a clutter.RotateAxis enum</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>angle in degrees.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Returs the tilt of the ellipse around the center in the given axis.
+  </para>
   </refsect2>
 
 
@@ -376,17 +406,20 @@
   <variablelist>
     <varlistentry>
       <term><parameter>angle_tilt_x</parameter>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>tilt of the elipse around the center in X axis in degrees.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>angle_tilt_y</parameter>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>tilt of the elipse around the center in Y axis in degrees.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>angle_tilt_z</parameter>&nbsp;:</term>
-      <listitem><simpara>a float</simpara></listitem>
+      <listitem><simpara>tilt of the elipse around the center in Z axis in degrees.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the angles at which the ellipse should be tilted around its center.
+  </para>
   </refsect2>
 
 
@@ -403,6 +436,9 @@
       <listitem><simpara>a 3-tuple containing angle_tilt_x, angle_tilt_y and angle_tilt_z</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Returns the angles at which the ellipse should be tilted around its center.
+  </para>
   </refsect2>
 
 
@@ -415,9 +451,12 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a clutter.RotateDirection instance</simpara></listitem>
+      <listitem><simpara>a clutter.RotateDirection enum</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Returns the clutter.ºRotateDirection value used by the ellipse behaviour.
+  </para>
   </refsect2>
 
 
@@ -431,9 +470,12 @@
   <variablelist>
     <varlistentry>
       <term><parameter>direction</parameter>&nbsp;:</term>
-      <listitem><simpara>a clutter.RotateDirection instance</simpara></listitem>
+      <listitem><simpara>a clutter.RotateDirection enum</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the rotation direction used by the ellipse behaviour.
+  </para>
   </refsect2>
 
   </refsect1>
