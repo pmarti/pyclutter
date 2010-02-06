@@ -20,7 +20,10 @@
   <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>filename</parameter><initializer>True</initializer></methodparam>
+    <methodparam><parameter>filename</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter>disable_slicing</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter>load_async</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter>load_data_async</parameter><initializer>False</initializer></methodparam>
   </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--set-from-rgb-data">set_from_rgb_data</link></methodname>
@@ -31,7 +34,6 @@
     <methodparam><parameter>rowstride</parameter></methodparam>
     <methodparam><parameter>bpp</parameter></methodparam>
     <methodparam><parameter>flags</parameter></methodparam>
-    <methodparam><parameter>error</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--set-from-yuv-data">set_from_yuv_data</link></methodname>
@@ -39,7 +41,6 @@
     <methodparam><parameter>width</parameter></methodparam>
     <methodparam><parameter>height</parameter></methodparam>
     <methodparam><parameter>flags</parameter></methodparam>
-    <methodparam><parameter>error</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--set-area-from-rgb-data">set_area_from_rgb_data</link></methodname>
@@ -52,12 +53,10 @@
     <methodparam><parameter>rowstride</parameter></methodparam>
     <methodparam><parameter>bpp</parameter></methodparam>
     <methodparam><parameter>flags</parameter></methodparam>
-    <methodparam><parameter>error</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--set-from-file">set_from_file</link></methodname>
     <methodparam><parameter>filename</parameter></methodparam>
-    <methodparam><parameter>error</parameter></methodparam>
   </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--set-filter-quality">set_filter_quality</link></methodname>
@@ -66,10 +65,6 @@
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--get-filter-quality">get_filter_quality</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
-<methodsynopsis language="python">
-    <methodname><link linkend="method-cluttertexture--set-max-tile-waste">set_max_tile_waste</link></methodname>
-    <methodparam><parameter>max_tile_waste</parameter></methodparam>
-  </methodsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-cluttertexture--get-max-tile-waste">get_max_tile_waste</link></methodname>
     <methodparam></methodparam>  </methodsynopsis>
@@ -97,12 +92,27 @@
 
 <programlisting><constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>filename</parameter><initializer>True</initializer></methodparam>
+    <methodparam><parameter>filename</parameter><initializer>None</initializer></methodparam>
+    <methodparam><parameter>disable_slicing</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter>load_async</parameter><initializer>False</initializer></methodparam>
+    <methodparam><parameter>load_data_async</parameter><initializer>False</initializer></methodparam>
   </constructorsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>filename</parameter>&nbsp;:</term>
-      <listitem><simpara>a </simpara></listitem>
+      <listitem><simpara>a filename or None</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>disable_slicing</parameter>&nbsp;:</term>
+      <listitem><simpara>if True slicing is disabled</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>load_async</parameter>&nbsp;:</term>
+      <listitem><simpara>if True a worker thread is used to load the data from disk async, returning inmediately.</simpara></listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><parameter>load_data_async</parameter>&nbsp;:</term>
+      <listitem><simpara>if True a worker thread is used to load the data from disk async, blocking until the widht and height of the data are determined.</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
@@ -128,46 +138,44 @@
     <methodparam><parameter>rowstride</parameter></methodparam>
     <methodparam><parameter>bpp</parameter></methodparam>
     <methodparam><parameter>flags</parameter></methodparam>
-    <methodparam><parameter>error</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>data</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-guchar*</simpara></listitem>
+      <listitem><simpara>a string</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>has_alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>rowstride</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>bpp</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>flags</parameter>&nbsp;:</term>
       <listitem><simpara>a ClutterTextureFlags</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>error</parameter>&nbsp;:</term>
-      <listitem><simpara>a GError**</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the texture from RGB image data. If an error ocurred False is returned.
+  </para>
   </refsect2>
 
 
@@ -180,34 +188,32 @@
     <methodparam><parameter>width</parameter></methodparam>
     <methodparam><parameter>height</parameter></methodparam>
     <methodparam><parameter>flags</parameter></methodparam>
-    <methodparam><parameter>error</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>data</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-guchar*</simpara></listitem>
+      <listitem><simpara>a string</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>flags</parameter>&nbsp;:</term>
       <listitem><simpara>a ClutterTextureFlags</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>error</parameter>&nbsp;:</term>
-      <listitem><simpara>a GError**</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the texture from YUV image data. If an error ocurred False is returned.
+  </para>
   </refsect2>
 
 
@@ -225,54 +231,52 @@
     <methodparam><parameter>rowstride</parameter></methodparam>
     <methodparam><parameter>bpp</parameter></methodparam>
     <methodparam><parameter>flags</parameter></methodparam>
-    <methodparam><parameter>error</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>data</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-guchar*</simpara></listitem>
+      <listitem><simpara>a string</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>has_alpha</parameter>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>x</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>y</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>width</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>height</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>rowstride</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>bpp</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>an int</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><parameter>flags</parameter>&nbsp;:</term>
       <listitem><simpara>a ClutterTextureFlags</simpara></listitem>
     </varlistentry>
     <varlistentry>
-      <term><parameter>error</parameter>&nbsp;:</term>
-      <listitem><simpara>a GError**</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Updates a sub-region of the pixel data. If an error ocurred False is returned.
+  </para>
   </refsect2>
 
 
@@ -282,22 +286,20 @@
 <programlisting><methodsynopsis language="python">
     <methodname>set_from_file</methodname>
     <methodparam><parameter>filename</parameter></methodparam>
-    <methodparam><parameter>error</parameter></methodparam>
   </methodsynopsis></programlisting>
   <variablelist>
     <varlistentry>
       <term><parameter>filename</parameter>&nbsp;:</term>
-      <listitem><simpara>a const-gchar*</simpara></listitem>
-    </varlistentry>
-    <varlistentry>
-      <term><parameter>error</parameter>&nbsp;:</term>
-      <listitem><simpara>a GError**</simpara></listitem>
+      <listitem><simpara>a string</simpara></listitem>
     </varlistentry>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gboolean</simpara></listitem>
+      <listitem><simpara>a bool</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the image data from a file. In case of failure False is returned.
+  </para>
   </refsect2>
 
 
@@ -314,7 +316,11 @@
       <listitem><simpara>a ClutterTextureQuality</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the filter quality when scaling a texture. The quality is an enumeration currently the following values are supported: TEXTURE_QUALITY_LOW which is fast but only uses nearest neighbour interpolation. TEXTURE_QUALITY_MEDIUM which is computationally a bit more expensive (bilinear interpolation), and TEXTURE_QUALITY_HIGH which uses extra texture memory resources to improve scaled down rendering as well (by using mipmaps). The default value is TEXTURE_QUALITY_MEDIUM.
+  </para>
   </refsect2>
+
 
 
   <refsect2 id="method-cluttertexture--get-filter-quality">
@@ -329,22 +335,9 @@
       <listitem><simpara>a ClutterTextureQuality</simpara></listitem>
     </varlistentry>
   </variablelist>
-  </refsect2>
-
-
-  <refsect2 id="method-cluttertexture--set-max-tile-waste">
-    <title>clutter.Texture.set_max_tile_waste</title>
-
-<programlisting><methodsynopsis language="python">
-    <methodname>set_max_tile_waste</methodname>
-    <methodparam><parameter>max_tile_waste</parameter></methodparam>
-  </methodsynopsis></programlisting>
-  <variablelist>
-    <varlistentry>
-      <term><parameter>max_tile_waste</parameter>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
-    </varlistentry>
-  </variablelist>
+  <para>
+  Returns the filter quality used when scaling a texture.
+  </para>
   </refsect2>
 
 
@@ -357,9 +350,12 @@
   <variablelist>
     <varlistentry>
       <term><emphasis>Returns</emphasis>&nbsp;:</term>
-      <listitem><simpara>a gint</simpara></listitem>
+      <listitem><simpara>The maximum waste or -1 if the texture waste is unlimited.</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Returns the maximum waste that will be used when creating a texture or -1 if slicing is disabled.
+  </para>
   </refsect2>
 
 
@@ -375,6 +371,9 @@
       <listitem><simpara>a CoglHandle</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Retrieves the handle to the underlying COGL texture used for drawing the actor.
+  </para>
   </refsect2>
 
 
@@ -391,6 +390,9 @@
       <listitem><simpara>a CoglHandle</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Replaces the underlying COGL texture drawn by this actor with cogl_tex.
+  </para>
   </refsect2>
 
 

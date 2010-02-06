@@ -20,7 +20,7 @@
   <ooclass><classname><link linkend="class-clutteractor">clutter.Actor</link></classname></ooclass>
 <constructorsynopsis language="python">
     <methodname>__init__</methodname>
-    <methodparam><parameter>color</parameter><initializer>True</initializer></methodparam>
+    <methodparam><parameter>color</parameter><initializer>None</initializer></methodparam>
   </constructorsynopsis>
 <methodsynopsis language="python">
     <methodname><link linkend="method-clutterrectangle--get-color">get_color</link></methodname>
@@ -91,6 +91,9 @@
       <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Retrieves the color of the rectangle.
+  </para>
   </refsect2>
 
 
@@ -107,6 +110,9 @@
       <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the color of the rectangle.
+  </para>
   </refsect2>
 
 
@@ -122,6 +128,9 @@
       <listitem><simpara>a guint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the width (in pixels) of the border.
+  </para>
   </refsect2>
 
 
@@ -138,6 +147,9 @@
       <listitem><simpara>a guint</simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the width (in pixel) of the border. A width of 0 will unset the border.
+  </para>
   </refsect2>
 
 
@@ -153,6 +165,9 @@
       <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Gets the color of the border.
+  </para>
   </refsect2>
 
 
@@ -169,6 +184,9 @@
       <listitem><simpara>a <link linkend="class-cluttercolor"><classname>clutter.Color</classname></link></simpara></listitem>
     </varlistentry>
   </variablelist>
+  <para>
+  Sets the color of the border.
+  </para>
   </refsect2>
 
 
